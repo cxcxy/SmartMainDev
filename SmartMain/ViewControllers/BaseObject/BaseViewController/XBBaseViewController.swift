@@ -23,7 +23,7 @@ public enum RefreshStatus: Int {
     /// 当前导航栏的颜色,默认为nil
     var currentNavigationColor:UIColor?
     /// 当前导航栏标题的颜色,默认为nil
-    var currentNavigationTitleColor:UIColor = UIColor.black
+    var currentNavigationTitleColor:UIColor = navTitleColor
     /// 当前导航条是否透明,默认为false
     var currentNavigationNone:Bool = false
     
@@ -80,7 +80,7 @@ public enum RefreshStatus: Int {
         
         //         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         self.navigationController?.navigationBar.titleTextAttributes  = [NSAttributedStringKey.foregroundColor : currentNavigationTitleColor,
-                                                                         NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16.0)];
+                                                                         NSAttributedStringKey.font: navTitleFont];
         
     }
     

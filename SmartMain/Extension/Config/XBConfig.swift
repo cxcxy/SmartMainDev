@@ -99,9 +99,21 @@ let XBLineBreakNumber: CGFloat            = 5
 
 //MARK: 全局下线弹框状态,1:已出现
 var XBLoginShow:Int                 =  0
+// 全局背景 墨绿色
+let viewColor = UIColor.init(hexString: "80CA46")!
+
+// 全局背景 导航栏顶部标题颜色
+let navTitleColor = UIColor.white
+// 全局背景 导航栏顶部标题字体
+let navTitleFont = UIFont.systemFont(ofSize: 18)
+
+// 获取验证码 / 圆角 小角度
+let radius_nl:CGFloat = 14
+// 登录 /  圆角 中角度
+let radius_nll:CGFloat = 20
 
 //TODO: 全局tableView 背景色
-let tableColor                      =   UIColor.init(hexString: "F3F3F3")! 
+let tableColor                      =  UIColor.white
 
 //MARK: 导航栏背景色
 

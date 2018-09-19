@@ -45,7 +45,20 @@ extension UIView {
         return image!
     }
 }
-
+extension UIView {
+    /**
+     *   获取验证码 / 圆角 小角度
+     */
+    func radius_l() {
+        self.setCornerRadius(radius: radius_nl)
+    }
+    /**
+     *   登录 /  圆角 中角度
+     */
+    func radius_ll() {
+        self.setCornerRadius(radius: radius_nll)
+    }
+}
 //MARK: UIView Xib 扩展
 extension UIView: NibLoadable {
 }

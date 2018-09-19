@@ -10,21 +10,28 @@ import UIKit
 
 class ViewController: XBBaseViewController {
 
+    @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnRegister: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+       
+        
+    }
+    override func setUI() {
+        super.setUI()
         self.currentNavigationHidden = true
-   
+        view.backgroundColor = viewColor
+        btnLogin.setCornerRadius(radius: 20)
+        btnRegister.setCornerRadius(radius: 20)
+        btnRegister.addBorder(width: 2, color: UIColor.init(hexString: "008C48")! )
     }
     @IBAction func clickLoginAction(_ sender: Any) {
-//        let vc = XBTabBarController()
-//        self.pushVC(vc)
+
         let vc = LoginViewController()
         self.pushVC(vc)
     }
     @IBAction func clickRegisterAction(_ sender: Any) {
-        //        let vc = XBTabBarController()
-        //        self.pushVC(vc)
             let vc = RegisterViewController()
             self.pushVC(vc)
     }

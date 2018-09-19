@@ -257,6 +257,10 @@
 		2D312AA0213D560100FCC499 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D312A9E213D560100FCC499 /* Main.storyboard */; };
 		2D312AA2213D560100FCC499 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D312AA1213D560100FCC499 /* Assets.xcassets */; };
 		2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D312AA3213D560100FCC499 /* LaunchScreen.storyboard */; };
+		2D9195C821528AB400F4A9A1 /* ResetPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195C621528AB400F4A9A1 /* ResetPassViewController.swift */; };
+		2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195C721528AB400F4A9A1 /* ResetPassViewController.xib */; };
+		2D9195CC215291D300F4A9A1 /* SetInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195CA215291D300F4A9A1 /* SetInfoViewController.swift */; };
+		2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195CB215291D300F4A9A1 /* SetInfoViewController.xib */; };
 		2DC95587213E9EBB004D6F65 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95585213E9EBB004D6F65 /* MeViewController.swift */; };
 		2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DC95586213E9EBB004D6F65 /* MeViewController.xib */; };
 		2DC9558A213EAC18004D6F65 /* EquipmentSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */; };
@@ -668,6 +672,10 @@
 		2D312AA4213D560100FCC499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D312AA6213D560100FCC499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D312AAC213D619F00FCC499 /* SmartMain-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartMain-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D9195C621528AB400F4A9A1 /* ResetPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassViewController.swift; sourceTree = "<group>"; };
+		2D9195C721528AB400F4A9A1 /* ResetPassViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPassViewController.xib; sourceTree = "<group>"; };
+		2D9195CA215291D300F4A9A1 /* SetInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInfoViewController.swift; sourceTree = "<group>"; };
+		2D9195CB215291D300F4A9A1 /* SetInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInfoViewController.xib; sourceTree = "<group>"; };
 		2DC95585213E9EBB004D6F65 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		2DC95586213E9EBB004D6F65 /* MeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeViewController.xib; sourceTree = "<group>"; };
 		2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentSettingVC.swift; sourceTree = "<group>"; };
@@ -1745,8 +1753,12 @@
 			children = (
 				2DC9559D213FF3BE004D6F65 /* LoginViewController.swift */,
 				2DC9559E213FF3BE004D6F65 /* LoginViewController.xib */,
+				2D9195C621528AB400F4A9A1 /* ResetPassViewController.swift */,
+				2D9195C721528AB400F4A9A1 /* ResetPassViewController.xib */,
 				2DC955A1213FFA98004D6F65 /* RegisterViewController.swift */,
 				2DC955A2213FFA98004D6F65 /* RegisterViewController.xib */,
+				2D9195CA215291D300F4A9A1 /* SetInfoViewController.swift */,
+				2D9195CB215291D300F4A9A1 /* SetInfoViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1791,7 +1803,6 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
-				05213FFB619F8711F09828FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1873,7 +1884,9 @@
 				2D312AA0213D560100FCC499 /* Main.storyboard in Resources */,
 				0413BED021424BC9006E3A44 /* MemberManagerVC.xib in Resources */,
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
+				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
+				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
 				04C38A01213E64170063A799 /* ContentHeaderCell.xib in Resources */,
 			);
@@ -1882,21 +1895,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05213FFB619F8711F09828FE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2043,6 +2041,7 @@
 				04C38735213E093F0063A799 /* ETPopupView.swift in Sources */,
 				042EEF3F2150E15F00DBD492 /* EMAudioRecorderUtil.m in Sources */,
 				04C1436A2147A8F600FC2000 /* ShowChooseView.swift in Sources */,
+				2D9195C821528AB400F4A9A1 /* ResetPassViewController.swift in Sources */,
 				042EEF2D2150E15F00DBD492 /* MJRefreshAutoNormalFooter.m in Sources */,
 				042EEF602150E15F00DBD492 /* UIImage+MultiFormat.m in Sources */,
 				042EEF442150E15F00DBD492 /* MWZoomingScrollView.m in Sources */,
@@ -2180,6 +2179,7 @@
 				0422ECDF214110E000A42D7A /* ContentTitleCVCell.swift in Sources */,
 				042EEF832150E15F00DBD492 /* EaseBubbleView.m in Sources */,
 				2DC9559F213FF3BE004D6F65 /* LoginViewController.swift in Sources */,
+				2D9195CC215291D300F4A9A1 /* SetInfoViewController.swift in Sources */,
 				04C38715213E093F0063A799 /* PMRequestApi.swift in Sources */,
 				0485CCAF2148A89200F54927 /* MQTTPubAck.swift in Sources */,
 				042EEF5B2150E15F00DBD492 /* SDWebImageManager.m in Sources */,

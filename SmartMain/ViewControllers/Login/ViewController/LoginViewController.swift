@@ -7,7 +7,22 @@
 //
 
 import UIKit
-
+class BoaderView: UIView {
+    //code
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupSubviews()
+    }
+    //xib
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupSubviews()
+    }
+    func setupSubviews()  {
+        self.setCornerRadius(radius: 20)
+        self.addBorder(width: 0.5, color: viewColor)
+    }
+}
 class LoginViewController: XBBaseViewController {
     @IBOutlet weak var viewPassword: UIView!
     @IBOutlet weak var btnSendCode: UIButton!
@@ -19,24 +34,17 @@ class LoginViewController: XBBaseViewController {
     @IBOutlet weak var tfPhone: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var viewPhone: UIView!
-    @IBOutlet weak var viewPhoto: UIView!
+//    @IBOutlet weak var viewPhoto: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "登录"
-        self.currentNavigationNone = true
+        title = "手机号登录"
     }
     override func setUI() {
         super.setUI()
         viewPassword.isHidden = false
         viewCode.isHidden = true
         view.backgroundColor = UIColor.white
-        viewPhoto.roundView()
-        viewPhone.setCornerRadius(radius: 10)
-        viewPassword.setCornerRadius(radius: 10)
-        viewPhone.addBorder(width: 0.5, color: UIColor.darkGray)
-        viewPassword.addBorder(width: 0.5, color: UIColor.darkGray)
-        btnLogin.setCornerRadius(radius: 10)
-        btnLogin.addBorder(width: 0.5, color: UIColor.darkGray)
+        btnLogin.radius_ll()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,8 +52,8 @@ class LoginViewController: XBBaseViewController {
     }
 
     @IBAction func clickForgetAction(_ sender: Any) {
-        XBHud.showMsg("忘记密码")
-
+        let vc = ResetPassViewController()
+        self.pushVC(vc)
     }
     
     @IBAction func clickSendCodeAction(_ sender: Any) {

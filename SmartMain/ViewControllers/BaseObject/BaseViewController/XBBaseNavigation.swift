@@ -21,7 +21,7 @@ class XBBaseNavigation: UINavigationController,UIGestureRecognizerDelegate {
         let appearance = UIBarButtonItem.appearance()
         appearance.setBackButtonTitlePositionAdjustment(UIOffset.init(horizontal: 0.0, vertical: 0.0), for: .default)
 
-        self.navigationBar.barTintColor = UIColor.white // 统一 导航条背景色
+        self.navigationBar.barTintColor = viewColor // 统一 导航条背景色
          navigationBar.isTranslucent                 = false // 取消半透明效果
         
 //        self.navigationBar.tintColor = UIColor.black // 统一 导航条上面字体的颜色

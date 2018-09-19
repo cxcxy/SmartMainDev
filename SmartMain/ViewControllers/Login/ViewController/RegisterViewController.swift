@@ -9,28 +9,22 @@
 import UIKit
 
 class RegisterViewController: XBBaseViewController {
-//    @IBOutlet weak var viewPassword: UIView!
     
-//    @IBOutlet weak var btnLogin: UIButton!
-//    @IBOutlet weak var viewPhone: UIView!
-    
+    @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var tfPhone: UITextField!
     @IBOutlet weak var thPassword: UITextField!
     @IBOutlet weak var tfCode: UITextField!
     @IBOutlet weak var btnCode: UIButton!
-    
-    @IBOutlet weak var viewPhoto: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "注册"
-        self.currentNavigationNone = true
-        // Do any additional setup after loading the view.
+        title = "手机号注册"
     }
     override func setUI() {
         super.setUI()
         view.backgroundColor = UIColor.white
-        viewPhoto.roundView()
-
+        btnCode.radius_l()
+        btnRegister.radius_ll()
 
     }
     @IBAction func clickClearPhoneAction(_ sender: Any) {
@@ -55,7 +49,7 @@ class RegisterViewController: XBBaseViewController {
         })
     }
     @IBAction func clickRegisterAction(_ sender: Any) {
-//        XBHud.showMsg("点击注册按钮")
+
         guard tfPhone.text != "" else {
             XBHud.showMsg("请输入手机号")
             return
@@ -71,14 +65,17 @@ class RegisterViewController: XBBaseViewController {
         var params_task = [String: Any]()
         params_task["username"] = tfPhone.text
         params_task["password"] = thPassword.text
-        params_task["nickname"] = "智伴小达人"
+        params_task["nickname"] = "际浩小达人"
         params_task["authCode"] = "1111"
         Net.requestWithTarget(.register(req: params_task), successClosure: { (result, code, message) in
             if let str = result as? String {
                 if str == "ok" {
                     print("注册成功")
-                    //                    XBHud.showMsg("注册成功")
-                    self.requestFamilyRegister()
+//                    self.requestFamilyRegister()
+                    
+                    let vc = SetInfoViewController()
+                    self.pushVC(vc)
+                    
                 }else {
                     XBHud.showMsg("注册失败")
                 }
