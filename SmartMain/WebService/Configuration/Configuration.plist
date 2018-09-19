@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Release</key>
+	<dict>
+		<key>HermesUrl</key>
+		<string>“111”</string>
+		<key>LogPrint</key>
+		<string>1</string>
+		<key>clientId</key>
+		<string>mobile_pmi</string>
+		<key>clientSecret</key>
+		<string>mobile_secret</string>
+		<key>grantType</key>
+		<string>refresh_token</string>
+		<key>JPushAppKey</key>
+		<string>1628e0ba99b8118340342884</string>
+		<key>JPushForProduction</key>
+		<string>1</string>
+		<key>BuglyAppId</key>
+		<string>acec61e423</string>
+		<key>WXAppKey</key>
+		<string>wx302d7f45f81e400d</string>
+		<key>WXAppSecret</key>
+		<string>c114d0c17a932a78e4fa670e3776312d</string>
+	</dict>
+	<key>Debug</key>
+	<dict>
+		<key>HermesUrl</key>
+		<string>https://zbtest.wechat.athenamuses.cn/zbtest</string>
+		<key>LogPrint</key>
+		<string>0</string>
+		<key>clientId</key>
+		<string>mobile_pmi</string>
+		<key>clientSecret</key>
+		<string>mobile_pmi</string>
+		<key>grantType</key>
+		<string>refresh_token</string>
+		<key>JPushAppKey</key>
+		<string>b252736b45a717bff99a805d</string>
+		<key>JPushForProduction</key>
+		<string>0</string>
+		<key>BuglyAppId</key>
+		<string>1659e3e065</string>
+		<key>WXAppKey</key>
+		<string>wx5548a7d3d3c5baf0</string>
+		<key>WXAppSecret</key>
+		<string>de89483e371c15238c510db7229c2fc7</string>
+		<key>QQAppKey</key>
+		<string>1107679278</string>
+		<key>QQAppSecret</key>
+		<string>FIYZoazGs0AA6DtA</string>
+		<key>WeiboAppKey</key>
+		<string>3457153694</string>
+		<key>WeiboSecret</key>
+		<string>63196b0d27ffdb59bd14b609928a9776</string>
+	</dict>
+</dict>
+</plist>

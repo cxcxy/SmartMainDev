@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XBScanViewController" customModule="正式" customModuleProvider="target">
+            <connections>
+                <outlet property="scanTop" destination="bk8-Kf-NwK" id="YDg-Xd-yKx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wT-b0-nVO">
+                    <rect key="frame" x="87.5" y="193.5" width="200" height="200"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode_border" translatesAutoresizingMaskIntoConstraints="NO" id="Pfc-ou-eJt">
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode_scanline_qrcode" translatesAutoresizingMaskIntoConstraints="NO" id="AoL-Y3-FFN">
+                            <rect key="frame" x="0.0" y="-170" width="200" height="170"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="170" id="9of-t9-u2q"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="6yq-On-1Pe"/>
+                        <constraint firstAttribute="trailing" secondItem="AoL-Y3-FFN" secondAttribute="trailing" id="EHS-9A-BGJ"/>
+                        <constraint firstAttribute="trailing" secondItem="Pfc-ou-eJt" secondAttribute="trailing" id="FG1-sP-Ln6"/>
+                        <constraint firstItem="AoL-Y3-FFN" firstAttribute="leading" secondItem="3wT-b0-nVO" secondAttribute="leading" id="OHM-28-pzO"/>
+                        <constraint firstAttribute="bottom" secondItem="Pfc-ou-eJt" secondAttribute="bottom" id="WSQ-Ks-CxF"/>
+                        <constraint firstItem="Pfc-ou-eJt" firstAttribute="leading" secondItem="3wT-b0-nVO" secondAttribute="leading" id="Xee-nL-KD5"/>
+                        <constraint firstAttribute="top" secondItem="AoL-Y3-FFN" secondAttribute="top" constant="170" id="bk8-Kf-NwK"/>
+                        <constraint firstAttribute="width" constant="200" id="fFT-gZ-SDz"/>
+                        <constraint firstItem="Pfc-ou-eJt" firstAttribute="top" secondItem="3wT-b0-nVO" secondAttribute="top" id="xIb-vA-D5A"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将二维码/条码放入框内, 即可自动扫描" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EM-R3-bvQ">
+                    <rect key="frame" x="15" y="423" width="345" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8EM-R3-bvQ" firstAttribute="top" secondItem="3wT-b0-nVO" secondAttribute="bottom" constant="30" id="2tr-Qn-E3R"/>
+                <constraint firstItem="8EM-R3-bvQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="FRG-EO-MQY"/>
+                <constraint firstItem="3wT-b0-nVO" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="-50" id="JXc-LK-iCl"/>
+                <constraint firstItem="3wT-b0-nVO" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="bcc-Ab-Cc3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8EM-R3-bvQ" secondAttribute="trailing" constant="15" id="sKj-5Y-quQ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="24.5" y="52.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="qrcode_border" width="51" height="50"/>
+        <image name="qrcode_scanline_qrcode" width="218" height="170"/>
+    </resources>
+</document>

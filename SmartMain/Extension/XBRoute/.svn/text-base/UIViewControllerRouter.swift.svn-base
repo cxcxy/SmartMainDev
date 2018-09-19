@@ -1,0 +1,248 @@
+//
+//  UIViewControllerRouter.swift
+//  BSMaster
+//
+//  Created by 陈旭 on 2017/10/9.
+//  Copyright © 2017年 陈旭. All rights reserved.
+//
+class VCRouter {
+    //TODO: 栈顶部 导航条控制器
+    class var topNaVC : UINavigationController? {
+        
+        get {
+            let topViewController = BSUtil.currentTopViewController()
+            let navigation = topViewController.navigationController
+            return navigation
+        }
+    }
+    //TODO: 栈顶部 导航条控制器
+     class var topVC : UIViewController? {
+        
+        get {
+            let topViewController = BSUtil.currentTopViewController()
+            return topViewController
+        }
+    }
+    //MARK: 跳转登录界面
+    class func toLoginVC(){
+        let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSPhoneLoginViewController")
+        let nav = BSBaseNavigation.init(rootViewController: vc)
+        topVC?.presentVC(nav)
+    }
+    //MARK: 跳转注册界面
+     class func toRegistVC(){
+        let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSRegistViewController")
+        topVC?.pushVC(vc)
+    }
+    //MARK: 跳转设置昵称界面
+     class func toSetNickVC(_ model:RegisterModel){
+        let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSSetNickViewController") as! BSSetNickViewController
+        vc.registerModel = model
+        topVC?.pushVC(vc)
+    }
+    //MARK: 跳转忘记密码界面 resetType:默认为 重置登录密码界面
+     class func toForgetPassVC(_ resetType:BSResetPassType = .LoginPassWord){
+        let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSForgetPassViewController") as! BSForgetPassViewController
+        vc.resetPassType = resetType
+        topVC?.pushVC(vc)
+    }
+    //MARK: 跳转重置密码界面 resetType:默认为 重置登录密码界面
+    class func toResetPassVC(_ forgetInfo:RegisterModel? = nil,oldPass:String? = nil,resetType:BSResetPassType = .LoginPassWord){
+        let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSResetViewController") as! BSResetViewController
+//        if let info = forgetInfo {
+            vc.forgetInfo       = forgetInfo
+//        }else{
+            vc.oldPass          = oldPass
+//        }
+        vc.resetPassType        = resetType
+        topVC?.pushVC(vc)
+
+    }
+    //MARK: 跳转设置界面
+     class func toSettingVC(){
+        guard !BSUserManager.userID.isEmpty else {
+             VCRouter.toLoginVC()
+            return
+        }
+
+        let vc = BSSettingViewController.init(style: .grouped)
+        topVC?.pushVC(vc)
+
+    }
+    //MARK: 跳转广告界面
+    class func toADVC(_ type:BSSegmentStyle = .Adverted,transactType:String = "1"){
+        guard !BSUserManager.userID.isEmpty else {
+            VCRouter.toLoginVC()
+            return
+        }
+
+            let vc = BSMyAdverteViewController()
+            vc.controllerStyle = type
+            vc.transactType  = transactType
+            topVC?.pushVC(vc)
+      
+
+    }
+
+    //TODO: 购买 出售比特币
+    class func toBuyCoinVC(_ transactId: String,transactType:BSTransactType){
+        let vc = UIStoryboard.getStoryVC(.Transact, identifier: "BSTransactDetailViewController") as! BSTransactDetailViewController
+        vc.transactId = transactId
+        vc.transactType = transactType
+        topVC?.pushVC(vc)
+    }
+    //TODO: 弹出蒙层
+     class func toPrensMaskVC(){
+        
+        let vc = BSPushMaskViewController()
+        topVC?.presentToMaskViewController(viewControllerToPresent: vc)
+        
+    }
+    //TODO: 发布广告
+     class func toPostVC(_ postType:BSPostType){
+        let vc = UIStoryboard.getStoryVC(.Transact, identifier: "BSPostViewController") as! BSPostViewController
+        vc.postType = postType
+        topVC?.pushVC(vc)
+    }
+    //TODO: 跳转数字货币
+    class func toTitleListVC(_ titleType: BSTitleListType){
+        let vc = BSDigitalCoinController.init(style: .grouped)
+        vc.titleListType = titleType
+        topVC?.pushVC(vc)
+    }
+    //TODO: 跳转关于我们
+    class func toAboutMeVC(){
+        
+        let vc = UIStoryboard.getStoryVC(.My, identifier: "BSAboutMeController") as! BSAboutMeController
+   
+        topVC?.pushVC(vc)
+    }
+    //TODO: 跳转客服中心
+    class func toCenterVC(){
+        
+        let vc = UIStoryboard.getStoryVC(.My, identifier: "BSCenterController") as! BSCenterController
+        
+        topVC?.pushVC(vc)
+    }
+    //TODO: 跳转意见返回
+    class func toSuggestVC(){
+        
+        let vc = BSSuggestController.init(style: .grouped)
+        
+        topVC?.pushVC(vc)
+    }
+    //TODO: 跳转交易明细
+    class func toTradingDetailVC(_ currentIndex:Int){
+        
+        let vc = BSTradingDetailsController()
+        vc.current_Index = currentIndex
+        topVC?.pushVC(vc)
+    }
+    //TODO: 跳转实名认证
+    class func toRealNameVC(){
+        
+        let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSRealNameController") as! BSRealNameController
+        topVC?.pushVC(vc)
+
+    }
+    //TODO: 跳转重置资金密码  isSet: 是否已经设置资金密码
+    class func toSetMoneyPassVC(_ isSet:Bool = false){
+        if isSet {
+            self.toInputMoneyPassVC(.MoneyOldPassWord)
+        }else{
+            let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSResetViewController") as! BSResetViewController
+            vc.resetPassType = .SetPayPassWord
+            topVC?.pushVC(vc)
+//            self.toInputMoneyPassVC(.SetPayPassWord)
+        }
+
+        
+    }
+    //TODO: 跳转输入资金密码
+    class func toInputMoneyPassVC(_ passType:BSResetPassType){
+        
+        let vc = UIStoryboard.getStoryVC(.Login, identifier: "BSResetFiestViewController") as! BSResetFiestViewController
+        vc.resetPassType = passType
+        topVC?.pushVC(vc)
+        
+    }
+   // 跳转投诉 页面
+    class func toComplaintsVC(_ order_id:String?) {
+        guard !BSUserManager.userID.isEmpty else {
+            VCRouter.toLoginVC()
+            return
+        }
+        let vc =  UIStoryboard.getStoryVC(.Transact, identifier: "BSComplaintsController") as! BSComplaintsController
+        vc.order_Id = order_id
+        topVC?.pushVC(vc)
+    }
+    
+    //TODO: 跳转选择国家／地区 or 货币选择
+    class func toCountryVC(_ vc_type:BSCountryType = .Country,block:@escaping ChooseCountryBlock){
+        switch vc_type {
+        case .Country,.Corrency:
+            //选择国家地区，  返回国家名称， 国家id 国家的code
+            VCRouter.prentPirckerMask(dataArr: BSCountryNameArr, startIndex: 0, block: { (str, index) in
+                
+                  let id    = BSCountryIDArr[index]
+                  let code  = BSCountryCodeArr[index]
+                  block(str,id,code)
+                
+            })
+        case .DigatalCode:
+            let vc = BSDigitalCoinController.init(style: .grouped)
+            vc.seletorBlock = {(str,id,code) in
+                block(str,id,code)
+            }
+            topVC?.pushVC(vc)
+        }
+    }
+    //TODO: 跳转搜索广告结果页
+    class func toSearchADResultVC(_ params : [String:Any]){
+        let vc = BSSearchResultController()
+        vc.params = params
+        topVC?.pushVC(vc)
+    }
+    //TODO: 跳转融云聊天界面
+    class func toRCCloudVC(_ type:RCCloudType = .Consulting,order_Id:String? = nil , targetId:String,title:String,buyInfoModel:BSBuyInfoModel? = nil){
+        let vc = BSRCMessageViewController()
+        vc.conversationType     =  RCConversationType.ConversationType_PRIVATE
+        vc.targetId             = targetId
+        vc.title                = title
+        vc.order_Id             = order_Id
+        if let model = buyInfoModel {
+              vc.buyInfoModel         = model
+        }
+      
+        vc.ccloudType           = type
+        topVC?.pushVC(vc)
+    }
+    // MARK: - 弹出选择器视图
+    class func prentPirckerMask(dataArr:[String],startIndex:Int,block:@escaping SelectRowBlock) {
+        let vc = BSBasePickerViewController()
+        vc.btnDismiss.backgroundColor = UIColor.black
+        vc.btnDismiss.alpha  = 0.5
+        vc.showPicker(arr: dataArr,index: startIndex)
+        vc.selectBlock = {(str,index) in
+            block(str,index)
+        }
+        topVC?.presentToMaskViewController(viewControllerToPresent: vc)
+        
+    }
+    // MARK: - 弹出Alter视图
+    class func prentAlter(_ title:String = "温馨提示",message:String,block:@escaping SelectRowBlock) {
+        
+        let alertController = UIAlertController(title: title,
+                                                message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "好的", style: .default, handler: {
+            action in
+            block("",0)
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        topVC?.present(alertController, animated: true, completion: nil)
+        
+    }
+}
+

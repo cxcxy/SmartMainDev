@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SmartPlayerViewController" customModule="SmartMain" customModuleProvider="target">
+            <connections>
+                <outlet property="btnDown" destination="q19-gM-tCk" id="tpp-LE-aaI"/>
+                <outlet property="btnLike" destination="sit-cn-iJH" id="6Si-rH-REn"/>
+                <outlet property="btnOn" destination="DMH-Cj-iov" id="AGy-qd-Xs2"/>
+                <outlet property="btnPlay" destination="AsY-Bv-FMl" id="lwO-Yl-TGT"/>
+                <outlet property="btnRepeat" destination="y53-fQ-EsE" id="oi1-6h-4aK"/>
+                <outlet property="imgSings" destination="uZ1-hP-1s4" id="97S-pP-feZ"/>
+                <outlet property="lbSingsTitle" destination="IeF-Vk-Fma" id="AIb-Zo-3Uz"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uZ1-hP-1s4">
+                    <rect key="frame" x="112" y="70" width="150" height="150"/>
+                    <color key="backgroundColor" red="1" green="1" blue="0.69794379340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="9u1-zw-uUS"/>
+                        <constraint firstAttribute="width" constant="150" id="OdG-5C-K5k"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在播放" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeF-Vk-Fma">
+                    <rect key="frame" x="160.5" y="250" width="53.5" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yaG-05-RXM">
+                    <rect key="frame" x="65" y="316" width="245" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y53-fQ-EsE">
+                            <rect key="frame" x="0.0" y="0.0" width="41" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="单曲循环"/>
+                            <state key="selected" title="循环播放"/>
+                            <connections>
+                                <action selector="clickRepeatAction:" destination="-1" eventType="touchUpInside" id="woH-pq-TH7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMH-Cj-iov">
+                            <rect key="frame" x="51" y="0.0" width="41" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="上"/>
+                            <connections>
+                                <action selector="clickOnAction:" destination="-1" eventType="touchUpInside" id="4bp-RA-HQO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsY-Bv-FMl">
+                            <rect key="frame" x="102" y="0.0" width="41" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="播放"/>
+                            <state key="selected" title="暂停"/>
+                            <connections>
+                                <action selector="clickPlayAction:" destination="-1" eventType="touchUpInside" id="Csd-8d-Gm6"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q19-gM-tCk">
+                            <rect key="frame" x="153" y="0.0" width="41" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="下"/>
+                            <connections>
+                                <action selector="clickDownAction:" destination="-1" eventType="touchUpInside" id="eaV-MJ-opX"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sit-cn-iJH">
+                            <rect key="frame" x="204" y="0.0" width="41" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="收藏"/>
+                            <state key="selected" title="已收藏"/>
+                            <connections>
+                                <action selector="clickLikeAction:" destination="-1" eventType="touchUpInside" id="w7L-wq-dwz"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="lal-gi-rMa"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="IeF-Vk-Fma" firstAttribute="top" secondItem="uZ1-hP-1s4" secondAttribute="bottom" constant="30" id="5Mx-RP-AsS"/>
+                <constraint firstItem="uZ1-hP-1s4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="b4n-rm-Nu8"/>
+                <constraint firstItem="uZ1-hP-1s4" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="bHF-0u-sYT"/>
+                <constraint firstItem="yaG-05-RXM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="kJ2-y7-J6e"/>
+                <constraint firstItem="yaG-05-RXM" firstAttribute="top" secondItem="IeF-Vk-Fma" secondAttribute="bottom" constant="50" id="weO-WL-1Oy"/>
+                <constraint firstItem="IeF-Vk-Fma" firstAttribute="centerX" secondItem="uZ1-hP-1s4" secondAttribute="centerX" id="ynE-k0-lfS"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

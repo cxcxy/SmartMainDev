@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="SmartMain" customModuleProvider="target">
+            <connections>
+                <outlet property="lbGroupName" destination="rTD-kW-wgL" id="pU5-4m-SAC"/>
+                <outlet property="tfGroupName" destination="SJr-ZX-A7q" id="Snp-5I-tsx"/>
+                <outlet property="tfJoinName" destination="YFg-Md-z1P" id="ul8-iZ-Xtf"/>
+                <outlet property="tfName" destination="2Jn-kn-BSu" id="SEn-5G-69f"/>
+                <outlet property="view" destination="iN0-l3-epB" id="oIS-BE-2Uu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvU-cM-Ytj">
+                    <rect key="frame" x="20" y="145" width="335" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="7Dr-bw-xpX"/>
+                    </constraints>
+                    <state key="normal" title="单聊"/>
+                    <connections>
+                        <action selector="clickSingAction:" destination="-1" eventType="touchUpInside" id="wyA-Iv-NIR"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15981870363" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Jn-kn-BSu">
+                    <rect key="frame" x="15" y="95" width="345" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nv1-0P-ddu">
+                    <rect key="frame" x="15" y="225" width="345" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="tpd-nU-9oK"/>
+                    </constraints>
+                    <state key="normal" title="创建群组"/>
+                    <connections>
+                        <action selector="clickCreateGroupAction:" destination="-1" eventType="touchUpInside" id="1AK-x1-Wbf"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTD-kW-wgL">
+                    <rect key="frame" x="15" y="355" width="345" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="5ZI-30-3WR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入群组id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJr-ZX-A7q">
+                    <rect key="frame" x="15" y="395" width="345" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="W8S-vO-GR9"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邀请进入群组" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YFg-Md-z1P">
+                    <rect key="frame" x="15" y="265" width="345" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="9Rt-QA-qhY"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxn-d5-RC6">
+                    <rect key="frame" x="15" y="310" width="345" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="wE1-Kj-7If"/>
+                    </constraints>
+                    <state key="normal" title="添加进入群组"/>
+                    <connections>
+                        <action selector="clickAddGroupAction:" destination="-1" eventType="touchUpInside" id="QgD-5O-Urf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIu-Fq-xRQ">
+                    <rect key="frame" x="15" y="460" width="345" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="2LU-3x-R1o"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="EiB-af-AxV"/>
+                    </constraints>
+                    <state key="normal" title="进入群聊页面"/>
+                    <connections>
+                        <action selector="clickGroupVCAction:" destination="-1" eventType="touchUpInside" id="km5-fg-H9Z"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nv1-0P-ddu" secondAttribute="trailing" constant="15" id="0Ju-P2-51G"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DIu-Fq-xRQ" secondAttribute="trailing" constant="15" id="5bk-ci-5Fd"/>
+                <constraint firstItem="YFg-Md-z1P" firstAttribute="top" secondItem="nv1-0P-ddu" secondAttribute="bottom" constant="10" id="BWc-4A-3LU"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SJr-ZX-A7q" secondAttribute="trailing" constant="15" id="E9Q-jc-q9c"/>
+                <constraint firstItem="TvU-cM-Ytj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="EzW-Tl-lXW"/>
+                <constraint firstItem="SJr-ZX-A7q" firstAttribute="top" secondItem="rTD-kW-wgL" secondAttribute="bottom" constant="20" id="HDn-xP-4rb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2Jn-kn-BSu" secondAttribute="trailing" constant="15" id="KQG-KU-N9L"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DIu-Fq-xRQ" secondAttribute="trailing" constant="15" id="KXs-y4-EkP"/>
+                <constraint firstItem="2Jn-kn-BSu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Lo2-iA-gcy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="YFg-Md-z1P" secondAttribute="trailing" constant="15" id="Pad-CZ-jTO"/>
+                <constraint firstItem="SJr-ZX-A7q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="Pyl-Nz-YT5"/>
+                <constraint firstItem="YFg-Md-z1P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="RAz-Ay-4dJ"/>
+                <constraint firstItem="fxn-d5-RC6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="RZC-Vx-cpT"/>
+                <constraint firstItem="nv1-0P-ddu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="WPk-gA-Chf"/>
+                <constraint firstItem="fxn-d5-RC6" firstAttribute="top" secondItem="YFg-Md-z1P" secondAttribute="bottom" constant="15" id="bFm-Bu-gn0"/>
+                <constraint firstItem="TvU-cM-Ytj" firstAttribute="top" secondItem="2Jn-kn-BSu" secondAttribute="bottom" constant="20" id="bOQ-n9-f5A"/>
+                <constraint firstItem="DIu-Fq-xRQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="bSa-tr-15c"/>
+                <constraint firstItem="rTD-kW-wgL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="dDJ-IY-nUo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rTD-kW-wgL" secondAttribute="trailing" constant="15" id="e47-C0-dXW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TvU-cM-Ytj" secondAttribute="trailing" constant="20" id="ikn-I6-FSx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fxn-d5-RC6" secondAttribute="trailing" constant="15" id="jez-V1-GWg"/>
+                <constraint firstItem="DIu-Fq-xRQ" firstAttribute="top" secondItem="SJr-ZX-A7q" secondAttribute="bottom" constant="35" id="mzC-Yl-xhZ"/>
+                <constraint firstItem="2Jn-kn-BSu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="75" id="pqA-WH-4es"/>
+                <constraint firstItem="DIu-Fq-xRQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="rQP-lB-GI1"/>
+                <constraint firstItem="rTD-kW-wgL" firstAttribute="top" secondItem="nv1-0P-ddu" secondAttribute="bottom" constant="100" id="sgx-qX-LCA"/>
+                <constraint firstItem="nv1-0P-ddu" firstAttribute="top" secondItem="TvU-cM-Ytj" secondAttribute="bottom" constant="50" id="wOL-1d-5Nw"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

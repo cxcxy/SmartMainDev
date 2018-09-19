@@ -1,0 +1,101 @@
+PODS:
+  - Alamofire (4.5.1)
+  - Differentiator (3.0.2)
+  - DZNEmptyDataSet (1.8.1)
+  - EZSwiftExtensions (1.11)
+  - FCUUID (1.3.1):
+    - UICKeyChainStore (~> 2.1.0)
+  - IQKeyboardManagerSwift (5.0.6)
+  - Kingfisher (4.2.0)
+  - KMNavigationBarTransition (1.1.5)
+  - MJRefresh (3.1.15)
+  - Moya (10.0.0):
+    - Moya/Core (= 10.0.0)
+  - Moya/Core (10.0.0):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (10.0.0):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - ObjectMapper (3.1.0)
+  - ReachabilitySwift (4.1.0)
+  - Result (3.2.4)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.0.2):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
+  - SnapKit (4.0.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (4.0.0)
+  - UICKeyChainStore (2.1.1)
+  - VTMagic (1.2.4):
+    - VTMagic/Core (= 1.2.4)
+  - VTMagic/Core (1.2.4)
+
+DEPENDENCIES:
+  - DZNEmptyDataSet
+  - EZSwiftExtensions (from `https://github.com/goktugyil/EZSwiftExtensions.git`, branch `swift4tag`)
+  - FCUUID
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - KMNavigationBarTransition
+  - MJRefresh
+  - Moya
+  - Moya/RxSwift
+  - ObjectMapper
+  - ReachabilitySwift
+  - RxDataSources
+  - SnapKit
+  - SVProgressHUD (from `https://github.com/Fidetro/SVProgressHUD.git`)
+  - SwiftyJSON
+  - VTMagic (from `https://github.com/aycgithub/VTMagic.git`)
+
+EXTERNAL SOURCES:
+  EZSwiftExtensions:
+    :branch: swift4tag
+    :git: https://github.com/goktugyil/EZSwiftExtensions.git
+  SVProgressHUD:
+    :git: https://github.com/Fidetro/SVProgressHUD.git
+  VTMagic:
+    :git: https://github.com/aycgithub/VTMagic.git
+
+CHECKOUT OPTIONS:
+  EZSwiftExtensions:
+    :commit: 18f1e98c9776ac793e1364e1155c9f5e2d91071d
+    :git: https://github.com/goktugyil/EZSwiftExtensions.git
+  SVProgressHUD:
+    :commit: c4931f7a1accff0aefc8ef19487db87fcb92224d
+    :git: https://github.com/Fidetro/SVProgressHUD.git
+  VTMagic:
+    :commit: 4767af132ffe1d20833886e61fc8af36877b9e9c
+    :git: https://github.com/aycgithub/VTMagic.git
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EZSwiftExtensions: 9d3dc8a51818e2fbfd11099b38a2c47d0ca693d0
+  FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
+  IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
+  Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
+  KMNavigationBarTransition: 7a52c9bc25b39b6e3343e980b453facee1591b82
+  MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
+  Moya: adb58b0f4e58430db43cc6e2f6ebab1836501186
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
+  VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
+
+PODFILE CHECKSUM: 89dcb3c634389001aa7b2d757a45fe0c05e610f9
+
+COCOAPODS: 1.3.1
