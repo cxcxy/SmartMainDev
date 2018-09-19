@@ -15,8 +15,6 @@ class ViewController: XBBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
     }
     override func setUI() {
         super.setUI()
