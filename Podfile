@@ -22,6 +22,7 @@ target 'SmartMain' do
         pod 'ReachabilitySwift'
         pod 'FCUUID'
         pod 'Hyphenate', '~> 3.5.1'
+#        pod 'KYDrawerController'
 #        pod 'EaseUI', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git'
 #        pod 'SwiftMQTT'
 

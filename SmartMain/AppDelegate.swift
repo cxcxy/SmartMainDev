@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,11 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if user_defaults.has(.userName) {
             print("登录过")
-            let vc = XBTabBarController()
-            window?.rootViewController = vc
+            self.configDrawerController()
             let options = EMOptions.init(appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g")
             EMClient.shared().initializeSDK(with: options)
-            EaseSDKHelper.share().hyphenateApplication(application, didFinishLaunchingWithOptions: launchOptions, appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g", apnsCertName: "", otherConfig: [kSDKConfigEnableConsoleLogger: false])
+            EaseSDKHelper.share().hyphenateApplication(application,
+                                                       didFinishLaunchingWithOptions: launchOptions,
+                                                       appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
+                                                       apnsCertName: "",
+                                                       otherConfig: [kSDKConfigEnableConsoleLogger: false])
             loginEMClient()
         }else {
             print("未登录过")
@@ -32,11 +34,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         return true
     }
+    func configDrawerController()  {
+        let mainViewController   = ContentMainVC()
+//        let drawerViewController = DrawerViewController()
+//        let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
+//        drawerController.screenEdgePanGestureEnabled = false
+        let nav = XBBaseNavigation.init(rootViewController: mainViewController)
+//        drawerController.mainViewController = nav
+//        drawerController.drawerViewController = drawerViewController
+        
+        window?.rootViewController = nav
+    }
     func loginEMClient()  {
 
         EMClient.shared().login(withUsername: XBUserManager.userName, password: "123456") { (aUserName, aError) in
             if (aError == nil) {
-                print("登录成功",aUserName)
+                print("登录成功",aUserName ?? "未获取到姓名")
             }else {
                 print("登录失败")
             }

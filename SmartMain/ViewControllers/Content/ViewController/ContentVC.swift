@@ -90,6 +90,12 @@ extension ContentVC {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        VCRouter.toContentSubVC()
+        let vc = ContentSubVC()
+        vc.clientId = XBUserManager.device_Id
+//        vc.albumId =  model.id ?? ""
+//        vc.modouleId = modouleId
+        vc.title = "222"
+        self.pushVC(vc)
     }
     
 }

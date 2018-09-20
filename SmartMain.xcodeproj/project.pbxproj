@@ -151,6 +151,13 @@
 		043E119A213FCCAC0067ADF3 /* ContentSingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */; };
 		043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */; };
 		0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460495821536D7A00BEDCD6 /* LoginViewModel.swift */; };
+		0460495B2153839400BEDCD6 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460495A2153839400BEDCD6 /* DrawerViewController.swift */; };
+		046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */; };
+		046049682153923900BEDCD6 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049602153923900BEDCD6 /* UIViewController+CWLateralSlide.m */; };
+		046049692153923900BEDCD6 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049632153923900BEDCD6 /* CWLateralSlideAnimator.m */; };
+		0460496A2153923900BEDCD6 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049642153923900BEDCD6 /* CWDrawerTransition.m */; };
+		0460496B2153923900BEDCD6 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */; };
+		0460496D215398D800BEDCD6 /* DrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0460496C215398D800BEDCD6 /* DrawerViewController.xib */; };
 		0485CCA42148A89200F54927 /* MQTTSessionStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */; };
 		0485CCA52148A89200F54927 /* MQTTExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC902148A89200F54927 /* MQTTExtensions.swift */; };
 		0485CCA62148A89200F54927 /* MQTTPublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC922148A89200F54927 /* MQTTPublishPacket.swift */; };
@@ -564,6 +571,18 @@
 		043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSingCell.swift; sourceTree = "<group>"; };
 		043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingCell.xib; sourceTree = "<group>"; };
 		0460495821536D7A00BEDCD6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0460495A2153839400BEDCD6 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
+		0460495E2153923900BEDCD6 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
+		0460495F2153923900BEDCD6 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
+		046049602153923900BEDCD6 /* UIViewController+CWLateralSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWLateralSlide.m"; sourceTree = "<group>"; };
+		046049612153923900BEDCD6 /* CWLateralSlideConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideConfiguration.h; sourceTree = "<group>"; };
+		046049622153923900BEDCD6 /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
+		046049632153923900BEDCD6 /* CWLateralSlideAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideAnimator.m; sourceTree = "<group>"; };
+		046049642153923900BEDCD6 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
+		046049652153923900BEDCD6 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
+		046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
+		0460496C215398D800BEDCD6 /* DrawerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawerViewController.xib; sourceTree = "<group>"; };
 		0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSessionStream.swift; sourceTree = "<group>"; };
 		0485CC902148A89200F54927 /* MQTTExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTExtensions.swift; sourceTree = "<group>"; };
 		0485CC922148A89200F54927 /* MQTTPublishPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPublishPacket.swift; sourceTree = "<group>"; };
@@ -1319,6 +1338,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0460495C2153923900BEDCD6 /* CWLateralSlide */ = {
+			isa = PBXGroup;
+			children = (
+				0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */,
+				0460495E2153923900BEDCD6 /* CWDrawerTransition.h */,
+				0460495F2153923900BEDCD6 /* CWLateralSlideAnimator.h */,
+				046049602153923900BEDCD6 /* UIViewController+CWLateralSlide.m */,
+				046049612153923900BEDCD6 /* CWLateralSlideConfiguration.h */,
+				046049622153923900BEDCD6 /* CWInteractiveTransition.h */,
+				046049632153923900BEDCD6 /* CWLateralSlideAnimator.m */,
+				046049642153923900BEDCD6 /* CWDrawerTransition.m */,
+				046049652153923900BEDCD6 /* UIViewController+CWLateralSlide.h */,
+				046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */,
+			);
+			path = CWLateralSlide;
+			sourceTree = "<group>";
+		};
 		0485CC8E2148A89200F54927 /* SwiftMQTT */ = {
 			isa = PBXGroup;
 			children = (
@@ -1439,6 +1475,7 @@
 		04C386EE213E093F0063A799 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				0460495C2153923900BEDCD6 /* CWLateralSlide */,
 				042EEDEA2150E15F00DBD492 /* EaseUI */,
 				0485CC8E2148A89200F54927 /* SwiftMQTT */,
 				0413BECB21422541006E3A44 /* Defaults.swift */,
@@ -1591,6 +1628,8 @@
 				0422ECD32140BE9E00A42D7A /* XBScanViewController.xib */,
 				0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */,
 				0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */,
+				0460495A2153839400BEDCD6 /* DrawerViewController.swift */,
+				0460496C215398D800BEDCD6 /* DrawerViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1894,6 +1933,7 @@
 				04C38712213E093F0063A799 /* Configuration.plist in Resources */,
 				2D312AA2213D560100FCC499 /* Assets.xcassets in Resources */,
 				2D312AA0213D560100FCC499 /* Main.storyboard in Resources */,
+				0460496D215398D800BEDCD6 /* DrawerViewController.xib in Resources */,
 				0413BED021424BC9006E3A44 /* MemberManagerVC.xib in Resources */,
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
@@ -2032,6 +2072,7 @@
 				042EEF212150E15F00DBD492 /* EaseConversationModel.m in Sources */,
 				042EEF722150E15F00DBD492 /* EaseUserCell.m in Sources */,
 				042EEF342150E15F00DBD492 /* MJRefreshAutoFooter.m in Sources */,
+				0460496A2153923900BEDCD6 /* CWDrawerTransition.m in Sources */,
 				042EEF872150E15F00DBD492 /* EaseBubbleView+Gif.m in Sources */,
 				042EEF322150E15F00DBD492 /* MJRefreshHeader.m in Sources */,
 				042EEF812150E15F00DBD492 /* EaseBubbleView+Location.m in Sources */,
@@ -2041,9 +2082,11 @@
 				042EEF412150E15F00DBD492 /* EMCDDeviceManagerBase.m in Sources */,
 				042EEF562150E15F00DBD492 /* PSTGridLayoutRow.m in Sources */,
 				2DC95598213EBCC7004D6F65 /* ContentReqModel.swift in Sources */,
+				046049692153923900BEDCD6 /* CWLateralSlideAnimator.m in Sources */,
 				042EEF482150E15F00DBD492 /* MWTapDetectingView.m in Sources */,
 				042EEF5F2150E15F00DBD492 /* UIImage+GIF.m in Sources */,
 				04C38A0C213E6D850063A799 /* ContentLikeCell.swift in Sources */,
+				0460495B2153839400BEDCD6 /* DrawerViewController.swift in Sources */,
 				042EEF192150E15F00DBD492 /* EaseMessageReadManager.m in Sources */,
 				04C38730213E093F0063A799 /* UITableView+.swift in Sources */,
 				042EEF732150E15F00DBD492 /* EaseConversationCell.m in Sources */,
@@ -2100,6 +2143,7 @@
 				04C38985213E0B5A0063A799 /* XBBaseTableViewController.swift in Sources */,
 				042EEF232150E15F00DBD492 /* UIScrollView+MJRefresh.m in Sources */,
 				042EEF392150E15F00DBD492 /* amrFileCodec.mm in Sources */,
+				046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */,
 				04C3872B213E093F0063A799 /* String+.swift in Sources */,
 				042EEF452150E15F00DBD492 /* UIImage+MWPhotoBrowser.m in Sources */,
 				04C389ED213E25500063A799 /* EquipmentTopView.swift in Sources */,
@@ -2180,6 +2224,7 @@
 				042EEF4C2150E15F00DBD492 /* PSTCollectionViewController.m in Sources */,
 				042EEF3A2150E15F00DBD492 /* EMVoiceConverter.mm in Sources */,
 				042EEF352150E15F00DBD492 /* MJRefreshComponent.m in Sources */,
+				0460496B2153923900BEDCD6 /* CWLateralSlideConfiguration.m in Sources */,
 				042EEF8F2150F12B00DBD492 /* ChatMainViewController.swift in Sources */,
 				0485CCB92148BC3300F54927 /* ScoketMQTTManager.swift in Sources */,
 				2DC95590213EB210004D6F65 /* EquimentInfoVC.swift in Sources */,
@@ -2189,6 +2234,7 @@
 				2DC955B4213FFED4004D6F65 /* MeInfoNameCell.swift in Sources */,
 				2D312A9B213D560100FCC499 /* AppDelegate.swift in Sources */,
 				04C38987213E0B5A0063A799 /* XBBaseViewController.swift in Sources */,
+				046049682153923900BEDCD6 /* UIViewController+CWLateralSlide.m in Sources */,
 				042EEF662150E15F00DBD492 /* UIImageView+WebCache.m in Sources */,
 				04C38746213E09400063A799 /* XBCustomUtil.swift in Sources */,
 				042EEF622150E15F00DBD492 /* SDWebImagePrefetcher.m in Sources */,

@@ -18,8 +18,9 @@
 @import IQKeyboardManagerSwift;
 @import SwiftyJSON;
 @import Hyphenate;
+//@import KYDrawerController;
 //@import SwiftMQTT;
 //@import FSPagerView;
-//#import "UIImageView+CornerRadius.h"
+#import "UIViewController+CWLateralSlide.h"
 #import "EaseUI.h"
 //#import <EaseUI/EaseUI.h>

@@ -10,6 +10,7 @@ import UIKit
 
 class EquipmentVC: XBBaseTableViewController {
     var dataArr: [EquipmentModel] = []
+    let drawerViewController = DrawerViewController()
 //    var mqttSession: MQTTSession!
     let scoketModel = ScoketMQTTManager.share
     override func viewDidLoad() {
@@ -26,11 +27,17 @@ class EquipmentVC: XBBaseTableViewController {
             VCRouter.qrCodeScanVC()
         }
         makeCustomerNavigationItem("音乐", left: true) {
-            let vc = SmartPlayerViewController()
-            self.pushVC(vc)
+//            let vc = SmartPlayerViewController()
+//            self.pushVC(vc)
+            self.maskAnimationFromLeft()
         }
     }
-    
+    func maskAnimationFromLeft() {
+      
+        self.cw_showDrawerViewController(drawerViewController,
+                                         animationType: .mask,
+                                         configuration: CWLateralSlideConfiguration())
+    }
     override func setUI() {
         super.setUI()
         self.cofigMjHeader()

@@ -22,8 +22,6 @@ class VCVTMagic:VTMagicController{
         magicView.sliderWidth         = 50
         magicView.separatorColor      = MGRgb(239, g: 243, b: 246)
         magicView.separatorHeight     = 1
-//        magicView.sliderWidth         = (MGScreenWidth - 30) / 2
-        
     }
     
 }
@@ -33,8 +31,6 @@ class ContentMainVC: XBBaseViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.currentNavigationColor = UIColor.white
-//        self.currentNavigationTitleColor = UIColor.black
         self.title = "内容"
         configMagicView()
         view.backgroundColor = UIColor.white
@@ -43,9 +39,14 @@ class ContentMainVC: XBBaseViewController {
         super.setUI()
         makeCustomerImageNavigationItem("search", left: true) {[weak self] in
             guard let `self` = self else { return }
-            let vc = SearchViewController()
-            self.navigationController?.pushFadeAnimation(viewController: vc)
+            self.maskAnimationFromLeft()
         }
+    }
+    func maskAnimationFromLeft() {
+        let drawerViewController = DrawerViewController()
+        self.cw_showDrawerViewController(drawerViewController,
+                                         animationType: .mask,
+                                         configuration: CWLateralSlideConfiguration())
     }
     //MARK:配置所对应的左右滑动ViewControler
     func configMagicView()  {

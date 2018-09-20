@@ -20,8 +20,8 @@ class ContentSubVC: XBBaseTableViewController {
     }
     override func setUI() {
         super.setUI()
-        self.currentNavigationColor = UIColor.white
-        self.currentNavigationTitleColor = UIColor.black
+//        self.currentNavigationColor = UIColor.white
+//        self.currentNavigationTitleColor = UIColor.black
         tableView.cellId_register("ContentSubShowCell")
         self.cofigMJRefresh()
         request()
