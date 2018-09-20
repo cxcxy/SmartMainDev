@@ -20,10 +20,9 @@ class ContentSubVC: XBBaseTableViewController {
     }
     override func setUI() {
         super.setUI()
-//        self.currentNavigationColor = UIColor.white
-//        self.currentNavigationTitleColor = UIColor.black
+
         tableView.cellId_register("ContentSubShowCell")
-        self.cofigMJRefresh()
+        self.cofigMjHeader()
         request()
     }
     override func request() {
@@ -38,6 +37,7 @@ class ContentSubVC: XBBaseTableViewController {
             if let arr = Mapper<ModulesConetentModel>().mapArray(JSONObject:JSON(result)["categories"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.dataArr.removeAll()
+                    self.cofigMjFooter()
                 }
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))

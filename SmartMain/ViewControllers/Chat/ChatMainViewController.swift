@@ -23,14 +23,15 @@ class ChatMainViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        self.title = "微聊"
-        self.configTableView(tableView, register_cell: ["ContentSingCell"])
+        self.title = "聊天群组"
+        self.configTableView(tableView, register_cell: ["ChatMainCell"])
         self.tableView.mj_header = self.mj_header
+        self.tableView.backgroundColor = MGRgb(242, g: 242, b: 242)
         request()
     }
     override func request() {
         super.request()
-//        self.dataArr = EMClient.shared().chatManager.getAllConversations() as! [EMConversation]
+        self.dataArr = EMClient.shared().chatManager.getAllConversations() as! [EMConversation]
         print(dataArr)
         self.endRefresh()
         self.tableView.reloadData()
@@ -38,48 +39,39 @@ class ChatMainViewController: XBBaseViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 extension ChatMainViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dataArr.count
+        return 3
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
-//        cell.likeModelData = dataArr[indexPath.row]
-//        cell.lbLineNumber.set_text = (indexPath.row + 1).toString
-        let m = dataArr[indexPath.row]
-        if m.type == EMConversationTypeGroupChat {
-            print("为群组")
-            cell.lbTitle.set_text = "群组" + m.conversationId
-//            cell.lbTime.set_text = m.latestMessage.body.type.rawValue
-        }
-        if m.type == EMConversationTypeChat {
-            print("为单聊")
-            cell.lbTitle.set_text = "单聊" + m.conversationId
-        }
-        if m.latestMessage.body.type == EMMessageBodyTypeText {
-            let textBody: EMTextMessageBody = m.latestMessage.body as! EMTextMessageBody
-            cell.lbTime.set_text = textBody.text
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMainCell", for: indexPath) as! ChatMainCell
+//        let m = dataArr[indexPath.row]
+//        if m.type == EMConversationTypeGroupChat {
+//            print("为群组")
+//            cell.lbName.set_text = "群组" + m.conversationId
+////            cell.lbTime.set_text = m.latestMessage.body.type.rawValue
+//        }
+//        if m.type == EMConversationTypeChat {
+//            print("为单聊")
+//            cell.lbName.set_text = "单聊" + m.conversationId
+//        }
+//        if m.latestMessage.body.type == EMMessageBodyTypeText {
+//            let textBody: EMTextMessageBody = m.latestMessage.body as! EMTextMessageBody
+//            cell.lbDes.set_text = textBody.text
+//        }
         return cell
+    }
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return ChatCreateView.loadFromNib()
+    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 105
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let m = dataArr[indexPath.row]

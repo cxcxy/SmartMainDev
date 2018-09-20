@@ -13,7 +13,7 @@ class ContentVC: XBBaseTableViewController {
     var dataTrackArr: [EquipmentModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.currentNavigationTitleColor = UIColor.black
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         tableView.cellId_register("ContentHeaderCell")
         tableView.cellId_register("ContentShowCell")
         tableView.cellId_register("ContentShowThreeCell")

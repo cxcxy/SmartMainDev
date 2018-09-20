@@ -35,6 +35,7 @@ class SmartPlayerViewController: XBBaseViewController {
     let scoketModel = ScoketMQTTManager.share
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "歌曲名"
     }
     override func setUI() {
         super.setUI()

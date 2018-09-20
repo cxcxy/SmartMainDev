@@ -22,29 +22,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DJJ-7d-N0z">
-                    <rect key="frame" x="0.0" y="220" width="375" height="447"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzr-7I-ZQM">
-                    <rect key="frame" x="15" y="70" width="345" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="sEi-Ay-n11"/>
-                    </constraints>
-                    <state key="normal" title="进入创建页面"/>
-                    <connections>
-                        <action selector="clickCreateVCAction:" destination="-1" eventType="touchUpInside" id="Pee-xy-vf2"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="yzr-7I-ZQM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="3Ys-mb-mBI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DJJ-7d-N0z" secondAttribute="trailing" id="8rX-Hc-sPh"/>
-                <constraint firstItem="yzr-7I-ZQM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="9kb-xl-MR1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DJJ-7d-N0z" secondAttribute="bottom" id="Rap-8f-vgZ"/>
                 <constraint firstItem="DJJ-7d-N0z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Xhf-PD-edb"/>
-                <constraint firstItem="DJJ-7d-N0z" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="kAB-mS-jdm"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yzr-7I-ZQM" secondAttribute="trailing" constant="15" id="nHq-EO-zJS"/>
+                <constraint firstItem="DJJ-7d-N0z" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kAB-mS-jdm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

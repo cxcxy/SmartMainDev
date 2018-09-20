@@ -98,7 +98,6 @@ extension VCRouter {
         
         let scanVC = XBScanViewController()
         scanVC.entarnceType = entarnceType
-//        scanVC.block = scanResultBlock
         let device = AVCaptureDevice.default(for: .video)
         if device != nil {
             let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)

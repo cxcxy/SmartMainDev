@@ -93,7 +93,7 @@ class XBNetManager {
             return
         }
         if isShowLoding {
-//            XBHud.showLoading()
+            XBHud.showLoading()
         }
         
         _ =  requestProvider.request(target) { (result) in
@@ -112,12 +112,14 @@ class XBNetManager {
                 }
                 guard let info = Mapper<XBBaseResModel>().map(JSONString:jsonString) else {
                     successClosure(jsonString as AnyObject, 200,"success")
+                    self.configEmptyDataSet()
                     return
                 }
                 self.log_print(jsonString, info)
         
                 guard let data = info.resdata else {
                     successClosure(jsonString as AnyObject, 200,"success")
+                    self.configEmptyDataSet()
                     return
                 }
 
@@ -130,9 +132,9 @@ class XBNetManager {
                 }
                 break
             }
-            DispatchQueue.main.async {
-                self.configEmptyDataSet()
-            }
+            
+            self.configEmptyDataSet()
+            
         }
     }
     
@@ -171,7 +173,9 @@ extension XBNetManager {
      *  配置默认图显示
      */
     func configEmptyDataSet() {
-        (UIApplication.currentViewController() as? XBBaseViewController)?.loading       = true
+        DispatchQueue.main.async {
+             (UIApplication.currentViewController() as? XBBaseViewController)?.loading       = true
+        }
     }
     /**
      *  取消所有的网络请求

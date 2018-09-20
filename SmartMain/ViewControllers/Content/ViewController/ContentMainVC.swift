@@ -12,34 +12,52 @@ import VTMagic
 class VCVTMagic:VTMagicController{
     
     override func viewDidLoad() {
-        
-        magicView.navigationHeight    = 45
+        magicView.backgroundColor = viewColor
+        magicView.navigationHeight    = 40
         magicView.layoutStyle         = .divide
         magicView.sliderStyle         = .default
-//        magicView.itemWidth           = (MGScreenWidth - 30) / 2
-        magicView.sliderColor         = MGRgb(255, g: 58, b: 93)
+        magicView.sliderColor         = MGRgb(200, g: 231, b: 169)
         magicView.sliderHeight        = 5
-        magicView.sliderWidth         = 50
+        magicView.bubbleRadius  = 0
+//        magicView.sliderWidth         = 50
         magicView.separatorColor      = MGRgb(239, g: 243, b: 246)
-        magicView.separatorHeight     = 1
+//        magicView.slider
     }
     
 }
 class ContentMainVC: XBBaseViewController {
     var controllerArray     : [UIViewController] = []  // 存放controller 的array
     var v                   : VCVTMagic!  // 统一的左滑 右滑 控制View
-   
+    var bottomSongView = BottomSongView.loadFromNib()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "内容"
-        configMagicView()
-        view.backgroundColor = UIColor.white
+        self.currentNavigationTitleColor = UIColor.white
     }
     override func setUI() {
         super.setUI()
-        makeCustomerImageNavigationItem("search", left: true) {[weak self] in
+        self.title = "内容"
+        configMagicView()
+        configBottomSongView()
+        makeCustomerImageNavigationItem("icon-dr", left: true) {[weak self] in
             guard let `self` = self else { return }
             self.maskAnimationFromLeft()
+        }
+        //MARK: 点击添加商家
+        makeCustomerImageNavigationItem("icon_tianjia", left: false) {
+//            VCRouter.qrCodeScanVC()
+            let vc = ChatMainViewController()
+            self.pushVC(vc)
+        }
+    }
+    func configBottomSongView()  {
+        view.addSubview(bottomSongView)
+        bottomSongView.snp.makeConstraints { (make) in
+            make.height.equalTo(80)
+            make.left.right.bottom.equalTo(0)
+        }
+        bottomSongView.imgSong.addTapGesture { (sender) in
+            let vc = SmartPlayerViewController()
+            self.pushVC(vc)
         }
     }
     func maskAnimationFromLeft() {
@@ -99,7 +117,7 @@ extension ContentMainVC:VTMagicViewDataSource{
             b.frame             = CGRect(x: 0, y: 0, width: width, height: 50)
             b.titleLabel!.font  =  UIFont.systemFont(ofSize: 14)
             b.setTitleColor(MGRgb(128, g: 140, b: 155), for: UIControlState())
-            b.setTitleColor(MGRgb(255, g: 58, b: 93), for: .selected)
+            b.setTitleColor(UIColor.white, for: .selected)
             b.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             
             return b

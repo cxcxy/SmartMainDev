@@ -309,7 +309,9 @@ extension XBBaseViewController:UITableViewDelegate,UITableViewDataSource {
 // 空白展位图
 extension XBBaseViewController:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     @objc(titleForEmptyDataSet:) func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-
+        guard self.loading else {
+            return NSAttributedString.init()
+        }
         return XBNoDataTitle
     }
     @objc(backgroundColorForEmptyDataSet:) func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {

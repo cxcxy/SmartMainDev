@@ -24,7 +24,7 @@ class ContentSingsVC: XBBaseViewController {
         super.setUI()
         self.configTableView(tableView, register_cell: ["ContentSingCell"])
         self.tableView.mj_header = self.mj_header
-        self.tableView.mj_footer = self.mj_footer
+        
         request()
         
     }
@@ -43,6 +43,7 @@ class ContentSingsVC: XBBaseViewController {
         Net.requestWithTarget(.contentsings(req: params_task), successClosure: { (result, code, message) in
             if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["list"].arrayObject) {
                 if self.pageIndex == 1 {
+                    self.tableView.mj_footer = self.mj_footer
                     self.dataArr.removeAll()
                 }
                 self.dataArr += arr

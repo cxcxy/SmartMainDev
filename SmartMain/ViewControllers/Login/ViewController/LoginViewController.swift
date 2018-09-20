@@ -104,7 +104,8 @@ class LoginViewController: XBBaseViewController {
         }
     }
     func toHome()  {
-        let vc = XBTabBarController()
-        self.popWindow.rootViewController = vc
+        let mainViewController   = ContentMainVC()
+        let nav = XBBaseNavigation.init(rootViewController: mainViewController)
+        self.popWindow.rootViewController = nav
     }
 }

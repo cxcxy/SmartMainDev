@@ -22,7 +22,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
         super.setUI()
         self.registerCells(register_cells: ["ContentSingCell"])
         self.tableView.mj_header = self.mj_header
-        self.tableView.mj_footer = self.mj_footer
+//        self.tableView.mj_footer = self.mj_footer
         request()
 
         ScoketMQTTManager.share.getSetDefaultMessage.asObservable().subscribe { [weak self] in
@@ -45,6 +45,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
             if let arr = Mapper<EquipmentSingModel>().mapArray(JSONObject: JSON.init(parseJSON: result as! String)["tracks"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.dataArr.removeAll()
+                    self.tableView.mj_footer = self.mj_footer
                 }
                 self.dataArr += arr
                 self.total = JSON.init(parseJSON: result as! String)["totalCount"].int

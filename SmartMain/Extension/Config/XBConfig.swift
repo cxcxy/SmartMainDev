@@ -101,7 +101,8 @@ let XBLineBreakNumber: CGFloat            = 5
 var XBLoginShow:Int                 =  0
 // 全局背景 墨绿色
 let viewColor = UIColor.init(hexString: "80CA46")!
-
+// 全局背景 墨绿色
+let lineColor = MGRgb(229, g: 229, b: 229)
 // 全局背景 导航栏顶部标题颜色
 let navTitleColor = UIColor.white
 // 全局背景 导航栏顶部标题字体

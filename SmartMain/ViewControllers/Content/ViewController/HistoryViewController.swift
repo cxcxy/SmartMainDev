@@ -12,9 +12,8 @@ class HistoryViewController: XBBaseTableViewController {
 var dataArr: [ConetentLikeModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.currentNavigationTitleColor = UIColor.black
         tableView.cellId_register("ContentSingCell")
-        self.cofigMJRefresh()
+        self.cofigMjHeader()
     }
     override func setUI() {
         super.setUI()
@@ -30,6 +29,7 @@ var dataArr: [ConetentLikeModel] = []
             print(result)
             if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
                 if self.pageIndex == 1 {
+                    self.cofigMjFooter()
                     self.dataArr.removeAll()
                 }
                 self.dataArr += arr

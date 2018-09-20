@@ -269,6 +269,16 @@
 		2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195C721528AB400F4A9A1 /* ResetPassViewController.xib */; };
 		2D9195CC215291D300F4A9A1 /* SetInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195CA215291D300F4A9A1 /* SetInfoViewController.swift */; };
 		2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195CB215291D300F4A9A1 /* SetInfoViewController.xib */; };
+		2D9195D02153BCE300F4A9A1 /* DrawFromCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195CE2153BCE300F4A9A1 /* DrawFromCell.swift */; };
+		2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195CF2153BCE300F4A9A1 /* DrawFromCell.xib */; };
+		2D9195D32153BE1C00F4A9A1 /* DrawControlHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195D22153BE1C00F4A9A1 /* DrawControlHeader.swift */; };
+		2D9195D52153BE2500F4A9A1 /* DrawControlHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195D42153BE2500F4A9A1 /* DrawControlHeader.xib */; };
+		2D9195D72153CE5C00F4A9A1 /* BottomSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195D62153CE5C00F4A9A1 /* BottomSongView.swift */; };
+		2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195D82153CE6900F4A9A1 /* BottomSongView.xib */; };
+		2D9195DD2153D7F000F4A9A1 /* ChatMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195DB2153D7F000F4A9A1 /* ChatMainCell.swift */; };
+		2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */; };
+		2D9195E02153DBA800F4A9A1 /* ChatCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */; };
+		2D9195E22153DBB100F4A9A1 /* ChatCreateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */; };
 		2DC95587213E9EBB004D6F65 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95585213E9EBB004D6F65 /* MeViewController.swift */; };
 		2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DC95586213E9EBB004D6F65 /* MeViewController.xib */; };
 		2DC9558A213EAC18004D6F65 /* EquipmentSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */; };
@@ -697,6 +707,16 @@
 		2D9195C721528AB400F4A9A1 /* ResetPassViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPassViewController.xib; sourceTree = "<group>"; };
 		2D9195CA215291D300F4A9A1 /* SetInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInfoViewController.swift; sourceTree = "<group>"; };
 		2D9195CB215291D300F4A9A1 /* SetInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInfoViewController.xib; sourceTree = "<group>"; };
+		2D9195CE2153BCE300F4A9A1 /* DrawFromCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawFromCell.swift; sourceTree = "<group>"; };
+		2D9195CF2153BCE300F4A9A1 /* DrawFromCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawFromCell.xib; sourceTree = "<group>"; };
+		2D9195D22153BE1C00F4A9A1 /* DrawControlHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawControlHeader.swift; sourceTree = "<group>"; };
+		2D9195D42153BE2500F4A9A1 /* DrawControlHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawControlHeader.xib; sourceTree = "<group>"; };
+		2D9195D62153CE5C00F4A9A1 /* BottomSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSongView.swift; sourceTree = "<group>"; };
+		2D9195D82153CE6900F4A9A1 /* BottomSongView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSongView.xib; sourceTree = "<group>"; };
+		2D9195DB2153D7F000F4A9A1 /* ChatMainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMainCell.swift; sourceTree = "<group>"; };
+		2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMainCell.xib; sourceTree = "<group>"; };
+		2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCreateView.swift; sourceTree = "<group>"; };
+		2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCreateView.xib; sourceTree = "<group>"; };
 		2DC95585213E9EBB004D6F65 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		2DC95586213E9EBB004D6F65 /* MeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeViewController.xib; sourceTree = "<group>"; };
 		2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentSettingVC.swift; sourceTree = "<group>"; };
@@ -1561,6 +1581,8 @@
 			children = (
 				04C143692147A8F500FC2000 /* ShowChooseView.swift */,
 				04C1436B2147A8FD00FC2000 /* ShowChooseView.xib */,
+				2D9195D62153CE5C00F4A9A1 /* BottomSongView.swift */,
+				2D9195D82153CE6900F4A9A1 /* BottomSongView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1609,6 +1631,7 @@
 		04C389E4213E22CA0063A799 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				2D9195DA2153D7D000F4A9A1 /* View */,
 				0413BED121426EA2006E3A44 /* ViewController */,
 			);
 			path = Chat;
@@ -1643,6 +1666,10 @@
 				04C389EE213E25800063A799 /* EquipmentTopView.xib */,
 				04C389F0213E27CA0063A799 /* EquipmentListCell.swift */,
 				04C389F1213E27CA0063A799 /* EquipmentListCell.xib */,
+				2D9195CE2153BCE300F4A9A1 /* DrawFromCell.swift */,
+				2D9195CF2153BCE300F4A9A1 /* DrawFromCell.xib */,
+				2D9195D22153BE1C00F4A9A1 /* DrawControlHeader.swift */,
+				2D9195D42153BE2500F4A9A1 /* DrawControlHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1753,6 +1780,17 @@
 			path = SmartMain;
 			sourceTree = "<group>";
 		};
+		2D9195DA2153D7D000F4A9A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2D9195DB2153D7F000F4A9A1 /* ChatMainCell.swift */,
+				2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */,
+				2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */,
+				2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		2DC95583213E9E91004D6F65 /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -1853,7 +1891,6 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
-				C077FB15C9A8407564102552 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1907,13 +1944,16 @@
 				04C1436C2147A8FD00FC2000 /* ShowChooseView.xib in Resources */,
 				042EEF892150E15F00DBD492 /* EaseUIResource.bundle in Resources */,
 				04C38A0D213E6D850063A799 /* ContentLikeCell.xib in Resources */,
+				2D9195D52153BE2500F4A9A1 /* DrawControlHeader.xib in Resources */,
 				2DC955A8213FFC8C004D6F65 /* AboutMeVC.xib in Resources */,
 				2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				04C3871E213E093F0063A799 /* city.json in Resources */,
 				043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */,
 				043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */,
+				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
 				2DC955B1213FFE17004D6F65 /* MeInfoHaderCell.xib in Resources */,
+				2D9195E22153DBB100F4A9A1 /* ChatCreateView.xib in Resources */,
 				042EEF252150E15F00DBD492 /* MJRefresh.bundle in Resources */,
 				0422ECE0214110E000A42D7A /* ContentTitleCVCell.xib in Resources */,
 				2DC955A0213FF3BE004D6F65 /* LoginViewController.xib in Resources */,
@@ -1937,9 +1977,11 @@
 				0413BED021424BC9006E3A44 /* MemberManagerVC.xib in Resources */,
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
+				2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */,
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
 				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
+				2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */,
 				04C38A01213E64170063A799 /* ContentHeaderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2025,21 +2067,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C077FB15C9A8407564102552 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2117,6 +2144,7 @@
 				042EEF2D2150E15F00DBD492 /* MJRefreshAutoNormalFooter.m in Sources */,
 				042EEF602150E15F00DBD492 /* UIImage+MultiFormat.m in Sources */,
 				042EEF442150E15F00DBD492 /* MWZoomingScrollView.m in Sources */,
+				2D9195DD2153D7F000F4A9A1 /* ChatMainCell.swift in Sources */,
 				04C38A04213E671F0063A799 /* ContentShowCell.swift in Sources */,
 				042EEF682150E15F00DBD492 /* UIButton+WebCache.m in Sources */,
 				042EEF272150E15F00DBD492 /* UIView+MJExtension.m in Sources */,
@@ -2158,9 +2186,11 @@
 				2DC955A7213FFC8C004D6F65 /* AboutMeVC.swift in Sources */,
 				04C38A26213E7FF40063A799 /* FSPageViewLayout.swift in Sources */,
 				042EEF7F2150E15F00DBD492 /* EaseChatToolbarItem.m in Sources */,
+				2D9195D02153BCE300F4A9A1 /* DrawFromCell.swift in Sources */,
 				042EEF3B2150E15F00DBD492 /* EMCDDeviceManager+Remind.m in Sources */,
 				04C38716213E093F0063A799 /* PMNetManager.swift in Sources */,
 				042EEF1D2150E15F00DBD492 /* EaseEmotionEscape.m in Sources */,
+				2D9195D32153BE1C00F4A9A1 /* DrawControlHeader.swift in Sources */,
 				0485CCA52148A89200F54927 /* MQTTExtensions.swift in Sources */,
 				042EEF642150E15F00DBD492 /* SDWebImageDownloaderOperation.m in Sources */,
 				2DC955B0213FFE17004D6F65 /* MeInfoHaderCell.swift in Sources */,
@@ -2183,6 +2213,7 @@
 				042EEF2C2150E15F00DBD492 /* MJRefreshAutoGifFooter.m in Sources */,
 				04C38734213E093F0063A799 /* ETPopupViewExtension.swift in Sources */,
 				0485CCAB2148A89200F54927 /* MQTTPingResp.swift in Sources */,
+				2D9195D72153CE5C00F4A9A1 /* BottomSongView.swift in Sources */,
 				04C38718213E093F0063A799 /* XBThirdID.swift in Sources */,
 				043E1193213FC0E70067ADF3 /* ContentSingHaderView.swift in Sources */,
 				043E1190213FB8FE0067ADF3 /* ContentSingsVC.swift in Sources */,
@@ -2267,6 +2298,7 @@
 				042EEF772150E15F00DBD492 /* EaseBaseMessageCell.m in Sources */,
 				042EEF802150E15F00DBD492 /* EaseBubbleView+Text.m in Sources */,
 				042EEF532150E15F00DBD492 /* PSTGridLayoutSection.m in Sources */,
+				2D9195E02153DBA800F4A9A1 /* ChatCreateView.swift in Sources */,
 				0485CCB52148A89200F54927 /* MQTTDisconnectPacket.swift in Sources */,
 				042EEF6B2150E15F00DBD492 /* MBProgressHUD+Add.m in Sources */,
 				04C38727213E093F0063A799 /* XBUserManager.swift in Sources */,
@@ -2427,7 +2459,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AZF2TUZCNL;
+				DEVELOPMENT_TEAM = B4WSDTADTT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2453,7 +2485,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AZF2TUZCNL;
+				DEVELOPMENT_TEAM = B4WSDTADTT;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

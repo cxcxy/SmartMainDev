@@ -24,9 +24,9 @@ class XBBaseNavigation: UINavigationController,UIGestureRecognizerDelegate {
         self.navigationBar.barTintColor = viewColor // 统一 导航条背景色
          navigationBar.isTranslucent                 = false // 取消半透明效果
         
-//        self.navigationBar.tintColor = UIColor.black // 统一 导航条上面字体的颜色
+        self.navigationBar.tintColor = UIColor.white // 统一 导航条上面字体的颜色
 //
-//        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.red, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0)];
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18.0)];
 
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.shadowImage = UIImage()

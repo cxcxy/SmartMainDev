@@ -26,6 +26,10 @@ class EquipmentVC: XBBaseTableViewController {
         makeCustomerImageNavigationItem("icon_tianjia", left: false) {
             VCRouter.qrCodeScanVC()
         }
+        //MARK: 点击添加商家
+        makeCustomerImageNavigationItem("icon_tianjia", left: true) {
+            VCRouter.qrCodeScanVC()
+        }
         makeCustomerNavigationItem("音乐", left: true) {
 //            let vc = SmartPlayerViewController()
 //            self.pushVC(vc)
