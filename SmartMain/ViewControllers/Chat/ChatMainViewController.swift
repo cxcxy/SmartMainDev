@@ -30,7 +30,7 @@ class ChatMainViewController: XBBaseViewController {
     }
     override func request() {
         super.request()
-        self.dataArr = EMClient.shared().chatManager.getAllConversations() as! [EMConversation]
+//        self.dataArr = EMClient.shared().chatManager.getAllConversations() as! [EMConversation]
         print(dataArr)
         self.endRefresh()
         self.tableView.reloadData()

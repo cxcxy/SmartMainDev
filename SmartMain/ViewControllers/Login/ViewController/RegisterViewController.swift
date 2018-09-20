@@ -15,7 +15,7 @@ class RegisterViewController: XBBaseViewController {
     @IBOutlet weak var thPassword: UITextField!
     @IBOutlet weak var tfCode: UITextField!
     @IBOutlet weak var btnCode: UIButton!
-
+    var viewModel = LoginViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "手机号注册"
@@ -37,74 +37,24 @@ class RegisterViewController: XBBaseViewController {
         self.btnCode.startTimer(60, title: "获取验证码", mainBGColor: UIColor.white, mainTitleColor: UIColor.init(hexString: "707784")!, countBGColor: UIColor.white, countTitleColor: MGRgb(128, g: 128, b: 128), handle: nil)
     }
     @IBAction func clickSendCodeAction(_ sender: Any) {
-       
-        guard tfPhone.text != "" else {
-             XBHud.showMsg("请输入手机号")
-            return
-        }
-        Net.requestWithTarget(.getAuthCode(mobile: tfPhone.text!), successClosure: { (result, code, message) in
-            XBHud.showMsg("发送验证码成功")
+        viewModel.requestGetCode(mobile: tfPhone.text!) {
             self.sendCodeWithBtnTimer()
-            print(result)
-        })
+        }
     }
     @IBAction func clickRegisterAction(_ sender: Any) {
-
-        guard tfPhone.text != "" else {
-            XBHud.showMsg("请输入手机号")
-            return
-        }
-        guard thPassword.text != "" else {
-            XBHud.showMsg("请输入密码")
-            return
-        }
-        guard tfCode.text != "" else {
-            XBHud.showMsg("请输入验证码")
-            return
-        }
-        var params_task = [String: Any]()
-        params_task["username"] = tfPhone.text
-        params_task["password"] = thPassword.text
-        params_task["nickname"] = "际浩小达人"
-        params_task["authCode"] = "1111"
-        Net.requestWithTarget(.register(req: params_task), successClosure: { (result, code, message) in
-            if let str = result as? String {
-                if str == "ok" {
-                    print("注册成功")
-//                    self.requestFamilyRegister()
-                    
-                    let vc = SetInfoViewController()
-                    self.pushVC(vc)
-                    
-                }else {
-                    XBHud.showMsg("注册失败")
-                }
-            }
-            print(result)
-        })
+        let vc = SetInfoViewController()
+        self.pushVC(vc)
+//        viewModel.requestRegister(mobile: tfPhone.text!, code: tfCode.text!, pass: thPassword.text!) {
+//            let vc = SetInfoViewController()
+//            self.pushVC(vc)
+//        }
     }
     func requestFamilyRegister()  {
-        var params_task = [String: Any]()
-        params_task["openId"] = tfPhone.text
-        params_task["type"] = 2
-        params_task["nickname"] = "智伴小达人"
-        Net.requestWithTarget(.familyRegister(req: params_task), successClosure: { (result, code, message) in
-            if let str = result as? String {
-                if str == "ok" {
-                    print("注册成功")
-                    XBHud.showMsg("注册成功")
-                    self.popVC()
-                    
-                }else {
-                    XBHud.showMsg("注册失败")
-                }
-            }
-            print(result)
-        })
+        viewModel.requestFamilyRegister(mobile: tfPhone.text!) {
+            self.popVC()
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-
 }

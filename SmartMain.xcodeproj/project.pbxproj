@@ -150,6 +150,7 @@
 		043E1197213FC1090067ADF3 /* ContentSingHaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E1196213FC1090067ADF3 /* ContentSingHaderView.xib */; };
 		043E119A213FCCAC0067ADF3 /* ContentSingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */; };
 		043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */; };
+		0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460495821536D7A00BEDCD6 /* LoginViewModel.swift */; };
 		0485CCA42148A89200F54927 /* MQTTSessionStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */; };
 		0485CCA52148A89200F54927 /* MQTTExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC902148A89200F54927 /* MQTTExtensions.swift */; };
 		0485CCA62148A89200F54927 /* MQTTPublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC922148A89200F54927 /* MQTTPublishPacket.swift */; };
@@ -562,6 +563,7 @@
 		043E1196213FC1090067ADF3 /* ContentSingHaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingHaderView.xib; sourceTree = "<group>"; };
 		043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSingCell.swift; sourceTree = "<group>"; };
 		043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingCell.xib; sourceTree = "<group>"; };
+		0460495821536D7A00BEDCD6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSessionStream.swift; sourceTree = "<group>"; };
 		0485CC902148A89200F54927 /* MQTTExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTExtensions.swift; sourceTree = "<group>"; };
 		0485CC922148A89200F54927 /* MQTTPublishPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPublishPacket.swift; sourceTree = "<group>"; };
@@ -1309,6 +1311,14 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		0460495721536D6300BEDCD6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0460495821536D7A00BEDCD6 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0485CC8E2148A89200F54927 /* SwiftMQTT */ = {
 			isa = PBXGroup;
 			children = (
@@ -1743,6 +1753,7 @@
 		2DC9559B213FF39D004D6F65 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				0460495721536D6300BEDCD6 /* ViewModel */,
 				2DC9559C213FF3AB004D6F65 /* ViewController */,
 			);
 			path = Login;
@@ -1803,6 +1814,7 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
+				C077FB15C9A8407564102552 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1971,6 +1983,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C077FB15C9A8407564102552 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2148,6 +2175,7 @@
 				04C38A25213E7FF40063A799 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				042EEF472150E15F00DBD492 /* MWPhoto.m in Sources */,
 				04C3871B213E093F0063A799 /* XBNotificationManager.swift in Sources */,
+				0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */,
 				042EEF1E2150E15F00DBD492 /* EaseEmojiEmoticons.m in Sources */,
 				042EEF4C2150E15F00DBD492 /* PSTCollectionViewController.m in Sources */,
 				042EEF3A2150E15F00DBD492 /* EMVoiceConverter.mm in Sources */,
