@@ -66,6 +66,88 @@ public extension DefaultsKey {
     static let userName = Key<String>("userName")
     static let deviceId = Key<String>("deviceId")
     static let online   = Key<Bool>("online")
+    
+     static let dv_babyname   = Key<String>("babyname")
+     static let dv_headimgurl   = Key<String>("headimgurl")
+     static let dv_sex   = Key<String>("sex")
+     static let dv_birthday   = Key<String>("birthday")
+     static let dv_recordtime   = Key<String>("recordtime")
+    
+}
+class XBDeviceBabyModel:  Mappable{
+    
+    var id : Int? //
+    var deviceid : String? //
+    var babyname : String?//
+    var headimgurl : String?
+    var sex: String? //
+    var birthday : String? //
+    var recordtime : String?
+    
+    required init?(map: Map){}
+    
+    func mapping(map: Map)
+    {
+        
+        id <- map["id"]
+        deviceid <- map["deviceid"]
+        babyname <- map["babyname"]
+        headimgurl <- map["headimgurl"]
+        sex <- map["sex"]
+        birthday <- map["birthday"]
+        recordtime <- map["recordtime"]
+        
+    }
+    
+}
+extension XBUserManager { // 保存设备宝宝 信息
+    static var dv_babyname:String {
+        get{
+            return user_defaults.get(for: .dv_babyname) ?? ""
+        }
+        set{
+            user_defaults.set(newValue, for: .dv_babyname)
+        }
+    }
+    static var dv_headimgurl:String {
+        get{
+            return user_defaults.get(for: .dv_headimgurl) ?? ""
+        }
+        set{
+            user_defaults.set(newValue, for: .dv_babyname)
+        }
+    }
+    static var dv_sex:String {
+        get{
+            return user_defaults.get(for: .dv_sex) ?? ""
+        }
+        set{
+            user_defaults.set(newValue, for: .dv_sex)
+        }
+    }
+    static var dv_birthday:String {
+        get{
+            return user_defaults.get(for: .dv_birthday) ?? ""
+        }
+        set{
+            user_defaults.set(newValue, for: .dv_birthday)
+        }
+    }
+    static var dv_recordtime:String {
+        get{
+            return user_defaults.get(for: .dv_recordtime) ?? ""
+        }
+        set{
+            user_defaults.set(newValue, for: .dv_recordtime)
+        }
+    }
+    static func saveDeviceInfo(_ deviceModel: XBDeviceBabyModel) {
+         user_defaults.set(deviceModel.babyname ?? "", for: .dv_babyname)
+         user_defaults.set(deviceModel.sex ?? "", for: .dv_sex)
+         user_defaults.set(deviceModel.birthday ?? "", for: .dv_birthday)
+         user_defaults.set(deviceModel.headimgurl ?? "", for: .dv_headimgurl)
+         user_defaults.set(deviceModel.recordtime ?? "", for: .dv_recordtime)
+    }
 }
 //TODO
 struct XBUserManager {
@@ -93,35 +175,25 @@ struct XBUserManager {
             user_defaults.set(newValue, for: .online)
         }
     }
-//     保存用户信息
+
+    
+    
     static func saveUserInfo(_ phone: String){
-//        XBJpushManager.setUserAlias(userId: model?.userid?.toString)
-//        default.set
+
         user_defaults.set(phone, for: .userName)
-        
-        // 保存当前登录的用户信息， 用户退出登录时， 显示登录界面
-//        Noti_post(.refreshUserData,object: model)
-//        MGDefault.synchronize()
+
 
     }
     static func saveDeviceId(_ saveDeviceId: String){
-        //        XBJpushManager.setUserAlias(userId: model?.userid?.toString)
-        //        default.set
+
         user_defaults.set(saveDeviceId, for: .deviceId)
-        
-        // 保存当前登录的用户信息， 用户退出登录时， 显示登录界面
-        //        Noti_post(.refreshUserData,object: model)
-        //        MGDefault.synchronize()
-        
+
     }
     // 清空用户信息
     static func cleanUserInfo(){
+        
         user_defaults.clear(.userName)
         user_defaults.clear(.deviceId)
-//        XBJpushManager.deleteUserAlias()
-       
-//        Noti_post(.refreshUserData)
-//        MGDefault.synchronize()
         
     }
     /**

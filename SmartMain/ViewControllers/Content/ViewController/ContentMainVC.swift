@@ -73,9 +73,11 @@ class ContentMainVC: XBBaseViewController {
         v.magicView.delegate                    = self
         v.magicView.needPreloading      = false
         let vc = ContentVC()
+        let vc_list = TrackListViewController()
         let vc1 = LikeViewController()
         let vc2 = HistoryViewController()
-        controllerArray = [vc,vc1,vc2]
+        
+        controllerArray = [vc,vc_list,vc1,vc2]
         v.magicView.reloadData()
         self.addChildViewController(v)
         self.view.addSubview(v.magicView)
@@ -105,7 +107,7 @@ extension ContentMainVC:VTMagicViewDataSource{
     }
     func menuTitles(for magicView: VTMagicView) -> [String] {
         
-        return ["内容","收藏","历史"]
+        return ["内容","歌单","收藏","历史"]
         
     }
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton{

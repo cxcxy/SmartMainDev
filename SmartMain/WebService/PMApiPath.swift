@@ -80,7 +80,7 @@ extension RequestApi {
         // app向设备发送文字接口(post)
         case .sendVoiceDevice:               return "/suportAPP/appSendVoiceToDevice.do"
         // 上传头像文件到服务器
-        case .uploadAvatar:               return "/familymember/avatar/upload.do"
+        case .uploadAvatar(let openId, _):               return "/familymember/avatar/upload.do?openId=" + openId
         // 设置或重设用户账号头像
         case .resetAvatar:               return "/familymember/avatar/reset.do"
         // 修改账号昵称

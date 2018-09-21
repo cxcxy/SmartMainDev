@@ -158,6 +158,11 @@
 		0460496A2153923900BEDCD6 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049642153923900BEDCD6 /* CWDrawerTransition.m */; };
 		0460496B2153923900BEDCD6 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */; };
 		0460496D215398D800BEDCD6 /* DrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0460496C215398D800BEDCD6 /* DrawerViewController.xib */; };
+		0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461CBCF2154D6D400DF4C9A /* WOWDatePickerView.xib */; };
+		0461CBD22154D6D400DF4C9A /* WOWDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD02154D6D400DF4C9A /* WOWDatePickerView.swift */; };
+		0461CBD42154DB1700DF4C9A /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD32154DB1700DF4C9A /* DeviceManager.swift */; };
+		0461CBD62154E35E00DF4C9A /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */; };
+		0461CBD82154E44200DF4C9A /* SMTrackListViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */; };
 		0485CCA42148A89200F54927 /* MQTTSessionStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */; };
 		0485CCA52148A89200F54927 /* MQTTExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC902148A89200F54927 /* MQTTExtensions.swift */; };
 		0485CCA62148A89200F54927 /* MQTTPublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC922148A89200F54927 /* MQTTPublishPacket.swift */; };
@@ -593,6 +598,11 @@
 		046049652153923900BEDCD6 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
 		046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
 		0460496C215398D800BEDCD6 /* DrawerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawerViewController.xib; sourceTree = "<group>"; };
+		0461CBCF2154D6D400DF4C9A /* WOWDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WOWDatePickerView.xib; sourceTree = "<group>"; };
+		0461CBD02154D6D400DF4C9A /* WOWDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOWDatePickerView.swift; sourceTree = "<group>"; };
+		0461CBD32154DB1700DF4C9A /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
+		0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMTrackListViewHeader.swift; sourceTree = "<group>"; };
 		0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSessionStream.swift; sourceTree = "<group>"; };
 		0485CC902148A89200F54927 /* MQTTExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTExtensions.swift; sourceTree = "<group>"; };
 		0485CC922148A89200F54927 /* MQTTPublishPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPublishPacket.swift; sourceTree = "<group>"; };
@@ -1469,6 +1479,7 @@
 				04C386DD213E093F0063A799 /* AddImagePickerFragment.swift */,
 				04C386DE213E093F0063A799 /* XBEmptyManager.swift */,
 				04C386E0213E093F0063A799 /* XBUploadManager.swift */,
+				0461CBD32154DB1700DF4C9A /* DeviceManager.swift */,
 				04C386E1213E093F0063A799 /* XBAddressManager.swift */,
 				04C386E3213E093F0063A799 /* XBUserManager.swift */,
 				04C386E4213E093F0063A799 /* XBRxSectionManager.swift */,
@@ -1579,6 +1590,8 @@
 		04C38818213E0B590063A799 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				0461CBD02154D6D400DF4C9A /* WOWDatePickerView.swift */,
+				0461CBCF2154D6D400DF4C9A /* WOWDatePickerView.xib */,
 				04C143692147A8F500FC2000 /* ShowChooseView.swift */,
 				04C1436B2147A8FD00FC2000 /* ShowChooseView.xib */,
 				2D9195D62153CE5C00F4A9A1 /* BottomSongView.swift */,
@@ -1698,6 +1711,7 @@
 				043E118E213FB8FE0067ADF3 /* ContentSingsVC.swift */,
 				043E118F213FB8FE0067ADF3 /* ContentSingsVC.xib */,
 				04C38A0E213E6ED60063A799 /* LikeViewController.swift */,
+				0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */,
 				04C38A10213E6EEA0063A799 /* HistoryViewController.swift */,
 				04C38A16213E79240063A799 /* SearchViewController.swift */,
 				04C38A17213E79240063A799 /* SearchViewController.xib */,
@@ -1726,6 +1740,7 @@
 				043E1196213FC1090067ADF3 /* ContentSingHaderView.xib */,
 				043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */,
 				043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */,
+				0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1891,6 +1906,7 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
+				B6DA4C5CD2A9BFFB9D96AE73 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1949,6 +1965,7 @@
 				2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				04C3871E213E093F0063A799 /* city.json in Resources */,
+				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
 				043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */,
 				043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */,
 				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
@@ -2067,6 +2084,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B6DA4C5CD2A9BFFB9D96AE73 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2088,6 +2120,7 @@
 				04C38A28213E7FF40063A799 /* FSPagerCollectionView.swift in Sources */,
 				04C38748213E09400063A799 /* XBUtil.swift in Sources */,
 				042EEF4E2150E15F00DBD492 /* PSTCollectionViewCell.m in Sources */,
+				0461CBD82154E44200DF4C9A /* SMTrackListViewHeader.swift in Sources */,
 				042EEF5E2150E15F00DBD492 /* SDWebImageDownloader.m in Sources */,
 				04C38A00213E64170063A799 /* ContentHeaderCell.swift in Sources */,
 				04C38A27213E7FF40063A799 /* FSPageControl.swift in Sources */,
@@ -2115,6 +2148,7 @@
 				04C38A0C213E6D850063A799 /* ContentLikeCell.swift in Sources */,
 				0460495B2153839400BEDCD6 /* DrawerViewController.swift in Sources */,
 				042EEF192150E15F00DBD492 /* EaseMessageReadManager.m in Sources */,
+				0461CBD22154D6D400DF4C9A /* WOWDatePickerView.swift in Sources */,
 				04C38730213E093F0063A799 /* UITableView+.swift in Sources */,
 				042EEF732150E15F00DBD492 /* EaseConversationCell.m in Sources */,
 				042EEF512150E15F00DBD492 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
@@ -2213,6 +2247,7 @@
 				042EEF2C2150E15F00DBD492 /* MJRefreshAutoGifFooter.m in Sources */,
 				04C38734213E093F0063A799 /* ETPopupViewExtension.swift in Sources */,
 				0485CCAB2148A89200F54927 /* MQTTPingResp.swift in Sources */,
+				0461CBD62154E35E00DF4C9A /* TrackListViewController.swift in Sources */,
 				2D9195D72153CE5C00F4A9A1 /* BottomSongView.swift in Sources */,
 				04C38718213E093F0063A799 /* XBThirdID.swift in Sources */,
 				043E1193213FC0E70067ADF3 /* ContentSingHaderView.swift in Sources */,
@@ -2290,6 +2325,7 @@
 				04C38715213E093F0063A799 /* PMRequestApi.swift in Sources */,
 				0485CCAF2148A89200F54927 /* MQTTPubAck.swift in Sources */,
 				042EEF5B2150E15F00DBD492 /* SDWebImageManager.m in Sources */,
+				0461CBD42154DB1700DF4C9A /* DeviceManager.swift in Sources */,
 				042EEF792150E15F00DBD492 /* EaseImageView.m in Sources */,
 				042EEF862150E15F00DBD492 /* EaseBubbleView+Image.m in Sources */,
 				042EEF242150E15F00DBD492 /* MJRefreshConst.m in Sources */,
@@ -2459,7 +2495,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B4WSDTADTT;
+				DEVELOPMENT_TEAM = AZF2TUZCNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2485,7 +2521,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B4WSDTADTT;
+				DEVELOPMENT_TEAM = AZF2TUZCNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

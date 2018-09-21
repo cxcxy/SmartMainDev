@@ -28,7 +28,6 @@ class ContentVC: XBBaseTableViewController {
         
         var params_task = [String: Any]()
         params_task["clientId"] = XBUserManager.device_Id
-//        params_task["clientId"] = "3020040000000028"
         params_task["tags"] = ["six"]
         Net.requestWithTarget(.contentModules(req: params_task), successClosure: { (result, code, message) in
             if let arr = Mapper<ModulesResModel>().mapArray(JSONObject:JSON(result)["modules"].arrayObject) {
@@ -40,20 +39,20 @@ class ContentVC: XBBaseTableViewController {
                     return false
                 })
                 self.dataArr = filterArr
-                self.requestTrackList()
-//                self.tableView.reloadData()
+                self.endRefresh()
+                self.tableView.reloadData()
             }
         })
     }
     func requestTrackList()  {
-        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
-            print(result)
-            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
-                self.endRefresh()
-                self.dataTrackArr = arr
-                self.tableView.reloadData()
-            }
-        })
+//        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+//            print(result)
+//            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+//                self.endRefresh()
+//                self.dataTrackArr = arr
+//                self.tableView.reloadData()
+//            }
+//        })
 
     }
     override func didReceiveMemoryWarning() {
@@ -72,7 +71,7 @@ extension ContentVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentHeaderCell", for: indexPath) as! ContentHeaderCell
-            cell.dataArr = self.dataTrackArr
+//            cell.dataArr = self.dataTrackArr
             return cell
         }
         if indexPath.row == 1 || indexPath.row == 2 {

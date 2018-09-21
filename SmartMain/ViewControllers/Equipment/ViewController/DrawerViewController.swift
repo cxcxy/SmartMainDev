@@ -19,6 +19,7 @@ class DrawerViewController: XBBaseViewController {
     var accountArr: [XBStyleCellModel] = []
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imgPhoto: UIImageView!
+    @IBOutlet weak var lbDvnick: UILabel!
     lazy var popWindow:UIWindow = {
         let w = UIApplication.shared.delegate as! AppDelegate
         return w.window!
@@ -31,6 +32,9 @@ class DrawerViewController: XBBaseViewController {
         eqArr       = [eqOne,eqTwo,eqThree]
         accountArr  = [accountOne,accountTwo,accountThree]
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
+        imgPhoto.roundView()
+        imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+        lbDvnick.set_text = XBUserManager.device_Id == "" ? "暂未绑定设备" : XBUserManager.userName
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

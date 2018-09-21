@@ -50,7 +50,7 @@ enum RequestApi{
     case deleteTrackList(req: [String: Any])
     case deleteLikeSing(req: [String: Any])
     case sendVoiceDevice(req: [String: Any])
-    case uploadAvatar(req: [String: Any])
+    case uploadAvatar(openId: String, body: String)
     case resetAvatar(req: [String: Any])
     case modifyNickname(req: [String: Any])
 }
@@ -173,6 +173,13 @@ extension RequestApi:TargetType{
         case .contentsings(let req):
             params_task = req
             break
+        case .uploadAvatar( _ ,let fileURL):
+             let formData = MultipartFormData(provider: .file(URL(fileURLWithPath: fileURL)),
+                                              name: "file",
+                                              fileName: "jihao.png",
+                                              mimeType: "image/png")
+             let multipartData = [formData]
+             return .uploadMultipart(multipartData)
         default:
             return .requestPlain
         }
@@ -183,7 +190,12 @@ extension RequestApi:TargetType{
 
     // 请求头信息
     public var headers: [String : String]? {
-        return ["Content-Type": "application/json"]
+        switch self {
+        case .uploadAvatar:
+            return ["Content-Type": "multipart/form-data"]
+        default:
+            return ["Content-Type": "application/json"]
+        }
     }
     // 接口请求类型
     public var method:Moya.Method{

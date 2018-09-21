@@ -136,6 +136,42 @@ class LoginViewModel: NSObject {
             print(result)
         })
     }
+    /// 修改信息
+    func requestGetBabyInfo(closure: @escaping () -> ())  {
+        
+        Net.requestWithTarget(.getBabyInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            if let obj = Net.filterStatus(jsonString: result) {
+                if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
+                    XBUserManager.saveDeviceInfo(model)
+                    closure()
+                }
+            }
+        })
+    }
+    /// 修改信息
+    func requestUpdateBabyInfo(babyname: String,headimgurl: String,sex: Int,birthday: String,closure: @escaping () -> ())  {
+        guard babyname != "" else {
+            XBHud.showMsg("请输入昵称")
+            return
+        }
+        guard birthday != "" else {
+            XBHud.showMsg("请选择生日")
+            return
+        }
+        var params_task = [String: Any]()
+        params_task["deviceid"] = XBUserManager.device_Id
+        params_task["babyname"] = babyname
+        params_task["headimgurl"] = headimgurl
+        params_task["sex"] = sex
+        params_task["birthday"] = birthday
+        Net.requestWithTarget(.updateBabyInfo(req: params_task), successClosure: { (result, code, message) in
+            if let obj = Net.filterStatus(jsonString: result) {
+                if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
+                    XBUserManager.saveDeviceInfo(model)
+                }
+            }
+        })
+    }
     func loginUserInfo(jsonResult: String, mobile: String,closure: @escaping () -> ())  {
         guard let status = jsonResult.json_Str()["status"].int else {
             return
@@ -157,5 +193,16 @@ class LoginViewModel: NSObject {
 extension String {
     func json_Str() -> JSON{
         return JSON.init(parseJSON: self)
+    }
+    func filterStatus(jsonResult: String) -> JSON? {
+        guard let status = jsonResult.json_Str()["status"].int else {
+            return nil
+        }
+        guard status == 200 else {
+            let message = jsonResult.json_Str()["message"].stringValue
+            XBHud.showMsg(message)
+            return nil
+        }
+        return self.json_Str()
     }
 }

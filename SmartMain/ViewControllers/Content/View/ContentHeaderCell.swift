@@ -22,19 +22,19 @@ class ContentHeaderCell: BaseTableViewCell {
     var sourceArr: [String] = ["WechatIMG1275","WechatIMG1276","WechatIMG1277"]
     
     let itemWidth:CGFloat = ( MGScreenWidth - 20 - 30 ) / 4 // item 宽度
-    @IBOutlet weak var collectionView: UICollectionView!
+//    @IBOutlet weak var collectionView: UICollectionView!
     var dataArr: [EquipmentModel] = [] {
         didSet {
-            collectionView.reloadData()
+//            collectionView.reloadData()
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        configCollectionView()
+//        configCollectionView()
     }
     func configCollectionView()  {
-        collectionView.cellId_register("ContentTitleCVCell")
+//        collectionView.cellId_register("ContentTitleCVCell")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

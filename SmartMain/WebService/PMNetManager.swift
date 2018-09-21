@@ -46,6 +46,22 @@ extension Task {
 class XBNetManager {
     static let shared = XBNetManager()
     fileprivate init(){}
+    
+    func filterStatus(jsonString: AnyObject) -> JSON? {
+        if let jsonStr = jsonString as? String {
+            guard let status = jsonStr.json_Str()["status"].int else {
+                return nil
+            }
+            guard status == 200 else {
+                let message = jsonStr.json_Str()["message"].stringValue
+                XBHud.showMsg(message)
+                return nil
+            }
+            return jsonStr.json_Str()["result"]
+        }
+        return nil
+    }
+    
     public static func endpointClosure(target: RequestApi) -> Endpoint<RequestApi> {
         let method = target.method
 

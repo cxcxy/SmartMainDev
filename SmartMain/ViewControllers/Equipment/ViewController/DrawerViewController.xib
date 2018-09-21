@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
                 <outlet property="imgPhoto" destination="y4I-vD-U74" id="zEL-SD-Pux"/>
+                <outlet property="lbDvnick" destination="RIa-pq-s3I" id="hj4-5d-yua"/>
                 <outlet property="tableView" destination="4Yj-rl-Rxi" id="wz0-0t-zhl"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ubg-xF-C3C"/>
             </connections>
@@ -34,7 +35,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX的XX机器人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIa-pq-s3I">
-                            <rect key="frame" x="100" y="52.5" width="114" height="21"/>
+                            <rect key="frame" x="100" y="52.5" width="260" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -46,6 +47,7 @@
                         <constraint firstAttribute="height" constant="150" id="BYS-Ds-8VX"/>
                         <constraint firstItem="y4I-vD-U74" firstAttribute="leading" secondItem="vjf-le-xWl" secondAttribute="leading" constant="20" id="GGX-ed-IMJ"/>
                         <constraint firstItem="RIa-pq-s3I" firstAttribute="top" secondItem="y4I-vD-U74" secondAttribute="top" constant="10" id="L3J-t0-aci"/>
+                        <constraint firstAttribute="trailing" secondItem="RIa-pq-s3I" secondAttribute="trailing" constant="15" id="lh1-Wh-jRm"/>
                         <constraint firstItem="y4I-vD-U74" firstAttribute="centerY" secondItem="vjf-le-xWl" secondAttribute="centerY" id="pTk-IZ-3BT"/>
                     </constraints>
                 </view>

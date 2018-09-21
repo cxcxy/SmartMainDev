@@ -11,7 +11,7 @@ enum XBImgPlaceholder:String {
     
     case photo              = "icon_touxiang"   // 默认头像
     case merchant           = "icon_shangjia"    // 默认公司
-    case none               = "placeholder_product"  // 默认展位图
+    case none               = "icon_photo"  // 默认展位图
     case phone              = "icon_touxiangmr2"  // 手机通讯录默认头像
 }
 import Accelerate
