@@ -9,6 +9,10 @@
 import UIKit
 
 class SmartPlayerViewController: XBBaseViewController {
+    
+    
+    @IBOutlet weak var lbVolume: UILabel!
+    
     var dataLikeArr: [ConetentLikeModel] = []
     @IBOutlet weak var imgSings: UIImageView!
     @IBOutlet weak var lbSingsTitle: UILabel!
@@ -17,6 +21,10 @@ class SmartPlayerViewController: XBBaseViewController {
     @IBOutlet weak var btnPlay: UIButton!
     
     @IBOutlet weak var btnOn: UIButton!
+    
+    @IBOutlet weak var lbSongProgress: UILabel!
+    @IBOutlet weak var sliderProgress: UISlider!
+    @IBOutlet weak var sliderVolume: UISlider!
     
     @IBOutlet weak var btnDown: UIButton!
     @IBOutlet weak var btnLike: UIButton!
@@ -43,16 +51,44 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.sendGetTrack()
         scoketModel.sendGetMode()
         scoketModel.sendPlayStatus()
+        scoketModel.sendGetVolume()
+        scoketModel.sendGetPlayProgress()
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getPalyingSingsId ===：", $0.element ?? 0)
             self.requestSingsDetail(trackId: $0.element ?? 0)
+        }.disposed(by: rx_disposeBag)
+       
+        scoketModel.getPlayVolume.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getPalyingVolume ===：", $0.element ?? 0)
+            let volumeValue: Float = Float($0.element ?? 0) / 100
+            self.sliderVolume.setValue(volumeValue, animated: true)
+        }.disposed(by: rx_disposeBag)
+        
+        scoketModel.getPlayProgress.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getPlayProgress ===：", $0.element ?? 0)
+            let progressValue: Float = Float($0.element ?? 0) / 100
+            self.sliderProgress.setValue(progressValue, animated: true)
         }.disposed(by: rx_disposeBag)
         
         scoketModel.playStatus.asObserver().bind(to: btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
         scoketModel.repeatStatus.asObserver().bind(to: btnRepeat.rx.isSelected).disposed(by: rx_disposeBag)
         
     }
+    
+    @IBAction func sliderProgressVauleChanged(_ sender: Any) {
+        let value:Float = sliderProgress.value
+        let duration:Float = Float(currentSongModel?.duration ?? 0)
+        scoketModel.setPlayProgressValue(value: Int(value * duration))
+    }
+    
+    @IBAction func sliderVolumeValueChanged(_ sender: Any) {
+//        print(Int(sliderVolume.value))
+        scoketModel.setVolumeValue(value: Int(sliderVolume.value * 100))
+    }
+    
     override func request() {
         super.request()
         guard let phone = user_defaults.get(for: .userName) else {
@@ -77,6 +113,7 @@ class SmartPlayerViewController: XBBaseViewController {
     func configUI(singsDetail: SingDetailModel) {
         imgSings.set_Img_Url(singsDetail.coverSmallUrl)
         lbSingsTitle.set_text = singsDetail.title
+        lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.duration)
     }
 
     @IBAction func clickRepeatAction(_ sender: Any) {

@@ -21,19 +21,92 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ss-o6-FLL">
                             <rect key="frame" x="0.0" y="0.0" width="75" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0C-l9-caf">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="80"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="打开童锁">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickLockAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="xqp-0g-RnS"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" red="0.99215686274509807" green="0.77254901960784317" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="J0C-l9-caf" firstAttribute="leading" secondItem="5ss-o6-FLL" secondAttribute="leading" id="auC-Ob-TkQ"/>
+                                <constraint firstItem="J0C-l9-caf" firstAttribute="top" secondItem="5ss-o6-FLL" secondAttribute="top" id="iRS-pI-EnP"/>
+                                <constraint firstAttribute="bottom" secondItem="J0C-l9-caf" secondAttribute="bottom" id="lSG-XA-Gkr"/>
+                                <constraint firstAttribute="trailing" secondItem="J0C-l9-caf" secondAttribute="trailing" id="uas-1G-9IA"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJb-PI-l1R">
                             <rect key="frame" x="90" y="0.0" width="75" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRv-dN-Gf7">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="80"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="开呼吸灯">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="selected" title="关呼吸灯"/>
+                                    <connections>
+                                        <action selector="btnLightAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jcp-1o-zLd"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" red="0.77647058823529413" green="0.69411764705882351" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="eRv-dN-Gf7" secondAttribute="bottom" id="5Rv-Np-Mdd"/>
+                                <constraint firstAttribute="trailing" secondItem="eRv-dN-Gf7" secondAttribute="trailing" id="64E-Fr-l7a"/>
+                                <constraint firstItem="eRv-dN-Gf7" firstAttribute="leading" secondItem="LJb-PI-l1R" secondAttribute="leading" id="KJ2-4A-ewC"/>
+                                <constraint firstItem="eRv-dN-Gf7" firstAttribute="top" secondItem="LJb-PI-l1R" secondAttribute="top" id="Xmm-ve-cVT"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="isO-KE-ft5">
                             <rect key="frame" x="180" y="0.0" width="75" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiH-16-Ie3">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="80"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="音量调整">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickVolumeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="0Jt-3s-TC9"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" red="0.63921568627450975" green="0.87058823529411766" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="xiH-16-Ie3" secondAttribute="trailing" id="Ej3-Uz-NXL"/>
+                                <constraint firstAttribute="bottom" secondItem="xiH-16-Ie3" secondAttribute="bottom" id="XAK-oN-bSC"/>
+                                <constraint firstItem="xiH-16-Ie3" firstAttribute="top" secondItem="isO-KE-ft5" secondAttribute="top" id="fzm-Fy-qLZ"/>
+                                <constraint firstItem="xiH-16-Ie3" firstAttribute="leading" secondItem="isO-KE-ft5" secondAttribute="leading" id="gPS-u1-Hct"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAF-Gz-8xX">
                             <rect key="frame" x="270" y="0.0" width="75" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s96-AP-7b4">
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="80"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="定时休眠">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickSleepAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="4qc-5j-cQe"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" red="0.46274509803921571" green="0.73725490196078436" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="s96-AP-7b4" secondAttribute="trailing" id="8wp-9K-QJu"/>
+                                <constraint firstItem="s96-AP-7b4" firstAttribute="top" secondItem="rAF-Gz-8xX" secondAttribute="top" id="Ceu-u1-BHP"/>
+                                <constraint firstItem="s96-AP-7b4" firstAttribute="leading" secondItem="rAF-Gz-8xX" secondAttribute="leading" id="O25-UJ-r9x"/>
+                                <constraint firstAttribute="bottom" secondItem="s96-AP-7b4" secondAttribute="bottom" id="gcb-fw-EIQ"/>
+                            </constraints>
                         </view>
                     </subviews>
                 </stackView>
@@ -47,6 +120,12 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnLight" destination="eRv-dN-Gf7" id="JSJ-rK-2lc"/>
+                <outlet property="btnLook" destination="J0C-l9-caf" id="qzn-Nl-bGW"/>
+                <outlet property="btnSleep" destination="s96-AP-7b4" id="gHH-jW-ujl"/>
+                <outlet property="btnVolume" destination="xiH-16-Ie3" id="uVn-rI-PDx"/>
+            </connections>
             <point key="canvasLocation" x="24.5" y="-92"/>
         </view>
     </objects>

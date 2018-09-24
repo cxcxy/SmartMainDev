@@ -20,6 +20,17 @@ class DrawerViewController: XBBaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbDvnick: UILabel!
+    
+    @IBOutlet weak var btnLock: UIButton!
+    
+    @IBOutlet weak var btnLight: UIButton!
+    
+    @IBOutlet weak var btnVolume: UIButton!
+    
+    @IBOutlet weak var btnSleep: UIButton!
+    
+    let scoketModel = ScoketMQTTManager.share
+    
     lazy var popWindow:UIWindow = {
         let w = UIApplication.shared.delegate as! AppDelegate
         return w.window!
@@ -35,6 +46,9 @@ class DrawerViewController: XBBaseViewController {
         imgPhoto.roundView()
         imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
         lbDvnick.set_text = XBUserManager.device_Id == "" ? "暂未绑定设备" : XBUserManager.userName
+        
+        getMQTT()
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,10 +65,10 @@ extension DrawerViewController {
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return section == 0 ? 100 : 40
+        return section == 0 ? XBMin : 40
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return section == 0 ? getControlHeaderView() : getAccountView()
+        return section == 0 ? nil : getAccountView()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DrawFromCell", for: indexPath) as! DrawFromCell
@@ -99,6 +113,57 @@ extension DrawerViewController {
         v.addSubview(title)
         return v
     }
+}
+extension DrawerViewController {
+    func getMQTT() {
+        scoketModel.sendLight()
+        scoketModel.sendGetLock()
+      
+        
+        scoketModel.getLight.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getLight ===：", $0.element ?? 0)
+            //            self.requestSingsDetail(trackId: $0.element ?? 0)
+            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
+            }.disposed(by: rx_disposeBag)
+        scoketModel.getLock.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getLight ===：", $0.element ?? 0)
+            //            self.requestSingsDetail(trackId: $0.element ?? 0)
+            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
+            }.disposed(by: rx_disposeBag)
+        
+
+        
+    }
+    @IBAction func clickLockAction(_ sender: Any) {
+        
+        if btnLock.isSelected {
+            scoketModel.sendCortolLock(0)
+        }else {
+            scoketModel.sendCortolLock(1)
+        }
+        btnLock.isSelected = !btnLock.isSelected
+        
+        
+    }
+    
+    @IBAction func btnLightAction(_ sender: Any) {
+        if btnLight.isSelected {
+            scoketModel.sendClooseLight(0)
+        }else {
+            scoketModel.sendClooseLight(1)
+        }
+        btnLight.isSelected = !btnLight.isSelected
+    }
+    
+    @IBAction func clickVolumeAction(_ sender: Any) {
+    }
+    
+    @IBAction func clickSleepAction(_ sender: Any) {
+        
+    }
+    
 }
 extension DrawerViewController {
     func toQRCodeVC()  {

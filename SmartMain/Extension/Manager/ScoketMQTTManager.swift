@@ -7,11 +7,13 @@
 //
 
 import UIKit
-let socket_host             = "zb.mqtt.athenamuses.cn"
+//let socket_host             = "zb.mqtt.athenamuses.cn"
 let socket_port: UInt16     = 1893
-let socket_clientID         = XBUserManager.device_Id
-
-
+let socket_host             = "zhiban.mqtt.athenamuses.cn"
+//let socket_port: UInt16     = 8094
+//let socket_clientID         = XBUserManager.device_Id
+//let socket_clientID         = "3010290000045007_1275"
+let socket_clientID         = "3010290000047373_50056"
 class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
     var mqttSession: MQTTSession!
     /**
@@ -30,6 +32,30 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      *   回复默认预制列表 数据
      */
     let getSetDefaultMessage = PublishSubject<String>()
+    
+    /**
+     *   获取音量大小 数据
+     */
+    let getPlayVolume = PublishSubject<Int>()
+    /**
+     *   获取当前播放进度
+     */
+    let getPlayProgress = PublishSubject<Int>()
+    /**
+     *   1 开 0 为 关
+     */
+    let getLock = PublishSubject<Int>()
+    
+    /**
+     *   1 开 0 为 关
+     */
+    let getLight = PublishSubject<Int>()
+    
+    /**
+     *   获取休眠时间
+     */
+    let getPoweroff = PublishSubject<Int>()
+    
     
     static let share = ScoketMQTTManager()
     override init() {
@@ -57,7 +83,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      *   订阅机器信息
      */
     func subscribeToChannel() {
-        let channel = "storybox/\(XBUserManager.device_Id)/client"
+        let channel = "storybox/\(socket_clientID)/client"
         mqttSession.subscribe(to: channel, delivering: .atLeastOnce) { (error) in
             if error == .none {
                 print("Subscribed to \(channel)")
@@ -70,7 +96,25 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      *   向机器发出订阅信息
      */
     func sendPressed(socketModel: XBSocketModel)  {
-        let channel = "storybox/\(XBUserManager.device_Id)/server/page"
+        let channel = "storybox/\(socket_clientID)/server/page"
+        
+        guard let message = socketModel.toJSONString() else {
+            return
+        }
+        guard  let data = message.data(using: .utf8) else {
+            return
+        }
+        mqttSession.publish(data, in: channel, delivering: .atMostOnce, retain: false) { (error) in
+            if error == .none {
+                print("Published \(message) on channel \(channel)")
+            }
+        }
+    }
+    /**
+     *   向机器发出订阅信息New
+     */
+    func sendNewPressed(socketModel: XBSocketValueModel)  {
+        let channel = "storybox/\(socket_clientID)/server/page"
         
         guard let message = socketModel.toJSONString() else {
             return
@@ -94,6 +138,9 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
             getPalyingSingsId.onNext(trackId)
         }
         
+        if let volume = json_str["volume"].int{ // 拿到歌曲信息
+            getPlayVolume.onNext(volume)
+        }
         if json_str["playStatus"].stringValue == "playing" {
             self.playStatus.onNext(true)
         }
@@ -107,6 +154,23 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
             self.repeatStatus.onNext(false)
         }
         if cmd_str == "initialTrackList" {
+            self.getSetDefaultMessage.onNext(message)
+        }
+        if cmd_str == "customer" {
+            let key_str = json_str["key"].stringValue
+            let value_str = json_str["value"].intValue
+            if key_str == "childlock" {
+                self.getLock.onNext(value_str)
+            }
+            if key_str == "light" {
+                self.getLight.onNext(value_str)
+            }
+            if key_str == "poweroff" {
+                self.getPoweroff.onNext(value_str)
+            }
+            if key_str == "playProgress" {
+                self.getPlayProgress.onNext(value_str)
+            }
             self.getSetDefaultMessage.onNext(message)
         }
     }
@@ -133,6 +197,51 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         let socket = XBSocketModel()
         socket.cmd = "getPlayStatus"
         self.sendPressed(socketModel: socket)
+    }
+    /**
+     *  询问机器此时的播放音量大小
+     */
+    func sendGetVolume() {
+        let socket = XBSocketModel()
+        socket.cmd = "getVolume"
+        self.sendPressed(socketModel: socket)
+    }
+    /**
+     *  获取设备童锁开关状态
+     */
+    func sendGetLock() {
+        let socket = XBSocketModel()
+        socket.cmd = "customer"
+        socket.key = "getChildlock"
+        self.sendPressed(socketModel: socket)
+    }
+    /**
+     *  获取设备此时的呼吸灯开关状态
+     */
+    func sendLight() {
+        let socket = XBSocketModel()
+        socket.cmd = "customer"
+        socket.key = "getLight"
+        self.sendPressed(socketModel: socket)
+    }
+    /**
+     *  询问机器此时的播放音量大小
+     */
+    func sendGetPowerOff() {
+        let socket = XBSocketModel()
+        socket.cmd = "customer"
+        socket.key = "getPoweroff"
+        self.sendPressed(socketModel: socket)
+    }
+    /**
+     *  设置机器此时的播放音量大小
+     */
+    func setVolumeValue(value: Int) {
+        let socket = XBSocketValueModel()
+        socket.cmd = "setVolume"
+        socket.value = value
+        self.sendNewPressed(socketModel: socket)
+
     }
     /**
      *   移动端点击恢复默认列表
@@ -172,6 +281,26 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         self.sendPressed(socketModel: socket)
     }
     /**
+     *   移动端获取播放进度
+     */
+    func sendGetPlayProgress() {
+        let socket = XBSocketModel()
+        socket.cmd          = "customer"
+        socket.key          = "getPlayProgress"
+        self.sendPressed(socketModel: socket)
+    }
+    /**
+     *  设置机器此时的播放进度
+     */
+    func setPlayProgressValue(value: Int) {
+        let socket = XBSocketValueModel()
+        socket.cmd          = "customer"
+        socket.key          = "seek"
+        socket.value        = value
+        self.sendNewPressed(socketModel: socket)
+        
+    }
+    /**
      *   移动端点击 上一首
      */
     func sendSongOn() {
@@ -204,6 +333,28 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         socket.cmd          = "setMode"
         socket.value        = "repeat one"
         self.sendPressed(socketModel: socket)
+    }
+    /**
+     *   移动端点击 关闭呼吸灯 0/ 关闭 1/ 开去
+     */
+    func sendClooseLight(_ value: Int) {
+        let socket = XBSocketValueModel()
+        socket.cmd          = "customer"
+        socket.key          = "setLight"
+        socket.value        = value
+        self.sendNewPressed(socketModel: socket)
+    }
+    /**
+     *   移动端点击 关闭儿童锁 0/ 关闭 1/ 开去
+     */
+    func sendCortolLock(_ value: Int) {
+        
+        let socket = XBSocketValueModel()
+        socket.cmd          = "customer"
+        socket.key          = "setChildlock"
+        socket.value        = value
+        
+        self.sendNewPressed(socketModel: socket)
     }
     func mqttDidReceive(message: MQTTMessage, from session: MQTTSession) {
         print("接收到 topic message:\n \(message.stringRepresentation ?? "<>")")

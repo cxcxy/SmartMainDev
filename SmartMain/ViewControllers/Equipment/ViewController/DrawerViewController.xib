@@ -12,6 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
+                <outlet property="btnLight" destination="pgK-TF-WzK" id="PPK-y7-nIv"/>
+                <outlet property="btnLock" destination="WUa-2W-4VU" id="9KZ-Kt-abD"/>
+                <outlet property="btnSleep" destination="7ZA-gE-DLv" id="hA6-3s-Ml6"/>
+                <outlet property="btnVolume" destination="Im6-fO-NDn" id="5Jr-JR-Mvd"/>
                 <outlet property="imgPhoto" destination="y4I-vD-U74" id="zEL-SD-Pux"/>
                 <outlet property="lbDvnick" destination="RIa-pq-s3I" id="hj4-5d-yua"/>
                 <outlet property="tableView" destination="4Yj-rl-Rxi" id="wz0-0t-zhl"/>
@@ -35,7 +39,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX的XX机器人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIa-pq-s3I">
-                            <rect key="frame" x="100" y="52.5" width="260" height="21"/>
+                            <rect key="frame" x="100" y="52.5" width="260" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -51,8 +55,105 @@
                         <constraint firstItem="y4I-vD-U74" firstAttribute="centerY" secondItem="vjf-le-xWl" secondAttribute="centerY" id="pTk-IZ-3BT"/>
                     </constraints>
                 </view>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="g6Y-nK-YYO">
+                    <rect key="frame" x="0.0" y="150" width="375" height="100"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-Ld-bFN">
+                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUa-2W-4VU">
+                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="100"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="打开童锁">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickLockAction:" destination="-1" eventType="touchUpInside" id="wEd-7y-cz1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.99215686270000003" green="0.7725490196" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="WUa-2W-4VU" firstAttribute="top" secondItem="hkc-Ld-bFN" secondAttribute="top" id="KqA-i8-kYt"/>
+                                <constraint firstAttribute="trailing" secondItem="WUa-2W-4VU" secondAttribute="trailing" id="dil-Yj-PsY"/>
+                                <constraint firstAttribute="bottom" secondItem="WUa-2W-4VU" secondAttribute="bottom" id="f62-eh-roF"/>
+                                <constraint firstItem="WUa-2W-4VU" firstAttribute="leading" secondItem="hkc-Ld-bFN" secondAttribute="leading" id="oz7-A8-VMv"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ojV-UV-bML">
+                            <rect key="frame" x="97.5" y="0.0" width="82.5" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgK-TF-WzK">
+                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="100"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="开呼吸灯">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="selected" title="关呼吸灯"/>
+                                    <connections>
+                                        <action selector="btnLightAction:" destination="-1" eventType="touchUpInside" id="ga9-7w-38X"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.77647058820000003" green="0.69411764710000001" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="pgK-TF-WzK" firstAttribute="leading" secondItem="ojV-UV-bML" secondAttribute="leading" id="A8T-tn-MhY"/>
+                                <constraint firstItem="pgK-TF-WzK" firstAttribute="top" secondItem="ojV-UV-bML" secondAttribute="top" id="KnY-FM-2IO"/>
+                                <constraint firstAttribute="trailing" secondItem="pgK-TF-WzK" secondAttribute="trailing" id="uc8-UA-AdT"/>
+                                <constraint firstAttribute="bottom" secondItem="pgK-TF-WzK" secondAttribute="bottom" id="zEa-Bd-gs3"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVd-9s-YFt">
+                            <rect key="frame" x="195" y="0.0" width="82.5" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-fO-NDn">
+                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="100"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="音量调整">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickVolumeAction:" destination="-1" eventType="touchUpInside" id="2A8-JL-GLN"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.63921568630000003" green="0.87058823529999996" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="Im6-fO-NDn" firstAttribute="leading" secondItem="WVd-9s-YFt" secondAttribute="leading" id="3HN-RA-WJH"/>
+                                <constraint firstAttribute="bottom" secondItem="Im6-fO-NDn" secondAttribute="bottom" id="Svh-1d-C2v"/>
+                                <constraint firstAttribute="trailing" secondItem="Im6-fO-NDn" secondAttribute="trailing" id="XqQ-1T-IV7"/>
+                                <constraint firstItem="Im6-fO-NDn" firstAttribute="top" secondItem="WVd-9s-YFt" secondAttribute="top" id="yD5-fN-30R"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qMs-pS-fXi">
+                            <rect key="frame" x="292.5" y="0.0" width="82.5" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZA-gE-DLv">
+                                    <rect key="frame" x="0.0" y="0.0" width="82.5" height="100"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="定时休眠">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clickSleepAction:" destination="-1" eventType="touchUpInside" id="YrU-1F-n9Z"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.46274509800000002" green="0.73725490199999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="7ZA-gE-DLv" firstAttribute="leading" secondItem="qMs-pS-fXi" secondAttribute="leading" id="1PP-Pq-wD8"/>
+                                <constraint firstAttribute="trailing" secondItem="7ZA-gE-DLv" secondAttribute="trailing" id="33B-rF-rr3"/>
+                                <constraint firstItem="7ZA-gE-DLv" firstAttribute="top" secondItem="qMs-pS-fXi" secondAttribute="top" id="6hn-d2-0Ie"/>
+                                <constraint firstAttribute="bottom" secondItem="7ZA-gE-DLv" secondAttribute="bottom" id="z4u-BX-X9D"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="xSl-Mh-d40"/>
+                    </constraints>
+                </stackView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Yj-rl-Rxi">
-                    <rect key="frame" x="0.0" y="150" width="375" height="517"/>
+                    <rect key="frame" x="0.0" y="250" width="375" height="417"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
@@ -60,11 +161,15 @@
             <constraints>
                 <constraint firstItem="vjf-le-xWl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2HH-WI-uCX"/>
                 <constraint firstItem="vjf-le-xWl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2bp-0w-knH"/>
-                <constraint firstItem="4Yj-rl-Rxi" firstAttribute="top" secondItem="vjf-le-xWl" secondAttribute="bottom" id="2qF-i9-REP"/>
+                <constraint firstItem="4Yj-rl-Rxi" firstAttribute="top" secondItem="vjf-le-xWl" secondAttribute="bottom" constant="100" id="2qF-i9-REP"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4Yj-rl-Rxi" secondAttribute="bottom" id="B5H-Ix-zAd"/>
+                <constraint firstItem="g6Y-nK-YYO" firstAttribute="top" secondItem="vjf-le-xWl" secondAttribute="bottom" id="BtT-FL-6Yf"/>
                 <constraint firstItem="4Yj-rl-Rxi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DJy-wW-Qdd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vjf-le-xWl" secondAttribute="trailing" id="Izm-k8-saH"/>
+                <constraint firstItem="4Yj-rl-Rxi" firstAttribute="top" secondItem="g6Y-nK-YYO" secondAttribute="bottom" id="NXr-ao-5rg"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Yj-rl-Rxi" secondAttribute="trailing" id="fcs-qz-Kwz"/>
+                <constraint firstItem="g6Y-nK-YYO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="hBA-dD-UMJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="g6Y-nK-YYO" secondAttribute="trailing" id="w04-HM-39l"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="20" y="48"/>
