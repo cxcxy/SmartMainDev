@@ -269,6 +269,14 @@
 		04C38A27213E7FF40063A799 /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A20213E7FF40063A799 /* FSPageControl.swift */; };
 		04C38A28213E7FF40063A799 /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */; };
 		1AAA75D9F5935AC30D1FE386 /* Pods_SmartMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */; };
+		2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */; };
+		2D0ACC44215A6EB90047103C /* HistorySongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC42215A6EB90047103C /* HistorySongCell.swift */; };
+		2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC43215A6EB90047103C /* HistorySongCell.xib */; };
+		2D0ACC48215A70C40047103C /* HistorySongContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC46215A70C40047103C /* HistorySongContentCell.swift */; };
+		2D0ACC49215A70C40047103C /* HistorySongContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC47215A70C40047103C /* HistorySongContentCell.xib */; };
+		2D0ACC4C215A74EC0047103C /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */; };
+		2D0ACC4D215A74EC0047103C /* AccountInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */; };
+		2D0ACC4F215A81890047103C /* ChatGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC4E215A81890047103C /* ChatGroupController.swift */; };
 		2D312A9B213D560100FCC499 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D312A9A213D560100FCC499 /* AppDelegate.swift */; };
 		2D312A9D213D560100FCC499 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D312A9C213D560100FCC499 /* ViewController.swift */; };
 		2D312AA0213D560100FCC499 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D312A9E213D560100FCC499 /* Main.storyboard */; };
@@ -713,6 +721,14 @@
 		04C38A1F213E7FF40063A799 /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		04C38A20213E7FF40063A799 /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
 		04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
+		2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		2D0ACC42215A6EB90047103C /* HistorySongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySongCell.swift; sourceTree = "<group>"; };
+		2D0ACC43215A6EB90047103C /* HistorySongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistorySongCell.xib; sourceTree = "<group>"; };
+		2D0ACC46215A70C40047103C /* HistorySongContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySongContentCell.swift; sourceTree = "<group>"; };
+		2D0ACC47215A70C40047103C /* HistorySongContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistorySongContentCell.xib; sourceTree = "<group>"; };
+		2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
+		2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoViewController.xib; sourceTree = "<group>"; };
+		2D0ACC4E215A81890047103C /* ChatGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroupController.swift; sourceTree = "<group>"; };
 		2D312A97213D560100FCC499 /* SmartMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D312A9A213D560100FCC499 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D312A9C213D560100FCC499 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -779,6 +795,7 @@
 				0413BED221426EB8006E3A44 /* ChatViewController.swift */,
 				042EEF8B2150E80B00DBD492 /* ChatViewController.xib */,
 				042EED142150DE6800DBD492 /* ChatSingViewController.swift */,
+				2D0ACC4E215A81890047103C /* ChatGroupController.swift */,
 				042EEF8D2150F12B00DBD492 /* ChatMainViewController.swift */,
 				042EEF8E2150F12B00DBD492 /* ChatMainViewController.xib */,
 			);
@@ -1678,6 +1695,8 @@
 				0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */,
 				0460495A2153839400BEDCD6 /* DrawerViewController.swift */,
 				0460496C215398D800BEDCD6 /* DrawerViewController.xib */,
+				2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */,
+				2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1725,6 +1744,7 @@
 				04C38A0E213E6ED60063A799 /* LikeViewController.swift */,
 				0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */,
 				04C38A10213E6EEA0063A799 /* HistoryViewController.swift */,
+				2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */,
 				04C38A16213E79240063A799 /* SearchViewController.swift */,
 				04C38A17213E79240063A799 /* SearchViewController.xib */,
 			);
@@ -1752,6 +1772,10 @@
 				043E1196213FC1090067ADF3 /* ContentSingHaderView.xib */,
 				043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */,
 				043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */,
+				2D0ACC42215A6EB90047103C /* HistorySongCell.swift */,
+				2D0ACC43215A6EB90047103C /* HistorySongCell.xib */,
+				2D0ACC46215A70C40047103C /* HistorySongContentCell.swift */,
+				2D0ACC47215A70C40047103C /* HistorySongContentCell.xib */,
 				0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */,
 			);
 			path = View;
@@ -1918,7 +1942,6 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
-				640AE65B65AB548D2CF1E884 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1978,11 +2001,14 @@
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				04C3871E213E093F0063A799 /* city.json in Resources */,
 				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
+				2D0ACC4D215A74EC0047103C /* AccountInfoViewController.xib in Resources */,
 				043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */,
 				043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */,
 				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
+				2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */,
 				2DC955B1213FFE17004D6F65 /* MeInfoHaderCell.xib in Resources */,
 				2D9195E22153DBB100F4A9A1 /* ChatCreateView.xib in Resources */,
+				2D0ACC49215A70C40047103C /* HistorySongContentCell.xib in Resources */,
 				042EEF252150E15F00DBD492 /* MJRefresh.bundle in Resources */,
 				0422ECE0214110E000A42D7A /* ContentTitleCVCell.xib in Resources */,
 				2DC955A0213FF3BE004D6F65 /* LoginViewController.xib in Resources */,
@@ -2008,6 +2034,7 @@
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
 				2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */,
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
+				2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */,
 				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
 				2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */,
@@ -2080,21 +2107,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		640AE65B65AB548D2CF1E884 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		78ED6FD45B3F9CA9B9CBA626 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2157,6 +2169,7 @@
 				042EEF412150E15F00DBD492 /* EMCDDeviceManagerBase.m in Sources */,
 				042EEF562150E15F00DBD492 /* PSTGridLayoutRow.m in Sources */,
 				2DC95598213EBCC7004D6F65 /* ContentReqModel.swift in Sources */,
+				2D0ACC4F215A81890047103C /* ChatGroupController.swift in Sources */,
 				046049692153923900BEDCD6 /* CWLateralSlideAnimator.m in Sources */,
 				042EEF482150E15F00DBD492 /* MWTapDetectingView.m in Sources */,
 				042EEF5F2150E15F00DBD492 /* UIImage+GIF.m in Sources */,
@@ -2301,6 +2314,7 @@
 				042EEF472150E15F00DBD492 /* MWPhoto.m in Sources */,
 				04C3871B213E093F0063A799 /* XBNotificationManager.swift in Sources */,
 				0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */,
+				2D0ACC48215A70C40047103C /* HistorySongContentCell.swift in Sources */,
 				042EEF1E2150E15F00DBD492 /* EaseEmojiEmoticons.m in Sources */,
 				042EEF4C2150E15F00DBD492 /* PSTCollectionViewController.m in Sources */,
 				042EEF3A2150E15F00DBD492 /* EMVoiceConverter.mm in Sources */,
@@ -2309,6 +2323,7 @@
 				042EEF8F2150F12B00DBD492 /* ChatMainViewController.swift in Sources */,
 				0485CCB92148BC3300F54927 /* ScoketMQTTManager.swift in Sources */,
 				2DC95590213EB210004D6F65 /* EquimentInfoVC.swift in Sources */,
+				2D0ACC44215A6EB90047103C /* HistorySongCell.swift in Sources */,
 				042EEF462150E15F00DBD492 /* MWTapDetectingImageView.m in Sources */,
 				04C389F2213E27CA0063A799 /* EquipmentListCell.swift in Sources */,
 				04C389EB213E231D0063A799 /* EquipmentVC.swift in Sources */,
@@ -2363,6 +2378,7 @@
 				0485CCB22148A89200F54927 /* MQTTUnsubPacket.swift in Sources */,
 				042EEF5A2150E15F00DBD492 /* MKAnnotationView+WebCache.m in Sources */,
 				04C3872F213E093F0063A799 /* UIImage+.swift in Sources */,
+				2D0ACC4C215A74EC0047103C /* AccountInfoViewController.swift in Sources */,
 				04C389D3213E160E0063A799 /* XBTabBarController.swift in Sources */,
 				042EEF7A2150E15F00DBD492 /* EaseFacialView.m in Sources */,
 				04C38717213E093F0063A799 /* XBConfig.swift in Sources */,
@@ -2511,7 +2527,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B4WSDTADTT;
+				DEVELOPMENT_TEAM = AZF2TUZCNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2521,7 +2537,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiben.pmdebug.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zb.pmdebug.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2537,7 +2553,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B4WSDTADTT;
+				DEVELOPMENT_TEAM = AZF2TUZCNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2547,7 +2563,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiben.pmdebug.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zb.pmdebug.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

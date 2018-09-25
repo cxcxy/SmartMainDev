@@ -131,7 +131,7 @@ class ConetentLikeModel: Mappable {
     var downloadUrl: String?
     var downloadSize: String?
     var opDate: String?
-    
+    var isExpanded: Bool = false
     init() {
         
     }

@@ -8,12 +8,16 @@
 
 import UIKit
 
-class HistoryViewController: XBBaseTableViewController {
-var dataArr: [ConetentLikeModel] = []
+class HistoryViewController: XBBaseViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    var dataArr: [ConetentLikeModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.cellId_register("ContentSingCell")
-        self.cofigMjHeader()
+        tableView.cellId_register("HistorySongCell")
+        tableView.cellId_register("HistorySongContentCell")
+        self.tableView.mj_header = self.mj_header
     }
     override func setUI() {
         super.setUI()
@@ -29,7 +33,7 @@ var dataArr: [ConetentLikeModel] = []
             print(result)
             if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
                 if self.pageIndex == 1 {
-                    self.cofigMjFooter()
+                    self.tableView.mj_footer = self.mj_footer
                     self.dataArr.removeAll()
                 }
                 self.dataArr += arr
@@ -43,20 +47,32 @@ var dataArr: [ConetentLikeModel] = []
     }
 }
 extension HistoryViewController {
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return dataArr.count
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
+        let m  = dataArr[section]
+        return m.isExpanded ? 2 : 1
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
-        cell.likeModelData = dataArr[indexPath.row]
-        cell.lbLineNumber.set_text = (indexPath.row + 1).toString
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+            let m  = dataArr[indexPath.row]
+            cell.lbTitle.set_text = m.title
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+            return cell
+        }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let m  = dataArr[indexPath.section]
+        m.isExpanded = !m.isExpanded
+        tableView.reloadSections([indexPath.section], animationStyle: .automatic)
         
     }
     

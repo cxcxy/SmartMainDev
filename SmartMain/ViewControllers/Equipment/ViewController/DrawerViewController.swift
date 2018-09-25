@@ -86,7 +86,7 @@ extension DrawerViewController {
             let vc = SetInfoViewController()
             self.cw_push(vc)
         case 5:
-            let vc = AboutMeVC()
+            let vc = AccountInfoViewController()
             self.cw_push(vc)
         case 6:
             user_defaults.clear(.userName)

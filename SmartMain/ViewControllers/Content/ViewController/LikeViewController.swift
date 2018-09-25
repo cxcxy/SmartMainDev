@@ -12,7 +12,8 @@ class LikeViewController: XBBaseTableViewController {
     var dataArr: [ConetentLikeModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.cellId_register("ContentSingCell")
+        tableView.cellId_register("HistorySongCell")
+        tableView.cellId_register("HistorySongContentCell")
         self.cofigMjHeader()
     }
     override func setUI() {
@@ -44,21 +45,32 @@ class LikeViewController: XBBaseTableViewController {
 }
 extension LikeViewController {
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return dataArr.count
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dataArr.count
+        let m  = dataArr[section]
+        return m.isExpanded ? 2 : 1
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
-//        cell.lbTitle.set_text = dataArr[indexPath.row].title
-//        cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: dataArr[indexPath.row].duration)
-        cell.likeModelData = dataArr[indexPath.row]
-        cell.lbLineNumber.set_text = (indexPath.row + 1).toString
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+            let m  = dataArr[indexPath.row]
+            cell.lbTitle.set_text = m.title
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+            return cell
+        }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let m  = dataArr[indexPath.section]
+        m.isExpanded = !m.isExpanded
+        tableView.reloadSections([indexPath.section], animationStyle: .automatic)
         
     }
     
