@@ -163,6 +163,10 @@
 		0461CBD42154DB1700DF4C9A /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD32154DB1700DF4C9A /* DeviceManager.swift */; };
 		0461CBD62154E35E00DF4C9A /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */; };
 		0461CBD82154E44200DF4C9A /* SMTrackListViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */; };
+		0473BA08215A298E003D688F /* ScreenControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BA07215A298E003D688F /* ScreenControlView.swift */; };
+		0473BA0A215A299A003D688F /* ScreenControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0473BA09215A299A003D688F /* ScreenControlView.xib */; };
+		0473BA0D215A2E27003D688F /* OpenEquViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BA0B215A2E27003D688F /* OpenEquViewController.swift */; };
+		0473BA0E215A2E27003D688F /* OpenEquViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0473BA0C215A2E27003D688F /* OpenEquViewController.xib */; };
 		0485CCA42148A89200F54927 /* MQTTSessionStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */; };
 		0485CCA52148A89200F54927 /* MQTTExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC902148A89200F54927 /* MQTTExtensions.swift */; };
 		0485CCA62148A89200F54927 /* MQTTPublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CC922148A89200F54927 /* MQTTPublishPacket.swift */; };
@@ -603,6 +607,10 @@
 		0461CBD32154DB1700DF4C9A /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
 		0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMTrackListViewHeader.swift; sourceTree = "<group>"; };
+		0473BA07215A298E003D688F /* ScreenControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenControlView.swift; sourceTree = "<group>"; };
+		0473BA09215A299A003D688F /* ScreenControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenControlView.xib; sourceTree = "<group>"; };
+		0473BA0B215A2E27003D688F /* OpenEquViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenEquViewController.swift; sourceTree = "<group>"; };
+		0473BA0C215A2E27003D688F /* OpenEquViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenEquViewController.xib; sourceTree = "<group>"; };
 		0485CC8F2148A89200F54927 /* MQTTSessionStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSessionStream.swift; sourceTree = "<group>"; };
 		0485CC902148A89200F54927 /* MQTTExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTExtensions.swift; sourceTree = "<group>"; };
 		0485CC922148A89200F54927 /* MQTTPublishPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPublishPacket.swift; sourceTree = "<group>"; };
@@ -1596,6 +1604,8 @@
 				04C1436B2147A8FD00FC2000 /* ShowChooseView.xib */,
 				2D9195D62153CE5C00F4A9A1 /* BottomSongView.swift */,
 				2D9195D82153CE6900F4A9A1 /* BottomSongView.xib */,
+				0473BA07215A298E003D688F /* ScreenControlView.swift */,
+				0473BA09215A299A003D688F /* ScreenControlView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1660,6 +1670,8 @@
 				0413BECD21424BC9006E3A44 /* MemberManagerVC.swift */,
 				0413BECE21424BC9006E3A44 /* MemberManagerVC.xib */,
 				0422ECD72140BECC00A42D7A /* AVCaptureSessionManager.swift */,
+				0473BA0B215A2E27003D688F /* OpenEquViewController.swift */,
+				0473BA0C215A2E27003D688F /* OpenEquViewController.xib */,
 				0422ECD42140BE9E00A42D7A /* XBScanViewController.swift */,
 				0422ECD32140BE9E00A42D7A /* XBScanViewController.xib */,
 				0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */,
@@ -1906,6 +1918,7 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
+				640AE65B65AB548D2CF1E884 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1998,7 +2011,9 @@
 				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
 				2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */,
+				0473BA0A215A299A003D688F /* ScreenControlView.xib in Resources */,
 				04C38A01213E64170063A799 /* ContentHeaderCell.xib in Resources */,
+				0473BA0E215A2E27003D688F /* OpenEquViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2065,6 +2080,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		640AE65B65AB548D2CF1E884 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		78ED6FD45B3F9CA9B9CBA626 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2116,6 +2146,7 @@
 				042EEF212150E15F00DBD492 /* EaseConversationModel.m in Sources */,
 				042EEF722150E15F00DBD492 /* EaseUserCell.m in Sources */,
 				042EEF342150E15F00DBD492 /* MJRefreshAutoFooter.m in Sources */,
+				0473BA0D215A2E27003D688F /* OpenEquViewController.swift in Sources */,
 				0460496A2153923900BEDCD6 /* CWDrawerTransition.m in Sources */,
 				042EEF872150E15F00DBD492 /* EaseBubbleView+Gif.m in Sources */,
 				042EEF322150E15F00DBD492 /* MJRefreshHeader.m in Sources */,
@@ -2307,6 +2338,7 @@
 				2DC9559F213FF3BE004D6F65 /* LoginViewController.swift in Sources */,
 				2D9195CC215291D300F4A9A1 /* SetInfoViewController.swift in Sources */,
 				04C38715213E093F0063A799 /* PMRequestApi.swift in Sources */,
+				0473BA08215A298E003D688F /* ScreenControlView.swift in Sources */,
 				0485CCAF2148A89200F54927 /* MQTTPubAck.swift in Sources */,
 				042EEF5B2150E15F00DBD492 /* SDWebImageManager.m in Sources */,
 				0461CBD42154DB1700DF4C9A /* DeviceManager.swift in Sources */,

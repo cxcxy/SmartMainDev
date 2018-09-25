@@ -13,8 +13,6 @@ class MemberManagerVC: XBBaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     override func setUI() {
         super.setUI()

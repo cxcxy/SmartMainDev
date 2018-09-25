@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OpenEquViewController" customModule="SmartMain" customModuleProvider="target">
+            <connections>
+                <outlet property="btnScan" destination="JVo-AK-Rji" id="4m4-no-lCd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Lr-n3-ZbX">
+                    <rect key="frame" x="70" y="90" width="235" height="235"/>
+                    <color key="backgroundColor" red="0.77254901960784317" green="0.90196078431372551" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="7Lr-n3-ZbX" secondAttribute="height" multiplier="1:1" id="3b9-UB-u3T"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫描设备底部二维码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMG-zx-xKE">
+                    <rect key="frame" x="113.5" y="365" width="147" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注：如果已经绑定一台机器人，再次绑定时，则自动解除之前绑定的设备" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwq-cf-90T">
+                    <rect key="frame" x="70" y="399.5" width="235" height="33.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVo-AK-Rji">
+                    <rect key="frame" x="87" y="463" width="200" height="50"/>
+                    <color key="backgroundColor" red="0.38823529411764707" green="0.69411764705882351" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="RXh-ht-1Dm"/>
+                        <constraint firstAttribute="width" constant="200" id="wqO-ye-zfj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="扫描">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clickScanAction:" destination="-1" eventType="touchUpInside" id="Coy-Aq-fHb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="zwq-cf-90T" secondAttribute="trailing" constant="70" id="2cI-SS-PZM"/>
+                <constraint firstItem="JVo-AK-Rji" firstAttribute="centerX" secondItem="zwq-cf-90T" secondAttribute="centerX" id="46n-87-YA3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7Lr-n3-ZbX" secondAttribute="trailing" constant="70" id="5gp-pd-yif"/>
+                <constraint firstItem="7Lr-n3-ZbX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="BhH-d8-Mj4"/>
+                <constraint firstItem="dMG-zx-xKE" firstAttribute="top" secondItem="7Lr-n3-ZbX" secondAttribute="bottom" constant="40" id="JpY-da-aCs"/>
+                <constraint firstItem="7Lr-n3-ZbX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="70" id="VZq-V8-sR8"/>
+                <constraint firstItem="zwq-cf-90T" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="YfX-AV-f1h"/>
+                <constraint firstItem="JVo-AK-Rji" firstAttribute="top" secondItem="zwq-cf-90T" secondAttribute="bottom" constant="30" id="e3F-0I-EZl"/>
+                <constraint firstItem="zwq-cf-90T" firstAttribute="top" secondItem="dMG-zx-xKE" secondAttribute="bottom" constant="15" id="iTz-RZ-v89"/>
+                <constraint firstItem="dMG-zx-xKE" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="u9V-Hy-4SQ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

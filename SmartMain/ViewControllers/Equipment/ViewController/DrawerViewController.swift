@@ -158,6 +158,8 @@ extension DrawerViewController {
     }
     
     @IBAction func clickVolumeAction(_ sender: Any) {
+        let v = ScreenControlView.loadFromNib()
+        v.show()
     }
     
     @IBAction func clickSleepAction(_ sender: Any) {
@@ -167,43 +169,8 @@ extension DrawerViewController {
 }
 extension DrawerViewController {
     func toQRCodeVC()  {
-        let scanVC = XBScanViewController()
-        let device = AVCaptureDevice.default(for: .video)
-        if device != nil {
-            let status: AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
-            switch status {
-            case .notDetermined:
-                AVCaptureDevice.requestAccess(for: .video, completionHandler: {(_ granted: Bool) -> Void in
-                    if granted {
-                        DispatchQueue.main.sync(execute: {() -> Void in
-//                            topVC?.pushVC(scanVC)
-                            self.cw_push(scanVC)
-                        })
-                        print("用户第一次同意了访问相机权限 - - \(Thread.current)")
-                    } else {
-                        print("用户第一次拒绝了访问相机权限 - - \(Thread.current)")
-                    }
-                })
-            case .authorized:
-                self.cw_push(scanVC)
-            case .denied:
-                
-                let alertC = UIAlertController(title: "温馨提示", message: "请去-> [设置 - 隐私 - 相机] 打开访问开关", preferredStyle: .alert)
-                let alertA = UIAlertAction(title: "确定", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-                })
-                alertC.addAction(alertA)
-                self.cw_present(alertC)
-                
-            case .restricted:
-                print("因为系统原因, 无法访问相册")
-                
-            }
-            return
-        }
-        let alertC = UIAlertController(title: "温馨提示", message: "未检测到您的摄像头", preferredStyle: .alert)
-        let alertA = UIAlertAction(title: "确定", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-        })
-        alertC.addAction(alertA)
-        self.cw_present(alertC)
+        let vc = OpenEquViewController()
+        self.cw_push(vc)
+//        self.cw_present(alertC)
     }
 }
