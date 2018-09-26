@@ -82,5 +82,5 @@ extension EquipmentSettingVC {
             break
         }
     }
-    
+
 }

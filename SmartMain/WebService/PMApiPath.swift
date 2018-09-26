@@ -78,6 +78,8 @@ extension RequestApi {
         // 删除一个列表
         case .deleteTrackList:          return "/tracklist/remove.do"
         // app向设备发送文字接口(post)
+        case .sendTextDevice:               return "/suportAPP/appSendTextToDevice.do"
+        // app向设备发送语音接口
         case .sendVoiceDevice:               return "/suportAPP/appSendVoiceToDevice.do"
         // 上传头像文件到服务器
         case .uploadAvatar(let openId, _):               return "/familymember/avatar/upload.do?openId=" + openId

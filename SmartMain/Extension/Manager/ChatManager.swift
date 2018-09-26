@@ -20,12 +20,12 @@ class ChatManager: NSObject {
                                                    appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
                                                    apnsCertName: "",
                                                    otherConfig: [kSDKConfigEnableConsoleLogger: false])
-        loginEMClient()
+//        loginEMClient()
         
     }
     
-    func loginEMClient()  {
-        EMClient.shared().login(withUsername: XBUserManager.userName, password: "123456") { (aUserName, aError) in
+    func loginEMClient(username: String,password: String)  {
+        EMClient.shared().login(withUsername: username, password: password) { (aUserName, aError) in
             if (aError == nil) {
                 print("登录成功",aUserName ?? "未获取到姓名")
                 self.asyncGetMyGroupsFromServer()
@@ -33,6 +33,7 @@ class ChatManager: NSObject {
                 print("登录失败")
             }
         }
+//        EMClient.shared().login
     }
     func asyncGetMyGroupsFromServer() {
         DispatchQueue.global().async {

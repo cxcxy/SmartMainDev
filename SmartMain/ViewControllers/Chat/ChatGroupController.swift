@@ -58,11 +58,41 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
     override func sendVoiceMessage(withLocalPath localPath: String!, duration: Int) {
         print(localPath)
         super.sendVoiceMessage(withLocalPath: localPath, duration: duration)
+        let fileManager = FileManager.default
+        let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                           .userDomainMask, true)[0] as String
+        if (fileManager.fileExists(atPath: localPath)){
+            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: "qq", body: localPath), successClosure: { (result, code, message) in
+                if let str = result as? String {
+                    print(str)
+                }
+            })
         
+        }
     }
     override func sendTextMessage(_ text: String!) {
         print(text)
         super.sendTextMessage(text)
+//        sendVoiceDevice
+        var params_task = [String: Any]()
+        params_task["username"] = XBUserManager.userName
+        params_task["nickname"] = "qq"
+        params_task["deviceId"] = XBUserManager.device_Id
+        params_task["content"] = text
+        Net.requestWithTarget(.sendTextDevice(req: params_task), successClosure: { (result, code, message) in
+            
+            if let str = result as? String {
+                if str == "ok" {
+                    print("发送成功")
+//                    XBHud.showMsg("注册成功")
+//                    closure()
+                }else {
+                     print("发送失败")
+//                    XBHud.showMsg("注册失败")
+                }
+            }
+            
+        })
 
     }
 }

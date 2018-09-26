@@ -49,7 +49,8 @@ enum RequestApi{
     case addTrackList(req: [String: Any])
     case deleteTrackList(req: [String: Any])
     case deleteLikeSing(req: [String: Any])
-    case sendVoiceDevice(req: [String: Any])
+    case sendTextDevice(req: [String: Any])
+    case sendVoiceDevice(username: String,deviceid:String,nickname: String,body: String)
     case uploadAvatar(openId: String, body: String)
     case resetAvatar(req: [String: Any])
     case modifyNickname(req: [String: Any])
@@ -102,7 +103,7 @@ extension RequestApi:TargetType{
              .familyRegister(let req),
              .joinEquiment(let req),
              .joinEquimentGroup(let req),
-             .sendVoiceDevice(let req),
+             .sendTextDevice(let req),
              .resetAvatar(let req),
              .modifyDeviceName(let req),
              .modifyDeviceVolume(let req),
@@ -180,6 +181,13 @@ extension RequestApi:TargetType{
                                               mimeType: "image/png")
              let multipartData = [formData]
              return .uploadMultipart(multipartData)
+        case .sendVoiceDevice(_,_,_,let fileURL):
+            let formData = MultipartFormData(provider: .file(URL(fileURLWithPath: fileURL)),
+                                             name: "file",
+                                             fileName: "jihao.wav",
+                                             mimeType: "audio/x-wav")
+            let multipartData = [formData]
+            return .uploadMultipart(multipartData)
         default:
             return .requestPlain
         }
@@ -193,6 +201,13 @@ extension RequestApi:TargetType{
         switch self {
         case .uploadAvatar:
             return ["Content-Type": "multipart/form-data"]
+        case .sendVoiceDevice(let username,let deviceid,let nickname, _):
+            var params_task = [String: String]()
+            params_task["username"] = username
+            params_task["deviceid"] = deviceid
+            params_task["nickname"] = "qq"
+            params_task["Content-Type"] = "multipart/form-data"
+            return params_task
         default:
             return ["Content-Type": "application/json"]
         }

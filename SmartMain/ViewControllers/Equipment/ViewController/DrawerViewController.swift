@@ -11,7 +11,7 @@ class DrawerViewController: XBBaseViewController {
     var eqOne    = XBStyleCellModel.init(title: "设备连接", imgIcon: "",cellType: 1)
     var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "",cellType: 2)
     var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "",cellType: 3)
-    
+    var eqFour  = XBStyleCellModel.init(title: "解除设备", imgIcon: "",cellType: 7)
     var accountOne  = XBStyleCellModel.init(title: "宝宝信息", imgIcon: "",cellType: 4)
     var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "",cellType: 5)
     var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "",cellType: 6)
@@ -40,7 +40,7 @@ class DrawerViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        eqArr       = [eqOne,eqTwo,eqThree]
+        eqArr       = [eqOne,eqTwo,eqThree,eqFour]
         accountArr  = [accountOne,accountTwo,accountThree]
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
         imgPhoto.roundView()
@@ -94,9 +94,17 @@ extension DrawerViewController {
             let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
             popWindow.rootViewController = sv
             break
+        case 7:
+            requestQuitEquiment()
+            break
         default:
             break
         }
+    }
+    func requestQuitEquiment()  {
+        Net.requestWithTarget(.quitEquiment(openId: XBUserManager.userName, isAdmin: false), successClosure: { (result, code, message) in
+            print(result)
+        })
     }
     func getControlHeaderView() -> DrawControlHeader {
         let v = DrawControlHeader.loadFromNib()

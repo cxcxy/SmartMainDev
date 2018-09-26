@@ -81,9 +81,9 @@ class LoginViewModel: NSObject {
             XBHud.showMsg("请输入密码")
             return
         }
-        Net.requestWithTarget(.loginWithPass(mobile: mobile, password: code), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.loginWithPass(mobile: mobile, password: code), successClosure: { (result, res_code, message) in
             if let jsonStr = result as? String {
-                self.loginUserInfo(jsonResult: jsonStr,mobile: mobile,closure: closure)
+                self.loginUserInfo(jsonResult: jsonStr,mobile: mobile,password: code,closure: closure)
             }
         })
     }
@@ -172,7 +172,7 @@ class LoginViewModel: NSObject {
             }
         })
     }
-    func loginUserInfo(jsonResult: String, mobile: String,closure: @escaping () -> ())  {
+    func loginUserInfo(jsonResult: String, mobile: String,password: String = "",closure: @escaping () -> ())  {
         guard let status = jsonResult.json_Str()["status"].int else {
             return
         }
@@ -187,6 +187,7 @@ class LoginViewModel: NSObject {
             }
         }
         XBUserManager.userName = mobile
+        ChatManager.share.loginEMClient(username: mobile, password: password)
         closure()
     }
 }
