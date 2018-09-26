@@ -9,12 +9,16 @@
 import UIKit
 
 class ChatGroupController: EaseMessageViewController {
-
+    var groupName: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "聊天啦"
         self.setCustomerBack()
-        // Do any additional setup after loading the view.
+        self.setRightItem()
+        let chatView = self.chatToolbar as? EaseChatToolbar
+        chatView?.inputViewRightItems = []
+
+
     }
     //MARK: 返回按钮
     func setCustomerBack(_ backIconName:String = "icon_fanhui") {
@@ -22,6 +26,22 @@ class ChatGroupController: EaseMessageViewController {
         let img = UIImage.init(named: backIconName)?.withRenderingMode(.alwaysOriginal) // 使用原图渲染方式
         let item = UIBarButtonItem(image: img, style:.plain, target: self, action:#selector(navBack))
         navigationItem.leftBarButtonItem = item
+        
+    }
+    //MARK: 右侧按钮
+    func setRightItem() {
+        
+        let img = UIImage.init(named: "icon_tianjia")?.withRenderingMode(.alwaysOriginal) // 使用原图渲染方式
+        let item = UIBarButtonItem(image: img, style:.plain, target: self, action:#selector(navRightItemBack))
+        self.rightItems = [item]
+        navigationItem.rightBarButtonItem = item
+        
+    }
+    @objc func navRightItemBack() {
+        let vc = GroupAddViewController.init(style: .grouped)
+        vc.groupId = self.conversation.conversationId
+        vc.groupName = self.groupName
+        self.pushVC(vc)
         
     }
     @objc func navBack() {

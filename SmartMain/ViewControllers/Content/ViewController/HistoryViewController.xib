@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HistoryViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="yDO-KV-BQX" id="rd3-DI-Ksn"/>
+                <outlet property="tfSearch" destination="g0B-q5-jOq" id="0RV-Zz-XKU"/>
                 <outlet property="view" destination="iN0-l3-epB" id="GOq-rT-Q2J"/>
             </connections>
         </placeholder>
@@ -29,9 +30,21 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwf-Ls-Aa4">
                                     <rect key="frame" x="30" y="85" width="315" height="30"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="搜索资源" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g0B-q5-jOq">
+                                            <rect key="frame" x="15" y="0.0" width="285" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="g0B-q5-jOq" secondAttribute="bottom" id="Aga-F8-WGc"/>
                                         <constraint firstAttribute="height" constant="30" id="TS3-4I-6xU"/>
+                                        <constraint firstItem="g0B-q5-jOq" firstAttribute="leading" secondItem="pwf-Ls-Aa4" secondAttribute="leading" constant="15" id="bRI-Im-P9Q"/>
+                                        <constraint firstAttribute="trailing" secondItem="g0B-q5-jOq" secondAttribute="trailing" constant="15" id="ltD-um-jZp"/>
+                                        <constraint firstItem="g0B-q5-jOq" firstAttribute="top" secondItem="pwf-Ls-Aa4" secondAttribute="top" id="spC-M4-JnK"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -83,9 +96,9 @@
                         <constraint firstItem="gbJ-zy-RIN" firstAttribute="leading" secondItem="fIv-M4-Wwi" secondAttribute="leading" id="gGU-NQ-dxK"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-KV-BQX">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-KV-BQX">
                     <rect key="frame" x="0.0" y="210" width="375" height="457"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

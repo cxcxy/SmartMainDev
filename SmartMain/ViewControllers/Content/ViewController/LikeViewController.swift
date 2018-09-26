@@ -58,20 +58,48 @@ extension LikeViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-            let m  = dataArr[indexPath.row]
+            let m  = dataArr[indexPath.section]
             cell.lbTitle.set_text = m.title
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+            cell.viewAdd.isHidden = true
+            cell.viewDel.isHidden = true
             return cell
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let m  = dataArr[indexPath.section]
-        m.isExpanded = !m.isExpanded
-        tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+        if indexPath.row == 0 {
+            let m  = dataArr[indexPath.section]
+            m.isExpanded = !m.isExpanded
+            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+        }
+        if indexPath.row == 1 {
+            let m  = dataArr[indexPath.section]
+            self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
+        }
         
     }
-    
+    /**
+     *   取消收藏歌曲
+     */
+    func requestCancleLikeSing(trackId: String?,section: Int)  {
+        
+        var params_task = [String: Any]()
+        params_task["openId"] = XBUserManager.userName
+        params_task["trackId"]  = trackId
+        Net.requestWithTarget(.deleteLikeSing(req: params_task), successClosure: { (result, code, message) in
+            print(result)
+            if let str = result as? String {
+                if str == "ok" {
+                    XBHud.showMsg("取消收藏成功")
+                    self.dataArr.remove(at: section)
+                    self.tableView.reloadData()
+                }else {
+                    XBHud.showMsg("取消收藏失败")
+                }
+            }
+        })
+        
+    }
 }

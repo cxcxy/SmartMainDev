@@ -12,7 +12,9 @@ class ChatCreateView: UIView {
 
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var viewInput: UIView!
-
+    @IBOutlet weak var lbTitle: UILabel!
+    
+    @IBOutlet weak var tfName: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         viewInput.setCornerRadius(radius: 8)

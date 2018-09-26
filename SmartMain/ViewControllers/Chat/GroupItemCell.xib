@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="111" id="KGk-i7-Jjw" customClass="GroupItemCell" customModule="SmartMain" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="125.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duI-zf-XGJ">
+                        <rect key="frame" x="15" y="15" width="290" height="110.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微聊组成员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrV-TV-BCV">
+                                <rect key="frame" x="15" y="15" width="260" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ejO-by-X2o">
+                                <rect key="frame" x="15" y="47" width="260" height="48.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="vBR-mj-Q8x"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wSQ-b8-LVo">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cx2-kM-OZN">
+                                <rect key="frame" x="225" y="10.5" width="50" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="wqC-cJ-HW2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="添加">
+                                    <color key="titleColor" red="0.38823529410000002" green="0.69411764710000001" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cx2-kM-OZN" secondAttribute="trailing" constant="15" id="9rQ-Xm-Xpy"/>
+                            <constraint firstItem="ejO-by-X2o" firstAttribute="top" secondItem="nrV-TV-BCV" secondAttribute="bottom" constant="15" id="Ef0-Tb-iNl"/>
+                            <constraint firstItem="ejO-by-X2o" firstAttribute="trailing" secondItem="nrV-TV-BCV" secondAttribute="trailing" id="Nz3-4g-h2M"/>
+                            <constraint firstItem="cx2-kM-OZN" firstAttribute="centerY" secondItem="nrV-TV-BCV" secondAttribute="centerY" id="R61-WN-bur"/>
+                            <constraint firstItem="nrV-TV-BCV" firstAttribute="leading" secondItem="duI-zf-XGJ" secondAttribute="leading" constant="15" id="bup-m7-Z3s"/>
+                            <constraint firstItem="nrV-TV-BCV" firstAttribute="top" secondItem="duI-zf-XGJ" secondAttribute="top" constant="15" id="ddD-XU-SSP"/>
+                            <constraint firstAttribute="trailing" secondItem="nrV-TV-BCV" secondAttribute="trailing" constant="15" id="lDG-rg-STS"/>
+                            <constraint firstAttribute="bottom" secondItem="ejO-by-X2o" secondAttribute="bottom" constant="15" id="sbE-rF-nLr"/>
+                            <constraint firstItem="ejO-by-X2o" firstAttribute="leading" secondItem="nrV-TV-BCV" secondAttribute="leading" id="sl3-va-Hfz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="duI-zf-XGJ" secondAttribute="trailing" constant="15" id="1q9-m0-wqB"/>
+                    <constraint firstItem="duI-zf-XGJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="FwI-pL-2sG"/>
+                    <constraint firstItem="duI-zf-XGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="j9N-Ft-qBr"/>
+                    <constraint firstAttribute="bottom" secondItem="duI-zf-XGJ" secondAttribute="bottom" id="ybt-Le-FuB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnAdd" destination="cx2-kM-OZN" id="hyj-Y4-S2u"/>
+                <outlet property="collectionView" destination="ejO-by-X2o" id="Rst-JM-xIX"/>
+                <outlet property="heightCollectionViewLayout" destination="vBR-mj-Q8x" id="uFI-OZ-KD3"/>
+                <outlet property="lbDes" destination="nrV-TV-BCV" id="7RW-AW-mVs"/>
+            </connections>
+            <point key="canvasLocation" x="-68" y="-243"/>
+        </tableViewCell>
+    </objects>
+</document>

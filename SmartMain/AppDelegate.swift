@@ -16,13 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if user_defaults.has(.userName) {
             print("登录过")
             self.configDrawerController()
-            let options = EMOptions.init(appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g")
-            EMClient.shared().initializeSDK(with: options)
-            EaseSDKHelper.share().hyphenateApplication(application,
-                                                       didFinishLaunchingWithOptions: launchOptions,
-                                                       appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
-                                                       apnsCertName: "",
-                                                       otherConfig: [kSDKConfigEnableConsoleLogger: false])
+//            let options = EMOptions.init(appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g")
+//            EMClient.shared().initializeSDK(with: options)
+//            EaseSDKHelper.share().hyphenateApplication(application,
+//                                                       didFinishLaunchingWithOptions: launchOptions,
+//                                                       appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
+//                                                       apnsCertName: "",
+//                                                       otherConfig: [kSDKConfigEnableConsoleLogger: false])
+            ChatManager.share.init_ChatMessage(application,
+                                               launchOptions)
             loginEMClient()
         }else {
             print("未登录过")

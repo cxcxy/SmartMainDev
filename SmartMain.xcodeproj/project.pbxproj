@@ -268,6 +268,13 @@
 		04C38A26213E7FF40063A799 /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A1F213E7FF40063A799 /* FSPageViewLayout.swift */; };
 		04C38A27213E7FF40063A799 /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A20213E7FF40063A799 /* FSPageControl.swift */; };
 		04C38A28213E7FF40063A799 /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */; };
+		04CF4929215B1B890052CD67 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4928215B1B890052CD67 /* ChatManager.swift */; };
+		04CF492E215B31E10052CD67 /* GroupAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF492C215B31E10052CD67 /* GroupAddViewController.swift */; };
+		04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF492D215B31E10052CD67 /* GroupAddViewController.xib */; };
+		04CF4932215B328A0052CD67 /* GroupItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4930215B328A0052CD67 /* GroupItemCell.swift */; };
+		04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4931215B328A0052CD67 /* GroupItemCell.xib */; };
+		04CF4936215B65C20052CD67 /* GroupAddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */; };
+		04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */; };
 		1AAA75D9F5935AC30D1FE386 /* Pods_SmartMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */; };
 		2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */; };
 		2D0ACC44215A6EB90047103C /* HistorySongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC42215A6EB90047103C /* HistorySongCell.swift */; };
@@ -721,6 +728,13 @@
 		04C38A1F213E7FF40063A799 /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		04C38A20213E7FF40063A799 /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
 		04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
+		04CF4928215B1B890052CD67 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		04CF492C215B31E10052CD67 /* GroupAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddViewController.swift; sourceTree = "<group>"; };
+		04CF492D215B31E10052CD67 /* GroupAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAddViewController.xib; sourceTree = "<group>"; };
+		04CF4930215B328A0052CD67 /* GroupItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItemCell.swift; sourceTree = "<group>"; };
+		04CF4931215B328A0052CD67 /* GroupItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupItemCell.xib; sourceTree = "<group>"; };
+		04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddMemberController.swift; sourceTree = "<group>"; };
+		04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAddMemberController.xib; sourceTree = "<group>"; };
 		2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		2D0ACC42215A6EB90047103C /* HistorySongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySongCell.swift; sourceTree = "<group>"; };
 		2D0ACC43215A6EB90047103C /* HistorySongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistorySongCell.xib; sourceTree = "<group>"; };
@@ -795,9 +809,13 @@
 				0413BED221426EB8006E3A44 /* ChatViewController.swift */,
 				042EEF8B2150E80B00DBD492 /* ChatViewController.xib */,
 				042EED142150DE6800DBD492 /* ChatSingViewController.swift */,
-				2D0ACC4E215A81890047103C /* ChatGroupController.swift */,
 				042EEF8D2150F12B00DBD492 /* ChatMainViewController.swift */,
 				042EEF8E2150F12B00DBD492 /* ChatMainViewController.xib */,
+				2D0ACC4E215A81890047103C /* ChatGroupController.swift */,
+				04CF492C215B31E10052CD67 /* GroupAddViewController.swift */,
+				04CF492D215B31E10052CD67 /* GroupAddViewController.xib */,
+				04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */,
+				04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1509,6 +1527,7 @@
 				04C386E3213E093F0063A799 /* XBUserManager.swift */,
 				04C386E4213E093F0063A799 /* XBRxSectionManager.swift */,
 				0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */,
+				04CF4928215B1B890052CD67 /* ChatManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1838,6 +1857,8 @@
 				2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */,
 				2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */,
 				2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */,
+				04CF4930215B328A0052CD67 /* GroupItemCell.swift */,
+				04CF4931215B328A0052CD67 /* GroupItemCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1942,6 +1963,7 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
+				787B14985EE1A9BC13008B80 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2003,6 +2025,7 @@
 				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
 				2D0ACC4D215A74EC0047103C /* AccountInfoViewController.xib in Resources */,
 				043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */,
+				04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */,
 				043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */,
 				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
 				2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */,
@@ -2021,6 +2044,7 @@
 				04C38A19213E79240063A799 /* SearchViewController.xib in Resources */,
 				2DC955A4213FFA98004D6F65 /* RegisterViewController.xib in Resources */,
 				042EEF692150E15F00DBD492 /* MWPhotoBrowser.bundle in Resources */,
+				04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */,
 				04C38A15213E6FE70063A799 /* ContentShowThreeCell.xib in Resources */,
 				2DC9558E213EAC4C004D6F65 /* EquipmentSetHeaderCell.xib in Resources */,
 				04C38A09213E6CD70063A799 /* ContentShowCVCell.xib in Resources */,
@@ -2032,6 +2056,7 @@
 				0413BED021424BC9006E3A44 /* MemberManagerVC.xib in Resources */,
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
+				04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */,
 				2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */,
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
 				2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */,
@@ -2105,6 +2130,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		787B14985EE1A9BC13008B80 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78ED6FD45B3F9CA9B9CBA626 /* [CP] Check Pods Manifest.lock */ = {
@@ -2275,6 +2315,7 @@
 				042EEF2C2150E15F00DBD492 /* MJRefreshAutoGifFooter.m in Sources */,
 				04C38734213E093F0063A799 /* ETPopupViewExtension.swift in Sources */,
 				0485CCAB2148A89200F54927 /* MQTTPingResp.swift in Sources */,
+				04CF4936215B65C20052CD67 /* GroupAddMemberController.swift in Sources */,
 				0461CBD62154E35E00DF4C9A /* TrackListViewController.swift in Sources */,
 				2D9195D72153CE5C00F4A9A1 /* BottomSongView.swift in Sources */,
 				04C38718213E093F0063A799 /* XBThirdID.swift in Sources */,
@@ -2318,6 +2359,7 @@
 				042EEF1E2150E15F00DBD492 /* EaseEmojiEmoticons.m in Sources */,
 				042EEF4C2150E15F00DBD492 /* PSTCollectionViewController.m in Sources */,
 				042EEF3A2150E15F00DBD492 /* EMVoiceConverter.mm in Sources */,
+				04CF492E215B31E10052CD67 /* GroupAddViewController.swift in Sources */,
 				042EEF352150E15F00DBD492 /* MJRefreshComponent.m in Sources */,
 				0460496B2153923900BEDCD6 /* CWLateralSlideConfiguration.m in Sources */,
 				042EEF8F2150F12B00DBD492 /* ChatMainViewController.swift in Sources */,
@@ -2340,6 +2382,7 @@
 				0485CCAC2148A89200F54927 /* MQTTUnSubAckPacket.swift in Sources */,
 				042EEF1F2150E15F00DBD492 /* EaseEmotionManager.m in Sources */,
 				042EEF6F2150E15F00DBD492 /* EaseRefreshTableViewController.m in Sources */,
+				04CF4932215B328A0052CD67 /* GroupItemCell.swift in Sources */,
 				04C38739213E093F0063A799 /* UIViewExtension.swift in Sources */,
 				2DC9558A213EAC18004D6F65 /* EquipmentSettingVC.swift in Sources */,
 				042EEF652150E15F00DBD492 /* NSData+ImageContentType.m in Sources */,
@@ -2352,6 +2395,7 @@
 				042EEF832150E15F00DBD492 /* EaseBubbleView.m in Sources */,
 				2DC9559F213FF3BE004D6F65 /* LoginViewController.swift in Sources */,
 				2D9195CC215291D300F4A9A1 /* SetInfoViewController.swift in Sources */,
+				04CF4929215B1B890052CD67 /* ChatManager.swift in Sources */,
 				04C38715213E093F0063A799 /* PMRequestApi.swift in Sources */,
 				0473BA08215A298E003D688F /* ScreenControlView.swift in Sources */,
 				0485CCAF2148A89200F54927 /* MQTTPubAck.swift in Sources */,

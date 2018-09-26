@@ -27,7 +27,6 @@ class OpenEquViewController: XBBaseViewController {
         title = "开启设备"
     }
     @IBAction func clickScanAction(_ sender: Any) {
-//        func toQRCodeVC()  {
             let scanVC = XBScanViewController()
             let device = AVCaptureDevice.default(for: .video)
             if device != nil {

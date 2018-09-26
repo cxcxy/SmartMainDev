@@ -63,8 +63,8 @@ public func XBRgb(_ r:CGFloat,g:CGFloat,b:CGFloat,alpha:CGFloat = 1) -> UIColor{
 
 //MARK: tableView 无数据展示状态
 let XBNoDataTitle:NSAttributedString    =   NSAttributedString(string: "暂无数据",
-                                                               attributes:[NSAttributedStringKey.foregroundColor:MGRgb(25, g: 28, b: 39),
-                                                                           NSAttributedStringKey.font:UIFont.systemFont(ofSize: 17)])
+                                                               attributes:[NSAttributedStringKey.foregroundColor:MGRgb(0, g: 0, b: 0, alpha: 0.5),
+                                                                           NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
 
 
 let XBStatusBarHight                = UIApplication.shared.statusBarFrame.height

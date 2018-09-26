@@ -33,6 +33,8 @@ public enum XBNotificationName: String {
     case refreshUserData        = "refreshUserData"
     /// 刷新设备信息
     case refreshEquipmentInfo        = "refreshEquipmentInfo"
+    /// 刷新群组信息
+    case refreshGroupInfo        = "refreshGroupInfo"
     case refreshMsgDetail       = "refreshMsgDetail"
     /// 退出登录
     case logout                 = "Noti_Logout"

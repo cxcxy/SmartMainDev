@@ -81,6 +81,8 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="btnAdd" destination="uhP-Kr-NUV" id="kVZ-Hp-7mE"/>
+                <outlet property="lbTitle" destination="Nde-4y-Uop" id="rhw-gK-OwV"/>
+                <outlet property="tfName" destination="tUQ-bM-SJL" id="ibh-TZ-Uti"/>
                 <outlet property="viewInput" destination="diy-fZ-2Ym" id="tqc-Zg-hrg"/>
             </connections>
             <point key="canvasLocation" x="12.5" y="-219.5"/>

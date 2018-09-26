@@ -10,13 +10,17 @@ import UIKit
 
 class HistoryViewController: XBBaseViewController {
     
+    @IBOutlet weak var tfSearch: UITextField!
+    
     @IBOutlet weak var tableView: UITableView!
+    
     var dataArr: [ConetentLikeModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.cellId_register("HistorySongCell")
-        tableView.cellId_register("HistorySongContentCell")
+//        tableView.cellId_register("HistorySongCell")
+//        tableView.cellId_register("HistorySongContentCell")
+        self.configTableView(tableView, register_cell: ["HistorySongCell","HistorySongContentCell"])
         self.tableView.mj_header = self.mj_header
     }
     override func setUI() {
@@ -36,6 +40,7 @@ class HistoryViewController: XBBaseViewController {
                     self.tableView.mj_footer = self.mj_footer
                     self.dataArr.removeAll()
                 }
+                self.loading = true
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.tableView.reloadData()
