@@ -49,8 +49,8 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentShowCVCell", for: indexPath)as! ContentShowCVCell
-                cell.imgIcon.set_Img_Url(dataArr[indexPath.row].headImgUrl)
-                cell.lbTitle.set_text = dataArr[indexPath.row].nickname
+//                cell.imgIcon.set_Img_Url(dataArr[indexPath.row].headImgUrl)
+//                cell.lbTitle.set_text = dataArr[indexPath.row].nickname
         return cell
     }
     //最小item间距

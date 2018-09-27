@@ -56,7 +56,9 @@ class ContentMainVC: XBBaseViewController {
             make.left.right.bottom.equalTo(0)
         }
         bottomSongView.imgSong.addTapGesture { (sender) in
-            let vc = SmartPlayerViewController()
+//            let vc = SmartPlayerViewController()
+//            self.pushVC(vc)
+            let vc = EquipmentListViewController()
             self.pushVC(vc)
         }
     }

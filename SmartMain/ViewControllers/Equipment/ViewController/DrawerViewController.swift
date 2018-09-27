@@ -98,16 +98,39 @@ extension DrawerViewController {
             popWindow.rootViewController = sv
             break
         case 7:
-            requestQuitEquiment()
+            quitEquimentAction()
             break
         default:
             break
         }
     }
-    func requestQuitEquiment()  {
-        Net.requestWithTarget(.quitEquiment(openId: XBUserManager.userName, isAdmin: false), successClosure: { (result, code, message) in
+    // 解除设备操作，第一步，查询当前用户是否为 管理员
+    func quitEquimentAction()  {
+        Net.requestWithTarget(.getFamilyMemberList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, msg) in
+            print(result)
+            if let arr = Mapper<FamilyMemberModel>().mapArray(JSONObject: JSON.init(parseJSON: result as! String).arrayObject) {
+
+                var isAdmin = "0"
+                for item in arr {
+                    if item.easeadmin == "1" {
+                        if item.username == XBUserManager.userName {
+                            isAdmin = "1"
+                            break
+                        }
+                    }
+                }
+                self.requestQuitEquiment(isAdmin: isAdmin)
+
+            }
+        })
+        
+    }
+     // 调取接口 解除设备
+    func requestQuitEquiment(isAdmin: String) {
+        Net.requestWithTarget(.quitEquiment(openId: XBUserManager.userName, isAdmin: isAdmin == "1" ? true : false), successClosure: { (result, code, message) in
             print(result)
         })
+
     }
     func getControlHeaderView() -> DrawControlHeader {
         let v = DrawControlHeader.loadFromNib()

@@ -22,6 +22,7 @@ enum RequestApi{
     case setTrackListDefult(trackListId: Int,deviceId: String,trackIds: [Int])
     case contentsings(req: [String: Any])
     case login(mobile: String, code: String)
+    case getDeviceIds(userName: String)
     case loginWithPass(mobile: String, password: String)
     case register(req: [String: Any])
     case getAuthCode(mobile: String)
@@ -127,6 +128,10 @@ extension RequestApi:TargetType{
             params_task["id"] = id
             return .requestParameters(parameters: params_task,
                                       encoding: URLEncoding.default)
+        case .getDeviceIds(let username):
+            params_task["userName"] = username
+            return .requestParameters(parameters: params_task,
+                                      encoding: URLEncoding.default)
         case .getSingDetail(let trackId):
             params_task["trackId"] = trackId
             return .requestParameters(parameters: params_task,
@@ -218,7 +223,7 @@ extension RequestApi:TargetType{
     // 接口请求类型
     public var method:Moya.Method{
         switch self {
-        case .getLikeList,.getHistoryList,.getTrackList,.getTrackSubList,
+        case .getLikeList,.getHistoryList,.getTrackList,.getTrackSubList,.getDeviceIds,
              .getEquimentInfo,.getFamilyMemberList,.getSingleTrack,.getSingDetail,.getBabyInfo:
             return .get
         default:

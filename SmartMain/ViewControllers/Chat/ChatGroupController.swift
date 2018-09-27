@@ -58,17 +58,27 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
     override func sendVoiceMessage(withLocalPath localPath: String!, duration: Int) {
         print(localPath)
         super.sendVoiceMessage(withLocalPath: localPath, duration: duration)
+        
+   
         let fileManager = FileManager.default
         let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
                                                            .userDomainMask, true)[0] as String
-        if (fileManager.fileExists(atPath: localPath)){
-            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: "qq", body: localPath), successClosure: { (result, code, message) in
-                if let str = result as? String {
-                    print(str)
-                }
-            })
+        let filePath = "\(rootPath)/voice_mav.wav"
+        let convertedPath = VoiceConverter.getPathByFileName("_AmrToWav", ofType: "wav")
+        let result = VoiceConverter.decodeAmr(toWav: localPath, wavSavePath: filePath, sampleRateType: Sample_Rate(rawValue: 0)!)
         
-        }
+//                NSString *convertedPath = [self GetPathByFileName:[self.recordFileName stringByAppendingString:@"_AmrToWav"] ofType:@"wav"];
+//        let convertedPath = self.getpath
+        print(result)
+       
+//        if (fileManager.fileExists(atPath: localPath)){
+//            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: "qq", body: localPath), successClosure: { (result, code, message) in
+//                if let str = result as? String {
+//                    print(str)
+//                }
+//            })
+//        
+//        }
     }
     override func sendTextMessage(_ text: String!) {
         print(text)

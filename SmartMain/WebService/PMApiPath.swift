@@ -29,6 +29,7 @@ extension RequestApi {
         case .getSingleTrack:          return "/track/get.do"
             // 登录接口
         case .login(let mobile,let code):                    return "/suportAPP/loginWithAuthCode.do?username=\(mobile)&authCode=\(code)"
+        case .getDeviceIds: return "/suportAPP/getDeviceIds.do"
         case .loginWithPass(let mobile,let password):                    return "/suportAPP/loginWithPassword.do?username=\(mobile)&password=\(password)"
         case .register:                 return "/suportAPP/registUser.do"
             
@@ -52,7 +53,7 @@ extension RequestApi {
         case .quitEquiment(_ , let isAdmin):        return "/familymember/quit.do?byAdmin=\(isAdmin)"
             
         //根据设备号获取群组成员列表
-        case .getFamilyMemberList:      return "/familymember/getlist.do"
+        case .getFamilyMemberList:      return "/suportAPP/familymember/getlist.do"
         //在线点播
         case .onlineSing:               return "/suportAPP/demand/online/save.do"
         // 删除点播

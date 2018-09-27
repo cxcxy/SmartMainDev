@@ -84,22 +84,26 @@ class EquipmentSingModel: XBDataModel {
 
 class FamilyMemberModel: XBDataModel {
 
-    var openId: String?
-    var nickname: String?
-    var deviceId: String?
+    var id: Int?
+    var groupid: String?
+    var easegroupname: String?
+    var easedesc: String?
+    var easeadmin: String?
+    var recordtime: String?
+    var username: String?
+    var deviceid: String?
     var headImgUrl: String?
-    var type: Int?
-    var admin: Int?
-    
     
     override func mapping(map: Map) {
-        openId             <-    map["openId"]
-        nickname             <-    map["nickname"]
-        deviceId          <-    map["deviceId"]
+        id             <-    map["id"]
+        groupid             <-    map["groupid"]
+        easegroupname          <-    map["easegroupname"]
+        easedesc            <-    map["easedesc"]
+        easeadmin            <-    map["easeadmin"]
+        recordtime            <-    map["recordtime"]
+        username            <-    map["username"]
+        deviceid            <-    map["deviceid"]
         headImgUrl            <-    map["headImgUrl"]
-        type            <-    map["type"]
-        admin            <-    map["admin"]
-
     }
 }
 class GetTrackListDefault: XBDataModel {

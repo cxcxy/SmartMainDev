@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        ChatManager.share.init_ChatMessage(application,
+                                           launchOptions)
         if user_defaults.has(.userName) {
             print("登录过")
             self.configDrawerController()
@@ -23,15 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                                                       appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
 //                                                       apnsCertName: "",
 //                                                       otherConfig: [kSDKConfigEnableConsoleLogger: false])
-
+            
             loginEMClient()
         }else {
             print("未登录过")
             let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
             window?.rootViewController = sv
         }
-        ChatManager.share.init_ChatMessage(application,
-                                           launchOptions)
+
         _ = ScoketMQTTManager.share
         IQKeyboardManager.sharedManager().enable = true
         return true
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
     }
     func loginEMClient()  {
+//        ChatManager.share.init_ChatMessage(<#T##application: UIApplication##UIApplication#>, <#T##launchOptions: [UIApplicationLaunchOptionsKey : Any]?##[UIApplicationLaunchOptionsKey : Any]?#>)
         ChatManager.share.loginEMClient(username: XBUserManager.userName, password: "123456")
 //        EMClient.shared().login(withUsername: XBUserManager.userName, password: "123456") { (aUserName, aError) in
 //            if (aError == nil) {

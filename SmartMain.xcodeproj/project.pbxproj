@@ -307,6 +307,17 @@
 		2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */; };
 		2D9195E02153DBA800F4A9A1 /* ChatCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */; };
 		2D9195E22153DBB100F4A9A1 /* ChatCreateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */; };
+		2DBD88CB215CFBE000BC543A /* wavwriter.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88B8215CFBE000BC543A /* wavwriter.c */; };
+		2DBD88CC215CFBE000BC543A /* VoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88BE215CFBE000BC543A /* VoiceConverter.mm */; };
+		2DBD88CD215CFBE000BC543A /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBD88C1215CFBE000BC543A /* libopencore-amrwb.a */; };
+		2DBD88CE215CFBE100BC543A /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBD88C2215CFBE000BC543A /* libopencore-amrnb.a */; };
+		2DBD88CF215CFBE100BC543A /* libvo-amrwbenc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBD88C3215CFBE000BC543A /* libvo-amrwbenc.a */; };
+		2DBD88D0215CFBE100BC543A /* wavreader.c in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88C5215CFBE000BC543A /* wavreader.c */; };
+		2DBD88D1215CFBE100BC543A /* NarrowBandWavToAmr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88C6215CFBE000BC543A /* NarrowBandWavToAmr.mm */; };
+		2DBD88D2215CFBE100BC543A /* WidthBandWavToAmr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88CA215CFBE000BC543A /* WidthBandWavToAmr.mm */; };
+		2DBD88E9215D0B6A00BC543A /* EquipmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88E7215D0B6A00BC543A /* EquipmentListViewController.swift */; };
+		2DBD88EA215D0B6A00BC543A /* EquipmentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD88E8215D0B6A00BC543A /* EquipmentListViewController.xib */; };
+		2DBD88EC215D12FA00BC543A /* DevicesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88EB215D12FA00BC543A /* DevicesListModel.swift */; };
 		2DC95587213E9EBB004D6F65 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95585213E9EBB004D6F65 /* MeViewController.swift */; };
 		2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DC95586213E9EBB004D6F65 /* MeViewController.xib */; };
 		2DC9558A213EAC18004D6F65 /* EquipmentSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */; };
@@ -773,6 +784,27 @@
 		2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMainCell.xib; sourceTree = "<group>"; };
 		2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCreateView.swift; sourceTree = "<group>"; };
 		2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCreateView.xib; sourceTree = "<group>"; };
+		2DBD88B6215CFBE000BC543A /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		2DBD88B7215CFBE000BC543A /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		2DBD88B8215CFBE000BC543A /* wavwriter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wavwriter.c; sourceTree = "<group>"; };
+		2DBD88B9215CFBE000BC543A /* wavreader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wavreader.h; sourceTree = "<group>"; };
+		2DBD88BB215CFBE000BC543A /* enc_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enc_if.h; sourceTree = "<group>"; };
+		2DBD88BC215CFBE000BC543A /* NarrowBandWavToAmr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NarrowBandWavToAmr.h; sourceTree = "<group>"; };
+		2DBD88BD215CFBE000BC543A /* WidthBandWavToAmr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidthBandWavToAmr.h; sourceTree = "<group>"; };
+		2DBD88BE215CFBE000BC543A /* VoiceConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VoiceConverter.mm; sourceTree = "<group>"; };
+		2DBD88BF215CFBE000BC543A /* wavwriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wavwriter.h; sourceTree = "<group>"; };
+		2DBD88C1215CFBE000BC543A /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		2DBD88C2215CFBE000BC543A /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		2DBD88C3215CFBE000BC543A /* libvo-amrwbenc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libvo-amrwbenc.a"; sourceTree = "<group>"; };
+		2DBD88C4215CFBE000BC543A /* VoiceConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceConverter.h; sourceTree = "<group>"; };
+		2DBD88C5215CFBE000BC543A /* wavreader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wavreader.c; sourceTree = "<group>"; };
+		2DBD88C6215CFBE000BC543A /* NarrowBandWavToAmr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NarrowBandWavToAmr.mm; sourceTree = "<group>"; };
+		2DBD88C8215CFBE000BC543A /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		2DBD88C9215CFBE000BC543A /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		2DBD88CA215CFBE000BC543A /* WidthBandWavToAmr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WidthBandWavToAmr.mm; sourceTree = "<group>"; };
+		2DBD88E7215D0B6A00BC543A /* EquipmentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListViewController.swift; sourceTree = "<group>"; };
+		2DBD88E8215D0B6A00BC543A /* EquipmentListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EquipmentListViewController.xib; sourceTree = "<group>"; };
+		2DBD88EB215D12FA00BC543A /* DevicesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesListModel.swift; sourceTree = "<group>"; };
 		2DC95585213E9EBB004D6F65 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		2DC95586213E9EBB004D6F65 /* MeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeViewController.xib; sourceTree = "<group>"; };
 		2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentSettingVC.swift; sourceTree = "<group>"; };
@@ -803,7 +835,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				042EEF362150E15F00DBD492 /* libopencore-amrwb.a in Frameworks */,
+				2DBD88CF215CFBE100BC543A /* libvo-amrwbenc.a in Frameworks */,
 				042EEF372150E15F00DBD492 /* libopencore-amrnb.a in Frameworks */,
+				2DBD88CD215CFBE000BC543A /* libopencore-amrwb.a in Frameworks */,
+				2DBD88CE215CFBE100BC543A /* libopencore-amrnb.a in Frameworks */,
 				1AAA75D9F5935AC30D1FE386 /* Pods_SmartMain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1558,6 +1593,7 @@
 		04C386EE213E093F0063A799 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				2DBD88B4215CFBE000BC543A /* Opencore-AMR */,
 				0460495C2153923900BEDCD6 /* CWLateralSlide */,
 				042EEDEA2150E15F00DBD492 /* EaseUI */,
 				0485CC8E2148A89200F54927 /* SwiftMQTT */,
@@ -1751,6 +1787,7 @@
 			isa = PBXGroup;
 			children = (
 				0422ECD92140CA2700A42D7A /* EquipmentModel.swift */,
+				2DBD88EB215D12FA00BC543A /* DevicesListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1882,6 +1919,63 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		2DBD88B4215CFBE000BC543A /* Opencore-AMR */ = {
+			isa = PBXGroup;
+			children = (
+				2DBD88B5215CFBE000BC543A /* opencore-amrwb */,
+				2DBD88B8215CFBE000BC543A /* wavwriter.c */,
+				2DBD88B9215CFBE000BC543A /* wavreader.h */,
+				2DBD88BA215CFBE000BC543A /* vo-amrwbenc */,
+				2DBD88BC215CFBE000BC543A /* NarrowBandWavToAmr.h */,
+				2DBD88BD215CFBE000BC543A /* WidthBandWavToAmr.h */,
+				2DBD88BE215CFBE000BC543A /* VoiceConverter.mm */,
+				2DBD88BF215CFBE000BC543A /* wavwriter.h */,
+				2DBD88C0215CFBE000BC543A /* lib */,
+				2DBD88C4215CFBE000BC543A /* VoiceConverter.h */,
+				2DBD88C5215CFBE000BC543A /* wavreader.c */,
+				2DBD88C6215CFBE000BC543A /* NarrowBandWavToAmr.mm */,
+				2DBD88C7215CFBE000BC543A /* opencore-amrnb */,
+				2DBD88CA215CFBE000BC543A /* WidthBandWavToAmr.mm */,
+			);
+			path = "Opencore-AMR";
+			sourceTree = "<group>";
+		};
+		2DBD88B5215CFBE000BC543A /* opencore-amrwb */ = {
+			isa = PBXGroup;
+			children = (
+				2DBD88B6215CFBE000BC543A /* if_rom.h */,
+				2DBD88B7215CFBE000BC543A /* dec_if.h */,
+			);
+			path = "opencore-amrwb";
+			sourceTree = "<group>";
+		};
+		2DBD88BA215CFBE000BC543A /* vo-amrwbenc */ = {
+			isa = PBXGroup;
+			children = (
+				2DBD88BB215CFBE000BC543A /* enc_if.h */,
+			);
+			path = "vo-amrwbenc";
+			sourceTree = "<group>";
+		};
+		2DBD88C0215CFBE000BC543A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				2DBD88C1215CFBE000BC543A /* libopencore-amrwb.a */,
+				2DBD88C2215CFBE000BC543A /* libopencore-amrnb.a */,
+				2DBD88C3215CFBE000BC543A /* libvo-amrwbenc.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		2DBD88C7215CFBE000BC543A /* opencore-amrnb */ = {
+			isa = PBXGroup;
+			children = (
+				2DBD88C8215CFBE000BC543A /* interf_dec.h */,
+				2DBD88C9215CFBE000BC543A /* interf_enc.h */,
+			);
+			path = "opencore-amrnb";
+			sourceTree = "<group>";
+		};
 		2DC95583213E9E91004D6F65 /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -1931,6 +2025,8 @@
 				2DC955A2213FFA98004D6F65 /* RegisterViewController.xib */,
 				2D9195CA215291D300F4A9A1 /* SetInfoViewController.swift */,
 				2D9195CB215291D300F4A9A1 /* SetInfoViewController.xib */,
+				2DBD88E7215D0B6A00BC543A /* EquipmentListViewController.swift */,
+				2DBD88E8215D0B6A00BC543A /* EquipmentListViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2032,6 +2128,7 @@
 				2DC955A8213FFC8C004D6F65 /* AboutMeVC.xib in Resources */,
 				04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */,
 				2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */,
+				2DBD88EA215D0B6A00BC543A /* EquipmentListViewController.xib in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				04C3871E213E093F0063A799 /* city.json in Resources */,
 				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
@@ -2193,6 +2290,7 @@
 				04C38741213E09400063A799 /* PPPersonModel.swift in Sources */,
 				042EEF332150E15F00DBD492 /* MJRefreshBackFooter.m in Sources */,
 				042EEF212150E15F00DBD492 /* EaseConversationModel.m in Sources */,
+				2DBD88E9215D0B6A00BC543A /* EquipmentListViewController.swift in Sources */,
 				042EEF722150E15F00DBD492 /* EaseUserCell.m in Sources */,
 				042EEF342150E15F00DBD492 /* MJRefreshAutoFooter.m in Sources */,
 				0473BA0D215A2E27003D688F /* OpenEquViewController.swift in Sources */,
@@ -2239,6 +2337,7 @@
 				04C38735213E093F0063A799 /* ETPopupView.swift in Sources */,
 				042EEF3F2150E15F00DBD492 /* EMAudioRecorderUtil.m in Sources */,
 				04C1436A2147A8F600FC2000 /* ShowChooseView.swift in Sources */,
+				2DBD88CC215CFBE000BC543A /* VoiceConverter.mm in Sources */,
 				2D9195C821528AB400F4A9A1 /* ResetPassViewController.swift in Sources */,
 				042EEF2D2150E15F00DBD492 /* MJRefreshAutoNormalFooter.m in Sources */,
 				042EEF602150E15F00DBD492 /* UIImage+MultiFormat.m in Sources */,
@@ -2247,8 +2346,10 @@
 				04C38A04213E671F0063A799 /* ContentShowCell.swift in Sources */,
 				042EEF682150E15F00DBD492 /* UIButton+WebCache.m in Sources */,
 				042EEF272150E15F00DBD492 /* UIView+MJExtension.m in Sources */,
+				2DBD88D0215CFBE100BC543A /* wavreader.c in Sources */,
 				042EEF542150E15F00DBD492 /* PSTCollectionViewItemKey.m in Sources */,
 				0422ECDA2140CA2700A42D7A /* EquipmentModel.swift in Sources */,
+				2DBD88EC215D12FA00BC543A /* DevicesListModel.swift in Sources */,
 				0485CCB62148A89200F54927 /* MQTTPacketFixedHeader.swift in Sources */,
 				04C38A14213E6FE70063A799 /* ContentShowThreeCell.swift in Sources */,
 				042EEF882150E15F00DBD492 /* EaseSDKHelper.m in Sources */,
@@ -2329,6 +2430,7 @@
 				042EEF522150E15F00DBD492 /* PSTCollectionViewUpdateItem.m in Sources */,
 				042EEF162150E15F00DBD492 /* UIViewController+DismissKeyboard.m in Sources */,
 				04C389F9213E33330063A799 /* ContentMainVC.swift in Sources */,
+				2DBD88D1215CFBE100BC543A /* NarrowBandWavToAmr.mm in Sources */,
 				0485CCAE2148A89200F54927 /* MQTTPacketFactory.swift in Sources */,
 				042EEF142150E15F00DBD492 /* NSDate+Category.m in Sources */,
 				0422ECD82140BECC00A42D7A /* AVCaptureSessionManager.swift in Sources */,
@@ -2396,6 +2498,7 @@
 				2DC9559F213FF3BE004D6F65 /* LoginViewController.swift in Sources */,
 				2D9195CC215291D300F4A9A1 /* SetInfoViewController.swift in Sources */,
 				04CF4929215B1B890052CD67 /* ChatManager.swift in Sources */,
+				2DBD88D2215CFBE100BC543A /* WidthBandWavToAmr.mm in Sources */,
 				04C38715213E093F0063A799 /* PMRequestApi.swift in Sources */,
 				0473BA08215A298E003D688F /* ScreenControlView.swift in Sources */,
 				0485CCAF2148A89200F54927 /* MQTTPubAck.swift in Sources */,
@@ -2408,6 +2511,7 @@
 				04C38725213E093F0063A799 /* XBAddressManager.swift in Sources */,
 				042EEF772150E15F00DBD492 /* EaseBaseMessageCell.m in Sources */,
 				042EEF802150E15F00DBD492 /* EaseBubbleView+Text.m in Sources */,
+				2DBD88CB215CFBE000BC543A /* wavwriter.c in Sources */,
 				042EEF532150E15F00DBD492 /* PSTGridLayoutSection.m in Sources */,
 				2D9195E02153DBA800F4A9A1 /* ChatCreateView.swift in Sources */,
 				0485CCB52148A89200F54927 /* MQTTDisconnectPacket.swift in Sources */,
@@ -2580,6 +2684,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Opencore-AMR/lib",
+					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zb.pmdebug.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2606,6 +2712,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Opencore-AMR/lib",
+					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zb.pmdebug.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";

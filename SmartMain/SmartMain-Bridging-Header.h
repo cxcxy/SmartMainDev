@@ -23,4 +23,6 @@
 //@import FSPagerView;
 #import "UIViewController+CWLateralSlide.h"
 #import "EaseUI.h"
+//#import "VoiceConvert.h"
+#import "VoiceConverter.h"
 //#import <EaseUI/EaseUI.h>
