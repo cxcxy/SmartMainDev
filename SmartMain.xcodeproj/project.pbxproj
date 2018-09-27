@@ -287,6 +287,7 @@
 		2D0ACC4C215A74EC0047103C /* AccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */; };
 		2D0ACC4D215A74EC0047103C /* AccountInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */; };
 		2D0ACC4F215A81890047103C /* ChatGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC4E215A81890047103C /* ChatGroupController.swift */; };
+		2D20DB14215CEF8E002EF372 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20DB13215CEF8E002EF372 /* ContentViewModel.swift */; };
 		2D312A9B213D560100FCC499 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D312A9A213D560100FCC499 /* AppDelegate.swift */; };
 		2D312A9D213D560100FCC499 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D312A9C213D560100FCC499 /* ViewController.swift */; };
 		2D312AA0213D560100FCC499 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D312A9E213D560100FCC499 /* Main.storyboard */; };
@@ -749,6 +750,7 @@
 		2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoViewController.swift; sourceTree = "<group>"; };
 		2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoViewController.xib; sourceTree = "<group>"; };
 		2D0ACC4E215A81890047103C /* ChatGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroupController.swift; sourceTree = "<group>"; };
+		2D20DB13215CEF8E002EF372 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentViewModel.swift; path = SmartMain/ViewControllers/Chat/ContentViewModel.swift; sourceTree = SOURCE_ROOT; };
 		2D312A97213D560100FCC499 /* SmartMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D312A9A213D560100FCC499 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D312A9C213D560100FCC499 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1685,8 +1687,8 @@
 		04C389E3213E22BD0063A799 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				2D20DB12215CEF6B002EF372 /* ViewModel */,
 				2DC95596213EBC5C004D6F65 /* Model */,
-				2DC95595213EBC57004D6F65 /* ViewModel */,
 				04C389F5213E32FF0063A799 /* View */,
 				04C389F4213E32F40063A799 /* ViewController */,
 			);
@@ -1823,6 +1825,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		2D20DB12215CEF6B002EF372 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2D20DB13215CEF8E002EF372 /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2D312A8E213D560000FCC499 = {
 			isa = PBXGroup;
 			children = (
@@ -1891,13 +1901,6 @@
 				2DC955A6213FFC8C004D6F65 /* AboutMeVC.xib */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		2DC95595213EBC57004D6F65 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2DC95596213EBC5C004D6F65 /* Model */ = {
@@ -1972,7 +1975,6 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
-				DDE0EDC49A85C23D59B531CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2160,21 +2162,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DDE0EDC49A85C23D59B531CB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2319,6 +2306,7 @@
 				0485CCBC2148F7EC00F54927 /* SmartPlayerViewController.swift in Sources */,
 				04C38737213E093F0063A799 /* SimpleHUD.swift in Sources */,
 				0485CCB02148A89200F54927 /* MQTTPubMsg.swift in Sources */,
+				2D20DB14215CEF8E002EF372 /* ContentViewModel.swift in Sources */,
 				0485CCB42148A89200F54927 /* MQTTPacket.swift in Sources */,
 				0485CCB32148A89200F54927 /* MQTTStreamable.swift in Sources */,
 				04C3871F213E093F0063A799 /* XBJpushManager.swift in Sources */,

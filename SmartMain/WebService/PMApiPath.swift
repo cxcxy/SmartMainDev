@@ -54,7 +54,7 @@ extension RequestApi {
         //根据设备号获取群组成员列表
         case .getFamilyMemberList:      return "/familymember/getlist.do"
         //在线点播
-        case .onlineSing:               return "/demand/online/save.do"
+        case .onlineSing:               return "/suportAPP/demand/online/save.do"
         // 删除点播
         case .deleteDemand:          return "/demand/delete.do"
         // 保存收藏

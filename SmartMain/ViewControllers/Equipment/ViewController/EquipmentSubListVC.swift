@@ -14,6 +14,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
     var dataArr: [EquipmentSingModel] = []
     var headerInfo:ConetentSingAlbumModel?
     var total: Int?
+    var viewModel = ContentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -126,18 +127,10 @@ extension EquipmentSubListVC {
         ScoketMQTTManager.share.sendTrackListPlay(trackListId: trackListId, singModel: singModel)
     }
     func requestOnlineSing(trackId: String)  {
-
-        Net.requestWithTarget(.onlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId), successClosure: { (result, code, message) in
-            if let str = result as? String {
-                if str == "0" {
-                    XBHud.showMsg("点播成功")
-                }else if str == "1"{
-                    XBHud.showMsg("设备不在线")
-                }else if str == "2"{
-                    XBHud.showMsg("你没有绑定设备")
-                }
-            }
-        })
+        
+        viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId, deviceId: XBUserManager.device_Id) {
+            
+        }
     }
 }
 

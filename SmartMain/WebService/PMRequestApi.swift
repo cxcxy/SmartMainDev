@@ -37,7 +37,7 @@ enum RequestApi{
     case joinEquimentGroup(req: [String: Any])
     case quitEquiment(openId:String,isAdmin: Bool)
     case getFamilyMemberList(deviceId: String)
-    case onlineSing(openId:String, trackId: String)
+    case onlineSing(openId:String, trackId: String,deviceId: String)
     case deleteDemand(req: [String: Any])
     case saveLikeSing(req: [String: Any])
     case getSingDetail(trackId: Int)
@@ -139,9 +139,10 @@ extension RequestApi:TargetType{
             return .requestData(str_data)
         case .getAuthCode,.login:
             break
-        case .onlineSing(let openId,let trackId):
+        case .onlineSing(let openId,let trackId, let deviceId):
             params_task["openId"] = openId
             params_task["trackId"] = trackId
+            params_task["deviceId"] = deviceId
             break
         case .setTrackListDefult(_, _, let trackIds):
             return .requestData(trackIds.toData())
