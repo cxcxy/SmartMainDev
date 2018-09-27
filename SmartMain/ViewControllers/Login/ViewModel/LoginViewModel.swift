@@ -187,6 +187,7 @@ class LoginViewModel: NSObject {
             }
         }
         XBUserManager.userName = mobile
+    
         ChatManager.share.loginEMClient(username: mobile, password: password)
         closure()
     }

@@ -87,6 +87,7 @@ extension RequestApi {
         case .resetAvatar:               return "/familymember/avatar/reset.do"
         // 修改账号昵称
         case .modifyNickname:               return "/familymember/modifynickname.do"
+        case .getNetVoice:                  return "/sinvoice/set.do"
         default:
             
             return ""

@@ -31,7 +31,6 @@ class ContentVC: XBBaseTableViewController {
         params_task["tags"] = ["six"]
         Net.requestWithTarget(.contentModules(req: params_task), successClosure: { (result, code, message) in
             if let arr = Mapper<ModulesResModel>().mapArray(JSONObject:JSON(result)["modules"].arrayObject) {
-//                self.endRefresh()
                let filterArr = arr.filter({ (item) -> Bool in
                     if let contents = item.contents {
                         return contents.count > 0

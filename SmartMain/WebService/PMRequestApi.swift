@@ -54,6 +54,7 @@ enum RequestApi{
     case uploadAvatar(openId: String, body: String)
     case resetAvatar(req: [String: Any])
     case modifyNickname(req: [String: Any])
+    case getNetVoice(req: [String: Any])
 }
 extension RequestApi {
     /**
@@ -115,7 +116,8 @@ extension RequestApi:TargetType{
              .moveToNewTrackList(let req),
              .addTrackList(let req),
              .deleteTrackList(let req),
-             .updateBabyInfo(let req):
+             .updateBabyInfo(let req),
+             .getNetVoice(let req):
             params_task = req
             break
         case .resetPassword(_, let req):

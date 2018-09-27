@@ -80,6 +80,9 @@ extension DrawerViewController {
         let model = indexPath.section == 0 ? eqArr[indexPath.row] : accountArr[indexPath.row]
         print(model.title)
         switch model.cellType {
+        case 1:
+            let vc = ConfigNetViewController()
+            self.cw_push(vc)
         case 2:
             self.toQRCodeVC()
         case 4:

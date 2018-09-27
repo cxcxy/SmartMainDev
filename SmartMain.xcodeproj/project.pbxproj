@@ -275,6 +275,9 @@
 		04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4931215B328A0052CD67 /* GroupItemCell.xib */; };
 		04CF4936215B65C20052CD67 /* GroupAddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */; };
 		04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */; };
+		04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */; };
+		04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */; };
+		04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */; };
 		1AAA75D9F5935AC30D1FE386 /* Pods_SmartMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */; };
 		2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */; };
 		2D0ACC44215A6EB90047103C /* HistorySongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC42215A6EB90047103C /* HistorySongCell.swift */; };
@@ -735,6 +738,9 @@
 		04CF4931215B328A0052CD67 /* GroupItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupItemCell.xib; sourceTree = "<group>"; };
 		04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddMemberController.swift; sourceTree = "<group>"; };
 		04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAddMemberController.xib; sourceTree = "<group>"; };
+		04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigNetViewController.swift; sourceTree = "<group>"; };
+		04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigNetViewController.xib; sourceTree = "<group>"; };
+		04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EquimentViewModel.swift; path = SmartMain/ViewControllers/Equipment/ViewController/EquimentViewModel.swift; sourceTree = SOURCE_ROOT; };
 		2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		2D0ACC42215A6EB90047103C /* HistorySongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySongCell.swift; sourceTree = "<group>"; };
 		2D0ACC43215A6EB90047103C /* HistorySongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistorySongCell.xib; sourceTree = "<group>"; };
@@ -1668,8 +1674,8 @@
 		04C389E2213E228E0063A799 /* Equipment */ = {
 			isa = PBXGroup;
 			children = (
+				04F67906215CD08F00CAA0CA /* ViewModel */,
 				04C389E9213E22F40063A799 /* Model */,
-				04C389E8213E22EF0063A799 /* ViewModel */,
 				04C389E7213E22EB0063A799 /* View */,
 				04C389E6213E22E00063A799 /* ViewController */,
 			);
@@ -1716,6 +1722,8 @@
 				0460496C215398D800BEDCD6 /* DrawerViewController.xib */,
 				2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */,
 				2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */,
+				04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */,
+				04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1735,13 +1743,6 @@
 				2D9195D42153BE2500F4A9A1 /* DrawControlHeader.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		04C389E8213E22EF0063A799 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04C389E9213E22F40063A799 /* Model */ = {
@@ -1812,6 +1813,14 @@
 				04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */,
 			);
 			path = FSPagerView;
+			sourceTree = "<group>";
+		};
+		04F67906215CD08F00CAA0CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2D312A8E213D560000FCC499 = {
@@ -1963,6 +1972,7 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
+				DDE0EDC49A85C23D59B531CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2018,6 +2028,7 @@
 				04C38A0D213E6D850063A799 /* ContentLikeCell.xib in Resources */,
 				2D9195D52153BE2500F4A9A1 /* DrawControlHeader.xib in Resources */,
 				2DC955A8213FFC8C004D6F65 /* AboutMeVC.xib in Resources */,
+				04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */,
 				2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				04C3871E213E093F0063A799 /* city.json in Resources */,
@@ -2147,6 +2158,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDE0EDC49A85C23D59B531CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2282,6 +2308,7 @@
 				2DC955B0213FFE17004D6F65 /* MeInfoHaderCell.swift in Sources */,
 				04C38A11213E6EEA0063A799 /* HistoryViewController.swift in Sources */,
 				042EEF712150E15F00DBD492 /* EaseViewController.m in Sources */,
+				04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */,
 				042EEF422150E15F00DBD492 /* MWPhotoBrowser.m in Sources */,
 				043E119A213FCCAC0067ADF3 /* ContentSingCell.swift in Sources */,
 				042EEF1C2150E15F00DBD492 /* EaseEmoji.m in Sources */,
@@ -2361,6 +2388,7 @@
 				04C38746213E09400063A799 /* XBCustomUtil.swift in Sources */,
 				042EEF622150E15F00DBD492 /* SDWebImagePrefetcher.m in Sources */,
 				042EEF3C2150E15F00DBD492 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */,
 				042EEF2B2150E15F00DBD492 /* MJRefreshAutoStateFooter.m in Sources */,
 				04C38A08213E6CD70063A799 /* ContentShowCVCell.swift in Sources */,
 				0485CCAC2148A89200F54927 /* MQTTUnSubAckPacket.swift in Sources */,

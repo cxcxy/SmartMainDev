@@ -122,10 +122,19 @@ class XBNetManager {
             case let .success(response):
                 
                 _ = response.data
-                _ = response.statusCode
                 guard let jsonString = try? response.mapString() else {
                     return
                 }
+                let statusCode = response.statusCode
+                guard  statusCode == 200 else {
+                    print(jsonString)
+                    XBHud.showWarnMsg("系统错误")
+                    if let failClosure = failClosure{
+                        failClosure("系统错误")
+                    }
+                    return
+                }
+
                 guard let info = Mapper<XBBaseResModel>().map(JSONString:jsonString) else {
                     successClosure(jsonString as AnyObject, 200,"success")
                     self.configEmptyDataSet()
@@ -142,9 +151,9 @@ class XBNetManager {
                 successClosure(data, info.code,info.message)
                 
             case .failure(_):
-                XBHud.showWarnMsg("网络错误")
+                XBHud.showWarnMsg("系统错误")
                 if let failClosure = failClosure{
-                    failClosure("网络错误")
+                    failClosure("系统错误")
                 }
                 break
             }

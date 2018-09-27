@@ -23,14 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                                                       appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
 //                                                       apnsCertName: "",
 //                                                       otherConfig: [kSDKConfigEnableConsoleLogger: false])
-            ChatManager.share.init_ChatMessage(application,
-                                               launchOptions)
+
             loginEMClient()
         }else {
             print("未登录过")
             let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
             window?.rootViewController = sv
         }
+        ChatManager.share.init_ChatMessage(application,
+                                           launchOptions)
         _ = ScoketMQTTManager.share
         IQKeyboardManager.sharedManager().enable = true
         return true
@@ -47,14 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
     }
     func loginEMClient()  {
-
-        EMClient.shared().login(withUsername: XBUserManager.userName, password: "123456") { (aUserName, aError) in
-            if (aError == nil) {
-                print("登录成功",aUserName ?? "未获取到姓名")
-            }else {
-                print("登录失败")
-            }
-        }
+        ChatManager.share.loginEMClient(username: XBUserManager.userName, password: "123456")
+//        EMClient.shared().login(withUsername: XBUserManager.userName, password: "123456") { (aUserName, aError) in
+//            if (aError == nil) {
+//                print("登录成功",aUserName ?? "未获取到姓名")
+//            }else {
+//                print("登录失败")
+//            }
+//        }
     }
     func applicationWillResignActive(_ application: UIApplication) {
     }
