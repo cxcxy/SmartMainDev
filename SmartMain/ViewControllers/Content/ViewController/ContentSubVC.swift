@@ -42,39 +42,62 @@ class ContentSubVC: XBBaseTableViewController {
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.tableView.reloadData()
+                self.starAnimationWithTableView(tableView: self.tableView)
             }
         })
         
     }
-    
+    func starAnimationWithTableView(tableView: UITableView) {
+//        table
+        TableViewAnimationKit.show(with: .alpha, tableView: tableView)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }
 extension ContentSubVC {
-    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return dataArr.count
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dataArr.count
+        return 1
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSubShowCell", for: indexPath) as! ContentSubShowCell
-        cell.lbTitle.set_text = dataArr[indexPath.row].name
-        cell.imgIcon.set_Img_Url(dataArr[indexPath.row].imgSmall)
+        cell.lbTitle.set_text = dataArr[indexPath.section].name
+        cell.imgIcon.set_Img_Url(dataArr[indexPath.section].imgSmall)
         return cell
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        VCRouter.toContentSubVC()
-        let model = dataArr[indexPath.row]
+        let model = dataArr[indexPath.section]
         if model.albumType == 2 {
             VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
         }else {
             VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
         }
     }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
     
+//    //设置cell的显示动画
+//    func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!,
+//                   forRowAtIndexPath indexPath: NSIndexPath!){
+//
+//    }
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        //设置cell的显示动画为3D缩放
+//        //xy方向缩放的初始值为0.1
+//        cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1)
+//        //设置动画时间为0.25秒，xy方向缩放的最终值为1
+//        UIView.animate(withDuration: 0.25, animations: {
+//            cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+//        })
+//    }
 }
