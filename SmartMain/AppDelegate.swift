@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var lunchView: XBLaunchView!
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        self.window?.makeKeyAndVisible()
         ChatManager.share.init_ChatMessage(application,
                                            launchOptions)
 
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         
         if (launchOptions == nil) {
-//            showADLaunchView()
+            showADLaunchView()
         }
 
         return true
