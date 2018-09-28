@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
-                <outlet property="btnCode" destination="Hnq-aR-qyA" id="vNf-9K-TTe"/>
                 <outlet property="btnLogin" destination="4FL-nD-5uk" id="WZ1-qI-kUi"/>
                 <outlet property="btnSendCode" destination="Pym-7e-Ecd" id="ATQ-PV-9wv"/>
                 <outlet property="tfCode" destination="HFY-Bv-E7o" id="XCA-sS-CFj"/>
@@ -127,16 +126,6 @@
                     </state>
                     <connections>
                         <action selector="clickLoginAction:" destination="-1" eventType="touchUpInside" id="j1R-EO-zf6"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnq-aR-qyA">
-                    <rect key="frame" x="138.33333333333334" y="638" width="100" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.91105073690414429" green="0.89357924461364746" blue="0.45984965562820435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title="验证码登录"/>
-                    <state key="selected" title="密码登录"/>
-                    <connections>
-                        <action selector="clickRegisterAction:" destination="-1" eventType="touchUpInside" id="2eV-5o-bsW"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3r-Cm-QA8">

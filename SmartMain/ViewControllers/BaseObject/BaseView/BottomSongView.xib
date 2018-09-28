@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="15" width="375" height="65"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歌曲名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWj-ja-Heu">
-                            <rect key="frame" x="90" y="24" width="43" height="17"/>
+                            <rect key="frame" x="90" y="24" width="110" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -35,9 +35,19 @@
                                         <constraint firstAttribute="width" constant="30" id="L5t-zS-mDM"/>
                                     </constraints>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibK-Gl-DlA">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nus-2G-2Ri">
                                     <rect key="frame" x="60" y="0.0" width="30" height="30"/>
-                                    <color key="backgroundColor" red="0.50196078431372548" green="0.792156862745098" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="0aC-Dc-R4Y"/>
+                                        <constraint firstAttribute="height" constant="30" id="H8d-eS-E3N"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="播放">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <state key="selected" title="暂停"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifP-43-QK0">
                                     <rect key="frame" x="120" y="0.0" width="30" height="30"/>
@@ -56,11 +66,12 @@
                         <constraint firstItem="HWj-ja-Heu" firstAttribute="centerY" secondItem="7NH-6Q-YJL" secondAttribute="centerY" id="QJt-Rq-8By"/>
                         <constraint firstAttribute="trailing" secondItem="D24-47-9Iv" secondAttribute="trailing" constant="15" id="kGz-um-FRZ"/>
                         <constraint firstItem="HWj-ja-Heu" firstAttribute="leading" secondItem="7NH-6Q-YJL" secondAttribute="leading" constant="90" id="oLI-eh-b83"/>
+                        <constraint firstItem="D24-47-9Iv" firstAttribute="leading" secondItem="HWj-ja-Heu" secondAttribute="trailing" constant="10" id="rjE-rQ-UG3"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zh0-2T-A0A">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_photo" translatesAutoresizingMaskIntoConstraints="NO" id="Zh0-2T-A0A">
                     <rect key="frame" x="15" y="0.0" width="60" height="60"/>
-                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Ph5-Vu-VQi"/>
                         <constraint firstAttribute="width" constant="60" id="UJW-4E-WjD"/>
@@ -80,9 +91,14 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="bottomView" destination="7NH-6Q-YJL" id="sj3-jt-X45"/>
+                <outlet property="btnPlay" destination="nus-2G-2Ri" id="xrP-8R-M0V"/>
                 <outlet property="imgSong" destination="Zh0-2T-A0A" id="rw8-To-Ehk"/>
+                <outlet property="lbSingsTitle" destination="HWj-ja-Heu" id="Sc5-Xl-9hw"/>
             </connections>
             <point key="canvasLocation" x="31.5" y="381.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_photo" width="180" height="180"/>
+    </resources>
 </document>

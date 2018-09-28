@@ -71,18 +71,18 @@ extension ChatMainViewController {
 //        }
         return cell
     }
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
-    {
-        let footer = ChatCreateView.loadFromNib()
-        footer.btnAdd.addAction { [weak self] in
-            guard let `self` = self else { return }
-            self.createGroupChat()
-        }
-        return footer
-    }
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 105
-    }
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
+//    {
+//        let footer = ChatCreateView.loadFromNib()
+//        footer.btnAdd.addAction { [weak self] in
+//            guard let `self` = self else { return }
+//            self.createGroupChat()
+//        }
+//        return footer
+//    }
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 105
+//    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let m = dataArr[indexPath.row]
 //        if m.type == EMConversationTypeGroupChat {

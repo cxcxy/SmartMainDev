@@ -141,12 +141,24 @@ extension XBUserManager { // 保存设备宝宝 信息
             user_defaults.set(newValue, for: .dv_recordtime)
         }
     }
+    // 保存当前设备的信息
     static func saveDeviceInfo(_ deviceModel: XBDeviceBabyModel) {
          user_defaults.set(deviceModel.babyname ?? "", for: .dv_babyname)
          user_defaults.set(deviceModel.sex ?? "", for: .dv_sex)
          user_defaults.set(deviceModel.birthday ?? "", for: .dv_birthday)
          user_defaults.set(deviceModel.headimgurl ?? "", for: .dv_headimgurl)
          user_defaults.set(deviceModel.recordtime ?? "", for: .dv_recordtime)
+         user_defaults.set(deviceModel.deviceid ?? "", for: .deviceId)
+    }
+    // 清空当前设备信息
+    static func clearDeviceInfo() {
+
+        user_defaults.clear(.dv_babyname)
+        user_defaults.clear(.dv_sex)
+        user_defaults.clear(.dv_birthday)
+        user_defaults.clear(.dv_headimgurl)
+        user_defaults.clear(.dv_recordtime)
+        user_defaults.clear(.deviceId)
     }
 }
 //TODO

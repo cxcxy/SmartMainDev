@@ -12,6 +12,7 @@ class ContentSingsVC: XBBaseViewController {
     var clientId: String!
     var albumId: String!
     var dataArr: [ConetentSingModel] = []
+    var trackList: [EquipmentModel] = []
     var headerInfo:ConetentSingAlbumModel?
     @IBOutlet weak var lbTopDes: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -27,7 +28,7 @@ class ContentSingsVC: XBBaseViewController {
         self.tableView.mj_header = self.mj_header
         
         request()
-        
+        requestTrackList()
     }
     func configTopHeadeaInfp(model: ConetentSingAlbumModel!)  {
         self.headerInfo = model
@@ -56,6 +57,20 @@ class ContentSingsVC: XBBaseViewController {
              self.tableView.reloadData()
         })
     }
+    func requestTrackList() {
+        guard XBUserManager.device_Id != "" else {
+            endRefresh()
+            return
+        }
+        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            print(result)
+            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+                self.endRefresh()
+                self.trackList = arr
+                self.tableView.reloadData()
+            }
+        })
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -81,11 +96,13 @@ extension ContentSingsVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
-//        cell.lbTitle.set_text = dataArr[indexPath.row].name
-//        cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: dataArr[indexPath.row].length)
+
         cell.modelData = dataArr[indexPath.row]
         cell.headerInfo = self.headerInfo
         cell.lbLineNumber.set_text = (indexPath.row + 1).toString
+        cell.setArr = ["添加到播单","收藏"]
+        cell.trackList = self.trackList
+        
         return cell
         
     }

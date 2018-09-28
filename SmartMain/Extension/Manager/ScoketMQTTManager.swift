@@ -7,13 +7,13 @@
 //
 
 import UIKit
-//let socket_host             = "zb.mqtt.athenamuses.cn"
+let socket_host             = "zb.mqtt.athenamuses.cn"
 let socket_port: UInt16     = 1893
-let socket_host             = "zhiban.mqtt.athenamuses.cn"
+//let socket_host             = "zhiban.mqtt.athenamuses.cn"
 //let socket_port: UInt16     = 8094
-//let socket_clientID         = XBUserManager.device_Id
+let socket_clientID         = XBUserManager.device_Id
 //let socket_clientID         = "3010290000045007_1275"
-let socket_clientID         = "3010290000047373_50056"
+//let socket_clientID         = "3010290000047373_50056"
 class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
     var mqttSession: MQTTSession!
     /**
@@ -300,6 +300,28 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         self.sendNewPressed(socketModel: socket)
         
     }
+    /**
+     *  设置机器 定时关机  value == 0 为取消定时关机 ，value == -1 为立即关机
+     */
+    func setPowerOff(value: Int) {
+        let socket = XBSocketValueModel()
+        socket.cmd          = "customer"
+        socket.key          = "setPoweroff"
+        socket.value        = value
+        self.sendNewPressed(socketModel: socket)
+        
+    }
+    /**
+     *  设置立即关机
+     */
+//    func setPlayProgressValue(value: Int) {
+//        let socket = XBSocketValueModel()
+//        socket.cmd          = "customer"
+//        socket.key          = "seek"
+//        socket.value        = value
+//        self.sendNewPressed(socketModel: socket)
+//
+//    }
     /**
      *   移动端点击 上一首
      */

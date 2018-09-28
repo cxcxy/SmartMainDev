@@ -29,11 +29,12 @@ class HistoryViewController: XBBaseViewController {
     }
     override func request() {
         super.request()
-        guard let phone = user_defaults.get(for: .userName) else {
-            XBHud.showMsg("请登录")
+        guard let deviceId = user_defaults.get(for: .deviceId) else {
+//            XBHud.showMsg("请登录")
+            self.loading = true
             return
         }
-        Net.requestWithTarget(.getHistoryList(openId: phone), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.getHistoryList(deviceId: deviceId), successClosure: { (result, code, message) in
             print(result)
             if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
                 if self.pageIndex == 1 {
@@ -65,7 +66,7 @@ extension HistoryViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-            let m  = dataArr[indexPath.row]
+            let m  = dataArr[indexPath.section]
             cell.lbTitle.set_text = m.title
             return cell
         }else {

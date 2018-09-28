@@ -13,16 +13,19 @@ class GroupItemCell: BaseTableViewCell {
         didSet {
             
             let heightLine:CGFloat  = contentArr.count > 2 ? 10 : 0
-            self.heightCollectionViewLayout.constant      = CGFloat((contentArr.count > 5 ? 2 : 1) * itemWidth) + heightLine
+            self.heightCollectionViewLayout.constant      = CGFloat((contentArr.count > 5 ? 2 : 1) * 92) + heightLine
             collectionView.reloadData()
         }
     }
     
+    var groupId: String!
+    var groupOwner: Bool  = false
+    
     @IBOutlet weak var lbDes: UILabel!
     @IBOutlet weak var btnAdd: UIButton!
     
-    let itemSpacing:CGFloat = 20 // item 间隔
-    let itemWidth:CGFloat = ( MGScreenWidth - 35 - 35 - (20 * 4) ) / 5 // item 宽度
+//    let itemSpacing:CGFloat = 20 // item 间隔
+    let itemSpacing:CGFloat = ( MGScreenWidth - 35 - 35 - (56 * 5) ) / 4 // item 宽度
     @IBOutlet weak var heightCollectionViewLayout: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -35,14 +38,26 @@ class GroupItemCell: BaseTableViewCell {
     func configCollectionView()  {
         collectionView.delegate     = self
         collectionView.dataSource   = self
-        collectionView.cellId_register("ContentShowCVCell")
+        collectionView.cellId_register("XBAddContactCell")
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-    
+    func requestDelMember()  {
+        var params_task = [String: Any]()
+        params_task["username"]     = XBUserManager.userName
+        params_task["deviceid"]     = XBUserManager.device_Id
+        params_task["easeadmin"]    = groupOwner
+        params_task["groupid"]      = groupId
+        Net.requestWithTarget(.quitGroup(byAdmin: false, req: params_task), successClosure: { (result, code, message) in
+            if let str = result as? String {
+                print(str)
+//                XBHud.showMsg("退出成功")
+            }
+        })
+    }
 }
 extension GroupItemCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,20 +65,25 @@ extension GroupItemCell:UICollectionViewDelegate,UICollectionViewDataSource,UICo
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentShowCVCell", for: indexPath)as! ContentShowCVCell
-        cell.imgIcon.set_img = "icon_photo"
-        cell.lbTitle.font = UIFont.systemFont(ofSize: 12)
-        cell.lbTitle.set_text = contentArr[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "XBAddContactCell", for: indexPath)as! XBAddContactCell
+        cell.imgView.set_img = "icon_photo"
+        cell.titleLab.font = UIFont.systemFont(ofSize: 12)
+        cell.titleLab.set_text = contentArr[indexPath.row]
+
+        cell.imgDelete.addTapGesture {[weak self] (sender) in
+            guard let `self` = self else { return }
+            self.requestDelMember()
+        }
         return cell
         
     }
     //最小item间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return itemSpacing
     }
     //item 的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:itemWidth,height:itemWidth)
+        return CGSize(width:56,height:92)
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

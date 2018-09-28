@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0402E776215E18390040919C /* XBAddContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0402E774215E18390040919C /* XBAddContactCell.xib */; };
+		0402E777215E18390040919C /* XBAddContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402E775215E18390040919C /* XBAddContactCell.swift */; };
+		0402E779215E19F30040919C /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402E778215E19F30040919C /* VolumeControlView.swift */; };
+		0402E77B215E19FA0040919C /* VolumeControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0402E77A215E19FA0040919C /* VolumeControlView.xib */; };
+		0402E77E215E27160040919C /* XBLaunchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0402E77C215E27160040919C /* XBLaunchView.xib */; };
+		0402E77F215E27160040919C /* XBLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0402E77D215E27160040919C /* XBLaunchView.swift */; };
 		0413BECC21422542006E3A44 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413BECB21422541006E3A44 /* Defaults.swift */; };
 		0413BECF21424BC9006E3A44 /* MemberManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413BECD21424BC9006E3A44 /* MemberManagerVC.swift */; };
 		0413BED021424BC9006E3A44 /* MemberManagerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0413BECE21424BC9006E3A44 /* MemberManagerVC.xib */; };
@@ -340,6 +346,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0402E774215E18390040919C /* XBAddContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBAddContactCell.xib; sourceTree = "<group>"; };
+		0402E775215E18390040919C /* XBAddContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBAddContactCell.swift; sourceTree = "<group>"; };
+		0402E778215E19F30040919C /* VolumeControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
+		0402E77A215E19FA0040919C /* VolumeControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumeControlView.xib; sourceTree = "<group>"; };
+		0402E77C215E27160040919C /* XBLaunchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBLaunchView.xib; sourceTree = "<group>"; };
+		0402E77D215E27160040919C /* XBLaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBLaunchView.swift; sourceTree = "<group>"; };
 		0413BECB21422541006E3A44 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		0413BECD21424BC9006E3A44 /* MemberManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberManagerVC.swift; sourceTree = "<group>"; };
 		0413BECE21424BC9006E3A44 /* MemberManagerVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberManagerVC.xib; sourceTree = "<group>"; };
@@ -1678,6 +1690,8 @@
 		04C38818213E0B590063A799 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				0402E77D215E27160040919C /* XBLaunchView.swift */,
+				0402E77C215E27160040919C /* XBLaunchView.xib */,
 				0461CBD02154D6D400DF4C9A /* WOWDatePickerView.swift */,
 				0461CBCF2154D6D400DF4C9A /* WOWDatePickerView.xib */,
 				04C143692147A8F500FC2000 /* ShowChooseView.swift */,
@@ -1686,6 +1700,8 @@
 				2D9195D82153CE6900F4A9A1 /* BottomSongView.xib */,
 				0473BA07215A298E003D688F /* ScreenControlView.swift */,
 				0473BA09215A299A003D688F /* ScreenControlView.xib */,
+				0402E778215E19F30040919C /* VolumeControlView.swift */,
+				0402E77A215E19FA0040919C /* VolumeControlView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1915,6 +1931,8 @@
 				2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */,
 				04CF4930215B328A0052CD67 /* GroupItemCell.swift */,
 				04CF4931215B328A0052CD67 /* GroupItemCell.xib */,
+				0402E775215E18390040919C /* XBAddContactCell.swift */,
+				0402E774215E18390040919C /* XBAddContactCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2071,6 +2089,7 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
+				1551978F2C5FE56EF279DD24 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2121,12 +2140,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0402E77E215E27160040919C /* XBLaunchView.xib in Resources */,
 				04C1436C2147A8FD00FC2000 /* ShowChooseView.xib in Resources */,
 				042EEF892150E15F00DBD492 /* EaseUIResource.bundle in Resources */,
 				04C38A0D213E6D850063A799 /* ContentLikeCell.xib in Resources */,
 				2D9195D52153BE2500F4A9A1 /* DrawControlHeader.xib in Resources */,
 				2DC955A8213FFC8C004D6F65 /* AboutMeVC.xib in Resources */,
 				04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */,
+				0402E776215E18390040919C /* XBAddContactCell.xib in Resources */,
 				2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */,
 				2DBD88EA215D0B6A00BC543A /* EquipmentListViewController.xib in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
@@ -2154,6 +2175,7 @@
 				2DC955A4213FFA98004D6F65 /* RegisterViewController.xib in Resources */,
 				042EEF692150E15F00DBD492 /* MWPhotoBrowser.bundle in Resources */,
 				04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */,
+				0402E77B215E19FA0040919C /* VolumeControlView.xib in Resources */,
 				04C38A15213E6FE70063A799 /* ContentShowThreeCell.xib in Resources */,
 				2DC9558E213EAC4C004D6F65 /* EquipmentSetHeaderCell.xib in Resources */,
 				04C38A09213E6CD70063A799 /* ContentShowCVCell.xib in Resources */,
@@ -2181,6 +2203,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1551978F2C5FE56EF279DD24 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2288,6 +2325,7 @@
 				04C38728213E093F0063A799 /* XBRxSectionManager.swift in Sources */,
 				042EEF292150E15F00DBD492 /* MJRefreshBackStateFooter.m in Sources */,
 				04C38741213E09400063A799 /* PPPersonModel.swift in Sources */,
+				0402E779215E19F30040919C /* VolumeControlView.swift in Sources */,
 				042EEF332150E15F00DBD492 /* MJRefreshBackFooter.m in Sources */,
 				042EEF212150E15F00DBD492 /* EaseConversationModel.m in Sources */,
 				2DBD88E9215D0B6A00BC543A /* EquipmentListViewController.swift in Sources */,
@@ -2412,6 +2450,7 @@
 				0485CCB32148A89200F54927 /* MQTTStreamable.swift in Sources */,
 				04C3871F213E093F0063A799 /* XBJpushManager.swift in Sources */,
 				04C38736213E093F0063A799 /* BYFoundationLog.m in Sources */,
+				0402E777215E18390040919C /* XBAddContactCell.swift in Sources */,
 				042EEF2C2150E15F00DBD492 /* MJRefreshAutoGifFooter.m in Sources */,
 				04C38734213E093F0063A799 /* ETPopupViewExtension.swift in Sources */,
 				0485CCAB2148A89200F54927 /* MQTTPingResp.swift in Sources */,
@@ -2528,6 +2567,7 @@
 				04C3872F213E093F0063A799 /* UIImage+.swift in Sources */,
 				2D0ACC4C215A74EC0047103C /* AccountInfoViewController.swift in Sources */,
 				04C389D3213E160E0063A799 /* XBTabBarController.swift in Sources */,
+				0402E77F215E27160040919C /* XBLaunchView.swift in Sources */,
 				042EEF7A2150E15F00DBD492 /* EaseFacialView.m in Sources */,
 				04C38717213E093F0063A799 /* XBConfig.swift in Sources */,
 				042EEF492150E15F00DBD492 /* MWGridViewController.m in Sources */,

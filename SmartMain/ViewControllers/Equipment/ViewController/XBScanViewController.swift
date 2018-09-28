@@ -134,17 +134,18 @@ extension XBScanViewController {
             return
         }
         params_task["deviceId"] = current_deviceId
-        Net.requestWithTarget(.joinEquiment(req: params_task), successClosure: { (result, code, message) in
-            print(result)
-            if let str = result as? String {
-                if str == "ok" {
-                    print("加入成功")
-                    self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: current_deviceId)
-                }else {
-                    XBHud.showMsg("第一步加入失败")
-                }
-            }
-        })
+        self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: current_deviceId)
+//        Net.requestWithTarget(.joinEquiment(req: params_task), successClosure: { (result, code, message) in
+//            print(result)
+//            if let str = result as? String {
+//                if str == "ok" {
+//                    print("加入成功")
+//                    self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: current_deviceId)
+//                }else {
+//                    XBHud.showMsg("第一步加入失败")
+//                }
+//            }
+//        })
 //        user_defaults.get(for: .deviceId)
     }
     

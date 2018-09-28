@@ -104,6 +104,7 @@ extension EquipmentSubListVC {
         cell.singModelData = dataArr[indexPath.row]
         cell.listId = self.trackListId
         cell.lbLineNumber.set_text = (indexPath.row + 1).toString
+        cell.setArr = ["添加到播单","收藏","删除"]
         return cell
         
     }

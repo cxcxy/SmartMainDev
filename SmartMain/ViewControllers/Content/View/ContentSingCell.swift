@@ -13,11 +13,17 @@ class ContentSingCell: BaseTableViewCell {
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbLineNumber: UILabel!
+    
     var trackId: String?
     var duration: String?
     var title: String?
     var listId: Int? // 预制列表二级列表 列表ID
     var headerInfo:ConetentSingAlbumModel?
+    
+    var setArr: [String] = []
+    
+    var trackList: [EquipmentModel] = [] // 预制列表数据model
+
     var singModelData: EquipmentSingModel? { // 预制列表菜单Model
         didSet {
             guard let m = singModelData else {
@@ -63,33 +69,58 @@ class ContentSingCell: BaseTableViewCell {
         // Initialization code
     }
     @IBAction func clickMnumAction(_ sender: Any) {
-        let v = ShowChooseView.loadFromNib()
-        v.btnLike.addAction {[weak self] in
-            guard let `self` = self else { return }
-            self.requestLikeSing()
+//        let v = ShowChooseView.loadFromNib()
+//        v.btnLike.addAction {[weak self] in
+//            guard let `self` = self else { return }
+//            self.requestLikeSing()
+//        }
+//        v.btnCancleLike.addAction {[weak self] in
+//            guard let `self` = self else { return }
+//            self.requestCancleLikeSing()
+//        }
+//        v.btnDeleteDemand.addAction {[weak self] in
+//            guard let `self` = self else { return }
+//            self.requestDeleteDemand()
+//        }
+//        v.btnDelTrackList.addAction {[weak self] in
+//            guard let `self` = self else { return }
+//            self.requestDeleteSingWithList()
+//        }
+//        v.btnAddTrackList.addAction {[weak self] in
+//            guard let `self` = self else { return }
+//            self.requestAddSingWithList()
+//        }
+//        v.show()
+        guard setArr.count > 0 else {
+            return
         }
-        v.btnCancleLike.addAction {[weak self] in
-            guard let `self` = self else { return }
-            self.requestCancleLikeSing()
+        VCRouter.prentSheetAction(dataArr: setArr) { (index) in
+            if index == 0 {
+                self.showTrackListAction()
+            }
+            if index == 1 {
+                self.requestLikeSing()
+            }
         }
-        v.btnDeleteDemand.addAction {[weak self] in
-            guard let `self` = self else { return }
-            self.requestDeleteDemand()
+    }
+    func showTrackListAction()  {
+        guard trackList.count > 0 else {
+            return
         }
-        v.btnDelTrackList.addAction {[weak self] in
-            guard let `self` = self else { return }
-            self.requestDeleteSingWithList()
+        let arr  = trackList.compactMap { (item) -> String in
+            return item.name ?? ""
+        } as [String]
+        
+        VCRouter.prentSheetAction(dataArr: arr) { (index) in
+            let trackId = self.trackList[index].id ?? 0
+            let trackName = self.trackList[index].name ?? ""
+            self.requestAddSingWithList(listId: trackId,listName: trackName)
         }
-        v.btnAddTrackList.addAction {[weak self] in
-            guard let `self` = self else { return }
-            self.requestAddSingWithList()
-        }
-        v.show()
     }
     /**
      *   增加歌曲到预制列表中
      */
-    func requestAddSingWithList()  {
+    func requestAddSingWithList(listId: Int,listName: String)  {
         guard let m = self.modelData,let headerInfo = self.headerInfo else {
             XBHud.showMsg("所需信息不全")
             return
@@ -108,7 +139,7 @@ class ContentSingCell: BaseTableViewCell {
         req_model.url = m.content
         req_model.downloadSize = 1
         req_model.downloadUrl = m.content
-        Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, listId: 3705, listName: "儿歌", trackIds: [req_model]), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, listId: listId, listName: listName, trackIds: [req_model]), successClosure: { (result, code, message) in
             print(result)
             if let str = result as? String {
                 if str == "ok" {

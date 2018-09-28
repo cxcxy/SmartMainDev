@@ -12,7 +12,7 @@ class ChatGroupController: EaseMessageViewController {
     var groupName: String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "聊天啦"
+        self.title = "聊天"
         self.setCustomerBack()
         self.setRightItem()
         let chatView = self.chatToolbar as? EaseChatToolbar
@@ -71,14 +71,14 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
 //        let convertedPath = self.getpath
         print(result)
        
-//        if (fileManager.fileExists(atPath: localPath)){
-//            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: "qq", body: localPath), successClosure: { (result, code, message) in
-//                if let str = result as? String {
-//                    print(str)
-//                }
-//            })
-//        
-//        }
+        if (fileManager.fileExists(atPath: localPath)){
+            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: XBUserManager.userName, body: localPath), successClosure: { (result, code, message) in
+                if let str = result as? String {
+                    print(str)
+                }
+            })
+        
+        }
     }
     override func sendTextMessage(_ text: String!) {
         print(text)

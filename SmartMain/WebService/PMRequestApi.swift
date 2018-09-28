@@ -15,7 +15,7 @@ enum RequestApi{
     case contentModules(req: [String: Any])
     case contentsub(req: [String: Any])
     case getLikeList(openId: String)
-    case getHistoryList(openId: String)
+    case getHistoryList(deviceId: String)
     case getTrackList(deviceId: String)
     case getSingleTrack(id: Int)
     case getTrackSubList(req: [String: Any])
@@ -56,6 +56,7 @@ enum RequestApi{
     case resetAvatar(req: [String: Any])
     case modifyNickname(req: [String: Any])
     case getNetVoice(req: [String: Any])
+    case quitGroup(byAdmin: Bool, req: [String: Any])
 }
 extension RequestApi {
     /**
@@ -121,6 +122,9 @@ extension RequestApi:TargetType{
              .getNetVoice(let req):
             params_task = req
             break
+        case .quitGroup(_,let req):
+            params_task = req
+            break
         case .resetPassword(_, let req):
             params_task = req
             break
@@ -165,8 +169,8 @@ extension RequestApi:TargetType{
             params_task = req
             return .requestParameters(parameters: params_task,
                                       encoding: URLEncoding.default)
-        case .getHistoryList(let openId):
-            params_task["openId"] = openId
+        case .getHistoryList(let deviceId):
+            params_task["deviceId"] = deviceId
             return .requestParameters(parameters: params_task,
                                       encoding: URLEncoding.default)
         case .getBabyInfo(let deviceId):
@@ -192,8 +196,8 @@ extension RequestApi:TargetType{
         case .sendVoiceDevice(_,_,_,let fileURL):
             let formData = MultipartFormData(provider: .file(URL(fileURLWithPath: fileURL)),
                                              name: "file",
-                                             fileName: "jihao.wav",
-                                             mimeType: "audio/x-wav")
+                                             fileName: "jihao.amr",
+                                             mimeType: "audio/amr")
             let multipartData = [formData]
             return .uploadMultipart(multipartData)
         default:

@@ -43,15 +43,18 @@ class GroupAddViewController: XBBaseTableViewController {
             }else {
                 self.groupOwner = false
             }
-            
-        }
-        EMClient.shared().groupManager.getGroupMemberListFromServer(withId: groupId, cursor: "", pageSize: 0) {[weak self]  (cursorResult, error) in
-            guard let `self` = self,let cursorResult = cursorResult else { return }
-            if let list = cursorResult.list as? [String] {
+            if let list = emGroup.occupants as? [String] {
                 self.groupList = list
                 self.tableView.reloadData()
             }
         }
+//        EMClient.shared().groupManager.getGroupMemberListFromServer(withId: groupId, cursor: "", pageSize: 0) {[weak self]  (cursorResult, error) in
+//            guard let `self` = self,let cursorResult = cursorResult else { return }
+//            if let list = cursorResult.list as? [String] {
+//                self.groupList = list
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,21 +63,43 @@ class GroupAddViewController: XBBaseTableViewController {
     
     func clickOutAction()  {
         if groupOwner {
-            EMClient.shared().groupManager.destroyGroup(groupId) {[weak self] (error) in
-                guard let `self` = self else { return }
-                if error == nil {
+//            EMClient.shared().groupManager.destroyGroup(groupId) {[weak self] (error) in
+//                guard let `self` = self else { return }
+//                if error == nil {
+//                    XBHud.showMsg("解散成功")
+//                    self.popToRootVC()
+//                }
+//            }
+            var params_task = [String: Any]()
+            params_task["username"] = XBUserManager.userName
+            params_task["deviceid"] = XBUserManager.device_Id
+            params_task["easeadmin"] = 1
+            params_task["groupid"] = groupId
+            Net.requestWithTarget(.quitGroup(byAdmin: true, req: params_task), successClosure: { (result, code, message) in
+                if let str = result as? String {
+                        print(str)
                     XBHud.showMsg("解散成功")
-                    self.popToRootVC()
                 }
-            }
+            })
         } else {
-            EMClient.shared().groupManager.leaveGroup(groupId) { [weak self] (error) in
-                guard let `self` = self else { return }
-                if error == nil {
+            var params_task = [String: Any]()
+            params_task["username"] = XBUserManager.userName
+            params_task["deviceid"] = XBUserManager.device_Id
+            params_task["easeadmin"] = 0
+            params_task["groupid"] = groupId
+            Net.requestWithTarget(.quitGroup(byAdmin: false, req: params_task), successClosure: { (result, code, message) in
+                if let str = result as? String {
+                    print(str)
                     XBHud.showMsg("退出成功")
-                    self.popToRootVC()
                 }
-            }
+            })
+//            EMClient.shared().groupManager.leaveGroup(groupId) { [weak self] (error) in
+//                guard let `self` = self else { return }
+//                if error == nil {
+//                    XBHud.showMsg("退出成功")
+//                    self.popToRootVC()
+//                }
+//            }
         }
     }
     func updateGroupNick(nick: String)  {
@@ -108,6 +133,8 @@ extension GroupAddViewController {
                 self.toAddGroupMemberAction()
             }
             cell.lbDes.set_text = "微聊组成员"
+            cell.groupId        = self.groupId
+            cell.groupOwner     = self.groupOwner
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupItemCell", for: indexPath) as! GroupItemCell

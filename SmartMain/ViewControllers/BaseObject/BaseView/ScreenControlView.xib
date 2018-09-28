@@ -17,13 +17,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改音量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fno-i8-KFW">
-                    <rect key="frame" x="152.5" y="30" width="70" height="21"/>
+                    <rect key="frame" x="152.5" y="112.5" width="70" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2H-e1-UZf">
-                    <rect key="frame" x="50" y="213.5" width="275" height="260"/>
+                    <rect key="frame" x="50" y="163.5" width="275" height="260"/>
                     <subviews>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMw-F8-tjD">
                             <rect key="frame" x="0.0" y="0.0" width="275" height="260"/>
@@ -38,14 +38,30 @@
                         <constraint firstAttribute="bottom" secondItem="bMw-F8-tjD" secondAttribute="bottom" id="yt7-VQ-FZQ"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQu-z6-CV2">
+                    <rect key="frame" x="50" y="438.5" width="275" height="43"/>
+                    <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="EDB-7G-8Ip"/>
+                    </constraints>
+                    <state key="normal" title="确认">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clickSureAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="AEf-yf-u3q"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="y2H-e1-UZf" secondAttribute="trailing" constant="50" id="2Pp-4i-FoB"/>
                 <constraint firstItem="fno-i8-KFW" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="7PD-bf-jL0"/>
-                <constraint firstItem="y2H-e1-UZf" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="HLw-la-fV8"/>
-                <constraint firstItem="fno-i8-KFW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="XFJ-pw-tGM"/>
+                <constraint firstItem="ZQu-z6-CV2" firstAttribute="trailing" secondItem="y2H-e1-UZf" secondAttribute="trailing" id="AI2-En-i0P"/>
+                <constraint firstItem="y2H-e1-UZf" firstAttribute="top" secondItem="fno-i8-KFW" secondAttribute="bottom" constant="30" id="FKs-J8-yhP"/>
+                <constraint firstItem="y2H-e1-UZf" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-50" id="HLw-la-fV8"/>
+                <constraint firstItem="ZQu-z6-CV2" firstAttribute="leading" secondItem="y2H-e1-UZf" secondAttribute="leading" id="ZYa-Bz-EGt"/>
                 <constraint firstItem="y2H-e1-UZf" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="hVZ-3A-yi6"/>
+                <constraint firstItem="ZQu-z6-CV2" firstAttribute="top" secondItem="y2H-e1-UZf" secondAttribute="bottom" constant="15" id="t4M-q4-cel"/>
                 <constraint firstItem="y2H-e1-UZf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="50" id="xSi-iM-q6v"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

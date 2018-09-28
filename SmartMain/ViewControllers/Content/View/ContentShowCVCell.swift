@@ -12,9 +12,11 @@ class ContentShowCVCell: UICollectionViewCell {
 
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
+    @IBOutlet weak var btnDel: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        btnDel.isHidden = true
     }
 
 }

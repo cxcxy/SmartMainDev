@@ -8,10 +8,10 @@
 
 import UIKit
 class DrawerViewController: XBBaseViewController {
-    var eqOne    = XBStyleCellModel.init(title: "设备连接", imgIcon: "",cellType: 1)
+    var eqOne    = XBStyleCellModel.init(title: "设备配网", imgIcon: "",cellType: 1)
     var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "",cellType: 2)
     var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "",cellType: 3)
-    var eqFour  = XBStyleCellModel.init(title: "解除设备", imgIcon: "",cellType: 7)
+    var eqFour   = XBStyleCellModel.init(title: "家庭成员", imgIcon: "",cellType: 7)
     var accountOne  = XBStyleCellModel.init(title: "宝宝信息", imgIcon: "",cellType: 4)
     var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "",cellType: 5)
     var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "",cellType: 6)
@@ -40,15 +40,25 @@ class DrawerViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        eqArr       = [eqOne,eqTwo,eqThree,eqFour]
-        accountArr  = [accountOne,accountTwo,accountThree]
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
+        self.cofigDeviceInfo()
+    }
+    // 配置 设备信息 数据
+    func cofigDeviceInfo()  {
+        if XBUserManager.device_Id == "" { // 未绑定设备，
+            eqArr       = [eqOne,eqTwo,eqThree]
+            accountArr  = [accountTwo,accountThree]
+        }else { // 绑定设备， 有接触绑定设备操作， 有宝宝信息
+            eqArr       = [eqOne,eqTwo,eqThree,eqFour]
+            accountArr  = [accountOne,accountTwo,accountThree]
+            getMQTT()
+            
+        }
         imgPhoto.roundView()
         imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
-        lbDvnick.set_text = XBUserManager.device_Id == "" ? "暂未绑定设备" : XBUserManager.userName
-        
-        getMQTT()
-        
+//        lbDvnick.set_text = XBUserManager.device_Id == "" ? "暂未绑定设备" : XBUserManager.userName
+         lbDvnick.set_text = XBUserManager.userName
+        self.tableView.reloadData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -85,6 +95,9 @@ extension DrawerViewController {
             self.cw_push(vc)
         case 2:
             self.toQRCodeVC()
+        case 3:
+            let vc = EquipmentListViewController()
+            self.cw_push(vc)
         case 4:
             let vc = SetInfoViewController()
             self.cw_push(vc)
@@ -92,8 +105,9 @@ extension DrawerViewController {
             let vc = AccountInfoViewController()
             self.cw_push(vc)
         case 6:
-            user_defaults.clear(.userName)
-            user_defaults.clear(.deviceId)
+
+            XBUserManager.cleanUserInfo()
+            XBUserManager.clearDeviceInfo()
             let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
             popWindow.rootViewController = sv
             break
@@ -128,7 +142,18 @@ extension DrawerViewController {
      // 调取接口 解除设备
     func requestQuitEquiment(isAdmin: String) {
         Net.requestWithTarget(.quitEquiment(openId: XBUserManager.userName, isAdmin: isAdmin == "1" ? true : false), successClosure: { (result, code, message) in
-            print(result)
+            if let str = result as? String {
+                if str == "ok" {
+                    print("解除成功")
+                    XBHud.showMsg("解除成功")
+                    XBUserManager.clearDeviceInfo()
+                    XBDelay.start(delay: 0.5, closure: {
+                        self.cofigDeviceInfo()
+                    })
+                }else {
+                    XBHud.showMsg("解除失败")
+                }
+            }
         })
 
     }
@@ -192,12 +217,13 @@ extension DrawerViewController {
     }
     
     @IBAction func clickVolumeAction(_ sender: Any) {
-        let v = ScreenControlView.loadFromNib()
+        let v = VolumeControlView.loadFromNib()
         v.show()
     }
     
     @IBAction func clickSleepAction(_ sender: Any) {
-        
+        let v = ScreenControlView.loadFromNib()
+        v.show()
     }
     
 }

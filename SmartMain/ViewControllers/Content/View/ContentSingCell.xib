@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,8 +65,13 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTh-40-YnD">
-                        <rect key="frame" x="274" y="0.0" width="46" height="43"/>
-                        <state key="normal" title="Button"/>
+                        <rect key="frame" x="277" y="0.0" width="43" height="43"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="BTh-40-YnD" secondAttribute="height" multiplier="1:1" id="bLY-Ne-7d9"/>
+                        </constraints>
+                        <state key="normal" title="+">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
                         <connections>
                             <action selector="clickMnumAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gOs-eQ-1wm"/>
                         </connections>

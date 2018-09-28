@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="WOWLaunchView" id="lJl-gH-6sJ" customClass="XBLaunchView" customModule="采购经理人" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ad" translatesAutoresizingMaskIntoConstraints="NO" id="8mr-fD-MOv">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyO-Ph-YdU">
+                    <rect key="frame" x="310" y="40" width="50" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="144-gm-fGr"/>
+                        <constraint firstAttribute="height" constant="25" id="wX7-MB-D56"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clickTimeAction:" destination="lJl-gH-6sJ" eventType="touchUpInside" id="HFu-GC-jBb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8mr-fD-MOv" firstAttribute="top" secondItem="lJl-gH-6sJ" secondAttribute="top" id="85y-w1-D7P"/>
+                <constraint firstItem="vyO-Ph-YdU" firstAttribute="top" secondItem="lJl-gH-6sJ" secondAttribute="top" constant="40" id="Cln-2j-6XK"/>
+                <constraint firstItem="8mr-fD-MOv" firstAttribute="leading" secondItem="lJl-gH-6sJ" secondAttribute="leading" id="PNb-Mo-2Wo"/>
+                <constraint firstAttribute="trailing" secondItem="8mr-fD-MOv" secondAttribute="trailing" id="S2D-Dr-fGQ"/>
+                <constraint firstAttribute="bottom" secondItem="8mr-fD-MOv" secondAttribute="bottom" id="f7C-3j-uO1"/>
+                <constraint firstAttribute="trailing" secondItem="vyO-Ph-YdU" secondAttribute="trailing" constant="15" id="vwm-Pb-HqP"/>
+            </constraints>
+            <connections>
+                <outlet property="backgroundImg" destination="8mr-fD-MOv" id="8wX-I8-UeP"/>
+                <outlet property="timeButton" destination="vyO-Ph-YdU" id="H1V-i5-Ga4"/>
+            </connections>
+            <point key="canvasLocation" x="159" y="-934"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_ad" width="1242" height="2208"/>
+    </resources>
+</document>

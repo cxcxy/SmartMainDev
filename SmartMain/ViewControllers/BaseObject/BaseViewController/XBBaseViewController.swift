@@ -312,6 +312,17 @@ extension XBBaseViewController:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
         guard self.loading else {
             return NSAttributedString.init()
         }
+        if XBUserManager.device_Id == "" {
+            //MARK: tableView 无数据展示状态
+            let XBNoDataTitle:NSAttributedString    =   NSAttributedString(string: "暂无绑定设备",
+                                                                           attributes:[NSAttributedStringKey.foregroundColor:MGRgb(0, g: 0, b: 0, alpha: 0.5),
+                                                                                       NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
+            return XBNoDataTitle
+        }
+        //MARK: tableView 无数据展示状态
+        let XBNoDataTitle:NSAttributedString    =   NSAttributedString(string: "暂无数据",
+                                                                       attributes:[NSAttributedStringKey.foregroundColor:MGRgb(0, g: 0, b: 0, alpha: 0.5),
+                                                                                   NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
         return XBNoDataTitle
     }
     @objc(backgroundColorForEmptyDataSet:) func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {

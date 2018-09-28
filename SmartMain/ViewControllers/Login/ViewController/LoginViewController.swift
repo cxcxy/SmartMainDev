@@ -88,7 +88,8 @@ class LoginViewController: XBBaseViewController {
             XBHud.showMsg("请输入手机号")
             return
         }
-        self.btnCode.isSelected ? requestAuthCodeLogin() : requestPasswordLogin()
+        requestPasswordLogin()
+//        self.btnCode.isSelected ? requestAuthCodeLogin() : requestPasswordLogin()
 
     }
     func requestPasswordLogin()  {

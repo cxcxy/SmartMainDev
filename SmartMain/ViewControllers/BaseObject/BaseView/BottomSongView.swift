@@ -9,8 +9,13 @@
 import UIKit
 
 class BottomSongView: UIView {
+    
+    
     @IBOutlet weak var imgSong: UIImageView!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var btnPlay: UIButton!
+    @IBOutlet weak var lbSingsTitle: UILabel!
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

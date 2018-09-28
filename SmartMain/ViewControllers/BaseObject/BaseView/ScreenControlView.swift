@@ -7,11 +7,22 @@
 //
 
 import UIKit
+class SleepModel: NSObject {
+    var title:String    = ""
+    var value:Int       = 0
 
+    init(title:String,
+         value:Int) {
+        self.title = title
+        self.value = value
+       
+    }
+}
 class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var pickerView: UIPickerView!
-    var dataArr: [String] = ["取消定时","立刻关机","10分钟","20分钟","30分钟","40分钟"]
+    var dataArr: [SleepModel] = []
+    let scoketModel = ScoketMQTTManager.share
     override func awakeFromNib() {
         super.awakeFromNib()
         animationDuration = 0.3
@@ -28,6 +39,13 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
         configPickerView()
     }
     func configPickerView()  {
+        let model1 = SleepModel.init(title: "取消定时", value: 0)
+        let model2 = SleepModel.init(title: "立刻关机", value: -1)
+        let model3 = SleepModel.init(title: "10分钟", value: 10)
+        let model4 = SleepModel.init(title: "20分钟", value: 20)
+        let model5 = SleepModel.init(title: "30分钟", value: 30)
+        let model6 = SleepModel.init(title: "40分钟", value: 40)
+        dataArr = [model1,model2,model3,model4,model5,model6]
         //将dataSource设置成自己
         pickerView.dataSource = self
         //将delegate设置成自己
@@ -36,10 +54,6 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
         pickerView.selectRow(1,inComponent:0,animated:true)
     
     }
-//    //设置选择框的列数为3列,继承于UIPickerViewDataSource协议
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -48,24 +62,15 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
                     numberOfRowsInComponent component: Int) -> Int {
         return dataArr.count
     }
-//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
-//                    forComponent component: Int, reusing view: UIView?) -> UIView {
-//        var pickerLabel = view as? UILabel
-//        if pickerLabel == nil {
-//            pickerLabel = UILabel()
-//            pickerLabel?.font = UIFont.systemFont(ofSize: 13)
-//            pickerLabel?.textAlignment = .center
-//        }
-//        pickerLabel?.text = String(row)+"-"+String(component)
-//        pickerLabel?.textColor = UIColor.blue
-//        return pickerLabel!
-//    }
     //设置选择框各选项的内容，继承于UIPickerViewDelegate协议
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
                     forComponent component: Int) -> String? {
-        return dataArr[row]
+        return dataArr[row].title
     }
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(dataArr[row])
+    }
+//    setPowerOff
     //触摸按钮时，获得被选中的索引
     @objc func getPickerViewValue(){
 //        let message = String(pickerView.selectedRow(inComponent: 0)) + "-"
@@ -77,4 +82,10 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
 //        alertController.addAction(okAction)
 //        self.present(alertController, animated: true, completion: nil)
     }
+    @IBAction func clickSureAction(_ sender: Any) {
+        let selectRow = pickerView.selectedRow(inComponent: 0)
+        let model = dataArr[selectRow].value
+        scoketModel.setPowerOff(value: model)
+    }
+    
 }

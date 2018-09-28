@@ -30,25 +30,25 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的群组" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLh-cC-UAI">
-                                <rect key="frame" x="100" y="24.5" width="58" height="17"/>
+                                <rect key="frame" x="100" y="24.5" width="140" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pY-nv-v2B">
-                                <rect key="frame" x="100" y="46.5" width="31" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pY-nv-v2B">
+                                <rect key="frame" x="100" y="46.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.0" alpha="0.4960669949" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天20:23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8h3-BZ-O3U">
-                                <rect key="frame" x="231" y="15" width="49" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8h3-BZ-O3U">
+                                <rect key="frame" x="280" y="15" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.0" alpha="0.4960669949" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cU-qD-2c8">
-                                <rect key="frame" x="255" y="42" width="20" height="20"/>
+                                <rect key="frame" x="255" y="30" width="20" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5w-WY-SMR">
                                         <rect key="frame" x="6" y="2.5" width="8" height="15"/>
@@ -73,6 +73,7 @@
                             <constraint firstItem="5cU-qD-2c8" firstAttribute="top" secondItem="8h3-BZ-O3U" secondAttribute="bottom" constant="15" id="QYw-1b-QrR"/>
                             <constraint firstAttribute="trailing" secondItem="8h3-BZ-O3U" secondAttribute="trailing" constant="10" id="WfM-E3-dxx"/>
                             <constraint firstItem="1pY-nv-v2B" firstAttribute="top" secondItem="LLh-cC-UAI" secondAttribute="bottom" constant="5" id="XbR-4k-aeo"/>
+                            <constraint firstAttribute="trailing" secondItem="LLh-cC-UAI" secondAttribute="trailing" constant="50" id="dEB-z9-Wgs"/>
                             <constraint firstAttribute="height" constant="90" id="dlG-M0-02k"/>
                             <constraint firstItem="1pY-nv-v2B" firstAttribute="leading" secondItem="LLh-cC-UAI" secondAttribute="leading" id="ode-kd-pgz"/>
                             <constraint firstItem="LLh-cC-UAI" firstAttribute="leading" secondItem="Klp-r2-H3J" secondAttribute="trailing" constant="15" id="rX4-bq-8Dp"/>

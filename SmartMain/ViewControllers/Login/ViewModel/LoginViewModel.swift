@@ -176,7 +176,7 @@ class LoginViewModel: NSObject {
         guard let status = jsonResult.json_Str()["status"].int else {
             return
         }
-        guard status == 200 else {
+        guard status == 200 || status == 300  else {
             let message = jsonResult.json_Str()["message"].stringValue
             XBHud.showMsg(message)
             return

@@ -88,6 +88,23 @@ class VCRouter {
   
 
     }
+    class func prentSheetAction(dataArr: [String],closure: @escaping (Int) -> ())  {
+    
+        let alertController = UIAlertController(title: nil,
+                                            message: nil, preferredStyle: .actionSheet)
+    
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        for item in dataArr.enumerated() {
+            let itemAction = UIAlertAction(title: item.element, style: .default, handler: {
+                action in
+                closure(item.offset)
+            })
+            alertController.addAction(itemAction)
+        }
+        topVC?.present(alertController, animated: true, completion: nil)
+}
+
 //
 }
 import AVFoundation

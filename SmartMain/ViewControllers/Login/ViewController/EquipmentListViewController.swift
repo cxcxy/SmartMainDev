@@ -12,7 +12,7 @@ class EquipmentListViewController: XBBaseViewController {
     let itemSpacing:CGFloat = 20 // item 间隔
     let itemWidth:CGFloat = ( MGScreenWidth - 20 - 20 ) / 2 // item 宽度
     @IBOutlet weak var collectionView: UICollectionView!
-    var dataArr : [String] = []
+    var dataArr : [XBDeviceBabyModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,19 +20,17 @@ class EquipmentListViewController: XBBaseViewController {
         super.setUI()
         title = "选择设备"
         request()
+        configCollectionView()
     }
     override func request() {
         super.request()
         Net.requestWithTarget(.getDeviceIds(userName: XBUserManager.userName), successClosure: { (result, code, message) in
-//            if let str = result as? String {
-//                if str == "ok" {
-//                    print("修改成功")
-//                    XBHud.showMsg("修改成功")
-//                }else {
-//                    XBHud.showMsg("修改失败")
-//                }
-//            }
-            print(result)
+            if let obj = Net.filterStatus(jsonString: result) {
+                if let arr = Mapper<XBDeviceBabyModel>().mapArray(JSONObject: obj.object) {
+                    self.dataArr = arr
+                    self.collectionView.reloadData()
+                }
+            }
         })
     }
     func configCollectionView()  {
@@ -52,8 +50,8 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentShowCVCell", for: indexPath)as! ContentShowCVCell
-//        cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgSmall)
-//        cell.lbTitle.set_text = contentArr[indexPath.row].name
+        cell.lbTitle.set_text = dataArr[indexPath.row].babyname
+        cell.imgIcon.set_Img_Url(dataArr[indexPath.row].headimgurl)
         return cell
     }
     //最小item间距
@@ -66,6 +64,7 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-  
+        let m = dataArr[indexPath.row]
+        XBUserManager.saveDeviceInfo(m)
     }
 }

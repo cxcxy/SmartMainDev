@@ -24,6 +24,7 @@ class TrackListViewController: XBBaseTableViewController {
     override func request() {
         super.request()
         guard XBUserManager.device_Id != "" else {
+            self.loading = true
             endRefresh()
             return
         }

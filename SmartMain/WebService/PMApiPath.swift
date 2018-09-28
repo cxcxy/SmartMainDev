@@ -19,7 +19,7 @@ extension RequestApi {
         case .contentsings:             return "/resource/appInterface.do?inter=/resources/list"
         // 根据用户ID获取收藏列表
         case .getLikeList:              return "/favorite/getlist.do"
-        case .getHistoryList:           return "/demand/getlist.do"
+        case .getHistoryList:           return "/suportAPP/demand/getlist.do"
            //获取预制列表信息
         case .getTrackList:             return "/tracklist/getlistview.do"
         //获取预制列表信息
@@ -88,9 +88,11 @@ extension RequestApi {
         case .resetAvatar:               return "/familymember/avatar/reset.do"
         // 修改账号昵称
         case .modifyNickname:               return "/familymember/modifynickname.do"
+        // 获取声波配网 语音
         case .getNetVoice:                  return "/sinvoice/set.do"
+        // 群组成员操作
+        case .quitGroup(let byAdmin, _):                  return "/suportAPP/familymember/quit.do?byAdmin=\(byAdmin)"
         default:
-            
             return ""
         }
     }

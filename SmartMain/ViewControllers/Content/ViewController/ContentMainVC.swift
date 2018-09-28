@@ -29,6 +29,15 @@ class ContentMainVC: XBBaseViewController {
     var controllerArray     : [UIViewController] = []  // 存放controller 的array
     var v                   : VCVTMagic!  // 统一的左滑 右滑 控制View
     var bottomSongView = BottomSongView.loadFromNib()
+    let scoketModel = ScoketMQTTManager.share
+    var currentSongModel:SingDetailModel? { // 当前正在播放歌曲的信息
+        didSet {
+            guard let m = currentSongModel else {
+                return
+            }
+            self.configBottomSongView(singsDetail: m)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.currentNavigationTitleColor = UIColor.white
@@ -36,8 +45,10 @@ class ContentMainVC: XBBaseViewController {
     override func setUI() {
         super.setUI()
         self.title = "内容"
+       
         configMagicView()
-        configBottomSongView()
+        addBottomSongView()
+        configScoketModel()
         makeCustomerImageNavigationItem("icon-dr", left: true) {[weak self] in
             guard let `self` = self else { return }
             self.maskAnimationFromLeft()
@@ -48,19 +59,61 @@ class ContentMainVC: XBBaseViewController {
             let vc = ChatMainViewController()
             self.pushVC(vc)
         }
+
     }
-    func configBottomSongView()  {
+    func configScoketModel() {
+        guard XBUserManager.device_Id != "" else {
+            return
+        }
+        scoketModel.sendGetTrack()
+        scoketModel.sendPlayStatus()
+        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getPalyingSingsId ===：", $0.element ?? 0)
+            self.requestSingsDetail(trackId: $0.element ?? 0)
+        }.disposed(by: rx_disposeBag)
+        scoketModel.playStatus.asObserver().bind(to: bottomSongView.btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
+    }
+    // 获取歌曲详情
+    func requestSingsDetail(trackId: Int)  {
+        Net.requestWithTarget(.getSingDetail(trackId: trackId), successClosure: { (result, code, message) in
+            
+            guard let result = result as? String else {
+                return
+            }
+            self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
+        })
+    }
+    // 是否隐藏底部 播放 组件
+    func showBottomView()  {
+        guard XBUserManager.device_Id != "" else {
+            bottomSongView.isHidden = true
+            return
+        }
+        bottomSongView.isHidden = false
+    }
+    func addBottomSongView()  {
         view.addSubview(bottomSongView)
         bottomSongView.snp.makeConstraints { (make) in
             make.height.equalTo(80)
             make.left.right.bottom.equalTo(0)
         }
         bottomSongView.imgSong.addTapGesture { (sender) in
-//            let vc = SmartPlayerViewController()
-//            self.pushVC(vc)
-            let vc = EquipmentListViewController()
+            let vc = SmartPlayerViewController()
             self.pushVC(vc)
         }
+        bottomSongView.btnPlay.addAction {[weak self] in
+            guard let `self` = self else { return }
+            self.bottomSongView.btnPlay.isSelected ?  self.scoketModel.sendPausePlay() : self.scoketModel.sendResumePlay()
+        }
+    }
+    func configBottomSongView(singsDetail: SingDetailModel)  {
+//        imgSings.set_Img_Url(singsDetail.coverSmallUrl)
+//        lbSingsTitle.set_text = singsDetail.title
+//        lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.duration)
+        bottomSongView.lbSingsTitle.set_text = singsDetail.title
+        bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
+        
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()

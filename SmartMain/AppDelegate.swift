@@ -11,7 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var lunchView: XBLaunchView!
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         ChatManager.share.init_ChatMessage(application,
                                            launchOptions)
@@ -35,7 +35,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         _ = ScoketMQTTManager.share
         IQKeyboardManager.sharedManager().enable = true
+        if (launchOptions == nil) {
+            showADLaunchView()
+            
+        }
         return true
+    }
+    //MARK: 弹出广告页
+    func showADLaunchView()  {
+        
+        lunchView       = XBLaunchView.loadFromNib()
+        lunchView.frame =  CGRect(x: 0, y: 0, width: MGScreenWidth, height: MGScreenHeight)
+        window?.addSubview(lunchView)
+        window?.bringSubview(toFront: lunchView)
     }
     func configDrawerController()  {
         let mainViewController   = ContentMainVC()

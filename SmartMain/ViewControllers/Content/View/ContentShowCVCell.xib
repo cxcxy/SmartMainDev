@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AF0-kd-1Fv">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gMo-Ly-PTq">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gMo-Ly-PTq">
                                 <rect key="frame" x="10" y="10" width="80" height="59"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-CB-nfP">
@@ -31,16 +31,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3E-3F-XgU">
+                                <rect key="frame" x="75" y="10" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="i4k-nf-0Cd"/>
+                                    <constraint firstAttribute="height" constant="15" id="rf6-ZT-hZ3"/>
+                                </constraints>
+                                <state key="normal" image="icon_shanch"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="8BQ-CB-nfP" secondAttribute="bottom" id="4VV-I2-uIe"/>
+                            <constraint firstItem="W3E-3F-XgU" firstAttribute="top" secondItem="gMo-Ly-PTq" secondAttribute="top" id="Geu-c0-eMl"/>
                             <constraint firstItem="8BQ-CB-nfP" firstAttribute="top" secondItem="gMo-Ly-PTq" secondAttribute="bottom" constant="10" id="KkX-J0-pHU"/>
                             <constraint firstItem="gMo-Ly-PTq" firstAttribute="top" secondItem="AF0-kd-1Fv" secondAttribute="top" constant="10" id="OlL-SY-Jqw"/>
                             <constraint firstItem="gMo-Ly-PTq" firstAttribute="leading" secondItem="AF0-kd-1Fv" secondAttribute="leading" constant="10" id="QbU-pT-NdJ"/>
                             <constraint firstAttribute="trailing" secondItem="gMo-Ly-PTq" secondAttribute="trailing" constant="10" id="W7Q-fL-xvh"/>
                             <constraint firstAttribute="trailing" secondItem="8BQ-CB-nfP" secondAttribute="trailing" id="W8O-8D-iNY"/>
                             <constraint firstItem="8BQ-CB-nfP" firstAttribute="leading" secondItem="AF0-kd-1Fv" secondAttribute="leading" id="ZLc-8Y-ktg"/>
+                            <constraint firstItem="W3E-3F-XgU" firstAttribute="trailing" secondItem="gMo-Ly-PTq" secondAttribute="trailing" id="tja-aE-DAL"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -53,9 +63,13 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
+                <outlet property="btnDel" destination="W3E-3F-XgU" id="Y9d-Of-cft"/>
                 <outlet property="imgIcon" destination="gMo-Ly-PTq" id="b7C-TP-j9b"/>
                 <outlet property="lbTitle" destination="8BQ-CB-nfP" id="eGu-YY-7W1"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="icon_shanch" width="12" height="12"/>
+    </resources>
 </document>
