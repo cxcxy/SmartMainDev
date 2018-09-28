@@ -88,6 +88,20 @@ class VCRouter {
   
 
     }
+    class func prentAlertAction(message: String,closure: @escaping () -> ())  {
+        
+        let alertController = UIAlertController(title: "温馨提示",
+                                                message: message, preferredStyle: .alert)
+ 
+        let alertSure = UIAlertAction(title: "确定", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            closure()
+        })
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(alertSure)
+        topVC?.present(alertController, animated: true, completion: nil)
+    }
     class func prentSheetAction(dataArr: [String],closure: @escaping (Int) -> ())  {
     
         let alertController = UIAlertController(title: nil,
@@ -103,7 +117,7 @@ class VCRouter {
             alertController.addAction(itemAction)
         }
         topVC?.present(alertController, animated: true, completion: nil)
-}
+    }
 
 //
 }

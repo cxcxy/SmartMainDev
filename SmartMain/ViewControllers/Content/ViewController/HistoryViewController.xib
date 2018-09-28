@@ -13,7 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HistoryViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="yDO-KV-BQX" id="rd3-DI-Ksn"/>
-                <outlet property="tfSearch" destination="g0B-q5-jOq" id="0RV-Zz-XKU"/>
                 <outlet property="view" destination="iN0-l3-epB" id="GOq-rT-Q2J"/>
             </connections>
         </placeholder>
@@ -22,96 +21,96 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIv-M4-Wwi">
-                    <rect key="frame" x="0.0" y="20" width="375" height="190"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbJ-zy-RIN">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwf-Ls-Aa4">
-                                    <rect key="frame" x="30" y="85" width="315" height="30"/>
-                                    <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="搜索资源" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g0B-q5-jOq">
-                                            <rect key="frame" x="15" y="0.0" width="285" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="g0B-q5-jOq" secondAttribute="bottom" id="Aga-F8-WGc"/>
-                                        <constraint firstAttribute="height" constant="30" id="TS3-4I-6xU"/>
-                                        <constraint firstItem="g0B-q5-jOq" firstAttribute="leading" secondItem="pwf-Ls-Aa4" secondAttribute="leading" constant="15" id="bRI-Im-P9Q"/>
-                                        <constraint firstAttribute="trailing" secondItem="g0B-q5-jOq" secondAttribute="trailing" constant="15" id="ltD-um-jZp"/>
-                                        <constraint firstItem="g0B-q5-jOq" firstAttribute="top" secondItem="pwf-Ls-Aa4" secondAttribute="top" id="spC-M4-JnK"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" red="0.24705882352941178" green="0.26666666666666666" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="pwf-Ls-Aa4" secondAttribute="trailing" constant="30" id="5X1-b5-2yi"/>
-                                <constraint firstAttribute="height" constant="145" id="GGf-fD-5sx"/>
-                                <constraint firstAttribute="bottom" secondItem="pwf-Ls-Aa4" secondAttribute="bottom" constant="30" id="JAF-qa-C7x"/>
-                                <constraint firstItem="pwf-Ls-Aa4" firstAttribute="centerX" secondItem="gbJ-zy-RIN" secondAttribute="centerX" id="K5e-2d-bzo"/>
-                                <constraint firstItem="pwf-Ls-Aa4" firstAttribute="leading" secondItem="gbJ-zy-RIN" secondAttribute="leading" constant="30" id="s5R-7T-SM8"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ew0-OX-dDA">
-                            <rect key="frame" x="0.0" y="145" width="375" height="45"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="历史记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSj-iJ-sA2">
-                                    <rect key="frame" x="30" y="14" width="58" height="17"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZS-uf-rOS">
-                                    <rect key="frame" x="283" y="10.5" width="62" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <state key="normal" title="清空历史记录">
-                                        <color key="titleColor" white="0.0" alpha="0.4960669949" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="kZS-uf-rOS" secondAttribute="trailing" constant="30" id="IlX-f8-CBk"/>
-                                <constraint firstAttribute="height" constant="45" id="NX3-ya-ybe"/>
-                                <constraint firstItem="DSj-iJ-sA2" firstAttribute="leading" secondItem="ew0-OX-dDA" secondAttribute="leading" constant="30" id="VlZ-W7-MKj"/>
-                                <constraint firstItem="kZS-uf-rOS" firstAttribute="centerY" secondItem="DSj-iJ-sA2" secondAttribute="centerY" id="XNt-Yc-QJt"/>
-                                <constraint firstItem="DSj-iJ-sA2" firstAttribute="centerY" secondItem="ew0-OX-dDA" secondAttribute="centerY" id="nPE-Xd-YIm"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="ew0-OX-dDA" secondAttribute="trailing" id="6Yg-9c-cTv"/>
-                        <constraint firstItem="gbJ-zy-RIN" firstAttribute="top" secondItem="fIv-M4-Wwi" secondAttribute="top" id="HJ1-CC-auk"/>
-                        <constraint firstAttribute="bottom" secondItem="ew0-OX-dDA" secondAttribute="bottom" id="Jce-Ii-6CJ"/>
-                        <constraint firstItem="ew0-OX-dDA" firstAttribute="top" secondItem="gbJ-zy-RIN" secondAttribute="bottom" id="LCx-IC-Rkd"/>
-                        <constraint firstItem="ew0-OX-dDA" firstAttribute="leading" secondItem="fIv-M4-Wwi" secondAttribute="leading" id="LbV-pD-ar4"/>
-                        <constraint firstAttribute="height" constant="190" id="bHS-r5-kg1"/>
-                        <constraint firstAttribute="trailing" secondItem="gbJ-zy-RIN" secondAttribute="trailing" id="bfv-fy-z7N"/>
-                        <constraint firstItem="gbJ-zy-RIN" firstAttribute="leading" secondItem="fIv-M4-Wwi" secondAttribute="leading" id="gGU-NQ-dxK"/>
-                    </constraints>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-KV-BQX">
-                    <rect key="frame" x="0.0" y="210" width="375" height="457"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="yDO-KV-BQX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="5Y3-Rf-SUM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yDO-KV-BQX" secondAttribute="bottom" id="AwB-05-J0w"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fIv-M4-Wwi" secondAttribute="trailing" id="Hpw-MX-7w5"/>
-                <constraint firstItem="yDO-KV-BQX" firstAttribute="top" secondItem="fIv-M4-Wwi" secondAttribute="bottom" id="I0g-r2-zn4"/>
-                <constraint firstItem="fIv-M4-Wwi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Sln-uT-94w"/>
-                <constraint firstItem="fIv-M4-Wwi" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="jRK-jW-fpa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yDO-KV-BQX" secondAttribute="trailing" id="mM2-qg-Gah"/>
                 <constraint firstItem="yDO-KV-BQX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tDf-KL-xfM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4p-xz-YAM">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVO-Pv-D49">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myG-HL-me7">
+                            <rect key="frame" x="30" y="85" width="315" height="30"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="搜索资源" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M37-P3-NNn">
+                                    <rect key="frame" x="15" y="0.0" width="285" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="7HU-PO-svt"/>
+                                <constraint firstItem="M37-P3-NNn" firstAttribute="leading" secondItem="myG-HL-me7" secondAttribute="leading" constant="15" id="BEg-xW-e6x"/>
+                                <constraint firstAttribute="trailing" secondItem="M37-P3-NNn" secondAttribute="trailing" constant="15" id="KEp-Xt-UZg"/>
+                                <constraint firstAttribute="bottom" secondItem="M37-P3-NNn" secondAttribute="bottom" id="LSi-tP-jlx"/>
+                                <constraint firstItem="M37-P3-NNn" firstAttribute="top" secondItem="myG-HL-me7" secondAttribute="top" id="lau-tO-5wd"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.2470588235" green="0.2666666667" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="145" id="9fM-0M-oE5"/>
+                        <constraint firstAttribute="trailing" secondItem="myG-HL-me7" secondAttribute="trailing" constant="30" id="Mh3-YO-cU1"/>
+                        <constraint firstAttribute="bottom" secondItem="myG-HL-me7" secondAttribute="bottom" constant="30" id="RxT-Oo-0ai"/>
+                        <constraint firstItem="myG-HL-me7" firstAttribute="leading" secondItem="JVO-Pv-D49" secondAttribute="leading" constant="30" id="VNg-uB-hn5"/>
+                        <constraint firstItem="myG-HL-me7" firstAttribute="centerX" secondItem="JVO-Pv-D49" secondAttribute="centerX" id="jta-NJ-cm4"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98b-GG-dLH">
+                    <rect key="frame" x="0.0" y="145" width="375" height="45"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="历史记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evj-fB-JHk">
+                            <rect key="frame" x="30" y="14" width="58" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5a-aw-wT0">
+                            <rect key="frame" x="283" y="10.5" width="62" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="清空历史记录">
+                                <color key="titleColor" white="0.0" alpha="0.4960669949" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Evj-fB-JHk" firstAttribute="leading" secondItem="98b-GG-dLH" secondAttribute="leading" constant="30" id="1F2-ic-E33"/>
+                        <constraint firstItem="j5a-aw-wT0" firstAttribute="centerY" secondItem="Evj-fB-JHk" secondAttribute="centerY" id="e6l-td-Fxk"/>
+                        <constraint firstAttribute="height" constant="45" id="gpF-Di-6P9"/>
+                        <constraint firstAttribute="trailing" secondItem="j5a-aw-wT0" secondAttribute="trailing" constant="30" id="jMw-p5-Bd0"/>
+                        <constraint firstItem="Evj-fB-JHk" firstAttribute="centerY" secondItem="98b-GG-dLH" secondAttribute="centerY" id="pnS-Pu-YF3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="190" id="1Nf-TY-YMx"/>
+                <constraint firstItem="JVO-Pv-D49" firstAttribute="top" secondItem="H4p-xz-YAM" secondAttribute="top" id="2Bm-yj-zwx"/>
+                <constraint firstItem="98b-GG-dLH" firstAttribute="leading" secondItem="H4p-xz-YAM" secondAttribute="leading" id="3mm-Gx-VVu"/>
+                <constraint firstAttribute="trailing" secondItem="JVO-Pv-D49" secondAttribute="trailing" id="741-ZS-492"/>
+                <constraint firstItem="98b-GG-dLH" firstAttribute="top" secondItem="JVO-Pv-D49" secondAttribute="bottom" id="LNY-MS-jHd"/>
+                <constraint firstItem="JVO-Pv-D49" firstAttribute="leading" secondItem="H4p-xz-YAM" secondAttribute="leading" id="WtZ-m8-5hc"/>
+                <constraint firstAttribute="bottom" secondItem="98b-GG-dLH" secondAttribute="bottom" id="fLk-8v-WRh"/>
+                <constraint firstAttribute="trailing" secondItem="98b-GG-dLH" secondAttribute="trailing" id="w3L-1z-Xns"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="iUf-5l-2Lz"/>
+            <point key="canvasLocation" x="-1" y="-805"/>
         </view>
     </objects>
 </document>

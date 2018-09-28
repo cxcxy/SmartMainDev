@@ -105,14 +105,15 @@ extension DrawerViewController {
             let vc = AccountInfoViewController()
             self.cw_push(vc)
         case 6:
-
             XBUserManager.cleanUserInfo()
             XBUserManager.clearDeviceInfo()
             let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
             popWindow.rootViewController = sv
             break
         case 7:
-            quitEquimentAction()
+//            quitEquimentAction()
+            let vc = MemberManagerVC()
+            self.cw_push(vc)
             break
         default:
             break

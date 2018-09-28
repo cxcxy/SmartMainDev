@@ -106,6 +106,14 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             self.bottomSongView.btnPlay.isSelected ?  self.scoketModel.sendPausePlay() : self.scoketModel.sendResumePlay()
         }
+        bottomSongView.btnOn.addAction {[weak self] in
+            guard let `self` = self else { return }
+            self.scoketModel.sendSongOn()
+        }
+        bottomSongView.btnDown.addAction {[weak self] in
+            guard let `self` = self else { return }
+            self.scoketModel.sendSongDown()
+        }
     }
     func configBottomSongView(singsDetail: SingDetailModel)  {
 //        imgSings.set_Img_Url(singsDetail.coverSmallUrl)
@@ -173,7 +181,7 @@ extension ContentMainVC:VTMagicViewDataSource{
             let b               = UIButton(type: .custom)
             b.frame             = CGRect(x: 0, y: 0, width: width, height: 50)
             b.titleLabel!.font  =  UIFont.systemFont(ofSize: 14)
-            b.setTitleColor(MGRgb(128, g: 140, b: 155), for: UIControlState())
+            b.setTitleColor(MGRgb(0, g: 0, b: 0, alpha: 0.3), for: UIControlState())
             b.setTitleColor(UIColor.white, for: .selected)
             b.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             

@@ -125,15 +125,12 @@ class LoginViewModel: NSObject {
         params_task["username"] = mobile
         params_task["password"] = onePass
         Net.requestWithTarget(.resetPassword(authCode: code,req: params_task), successClosure: { (result, code, message) in
-            if let str = result as? String {
-                if str == "ok" {
+            if let obj = Net.filterStatus(jsonString: result) {
+                if let password = obj["password"].string,let username = obj["username"].string {
                     print("修改成功")
                     XBHud.showMsg("修改成功")
-                }else {
-                    XBHud.showMsg("修改失败")
                 }
             }
-            print(result)
         })
     }
     /// 修改信息

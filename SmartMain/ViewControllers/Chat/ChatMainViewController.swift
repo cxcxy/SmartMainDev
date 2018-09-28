@@ -36,7 +36,7 @@ class ChatMainViewController: XBBaseViewController {
         }
         
         self.endRefresh()
-        self.loading = false
+        self.loading = true
         self.tableView.reloadData()
     }
 

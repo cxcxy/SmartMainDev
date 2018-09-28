@@ -18,6 +18,7 @@ class LikeViewController: XBBaseTableViewController {
     }
     override func setUI() {
         super.setUI()
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         request()
     }
     override func request() {
@@ -60,11 +61,13 @@ extension LikeViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
             let m  = dataArr[indexPath.section]
             cell.lbTitle.set_text = m.title
+            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
             cell.viewAdd.isHidden = true
             cell.viewDel.isHidden = true
+            cell.lbLike.set_text = "取消收藏"
             return cell
         }
     }

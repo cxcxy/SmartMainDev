@@ -39,16 +39,16 @@
                         <constraint firstAttribute="width" constant="150" id="OdG-5C-K5k"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在播放" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeF-Vk-Fma">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无歌曲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeF-Vk-Fma">
                     <rect key="frame" x="160.5" y="250" width="53.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="0.0" alpha="0.4960669949" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18Y-8I-3Di">
                     <rect key="frame" x="0.0" y="467" width="375" height="200"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbQ-HL-6EQ">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbQ-HL-6EQ">
                             <rect key="frame" x="15" y="15" width="345" height="20"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFN-XQ-ygd">
@@ -207,13 +207,14 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="clickOnAction:" destination="-1" eventType="touchUpInside" id="4bp-RA-HQO"/>
+                                                        <action selector="clickOnAction:" destination="-1" eventType="touchUpInside" id="vo8-ai-EMC"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="DMH-Cj-iov" firstAttribute="centerY" secondItem="RUg-hT-dzf" secondAttribute="centerY" id="0Fy-Me-V6F"/>
+                                                <constraint firstAttribute="height" constant="50" id="QuJ-q2-W4T"/>
                                                 <constraint firstAttribute="width" constant="50" id="ZFs-HK-vYJ"/>
                                                 <constraint firstItem="DMH-Cj-iov" firstAttribute="centerX" secondItem="RUg-hT-dzf" secondAttribute="centerX" id="hg8-6H-U1q"/>
                                             </constraints>
@@ -262,12 +263,13 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="clickDownAction:" destination="-1" eventType="touchDragInside" id="SOU-HR-Ohe"/>
+                                                        <action selector="clickDownAction:" destination="-1" eventType="touchUpInside" id="iO0-XN-c9M"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Gkq-ZK-P5f"/>
                                                 <constraint firstItem="q19-gM-tCk" firstAttribute="centerY" secondItem="xNu-uW-cpc" secondAttribute="centerY" id="Xr1-Ai-KK3"/>
                                                 <constraint firstItem="q19-gM-tCk" firstAttribute="centerX" secondItem="xNu-uW-cpc" secondAttribute="centerX" id="aRs-LN-HD0"/>
                                                 <constraint firstAttribute="width" constant="50" id="eA2-vU-zJK"/>
@@ -284,6 +286,7 @@
                                                         <constraint firstAttribute="width" constant="40" id="sEn-Aj-smL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="收藏">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -310,7 +313,6 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="125" id="7Pu-1g-ILU"/>
-                                <constraint firstAttribute="trailing" secondItem="yaG-05-RXM" secondAttribute="trailing" constant="48" id="7Xp-NS-5b9"/>
                                 <constraint firstItem="yaG-05-RXM" firstAttribute="centerY" secondItem="qag-NM-LbV" secondAttribute="centerY" id="7Zc-Fm-LLI"/>
                                 <constraint firstItem="yaG-05-RXM" firstAttribute="centerX" secondItem="qag-NM-LbV" secondAttribute="centerX" id="NTt-kv-cee"/>
                             </constraints>
@@ -324,6 +326,7 @@
                         <constraint firstItem="JW0-78-cd5" firstAttribute="top" secondItem="dbQ-HL-6EQ" secondAttribute="bottom" constant="15" id="av4-KP-Gxd"/>
                         <constraint firstItem="dbQ-HL-6EQ" firstAttribute="leading" secondItem="18Y-8I-3Di" secondAttribute="leading" constant="15" id="dcm-3Y-HGe"/>
                         <constraint firstAttribute="trailing" secondItem="JW0-78-cd5" secondAttribute="trailing" constant="15" id="fqs-5F-h94"/>
+                        <constraint firstItem="qag-NM-LbV" firstAttribute="top" secondItem="JW0-78-cd5" secondAttribute="bottom" constant="5" id="ggW-Nx-gV0"/>
                         <constraint firstAttribute="width" secondItem="18Y-8I-3Di" secondAttribute="height" multiplier="375:200" id="i8b-iF-sha"/>
                         <constraint firstAttribute="bottom" secondItem="qag-NM-LbV" secondAttribute="bottom" id="k9y-bO-s4E"/>
                         <constraint firstItem="qag-NM-LbV" firstAttribute="leading" secondItem="18Y-8I-3Di" secondAttribute="leading" id="vYy-1c-w5L"/>

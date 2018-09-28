@@ -153,6 +153,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="lbLike" destination="3db-ox-e7L" id="IS5-uO-j5h"/>
                 <outlet property="viewAdd" destination="LnT-ZM-Cv8" id="yjI-Z1-YF4"/>
                 <outlet property="viewDel" destination="vqw-Ng-D5R" id="Cdw-eF-cvl"/>
                 <outlet property="viewLike" destination="CpM-1X-dmv" id="Xui-Sz-ZaY"/>

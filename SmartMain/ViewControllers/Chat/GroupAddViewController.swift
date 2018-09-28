@@ -79,6 +79,7 @@ class GroupAddViewController: XBBaseTableViewController {
                 if let str = result as? String {
                         print(str)
                     XBHud.showMsg("解散成功")
+                    self.popToRootVC()
                 }
             })
         } else {
@@ -91,6 +92,7 @@ class GroupAddViewController: XBBaseTableViewController {
                 if let str = result as? String {
                     print(str)
                     XBHud.showMsg("退出成功")
+                    self.popToRootVC()
                 }
             })
 //            EMClient.shared().groupManager.leaveGroup(groupId) { [weak self] (error) in

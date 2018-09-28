@@ -10,6 +10,7 @@ import UIKit
 
 class HistorySongCell: BaseTableViewCell {
     
+    @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var btnExtension: UIButton!
