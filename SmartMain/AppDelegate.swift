@@ -13,32 +13,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var lunchView: XBLaunchView!
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         ChatManager.share.init_ChatMessage(application,
                                            launchOptions)
+
         if user_defaults.has(.userName) {
             print("登录过")
-            self.configDrawerController()
-//            let options = EMOptions.init(appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g")
-//            EMClient.shared().initializeSDK(with: options)
-//            EaseSDKHelper.share().hyphenateApplication(application,
-//                                                       didFinishLaunchingWithOptions: launchOptions,
-//                                                       appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
-//                                                       apnsCertName: "",
-//                                                       otherConfig: [kSDKConfigEnableConsoleLogger: false])
             
+            self.configDrawerController()
             loginEMClient()
+            
         }else {
             print("未登录过")
             let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
             window?.rootViewController = sv
         }
-
         _ = ScoketMQTTManager.share
         IQKeyboardManager.sharedManager().enable = true
+        
         if (launchOptions == nil) {
-            showADLaunchView()
-            
+//            showADLaunchView()
         }
+
         return true
     }
     //MARK: 弹出广告页
@@ -48,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         lunchView.frame =  CGRect(x: 0, y: 0, width: MGScreenWidth, height: MGScreenHeight)
         window?.addSubview(lunchView)
         window?.bringSubview(toFront: lunchView)
+        
     }
     func configDrawerController()  {
         let mainViewController   = ContentMainVC()
