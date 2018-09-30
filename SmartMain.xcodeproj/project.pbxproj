@@ -347,6 +347,8 @@
 		2DC955B1213FFE17004D6F65 /* MeInfoHaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DC955AF213FFE17004D6F65 /* MeInfoHaderCell.xib */; };
 		2DC955B4213FFED4004D6F65 /* MeInfoNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC955B2213FFED4004D6F65 /* MeInfoNameCell.swift */; };
 		2DC955B5213FFED4004D6F65 /* MeInfoNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DC955B3213FFED4004D6F65 /* MeInfoNameCell.xib */; };
+		2DCA86982160C738001F9E04 /* TwoItemCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA86962160C738001F9E04 /* TwoItemCVCell.swift */; };
+		2DCA86992160C738001F9E04 /* TwoItemCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DCA86972160C738001F9E04 /* TwoItemCVCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -848,6 +850,10 @@
 		2DC955AF213FFE17004D6F65 /* MeInfoHaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeInfoHaderCell.xib; sourceTree = "<group>"; };
 		2DC955B2213FFED4004D6F65 /* MeInfoNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeInfoNameCell.swift; sourceTree = "<group>"; };
 		2DC955B3213FFED4004D6F65 /* MeInfoNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeInfoNameCell.xib; sourceTree = "<group>"; };
+		2DCA86902160C4A9001F9E04 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		2DCA86912160C4A9001F9E04 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		2DCA86962160C738001F9E04 /* TwoItemCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoItemCVCell.swift; sourceTree = "<group>"; };
+		2DCA86972160C738001F9E04 /* TwoItemCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoItemCVCell.xib; sourceTree = "<group>"; };
 		91EAC16658F9A180871B0B3F /* Pods-SmartMain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.release.xcconfig"; sourceTree = "<group>"; };
 		CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD6F9026177145A29A261A /* Pods-SmartMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1848,6 +1854,8 @@
 				04C389FF213E64170063A799 /* ContentHeaderCell.xib */,
 				04C38A02213E671F0063A799 /* ContentShowCell.swift */,
 				04C38A03213E671F0063A799 /* ContentShowCell.xib */,
+				2DCA86962160C738001F9E04 /* TwoItemCVCell.swift */,
+				2DCA86972160C738001F9E04 /* TwoItemCVCell.xib */,
 				043E118A213FB3120067ADF3 /* ContentSubShowCell.swift */,
 				043E118B213FB3120067ADF3 /* ContentSubShowCell.xib */,
 				04C38A12213E6FE70063A799 /* ContentShowThreeCell.swift */,
@@ -2196,6 +2204,7 @@
 				04C389F3213E27CA0063A799 /* EquipmentListCell.xib in Resources */,
 				0485CCBD2148F7EC00F54927 /* SmartPlayerViewController.xib in Resources */,
 				04C389EF213E25800063A799 /* EquipmentTopView.xib in Resources */,
+				2DCA86992160C738001F9E04 /* TwoItemCVCell.xib in Resources */,
 				2DC955B5213FFED4004D6F65 /* MeInfoNameCell.xib in Resources */,
 				04C38A05213E671F0063A799 /* ContentShowCell.xib in Resources */,
 				04C38A19213E79240063A799 /* SearchViewController.xib in Resources */,
@@ -2448,6 +2457,7 @@
 				2DC955B0213FFE17004D6F65 /* MeInfoHaderCell.swift in Sources */,
 				04C38A11213E6EEA0063A799 /* HistoryViewController.swift in Sources */,
 				042EEF712150E15F00DBD492 /* EaseViewController.m in Sources */,
+				2DCA86982160C738001F9E04 /* TwoItemCVCell.swift in Sources */,
 				04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */,
 				042EEF422150E15F00DBD492 /* MWPhotoBrowser.m in Sources */,
 				043E119A213FCCAC0067ADF3 /* ContentSingCell.swift in Sources */,
@@ -2602,6 +2612,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2D312A9F213D560100FCC499 /* Base */,
+				2DCA86902160C4A9001F9E04 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2610,6 +2621,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2D312AA4213D560100FCC499 /* Base */,
+				2DCA86912160C4A9001F9E04 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -2621,6 +2633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2678,6 +2691,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

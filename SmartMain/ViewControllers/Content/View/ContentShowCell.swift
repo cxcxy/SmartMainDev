@@ -15,7 +15,11 @@ class ContentShowCell: BaseTableViewCell {
         configCollectionView()
     }
     let itemSpacing:CGFloat = 20 // item 间隔
-    let itemWidth:CGFloat = ( MGScreenWidth - 20 - 20 ) / 2 // item 宽度
+    static let itemWidth:CGFloat = ( MGScreenWidth - 20 - 20 ) / 2 // item 宽度
+    static let cell_img_H:CGFloat   =  ( MGScreenWidth - 20 - 20 ) / 4 // item里面img 高度
+    static let cell_title_H:CGFloat = 35
+    static let itemHight:CGFloat = ContentShowCell.cell_img_H + ContentShowCell.cell_title_H
+
     @IBOutlet weak var heightCollectionViewLayout: NSLayoutConstraint!
     var modouleId : String?
     @IBOutlet weak var lbTitle: UILabel!
@@ -33,8 +37,8 @@ class ContentShowCell: BaseTableViewCell {
     var contentArr: [ModulesConetentModel] = [] {
         didSet {
             collectionView.reloadData()
-            let heightLine:CGFloat  = contentArr.count > 2 ? 20 : 0
-            self.heightCollectionViewLayout.constant      = CGFloat((contentArr.count > 2 ? 2 : 1) * itemWidth) + heightLine
+//            let heightLine:CGFloat  = contentArr.count > 2 ? 20 : 0
+            self.heightCollectionViewLayout.constant      = CGFloat((contentArr.count > 2 ? 2 : 1) * ContentShowCell.itemHight)
         }
     }
 
@@ -42,7 +46,7 @@ class ContentShowCell: BaseTableViewCell {
         
         collectionView.delegate     = self
         collectionView.dataSource   = self
-        collectionView.cellId_register("ContentShowCVCell")
+        collectionView.cellId_register("TwoItemCVCell")
     }
     
     @IBAction func clickAllAction(_ sender: Any) {
@@ -60,18 +64,19 @@ extension ContentShowCell:UICollectionViewDelegate,UICollectionViewDataSource,UI
         return contentArr.count > 4 ? 4 : contentArr.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentShowCVCell", for: indexPath)as! ContentShowCVCell
-        cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgSmall)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TwoItemCVCell", for: indexPath)as! TwoItemCVCell
+        cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgLarge)
         cell.lbTitle.set_text = contentArr[indexPath.row].name
+        cell.aspectConstraint.constant = 2/1
         return cell
     }
     //最小item间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return XBMin
     }
     //item 的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:itemWidth,height:itemWidth)
+        return CGSize(width:ContentShowCell.itemWidth,height:ContentShowCell.itemHight)
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
