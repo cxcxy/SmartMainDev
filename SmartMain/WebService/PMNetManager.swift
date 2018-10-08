@@ -62,10 +62,10 @@ class XBNetManager {
         return nil
     }
     
-    public static func endpointClosure(target: RequestApi) -> Endpoint<RequestApi> {
+    public static func endpointClosure(target: RequestApi) -> Endpoint {
         let method = target.method
 
-        let endpoint = Endpoint<RequestApi>.init(url: target.baseURL.absoluteString + target.path,
+        let endpoint = Endpoint.init(url: target.baseURL.absoluteString + target.path,
                                      sampleResponseClosure: {.networkResponse(200, target.sampleData)},
                                      method: method,
                                      task: target.task,
@@ -73,7 +73,7 @@ class XBNetManager {
 
         return endpoint
     }
-    public static let requestTimeoutClosure = { (endpoint: Endpoint<RequestApi>, done: @escaping MoyaProvider<RequestApi>.RequestResultClosure) in
+    public static let requestTimeoutClosure = { (endpoint: Endpoint, done: @escaping MoyaProvider<RequestApi>.RequestResultClosure) in
         guard var request = try? endpoint.urlRequest() else { return }
         request.timeoutInterval = TimeInterval(15) //设置请求超时时间
         done(.success(request))
