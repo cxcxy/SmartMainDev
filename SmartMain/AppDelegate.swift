@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         
         if (launchOptions == nil) {
-            showADLaunchView()
+//            showADLaunchView()
         }
 
         return true
