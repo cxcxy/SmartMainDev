@@ -12,11 +12,15 @@ import AVKit
 import SystemConfiguration
 import SystemConfiguration.CaptiveNetwork
 class ConfigNetViewController: XBBaseViewController {
-
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var heightLayout: NSLayoutConstraint!
     @IBOutlet weak var tfWifiName: UITextField!
     
     @IBOutlet weak var tfWifiPass: UITextField!
-    
+    var currentIndex: Int = 0
+    var itemWidht = Int(MGScreenWidth * 0.7)
+    var itemHeight = Int(MGScreenWidth * 0.7 * 1.5)
     @IBOutlet weak var btnConfig: UIButton!
     var viewModel = EquimentViewModel()
     override func viewDidLoad() {
@@ -28,7 +32,14 @@ class ConfigNetViewController: XBBaseViewController {
         super.setUI()
         title = "设备配网"
         btnConfig.radius_ll()
+        self.configCollectionView()
         tfWifiName.text = self.getUsedSSID()
+    }
+    func configCollectionView()  {
+        collectionView.cellId_register("ConfigNetCVCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        heightLayout.constant = CGFloat(itemHeight)
     }
     ///
     /// - Returns: 当前手机链接的wifi名称
@@ -102,7 +113,16 @@ class ConfigNetViewController: XBBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func clickOnNextAction(_ sender: UIButton) {
+        if currentIndex >= 3 {
+            return
+        }
+        currentIndex = currentIndex + 1
+        let index = IndexPath.init(row: currentIndex, section: 0)
+        collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -113,4 +133,32 @@ class ConfigNetViewController: XBBaseViewController {
     }
     */
 
+}
+extension ConfigNetViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConfigNetCVCell", for: indexPath)as! ConfigNetCVCell
+        cell.currentIndex = indexPath.row
+        return cell
+    }
+    //最小item间距
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 20
+//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 0, left: 50, bottom: 0, right: 50)
+    }
+    //item 的尺寸
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: itemWidht , height: itemHeight)
+    }
+    //item 对应的点击事件
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+ 
+    }
+    func clickOutAction(groupOwner: Bool,groupId: String)  {
+   
+    }
 }

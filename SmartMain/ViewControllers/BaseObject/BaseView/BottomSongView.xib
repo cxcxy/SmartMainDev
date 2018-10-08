@@ -39,19 +39,18 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nus-2G-2Ri">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nus-2G-2Ri">
                                     <rect key="frame" x="40" y="0.0" width="30" height="30"/>
-                                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="0aC-Dc-R4Y"/>
                                         <constraint firstAttribute="height" constant="30" id="H8d-eS-E3N"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="播放">
+                                    <state key="normal" title="播放" image="icon_play">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
-                                    <state key="selected" title="暂停"/>
+                                    <state key="selected" title="暂停" image="icon_pause"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifP-43-QK0">
                                     <rect key="frame" x="80" y="0.0" width="30" height="30"/>
@@ -109,6 +108,8 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_pause" width="83" height="82"/>
         <image name="icon_photo" width="180" height="180"/>
+        <image name="icon_play" width="83" height="82"/>
     </resources>
 </document>
