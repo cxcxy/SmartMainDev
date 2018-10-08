@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChatRedView" customModule="SmartMain" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="27" height="23"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_chat" translatesAutoresizingMaskIntoConstraints="NO" id="P6i-yy-52a">
+                    <rect key="frame" x="0.0" y="2" width="23" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="23" id="C4j-rx-pJ5"/>
+                        <constraint firstAttribute="height" constant="19" id="qiJ-CZ-E4M"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbg-kz-CTW">
+                    <rect key="frame" x="17" y="0.0" width="8" height="8"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="CHt-h9-YcW"/>
+                        <constraint firstAttribute="height" constant="8" id="dP1-3S-AjO"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="P6i-yy-52a" secondAttribute="bottom" constant="2" id="7tD-xl-vi6"/>
+                <constraint firstItem="P6i-yy-52a" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="OuX-ks-Ch1"/>
+                <constraint firstItem="cbg-kz-CTW" firstAttribute="top" secondItem="P6i-yy-52a" secondAttribute="top" constant="-2" id="PWe-eS-nYr"/>
+                <constraint firstItem="P6i-yy-52a" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TCx-eZ-w58"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P6i-yy-52a" secondAttribute="trailing" constant="4" id="ip2-75-Uiy"/>
+                <constraint firstItem="cbg-kz-CTW" firstAttribute="trailing" secondItem="P6i-yy-52a" secondAttribute="trailing" constant="2" id="j5H-pR-ppb"/>
+                <constraint firstItem="P6i-yy-52a" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="2" id="nNB-wN-3zH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="viewRed" destination="cbg-kz-CTW" id="8zz-w4-Ayf"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_chat" width="23" height="19"/>
+    </resources>
+</document>

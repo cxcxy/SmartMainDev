@@ -26,6 +26,11 @@ class SmartPlayerViewController: XBBaseViewController {
     @IBOutlet weak var sliderProgress: UISlider!
     @IBOutlet weak var sliderVolume: UISlider!
     
+    var timer = Timer() // 歌曲进度条
+    var timerCount  = 0 // 歌曲的当前时间
+    var allTimer:Float    = 100 // 歌曲的全部时间
+    
+    
     @IBOutlet weak var btnDown: UIButton!
     @IBOutlet weak var btnLike: UIButton!
     var currentSongModel:SingDetailModel? {
@@ -37,6 +42,7 @@ class SmartPlayerViewController: XBBaseViewController {
                 return item.trackId == m.id
             }
             self.btnLike.isSelected = isLike.count == 0 ? false : true
+            sliderProgress.maximumValue = Float(m.duration ?? 0)
             self.configUI(singsDetail: m)
         }
     }
@@ -77,7 +83,18 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.repeatStatus.asObserver().bind(to: btnRepeat.rx.isSelected).disposed(by: rx_disposeBag)
         
     }
-    
+    func configTimer()  {
+         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tickDown), userInfo: nil, repeats: true)
+    }
+    /**
+     *计时器每秒触发事件
+     **/
+    @objc func tickDown()
+    {
+        sliderProgress.value    = sliderProgress.value + 1
+        timerCount      = timerCount + 1
+//        lbLabel.text = String(timerCount)
+    }
     @IBAction func sliderProgressVauleChanged(_ sender: Any) {
         let value:Float = sliderProgress.value
         let duration:Float = Float(currentSongModel?.duration ?? 0)

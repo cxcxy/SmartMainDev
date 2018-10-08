@@ -50,30 +50,9 @@ class EquipmentVC: XBBaseTableViewController {
             guard let `self` = self else { return }
             self.request()
         })
-        checkEquipmentOnline()
+//        checkEquipmentOnline()
     }
     
-    func checkEquipmentOnline() {
-        
-        Net.requestWithTarget(.getEquimentInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
-            if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
-                
-                if model.online == 1 {
-                    print("当前设备在线")
-                    XBUserManager.online = true
-                }else {
-                    print("当前设备不在线00")
-                    XBUserManager.online = false
-                }
-                
-            }else {
-                print("当前设备不在线")
-                XBUserManager.online = false
-            }
-        })
-
-        
-    }
     override func request() {
         super.request()
         guard XBUserManager.device_Id != "" else {

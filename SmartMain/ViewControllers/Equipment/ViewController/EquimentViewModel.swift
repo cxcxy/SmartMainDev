@@ -28,5 +28,26 @@ class EquimentViewModel: NSObject {
             }
         })
     }
-    
+    /// 检查设备是否在线
+    func requestCheckEquipmentOnline(closure: @escaping (Bool) -> ())  {
+        Net.requestWithTarget(.getEquimentInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
+                
+                if model.online == 1 {
+                    print("当前设备在线")
+                    XBUserManager.online = true
+                    closure(true)
+                }else {
+                    print("当前设备不在线")
+                    XBUserManager.online = false
+                    closure(false)
+                }
+                
+            }else {
+                print("当前设备不在线")
+                XBUserManager.online = false
+                closure(false)
+            }
+        })
+    }
 }

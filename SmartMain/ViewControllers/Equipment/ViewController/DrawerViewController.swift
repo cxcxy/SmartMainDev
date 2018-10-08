@@ -8,13 +8,13 @@
 
 import UIKit
 class DrawerViewController: XBBaseViewController {
-    var eqOne    = XBStyleCellModel.init(title: "设备配网", imgIcon: "",cellType: 1)
-    var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "",cellType: 2)
-    var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "",cellType: 3)
+    var eqOne    = XBStyleCellModel.init(title: "设备配网", imgIcon: "icon_group1",cellType: 1)
+    var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "icon_group2",cellType: 2)
+    var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "icon_group3",cellType: 3)
     var eqFour   = XBStyleCellModel.init(title: "家庭成员", imgIcon: "",cellType: 7)
-    var accountOne  = XBStyleCellModel.init(title: "宝宝信息", imgIcon: "",cellType: 4)
-    var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "",cellType: 5)
-    var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "",cellType: 6)
+    var accountOne  = XBStyleCellModel.init(title: "宝宝信息", imgIcon: "icon_group4",cellType: 4)
+    var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "icon_group5",cellType: 5)
+    var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "icon_group6",cellType: 6)
     var eqArr: [XBStyleCellModel] = []
     var accountArr: [XBStyleCellModel] = []
     @IBOutlet weak var tableView: UITableView!
@@ -83,6 +83,7 @@ extension DrawerViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DrawFromCell", for: indexPath) as! DrawFromCell
         cell.lbDes.set_text = indexPath.section == 0 ? eqArr[indexPath.row].title : accountArr[indexPath.row].title
+        cell.imgIcon.set_img = indexPath.section == 0 ? eqArr[indexPath.row].imgIcon : accountArr[indexPath.row].imgIcon
         return cell
         
     }

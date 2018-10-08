@@ -29,6 +29,7 @@ class ContentMainVC: XBBaseViewController {
     var controllerArray     : [UIViewController] = []  // 存放controller 的array
     var v                   : VCVTMagic!  // 统一的左滑 右滑 控制View
     var bottomSongView = BottomSongView.loadFromNib()
+    var navMessageView = ChatRedView.loadFromNib()
     let scoketModel = ScoketMQTTManager.share
     var currentSongModel:SingDetailModel? { // 当前正在播放歌曲的信息
         didSet {
@@ -38,9 +39,15 @@ class ContentMainVC: XBBaseViewController {
             self.configBottomSongView(singsDetail: m)
         }
     }
+    var viewModel = EquimentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.currentNavigationTitleColor = UIColor.white
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let unredCount =  EMConversation.init().unreadMessagesCount
+        print(unredCount)
     }
     override func setUI() {
         super.setUI()
@@ -53,13 +60,21 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             self.maskAnimationFromLeft()
         }
-        //MARK: 点击添加商家
-        makeCustomerImageNavigationItem("icon_chat", left: false) {
-//            VCRouter.qrCodeScanVC()
+//        //MARK: 点击添加商家
+//        makeCustomerImageNavigationItem("icon_chat", left: false) {
+////            VCRouter.qrCodeScanVC()
+//        }
+        
+        navMessageView.addTapGesture { [weak self](sender) in
+            guard let `self` = self else { return }
             let vc = ChatMainViewController()
             self.pushVC(vc)
         }
-
+        makeRightNavigationItem(navMessageView, left: false)
+    }
+    func configChatMessage()  {
+        EMClient.shared().chatManager.add(self, delegateQueue: nil)
+        
     }
     func configScoketModel() {
         guard XBUserManager.device_Id != "" else {
@@ -92,15 +107,16 @@ class ContentMainVC: XBBaseViewController {
         }
         bottomSongView.isHidden = false
     }
+    //MARK: 添加底部播放视图
     func addBottomSongView()  {
         view.addSubview(bottomSongView)
         bottomSongView.snp.makeConstraints { (make) in
             make.height.equalTo(80)
             make.left.right.bottom.equalTo(0)
         }
-        bottomSongView.imgSong.addTapGesture { (sender) in
-            let vc = SmartPlayerViewController()
-            self.pushVC(vc)
+        bottomSongView.imgSong.addTapGesture {[weak self] (sender) in
+            guard let `self` = self else { return }
+            self.toPlayerViewController()
         }
         bottomSongView.btnPlay.addAction {[weak self] in
             guard let `self` = self else { return }
@@ -115,13 +131,23 @@ class ContentMainVC: XBBaseViewController {
             self.scoketModel.sendSongDown()
         }
     }
+    //MARK: 配置底部 播放view
     func configBottomSongView(singsDetail: SingDetailModel)  {
-//        imgSings.set_Img_Url(singsDetail.coverSmallUrl)
-//        lbSingsTitle.set_text = singsDetail.title
-//        lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.duration)
         bottomSongView.lbSingsTitle.set_text = singsDetail.title
         bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
         
+    }
+    //MARK: 跳转音乐播放器页面
+    func toPlayerViewController()  {
+        viewModel.requestCheckEquipmentOnline {[weak self] (onLine) in
+            guard let `self` = self else { return }
+            if onLine {
+                let vc = SmartPlayerViewController()
+                self.pushVC(vc)
+            } else {
+                XBHud.showMsg("当前设备不在线")
+            }
+        }
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()
@@ -207,4 +233,10 @@ extension ContentMainVC :VTMagicViewDelegate{
         
     }
     
+}
+extension ContentMainVC: EMChatManagerDelegate {
+    // 收到消息
+    func messagesDidReceive(_ aMessages: [Any]!) {
+        
+    }
 }
