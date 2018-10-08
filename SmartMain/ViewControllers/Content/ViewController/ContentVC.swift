@@ -77,7 +77,8 @@ extension ContentVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentShowCell", for: indexPath) as! ContentShowCell
 //            cell.collectionDataArr = ["1","2","3","4"]
             cell.dataModel = dataArr[indexPath.row - 1]
-         
+//            let img = dataArr[0]
+            
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContentShowThreeCell", for: indexPath) as! ContentShowThreeCell

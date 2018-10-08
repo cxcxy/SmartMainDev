@@ -27,12 +27,41 @@ class ModulesResModel: XBDataModel {
     var id:String?
     var name: String?
     var icon: String?
+    var imageAspect:CGFloat = 0
     var contents: [ModulesConetentModel]?
     override func mapping(map: Map) {
         id             <-    map["id"]
         name             <-    map["name"]
         icon          <-    map["icon"]
         contents <-    map["contents"]
+    }
+    
+    func calImageHeight(){
+        //定义NSURL对象
+        
+        let url = URL(string: icon ?? "")
+        
+        if let url = url {
+            
+            DispatchQueue.global(qos: .background).async {
+                do{
+                    
+                    let data = try Data(contentsOf: url)
+                    if let image = UIImage(data: data ) {
+                        //计算原始图片的宽高比
+                        
+                        self.imageAspect = image.size.width / image.size.height
+                        //            //设置imageView宽高比约束
+                        //            //加载图片
+                        //
+                    }
+                }catch let e {
+//                    DLog(e)
+                }
+                
+            }
+            
+        }
     }
 }
 class ModulesConetentModel: XBDataModel {
