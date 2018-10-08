@@ -13,7 +13,8 @@ target 'SmartMain' do
 	pod 'ObjectMapper'
     pod 'SwiftyJSON'
 	pod 'SVProgressHUD', :git => 'https://github.com/Fidetro/SVProgressHUD.git'
-	pod 'Kingfisher'
+    pod 'Kingfisher', '~> 4.2.0'
+
    	pod 'VTMagic'   , :git => 'https://github.com/aycgithub/VTMagic.git'
 #    pod 'FSPagerView'
 	pod 'MJRefresh'

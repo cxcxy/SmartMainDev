@@ -50,7 +50,7 @@ public enum RefreshStatus: Int {
         super.viewDidLoad()
         setCustomerBack()
         setUI()
-        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

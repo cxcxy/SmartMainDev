@@ -29,8 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = sv
         }
         _ = ScoketMQTTManager.share
-        IQKeyboardManager.sharedManager().enable = true
-        
+        IQKeyboardManager.shared.enable = true
         if (launchOptions == nil) {
 //            showADLaunchView()
         }

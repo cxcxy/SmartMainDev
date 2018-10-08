@@ -24,19 +24,19 @@ extension String {
     /**
      替换手机号中间四位为“****”
      */
-    mutating func get_formted_xxPhone() ->  String{
-        
-        //开始字符索引
-        let startIndex = self.characters.index(self.startIndex, offsetBy: 3)
-        //结束字符索引
-        let endIndex = self.characters.index(self.startIndex, offsetBy: 7)
-        let range = Range<String.Index>(startIndex..<endIndex)
-        var s = String()
-        for _ in 0..<7 - 3{
-            s += "*"
-        }
-        return self.replacingCharacters(in: range, with: s)
-    }
+//    mutating func get_formted_xxPhone() ->  String{
+//        
+//        //开始字符索引
+//        let startIndex = self.characters.index(self.startIndex, offsetBy: 3)
+//        //结束字符索引
+//        let endIndex = self.characters.index(self.startIndex, offsetBy: 7)
+//        let range = Range<String.Index>(startIndex..<endIndex)
+//        var s = String()
+//        for _ in 0..<7 - 3{
+//            s += "*"
+//        }
+//        return self.replacingCharacters(in: range, with: s)
+//    }
     /**
      *   判断显示当天的时间，还是之前的日子
      */
