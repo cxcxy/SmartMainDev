@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SystemConfiguration
+import SystemConfiguration.CaptiveNetwork
 public class XBUtil {
     /// 拨打电话
     static func callPhone(_ phone:String){
@@ -121,7 +123,23 @@ public class XBUtil {
         let rootViewController = UIApplication.shared.keyWindow?.rootViewController
         return currentTopViewController(rootViewController: rootViewController!)
     }
-    
+    /// - Returns: 当前手机链接的wifi名称
+    public class func getUsedSSID() -> String {
+        let interfaces = CNCopySupportedInterfaces()
+        var ssid = ""
+        if interfaces != nil {
+            let interfacesArray = CFBridgingRetain(interfaces) as! Array<AnyObject>
+            if interfacesArray.count > 0 {
+                let interfaceName = interfacesArray[0] as! CFString
+                let ussafeInterfaceData = CNCopyCurrentNetworkInfo(interfaceName)
+                if (ussafeInterfaceData != nil) {
+                    let interfaceData = ussafeInterfaceData as! Dictionary<String, Any>
+                    ssid = interfaceData["SSID"]! as! String
+                }
+            }
+        }
+        return ssid
+    }
     public class func currentTopViewController(rootViewController: UIViewController) -> UIViewController {
         if (rootViewController.isKind(of: UITabBarController.self)) {
             let tabBarController = rootViewController as! UITabBarController

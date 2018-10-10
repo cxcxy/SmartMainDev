@@ -9,19 +9,31 @@
 import UIKit
 import AVFoundation
 import AVKit
-import SystemConfiguration
-import SystemConfiguration.CaptiveNetwork
+
+class NetInfo: NSObject {
+    
+    var name: String = XBUtil.getUsedSSID()
+    var password: String = ""
+    
+}
 class ConfigNetViewController: XBBaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var heightLayout: NSLayoutConstraint!
-    @IBOutlet weak var tfWifiName: UITextField!
+//    @IBOutlet weak var tfWifiName: UITextField!
     
-    @IBOutlet weak var tfWifiPass: UITextField!
-    var currentIndex: Int = 0
+//    @IBOutlet weak var tfWifiPass: UITextField!
+    var btnNextText : [String] = ["成功开启，下一步","成功链接，下一步","成功联网，下一步","开始配网"]
+    @IBOutlet weak var btnNext: UIButton!
+    var currentIndex: Int = 0 {
+        didSet{
+            btnNext.set_Title(btnNextText[currentIndex])
+        }
+    }
+    var configNetInfo = NetInfo()
     var itemWidht = Int(MGScreenWidth * 0.7)
     var itemHeight = Int(MGScreenWidth * 0.7 * 1.5)
-    @IBOutlet weak var btnConfig: UIButton!
+//    @IBOutlet weak var btnConfig: UIButton!
     var viewModel = EquimentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +43,13 @@ class ConfigNetViewController: XBBaseViewController {
     override func setUI() {
         super.setUI()
         title = "设备配网"
-        btnConfig.radius_ll()
+//        btnConfig.radius_ll()
+        btnNext.radius_ll()
+//        self.configNetInfo.name = self.getUsedSSID()
         self.configCollectionView()
-        tfWifiName.text = self.getUsedSSID()
+//        tfWifiName.text = self.getUsedSSID()
+        btnNext.set_Title(btnNextText[currentIndex])
+        view.backgroundColor = UIColor.init(hexString: "C0E1AB")
     }
     func configCollectionView()  {
         collectionView.cellId_register("ConfigNetCVCell")
@@ -41,24 +57,7 @@ class ConfigNetViewController: XBBaseViewController {
         collectionView.delegate = self
         heightLayout.constant = CGFloat(itemHeight)
     }
-    ///
-    /// - Returns: 当前手机链接的wifi名称
-    func getUsedSSID() -> String {
-        let interfaces = CNCopySupportedInterfaces()
-        var ssid = ""
-        if interfaces != nil {
-            let interfacesArray = CFBridgingRetain(interfaces) as! Array<AnyObject>
-            if interfacesArray.count > 0 {
-                let interfaceName = interfacesArray[0] as! CFString
-                let ussafeInterfaceData = CNCopyCurrentNetworkInfo(interfaceName)
-                if (ussafeInterfaceData != nil) {
-                    let interfaceData = ussafeInterfaceData as! Dictionary<String, Any>
-                    ssid = interfaceData["SSID"]! as! String
-                }
-            }
-        }
-        return ssid
-    }
+
     @IBAction func clickConfigAction(_ sender: Any) {
         self.requestVoice()
     }
@@ -86,24 +85,30 @@ class ConfigNetViewController: XBBaseViewController {
         }
     }
     func sureVoiceDevice(url: String) {
-        let alertC = UIAlertController(title: "温馨提示", message: "机器是否配网成功？", preferredStyle: .alert)
-        let alertSure = UIAlertAction(title: "是的", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-            
-        })
-        let alertCancel = UIAlertAction(title: "没有", style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
-            self.playVoice(url: url)
-        })
-        alertC.addAction(alertCancel)
-        alertC.addAction(alertSure)
         
-        self.presentVC(alertC)
+        let v = NetSuccessView.loadFromNib()
+        v.btnSuccess.addAction {[weak self] in
+            guard let `self` = self else { return }
+            v.hide()
+            self.sureNetSuccess()
+        }
+        v.btnError.addAction {[weak self] in
+            guard let `self` = self else { return }
+            v.hide()
+            self.playVoice(url: url)
+        }
+        v.show()
+        
+    }
+    func sureNetSuccess()  {
+        self.popVC()
     }
     func requestVoice()  {
         guard XBUserManager.device_Id != "" else {
             XBHud.showWarnMsg("请先绑定设备")
             return
         }
-        viewModel.requestGetVoice(ssid: tfWifiName.text!, password: tfWifiPass.text!, openId: XBUserManager.userName, deviceId: XBUserManager.device_Id) {[weak self] (voiceURL) in
+        viewModel.requestGetVoice(ssid: configNetInfo.name, password: configNetInfo.password, openId: XBUserManager.userName, deviceId: XBUserManager.device_Id) {[weak self] (voiceURL) in
             guard let `self` = self else { return }
             self.playVoice(url: voiceURL)
         }
@@ -115,12 +120,13 @@ class ConfigNetViewController: XBBaseViewController {
     
     @IBAction func clickOnNextAction(_ sender: UIButton) {
         if currentIndex >= 3 {
+            self.requestVoice()
             return
         }
         currentIndex = currentIndex + 1
         let index = IndexPath.init(row: currentIndex, section: 0)
         collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-        
+        print(self.configNetInfo.name,self.configNetInfo.password)
     }
     
     /*
@@ -135,18 +141,25 @@ class ConfigNetViewController: XBBaseViewController {
 
 }
 extension ConfigNetViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConfigNetCVCell", for: indexPath)as! ConfigNetCVCell
+        cell.configNetInfo = self.configNetInfo
         cell.currentIndex = indexPath.row
         return cell
     }
+    
     //最小item间距
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 //        return 20
 //    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: 0, left: 50, bottom: 0, right: 50)
     }

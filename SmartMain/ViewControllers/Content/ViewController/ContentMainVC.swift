@@ -131,6 +131,12 @@ class ContentMainVC: XBBaseViewController {
             self.scoketModel.sendSongDown()
         }
     }
+    //MARK: 底部弹出播放列表
+    func showTrackListView(trackListId: Int)  {
+        let v = PlaySongListView.loadFromNib()
+        v.trackListId = 3709
+        v.show()
+    }
     //MARK: 配置底部 播放view
     func configBottomSongView(singsDetail: SingDetailModel)  {
         bottomSongView.lbSingsTitle.set_text = singsDetail.title
@@ -139,15 +145,15 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
-        viewModel.requestCheckEquipmentOnline {[weak self] (onLine) in
-            guard let `self` = self else { return }
-            if onLine {
+//        viewModel.requestCheckEquipmentOnline {[weak self] (onLine) in
+//            guard let `self` = self else { return }
+//            if onLine {
                 let vc = SmartPlayerViewController()
                 self.pushVC(vc)
-            } else {
-                XBHud.showMsg("当前设备不在线")
-            }
-        }
+//            } else {
+//                XBHud.showMsg("当前设备不在线")
+//            }
+//        }
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()

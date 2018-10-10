@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="265" height="395"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bm-z3-zPK">
+                        <rect key="frame" x="0.0" y="20" width="95" height="35"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGR-ri-PMd">
                         <rect key="frame" x="0.0" y="20" width="125" height="35"/>
                         <subviews>
@@ -40,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="声波配网" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23D-87-byf">
-                                <rect key="frame" x="62" y="9.5" width="57.5" height="17"/>
+                                <rect key="frame" x="62" y="9" width="57.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -62,9 +65,52 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26v-de-iS9">
                         <rect key="frame" x="25" y="75" width="215" height="215"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="26v-de-iS9" secondAttribute="height" id="8QZ-up-Qa5"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgS-OB-vml">
+                        <rect key="frame" x="25" y="75" width="215" height="215"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77P-1B-HLl">
+                                <rect key="frame" x="57.5" y="15" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="77P-1B-HLl" secondAttribute="height" multiplier="1:1" id="aPa-jE-thD"/>
+                                    <constraint firstAttribute="width" constant="100" id="cua-XX-4YO"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WIFI名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-fW-YBI">
+                                <rect key="frame" x="20" y="135" width="175" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="L1w-Lv-Mbu"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WIFI密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R38-ss-ABR">
+                                <rect key="frame" x="20" y="173" width="175" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XE5-o6-cOa"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="77P-1B-HLl" firstAttribute="top" secondItem="KgS-OB-vml" secondAttribute="top" constant="15" id="2Si-C6-JCy"/>
+                            <constraint firstItem="R38-ss-ABR" firstAttribute="leading" secondItem="KgS-OB-vml" secondAttribute="leading" constant="20" id="anC-sg-suq"/>
+                            <constraint firstAttribute="width" secondItem="KgS-OB-vml" secondAttribute="height" multiplier="1:1" id="cQb-gO-BWm"/>
+                            <constraint firstItem="b2n-fW-YBI" firstAttribute="leading" secondItem="KgS-OB-vml" secondAttribute="leading" constant="20" id="fm1-PA-iZG"/>
+                            <constraint firstItem="b2n-fW-YBI" firstAttribute="top" secondItem="77P-1B-HLl" secondAttribute="bottom" constant="20" id="hrL-D8-dq9"/>
+                            <constraint firstAttribute="trailing" secondItem="R38-ss-ABR" secondAttribute="trailing" constant="20" id="oXc-eq-LuX"/>
+                            <constraint firstItem="77P-1B-HLl" firstAttribute="centerX" secondItem="KgS-OB-vml" secondAttribute="centerX" id="pAx-1l-U0P"/>
+                            <constraint firstAttribute="trailing" secondItem="b2n-fW-YBI" secondAttribute="trailing" constant="20" id="qcv-Ot-uPd"/>
+                            <constraint firstItem="R38-ss-ABR" firstAttribute="top" secondItem="b2n-fW-YBI" secondAttribute="bottom" constant="8" id="uax-lg-F2K"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请长按配网键3秒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-9y-udJ">
@@ -81,25 +127,39 @@
                     </label>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.47749751810000002" green="0.91599106789999996" blue="0.25548872350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="26v-de-iS9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="25" id="0oP-1t-24e"/>
                 <constraint firstItem="hWB-9y-udJ" firstAttribute="top" secondItem="26v-de-iS9" secondAttribute="bottom" constant="20" id="1vg-id-zvT"/>
                 <constraint firstItem="hWB-9y-udJ" firstAttribute="centerX" secondItem="26v-de-iS9" secondAttribute="centerX" id="1zA-UD-MfG"/>
+                <constraint firstItem="KgS-OB-vml" firstAttribute="top" secondItem="7Bm-z3-zPK" secondAttribute="bottom" constant="20" id="4Sf-BY-FO2"/>
                 <constraint firstItem="26v-de-iS9" firstAttribute="top" secondItem="YGR-ri-PMd" secondAttribute="bottom" constant="20" id="GHV-WC-etD"/>
+                <constraint firstItem="KgS-OB-vml" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="25" id="IIq-3k-XhL"/>
+                <constraint firstItem="hWB-9y-udJ" firstAttribute="top" secondItem="KgS-OB-vml" secondAttribute="bottom" constant="20" id="ItU-Cs-gQI"/>
                 <constraint firstItem="wgD-hp-U7d" firstAttribute="top" secondItem="hWB-9y-udJ" secondAttribute="bottom" constant="5" id="JPs-N9-ak7"/>
+                <constraint firstItem="7Bm-z3-zPK" firstAttribute="centerY" secondItem="YGR-ri-PMd" secondAttribute="centerY" id="Lbq-Hl-92L"/>
+                <constraint firstItem="7Bm-z3-zPK" firstAttribute="leading" secondItem="YGR-ri-PMd" secondAttribute="leading" id="PFq-NB-unG"/>
                 <constraint firstAttribute="trailing" secondItem="26v-de-iS9" secondAttribute="trailing" constant="25" id="Rbt-mV-f4D"/>
                 <constraint firstItem="YGR-ri-PMd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="U6Q-19-vnq"/>
+                <constraint firstItem="7Bm-z3-zPK" firstAttribute="height" secondItem="YGR-ri-PMd" secondAttribute="height" id="lEJ-kq-6sd"/>
                 <constraint firstItem="wgD-hp-U7d" firstAttribute="centerX" secondItem="hWB-9y-udJ" secondAttribute="centerX" id="ln1-7d-XXC"/>
+                <constraint firstItem="KgS-OB-vml" firstAttribute="centerX" secondItem="hWB-9y-udJ" secondAttribute="centerX" id="nQt-cb-frJ"/>
+                <constraint firstAttribute="trailing" secondItem="KgS-OB-vml" secondAttribute="trailing" constant="25" id="oJR-q3-lQh"/>
                 <constraint firstItem="YGR-ri-PMd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="qvq-ol-1rc"/>
+                <constraint firstItem="7Bm-z3-zPK" firstAttribute="width" secondItem="YGR-ri-PMd" secondAttribute="width" constant="-30" id="uia-p9-R0p"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="228" height="371"/>
             <connections>
                 <outlet property="lbBottom" destination="wgD-hp-U7d" id="FLg-CL-F8U"/>
+                <outlet property="lbNumber" destination="lId-UE-ShZ" id="MFt-Iu-nfj"/>
                 <outlet property="lbTop" destination="hWB-9y-udJ" id="bw4-dZ-KEZ"/>
+                <outlet property="tfWifiName" destination="b2n-fW-YBI" id="jfq-aS-PwB"/>
+                <outlet property="tfWifiPass" destination="R38-ss-ABR" id="yA5-B5-yr7"/>
                 <outlet property="viewCenter" destination="26v-de-iS9" id="rQB-uL-ho8"/>
+                <outlet property="viewConfigNet" destination="KgS-OB-vml" id="2W1-r9-ie4"/>
                 <outlet property="viewTop" destination="YGR-ri-PMd" id="fjd-9I-ZAG"/>
+                <outlet property="viewTopLayer" destination="7Bm-z3-zPK" id="fPs-7X-vUF"/>
             </connections>
             <point key="canvasLocation" x="38" y="108.5"/>
         </collectionViewCell>

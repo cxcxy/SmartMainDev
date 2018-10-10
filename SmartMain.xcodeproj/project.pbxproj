@@ -196,6 +196,10 @@
 		0485CCB92148BC3300F54927 /* ScoketMQTTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */; };
 		0485CCBC2148F7EC00F54927 /* SmartPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */; };
 		0485CCBD2148F7EC00F54927 /* SmartPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */; };
+		04B2B1FD216C507E00D14E7C /* PlaySongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */; };
+		04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2B1FE216C508600D14E7C /* PlaySongListView.xib */; };
+		04B876CD216C47DB00D0430F /* NetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B876CC216C47DB00D0430F /* NetSuccessView.swift */; };
+		04B876CF216C47EA00D0430F /* NetSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B876CE216C47EA00D0430F /* NetSuccessView.xib */; };
 		04C1436A2147A8F600FC2000 /* ShowChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C143692147A8F500FC2000 /* ShowChooseView.swift */; };
 		04C1436C2147A8FD00FC2000 /* ShowChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C1436B2147A8FD00FC2000 /* ShowChooseView.xib */; };
 		04C38712213E093F0063A799 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C386CA213E093F0063A799 /* Configuration.plist */; };
@@ -687,6 +691,10 @@
 		0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoketMQTTManager.swift; sourceTree = "<group>"; };
 		0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPlayerViewController.swift; sourceTree = "<group>"; };
 		0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartPlayerViewController.xib; sourceTree = "<group>"; };
+		04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySongListView.swift; sourceTree = "<group>"; };
+		04B2B1FE216C508600D14E7C /* PlaySongListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySongListView.xib; sourceTree = "<group>"; };
+		04B876CC216C47DB00D0430F /* NetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetSuccessView.swift; sourceTree = "<group>"; };
+		04B876CE216C47EA00D0430F /* NetSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetSuccessView.xib; sourceTree = "<group>"; };
 		04C143692147A8F500FC2000 /* ShowChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowChooseView.swift; sourceTree = "<group>"; };
 		04C1436B2147A8FD00FC2000 /* ShowChooseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowChooseView.xib; sourceTree = "<group>"; };
 		04C386CA213E093F0063A799 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
@@ -1734,6 +1742,8 @@
 				0402E77A215E19FA0040919C /* VolumeControlView.xib */,
 				2DCA86A0216B81E8001F9E04 /* ChatRedView.swift */,
 				2DCA86A2216B81F2001F9E04 /* ChatRedView.xib */,
+				04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */,
+				04B2B1FE216C508600D14E7C /* PlaySongListView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1831,6 +1841,8 @@
 				2D83D40C215E4D8D0097900F /* MemberCVCell.xib */,
 				2DCA869A21676468001F9E04 /* ConfigNetCVCell.swift */,
 				2DCA869B21676468001F9E04 /* ConfigNetCVCell.xib */,
+				04B876CC216C47DB00D0430F /* NetSuccessView.swift */,
+				04B876CE216C47EA00D0430F /* NetSuccessView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2140,6 +2152,7 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
+				B0D48240E065D01B719E0241 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2221,6 +2234,7 @@
 				0485CCBD2148F7EC00F54927 /* SmartPlayerViewController.xib in Resources */,
 				04C389EF213E25800063A799 /* EquipmentTopView.xib in Resources */,
 				2DCA86992160C738001F9E04 /* TwoItemCVCell.xib in Resources */,
+				04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */,
 				2DC955B5213FFED4004D6F65 /* MeInfoNameCell.xib in Resources */,
 				04C38A05213E671F0063A799 /* ContentShowCell.xib in Resources */,
 				04C38A19213E79240063A799 /* SearchViewController.xib in Resources */,
@@ -2232,6 +2246,7 @@
 				2DC9558E213EAC4C004D6F65 /* EquipmentSetHeaderCell.xib in Resources */,
 				04C38A09213E6CD70063A799 /* ContentShowCVCell.xib in Resources */,
 				043E1191213FB8FE0067ADF3 /* ContentSingsVC.xib in Resources */,
+				04B876CF216C47EA00D0430F /* NetSuccessView.xib in Resources */,
 				04C38712213E093F0063A799 /* Configuration.plist in Resources */,
 				2D312AA2213D560100FCC499 /* Assets.xcassets in Resources */,
 				2D312AA0213D560100FCC499 /* Main.storyboard in Resources */,
@@ -2333,6 +2348,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0D48240E065D01B719E0241 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2471,6 +2501,7 @@
 				04C38716213E093F0063A799 /* PMNetManager.swift in Sources */,
 				042EEF1D2150E15F00DBD492 /* EaseEmotionEscape.m in Sources */,
 				2D9195D32153BE1C00F4A9A1 /* DrawControlHeader.swift in Sources */,
+				04B2B1FD216C507E00D14E7C /* PlaySongListView.swift in Sources */,
 				0485CCA52148A89200F54927 /* MQTTExtensions.swift in Sources */,
 				042EEF642150E15F00DBD492 /* SDWebImageDownloaderOperation.m in Sources */,
 				2DC955B0213FFE17004D6F65 /* MeInfoHaderCell.swift in Sources */,
@@ -2543,6 +2574,7 @@
 				042EEF4C2150E15F00DBD492 /* PSTCollectionViewController.m in Sources */,
 				042EEF3A2150E15F00DBD492 /* EMVoiceConverter.mm in Sources */,
 				04CF492E215B31E10052CD67 /* GroupAddViewController.swift in Sources */,
+				04B876CD216C47DB00D0430F /* NetSuccessView.swift in Sources */,
 				042EEF352150E15F00DBD492 /* MJRefreshComponent.m in Sources */,
 				0460496B2153923900BEDCD6 /* CWLateralSlideConfiguration.m in Sources */,
 				042EEF8F2150F12B00DBD492 /* ChatMainViewController.swift in Sources */,

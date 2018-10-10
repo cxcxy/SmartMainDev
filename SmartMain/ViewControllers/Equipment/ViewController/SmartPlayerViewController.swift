@@ -102,7 +102,7 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     
     @IBAction func sliderVolumeValueChanged(_ sender: Any) {
-//        print(Int(sliderVolume.value))
+        print(Int(sliderVolume.value))
         scoketModel.setVolumeValue(value: Int(sliderVolume.value * 100))
     }
     
