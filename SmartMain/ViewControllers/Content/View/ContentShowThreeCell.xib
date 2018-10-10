@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="智伴专区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYI-FD-Kvz">
-                                <rect key="frame" x="30" y="18.5" width="215" height="23"/>
+                                <rect key="frame" x="15" y="18.5" width="230" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                             <constraint firstAttribute="height" constant="60" id="78i-Y7-lmf"/>
                             <constraint firstItem="RYI-FD-Kvz" firstAttribute="centerY" secondItem="ngF-C0-Vz6" secondAttribute="centerY" id="N04-t7-xzI"/>
                             <constraint firstItem="Nwe-NQ-Cn7" firstAttribute="centerY" secondItem="RYI-FD-Kvz" secondAttribute="centerY" id="T6D-AZ-4W8"/>
-                            <constraint firstItem="RYI-FD-Kvz" firstAttribute="leading" secondItem="ngF-C0-Vz6" secondAttribute="leading" constant="30" id="aYN-kh-Xhx"/>
+                            <constraint firstItem="RYI-FD-Kvz" firstAttribute="leading" secondItem="ngF-C0-Vz6" secondAttribute="leading" constant="15" id="aYN-kh-Xhx"/>
                             <constraint firstItem="Nwe-NQ-Cn7" firstAttribute="leading" secondItem="RYI-FD-Kvz" secondAttribute="trailing" constant="10" id="jHl-xf-6zs"/>
                         </constraints>
                     </view>

@@ -21,6 +21,8 @@ class SleepModel: NSObject {
 class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var btnSure: UIButton!
     var dataArr: [SleepModel] = []
     let scoketModel = ScoketMQTTManager.share
     override func awakeFromNib() {
@@ -36,6 +38,12 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
         self.addTapGesture { (sender) in
             self.hide()
         }
+        viewContainer.setCornerRadius(radius: 8)
+        btnSure.radius_ll()
+//        let toolbar = UIToolbar.init(frame: self.frame)
+//        toolbar.barStyle = UIBarStyle.blackTranslucent
+//        toolbar.alpha = 0.8
+//        self.addSubview(toolbar)
         configPickerView()
     }
     func configPickerView()  {

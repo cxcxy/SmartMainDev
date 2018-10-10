@@ -55,7 +55,15 @@ class ContentSingsVC: XBBaseViewController {
                 self.configTopHeadeaInfp(model: topModel)
             }
              self.tableView.reloadData()
+            self.starAnimationWithTableView(tableView: self.tableView)
         })
+    }
+    func starAnimationWithTableView(tableView: UITableView) {
+        //        table
+        if self.pageIndex == 1 {
+            TableViewAnimationKit.show(with: .moveSpring, tableView: tableView)
+        }
+        
     }
     func requestTrackList() {
         guard XBUserManager.device_Id != "" else {

@@ -10,7 +10,7 @@ import UIKit
 
 class EquipmentSubListVC: XBBaseTableViewController {
     var trackListId: Int! // 列表id
-    
+    var trackList: [EquipmentModel] = []
     var dataArr: [EquipmentSingModel] = []
     var headerInfo:ConetentSingAlbumModel?
     var total: Int?
@@ -23,9 +23,9 @@ class EquipmentSubListVC: XBBaseTableViewController {
         super.setUI()
         self.registerCells(register_cells: ["ContentSingCell"])
         self.tableView.mj_header = self.mj_header
-//        self.tableView.mj_footer = self.mj_footer
+        
         request()
-
+//        requestTrackList()
         ScoketMQTTManager.share.getSetDefaultMessage.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getSetDefaultMessage ===：", $0.element ?? "")
@@ -52,16 +52,41 @@ class EquipmentSubListVC: XBBaseTableViewController {
                 self.total = JSON.init(parseJSON: result as! String)["totalCount"].int
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.tableView.reloadData()
+                self.starAnimationWithTableView(tableView: self.tableView)
             }
            
         })
     }
+    func starAnimationWithTableView(tableView: UITableView) {
+        //        table
+        if self.pageIndex == 1 {
+            TableViewAnimationKit.show(with: .moveSpring, tableView: tableView)
+        }
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    //MARK: 发送MQTT -- 恢复默认列表， 获取到 改 列表的原始列表 ids
     func sendTopicSetDefault()  {
         ScoketMQTTManager.share.sendSetDefault(trackListId: trackListId)
     }
+    // 获取 预制列表
+//    func requestTrackList() {
+//        guard XBUserManager.device_Id != "" else {
+//            endRefresh()
+//            return
+//        }
+//        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+//            print(result)
+//            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+//                self.endRefresh()
+//                self.trackList = arr
+//                self.tableView.reloadData()
+//            }
+//        })
+//    }
+    // 恢复默认列表
     func requestSetDefault(model: GetTrackListDefault)  {
         guard let trackIds = model.trackIds else {
             return
@@ -85,9 +110,8 @@ extension EquipmentSubListVC {
         return 50
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let v = ContentSingHaderView.loadFromNib()
-        v.btnAddAll.set_Title("恢复默认列表")
-        v.btnAddAll.addAction {[weak self] in
+        let v = TrackListHeaderView.loadFromNib()
+        v.btnDefault.addAction {[weak self] in
             guard let `self` = self else { return }
             self.sendTopicSetDefault()
         }
@@ -105,17 +129,18 @@ extension EquipmentSubListVC {
         cell.listId = self.trackListId
         cell.lbLineNumber.set_text = (indexPath.row + 1).toString
         cell.setArr = ["添加到播单","收藏","删除"]
+        cell.trackList = self.trackList
         return cell
         
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-//         self.requestOnlineSing(trackId: (dataArr[indexPath.row].id ?? 0).toString)
         self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
     }
+    
+    //MARK: 获取歌曲详情
     func requestSingDetail(trackId: Int)   {
         Net.requestWithTarget(.getSingDetail(trackId: trackId), successClosure: { (result, code, message) in
-        
             guard let result = result as? String else {
                 return
             }
@@ -124,9 +149,11 @@ extension EquipmentSubListVC {
             }
         })
     }
+    // 发送预制列表点播 MQTT
     func sendTopicSingDetail(singModel: SingDetailModel)  {
         ScoketMQTTManager.share.sendTrackListPlay(trackListId: trackListId, singModel: singModel)
     }
+    //MARK: 在线点播
     func requestOnlineSing(trackId: String)  {
         
         viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId, deviceId: XBUserManager.device_Id) {

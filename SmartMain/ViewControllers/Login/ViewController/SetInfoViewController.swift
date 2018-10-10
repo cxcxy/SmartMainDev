@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol SetInfoDelegate: class {
+    func addSuccessAction(deviceId: String,model: XBDeviceBabyModel)
+}
 
 class SetInfoViewController: XBBaseViewController {
 
@@ -16,12 +19,14 @@ class SetInfoViewController: XBBaseViewController {
     @IBOutlet weak var tfNick: UITextField!
     @IBOutlet weak var btnSure: UIButton!
     @IBOutlet weak var imgPhoto: UIImageView!
+    weak var delegate: SetInfoDelegate?
     var viewModel = LoginViewModel()
     var headImgUrl: String = ""
     var birth = ""
      var currentSex :Int = 1  // 0 - 男 1 - 女
     @IBOutlet weak var viewBirthday: UIView!
-    
+    var deviceId: String!
+    var isAdd: Bool = true // 是否未添加
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -45,7 +50,12 @@ class SetInfoViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        self.title = "宝贝信息"
+        if isAdd {
+            self.title = "完善信息"
+        }else {
+            self.title = "宝贝信息"
+        }
+        
         imgPhoto.roundView()
         view.backgroundColor = viewColor
         btnSure.radius_ll()
@@ -61,7 +71,10 @@ class SetInfoViewController: XBBaseViewController {
     }
     override func request() {
         super.request()
-        viewModel.requestGetBabyInfo {[weak self] in
+        guard !isAdd else {
+            return
+        }
+        viewModel.requestGetBabyInfo(device_Id: deviceId) {[weak self] in
             guard let `self` = self else { return }
             self.configUIInfo()
         }
@@ -91,9 +104,21 @@ class SetInfoViewController: XBBaseViewController {
         }
     }
     @IBAction func clickSureAction(_ sender: Any) {
-        viewModel.requestUpdateBabyInfo(babyname: tfNick.text!, headimgurl: self.headImgUrl, sex: currentSex, birthday: self.birth) {
-            print("成功")
+        
+        viewModel.requestUpdateBabyInfo(device_Id: deviceId, babyname: tfNick.text!, headimgurl: self.headImgUrl, sex: currentSex, birthday: self.birth) { model in
+            if self.isAdd {
+                print("新增成功")
+                if let del = self.delegate {
+                    del.addSuccessAction(deviceId: self.deviceId,model: model)
+                    self.popVC()
+                }
+            }else {
+                XBHud.showMsg("修改成功")
+                self.popVC()
+                XBUserManager.saveDeviceInfo(model)
+            }
         }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

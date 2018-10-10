@@ -15,7 +15,7 @@ enum XBScanEntrance {
 }
 //typealias XBScanResultBlock = (_ friendModelArr: [FriendResModel]?,_ companyModel: XBCompDetResModel?,_ voucherModel: VoucherListResModel?) -> ()
 class XBScanViewController: XBBaseViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    var viewModel = LoginViewModel()
     var sessionManager:AVCaptureSessionManager?
     var link: CADisplayLink?
     var torchState = false
@@ -134,7 +134,9 @@ extension XBScanViewController {
             return
         }
         params_task["deviceId"] = current_deviceId
-        self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: current_deviceId)
+        
+        self.checkBabyInfo(device_Id: current_deviceId)
+
 //        Net.requestWithTarget(.joinEquiment(req: params_task), successClosure: { (result, code, message) in
 //            print(result)
 //            if let str = result as? String {
@@ -149,7 +151,7 @@ extension XBScanViewController {
 //        user_defaults.get(for: .deviceId)
     }
     
-    func requestJoinEaseGroup(username: String?,deviceId:String)  {
+    func requestJoinEaseGroup(username: String?,deviceId:String, model: XBDeviceBabyModel)  {
         var params_task = [String: Any]()
         
         params_task["username"] = username
@@ -171,4 +173,46 @@ extension XBScanViewController {
             }
         })
     }
+    func checkBabyInfo(device_Id: String)  {
+
+        Net.requestWithTarget(.getBabyInfo(deviceId: device_Id), successClosure: { (result, code, message) in
+            if let result = result as? String {
+                guard let status = result.json_Str()["status"].int else {
+                    return
+                }
+                if status == 404 {
+                    XBHud.showMsg("请完善设备信息")
+                    
+                    let vc = SetInfoViewController()
+                    vc.deviceId = device_Id
+                    vc.isAdd = true
+                    vc.delegate = self
+                    self.pushVC(vc)
+                    
+                } else if status == 200 {
+                    if let obj = Net.filterStatus(jsonString: result as AnyObject) {
+                        if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
+                            self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: device_Id, model: model)
+                        }
+                    }
+                    
+                }
+            }
+
+
+//            if let obj = Net.filterStatus(jsonString: result) {
+//                if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
+//                    XBUserManager.saveDeviceInfo(model)
+//                    closure()
+//                }
+//            }
+        })
+    }
+}
+extension XBScanViewController: SetInfoDelegate {
+    
+    func addSuccessAction(deviceId: String, model: XBDeviceBabyModel) {
+        self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: deviceId, model: model)
+    }
+    
 }

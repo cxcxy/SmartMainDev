@@ -46,8 +46,21 @@ class ContentMainVC: XBBaseViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let unredCount =  EMConversation.init().unreadMessagesCount
-        print(unredCount)
+        setupUnreadMessageCount()
+    }
+    //MARK: 设置未读消息数量
+    func setupUnreadMessageCount()  {
+        let conversations = EMClient.shared()?.chatManager.getAllConversations() as? [EMConversation]
+        var unreadCount = 0
+        for item in conversations ?? [] {
+            unreadCount += Int(item.unreadMessagesCount)
+        }
+        if unreadCount > 0 {
+            self.navMessageView.viewRed.isHidden = false
+        }else {
+            self.navMessageView.viewRed.isHidden = true
+        }
+        print("未读消息数量" , unreadCount)
     }
     override func setUI() {
         super.setUI()
@@ -71,10 +84,17 @@ class ContentMainVC: XBBaseViewController {
             self.pushVC(vc)
         }
         makeRightNavigationItem(navMessageView, left: false)
+        configChatMessage()
+        XBDelay.start(delay: 1) {
+            self.setupUnreadMessageCount()
+        }
+        
     }
     func configChatMessage()  {
         EMClient.shared().chatManager.add(self, delegateQueue: nil)
-        
+    }
+    deinit {
+        EMClient.shared()?.chatManager.remove(self)
     }
     func configScoketModel() {
         guard XBUserManager.device_Id != "" else {
@@ -243,6 +263,7 @@ extension ContentMainVC :VTMagicViewDelegate{
 extension ContentMainVC: EMChatManagerDelegate {
     // 收到消息
     func messagesDidReceive(_ aMessages: [Any]!) {
-        
+        print("收到消息", aMessages)
+        self.setupUnreadMessageCount()
     }
 }

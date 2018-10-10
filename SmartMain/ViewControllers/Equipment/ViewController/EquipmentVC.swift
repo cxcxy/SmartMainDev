@@ -104,7 +104,7 @@ extension EquipmentVC {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        VCRouter.toEquipmentSubListVC(trackListId: dataArr[indexPath.row].id ?? 0,navTitle: dataArr[indexPath.row].name)
+//        VCRouter.toEquipmentSubListVC(trackListId: dataArr[indexPath.row].id ?? 0,navTitle: dataArr[indexPath.row].name)
     }
     override func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
       return  NSAttributedString(string: "暂无绑定设备",

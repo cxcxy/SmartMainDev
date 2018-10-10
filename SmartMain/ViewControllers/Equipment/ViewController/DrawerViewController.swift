@@ -45,15 +45,25 @@ class DrawerViewController: XBBaseViewController {
     }
     // 配置 设备信息 数据
     func cofigDeviceInfo()  {
-        if XBUserManager.device_Id == "" { // 未绑定设备，
-            eqArr       = [eqOne,eqTwo,eqThree]
-            accountArr  = [accountTwo,accountThree]
-        }else { // 绑定设备， 有接触绑定设备操作， 有宝宝信息
-            eqArr       = [eqOne,eqTwo,eqThree,eqFour]
-            accountArr  = [accountOne,accountTwo,accountThree]
-            getMQTT()
+        if XBUserManager.userDevices.count > 0 && XBUserManager.device_Id != ""  { // 有绑定设备
             
+                eqArr       = [eqOne,eqTwo,eqThree,eqFour]
+                accountArr  = [accountOne,accountTwo,accountThree]
+                getMQTT()
+            
+        } else {
+            eqArr       = [eqTwo]
+            accountArr  = [accountTwo,accountThree]
         }
+//        if XBUserManager.device_Id == "" { // 未绑定设备，
+//            eqArr       = [eqOne,eqTwo,eqThree]
+//            accountArr  = [accountTwo,accountThree]
+//        }else { // 绑定设备， 有接触绑定设备操作， 有宝宝信息
+//            eqArr       = [eqOne,eqTwo,eqThree,eqFour]
+//            accountArr  = [accountOne,accountTwo,accountThree]
+//            getMQTT()
+//
+//        }
         imgPhoto.roundView()
         imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
 //        lbDvnick.set_text = XBUserManager.device_Id == "" ? "暂未绑定设备" : XBUserManager.userName
@@ -101,6 +111,8 @@ extension DrawerViewController {
             self.cw_push(vc)
         case 4:
             let vc = SetInfoViewController()
+            vc.isAdd = false
+            vc.deviceId = XBUserManager.device_Id
             self.cw_push(vc)
         case 5:
             let vc = AccountInfoViewController()

@@ -14,12 +14,14 @@ class ChatMainCell: BaseTableViewCell {
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbDes: UILabel!
     @IBOutlet weak var viewMessage: UIView!
+    @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var lbMessage: UILabel!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // Initialization code、
+        viewContainer.setCornerRadius(radius: 5.0)
         viewMessage.setCornerRadius(radius: 10)
     }
 

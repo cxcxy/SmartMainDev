@@ -20,7 +20,7 @@ class GroupItemCell: BaseTableViewCell {
     
     var groupId: String!
     var groupOwner: Bool  = false
-    
+    var ownerPhone : String = ""
     @IBOutlet weak var lbDes: UILabel!
     @IBOutlet weak var btnAdd: UIButton!
     
@@ -67,8 +67,21 @@ extension GroupItemCell:UICollectionViewDelegate,UICollectionViewDataSource,UICo
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "XBAddContactCell", for: indexPath)as! XBAddContactCell
         cell.imgView.set_img = "icon_photo"
-        cell.titleLab.font = UIFont.systemFont(ofSize: 12)
-        cell.titleLab.set_text = contentArr[indexPath.row]
+        cell.titleLab.font = UIFont.systemFont(ofSize: 8)
+        
+        let name = contentArr[indexPath.row]
+        cell.titleLab.set_text = name
+//        if 
+//        cell.titleLab.set_text = contentArr[indexPath.row]
+        if self.groupOwner { // 当前为该群组管理员
+            if name == ownerPhone { // 当前显示的是自己
+                cell.imgDelete.isHidden = true
+            }else {
+                cell.imgDelete.isHidden = false
+            }
+        }else {
+             cell.imgDelete.isHidden = true
+        }
 
         cell.imgDelete.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
@@ -83,7 +96,7 @@ extension GroupItemCell:UICollectionViewDelegate,UICollectionViewDataSource,UICo
     }
     //item 的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:56,height:92)
+        return CGSize(width:60,height:92)
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

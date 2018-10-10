@@ -66,6 +66,7 @@ public extension DefaultsKey {
     static let userName = Key<String>("userName")
     static let deviceId = Key<String>("deviceId")
     static let online   = Key<Bool>("online")
+    static let userDevices = Key<[String]>("userDevices")
     
      static let dv_babyname   = Key<String>("babyname")
      static let dv_headimgurl   = Key<String>("headimgurl")
@@ -177,6 +178,14 @@ struct XBUserManager {
         }
         set{
             user_defaults.set(newValue, for: .deviceId)
+        }
+    }
+    static var userDevices:[String] {
+        get{
+            return user_defaults.get(for: .userDevices) ?? []
+        }
+        set{
+            user_defaults.set(newValue, for: .userDevices)
         }
     }
     static var online:Bool { // 当前设备是否在线

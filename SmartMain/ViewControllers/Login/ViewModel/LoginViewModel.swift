@@ -134,7 +134,7 @@ class LoginViewModel: NSObject {
         })
     }
     /// 修改信息
-    func requestGetBabyInfo(closure: @escaping () -> ())  {
+    func requestGetBabyInfo(device_Id: String, closure: @escaping () -> ())  {
         
         Net.requestWithTarget(.getBabyInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             if let obj = Net.filterStatus(jsonString: result) {
@@ -146,7 +146,7 @@ class LoginViewModel: NSObject {
         })
     }
     /// 修改信息
-    func requestUpdateBabyInfo(babyname: String,headimgurl: String,sex: Int,birthday: String,closure: @escaping () -> ())  {
+    func requestUpdateBabyInfo(device_Id: String,babyname: String,headimgurl: String,sex: Int,birthday: String,closure: @escaping (XBDeviceBabyModel) -> ())  {
         guard babyname != "" else {
             XBHud.showMsg("请输入昵称")
             return
@@ -156,7 +156,7 @@ class LoginViewModel: NSObject {
             return
         }
         var params_task = [String: Any]()
-        params_task["deviceid"] = XBUserManager.device_Id
+        params_task["deviceid"] = device_Id
         params_task["babyname"] = babyname
         params_task["headimgurl"] = headimgurl
         params_task["sex"] = sex
@@ -164,7 +164,8 @@ class LoginViewModel: NSObject {
         Net.requestWithTarget(.updateBabyInfo(req: params_task), successClosure: { (result, code, message) in
             if let obj = Net.filterStatus(jsonString: result) {
                 if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
-                    XBUserManager.saveDeviceInfo(model)
+//                    XBUserManager.saveDeviceInfo(model)
+                    closure(model)
                 }
             }
         })
@@ -178,9 +179,10 @@ class LoginViewModel: NSObject {
             XBHud.showMsg(message)
             return
         }
-        if let arr = jsonResult.json_Str()["result"]["deviceId"].arrayObject {
+        if let arr = jsonResult.json_Str()["result"]["deviceId"].arrayObject as? [String] {
+            XBUserManager.userDevices = arr
             if arr.count > 0 {
-                XBUserManager.device_Id = arr[0] as! String
+                XBUserManager.device_Id = arr[0]
             }
         }
         XBUserManager.userName = mobile

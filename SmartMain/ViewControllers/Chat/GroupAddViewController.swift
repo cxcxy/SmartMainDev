@@ -9,10 +9,15 @@
 import UIKit
 
 class GroupAddViewController: XBBaseTableViewController {
+    
     var groupId: String!
+    
     var groupName: String!
+    
     var groupList: [String] = []
-    var groupOwner: Bool  = false
+    
+    var groupOwner: Bool  = false // 是否是管理员
+    var ownerPhone : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,10 +44,12 @@ class GroupAddViewController: XBBaseTableViewController {
             print(emGroup.members)
             print(emGroup.occupants)
             if emGroup.owner == XBUserManager.userName {
+                
                 self.groupOwner = true
             }else {
                 self.groupOwner = false
             }
+            self.ownerPhone = emGroup.owner
             if let list = emGroup.occupants as? [String] {
                 self.groupList = list
                 self.tableView.reloadData()
@@ -124,7 +131,7 @@ extension GroupAddViewController {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -137,6 +144,7 @@ extension GroupAddViewController {
             cell.lbDes.set_text = "微聊组成员"
             cell.groupId        = self.groupId
             cell.groupOwner     = self.groupOwner
+            cell.ownerPhone = self.ownerPhone
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupItemCell", for: indexPath) as! GroupItemCell

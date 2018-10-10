@@ -11,6 +11,10 @@ import UIKit
 class VolumeControlView: ETPopupView {
     @IBOutlet weak var sliderVolume: UISlider!
     @IBOutlet weak var lbVolume: UILabel!
+    
+    @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var btnSure: UIButton!
+    
     let scoketModel = ScoketMQTTManager.share
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +29,7 @@ class VolumeControlView: ETPopupView {
         self.addTapGesture { (sender) in
             self.hide()
         }
+        btnSure.radius_ll()
         self.configVolume()
     }
     func configVolume()  {

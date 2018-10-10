@@ -285,6 +285,8 @@
 		04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4931215B328A0052CD67 /* GroupItemCell.xib */; };
 		04CF4936215B65C20052CD67 /* GroupAddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */; };
 		04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */; };
+		04E537C7216DDFF2002DE58C /* TrackListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */; };
+		04E537C9216DDFFB002DE58C /* TrackListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */; };
 		04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */; };
 		04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */; };
 		04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */; };
@@ -781,6 +783,8 @@
 		04CF4931215B328A0052CD67 /* GroupItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupItemCell.xib; sourceTree = "<group>"; };
 		04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddMemberController.swift; sourceTree = "<group>"; };
 		04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAddMemberController.xib; sourceTree = "<group>"; };
+		04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListHeaderView.swift; sourceTree = "<group>"; };
+		04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListHeaderView.xib; sourceTree = "<group>"; };
 		04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigNetViewController.swift; sourceTree = "<group>"; };
 		04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigNetViewController.xib; sourceTree = "<group>"; };
 		04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EquimentViewModel.swift; path = SmartMain/ViewControllers/Equipment/ViewController/EquimentViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -1843,6 +1847,8 @@
 				2DCA869B21676468001F9E04 /* ConfigNetCVCell.xib */,
 				04B876CC216C47DB00D0430F /* NetSuccessView.swift */,
 				04B876CE216C47EA00D0430F /* NetSuccessView.xib */,
+				04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */,
+				04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2264,6 +2270,7 @@
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
 				2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */,
 				0473BA0A215A299A003D688F /* ScreenControlView.xib in Resources */,
+				04E537C9216DDFFB002DE58C /* TrackListHeaderView.xib in Resources */,
 				04C38A01213E64170063A799 /* ContentHeaderCell.xib in Resources */,
 				0473BA0E215A2E27003D688F /* OpenEquViewController.xib in Resources */,
 			);
@@ -2484,6 +2491,7 @@
 				046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */,
 				04C3872B213E093F0063A799 /* String+.swift in Sources */,
 				042EEF452150E15F00DBD492 /* UIImage+MWPhotoBrowser.m in Sources */,
+				04E537C7216DDFF2002DE58C /* TrackListHeaderView.swift in Sources */,
 				04C389ED213E25500063A799 /* EquipmentTopView.swift in Sources */,
 				04C3873A213E093F0063A799 /* PhotoToolBar.swift in Sources */,
 				042EEF382150E15F00DBD492 /* wav.mm in Sources */,

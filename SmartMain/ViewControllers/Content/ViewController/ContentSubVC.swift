@@ -38,6 +38,7 @@ class ContentSubVC: XBBaseTableViewController {
                 if self.pageIndex == 1 {
                     self.dataArr.removeAll()
                     self.cofigMjFooter()
+                   
                 }
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
@@ -49,42 +50,45 @@ class ContentSubVC: XBBaseTableViewController {
     }
     func starAnimationWithTableView(tableView: UITableView) {
 //        table
-        TableViewAnimationKit.show(with: .alpha, tableView: tableView)
+        if self.pageIndex == 1 {
+            TableViewAnimationKit.show(with: .layDown, tableView: tableView)
+        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }
 extension ContentSubVC {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataArr.count
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return dataArr.count
+//    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return dataArr.count
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSubShowCell", for: indexPath) as! ContentSubShowCell
-        cell.lbTitle.set_text = dataArr[indexPath.section].name
-        cell.imgIcon.set_Img_Url(dataArr[indexPath.section].imgSmall)
+        cell.lbTitle.set_text = dataArr[indexPath.row].name
+        cell.imgIcon.set_Img_Url(dataArr[indexPath.row].imgSmall)
         return cell
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        VCRouter.toContentSubVC()
-        let model = dataArr[indexPath.section]
+        let model = dataArr[indexPath.row]
         if model.albumType == 2 {
             VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
         }else {
             VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
         }
     }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
-    }
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 10
+//    }
     
 //    //设置cell的显示动画
 //    func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!,

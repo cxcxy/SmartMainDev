@@ -37,8 +37,16 @@ class LikeViewController: XBBaseTableViewController {
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.tableView.reloadData()
+                self.starAnimationWithTableView(tableView: self.tableView)
             }
         })
+    }
+    func starAnimationWithTableView(tableView: UITableView) {
+        //        table
+        if self.pageIndex == 1 {
+            TableViewAnimationKit.show(with: .moveSpring, tableView: tableView)
+        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

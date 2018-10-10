@@ -88,7 +88,7 @@ extension TrackListViewController: SMAllClassViewHeaderDelegate {
     
     func toggleSection(_ header: SMAllClassViewHeader, section: Int) {
         let model = dataArr[section]
-        VCRouter.toEquipmentSubListVC(trackListId: model.id ?? 0,navTitle: model.name)
+        VCRouter.toEquipmentSubListVC(trackListId: model.id ?? 0,navTitle: model.name,trackList: dataArr)
     }
     
 }

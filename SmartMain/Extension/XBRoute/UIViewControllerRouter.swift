@@ -66,10 +66,11 @@ class VCRouter {
         
     }
     // MARK: - 跳转预制歌单列表界面
-    class func toEquipmentSubListVC(trackListId: Int!, navTitle: String?) {
+    class func toEquipmentSubListVC(trackListId: Int!, navTitle: String?, trackList: [EquipmentModel]) {
         
         let vc = EquipmentSubListVC()
         vc.trackListId = trackListId
+        vc.trackList = trackList
         vc.title = navTitle
         topVC?.pushVC(vc)
         

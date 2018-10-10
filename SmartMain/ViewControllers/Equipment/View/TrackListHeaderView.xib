@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TrackListHeaderView" customModule="SmartMain" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HK9-SG-RbE">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jw-d3-O1A">
+                            <rect key="frame" x="170" y="11.5" width="35.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NV-2o-y7o" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                            <rect key="frame" x="280" y="5" width="80" height="30"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqe-ie-Me7">
+                                    <rect key="frame" x="9" y="3" width="62" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <state key="normal" title="恢复默认列表">
+                                        <color key="titleColor" red="0.0" green="0.56862745100000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Dqe-ie-Me7" firstAttribute="centerY" secondItem="1NV-2o-y7o" secondAttribute="centerY" id="3qT-es-VAj"/>
+                                <constraint firstAttribute="height" constant="30" id="6v4-rL-V0b"/>
+                                <constraint firstAttribute="width" constant="80" id="eCu-tB-Qfc"/>
+                                <constraint firstItem="Dqe-ie-Me7" firstAttribute="centerX" secondItem="1NV-2o-y7o" secondAttribute="centerX" id="s86-zl-yqW"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="7jw-d3-O1A" firstAttribute="centerY" secondItem="HK9-SG-RbE" secondAttribute="centerY" id="8Fb-ED-3Z9"/>
+                        <constraint firstAttribute="trailing" secondItem="1NV-2o-y7o" secondAttribute="trailing" constant="15" id="RYd-99-QZ2"/>
+                        <constraint firstItem="7jw-d3-O1A" firstAttribute="centerX" secondItem="HK9-SG-RbE" secondAttribute="centerX" id="Z2J-54-dWZ"/>
+                        <constraint firstItem="1NV-2o-y7o" firstAttribute="centerY" secondItem="HK9-SG-RbE" secondAttribute="centerY" id="iGK-qN-bsv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HK9-SG-RbE" secondAttribute="trailing" id="EOO-gW-nfa"/>
+                <constraint firstAttribute="bottom" secondItem="HK9-SG-RbE" secondAttribute="bottom" id="INL-94-TVm"/>
+                <constraint firstItem="HK9-SG-RbE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Izm-mA-C5N"/>
+                <constraint firstItem="HK9-SG-RbE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="TkR-lA-IlS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnDefault" destination="Dqe-ie-Me7" id="xUF-wj-4RG"/>
+                <outlet property="lbTotal" destination="7jw-d3-O1A" id="Cb1-qA-Q6D"/>
+                <outlet property="viewDefault" destination="1NV-2o-y7o" id="Spr-M0-dqD"/>
+            </connections>
+            <point key="canvasLocation" x="54" y="-19"/>
+        </view>
+    </objects>
+</document>

@@ -108,6 +108,20 @@ class ConfigNetViewController: XBBaseViewController {
             XBHud.showWarnMsg("请先绑定设备")
             return
         }
+        guard configNetInfo.name != "" else {
+            XBHud.showMsg("请输入WIFI名称")
+            self.currentIndex = 1
+            let index = IndexPath.init(row: 1, section: 0)
+            collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            return
+        }
+        guard configNetInfo.password != "" else {
+            XBHud.showMsg("请输入WIFI密码")
+            self.currentIndex = 1
+            let index = IndexPath.init(row: 1, section: 0)
+            collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            return
+        }
         viewModel.requestGetVoice(ssid: configNetInfo.name, password: configNetInfo.password, openId: XBUserManager.userName, deviceId: XBUserManager.device_Id) {[weak self] (voiceURL) in
             guard let `self` = self else { return }
             self.playVoice(url: voiceURL)

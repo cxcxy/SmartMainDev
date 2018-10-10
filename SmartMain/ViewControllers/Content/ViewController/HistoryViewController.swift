@@ -50,8 +50,16 @@ class HistoryViewController: XBBaseViewController {
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.tableView.reloadData()
+                self.starAnimationWithTableView(tableView: self.tableView)
             }
         })
+    }
+    func starAnimationWithTableView(tableView: UITableView) {
+        //        table
+        if self.pageIndex == 1 {
+            TableViewAnimationKit.show(with: .moveSpring, tableView: tableView)
+        }
+        
     }
     func requestTrackList() {
         guard XBUserManager.device_Id != "" else {

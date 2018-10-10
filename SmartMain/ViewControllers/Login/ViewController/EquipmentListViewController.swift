@@ -51,6 +51,7 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentShowCVCell", for: indexPath)as! ContentShowCVCell
         cell.lbTitle.set_text = dataArr[indexPath.row].babyname
+        cell.imgIcon.roundView()
         cell.imgIcon.set_Img_Url(dataArr[indexPath.row].headimgurl)
         return cell
     }
