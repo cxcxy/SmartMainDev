@@ -287,6 +287,8 @@
 		04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */; };
 		04E537C7216DDFF2002DE58C /* TrackListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */; };
 		04E537C9216DDFFB002DE58C /* TrackListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */; };
+		04E537CC216DEF41002DE58C /* XBLoginOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E537CA216DEF41002DE58C /* XBLoginOutView.swift */; };
+		04E537CD216DEF41002DE58C /* XBLoginOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E537CB216DEF41002DE58C /* XBLoginOutView.xib */; };
 		04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */; };
 		04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */; };
 		04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */; };
@@ -785,6 +787,8 @@
 		04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAddMemberController.xib; sourceTree = "<group>"; };
 		04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListHeaderView.swift; sourceTree = "<group>"; };
 		04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListHeaderView.xib; sourceTree = "<group>"; };
+		04E537CA216DEF41002DE58C /* XBLoginOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBLoginOutView.swift; sourceTree = "<group>"; };
+		04E537CB216DEF41002DE58C /* XBLoginOutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBLoginOutView.xib; sourceTree = "<group>"; };
 		04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigNetViewController.swift; sourceTree = "<group>"; };
 		04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigNetViewController.xib; sourceTree = "<group>"; };
 		04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EquimentViewModel.swift; path = SmartMain/ViewControllers/Equipment/ViewController/EquimentViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -1731,6 +1735,8 @@
 		04C38818213E0B590063A799 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				04E537CA216DEF41002DE58C /* XBLoginOutView.swift */,
+				04E537CB216DEF41002DE58C /* XBLoginOutView.xib */,
 				2DCA869E21676779001F9E04 /* XBCustomItemLayout.swift */,
 				0402E77D215E27160040919C /* XBLaunchView.swift */,
 				0402E77C215E27160040919C /* XBLaunchView.xib */,
@@ -2252,6 +2258,7 @@
 				2DC9558E213EAC4C004D6F65 /* EquipmentSetHeaderCell.xib in Resources */,
 				04C38A09213E6CD70063A799 /* ContentShowCVCell.xib in Resources */,
 				043E1191213FB8FE0067ADF3 /* ContentSingsVC.xib in Resources */,
+				04E537CD216DEF41002DE58C /* XBLoginOutView.xib in Resources */,
 				04B876CF216C47EA00D0430F /* NetSuccessView.xib in Resources */,
 				04C38712213E093F0063A799 /* Configuration.plist in Resources */,
 				2D312AA2213D560100FCC499 /* Assets.xcassets in Resources */,
@@ -2412,6 +2419,7 @@
 				042EEF872150E15F00DBD492 /* EaseBubbleView+Gif.m in Sources */,
 				042EEF322150E15F00DBD492 /* MJRefreshHeader.m in Sources */,
 				042EEF812150E15F00DBD492 /* EaseBubbleView+Location.m in Sources */,
+				04E537CC216DEF41002DE58C /* XBLoginOutView.swift in Sources */,
 				042EEF4B2150E15F00DBD492 /* DACircularProgressView.m in Sources */,
 				042EEF1A2150E15F00DBD492 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				04C38A0F213E6ED60063A799 /* LikeViewController.swift in Sources */,

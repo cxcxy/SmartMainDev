@@ -12,6 +12,11 @@ class ChatManager: NSObject {
     
     static let share = ChatManager()
     
+    lazy var popWindow:UIWindow = {
+        let w = UIApplication.shared.delegate as! AppDelegate
+        return w.window!
+    }()
+    
     func init_ChatMessage(_ application: UIApplication, _ launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
         let options = EMOptions.init(appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g")
         EMClient.shared().initializeSDK(with: options)
@@ -20,20 +25,27 @@ class ChatManager: NSObject {
                                                    appkey: "1188180613253110#o9tm3wzgkwwrmakc5gddip54t5g",
                                                    apnsCertName: "",
                                                    otherConfig: [kSDKConfigEnableConsoleLogger: false])
-//        loginEMClient()
+        EMClient.shared()?.add(self, delegateQueue: nil)
+
         
     }
     
     func loginEMClient(username: String,password: String)  {
-        EMClient.shared().login(withUsername: username, password: password) { (aUserName, aError) in
-            if (aError == nil) {
-                print("登录成功",aUserName ?? "未获取到姓名")
+        if let isAutoLogin = EMClient.shared()?.options.isAutoLogin {
+            if isAutoLogin {
                 self.asyncGetMyGroupsFromServer()
-            }else {
-                print("登录失败")
+                return
+            }
+            EMClient.shared().login(withUsername: username, password: password) { (aUserName, aError) in
+                if (aError == nil) {
+                    print("登录成功",aUserName ?? "未获取到姓名")
+                    EMClient.shared()?.options.isAutoLogin = true // 设置为自动登录
+                    self.asyncGetMyGroupsFromServer()
+                }else {
+                    print("登录失败")
+                }
             }
         }
-//        EMClient.shared().login
     }
     func asyncGetMyGroupsFromServer() {
         DispatchQueue.global().async {
@@ -84,6 +96,21 @@ class ChatManager: NSObject {
         }
     }
 }
-extension ChatManager {
-    
+extension ChatManager: EMClientDelegate {
+    // 当前登录账号在其它设备登录时会接收到此回调
+    func userAccountDidLoginFromOtherDevice() {
+        VCRouter.prentAlertAction(message: "当前帐号在异地登录") {
+            print("确认")
+            if (EMClient.shared()?.logout(true)) == nil {
+                print("退出登录成功")
+            }
+            XBUserManager.cleanUserInfo()
+            XBUserManager.clearDeviceInfo()
+            let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
+            self.popWindow.rootViewController = sv
+        }
+    }
+    func autoLoginDidCompleteWithError(_ aError: EMError!) {
+        print("自动登录，",aError)
+    }
 }

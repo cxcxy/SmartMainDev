@@ -118,10 +118,8 @@ extension DrawerViewController {
             let vc = AccountInfoViewController()
             self.cw_push(vc)
         case 6:
-            XBUserManager.cleanUserInfo()
-            XBUserManager.clearDeviceInfo()
-            let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
-            popWindow.rootViewController = sv
+
+            loginOutAction()
             break
         case 7:
 //            quitEquimentAction()
@@ -131,6 +129,21 @@ extension DrawerViewController {
         default:
             break
         }
+    }
+    func loginOutAction()  {
+        let out = XBLoginOutView.loadFromNib()
+        out.sureBlock = { [weak self] in
+            guard let `self` = self else { return }
+            XBUserManager.cleanUserInfo()
+            XBUserManager.clearDeviceInfo()
+            if (EMClient.shared()?.logout(true)) == nil {
+                print("退出登录成功")
+            }
+            let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
+            self.popWindow.rootViewController = sv
+            
+        }
+        out.show()
     }
     // 解除设备操作，第一步，查询当前用户是否为 管理员
     func quitEquimentAction()  {

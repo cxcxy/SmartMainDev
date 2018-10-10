@@ -47,7 +47,7 @@ class ChatMainViewController: XBBaseViewController {
 
         if let arr = EMClient.shared().groupManager.getJoinedGroups() as? [EMGroup] { //  获取 群组信息
             self.dataArr = arr
-////            print(arr)
+            print(arr)
 ////            if arr.count > 0 {}
 //            var conversationArr: [EMConversation] = []
 //            for item in arr {
@@ -67,6 +67,7 @@ class ChatMainViewController: XBBaseViewController {
         }
         
         if let conversations = EMClient.shared()?.chatManager.getAllConversations() as? [EMConversation] { // 如果能拿到群组回话信息 ，则获取群组回话信息
+            print(conversations)
             self.conversations = conversations
         }
         
