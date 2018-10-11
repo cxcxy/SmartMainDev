@@ -18,6 +18,12 @@ class TrackListViewController: XBBaseTableViewController {
     }
     override func setUI() {
         super.setUI()
+        
+        _ = Noti(.refreshTrackList).takeUntil(self.rx.deallocated).subscribe(onNext: {[weak self] (value) in
+            guard let `self` = self else { return }
+            self.request()
+        })
+        
         tableView.contentInset = UIEdgeInsets.init(top: 10, left: 0, bottom: 80, right: 0)
         request()
     }

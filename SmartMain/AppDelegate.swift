@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if user_defaults.has(.userName) {
             print("登录过")
-            
+            _ = ScoketMQTTManager.share
             self.configDrawerController()
             loginEMClient()
             
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
             window?.rootViewController = sv
         }
-        _ = ScoketMQTTManager.share
+        
         IQKeyboardManager.shared.enable = true
         if (launchOptions == nil) {
 //            showADLaunchView()

@@ -29,45 +29,69 @@ class DrawerViewController: XBBaseViewController {
     
     @IBOutlet weak var btnSleep: UIButton!
     
+    
+    @IBOutlet weak var topTableLayout: NSLayoutConstraint!
+    
     let scoketModel = ScoketMQTTManager.share
+    
+    var viewModel = LoginViewModel()
     
     lazy var popWindow:UIWindow = {
         let w = UIApplication.shared.delegate as! AppDelegate
         return w.window!
     }()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        ImageCache.default.removeImage(forKey: XBUserManager.dv_headimgurl)
+        if let headImgUrl = user_defaults.get(for: .headImgUrl){
+            ImageCache.default.removeImage(forKey: headImgUrl)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     override func setUI() {
         super.setUI()
+        request()
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
         self.cofigDeviceInfo()
+        imgPhoto.addTapGesture {[weak self] (sender) in
+            guard let `self` = self else { return }
+            let vc = SetInfoViewController()
+            vc.setInfoType = .editUserInfo
+            self.cw_push(vc)
+        }
+        
+    }
+    override func request() {
+        super.request()
+        viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
+            guard let `self` = self else { return }
+            self.configUserInfo()
+        }
     }
     // 配置 设备信息 数据
     func cofigDeviceInfo()  {
         if XBUserManager.userDevices.count > 0 && XBUserManager.device_Id != ""  { // 有绑定设备
-            
+                topTableLayout.constant = 110
                 eqArr       = [eqOne,eqTwo,eqThree,eqFour]
                 accountArr  = [accountOne,accountTwo,accountThree]
                 getMQTT()
             
         } else {
+            topTableLayout.constant = 0
             eqArr       = [eqTwo]
             accountArr  = [accountTwo,accountThree]
         }
-//        if XBUserManager.device_Id == "" { // 未绑定设备，
-//            eqArr       = [eqOne,eqTwo,eqThree]
-//            accountArr  = [accountTwo,accountThree]
-//        }else { // 绑定设备， 有接触绑定设备操作， 有宝宝信息
-//            eqArr       = [eqOne,eqTwo,eqThree,eqFour]
-//            accountArr  = [accountOne,accountTwo,accountThree]
-//            getMQTT()
-//
-//        }
+        self.configUserInfo()
+        
+    }
+    func configUserInfo()  {
         imgPhoto.roundView()
-        imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
-//        lbDvnick.set_text = XBUserManager.device_Id == "" ? "暂未绑定设备" : XBUserManager.userName
-         lbDvnick.set_text = XBUserManager.userName
+        imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+        lbDvnick.set_text = XBUserManager.nickname
         self.tableView.reloadData()
     }
     override func didReceiveMemoryWarning() {
@@ -113,6 +137,7 @@ extension DrawerViewController {
             let vc = SetInfoViewController()
             vc.isAdd = false
             vc.deviceId = XBUserManager.device_Id
+            vc.setInfoType = .editDeviceInfo
             self.cw_push(vc)
         case 5:
             let vc = AccountInfoViewController()

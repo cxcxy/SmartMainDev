@@ -29,8 +29,10 @@ public func Noti_post(_ name: XBNotificationName, object: AnyObject? = nil){
 public enum XBNotificationName: String {
     /// 登录成功
     case loginSuccess           = "loginSuccess"
-    /// 刷新个人资料用户信息
-    case refreshUserData        = "refreshUserData"
+    /// 刷新 当前设备的 预制播放列表
+    case refreshTrackList        = "refreshTrackList"
+    /// 刷新 当前设备的 历史播放记录
+    case refreshDeviceHistory        = "refreshDeviceHistory"
     /// 刷新设备信息
     case refreshEquipmentInfo        = "refreshEquipmentInfo"
     /// 刷新群组信息

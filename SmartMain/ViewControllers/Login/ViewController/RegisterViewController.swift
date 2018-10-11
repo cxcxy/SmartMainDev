@@ -45,9 +45,11 @@ class RegisterViewController: XBBaseViewController {
 //        let vc = SetInfoViewController()
 //        self.pushVC(vc)
         viewModel.requestRegister(mobile: tfPhone.text!, code: tfCode.text!, pass: thPassword.text!) {
-//            let vc = SetInfoViewController()
-//            self.pushVC(vc)
-            self.popVC()
+            
+            let vc = SetInfoViewController()
+            vc.setInfoType = .setUserInfo
+            self.pushVC(vc)
+//            self.popVC()
         }
     }
     func requestFamilyRegister()  {

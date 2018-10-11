@@ -42,6 +42,12 @@ class LoginViewModel: NSObject {
         Net.requestWithTarget(.register(req: params_task), successClosure: { (result, code, message) in
             if let str = result as? String {
                 if str == "ok" {
+//                    user_defaults.set
+                    //MARK: 第一步注册成功， 保存用户信息
+                    XBUserManager.userName = mobile
+                    XBUserManager.nickname = "际浩小达人"
+                    XBUserManager.password = pass
+                    
                     XBHud.showMsg("注册成功")
                     closure()
                 }else {
@@ -133,7 +139,35 @@ class LoginViewModel: NSObject {
             }
         })
     }
-    /// 修改信息
+    /// 获取用户信息接口
+    func requestGetUserInfo(mobile: String,closure: @escaping () -> ())  {
+        
+        Net.requestWithTarget(.getUserInfo(username: mobile), successClosure: { (result, code, message) in
+            if let obj = Net.filterStatus(jsonString: result) {
+                if let model = Mapper<UserModel>().map(JSONObject: obj.object) {
+                    XBUserManager.saveUserInfo(model)
+                    closure()
+                }
+            }
+        })
+    }
+    /// 更新用户信息接口
+    func requestUpdateUserInfo(mobile: String,headImgUrl: String,nickname: String,closure: @escaping (Bool) -> ())  {
+        var params_task = [String: Any]()
+        params_task["username"]     = mobile
+        params_task["headImgUrl"]   = headImgUrl
+        params_task["nickname"]     = nickname
+        Net.requestWithTarget(.updateUserInfo(req: params_task), successClosure: { (result, code, message) in
+            if let obj = Net.filterStatus(jsonString: result)?.string {
+                if obj == "ok" {
+                    XBUserManager.updateUserInfo(headImgUrl: headImgUrl,
+                                                 nickname: nickname)
+                    closure(true)
+                }
+            }
+        })
+    }
+    /// 修改设备信息信息
     func requestGetBabyInfo(device_Id: String, closure: @escaping () -> ())  {
         
         Net.requestWithTarget(.getBabyInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
@@ -185,10 +219,18 @@ class LoginViewModel: NSObject {
                 XBUserManager.device_Id = arr[0]
             }
         }
-        XBUserManager.userName = mobile
-    
-        ChatManager.share.loginEMClient(username: mobile, password: password)
+        if let nickname = jsonResult.json_Str()["result"]["nickname"].string {
+            XBUserManager.nickname = nickname
+        }
+        
+//        XBUserManager.userName = mobile
+//        ChatManager.share.loginEMClient(username: mobile, password: password)
+        self.loginSueecss(mobile: mobile, password: password)
         closure()
+    }
+    func loginSueecss( mobile: String,password: String)  {
+        XBUserManager.userName = mobile
+        ChatManager.share.loginEMClient(username: mobile, password: password)
     }
 }
 extension String {

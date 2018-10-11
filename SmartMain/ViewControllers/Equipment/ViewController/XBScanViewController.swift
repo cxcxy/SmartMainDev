@@ -163,9 +163,16 @@ extension XBScanViewController {
                 if str == "ok" {
                     print("加入成功")
                     user_defaults.set(deviceId, for: .deviceId)
+                    var devices = XBUserManager.userDevices
+                    devices.append(deviceId)
+                    XBUserManager.userDevices = devices
+                    // 此时刷新首页的信息
                     XBHud.showMsg("加入成功")
-                    Noti_post(.refreshUserData)
-                    self.popVC()
+                    // 订阅此 deviceId MQTT
+                    ScoketMQTTManager.share.subscribeToChannel(socket_clientId: deviceId)
+                    Noti_post(.refreshDeviceHistory)
+                    Noti_post(.refreshTrackList)
+                    self.popToRootVC()
                    
                 }else {
                     XBHud.showMsg("第二步加入失败")
@@ -184,6 +191,7 @@ extension XBScanViewController {
                     XBHud.showMsg("请完善设备信息")
                     
                     let vc = SetInfoViewController()
+                    vc.setInfoType = .setDeviceInfo
                     vc.deviceId = device_Id
                     vc.isAdd = true
                     vc.delegate = self

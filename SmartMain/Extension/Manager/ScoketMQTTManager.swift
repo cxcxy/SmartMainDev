@@ -73,7 +73,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         mqttSession.connect { (error) in
             if  error == .none {
                 print("Connected.")
-                self.subscribeToChannel()
+                self.subscribeToChannel(socket_clientId: XBUserManager.device_Id)
             } else {
                 print("Connected error.")
             }
@@ -82,11 +82,15 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
     /**
      *   订阅机器信息
      */
-    func subscribeToChannel() {
-        let channel = "storybox/\(socket_clientID)/client"
+    func subscribeToChannel(socket_clientId: String) {
+        guard socket_clientId != "" else {
+            return
+        }
+        
+        let channel = "storybox/\(socket_clientId)/client"
         mqttSession.subscribe(to: channel, delivering: .atLeastOnce) { (error) in
             if error == .none {
-                print("Subscribed to \(channel)")
+                print("订阅机器信息成功 ，Subscribed to \(channel)")
             } else {
                 
             }
@@ -106,7 +110,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         }
         mqttSession.publish(data, in: channel, delivering: .atMostOnce, retain: false) { (error) in
             if error == .none {
-                print("Published \(message) on channel \(channel)")
+                print("向订阅机器发送 Published \(message) on channel \(channel)")
             }
         }
     }

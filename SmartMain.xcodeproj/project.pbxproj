@@ -196,6 +196,9 @@
 		0485CCB92148BC3300F54927 /* ScoketMQTTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */; };
 		0485CCBC2148F7EC00F54927 /* SmartPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */; };
 		0485CCBD2148F7EC00F54927 /* SmartPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */; };
+		04A5E628216ED99F00CFCE4B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E627216ED99F00CFCE4B /* UserModel.swift */; };
+		04A5E62B216EF4D100CFCE4B /* DeviceChooseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E629216EF4D100CFCE4B /* DeviceChooseCell.swift */; };
+		04A5E62C216EF4D100CFCE4B /* DeviceChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */; };
 		04B2B1FD216C507E00D14E7C /* PlaySongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */; };
 		04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2B1FE216C508600D14E7C /* PlaySongListView.xib */; };
 		04B876CD216C47DB00D0430F /* NetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B876CC216C47DB00D0430F /* NetSuccessView.swift */; };
@@ -695,6 +698,9 @@
 		0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoketMQTTManager.swift; sourceTree = "<group>"; };
 		0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPlayerViewController.swift; sourceTree = "<group>"; };
 		0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartPlayerViewController.xib; sourceTree = "<group>"; };
+		04A5E627216ED99F00CFCE4B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		04A5E629216EF4D100CFCE4B /* DeviceChooseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceChooseCell.swift; sourceTree = "<group>"; };
+		04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceChooseCell.xib; sourceTree = "<group>"; };
 		04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySongListView.swift; sourceTree = "<group>"; };
 		04B2B1FE216C508600D14E7C /* PlaySongListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySongListView.xib; sourceTree = "<group>"; };
 		04B876CC216C47DB00D0430F /* NetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetSuccessView.swift; sourceTree = "<group>"; };
@@ -1562,6 +1568,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		04A5E626216ED98D00CFCE4B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04A5E627216ED99F00CFCE4B /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		04C386C8213E093F0063A799 /* WebService */ = {
 			isa = PBXGroup;
 			children = (
@@ -2101,6 +2115,7 @@
 		2DC9559B213FF39D004D6F65 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				04A5E626216ED98D00CFCE4B /* Model */,
 				0460495721536D6300BEDCD6 /* ViewModel */,
 				2DC9559C213FF3AB004D6F65 /* ViewController */,
 			);
@@ -2120,6 +2135,8 @@
 				2D9195CB215291D300F4A9A1 /* SetInfoViewController.xib */,
 				2DBD88E7215D0B6A00BC543A /* EquipmentListViewController.swift */,
 				2DBD88E8215D0B6A00BC543A /* EquipmentListViewController.xib */,
+				04A5E629216EF4D100CFCE4B /* DeviceChooseCell.swift */,
+				04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2249,6 +2266,7 @@
 				04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */,
 				2DC955B5213FFED4004D6F65 /* MeInfoNameCell.xib in Resources */,
 				04C38A05213E671F0063A799 /* ContentShowCell.xib in Resources */,
+				04A5E62C216EF4D100CFCE4B /* DeviceChooseCell.xib in Resources */,
 				04C38A19213E79240063A799 /* SearchViewController.xib in Resources */,
 				2DC955A4213FFA98004D6F65 /* RegisterViewController.xib in Resources */,
 				042EEF692150E15F00DBD492 /* MWPhotoBrowser.bundle in Resources */,
@@ -2440,6 +2458,7 @@
 				042EEF732150E15F00DBD492 /* EaseConversationCell.m in Sources */,
 				042EEF512150E15F00DBD492 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				042EEF4D2150E15F00DBD492 /* PSTCollectionViewFlowLayout.m in Sources */,
+				04A5E62B216EF4D100CFCE4B /* DeviceChooseCell.swift in Sources */,
 				0485CCA92148A89200F54927 /* MQTTConnectPacket.swift in Sources */,
 				042EEF7C2150E15F00DBD492 /* EaseTextView.m in Sources */,
 				2DCA869C21676468001F9E04 /* ConfigNetCVCell.swift in Sources */,
@@ -2534,6 +2553,7 @@
 				04C38714213E093F0063A799 /* PMApiPath.swift in Sources */,
 				0485CCBC2148F7EC00F54927 /* SmartPlayerViewController.swift in Sources */,
 				04C38737213E093F0063A799 /* SimpleHUD.swift in Sources */,
+				04A5E628216ED99F00CFCE4B /* UserModel.swift in Sources */,
 				0485CCB02148A89200F54927 /* MQTTPubMsg.swift in Sources */,
 				2D20DB14215CEF8E002EF372 /* ContentViewModel.swift in Sources */,
 				0485CCB42148A89200F54927 /* MQTTPacket.swift in Sources */,

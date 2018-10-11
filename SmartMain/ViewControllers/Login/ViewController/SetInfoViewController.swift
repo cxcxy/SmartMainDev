@@ -7,8 +7,16 @@
 //
 
 import UIKit
+
 protocol SetInfoDelegate: class {
     func addSuccessAction(deviceId: String,model: XBDeviceBabyModel)
+}
+
+enum SetInfoType {
+    case setUserInfo
+    case editUserInfo
+    case setDeviceInfo
+    case editDeviceInfo
 }
 
 class SetInfoViewController: XBBaseViewController {
@@ -19,17 +27,32 @@ class SetInfoViewController: XBBaseViewController {
     @IBOutlet weak var tfNick: UITextField!
     @IBOutlet weak var btnSure: UIButton!
     @IBOutlet weak var imgPhoto: UIImageView!
+    
+    @IBOutlet weak var viewContainer: UIView!
+    
     weak var delegate: SetInfoDelegate?
+    
+    var setInfoType: SetInfoType = .setUserInfo 
+    
     var viewModel = LoginViewModel()
     var headImgUrl: String = ""
     var birth = ""
-     var currentSex :Int = 1  // 0 - 男 1 - 女
+    var currentSex :Int = 1  // 0 - 男 1 - 女
+    
+    @IBOutlet weak var viewSex: UIView!
     @IBOutlet weak var viewBirthday: UIView!
+    
     var deviceId: String!
     var isAdd: Bool = true // 是否未添加
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
+        ImageCache.default.removeImage(forKey: XBUserManager.dv_headimgurl)
+        if let headImgUrl = user_defaults.get(for: .headImgUrl){
+            ImageCache.default.removeImage(forKey: headImgUrl)
+        }
     }
     //MARK: 相册选择器
     lazy var imagePicker: XBAddImagePickerFragment = {
@@ -50,13 +73,8 @@ class SetInfoViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        if isAdd {
-            self.title = "完善信息"
-        }else {
-            self.title = "宝贝信息"
-        }
-        
         imgPhoto.roundView()
+        viewContainer.setCornerRadius(radius: 8)
         view.backgroundColor = viewColor
         btnSure.radius_ll()
         imgPhoto.addTapGesture { [weak self] (sender) in
@@ -67,29 +85,87 @@ class SetInfoViewController: XBBaseViewController {
             guard let `self` = self else { return }
             self.chooseBirthday()
         }
+        configUIInfoWithType()
         request()
+    }
+    func configUIInfoWithType()  {
+        switch setInfoType {
+        case .editUserInfo:
+            viewSex.isHidden = true
+            viewBirthday.isHidden = true
+            title = "用户信息"
+            break
+        case .setUserInfo:
+            viewSex.isHidden = true
+            viewBirthday.isHidden = true
+            title = "用户信息"
+            break
+        case .editDeviceInfo:
+            title = "宝贝信息"
+            break
+        case .setDeviceInfo:
+            title = "宝贝信息"
+            break
+        }
     }
     override func request() {
         super.request()
-        guard !isAdd else {
-            return
+        switch self.setInfoType {
+        case .editUserInfo:
+            getUserInfo()
+            break
+        case .setUserInfo:
+            break
+        case .editDeviceInfo:
+            getDeviceBabyInfo()
+            break
+        case .setDeviceInfo:
+            break
         }
+
+    }
+    func getUserInfo()  { // 获取用户信息
+        viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
+            guard let `self` = self else { return }
+            self.configUIInfo()
+        }
+    }
+    func getDeviceBabyInfo() { // 获取设备信息
         viewModel.requestGetBabyInfo(device_Id: deviceId) {[weak self] in
             guard let `self` = self else { return }
             self.configUIInfo()
         }
     }
     func configUIInfo()  {
-        self.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
-        self.tfNick.text = XBUserManager.dv_babyname
-        self.tfBirth.text = XBUserManager.dv_birthday
-        if XBUserManager.dv_sex == "0" {
-            self.btnMan.isSelected = true
-            self.btnWomen.isSelected = false
-        }
-        if XBUserManager.dv_sex == "1" {
-            self.btnMan.isSelected = false
-            self.btnWomen.isSelected = true
+        switch self.setInfoType {
+        case .editUserInfo:
+            
+            self.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+            self.tfNick.text = user_defaults.get(for: .nickname)
+
+            break
+        case .editDeviceInfo:
+            self.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+            self.tfNick.text = XBUserManager.dv_babyname
+            self.tfBirth.text = XBUserManager.dv_birthday
+            self.birth = XBUserManager.dv_birthday
+            if XBUserManager.dv_sex == "0" {
+                self.btnMan.isSelected = true
+                self.btnWomen.isSelected = false
+                self.currentSex = 0
+            }
+            if XBUserManager.dv_sex == "1" {
+                self.btnMan.isSelected = false
+                self.btnWomen.isSelected = true
+                self.currentSex = 1
+            }
+
+            break
+
+        case .setUserInfo:
+            break
+        case .setDeviceInfo:
+            break
         }
     }
     func chooseBirthday()  {
@@ -104,7 +180,54 @@ class SetInfoViewController: XBBaseViewController {
         }
     }
     @IBAction func clickSureAction(_ sender: Any) {
+        switch self.setInfoType {
+        case .editUserInfo:
+            self.requestUpdateUserInfo()
+            break
+        case .setUserInfo:
+            self.requestUpdateUserInfo()
+            break
+        case .editDeviceInfo:
+            self.requestUpdateBabyInfo()
+            break
+        case .setDeviceInfo:
+            self.requestUpdateBabyInfo()
+            break
+        }
+
         
+    }
+    lazy var popWindow:UIWindow = {
+        let w = UIApplication.shared.delegate as! AppDelegate
+        return w.window!
+    }()
+    func toHome()  {
+        
+        let mainViewController   = ContentMainVC()
+        let nav = XBBaseNavigation.init(rootViewController: mainViewController)
+        self.popWindow.rootViewController = nav
+    }
+    //MARK: 更新用户信息
+    func requestUpdateUserInfo()  {
+        viewModel.requestUpdateUserInfo(mobile: XBUserManager.userName,
+                                        headImgUrl: self.headImgUrl,
+                                        nickname: tfNick.text!) {[weak self] isOK in
+                                        guard let `self` = self else { return }
+            if isOK {
+                if self.setInfoType == .setUserInfo { // 完善用户信息， 注册成功
+                    XBHud.showMsg("注册成功")
+                    self.viewModel.loginSueecss(mobile: XBUserManager.userName, password: XBUserManager.password)
+                    self.toHome()
+                }
+                if self.setInfoType == .editUserInfo {
+                    XBHud.showMsg("修改成功")
+                    self.popVC()
+                }
+            }
+        }
+    }
+    //MARK: 更新设备信息
+    func requestUpdateBabyInfo()  {
         viewModel.requestUpdateBabyInfo(device_Id: deviceId, babyname: tfNick.text!, headimgurl: self.headImgUrl, sex: currentSex, birthday: self.birth) { model in
             if self.isAdd {
                 print("新增成功")
@@ -118,7 +241,6 @@ class SetInfoViewController: XBBaseViewController {
                 XBUserManager.saveDeviceInfo(model)
             }
         }
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -137,12 +259,21 @@ extension SetInfoViewController: XBImagePickerToolDelegate {
         let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
                                                            .userDomainMask, true)[0] as String
         let filePath = "\(rootPath)/pickedimage.png"
-        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
         fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
         self.imgPhoto.image = image
+        var openId = ""
+        switch setInfoType {
+        case .editDeviceInfo,.setDeviceInfo:
+            openId = XBUserManager.device_Id
+        case .setUserInfo,.editUserInfo:
+            openId = XBUserManager.userName
+        }
         if (fileManager.fileExists(atPath: filePath)){
-            Net.requestWithTarget(.uploadAvatar(openId: XBUserManager.userName, body: filePath), successClosure: { (result, code, message) in
+            
+            Net.requestWithTarget(.uploadAvatar(openId: openId, body: filePath), successClosure: { (result, code, message) in
                 if let str = result as? String {
+                    XBLog("上传成功 ==\(str)")
                     self.headImgUrl = str
                 }
             })

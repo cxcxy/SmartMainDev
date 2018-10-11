@@ -10,7 +10,7 @@ import UIKit
 
 class EquipmentListViewController: XBBaseViewController {
     let itemSpacing:CGFloat = 20 // item 间隔
-    let itemWidth:CGFloat = ( MGScreenWidth - 20 - 20 ) / 2 // item 宽度
+    let itemWidth:CGFloat = ( MGScreenWidth - 20 - 20 - 20 ) / 2 // item 宽度
     @IBOutlet weak var collectionView: UICollectionView!
     var dataArr : [XBDeviceBabyModel] = []
     override func viewDidLoad() {
@@ -27,6 +27,13 @@ class EquipmentListViewController: XBBaseViewController {
         Net.requestWithTarget(.getDeviceIds(userName: XBUserManager.userName), successClosure: { (result, code, message) in
             if let obj = Net.filterStatus(jsonString: result) {
                 if let arr = Mapper<XBDeviceBabyModel>().mapArray(JSONObject: obj.object) {
+                    for item in arr {
+                        if item.deviceid == XBUserManager.device_Id {
+                            item.isCurrent = true
+                        }else {
+                            item.isCurrent = false
+                        }
+                    }
                     self.dataArr = arr
                     self.collectionView.reloadData()
                 }
@@ -37,7 +44,7 @@ class EquipmentListViewController: XBBaseViewController {
         
         collectionView.delegate     = self
         collectionView.dataSource   = self
-        collectionView.cellId_register("ContentShowCVCell")
+        collectionView.cellId_register("DeviceChooseCell")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -49,10 +56,10 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
         return dataArr.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentShowCVCell", for: indexPath)as! ContentShowCVCell
-        cell.lbTitle.set_text = dataArr[indexPath.row].babyname
-        cell.imgIcon.roundView()
-        cell.imgIcon.set_Img_Url(dataArr[indexPath.row].headimgurl)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeviceChooseCell", for: indexPath)as! DeviceChooseCell
+//        let item = dataArr[indexPath.row]
+        cell.model = dataArr.get(at: indexPath.row)
+ 
         return cell
     }
     //最小item间距
@@ -65,7 +72,8 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let m = dataArr[indexPath.row]
-        XBUserManager.saveDeviceInfo(m)
+//        let m = dataArr[indexPath.row]
+//        XBUserManager.saveDeviceInfo(m)
+        
     }
 }

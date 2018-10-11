@@ -63,16 +63,24 @@ public func XBLoginStatus() -> Bool{
 }
 let user_defaults = Defaults()
 public extension DefaultsKey {
+    //用户信息
     static let userName = Key<String>("userName")
+    static let nickname = Key<String>("nickname")
+    static let password = Key<String>("password")
+    static let headImgUrl = Key<String>("headImgUrl")
     static let deviceId = Key<String>("deviceId")
-    static let online   = Key<Bool>("online")
     static let userDevices = Key<[String]>("userDevices")
     
+    
+    static let online   = Key<Bool>("online")
+    
+    // 设备信息
      static let dv_babyname   = Key<String>("babyname")
      static let dv_headimgurl   = Key<String>("headimgurl")
      static let dv_sex   = Key<String>("sex")
      static let dv_birthday   = Key<String>("birthday")
      static let dv_recordtime   = Key<String>("recordtime")
+    
     
 }
 class XBDeviceBabyModel:  Mappable{
@@ -84,7 +92,7 @@ class XBDeviceBabyModel:  Mappable{
     var sex: String? //
     var birthday : String? //
     var recordtime : String?
-    
+    var isCurrent: Bool = false // 是否是当前用户所选择的设备
     required init?(map: Map){}
     
     func mapping(map: Map)
@@ -162,8 +170,9 @@ extension XBUserManager { // 保存设备宝宝 信息
         user_defaults.clear(.deviceId)
     }
 }
-//TODO
+//TODO 保存用户信息
 struct XBUserManager {
+    
     static var userName:String {
         get{
             return user_defaults.get(for: .userName) ?? ""
@@ -172,6 +181,25 @@ struct XBUserManager {
             user_defaults.set(newValue, for: .userName)
         }
     }
+    
+    static var nickname:String {
+        get{
+            return user_defaults.get(for: .nickname) ?? ""
+        }
+        set{
+            user_defaults.set(newValue, for: .nickname)
+        }
+    }
+    
+    static var password:String {
+        get{
+            return user_defaults.get(for: .password) ?? ""
+        }
+        set{
+            user_defaults.set(newValue, for: .password)
+        }
+    }
+    
     static var device_Id:String {
         get{
             return user_defaults.get(for: .deviceId) ?? ""
@@ -180,6 +208,7 @@ struct XBUserManager {
             user_defaults.set(newValue, for: .deviceId)
         }
     }
+    
     static var userDevices:[String] {
         get{
             return user_defaults.get(for: .userDevices) ?? []
@@ -188,6 +217,7 @@ struct XBUserManager {
             user_defaults.set(newValue, for: .userDevices)
         }
     }
+    
     static var online:Bool { // 当前设备是否在线
         get{
             return user_defaults.get(for: .online) ?? false
@@ -197,25 +227,36 @@ struct XBUserManager {
         }
     }
 
-    
-    
-    static func saveUserInfo(_ phone: String){
+    static func saveUserInfo(_ model: UserModel){
 
-        user_defaults.set(phone, for: .userName)
-
-
-    }
-    static func saveDeviceId(_ saveDeviceId: String){
-
-        user_defaults.set(saveDeviceId, for: .deviceId)
+        user_defaults.set(model.username ?? "", for: .userName)
+        user_defaults.set(model.password ?? "", for: .password)
+        user_defaults.set(model.nickname ?? "", for: .nickname)
+        user_defaults.set(model.headImgUrl ?? "", for: .headImgUrl)
 
     }
+    
+    static func updateUserInfo(headImgUrl: String,nickname: String){
+        
+        user_defaults.set(nickname, for: .nickname)
+        user_defaults.set(headImgUrl, for: .headImgUrl)
+        
+    }
+    
     // 清空用户信息
     static func cleanUserInfo(){
-        
         user_defaults.clear(.userName)
+        user_defaults.clear(.nickname)
+        user_defaults.clear(.password)
+        user_defaults.clear(.headImgUrl)
         user_defaults.clear(.deviceId)
-        
+        user_defaults.clear(.userDevices)
+        user_defaults.clear(.online)
+        user_defaults.clear(.dv_babyname)
+        user_defaults.clear(.dv_headimgurl)
+        user_defaults.clear(.dv_sex)
+        user_defaults.clear(.dv_birthday)
+        user_defaults.clear(.dv_recordtime)
     }
     /**
      退出登录

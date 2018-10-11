@@ -14,22 +14,24 @@ class HistoryViewController: XBBaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-
-    
-    
     var trackList: [EquipmentModel] = [] // 预制列表数据model
     var dataArr: [ConetentLikeModel] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.cellId_register("HistorySongCell")
-//        tableView.cellId_register("HistorySongContentCell")
+
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         self.configTableView(tableView, register_cell: ["HistorySongCell","HistorySongContentCell"])
         self.tableView.mj_header = self.mj_header
+        
     }
     override func setUI() {
         super.setUI()
+        _ = Noti(.refreshDeviceHistory).takeUntil(self.rx.deallocated).subscribe(onNext: {[weak self] (value) in
+            guard let `self` = self else { return }
+            self.request()
+        })
         request()
     }
     override func request() {
