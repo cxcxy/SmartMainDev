@@ -17,9 +17,17 @@ class DrawerViewController: XBBaseViewController {
     var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "icon_group6",cellType: 6)
     var eqArr: [XBStyleCellModel] = []
     var accountArr: [XBStyleCellModel] = []
+    
+    
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbDvnick: UILabel!
+    
+    @IBOutlet weak var imgLock: UIImageView!
+    @IBOutlet weak var imgLight: UIImageView!
+    
+    
     
     @IBOutlet weak var btnLock: UIButton!
     
@@ -65,17 +73,10 @@ class DrawerViewController: XBBaseViewController {
             vc.setInfoType = .editUserInfo
             self.cw_push(vc)
         }
-        viewDeviceModel.requestCheckEquipmentOnline {[weak self] (onLine) in
-            guard let `self` = self else { return }
-            if onLine {
-//                let vc = SmartPlayerViewController()
-//                self.pushVC(vc)
-                self.deviceOnline = true
-            } else {
-                self.deviceOnline = false
-//                XBHud.showMsg("当前设备不在线")
-            }
+        DeviceManager.isOnline { isOnline in
+            self.deviceOnline = isOnline
         }
+
     }
     override func request() {
         super.request()
@@ -155,11 +156,9 @@ extension DrawerViewController {
             let vc = AccountInfoViewController()
             self.cw_push(vc)
         case 6:
-
             loginOutAction()
             break
         case 7:
-//            quitEquimentAction()
             let vc = MemberManagerVC()
             self.cw_push(vc)
             break
@@ -247,13 +246,19 @@ extension DrawerViewController {
             guard let `self` = self else { return }
             print("getLight ===：", $0.element ?? 0)
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
-            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
+            if let light = $0.element {
+                self.imgLight.set_img = light == 1 ? "icon_groupLaght_on" : "icon_groupLaght"
+            }
+//            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
         scoketModel.getLock.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
-            print("getLight ===：", $0.element ?? 0)
+            print("getLock ===：", $0.element ?? 0)
+            if let light = $0.element {
+                self.imgLock.set_img = light == 1 ? "icon_groupNight_on" : "icon_groupNight"
+            }
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
-            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
+//            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
         
 

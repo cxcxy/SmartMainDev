@@ -165,9 +165,8 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
-        viewModel.requestCheckEquipmentOnline {[weak self] (onLine) in
-            guard let `self` = self else { return }
-            if onLine {
+        DeviceManager.isOnline { isOnline in
+            if isOnline {
                 let vc = SmartPlayerViewController()
                 self.pushVC(vc)
             } else {

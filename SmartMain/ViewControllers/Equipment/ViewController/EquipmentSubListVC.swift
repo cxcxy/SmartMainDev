@@ -16,6 +16,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
     var total: Int?
     var viewModel = ContentViewModel()
     var viewDeviceModel = EquimentViewModel()
+    var deviceOnline:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +39,9 @@ class EquipmentSubListVC: XBBaseTableViewController {
 
     override func request() {
         super.request()
+        DeviceManager.isOnline { isOnline in
+            self.deviceOnline = isOnline
+        }
         var params_task = [String: Any]()
         params_task["trackListId"] = trackListId
         params_task["currentPage"] = self.pageIndex
@@ -59,7 +63,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
         })
     }
     func starAnimationWithTableView(tableView: UITableView) {
-        //        table
+  
         if self.pageIndex == 1 {
             TableViewAnimationKit.show(with: .moveSpring, tableView: tableView)
         }
@@ -70,14 +74,15 @@ class EquipmentSubListVC: XBBaseTableViewController {
     }
     //MARK: 发送MQTT -- 恢复默认列表， 获取到 改 列表的原始列表 ids
     func sendTopicSetDefault()  {
-        viewDeviceModel.requestCheckEquipmentOnline {[weak self] (onLine) in
-            guard let `self` = self else { return }
-            if onLine {
+        
+        DeviceManager.isOnline { isOnline in
+            if isOnline {
                 ScoketMQTTManager.share.sendSetDefault(trackListId: self.trackListId)
             } else {
                 XBHud.showMsg("当前设备不在线")
             }
         }
+        
         
     }
     // 获取 预制列表
@@ -144,6 +149,10 @@ extension EquipmentSubListVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard self.deviceOnline else {
+            XBHud.showMsg("当前设备不在线")
+            return
+        }
         self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
     }
     

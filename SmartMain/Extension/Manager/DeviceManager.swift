@@ -9,5 +9,17 @@
 import UIKit
 
 class DeviceManager: NSObject {
-
+    
+    /**
+     *   判断当前设备是否在线
+     */
+    class func isOnline(closure: @escaping (Bool) -> ()) {
+        EquimentViewModel().requestCheckEquipmentOnline { (onLine) in
+            if onLine {
+                closure(true)
+            } else {
+                closure(false)
+            }
+        }
+    }
 }
