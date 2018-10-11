@@ -17,6 +17,7 @@ class MemberCVCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgIcon.roundView()
     }
 
 }

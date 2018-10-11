@@ -72,8 +72,23 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let m = dataArr[indexPath.row]
-//        XBUserManager.saveDeviceInfo(m)
         
+        let m = dataArr[indexPath.row]
+        guard !m.isCurrent else {
+            XBHud.showMsg("您当前使用的设备哦～")
+            return
+        }
+        let out = XBLoginOutView.loadFromNib()
+        out.btnOut.set_Title("确定")
+        out.lbTitleDes.set_text = "确定切换设备吗？"
+        out.sureBlock = { [weak self] in
+            guard let `self` = self else { return }
+            Noti_post(.refreshDeviceHistory)
+            Noti_post(.refreshTrackList)
+            XBUserManager.saveDeviceInfo(m)
+            ScoketMQTTManager.share.subscribeToChannel(socket_clientId: m.deviceid ?? "")
+            self.popToRootVC()
+        }
+        out.show()
     }
 }

@@ -25,7 +25,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yr6-jI-Da5">
                                 <rect key="frame" x="40" y="20" width="80" height="80"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="GvL-ft-rjP"/>
                                     <constraint firstAttribute="width" secondItem="yr6-jI-Da5" secondAttribute="height" id="v2x-Pb-ubd"/>
+                                    <constraint firstAttribute="height" constant="80" id="zaG-Kn-0ON"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="机器人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKS-FZ-5hR">
@@ -43,12 +45,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.74509803921568629" green="0.87058823529411766" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="yr6-jI-Da5" firstAttribute="leading" secondItem="DJ4-2C-Uh5" secondAttribute="leading" constant="40" id="2En-mL-Oae"/>
                             <constraint firstItem="dEy-Ub-q8P" firstAttribute="top" secondItem="iKS-FZ-5hR" secondAttribute="bottom" constant="5" id="8Ig-rN-MrS"/>
                             <constraint firstItem="iKS-FZ-5hR" firstAttribute="centerX" secondItem="yr6-jI-Da5" secondAttribute="centerX" id="R2x-6O-k5B"/>
                             <constraint firstItem="yr6-jI-Da5" firstAttribute="centerX" secondItem="DJ4-2C-Uh5" secondAttribute="centerX" id="SQ9-8f-9yb"/>
                             <constraint firstItem="iKS-FZ-5hR" firstAttribute="top" secondItem="yr6-jI-Da5" secondAttribute="bottom" constant="15" id="WdW-9n-70O"/>
-                            <constraint firstAttribute="trailing" secondItem="yr6-jI-Da5" secondAttribute="trailing" constant="40" id="Xaj-7e-LA5"/>
                             <constraint firstItem="yr6-jI-Da5" firstAttribute="top" secondItem="DJ4-2C-Uh5" secondAttribute="top" constant="20" id="aPK-uH-u3M"/>
                             <constraint firstItem="dEy-Ub-q8P" firstAttribute="centerX" secondItem="iKS-FZ-5hR" secondAttribute="centerX" id="qeb-vp-tZV"/>
                         </constraints>

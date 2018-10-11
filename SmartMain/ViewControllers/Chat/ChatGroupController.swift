@@ -72,7 +72,7 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
         print(result)
        
         if (fileManager.fileExists(atPath: localPath)){
-            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: XBUserManager.userName, body: localPath), successClosure: { (result, code, message) in
+            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: XBUserManager.userName, body: localPath),isShowLoding: false, successClosure: { (result, code, message) in
                 if let str = result as? String {
                     print(str)
                 }
@@ -86,10 +86,10 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
 //        sendVoiceDevice
         var params_task = [String: Any]()
         params_task["username"] = XBUserManager.userName
-        params_task["nickname"] = "qq"
+        params_task["nickname"] = "qq" // 暂定qq 不能中文， 用户的nickname 可能为中文
         params_task["deviceId"] = XBUserManager.device_Id
         params_task["content"] = text
-        Net.requestWithTarget(.sendTextDevice(req: params_task), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.sendTextDevice(req: params_task),isShowLoding: false, successClosure: { (result, code, message) in
             
             if let str = result as? String {
                 if str == "ok" {

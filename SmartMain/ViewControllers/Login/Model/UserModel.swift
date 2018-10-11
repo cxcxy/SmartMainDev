@@ -15,7 +15,7 @@ class UserModel: XBDataModel {
     var password: String?
     var nickname: String?
     var headImgUrl: String?
-
+    var deviceId: [String]?
     
     override func mapping(map: Map) {
         
@@ -24,6 +24,6 @@ class UserModel: XBDataModel {
         password          <-    map["password"]
         nickname            <-    map["nickname"]
         headImgUrl            <-    map["headImgUrl"]
-
+        deviceId            <-    map["deviceId"]
     }
 }

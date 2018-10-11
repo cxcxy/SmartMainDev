@@ -13,7 +13,7 @@ class TrackListViewController: XBBaseTableViewController {
     var dataArr: [EquipmentModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.cellId_register("ContentSingCell")
+        tableView.cellId_register("TrackListHomeCell")
         self.cofigMjHeader()
     }
     override func setUI() {
@@ -24,7 +24,7 @@ class TrackListViewController: XBBaseTableViewController {
             self.request()
         })
         
-        tableView.contentInset = UIEdgeInsets.init(top: 10, left: 0, bottom: 80, right: 0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         request()
     }
     override func request() {
@@ -47,48 +47,59 @@ class TrackListViewController: XBBaseTableViewController {
     }
 }
 extension TrackListViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataArr.count
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return dataArr.count
+//    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        return dataArr.count
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrackListHomeCell", for: indexPath) as! TrackListHomeCell
+        
+        let model = dataArr[indexPath.row]
+        let trackCount = model.trackCount ?? 0
+        let count = "（" + trackCount.toString + "首）"
+        cell.lbTitle.set_text = model.name
+        cell.lbTatal.set_text = count
         return cell
+        
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let model = dataArr[indexPath.row]
+        VCRouter.toEquipmentSubListVC(trackListId: model.id ?? 0,navTitle: model.name,trackList: dataArr)
     }
-    // Header
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? SMAllClassViewHeader ?? SMAllClassViewHeader(reuseIdentifier: "header")
-         let trackCount = dataArr[section].trackCount ?? 0
-        let count = "（" + trackCount.toString + "）"
-        header.titleLabel.set_text = dataArr[section].name! + count
-        header.section = section
-        header.delegate = self
-        
-        return header
-        
-        
-    }
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let v = UIView()
-        v.frame = CGRect.init(x: 0, y: 0, w: tableView.w, h: 10)
-        v.backgroundColor = UIColor.white
-        return v
-    }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
+    
+//    // Header
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//
+//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? SMAllClassViewHeader ?? SMAllClassViewHeader(reuseIdentifier: "header")
+//         let trackCount = dataArr[section].trackCount ?? 0
+//        let count = "（" + trackCount.toString + "）"
+//        header.titleLabel.set_text = dataArr[section].name! + count
+//        header.section = section
+//        header.delegate = self
+//
+//        return header
+//
+//
+//    }
+//    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 10
+//    }
+//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let v = UIView()
+//        v.frame = CGRect.init(x: 0, y: 0, w: tableView.w, h: 10)
+//        v.backgroundColor = UIColor.white
+//        return v
+//    }
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 30
+//    }
 }
 extension TrackListViewController: SMAllClassViewHeaderDelegate {
     

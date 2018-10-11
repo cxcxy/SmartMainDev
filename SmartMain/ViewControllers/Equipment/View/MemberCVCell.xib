@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="172"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mz0-RL-mZL">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mz0-RL-mZL">
                         <rect key="frame" x="10" y="10" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="H9w-TP-Nct"/>
@@ -36,7 +36,7 @@
                         <rect key="frame" x="30" y="142" width="60" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="管理员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1H5-RB-PTb">
-                                <rect key="frame" x="14.5" y="4.5" width="31" height="12"/>
+                                <rect key="frame" x="14.5" y="4" width="31" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,7 +54,6 @@
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="0C5-BB-0eQ" secondAttribute="trailing" id="0pM-iF-4Jj"/>
-                <constraint firstAttribute="trailing" secondItem="Mz0-RL-mZL" secondAttribute="trailing" constant="10" id="H6H-4n-Zgs"/>
                 <constraint firstItem="gOb-F8-kBP" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="Ra8-qA-eR5"/>
                 <constraint firstItem="0C5-BB-0eQ" firstAttribute="top" secondItem="Mz0-RL-mZL" secondAttribute="bottom" constant="10" id="SwQ-pl-hLd"/>
                 <constraint firstItem="0C5-BB-0eQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ygg-dV-23N"/>
@@ -62,7 +61,6 @@
                 <constraint firstItem="gOb-F8-kBP" firstAttribute="top" secondItem="0C5-BB-0eQ" secondAttribute="bottom" constant="10" id="g07-6A-agu"/>
                 <constraint firstItem="Mz0-RL-mZL" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="hgE-Yg-8Zl"/>
                 <constraint firstAttribute="bottom" secondItem="gOb-F8-kBP" secondAttribute="bottom" constant="10" id="qSe-fr-shq"/>
-                <constraint firstItem="Mz0-RL-mZL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="uvk-Us-t9R"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="127" height="172"/>

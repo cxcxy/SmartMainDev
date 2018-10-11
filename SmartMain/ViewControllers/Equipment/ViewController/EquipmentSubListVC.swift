@@ -15,6 +15,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
     var headerInfo:ConetentSingAlbumModel?
     var total: Int?
     var viewModel = ContentViewModel()
+    var viewDeviceModel = EquimentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,7 +70,15 @@ class EquipmentSubListVC: XBBaseTableViewController {
     }
     //MARK: 发送MQTT -- 恢复默认列表， 获取到 改 列表的原始列表 ids
     func sendTopicSetDefault()  {
-        ScoketMQTTManager.share.sendSetDefault(trackListId: trackListId)
+        viewDeviceModel.requestCheckEquipmentOnline {[weak self] (onLine) in
+            guard let `self` = self else { return }
+            if onLine {
+                ScoketMQTTManager.share.sendSetDefault(trackListId: self.trackListId)
+            } else {
+                XBHud.showMsg("当前设备不在线")
+            }
+        }
+        
     }
     // 获取 预制列表
 //    func requestTrackList() {

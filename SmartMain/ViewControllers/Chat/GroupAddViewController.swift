@@ -37,14 +37,22 @@ class GroupAddViewController: XBBaseTableViewController {
     }
     override func request() {
         super.request()
-
+        EMClient.shared().groupManager.getGroupMemberListFromServer(withId: groupId, cursor: "", pageSize: 0) {[weak self]  (cursorResult, error) in
+            guard let `self` = self,let cursorResult = cursorResult else { return }
+            if let list = cursorResult.list as? [String] {
+                //                self.groupList = list
+                print(list)
+                self.tableView.reloadData()
+            }
+        }
         EMClient.shared().groupManager.getGroupSpecificationFromServer(withId: groupId) {[weak self] (emGroup, error) in
             guard let `self` = self,let emGroup = emGroup else { return }
 //            self.groupName = emGroup.description
-            print(emGroup.members)
+            
+            print(emGroup.memberList)
             print(emGroup.occupants)
+            print(emGroup.occupantsCount)
             if emGroup.owner == XBUserManager.userName {
-                
                 self.groupOwner = true
             }else {
                 self.groupOwner = false
@@ -55,13 +63,7 @@ class GroupAddViewController: XBBaseTableViewController {
                 self.tableView.reloadData()
             }
         }
-//        EMClient.shared().groupManager.getGroupMemberListFromServer(withId: groupId, cursor: "", pageSize: 0) {[weak self]  (cursorResult, error) in
-//            guard let `self` = self,let cursorResult = cursorResult else { return }
-//            if let list = cursorResult.list as? [String] {
-//                self.groupList = list
-//                self.tableView.reloadData()
-//            }
-//        }
+
     }
     
     override func didReceiveMemoryWarning() {

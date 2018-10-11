@@ -34,7 +34,11 @@ class RegisterViewController: XBBaseViewController {
         thPassword.text = ""
     }
     func sendCodeWithBtnTimer()  {
-        self.btnCode.startTimer(60, title: "获取验证码", mainBGColor: UIColor.white, mainTitleColor: UIColor.init(hexString: "707784")!, countBGColor: UIColor.white, countTitleColor: MGRgb(128, g: 128, b: 128), handle: nil)
+        self.btnCode.startTimer(60, title: "获取验证码",
+                                mainBGColor: UIColor.init(hexString: "81C64E")!,
+                                mainTitleColor: UIColor.white,
+                                countBGColor: UIColor.white,
+                                countTitleColor: MGRgb(128, g: 128, b: 128), handle: nil)
     }
     @IBAction func clickSendCodeAction(_ sender: Any) {
         viewModel.requestGetCode(mobile: tfPhone.text!) {

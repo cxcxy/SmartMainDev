@@ -28,7 +28,7 @@ class DeviceChooseCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.layoutIfNeeded()
+        viewContainer.layoutIfNeeded()
         viewContainer.setCornerRadius(radius: 8)
         imgPhoto.roundView()
     }

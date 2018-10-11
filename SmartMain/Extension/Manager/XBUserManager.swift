@@ -158,6 +158,7 @@ extension XBUserManager { // 保存设备宝宝 信息
          user_defaults.set(deviceModel.headimgurl ?? "", for: .dv_headimgurl)
          user_defaults.set(deviceModel.recordtime ?? "", for: .dv_recordtime)
          user_defaults.set(deviceModel.deviceid ?? "", for: .deviceId)
+         
     }
     // 清空当前设备信息
     static func clearDeviceInfo() {
@@ -233,7 +234,7 @@ struct XBUserManager {
         user_defaults.set(model.password ?? "", for: .password)
         user_defaults.set(model.nickname ?? "", for: .nickname)
         user_defaults.set(model.headImgUrl ?? "", for: .headImgUrl)
-
+        user_defaults.set(model.deviceId ?? [], for: .userDevices)
     }
     
     static func updateUserInfo(headImgUrl: String,nickname: String){

@@ -165,15 +165,15 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
-//        viewModel.requestCheckEquipmentOnline {[weak self] (onLine) in
-//            guard let `self` = self else { return }
-//            if onLine {
+        viewModel.requestCheckEquipmentOnline {[weak self] (onLine) in
+            guard let `self` = self else { return }
+            if onLine {
                 let vc = SmartPlayerViewController()
                 self.pushVC(vc)
-//            } else {
-//                XBHud.showMsg("当前设备不在线")
-//            }
-//        }
+            } else {
+                XBHud.showMsg("当前设备不在线")
+            }
+        }
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()

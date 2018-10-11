@@ -199,6 +199,8 @@
 		04A5E628216ED99F00CFCE4B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E627216ED99F00CFCE4B /* UserModel.swift */; };
 		04A5E62B216EF4D100CFCE4B /* DeviceChooseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E629216EF4D100CFCE4B /* DeviceChooseCell.swift */; };
 		04A5E62C216EF4D100CFCE4B /* DeviceChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */; };
+		04A5E62F216F1C9600CFCE4B /* TrackListHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */; };
+		04A5E630216F1C9600CFCE4B /* TrackListHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */; };
 		04B2B1FD216C507E00D14E7C /* PlaySongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */; };
 		04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2B1FE216C508600D14E7C /* PlaySongListView.xib */; };
 		04B876CD216C47DB00D0430F /* NetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B876CC216C47DB00D0430F /* NetSuccessView.swift */; };
@@ -701,6 +703,8 @@
 		04A5E627216ED99F00CFCE4B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		04A5E629216EF4D100CFCE4B /* DeviceChooseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceChooseCell.swift; sourceTree = "<group>"; };
 		04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceChooseCell.xib; sourceTree = "<group>"; };
+		04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListHomeCell.swift; sourceTree = "<group>"; };
+		04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListHomeCell.xib; sourceTree = "<group>"; };
 		04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySongListView.swift; sourceTree = "<group>"; };
 		04B2B1FE216C508600D14E7C /* PlaySongListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySongListView.xib; sourceTree = "<group>"; };
 		04B876CC216C47DB00D0430F /* NetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetSuccessView.swift; sourceTree = "<group>"; };
@@ -1928,6 +1932,8 @@
 				2D0ACC46215A70C40047103C /* HistorySongContentCell.swift */,
 				2D0ACC47215A70C40047103C /* HistorySongContentCell.xib */,
 				0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */,
+				04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */,
+				04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2275,6 +2281,7 @@
 				04C38A15213E6FE70063A799 /* ContentShowThreeCell.xib in Resources */,
 				2DC9558E213EAC4C004D6F65 /* EquipmentSetHeaderCell.xib in Resources */,
 				04C38A09213E6CD70063A799 /* ContentShowCVCell.xib in Resources */,
+				04A5E630216F1C9600CFCE4B /* TrackListHomeCell.xib in Resources */,
 				043E1191213FB8FE0067ADF3 /* ContentSingsVC.xib in Resources */,
 				04E537CD216DEF41002DE58C /* XBLoginOutView.xib in Resources */,
 				04B876CF216C47EA00D0430F /* NetSuccessView.xib in Resources */,
@@ -2599,6 +2606,7 @@
 				042EEF4F2150E15F00DBD492 /* PSTGridLayoutInfo.m in Sources */,
 				042EEF222150E15F00DBD492 /* EaseUserModel.m in Sources */,
 				042EEF2A2150E15F00DBD492 /* MJRefreshBackNormalFooter.m in Sources */,
+				04A5E62F216F1C9600CFCE4B /* TrackListHomeCell.swift in Sources */,
 				2DC955A3213FFA98004D6F65 /* RegisterViewController.swift in Sources */,
 				0485CCA72148A89200F54927 /* MQTTSubAckPacket.swift in Sources */,
 				04C38A25213E7FF40063A799 /* FSPagerViewLayoutAttributes.swift in Sources */,

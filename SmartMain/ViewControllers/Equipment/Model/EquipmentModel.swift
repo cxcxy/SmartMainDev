@@ -93,7 +93,7 @@ class FamilyMemberModel: XBDataModel {
     var username: String?
     var deviceid: String?
     var headImgUrl: String?
-    
+    var nickname: String?
     override func mapping(map: Map) {
         id             <-    map["id"]
         groupid             <-    map["groupid"]
@@ -104,6 +104,7 @@ class FamilyMemberModel: XBDataModel {
         username            <-    map["username"]
         deviceid            <-    map["deviceid"]
         headImgUrl            <-    map["headImgUrl"]
+        nickname            <-    map["nickname"]
     }
 }
 class GetTrackListDefault: XBDataModel {

@@ -57,6 +57,7 @@ class DrawerViewController: XBBaseViewController {
         request()
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
         self.cofigDeviceInfo()
+        view.backgroundColor = viewColor
         imgPhoto.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
             let vc = SetInfoViewController()
@@ -69,7 +70,7 @@ class DrawerViewController: XBBaseViewController {
         super.request()
         viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
             guard let `self` = self else { return }
-            self.configUserInfo()
+            self.cofigDeviceInfo()
         }
     }
     // 配置 设备信息 数据
