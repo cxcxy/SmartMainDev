@@ -36,6 +36,7 @@ class TrackListViewController: XBBaseTableViewController {
         }
         Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+                self.loading = true
                 self.endRefresh()
                 self.dataArr = arr
                 self.tableView.reloadData()

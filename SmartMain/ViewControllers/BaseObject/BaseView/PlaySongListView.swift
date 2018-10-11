@@ -9,7 +9,7 @@
 import UIKit
 
 class PlaySongListView: ETPopupView {
-    
+    @IBOutlet weak var lbTitleDes: UILabel!
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnCloose: UIButton!

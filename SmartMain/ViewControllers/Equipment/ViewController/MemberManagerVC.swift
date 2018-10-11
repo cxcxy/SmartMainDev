@@ -14,8 +14,7 @@ class MemberManagerVC: XBBaseViewController {
             for item in dataArr {
                 if item.easeadmin == "1" && item.username == XBUserManager.userName { // 判断当前用户是否是管理员
                     self.currentIsAdmin = true
-                } else {
-                    self.currentIsAdmin = false
+                    break
                 }
             }
         }
@@ -114,7 +113,7 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
             
             let out = XBLoginOutView.loadFromNib()
             out.btnOut.set_Title("确定")
-            out.lbTitleDes.set_text = "是否退出群组？"
+            out.lbTitleDes.set_text = "是否将用户移出群组？"
             out.sureBlock = { [weak self] in
                 guard let `self` = self else { return }
                 self.clickOutAction(groupOwner: false, groupId: groupId)

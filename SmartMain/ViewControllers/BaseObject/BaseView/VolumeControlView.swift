@@ -12,8 +12,12 @@ class VolumeControlView: ETPopupView {
     @IBOutlet weak var sliderVolume: UISlider!
     @IBOutlet weak var lbVolume: UILabel!
     
+    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnCut: UIButton!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var btnSure: UIButton!
+    
+    var currentVolume: Int = 0
     
     let scoketModel = ScoketMQTTManager.share
     override func awakeFromNib() {
@@ -39,12 +43,33 @@ class VolumeControlView: ETPopupView {
             print("getPalyingVolume ===：", $0.element ?? 0)
             let volumeValue: Float = Float($0.element ?? 0) / 100
             self.sliderVolume.setValue(volumeValue, animated: true)
-            self.lbVolume.set_text       = Int($0.element ?? 0).toString
+//            self.lbVolume.set_text       = Int($0.element ?? 0).toString
+            self.currentVolume = $0.element ?? 0
             }.disposed(by: rx_disposeBag)
     }
     @IBAction func sliderVolumeValueChanged(_ sender: Any) {
-        lbVolume.set_text       = Int(sliderVolume.value * 100).toString
-        scoketModel.setVolumeValue(value: Int(sliderVolume.value * 100))
+//        lbVolume.set_text       = Int(sliderVolume.value * 100).toString
+        self.currentVolume = Int(sliderVolume.value)
+        
+    }
+    @IBAction func clickSureAction(_ sender: Any) {
+        scoketModel.setVolumeValue(value: Int(sliderVolume.value))
+    }
+    
+    @IBAction func clickCutAction(_ sender: Any) {
+        if self.currentVolume <= 0 {
+            return
+        }
+        self.currentVolume = self.currentVolume - 1
+        sliderVolume.setValue(Float(self.currentVolume), animated: true)
+    }
+    
+    @IBAction func clickAddAction(_ sender: Any) {
+        if self.currentVolume >= 100 {
+            return
+        }
+        self.currentVolume = self.currentVolume + 1
+        sliderVolume.setValue(Float(self.currentVolume), animated: true)
     }
     
 }

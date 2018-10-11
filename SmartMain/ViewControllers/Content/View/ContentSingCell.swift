@@ -91,6 +91,12 @@ class ContentSingCell: BaseTableViewCell {
 //            self.requestAddSingWithList()
 //        }
 //        v.show()
+        
+//        let v = PlaySongListView.loadFromNib()
+//        v.trackListId = 3709
+//        v.show()
+        
+        
         guard setArr.count > 0 else {
             return
         }
