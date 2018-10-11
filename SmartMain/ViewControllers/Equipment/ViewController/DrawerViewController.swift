@@ -35,11 +35,12 @@ class DrawerViewController: XBBaseViewController {
     let scoketModel = ScoketMQTTManager.share
     
     var viewModel = LoginViewModel()
-    
+    var deviceOnline:Bool = false
     lazy var popWindow:UIWindow = {
         let w = UIApplication.shared.delegate as! AppDelegate
         return w.window!
     }()
+    var viewDeviceModel = EquimentViewModel()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        ImageCache.default.removeImage(forKey: XBUserManager.dv_headimgurl)
@@ -64,7 +65,17 @@ class DrawerViewController: XBBaseViewController {
             vc.setInfoType = .editUserInfo
             self.cw_push(vc)
         }
-        
+        viewDeviceModel.requestCheckEquipmentOnline {[weak self] (onLine) in
+            guard let `self` = self else { return }
+            if onLine {
+//                let vc = SmartPlayerViewController()
+//                self.pushVC(vc)
+                self.deviceOnline = true
+            } else {
+                self.deviceOnline = false
+//                XBHud.showMsg("当前设备不在线")
+            }
+        }
     }
     override func request() {
         super.request()
@@ -249,7 +260,10 @@ extension DrawerViewController {
         
     }
     @IBAction func clickLockAction(_ sender: Any) {
-        
+        guard self.deviceOnline else {
+            XBHud.showMsg("当前设备不在线")
+            return
+        }
         if btnLock.isSelected {
             scoketModel.sendCortolLock(0)
         }else {
@@ -261,6 +275,10 @@ extension DrawerViewController {
     }
     
     @IBAction func btnLightAction(_ sender: Any) {
+        guard self.deviceOnline else {
+            XBHud.showMsg("当前设备不在线")
+            return
+        }
         if btnLight.isSelected {
             scoketModel.sendClooseLight(0)
         }else {
@@ -270,11 +288,19 @@ extension DrawerViewController {
     }
     
     @IBAction func clickVolumeAction(_ sender: Any) {
+        guard self.deviceOnline else {
+            XBHud.showMsg("当前设备不在线")
+            return
+        }
         let v = VolumeControlView.loadFromNib()
         v.show()
     }
     
     @IBAction func clickSleepAction(_ sender: Any) {
+        guard self.deviceOnline else {
+            XBHud.showMsg("当前设备不在线")
+            return
+        }
         let v = ScreenControlView.loadFromNib()
         v.show()
     }
