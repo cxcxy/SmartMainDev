@@ -14,8 +14,8 @@ class ContentSingHaderView: UIView {
     @IBOutlet weak var lbTotal: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        btnAddAll.setCornerRadius(radius: 8)
-        btnAddAll.addBorder(width: 0.5, color: tableColor)
+        btnAddAll.setCornerRadius(radius: 10)
+        btnAddAll.addBorder(width: 0.5, color: viewColor)
     }
     /*
     // Only override draw() if you perform custom drawing.

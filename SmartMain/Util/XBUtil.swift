@@ -239,9 +239,17 @@ public class XBUtil {
     ///
     /// - Parameter time: time(Int格式)
     /// - Returns: String格式(00:00:00)
-    static func getDetailTimeWithTimestamp(timeStamp: Int?) -> String  {
+    static func getDetailTimeWithTimestamp(timeStamp: Int?,formatTypeText: Bool = true) -> String  {
         guard let time = timeStamp else {
             return ""
+        }
+        var house_text:String = "小时"
+        var minute_text:String = "分"
+        var second_text:String = "秒"
+        if formatTypeText == false {
+            house_text = ":"
+            minute_text = ":"
+            second_text = ""
         }
         let ms = time
         let ss = 1
@@ -254,17 +262,17 @@ public class XBUtil {
         let minute = (ms - day * dd - hour * hh) / mi
         let second = (ms - day * dd - hour * hh - minute * mi) / ss
         
-        var timerStr = String(hour).AddZero() + "小时" + String(minute).AddZero() + "分"
+        var timerStr = String(hour).AddZero() + house_text + String(minute).AddZero() + minute_text
         
         if hour == 0 {
             if minute == 0 {
-                timerStr = String(second).AddZero() + "秒"
+                timerStr = String(second).AddZero() + second_text
             }else {
-                timerStr = String(minute).AddZero() + "分" + String(second).AddZero() + "秒"
+                timerStr = String(minute).AddZero() + minute_text + String(second).AddZero() + second_text
             }
            
         } else {
-            timerStr = String(hour).AddZero() + "小时" + String(minute).AddZero() + "分" + String(second).AddZero() + "秒"
+            timerStr = String(hour).AddZero() + house_text + String(minute).AddZero() + minute_text + String(second).AddZero() + second_text
         }
         return timerStr
         

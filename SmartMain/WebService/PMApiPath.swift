@@ -65,7 +65,7 @@ extension RequestApi {
         case .saveLikeSing:          return "/favorite/save.do"
         // 删除收藏
         case .deleteLikeSing:          return "/favorite/delete.do"
-        // 添加多首歌曲到预制列表
+        // 获取歌曲详情
         case .getSingDetail:          return "/track/getid.do"
         // 添加多首歌曲到预制列表
         case .addSingsToTrack:          return "/resource/tracklist/addTrackBatch.do"

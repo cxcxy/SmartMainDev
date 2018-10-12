@@ -14,6 +14,7 @@ class HistorySongContentCell: BaseTableViewCell {
     @IBOutlet weak var viewDel: UIView!
     @IBOutlet weak var viewLike: UIView!
     @IBOutlet weak var lbLike: UILabel!
+    @IBOutlet weak var btnLike: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

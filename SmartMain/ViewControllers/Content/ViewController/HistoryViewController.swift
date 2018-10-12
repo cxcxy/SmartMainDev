@@ -167,6 +167,7 @@ extension HistoryViewController {
             let m  = dataArr[indexPath.section]
             cell.lbTitle.set_text = m.title
             cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
+            cell.btnExtension.isSelected = m.isExpanded
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell

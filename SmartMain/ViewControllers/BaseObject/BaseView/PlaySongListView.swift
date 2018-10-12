@@ -7,14 +7,38 @@
 //
 
 import UIKit
-
+enum BottomListViewType {
+    case trackList  // 预制列表
+    case songList   // 歌单列表
+}
+typealias BottomGetTrackListId = (_ trackId: Int) -> ()
 class PlaySongListView: ETPopupView {
+    
     @IBOutlet weak var lbTitleDes: UILabel!
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnCloose: UIButton!
+    var getTrackListIdBlock: BottomGetTrackListId?
     var dataArr: [EquipmentSingModel] = []
+    var trackArr: [EquipmentModel] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    var listViewType: BottomListViewType = .songList {
+        didSet {
+            switch listViewType {
+            case .songList:
+                requestSongList()
+            case .trackList:
+                tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0)
+                break
+            }
+        }
+    }
     var trackListId: Int!// 列表id
+    
     var pageIndex: Int = 1
     /*
     // Only override draw() if you perform custom drawing.
@@ -35,19 +59,23 @@ class PlaySongListView: ETPopupView {
         }
         ETPopupWindow.sharedWindow().touchWildToHide = true
         self.layoutIfNeeded()
-        self.configTableView()
         self.btnCloose.addAction {[weak self] in
             guard let `self` = self else { return }
             self.hide()
         }
+        configTableView()
     }
+    
     func configTableView()  {
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.cellId_register("HistorySongCell")
-        request()
+        tableView.cellId_register("TrackListHomeCell")
+        
     }
-    func request() {
+    // 根据预制列表id 获取该预制列表下面的歌曲列表
+    func requestSongList() {
         var params_task = [String: Any]()
         params_task["trackListId"] = trackListId
         params_task["currentPage"] = pageIndex
@@ -60,7 +88,6 @@ class PlaySongListView: ETPopupView {
                     self.tableView.mj_footer = self.mj_footer
                 }
                 self.dataArr += arr
-//                self.total = JSON.init(parseJSON: result as! String)["totalCount"].int
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.tableView.reloadData()
             }
@@ -79,7 +106,7 @@ class PlaySongListView: ETPopupView {
      */
     @objc func loadMore() {
         pageIndex += 1
-        request()
+        requestSongList()
     }
     /**
      *   结束刷新 ，停止动作
@@ -127,18 +154,46 @@ extension PlaySongListView: UITableViewDelegate,UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArr.count
+       
+        switch listViewType {
+        case .songList:
+             return dataArr.count
+        case .trackList:
+             return trackArr.count
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-        let m  = dataArr[indexPath.row]
-        cell.lbTitle.set_text = m.title
-        cell.btnExtension.isHidden = true
-        cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
-        return cell
+        switch listViewType {
+        case .songList:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+            let m  = dataArr[indexPath.row]
+            cell.lbTitle.set_text = m.title
+            cell.btnExtension.isHidden = true
+            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrackListHomeCell", for: indexPath) as! TrackListHomeCell
+            let model = trackArr[indexPath.row]
+            let trackCount = model.trackCount ?? 0
+            let count = "（" + trackCount.toString + "首）"
+            cell.lbTitle.set_text = model.name
+            cell.lbTatal.set_text = count
+            return cell
+        }
+
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
+        switch listViewType {
+        case .songList:
+             self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
+            break
+        case .trackList:
+            if let getTrackListIdBlock = self.getTrackListIdBlock {
+                getTrackListIdBlock(trackArr[indexPath.row].id ?? 0)
+            }
+            break
+        }
+        
     }
     // 获取歌曲详情 发送MQTT 播放歌曲
     func requestSingDetail(trackId: Int)   {

@@ -9,10 +9,10 @@
 import UIKit
 
 class ContentSingsVC: XBBaseViewController {
-    var clientId: String!
-    var albumId: String!
+    var clientId: String! // 当前设备ID
+    var albumId: String! // 当前歌曲列表 ID
     var dataArr: [ConetentSingModel] = []
-    var trackList: [EquipmentModel] = []
+    var trackList: [EquipmentModel] = [] // 预制列表 数组
     var headerInfo:ConetentSingAlbumModel?
     @IBOutlet weak var lbTopDes: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -54,7 +54,7 @@ class ContentSingsVC: XBBaseViewController {
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["album"].object) {
                 self.configTopHeadeaInfp(model: topModel)
             }
-             self.tableView.reloadData()
+            self.tableView.reloadData()
             self.starAnimationWithTableView(tableView: self.tableView)
         })
     }
@@ -82,7 +82,39 @@ class ContentSingsVC: XBBaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    //MARK: 添加列表内全部歌曲 到 预制列表中
+    func requestAddSingsTrackList(trackId: Int) {
+        var params_task = [String: Any]()
+        params_task["deviceId"] = XBUserManager.device_Id
+        params_task["id"] = trackId
+        params_task["name"] = self.headerInfo?.name ?? ""
+        params_task["list"] = self.dataArr.toJSON()
+        Net.requestWithTarget(.addSingsToTrack(req: params_task), successClosure: { (result, code, message) in
+            if let str = result as? String {
+                if str == "ok" {
+                    XBHud.showMsg("添加成功")
+                    XBDelay.start(delay: 1, closure: {
+                        self.requestTrackList()
+                    })
+                }else {
+                    XBHud.showMsg("添加失败")
+                }
+            }
+        })
+    }
+    //MARK: 点击添加全部
+    func clickAddAllSongsToTrackList()  {
+        let v = PlaySongListView.loadFromNib()
+        v.lbTitleDes.set_text = "添加至"
+        v.listViewType = .trackList
+        v.trackArr = self.trackList
+        v.getTrackListIdBlock = {[weak self] trackId in
+            guard let `self` = self else { return }
+            v.hide()
+            self.requestAddSingsTrackList(trackId: trackId)
+        }
+        v.show()
+    }
 }
 extension ContentSingsVC {
     
@@ -98,6 +130,10 @@ extension ContentSingsVC {
             v.lbTotal.set_text = "共" + total.toString + "首"
         }else {
             v.lbTotal.set_text = ""
+        }
+        v.btnAddAll.addAction { [weak self]in
+            guard let `self` = self else { return }
+            self.clickAddAllSongsToTrackList()
         }
         return v
     }
@@ -117,6 +153,7 @@ extension ContentSingsVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.requestOnlineSing(trackId: dataArr[indexPath.row].resId ?? "")
     }
+    //MARK: 在线点播歌曲
     func requestOnlineSing(trackId: String)  {
         let arr = trackId.components(separatedBy: ":")
         guard arr.count > 1 else {

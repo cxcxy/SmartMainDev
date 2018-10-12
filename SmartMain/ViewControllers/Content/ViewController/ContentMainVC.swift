@@ -165,14 +165,14 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
-        DeviceManager.isOnline { isOnline in
-            if isOnline {
+//        DeviceManager.isOnline { isOnline in
+//            if isOnline {
                 let vc = SmartPlayerViewController()
                 self.pushVC(vc)
-            } else {
-                XBHud.showMsg("当前设备不在线")
-            }
-        }
+//            } else {
+//                XBHud.showMsg("当前设备不在线")
+//            }
+//        }
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()

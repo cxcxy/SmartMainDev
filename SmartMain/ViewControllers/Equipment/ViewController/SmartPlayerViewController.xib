@@ -18,6 +18,7 @@
                 <outlet property="btnPlay" destination="AsY-Bv-FMl" id="lwO-Yl-TGT"/>
                 <outlet property="btnRepeat" destination="y53-fQ-EsE" id="oi1-6h-4aK"/>
                 <outlet property="imgSings" destination="uZ1-hP-1s4" id="97S-pP-feZ"/>
+                <outlet property="lbCurrentSongProgress" destination="JFN-XQ-ygd" id="MWC-86-AQ9"/>
                 <outlet property="lbSingsTitle" destination="IeF-Vk-Fma" id="AIb-Zo-3Uz"/>
                 <outlet property="lbSongProgress" destination="FaE-8s-tb4" id="6ju-J6-Hhf"/>
                 <outlet property="sliderProgress" destination="2yb-ap-pvA" id="KOK-Ci-jOt"/>
@@ -169,19 +170,18 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdV-qI-Hl8">
                                             <rect key="frame" x="0.0" y="10" width="40" height="40"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y53-fQ-EsE">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y53-fQ-EsE">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="1b0-ZB-S00"/>
                                                         <constraint firstAttribute="height" constant="40" id="GmZ-sy-ts0"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="单曲">
+                                                    <state key="normal" image="icon_play_only">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <state key="selected" title="循环播放"/>
+                                                    <state key="selected" image="icon_play_all"/>
                                                     <connections>
                                                         <action selector="clickRepeatAction:" destination="-1" eventType="touchUpInside" id="woH-pq-TH7"/>
                                                     </connections>
@@ -198,15 +198,14 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUg-hT-dzf">
                                             <rect key="frame" x="50" y="5" width="50" height="50"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMH-Cj-iov">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMH-Cj-iov">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="3bP-cu-8K7"/>
                                                         <constraint firstAttribute="width" constant="50" id="uyo-9C-TbV"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <state key="normal" title="上">
+                                                    <state key="normal" title="上" image="icon_play_up">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -225,19 +224,18 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSa-bU-XzQ">
                                             <rect key="frame" x="110" y="0.0" width="60" height="60"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsY-Bv-FMl">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsY-Bv-FMl">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="5pG-5H-5n8"/>
                                                         <constraint firstAttribute="width" constant="60" id="tsp-I3-IBL"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="播放">
+                                                    <state key="normal" title="播放" image="icon_play">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <state key="selected" title="暂停"/>
+                                                    <state key="selected" title="暂停" image="icon_pause"/>
                                                     <connections>
                                                         <action selector="clickPlayAction:" destination="-1" eventType="touchUpInside" id="Csd-8d-Gm6"/>
                                                     </connections>
@@ -254,15 +252,14 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNu-uW-cpc">
                                             <rect key="frame" x="180" y="5" width="50" height="50"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q19-gM-tCk">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q19-gM-tCk">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="t7N-WI-J4Y"/>
                                                         <constraint firstAttribute="width" constant="50" id="wQZ-Ko-jAB"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <state key="normal" title="下">
+                                                    <state key="normal" title="下" image="icon_play_down">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -281,19 +278,18 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2s-D2-IEw">
                                             <rect key="frame" x="240" y="10" width="40" height="40"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sit-cn-iJH">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sit-cn-iJH">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Fpv-0f-4OV"/>
                                                         <constraint firstAttribute="width" constant="40" id="sEn-Aj-smL"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="收藏">
+                                                    <state key="normal" image="icon_unlike">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <state key="selected" title="已收藏"/>
+                                                    <state key="selected" title="已收藏" image="icon_like"/>
                                                     <connections>
                                                         <action selector="clickLikeAction:" destination="-1" eventType="touchUpInside" id="w7L-wq-dwz"/>
                                                     </connections>
@@ -350,4 +346,14 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_like" width="22" height="20"/>
+        <image name="icon_pause" width="83" height="82"/>
+        <image name="icon_play" width="83" height="82"/>
+        <image name="icon_play_all" width="28" height="24"/>
+        <image name="icon_play_down" width="48" height="48"/>
+        <image name="icon_play_only" width="29" height="31"/>
+        <image name="icon_play_up" width="48" height="48"/>
+        <image name="icon_unlike" width="16" height="13"/>
+    </resources>
 </document>
