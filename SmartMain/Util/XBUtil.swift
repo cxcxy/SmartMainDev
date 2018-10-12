@@ -265,11 +265,11 @@ public class XBUtil {
         var timerStr = String(hour).AddZero() + house_text + String(minute).AddZero() + minute_text
         
         if hour == 0 {
-            if minute == 0 {
-                timerStr = String(second).AddZero() + second_text
-            }else {
+//            if minute == 0 {
+//                timerStr = String(second).AddZero() + second_text
+//            }else {
                 timerStr = String(minute).AddZero() + minute_text + String(second).AddZero() + second_text
-            }
+//            }
            
         } else {
             timerStr = String(hour).AddZero() + house_text + String(minute).AddZero() + minute_text + String(second).AddZero() + second_text

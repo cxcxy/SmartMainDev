@@ -41,7 +41,7 @@ class VolumeControlView: ETPopupView {
         scoketModel.getPlayVolume.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getPalyingVolume ===：", $0.element ?? 0)
-            let volumeValue: Float = Float($0.element ?? 0) / 100
+            let volumeValue: Float = Float($0.element ?? 0)
             self.sliderVolume.setValue(volumeValue, animated: true)
 //            self.lbVolume.set_text       = Int($0.element ?? 0).toString
             self.currentVolume = $0.element ?? 0
@@ -71,5 +71,7 @@ class VolumeControlView: ETPopupView {
         self.currentVolume = self.currentVolume + 1
         sliderVolume.setValue(Float(self.currentVolume), animated: true)
     }
+    
+    
     
 }

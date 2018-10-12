@@ -7,6 +7,24 @@
 //
 
 import UIKit
+//class Block {
+//    let f : T
+//    init(_ f: T) { self.f = f }
+//}
+//extension Timer {
+//    class func app_scheduledTimer(withTimeInterval interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Swift.Void) -> Timer {
+//        if #available(iOS 10.0, *) {
+//            return Timer.scheduledTimer(withTimeInterval: interval, repeats: repeats, block: block)
+//        }
+//        return Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(app_timerAction), userInfo: Block(block), repeats: repeats)
+//    }
+//
+//    @objc class func app_timerAction(_ sender: Timer) {
+//        if let block = sender.userInfo as? Block {
+//            block.f(sender)
+//        }
+//    }
+//}
 
 class SmartPlayerViewController: XBBaseViewController {
     
@@ -37,7 +55,7 @@ class SmartPlayerViewController: XBBaseViewController {
     
     var allTimer:Float    = 100 // 歌曲的全部时间
     
-    
+    var currentVolume: Int = 0
     @IBOutlet weak var btnDown: UIButton!
     @IBOutlet weak var btnLike: UIButton!
     var currentSongModel:SingDetailModel? {
@@ -58,6 +76,10 @@ class SmartPlayerViewController: XBBaseViewController {
         super.viewDidLoad()
         title = "歌曲名"
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.resetTimer()
+    }
     override func setUI() {
         super.setUI()
         request()
@@ -75,8 +97,10 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.getPlayVolume.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getPalyingVolume ===：", $0.element ?? 0)
-            let volumeValue: Float = Float($0.element ?? 0) / 100
+            let volumeValue: Float = Float($0.element ?? 0)
             self.sliderVolume.setValue(volumeValue, animated: true)
+            //            self.lbVolume.set_text       = Int($0.element ?? 0).toString
+            self.currentVolume = $0.element ?? 0
         }.disposed(by: rx_disposeBag)
         
         scoketModel.getPlayProgress.asObservable().subscribe { [weak self] in
@@ -115,9 +139,9 @@ class SmartPlayerViewController: XBBaseViewController {
         lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: Int(songDuration),formatTypeText: false)
         
     }
-    deinit {
-        resetTimer()
-    }
+//    deinit {
+//        resetTimer()
+//    }
     //MARK: 重置计时器
     func resetTimer()  {
         timer?.invalidate()
@@ -148,9 +172,27 @@ class SmartPlayerViewController: XBBaseViewController {
     
     @IBAction func sliderVolumeValueChanged(_ sender: Any) {
         print(Int(sliderVolume.value))
-        scoketModel.setVolumeValue(value: Int(sliderVolume.value * 100))
+        scoketModel.setVolumeValue(value: Int(sliderVolume.value))
+        self.currentVolume = Int(sliderVolume.value)
     }
     
+    @IBAction func clickCutAction(_ sender: Any) {
+        if self.currentVolume <= 0 {
+            return
+        }
+        self.currentVolume = self.currentVolume - 1
+        scoketModel.setVolumeValue(value: currentVolume)
+        sliderVolume.setValue(Float(self.currentVolume), animated: true)
+    }
+    
+    @IBAction func clickAddAction(_ sender: Any) {
+        if self.currentVolume >= 100 {
+            return
+        }
+        self.currentVolume = self.currentVolume + 1
+        scoketModel.setVolumeValue(value: currentVolume)
+        sliderVolume.setValue(Float(self.currentVolume), animated: true)
+    }
     override func request() {
         super.request()
         guard let phone = user_defaults.get(for: .userName) else {

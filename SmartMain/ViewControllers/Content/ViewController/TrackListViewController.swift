@@ -27,6 +27,13 @@ class TrackListViewController: XBBaseTableViewController {
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         request()
     }
+    func starAnimationWithTableView(tableView: UITableView) {
+        //        table
+        if self.pageIndex == 1 {
+            TableViewAnimationKit.show(with: .alpha, tableView: tableView)
+        }
+        
+    }
     override func request() {
         super.request()
         guard XBUserManager.device_Id != "" else {
@@ -40,6 +47,7 @@ class TrackListViewController: XBBaseTableViewController {
                 self.endRefresh()
                 self.dataArr = arr
                 self.tableView.reloadData()
+                self.starAnimationWithTableView(tableView: self.tableView)
             }
         })
     }
