@@ -25,16 +25,14 @@ class DrawerViewController: XBBaseViewController {
     @IBOutlet weak var lbDvnick: UILabel!
     
     @IBOutlet weak var imgLock: UIImageView!
+    @IBOutlet weak var lbLock: UILabel!
     @IBOutlet weak var imgLight: UIImageView!
-    
+    @IBOutlet weak var lbLight: UILabel!
     
     
     @IBOutlet weak var btnLock: UIButton!
-    
     @IBOutlet weak var btnLight: UIButton!
-    
     @IBOutlet weak var btnVolume: UIButton!
-    
     @IBOutlet weak var btnSleep: UIButton!
     
     
@@ -73,7 +71,8 @@ class DrawerViewController: XBBaseViewController {
             vc.setInfoType = .editUserInfo
             self.cw_push(vc)
         }
-        DeviceManager.isOnline { isOnline in
+
+        DeviceManager.isOnline(isCheckDevices: false) { (isOnline) in
             self.deviceOnline = isOnline
         }
 
@@ -247,7 +246,8 @@ extension DrawerViewController {
             print("getLight ===：", $0.element ?? 0)
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
             if let light = $0.element {
-                self.imgLight.set_img = light == 1 ? "icon_groupLaght_on" : "icon_groupLaght"
+                self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_groupNight_on"
+                
             }
 //            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
@@ -255,7 +255,7 @@ extension DrawerViewController {
             guard let `self` = self else { return }
             print("getLock ===：", $0.element ?? 0)
             if let light = $0.element {
-                self.imgLock.set_img = light == 1 ? "icon_groupNight_on" : "icon_groupNight"
+                self.imgLock.set_img = light == 1 ? "icon_groupLaght_on" : "icon_groupLaght"
             }
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
 //            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
@@ -269,12 +269,17 @@ extension DrawerViewController {
             XBHud.showMsg("当前设备不在线")
             return
         }
+        
         if btnLock.isSelected {
             scoketModel.sendCortolLock(0)
+            self.imgLock.set_img =  "icon_groupLaght"
+            self.lbLock.set_text = "打开童锁"
         }else {
             scoketModel.sendCortolLock(1)
+            self.imgLock.set_img =  "icon_groupLaght_on"
+            self.lbLock.set_text = "关闭童锁"
         }
-        btnLock.isSelected = !btnLock.isSelected
+       btnLock.isSelected = !btnLock.isSelected
         
         
     }
@@ -286,8 +291,12 @@ extension DrawerViewController {
         }
         if btnLight.isSelected {
             scoketModel.sendClooseLight(0)
+            self.imgLight.set_img = "icon_groupLaght"
+            self.lbLight.set_text = "开呼吸灯"
         }else {
             scoketModel.sendClooseLight(1)
+            self.imgLight.set_img = "icon_groupNight_on"
+            self.lbLight.set_text = "关呼吸灯"
         }
         btnLight.isSelected = !btnLight.isSelected
     }

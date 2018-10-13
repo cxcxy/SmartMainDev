@@ -46,6 +46,8 @@ class SmartPlayerViewController: XBBaseViewController {
     
     fileprivate var timer: Timer? // 歌曲进度条
     
+    var isFirst: Bool = false
+    
     var currentSongProgress  = 0 { // 歌曲的当前时间
         didSet {
             lbCurrentSongProgress.text = XBUtil.getDetailTimeWithTimestamp(timeStamp: Int(currentSongProgress),formatTypeText: false)
@@ -87,7 +89,7 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.sendGetMode()
         scoketModel.sendPlayStatus()
         scoketModel.sendGetVolume()
-        scoketModel.sendGetPlayProgress()
+        
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getPalyingSingsId ===：", $0.element ?? 0)
@@ -122,6 +124,15 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     func configTimer(songDuration: Float)  {
 //        guard let `self` = self else { return }
+        
+        self.allTimer = songDuration
+        if self.isFirst == false { // 当是第一次进去的时候
+            self.scoketModel.sendGetPlayProgress()
+            self.isFirst = true
+        }else {
+            self.currentSongProgress = 0 // 当发现切换歌曲的时候， 播放 从 0 开始
+        }
+
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tickDown), userInfo: nil, repeats: true)
 //        if #available(iOS 10.0, *) {
 //            timer = Timer.init(timeInterval: 1, repeats: true, block: { [weak self] (timer) in
@@ -158,15 +169,12 @@ class SmartPlayerViewController: XBBaseViewController {
         if currentSongProgress >= Int(allTimer) { // 当前歌曲播放完毕
             resetTimer()
             self.currentSongProgress = 0
-            self.configTimer(songDuration: 150)
         }
-
     }
     @IBAction func sliderProgressVauleChanged(_ sender: Any) {
         let value:Float = sliderProgress.value
         print("歌曲时间",Int(sliderProgress.value))
         currentSongProgress = Int(sliderProgress.value)
-//        let duration:Float = Float(currentSongModel?.duration ?? 0)
         scoketModel.setPlayProgressValue(value: Int(value))
     }
     
@@ -212,7 +220,9 @@ class SmartPlayerViewController: XBBaseViewController {
             guard let result = result as? String else {
                 return
             }
+            
             self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
+            
         })
     }
     func configUI(singsDetail: SingDetailModel) {
@@ -220,6 +230,7 @@ class SmartPlayerViewController: XBBaseViewController {
         lbSingsTitle.set_text = singsDetail.title
         lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.duration)
         self.resetTimer()
+        
         // 计时器开始工作
         self.configTimer(songDuration: Float(singsDetail.duration ?? 0))
     }

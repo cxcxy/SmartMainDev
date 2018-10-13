@@ -82,7 +82,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
                 XBHud.showMsg("当前设备不在线")
             }
         }
-        
+//        DeviceManager.isOnline(isCheckDevices: <#T##Bool#>, closure: <#T##(Bool) -> ()#>)
         
     }
     // 获取 预制列表
@@ -108,7 +108,11 @@ class EquipmentSubListVC: XBBaseTableViewController {
         Net.requestWithTarget(.setTrackListDefult(trackListId: trackListId, deviceId: XBUserManager.device_Id, trackIds: trackIds), successClosure: { (result, code, message) in
             if let str = result as? String {
                 if str == "ok" {
-                    self.request()
+                    XBHud.showMsg("恢复成功")
+                    XBDelay.start(delay: 1, closure: {
+                         self.request()
+                    })
+                   
                 }
             }
         })

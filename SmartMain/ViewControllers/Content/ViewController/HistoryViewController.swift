@@ -13,7 +13,7 @@ class HistoryViewController: XBBaseViewController {
     @IBOutlet weak var tfSearch: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
-    
+     var viewModel = ContentViewModel()
     var trackList: [EquipmentModel] = [] // 预制列表数据model
     var dataArr: [ConetentLikeModel] = []
     
@@ -168,6 +168,10 @@ extension HistoryViewController {
             cell.lbTitle.set_text = m.title
             cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
             cell.btnExtension.isSelected = m.isExpanded
+            cell.btnExtension.addAction {[weak self] in
+                guard let `self` = self else { return }
+                self.clickExtensionAction(indexPath: indexPath)
+            }
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
@@ -185,11 +189,26 @@ extension HistoryViewController {
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let m  = dataArr[indexPath.section]
-        m.isExpanded = !m.isExpanded
-        tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+        guard XBUserManager.device_Id != "" else {
+            XBHud.showMsg("请先绑定设备")
+            return
+        }
+        self.requestOnlineSing(trackId: dataArr[indexPath.section].trackId?.toString ?? "")
         
     }
-    
+
+    func clickExtensionAction(indexPath: IndexPath)  {
+      
+            let m  = dataArr[indexPath.section]
+            m.isExpanded = !m.isExpanded
+            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+
+    }
+    //MARK: 在线点播歌曲
+    func requestOnlineSing(trackId: String)  {
+        
+        viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId, deviceId: XBUserManager.device_Id) {
+            
+        }
+    }
 }

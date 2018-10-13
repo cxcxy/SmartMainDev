@@ -104,6 +104,10 @@ class ContentSingsVC: XBBaseViewController {
     }
     //MARK: 点击添加全部
     func clickAddAllSongsToTrackList()  {
+        guard XBUserManager.device_Id != "" else {
+            XBHud.showMsg("请先绑定设备")
+            return
+        }
         let v = PlaySongListView.loadFromNib()
         v.lbTitleDes.set_text = "添加至"
         v.listViewType = .trackList
@@ -144,6 +148,15 @@ extension ContentSingsVC {
         cell.modelData = dataArr[indexPath.row]
         cell.headerInfo = self.headerInfo
         cell.lbLineNumber.set_text = (indexPath.row + 1).toString
+//        guard XBUserManager.device_Id != "" else {
+//            XBHud.showMsg("请先绑定设备")
+//            return
+//        }
+//        if XBUserManager.device_Id == "" {
+//            cell.setArr = ["收藏"]
+//        }else {
+//            cell.setArr = ["添加到播单","收藏"]
+//        }
         cell.setArr = ["添加到播单","收藏"]
         cell.trackList = self.trackList
         
@@ -151,6 +164,10 @@ extension ContentSingsVC {
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard XBUserManager.device_Id != "" else {
+            XBHud.showMsg("请先绑定设备")
+            return
+        }
         self.requestOnlineSing(trackId: dataArr[indexPath.row].resId ?? "")
     }
     //MARK: 在线点播歌曲

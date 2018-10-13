@@ -66,9 +66,7 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
         let filePath = "\(rootPath)/voice_mav.wav"
         let convertedPath = VoiceConverter.getPathByFileName("_AmrToWav", ofType: "wav")
         let result = VoiceConverter.decodeAmr(toWav: localPath, wavSavePath: filePath, sampleRateType: Sample_Rate(rawValue: 0)!)
-        
-//                NSString *convertedPath = [self GetPathByFileName:[self.recordFileName stringByAppendingString:@"_AmrToWav"] ofType:@"wav"];
-//        let convertedPath = self.getpath
+
         print(result)
        
         if (fileManager.fileExists(atPath: localPath)){
@@ -86,7 +84,7 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
 //        sendVoiceDevice
         var params_task = [String: Any]()
         params_task["username"] = XBUserManager.userName
-        params_task["nickname"] = "qq" // 暂定qq 不能中文， 用户的nickname 可能为中文
+        params_task["nickname"] = XBUserManager.userName // 暂定qq 不能中文， 用户的nickname 可能为中文
         params_task["deviceId"] = XBUserManager.device_Id
         params_task["content"] = text
         Net.requestWithTarget(.sendTextDevice(req: params_task),isShowLoding: false, successClosure: { (result, code, message) in

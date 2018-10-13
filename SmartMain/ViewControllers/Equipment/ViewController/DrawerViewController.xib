@@ -16,8 +16,12 @@
                 <outlet property="btnLock" destination="WUa-2W-4VU" id="9KZ-Kt-abD"/>
                 <outlet property="btnSleep" destination="7ZA-gE-DLv" id="hA6-3s-Ml6"/>
                 <outlet property="btnVolume" destination="Im6-fO-NDn" id="5Jr-JR-Mvd"/>
+                <outlet property="imgLight" destination="697-1g-kir" id="hYY-eF-24B"/>
+                <outlet property="imgLock" destination="RhT-Yr-bwj" id="J21-u0-EE7"/>
                 <outlet property="imgPhoto" destination="y4I-vD-U74" id="zEL-SD-Pux"/>
                 <outlet property="lbDvnick" destination="RIa-pq-s3I" id="hj4-5d-yua"/>
+                <outlet property="lbLight" destination="z3p-PB-D0v" id="eNc-8j-E48"/>
+                <outlet property="lbLock" destination="QBV-sy-GyW" id="IUL-la-wIK"/>
                 <outlet property="tableView" destination="4Yj-rl-Rxi" id="wz0-0t-zhl"/>
                 <outlet property="topTableLayout" destination="2qF-i9-REP" id="Hu4-EU-yLK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ubg-xF-C3C"/>

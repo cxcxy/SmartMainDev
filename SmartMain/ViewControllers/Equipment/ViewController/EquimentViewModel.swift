@@ -29,8 +29,9 @@ class EquimentViewModel: NSObject {
         })
     }
     /// 检查设备是否在线
-    func requestCheckEquipmentOnline(closure: @escaping (Bool) -> ())  {
-        Net.requestWithTarget(.getEquimentInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+    func requestCheckEquipmentOnline(isShowLoading: Bool = false,closure: @escaping (Bool) -> ())  {
+
+        Net.requestWithTarget(.getEquimentInfo(deviceId: XBUserManager.device_Id),isShowLoding: isShowLoading, successClosure: { (result, code, message) in
             if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
                 
                 if model.online == 1 {

@@ -168,6 +168,7 @@ extension XBScanViewController {
                     XBUserManager.userDevices = devices
                     // 此时刷新首页的信息
                     XBHud.showMsg("加入成功")
+                   ChatManager.share.asyncGetMyGroupsFromServer()
                     // 订阅此 deviceId MQTT
                     ScoketMQTTManager.share.subscribeToChannel(socket_clientId: deviceId)
                     Noti_post(.refreshDeviceHistory)

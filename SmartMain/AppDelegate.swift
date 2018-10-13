@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         ChatManager.share.init_ChatMessage(application,
                                            launchOptions)
-
         if user_defaults.has(.userName) {
             print("登录过")
             _ = ScoketMQTTManager.share
@@ -58,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func loginEMClient()  {
 //        ChatManager.share.init_ChatMessage(<#T##application: UIApplication##UIApplication#>, <#T##launchOptions: [UIApplicationLaunchOptionsKey : Any]?##[UIApplicationLaunchOptionsKey : Any]?#>)
-        ChatManager.share.loginEMClient(username: XBUserManager.userName, password: "123456")
+        ChatManager.share.loginEMClient(username: XBUserManager.userName, password: XBUserManager.password)
 //        EMClient.shared().login(withUsername: XBUserManager.userName, password: "123456") { (aUserName, aError) in
 //            if (aError == nil) {
 //                print("登录成功",aUserName ?? "未获取到姓名")

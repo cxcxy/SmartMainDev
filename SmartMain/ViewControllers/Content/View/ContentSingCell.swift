@@ -110,6 +110,10 @@ class ContentSingCell: BaseTableViewCell {
         }
     }
     func showTrackListAction()  {
+        guard XBUserManager.device_Id != "" else {
+            XBHud.showMsg("请先绑定设备")
+            return
+        }
         guard trackList.count > 0 else {
             return
         }

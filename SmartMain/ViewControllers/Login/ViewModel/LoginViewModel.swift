@@ -228,6 +228,7 @@ class LoginViewModel: NSObject {
         self.loginSueecss(mobile: mobile, password: password)
         closure()
     }
+    //MARK: 登录成功， 保存用户信息，登录环信
     func loginSueecss( mobile: String,password: String)  {
         XBUserManager.userName = mobile
         ChatManager.share.loginEMClient(username: mobile, password: password)

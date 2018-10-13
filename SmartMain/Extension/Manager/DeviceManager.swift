@@ -11,10 +11,19 @@ import UIKit
 class DeviceManager: NSObject {
     
     /**
-     *   判断当前设备是否在线
+     *   判断当前设备是否在线  isCheckDevices: 检查是否绑定设备 ，isShowLoading： 是否弹出loading框
      */
-    class func isOnline(closure: @escaping (Bool) -> ()) {
-        EquimentViewModel().requestCheckEquipmentOnline { (onLine) in
+    class func isOnline(isCheckDevices: Bool = true,closure: @escaping (Bool) -> ()) {
+//        guard <#condition#> else {
+//            <#statements#>
+//        }
+        if isCheckDevices {
+            guard XBUserManager.device_Id != "" else {
+                XBHud.showMsg("请先绑定设备")
+                return
+            }
+        }
+        EquimentViewModel().requestCheckEquipmentOnline(isShowLoading: false) { (onLine) in
             if onLine {
                 closure(true)
             } else {

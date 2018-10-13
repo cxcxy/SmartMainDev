@@ -68,6 +68,11 @@ class ContentMainVC: XBBaseViewController {
        
         configMagicView()
         addBottomSongView()
+        /// 当切换设备或者绑定设备的时候，重新订阅 scoket MQTT 信息
+        _ = Noti(.refreshDeviceHistory).takeUntil(self.rx.deallocated).subscribe(onNext: {[weak self] (value) in
+            guard let `self` = self else { return }
+            self.configScoketModel()
+        })
         configScoketModel()
         makeCustomerImageNavigationItem("iconmenu", left: true) {[weak self] in
             guard let `self` = self else { return }
@@ -165,6 +170,7 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
+    
         DeviceManager.isOnline { isOnline in
             if isOnline {
                 let vc = SmartPlayerViewController()

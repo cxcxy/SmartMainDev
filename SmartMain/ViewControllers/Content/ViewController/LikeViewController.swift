@@ -10,6 +10,7 @@ import UIKit
 
 class LikeViewController: XBBaseTableViewController {
     var dataArr: [ConetentLikeModel] = []
+    var viewModel = ContentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.cellId_register("HistorySongCell")
@@ -71,6 +72,10 @@ extension LikeViewController {
             cell.lbTitle.set_text = m.title
             cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
             cell.btnExtension.isSelected = m.isExpanded
+            cell.btnExtension.addAction {[weak self] in
+                guard let `self` = self else { return }
+                self.clickExtensionAction(indexPath: indexPath)
+            }
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
@@ -82,6 +87,14 @@ extension LikeViewController {
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard XBUserManager.device_Id != "" else {
+            XBHud.showMsg("请先绑定设备")
+            return
+        }
+        self.requestOnlineSing(trackId: dataArr[indexPath.section].trackId?.toString ?? "")
+        
+    }
+    func clickExtensionAction(indexPath: IndexPath)  {
         if indexPath.row == 0 {
             let m  = dataArr[indexPath.section]
             m.isExpanded = !m.isExpanded
@@ -91,7 +104,13 @@ extension LikeViewController {
             let m  = dataArr[indexPath.section]
             self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
         }
-        
+    }
+    //MARK: 在线点播歌曲
+    func requestOnlineSing(trackId: String)  {
+
+        viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId, deviceId: XBUserManager.device_Id) {
+            
+        }
     }
     /**
      *   取消收藏歌曲

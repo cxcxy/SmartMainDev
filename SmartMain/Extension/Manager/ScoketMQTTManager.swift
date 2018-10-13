@@ -7,9 +7,9 @@
 //
 
 import UIKit
-let socket_host             = "zb.mqtt.athenamuses.cn"
+//let socket_host             = "zb.mqtt.athenamuses.cn"
 let socket_port: UInt16     = 1893
-//let socket_host             = "zhiban.mqtt.athenamuses.cn"
+let socket_host             = "zhiban.mqtt.athenamuses.cn"
 //let socket_port: UInt16     = 8094
 let socket_clientID         = XBUserManager.device_Id
 //let socket_clientID         = "3010290000045007_1275"
