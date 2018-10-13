@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -110,7 +109,7 @@
                             <rect key="frame" x="15" y="50" width="345" height="20"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="293-Si-PeQ">
-                                    <rect key="frame" x="0.0" y="-16" width="55" height="51"/>
+                                    <rect key="frame" x="0.0" y="-15.5" width="55" height="51"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="55" id="TTM-ie-SqI"/>
                                     </constraints>
@@ -123,7 +122,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdv-Ro-VAM">
-                                    <rect key="frame" x="290" y="-16" width="55" height="51"/>
+                                    <rect key="frame" x="290" y="-15.5" width="55" height="51"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="55" id="wpX-cb-XFs"/>
                                     </constraints>
@@ -295,10 +294,10 @@
                                                         <constraint firstAttribute="width" constant="40" id="sEn-Aj-smL"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" image="icon_unlike">
+                                                    <state key="normal" image="icno_play_unlike">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <state key="selected" title="已收藏" image="icon_like"/>
+                                                    <state key="selected" image="icon_paly_like"/>
                                                     <connections>
                                                         <action selector="clickLikeAction:" destination="-1" eventType="touchUpInside" id="w7L-wq-dwz"/>
                                                     </connections>
@@ -356,13 +355,13 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_like" width="22" height="20"/>
+        <image name="icno_play_unlike" width="26" height="24"/>
+        <image name="icon_paly_like" width="27" height="24"/>
         <image name="icon_pause" width="83" height="82"/>
         <image name="icon_play" width="83" height="82"/>
         <image name="icon_play_all" width="28" height="24"/>
         <image name="icon_play_down" width="48" height="48"/>
         <image name="icon_play_only" width="29" height="31"/>
         <image name="icon_play_up" width="48" height="48"/>
-        <image name="icon_unlike" width="16" height="13"/>
     </resources>
 </document>
