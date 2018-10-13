@@ -8,22 +8,22 @@
 
 import UIKit
 import ObjectMapper
-class UserModel: XBDataModel {
-    
-    var id:Int?
-    var username: String?
-    var password: String?
-    var nickname: String?
-    var headImgUrl: String?
-    var deviceId: [String]?
-    
-    override func mapping(map: Map) {
-        
-        id             <-    map["id"]
-        username             <-    map["username"]
-        password          <-    map["password"]
-        nickname            <-    map["nickname"]
-        headImgUrl            <-    map["headImgUrl"]
-        deviceId            <-    map["deviceId"]
-    }
-}
+//class UserModel: XBDataModel {
+//    
+//    var id:Int?
+//    var username: String?
+//    var password: String?
+//    var nickname: String?
+//    var headImgUrl: String?
+//    var deviceId: [String]?
+//    
+//    override func mapping(map: Map) {
+//        
+//        id             <-    map["id"]
+//        username             <-    map["username"]
+//        password          <-    map["password"]
+//        nickname            <-    map["nickname"]
+//        headImgUrl            <-    map["headImgUrl"]
+//        deviceId            <-    map["deviceId"]
+//    }
+//}

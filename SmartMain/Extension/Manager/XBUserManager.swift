@@ -9,79 +9,24 @@
 import UIKit
 import ObjectMapper
 //MARK: 接受 -- user Model
-class XBUserModel:  Mappable{
-
-    var phone : String? // 手机号
-    var profile : String? // 个人简介
-    var securityLevel : Int?// 0=未设置支付密码，1=支付密码，2=支付密码+短信验证码（仅当前用户返回）
-    var sex : Int?
-    var identitycard: String? // 身份正号
-    var truename : String? // 真实姓名
-    var userid : Int?
-    var username : String?
-    var area : String?
-    var status : Int?
-    var totalBalance : Double?//总余额
-    var balance : Double?//通用西币余额
-    var voucherBalance : Double?//抵用券余额
-    var friendCount : Int?
-
-    required init?(map: Map){}
+class UserModel: XBDataModel {
     
-    func mapping(map: Map)
-    {
-
-        phone <- map["phone"]
-        profile <- map["profile"]
-        securityLevel <- map["securityLevel"]
-        sex <- map["sex"]
-        identitycard <- map["identitycard"]
-        truename <- map["truename"]
-        userid <- map["userid"]
-        username <- map["username"]
-        area    <- map["area"]
-        status  <- map["status"]
-        totalBalance    <- map["totalBalance"]
-        balance    <- map["balance"]
-        voucherBalance    <- map["voucherBalance"]
-        friendCount    <- map["friendCount"]
+    var id:Int?
+    var username: String?
+    var password: String?
+    var nickname: String?
+    var headImgUrl: String?
+    var deviceId: [String]?
+    
+    override func mapping(map: Map) {
+        
+        id             <-    map["id"]
+        username             <-    map["username"]
+        password          <-    map["password"]
+        nickname            <-    map["nickname"]
+        headImgUrl            <-    map["headImgUrl"]
+        deviceId            <-    map["deviceId"]
     }
-    
-}
-//MARK:登录状态  返回true 时 ，则说明， 未登陆状态
-/**
- *   登录状态  返回true 时 ，则说明， 未登陆状态
- */
-public func XBLoginStatus() -> Bool{
-    
-//    if XBTokenManager.accessToken == "" || XBUserManager.dispname == "" || XBUserManager.securitylevel == 0 {
-//        XBHud.dismiss()
-//        return true
-//    }
-    
-    return false
-}
-let user_defaults = Defaults()
-public extension DefaultsKey {
-    //用户信息
-    static let userName = Key<String>("userName")
-    static let nickname = Key<String>("nickname")
-    static let password = Key<String>("password")
-    static let headImgUrl = Key<String>("headImgUrl")
-    static let deviceId = Key<String>("deviceId")
-    static let userDevices = Key<[String]>("userDevices")
-    
-    
-    static let online   = Key<Bool>("online")
-    
-    // 设备信息
-     static let dv_babyname   = Key<String>("babyname")
-     static let dv_headimgurl   = Key<String>("headimgurl")
-     static let dv_sex   = Key<String>("sex")
-     static let dv_birthday   = Key<String>("birthday")
-     static let dv_recordtime   = Key<String>("recordtime")
-    
-    
 }
 class XBDeviceBabyModel:  Mappable{
     
@@ -109,6 +54,44 @@ class XBDeviceBabyModel:  Mappable{
     }
     
 }
+//MARK:登录状态  返回true 时 ，则说明， 未登陆状态
+/**
+ *   登录状态  返回true 时 ，则说明， 未登陆状态
+ */
+public func XBLoginStatus() -> Bool{
+    
+//    if XBTokenManager.accessToken == "" || XBUserManager.dispname == "" || XBUserManager.securitylevel == 0 {
+//        XBHud.dismiss()
+//        return true
+//    }
+    
+    return false
+}
+
+let user_defaults = Defaults()
+
+public extension DefaultsKey {
+    //用户信息
+    static let userName = Key<String>("userName")
+    static let nickname = Key<String>("nickname")
+    static let password = Key<String>("password")
+    static let headImgUrl = Key<String>("headImgUrl")
+    static let deviceId = Key<String>("deviceId")
+    static let userDevices = Key<[String]>("userDevices")
+    
+    
+    static let online   = Key<Bool>("online")
+    
+    // 设备信息
+     static let dv_babyname   = Key<String>("babyname")
+     static let dv_headimgurl   = Key<String>("headimgurl")
+     static let dv_sex   = Key<String>("sex")
+     static let dv_birthday   = Key<String>("birthday")
+     static let dv_recordtime   = Key<String>("recordtime")
+    
+    
+}
+
 extension XBUserManager { // 保存设备宝宝 信息
     static var dv_babyname:String {
         get{
@@ -152,6 +135,7 @@ extension XBUserManager { // 保存设备宝宝 信息
     }
     // 保存当前设备的信息
     static func saveDeviceInfo(_ deviceModel: XBDeviceBabyModel) {
+        
          user_defaults.set(deviceModel.babyname ?? "", for: .dv_babyname)
          user_defaults.set(deviceModel.sex ?? "", for: .dv_sex)
          user_defaults.set(deviceModel.birthday ?? "", for: .dv_birthday)

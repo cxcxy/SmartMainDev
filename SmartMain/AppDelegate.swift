@@ -56,15 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
     }
     func loginEMClient()  {
-//        ChatManager.share.init_ChatMessage(<#T##application: UIApplication##UIApplication#>, <#T##launchOptions: [UIApplicationLaunchOptionsKey : Any]?##[UIApplicationLaunchOptionsKey : Any]?#>)
+        
         ChatManager.share.loginEMClient(username: XBUserManager.userName, password: XBUserManager.password)
-//        EMClient.shared().login(withUsername: XBUserManager.userName, password: "123456") { (aUserName, aError) in
-//            if (aError == nil) {
-//                print("登录成功",aUserName ?? "未获取到姓名")
-//            }else {
-//                print("登录失败")
-//            }
-//        }
+
     }
     func applicationWillResignActive(_ application: UIApplication) {
     }

@@ -14,9 +14,7 @@ class DeviceManager: NSObject {
      *   判断当前设备是否在线  isCheckDevices: 检查是否绑定设备 ，isShowLoading： 是否弹出loading框
      */
     class func isOnline(isCheckDevices: Bool = true,closure: @escaping (Bool) -> ()) {
-//        guard <#condition#> else {
-//            <#statements#>
-//        }
+
         if isCheckDevices {
             guard XBUserManager.device_Id != "" else {
                 XBHud.showMsg("请先绑定设备")
