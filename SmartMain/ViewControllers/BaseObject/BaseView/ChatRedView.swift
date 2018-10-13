@@ -9,7 +9,8 @@
 import UIKit
 
 class ChatRedView: UIView {
-
+    @IBOutlet weak var viewSearch: UIImageView!
+    @IBOutlet weak var viewMessage: UIImageView!
     @IBOutlet weak var viewRed: UIView!
     /*
     // Only override draw() if you perform custom drawing.

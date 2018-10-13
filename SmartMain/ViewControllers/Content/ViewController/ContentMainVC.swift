@@ -78,14 +78,15 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             self.maskAnimationFromLeft()
         }
-//        //MARK: 点击添加商家
-//        makeCustomerImageNavigationItem("icon_chat", left: false) {
-////            VCRouter.qrCodeScanVC()
-//        }
-        
-        navMessageView.addTapGesture { [weak self](sender) in
+    
+        navMessageView.viewMessage.addTapGesture { [weak self](sender) in
             guard let `self` = self else { return }
             let vc = ChatMainViewController()
+            self.pushVC(vc)
+        }
+        navMessageView.viewSearch.addTapGesture { [weak self](sender) in
+            guard let `self` = self else { return }
+            let vc = SearchViewController()
             self.pushVC(vc)
         }
         makeRightNavigationItem(navMessageView, left: false)

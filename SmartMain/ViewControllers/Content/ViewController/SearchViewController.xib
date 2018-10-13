@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="bIY-u7-94Q" id="WWR-IW-ua5"/>
                 <outlet property="textField" destination="pdm-Mk-Iwu" id="QSN-im-nev"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewSearchTop" destination="Duy-wV-kyU" id="Vpr-qB-rPx"/>
@@ -26,7 +27,7 @@
                     <rect key="frame" x="15" y="35" width="345" height="45"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Duy-wV-kyU">
-                            <rect key="frame" x="0.0" y="2" width="345" height="40"/>
+                            <rect key="frame" x="0.0" y="2.5" width="345" height="40"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="xEa-Kc-L0l">
                                     <rect key="frame" x="10" y="12.5" width="15" height="15"/>
@@ -39,7 +40,7 @@
                                     <rect key="frame" x="40" y="0.0" width="224.5" height="40"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyv-Hy-7aC">
                                     <rect key="frame" x="284.5" y="9" width="0.5" height="22"/>
@@ -91,14 +92,23 @@
                         <constraint firstItem="Duy-wV-kyU" firstAttribute="centerY" secondItem="HOb-Vs-JOp" secondAttribute="centerY" id="c41-UG-Y9D"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bIY-u7-94Q">
+                    <rect key="frame" x="0.0" y="95" width="375" height="572"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="bIY-u7-94Q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7VL-b2-lLV"/>
                 <constraint firstAttribute="trailing" secondItem="HOb-Vs-JOp" secondAttribute="trailing" constant="15" id="HF7-NU-8g0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bIY-u7-94Q" secondAttribute="bottom" id="Jj5-WT-dtd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bIY-u7-94Q" secondAttribute="trailing" id="Udo-xn-QyC"/>
                 <constraint firstItem="HOb-Vs-JOp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="kq9-Kn-SPw"/>
+                <constraint firstItem="bIY-u7-94Q" firstAttribute="top" secondItem="HOb-Vs-JOp" secondAttribute="bottom" constant="15" id="urE-lL-MBZ"/>
                 <constraint firstItem="HOb-Vs-JOp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="zvV-cd-ZRC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="78" y="92"/>
         </view>
     </objects>
     <resources>

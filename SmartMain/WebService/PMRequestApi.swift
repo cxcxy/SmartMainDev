@@ -20,6 +20,7 @@ enum RequestApi{
     case getSingleTrack(id: Int)
     case getTrackSubList(req: [String: Any])
     case setTrackListDefult(trackListId: Int,deviceId: String,trackIds: [Int])
+    case getSearchResource(req: [String: Any])
     case contentsings(req: [String: Any])
     case login(mobile: String, code: String)
     case getDeviceIds(userName: String)
@@ -122,7 +123,8 @@ extension RequestApi:TargetType{
              .deleteTrackList(let req),
              .updateBabyInfo(let req),
              .getNetVoice(let req),
-             .updateUserInfo(let req):
+             .updateUserInfo(let req),
+             .getSearchResource(let req):
             params_task = req
             break
         case .quitGroup(_,let req):

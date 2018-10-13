@@ -40,20 +40,18 @@ class ContentVC: XBBaseTableViewController {
                 self.dataArr = filterArr
                 self.endRefresh()
                 self.tableView.reloadData()
+//                self.starAnimationWithTableView(tableView: self.tableView)
             }
         })
     }
-    func requestTrackList()  {
-//        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
-//            print(result)
-//            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
-//                self.endRefresh()
-//                self.dataTrackArr = arr
-//                self.tableView.reloadData()
-//            }
-//        })
+    func starAnimationWithTableView(tableView: UITableView) {
 
+        if self.pageIndex == 1 {
+            TableViewAnimationKit.show(with: .moveSpring, tableView: tableView)
+        }
+        
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -62,7 +60,9 @@ class ContentVC: XBBaseTableViewController {
 extension ContentVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        guard dataArr.count > 0 else {
+            return 0 
+        }
         return dataArr.count > 6 ? 7 : dataArr.count + 1
         
     }
@@ -96,5 +96,17 @@ extension ContentVC {
 //        vc.title = "222"
 //        self.pushVC(vc)
     }
-    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //设置cell的显示动画为3D缩放
+        //xy方向缩放的初始值为0.1
+        cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 1)
+        //设置动画时间为0.25秒，xy方向缩放的最终值为1
+        //        UIView.animateWithDuration(0.25, animations: {
+        //            cell.layer.transform=CATransform3DMakeScale(1, 1, 1)
+        //        })
+        UIView.animate(withDuration: 0.5) {
+            cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+        }
+    }
+
 }

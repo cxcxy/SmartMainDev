@@ -25,6 +25,7 @@ extension RequestApi {
         //获取预制列表信息
         case .getTrackSubList:          return "/track/getpage.do"
         case .setTrackListDefult(let trackListId, let deviceId, _): return "/tracklist/inital.do?trackListId=\(trackListId)&deviceId=\(deviceId)"
+        case .getSearchResource:   return "/resource/appInterface.do?inter=/search"
         //获取指定预制列表信息
         case .getSingleTrack:          return "/track/get.do"
             // 登录接口
