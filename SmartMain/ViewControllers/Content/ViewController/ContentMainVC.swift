@@ -31,6 +31,7 @@ class ContentMainVC: XBBaseViewController {
     var bottomSongView = BottomSongView.loadFromNib()
     var navMessageView = ChatRedView.loadFromNib()
     let scoketModel = ScoketMQTTManager.share
+     var currentDeviceId: String?
     var currentSongModel:SingDetailModel? { // 当前正在播放歌曲的信息
         didSet {
             guard let m = currentSongModel else {
@@ -40,9 +41,20 @@ class ContentMainVC: XBBaseViewController {
         }
     }
     var viewModel = EquimentViewModel()
+    var viewModelLogin = LoginViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.currentNavigationTitleColor = UIColor.white
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let currentDeviceId = currentDeviceId else {
+            return
+        }
+        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
+            request()
+//            self.title = ""
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -94,7 +106,22 @@ class ContentMainVC: XBBaseViewController {
         XBDelay.start(delay: 1) {
             self.setupUnreadMessageCount()
         }
-        
+        self.request()
+    }
+    override func request()  {
+        super.request()
+        self.currentDeviceId = XBUserManager.device_Id
+        guard XBUserManager.device_Id != "" else {
+            self.loading = true
+            endRefresh()
+            self.title = "暂无绑定设备"
+            return
+        }
+        viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+            guard let `self` = self else { return }
+//            self.configUIInfo()
+            self.title = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
+        }
     }
     func configChatMessage()  {
         EMClient.shared().chatManager.add(self, delegateQueue: nil)
@@ -172,14 +199,14 @@ class ContentMainVC: XBBaseViewController {
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
     
-        DeviceManager.isOnline { isOnline in
-            if isOnline {
+//        DeviceManager.isOnline { isOnline in
+//            if isOnline {
                 let vc = SmartPlayerViewController()
                 self.pushVC(vc)
-            } else {
-                XBHud.showMsg("当前设备不在线")
-            }
-        }
+//            } else {
+//                XBHud.showMsg("当前设备不在线")
+//            }
+//        }
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()

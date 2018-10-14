@@ -41,6 +41,10 @@ class SmartPlayerViewController: XBBaseViewController {
     @IBOutlet weak var btnOn: UIButton!
     @IBOutlet weak var lbCurrentSongProgress: UILabel!
     @IBOutlet weak var lbSongProgress: UILabel!
+    
+    @IBOutlet weak var viewVolume: UIView!
+    
+    @IBOutlet weak var viewProgress: UIView!
     @IBOutlet weak var sliderProgress: UISlider!
     @IBOutlet weak var sliderVolume: UISlider!
     
@@ -52,9 +56,11 @@ class SmartPlayerViewController: XBBaseViewController {
         didSet {
             lbCurrentSongProgress.text = XBUtil.getDetailTimeWithTimestamp(timeStamp: Int(currentSongProgress),formatTypeText: false)
             self.sliderProgress.value = Float(currentSongProgress)
+//            rightSliderLayout.constant = CGFloat(self.sliderProgress.value / self.sliderProgress.maximumValue) * self.viewProgress.w
         }
     }
     
+    @IBOutlet weak var rightSliderLayout: NSLayoutConstraint!
     var allTimer:Float    = 100 // 歌曲的全部时间
     
     var currentVolume: Int = 0
@@ -82,9 +88,21 @@ class SmartPlayerViewController: XBBaseViewController {
         super.viewDidDisappear(animated)
         self.resetTimer()
     }
+    func setSiderThumeImage()  {
+        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
+        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
+        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
+        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
+//        viewVolume.setCornerRadius(radius: 5)
+        viewVolume.layer.cornerRadius = 5
+        viewProgress.layer.cornerRadius = 5
+//        viewProgress.setCornerRadius(radius: 5)
+    }
     override func setUI() {
         super.setUI()
         request()
+        
+        setSiderThumeImage()
         scoketModel.sendGetTrack()
         scoketModel.sendGetMode()
         scoketModel.sendPlayStatus()

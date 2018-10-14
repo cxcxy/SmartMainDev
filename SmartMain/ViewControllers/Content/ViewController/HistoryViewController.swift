@@ -9,7 +9,7 @@
 import UIKit
 
 class HistoryViewController: XBBaseViewController {
-    
+    var currentDeviceId: String?
     @IBOutlet weak var tfSearch: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
@@ -17,7 +17,15 @@ class HistoryViewController: XBBaseViewController {
     var trackList: [EquipmentModel] = [] // 预制列表数据model
     var dataArr: [ConetentLikeModel] = []
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let currentDeviceId = currentDeviceId else {
+            return
+        }
+        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
+            request()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +44,7 @@ class HistoryViewController: XBBaseViewController {
     }
     override func request() {
         super.request()
+        self.currentDeviceId = XBUserManager.device_Id
         guard let deviceId = user_defaults.get(for: .deviceId) else {
 //            XBHud.showMsg("请登录")
             self.loading = true

@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MemberManagerVC" customModule="SmartMain" customModuleProvider="target">
             <connections>
+                <outlet property="btnBootomLayout" destination="n9J-ZY-fo6" id="mK9-Q0-Zdy"/>
+                <outlet property="btnBottom" destination="JgQ-d9-Bdb" id="Twb-B3-Y3d"/>
                 <outlet property="collectionView" destination="z2T-Oo-qlO" id="YEG-RJ-nBd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -31,12 +33,28 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgQ-d9-Bdb">
+                    <rect key="frame" x="15" y="682" width="345" height="43"/>
+                    <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="FAG-As-Z3B"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clickBottomAction:" destination="-1" eventType="touchUpInside" id="yqJ-O3-19H"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JgQ-d9-Bdb" secondAttribute="trailing" constant="15" id="3uL-eq-Yra"/>
+                <constraint firstItem="JgQ-d9-Bdb" firstAttribute="top" secondItem="z2T-Oo-qlO" secondAttribute="bottom" constant="15" id="4nb-7D-c8J"/>
                 <constraint firstItem="z2T-Oo-qlO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="QHC-iZ-C5M"/>
+                <constraint firstItem="JgQ-d9-Bdb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="XCa-cy-S2B"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="z2T-Oo-qlO" secondAttribute="trailing" constant="20" id="c6h-Oa-h0l"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="z2T-Oo-qlO" secondAttribute="bottom" id="d9O-Re-z8b"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JgQ-d9-Bdb" secondAttribute="bottom" constant="-58" id="n9J-ZY-fo6"/>
                 <constraint firstItem="z2T-Oo-qlO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yIb-OT-HjC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

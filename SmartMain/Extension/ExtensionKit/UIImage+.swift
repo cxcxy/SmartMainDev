@@ -76,5 +76,16 @@ extension UIImage {
         return image!
     }
 
-
+//    // 根据颜色转化成图片
+//    class func getImageScaleToSize(size: CGSize)->UIImage{
+////        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+//        UIGraphicsBeginImageContext(size)
+//        self.
+//        let context = UIGraphicsGetCurrentContext()
+//        context!.setFillColor(color.cgColor)
+//        context!.fill(rect)
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return image!
+//    }
 }

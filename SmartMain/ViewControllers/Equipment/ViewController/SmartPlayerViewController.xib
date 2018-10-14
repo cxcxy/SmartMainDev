@@ -21,9 +21,12 @@
                 <outlet property="lbCurrentSongProgress" destination="JFN-XQ-ygd" id="MWC-86-AQ9"/>
                 <outlet property="lbSingsTitle" destination="IeF-Vk-Fma" id="AIb-Zo-3Uz"/>
                 <outlet property="lbSongProgress" destination="FaE-8s-tb4" id="6ju-J6-Hhf"/>
+                <outlet property="rightSliderLayout" destination="S01-ry-goZ" id="RyI-6r-jLJ"/>
                 <outlet property="sliderProgress" destination="2yb-ap-pvA" id="KOK-Ci-jOt"/>
                 <outlet property="sliderVolume" destination="IAz-vK-lco" id="GbA-K9-nqr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewProgress" destination="XHL-qI-NDP" id="ECG-gy-TfH"/>
+                <outlet property="viewVolume" destination="auh-VR-AQr" id="4Zm-bg-C43"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -31,9 +34,22 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uZ1-hP-1s4">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cm2_fm_bg" translatesAutoresizingMaskIntoConstraints="NO" id="1Ni-UW-RmP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdg-Ll-tv9">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="43Y-Nk-UNR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="backgroundColor" red="0.8971161039981459" green="0.8980392157" blue="0.8026079063602326" alpha="0.58518835616438358" colorSpace="custom" customColorSpace="sRGB"/>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_photo" translatesAutoresizingMaskIntoConstraints="NO" id="uZ1-hP-1s4">
                     <rect key="frame" x="112.5" y="70" width="150" height="150"/>
-                    <color key="backgroundColor" red="1" green="1" blue="0.69794379340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="9u1-zw-uUS"/>
                         <constraint firstAttribute="width" constant="150" id="OdG-5C-K5k"/>
@@ -63,9 +79,19 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHL-qI-NDP">
                                     <rect key="frame" x="55" y="5" width="235" height="10"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QES-N1-D2P">
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="10"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" id="S01-ry-goZ"/>
+                                            </constraints>
+                                        </view>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="2yb-ap-pvA">
-                                            <rect key="frame" x="-2" y="0.0" width="239" height="11"/>
+                                            <rect key="frame" x="-2" y="-2.5" width="239" height="16"/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="O7l-SP-wy9"/>
+                                            </constraints>
                                             <color key="minimumTrackTintColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="maximumTrackTintColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="thumbTintColor" red="0.65336854493934482" green="0.92079728841781616" blue="0.24158448249453268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,11 +102,13 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.50196078431372548" green="0.792156862745098" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="2yb-ap-pvA" firstAttribute="top" secondItem="XHL-qI-NDP" secondAttribute="top" id="2Nj-cF-1xA"/>
                                         <constraint firstAttribute="height" constant="10" id="61c-Wq-5fu"/>
                                         <constraint firstAttribute="trailing" secondItem="2yb-ap-pvA" secondAttribute="trailing" id="WzI-Ru-NeF"/>
                                         <constraint firstItem="2yb-ap-pvA" firstAttribute="leading" secondItem="XHL-qI-NDP" secondAttribute="leading" id="Zp8-Xt-T08"/>
-                                        <constraint firstAttribute="bottom" secondItem="2yb-ap-pvA" secondAttribute="bottom" id="rdT-9x-ykF"/>
+                                        <constraint firstAttribute="bottom" secondItem="QES-N1-D2P" secondAttribute="bottom" id="mKn-hK-I9i"/>
+                                        <constraint firstItem="2yb-ap-pvA" firstAttribute="centerY" secondItem="XHL-qI-NDP" secondAttribute="centerY" id="vEo-wL-iU7"/>
+                                        <constraint firstItem="QES-N1-D2P" firstAttribute="top" secondItem="XHL-qI-NDP" secondAttribute="top" id="zk4-nE-5Zy"/>
+                                        <constraint firstItem="QES-N1-D2P" firstAttribute="leading" secondItem="XHL-qI-NDP" secondAttribute="leading" id="zwO-lZ-tzZ"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaE-8s-tb4">
@@ -139,8 +167,8 @@
                                     <subviews>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="IAz-vK-lco">
                                             <rect key="frame" x="-2" y="0.0" width="239" height="11"/>
-                                            <color key="minimumTrackTintColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="maximumTrackTintColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="thumbTintColor" red="0.65336854489999996" green="0.92079728839999997" blue="0.2415844825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="sliderVolumeValueChanged:" destination="-1" eventType="valueChanged" id="mnf-ax-UQ4"/>
@@ -344,20 +372,30 @@
             <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="IeF-Vk-Fma" firstAttribute="top" secondItem="uZ1-hP-1s4" secondAttribute="bottom" constant="30" id="5Mx-RP-AsS"/>
+                <constraint firstItem="1Ni-UW-RmP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BUe-K3-dLq"/>
+                <constraint firstItem="1Ni-UW-RmP" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Eyv-ZZ-7hJ"/>
+                <constraint firstItem="1Ni-UW-RmP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MgC-hq-s2j"/>
                 <constraint firstItem="18Y-8I-3Di" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Odv-7p-jdA"/>
+                <constraint firstAttribute="bottom" secondItem="1Ni-UW-RmP" secondAttribute="bottom" id="Ohy-cd-Ibe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="18Y-8I-3Di" secondAttribute="trailing" id="USp-aD-D9q"/>
+                <constraint firstItem="1Ni-UW-RmP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VUA-3v-YJU"/>
                 <constraint firstItem="uZ1-hP-1s4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="b4n-rm-Nu8"/>
                 <constraint firstItem="uZ1-hP-1s4" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="bHF-0u-sYT"/>
+                <constraint firstItem="1Ni-UW-RmP" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eLI-ad-fYX"/>
+                <constraint firstAttribute="trailing" secondItem="1Ni-UW-RmP" secondAttribute="trailing" id="gqj-hQ-neR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="18Y-8I-3Di" secondAttribute="bottom" id="o6A-No-M72"/>
+                <constraint firstItem="1Ni-UW-RmP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tZb-TG-pr2"/>
                 <constraint firstItem="IeF-Vk-Fma" firstAttribute="centerX" secondItem="uZ1-hP-1s4" secondAttribute="centerX" id="ynE-k0-lfS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
     <resources>
+        <image name="cm2_fm_bg" width="320" height="568"/>
         <image name="icno_play_unlike" width="26" height="24"/>
         <image name="icon_paly_like" width="27" height="24"/>
         <image name="icon_pause" width="83" height="82"/>
+        <image name="icon_photo" width="180" height="180"/>
         <image name="icon_play" width="83" height="82"/>
         <image name="icon_play_all" width="28" height="24"/>
         <image name="icon_play_down" width="48" height="48"/>

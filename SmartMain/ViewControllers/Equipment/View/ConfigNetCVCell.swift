@@ -18,6 +18,9 @@ class ConfigNetCVCell: UICollectionViewCell,UITextFieldDelegate {
     @IBOutlet weak var viewCenter: UIView!
     @IBOutlet weak var viewConfigNet: UIView!
     
+    @IBOutlet weak var viewWifiName: UIView!
+    @IBOutlet weak var viewWifiPass: UIView!
+    
     @IBOutlet weak var tfWifiName: UITextField!
 
     @IBOutlet weak var tfWifiPass: UITextField!
@@ -72,8 +75,14 @@ class ConfigNetCVCell: UICollectionViewCell,UITextFieldDelegate {
         super.awakeFromNib()
         // Initialization code
         viewTop.setCornerRadius(radius: 15)
+        viewWifiName.radius_l()
+        viewWifiPass.radius_l()
+        viewWifiName.addBorder(width: 0.5, color: lineColor)
+        viewWifiPass.addBorder(width: 0.5, color: lineColor)
         tfWifiPass.delegate = self
         tfWifiName.delegate = self
+        tfWifiName.tintColor = viewColor
+        tfWifiPass.tintColor = viewColor
     }
 
 }

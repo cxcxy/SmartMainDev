@@ -14,6 +14,8 @@ class DeviceChooseCell: UICollectionViewCell {
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbCurrent: UILabel!
+    @IBOutlet weak var btnDel: UIButton!
+    
     var model : XBDeviceBabyModel? {
         didSet {
             guard let m = model else {
@@ -23,6 +25,7 @@ class DeviceChooseCell: UICollectionViewCell {
             imgPhoto.set_Img_Url(m.headimgurl)
             viewContainer.backgroundColor = m.isCurrent ? UIColor.init(hexString: "BEDEA9") : UIColor.init(hexString: "ECBD9C")
             lbCurrent.isHidden = m.isCurrent ? false : true
+            btnDel.isHidden = m.isCurrent ? false : true
         }
     }
     override func awakeFromNib() {
@@ -31,6 +34,7 @@ class DeviceChooseCell: UICollectionViewCell {
         viewContainer.layoutIfNeeded()
         viewContainer.setCornerRadius(radius: 8)
         imgPhoto.roundView()
+        btnDel.isHidden = false
     }
 
 }

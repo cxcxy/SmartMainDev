@@ -218,7 +218,16 @@ struct XBUserManager {
         user_defaults.set(model.password ?? "", for: .password)
         user_defaults.set(model.nickname ?? "", for: .nickname)
         user_defaults.set(model.headImgUrl ?? "", for: .headImgUrl)
-        user_defaults.set(model.deviceId ?? [], for: .userDevices)
+        user_defaults.set(model.deviceId ?? [], for: .userDevices) // 更新用户所绑定的 devices
+        if XBUserManager.userDevices.contains(XBUserManager.device_Id) { // 看当前用户所使用的 deviceId 是否 存在于 用户 所有绑定的 devices 里面
+            
+        } else {
+            if XBUserManager.userDevices.count != 0 {
+             XBUserManager.device_Id = XBUserManager.userDevices[0] // 给当前deviceId 第一个
+            }else {
+                XBUserManager.device_Id = ""
+            }
+        }
     }
     
     static func updateUserInfo(headImgUrl: String,nickname: String){

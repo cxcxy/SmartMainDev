@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfigNetViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
                 <outlet property="btnNext" destination="7al-bf-YZi" id="WHE-y6-lqw"/>
+                <outlet property="btnOn" destination="pPU-pK-DDA" id="SkO-r0-hS0"/>
                 <outlet property="collectionView" destination="nQz-Vq-Xav" id="Ino-kC-8hC"/>
                 <outlet property="heightLayout" destination="G4G-4J-fGS" id="2xc-fU-aGQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -32,7 +33,7 @@
                     </constraints>
                     <collectionViewLayout key="collectionViewLayout" id="xmj-A4-qi5" customClass="XBCustomItemLayout" customModule="SmartMain" customModuleProvider="target"/>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7al-bf-YZi">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7al-bf-YZi">
                     <rect key="frame" x="30" y="475" width="315" height="45"/>
                     <color key="backgroundColor" red="0.0" green="0.56862745098039214" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -46,13 +47,29 @@
                         <action selector="clickOnNextAction:" destination="-1" eventType="touchUpInside" id="GTU-2g-ivF"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPU-pK-DDA">
+                    <rect key="frame" x="30" y="530" width="315" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="fzH-I3-JUt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="上一步">
+                        <color key="titleColor" red="0.0" green="0.56862745098039214" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickOnAction:" destination="-1" eventType="touchUpInside" id="Re7-ed-Gze"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.75294117647058822" green="0.88235294117647056" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="nQz-Vq-Xav" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="0wk-lI-Z6S"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nQz-Vq-Xav" secondAttribute="trailing" id="92w-aH-hlw"/>
                 <constraint firstItem="7al-bf-YZi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="Fqe-7B-m7k"/>
+                <constraint firstItem="pPU-pK-DDA" firstAttribute="leading" secondItem="7al-bf-YZi" secondAttribute="leading" id="ORP-CY-AL9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7al-bf-YZi" secondAttribute="trailing" constant="30" id="TQL-MY-KEo"/>
+                <constraint firstItem="pPU-pK-DDA" firstAttribute="top" secondItem="7al-bf-YZi" secondAttribute="bottom" constant="10" id="TgV-ad-vDf"/>
+                <constraint firstItem="pPU-pK-DDA" firstAttribute="trailing" secondItem="7al-bf-YZi" secondAttribute="trailing" id="g7Z-78-RgU"/>
                 <constraint firstItem="nQz-Vq-Xav" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pf6-3w-NOy"/>
                 <constraint firstItem="nQz-Vq-Xav" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="qof-pz-i2y"/>
                 <constraint firstItem="7al-bf-YZi" firstAttribute="top" secondItem="nQz-Vq-Xav" secondAttribute="bottom" constant="30" id="xpp-Jd-Kgt"/>

@@ -10,8 +10,8 @@ import UIKit
 class DrawerViewController: XBBaseViewController {
     var eqOne    = XBStyleCellModel.init(title: "设备配网", imgIcon: "icon_group1",cellType: 1)
     var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "icon_group2",cellType: 2)
-    var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "icon_group3",cellType: 3)
-    var eqFour   = XBStyleCellModel.init(title: "家庭成员", imgIcon: "icon_member",cellType: 7)
+    var eqThree  = XBStyleCellModel.init(title: "切换设备", imgIcon: "icon_group3",cellType: 3)
+    var eqFour   = XBStyleCellModel.init(title: "设备成员", imgIcon: "icon_member",cellType: 7)
     var accountOne  = XBStyleCellModel.init(title: "宝宝信息", imgIcon: "icon_group4",cellType: 4)
     var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "icon_group5",cellType: 5)
     var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "icon_group6",cellType: 6)
@@ -85,7 +85,7 @@ class DrawerViewController: XBBaseViewController {
         }
     }
     // 配置 设备信息 数据
-    func cofigDeviceInfo()  {
+    func cofigDeviceInfo()  { // ！ 这个应该在首页写
         if XBUserManager.userDevices.count > 0 && XBUserManager.device_Id != ""  { // 有绑定设备
                 topTableLayout.constant = 110
                 eqArr       = [eqOne,eqTwo,eqThree,eqFour]

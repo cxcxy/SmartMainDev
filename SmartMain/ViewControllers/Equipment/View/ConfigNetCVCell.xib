@@ -81,36 +81,62 @@
                                     <constraint firstAttribute="width" constant="100" id="cua-XX-4YO"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WIFI名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-fW-YBI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXG-cM-1sK">
                                 <rect key="frame" x="20" y="135" width="175" height="30"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WIFI名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2n-fW-YBI">
+                                        <rect key="frame" x="8" y="0.0" width="159" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="L1w-Lv-Mbu"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="L1w-Lv-Mbu"/>
+                                    <constraint firstAttribute="height" constant="30" id="0eo-cR-gFl"/>
+                                    <constraint firstAttribute="trailing" secondItem="b2n-fW-YBI" secondAttribute="trailing" constant="8" id="1lo-lk-F8r"/>
+                                    <constraint firstItem="b2n-fW-YBI" firstAttribute="leading" secondItem="GXG-cM-1sK" secondAttribute="leading" constant="8" id="41n-CE-Nz0"/>
+                                    <constraint firstItem="b2n-fW-YBI" firstAttribute="top" secondItem="GXG-cM-1sK" secondAttribute="top" id="pdE-N5-sXW"/>
+                                    <constraint firstAttribute="bottom" secondItem="b2n-fW-YBI" secondAttribute="bottom" id="zyW-Z8-Nai"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WIFI密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R38-ss-ABR">
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoG-z0-HnZ">
                                 <rect key="frame" x="20" y="173" width="175" height="30"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WIFI密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R38-ss-ABR">
+                                        <rect key="frame" x="8" y="0.0" width="159" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="XE5-o6-cOa"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="XE5-o6-cOa"/>
+                                    <constraint firstAttribute="trailing" secondItem="R38-ss-ABR" secondAttribute="trailing" constant="8" id="3iF-Hp-5nx"/>
+                                    <constraint firstItem="R38-ss-ABR" firstAttribute="leading" secondItem="MoG-z0-HnZ" secondAttribute="leading" constant="8" id="8Mt-X9-CEq"/>
+                                    <constraint firstAttribute="height" constant="30" id="Nds-wc-hCT"/>
+                                    <constraint firstAttribute="bottom" secondItem="R38-ss-ABR" secondAttribute="bottom" id="dM3-gc-m4T"/>
+                                    <constraint firstItem="R38-ss-ABR" firstAttribute="top" secondItem="MoG-z0-HnZ" secondAttribute="top" id="xIc-mi-tX6"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="77P-1B-HLl" firstAttribute="top" secondItem="KgS-OB-vml" secondAttribute="top" constant="15" id="2Si-C6-JCy"/>
-                            <constraint firstItem="R38-ss-ABR" firstAttribute="leading" secondItem="KgS-OB-vml" secondAttribute="leading" constant="20" id="anC-sg-suq"/>
+                            <constraint firstItem="MoG-z0-HnZ" firstAttribute="leading" secondItem="KgS-OB-vml" secondAttribute="leading" constant="20" id="Dvy-ux-eyq"/>
+                            <constraint firstItem="GXG-cM-1sK" firstAttribute="leading" secondItem="KgS-OB-vml" secondAttribute="leading" constant="20" id="EIQ-8b-QcH"/>
+                            <constraint firstAttribute="trailing" secondItem="GXG-cM-1sK" secondAttribute="trailing" constant="20" id="UKr-u7-P8b"/>
+                            <constraint firstItem="GXG-cM-1sK" firstAttribute="top" secondItem="77P-1B-HLl" secondAttribute="bottom" constant="20" id="YXy-0r-uHn"/>
+                            <constraint firstItem="MoG-z0-HnZ" firstAttribute="top" secondItem="GXG-cM-1sK" secondAttribute="bottom" constant="8" id="bSY-Oz-jwT"/>
                             <constraint firstAttribute="width" secondItem="KgS-OB-vml" secondAttribute="height" multiplier="1:1" id="cQb-gO-BWm"/>
-                            <constraint firstItem="b2n-fW-YBI" firstAttribute="leading" secondItem="KgS-OB-vml" secondAttribute="leading" constant="20" id="fm1-PA-iZG"/>
-                            <constraint firstItem="b2n-fW-YBI" firstAttribute="top" secondItem="77P-1B-HLl" secondAttribute="bottom" constant="20" id="hrL-D8-dq9"/>
-                            <constraint firstAttribute="trailing" secondItem="R38-ss-ABR" secondAttribute="trailing" constant="20" id="oXc-eq-LuX"/>
                             <constraint firstItem="77P-1B-HLl" firstAttribute="centerX" secondItem="KgS-OB-vml" secondAttribute="centerX" id="pAx-1l-U0P"/>
-                            <constraint firstAttribute="trailing" secondItem="b2n-fW-YBI" secondAttribute="trailing" constant="20" id="qcv-Ot-uPd"/>
-                            <constraint firstItem="R38-ss-ABR" firstAttribute="top" secondItem="b2n-fW-YBI" secondAttribute="bottom" constant="8" id="uax-lg-F2K"/>
+                            <constraint firstAttribute="trailing" secondItem="MoG-z0-HnZ" secondAttribute="trailing" constant="20" id="tRI-2W-zNB"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请长按配网键3秒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-9y-udJ">
@@ -160,6 +186,8 @@
                 <outlet property="viewConfigNet" destination="KgS-OB-vml" id="2W1-r9-ie4"/>
                 <outlet property="viewTop" destination="YGR-ri-PMd" id="fjd-9I-ZAG"/>
                 <outlet property="viewTopLayer" destination="7Bm-z3-zPK" id="fPs-7X-vUF"/>
+                <outlet property="viewWifiName" destination="GXG-cM-1sK" id="hwP-SC-6SD"/>
+                <outlet property="viewWifiPass" destination="MoG-z0-HnZ" id="052-dG-duR"/>
             </connections>
             <point key="canvasLocation" x="38" y="108.5"/>
         </collectionViewCell>

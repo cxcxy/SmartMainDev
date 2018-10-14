@@ -18,7 +18,7 @@ class EquipmentListViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        title = "选择设备"
+        title = "切换设备"
         request()
         configCollectionView()
     }
@@ -46,6 +46,10 @@ class EquipmentListViewController: XBBaseViewController {
         collectionView.dataSource   = self
         collectionView.cellId_register("DeviceChooseCell")
     }
+    // 解绑设备
+    func requestQuitDevice()  {
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,7 +63,11 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeviceChooseCell", for: indexPath)as! DeviceChooseCell
 //        let item = dataArr[indexPath.row]
         cell.model = dataArr.get(at: indexPath.row)
- 
+//        cell.btnDel.addAction { [weak self] in
+//             guard let `self` = self else { return }
+//             self.requestQuitDevice()
+//        }
+        cell.btnDel.isHidden = true
         return cell
     }
     //最小item间距

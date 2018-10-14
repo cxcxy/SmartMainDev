@@ -23,7 +23,11 @@ class ConfigNetViewController: XBBaseViewController {
 //    @IBOutlet weak var tfWifiName: UITextField!
     
 //    @IBOutlet weak var tfWifiPass: UITextField!
+    
     var btnNextText : [String] = ["成功开启，下一步","成功链接，下一步","成功联网，下一步","开始配网"]
+    
+    @IBOutlet weak var btnOn: UIButton!
+    
     @IBOutlet weak var btnNext: UIButton!
     var currentIndex: Int = 0 {
         didSet{
@@ -45,6 +49,8 @@ class ConfigNetViewController: XBBaseViewController {
         title = "设备配网"
 //        btnConfig.radius_ll()
         btnNext.radius_ll()
+        btnOn.radius_ll()
+        btnOn.addBorder(width: 0.5, color: viewColor)
 //        self.configNetInfo.name = self.getUsedSSID()
         self.configCollectionView()
 //        tfWifiName.text = self.getUsedSSID()
@@ -142,7 +148,17 @@ class ConfigNetViewController: XBBaseViewController {
         collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
         print(self.configNetInfo.name,self.configNetInfo.password)
     }
-    
+    //MARK: 上一步
+    @IBAction func clickOnAction(_ sender: UIButton) {
+        if currentIndex == 0 {
+            XBHud.showMsg("当前是第一步哦～")
+            return
+        }
+        currentIndex = currentIndex - 1
+        let index = IndexPath.init(row: currentIndex, section: 0)
+        collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        print(self.configNetInfo.name,self.configNetInfo.password)
+    }
     /*
     // MARK: - Navigation
 

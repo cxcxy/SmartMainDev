@@ -9,12 +9,21 @@
 import UIKit
 
 class TrackListViewController: XBBaseTableViewController {
-
+    var currentDeviceId: String?
     var dataArr: [EquipmentModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.cellId_register("TrackListHomeCell")
         self.cofigMjHeader()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let currentDeviceId = currentDeviceId else {
+            return
+        }
+        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
+            request()
+        }
     }
     override func setUI() {
         super.setUI()
@@ -36,6 +45,7 @@ class TrackListViewController: XBBaseTableViewController {
     }
     override func request() {
         super.request()
+        self.currentDeviceId = XBUserManager.device_Id
         guard XBUserManager.device_Id != "" else {
             self.loading = true
             endRefresh()

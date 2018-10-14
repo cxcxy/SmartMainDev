@@ -218,11 +218,9 @@
 		04C3871B213E093F0063A799 /* XBNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386D7213E093F0063A799 /* XBNotificationManager.swift */; };
 		04C3871E213E093F0063A799 /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = 04C386DA213E093F0063A799 /* city.json */; };
 		04C3871F213E093F0063A799 /* XBJpushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386DB213E093F0063A799 /* XBJpushManager.swift */; };
-		04C38720213E093F0063A799 /* XBShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386DC213E093F0063A799 /* XBShareManager.swift */; };
 		04C38721213E093F0063A799 /* AddImagePickerFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386DD213E093F0063A799 /* AddImagePickerFragment.swift */; };
 		04C38722213E093F0063A799 /* XBEmptyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386DE213E093F0063A799 /* XBEmptyManager.swift */; };
 		04C38724213E093F0063A799 /* XBUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386E0213E093F0063A799 /* XBUploadManager.swift */; };
-		04C38725213E093F0063A799 /* XBAddressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386E1213E093F0063A799 /* XBAddressManager.swift */; };
 		04C38727213E093F0063A799 /* XBUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386E3213E093F0063A799 /* XBUserManager.swift */; };
 		04C38728213E093F0063A799 /* XBRxSectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386E4213E093F0063A799 /* XBRxSectionManager.swift */; };
 		04C38729213E093F0063A799 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C386E6213E093F0063A799 /* Array+.swift */; };
@@ -722,11 +720,9 @@
 		04C386D7213E093F0063A799 /* XBNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBNotificationManager.swift; sourceTree = "<group>"; };
 		04C386DA213E093F0063A799 /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.json; sourceTree = "<group>"; };
 		04C386DB213E093F0063A799 /* XBJpushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBJpushManager.swift; sourceTree = "<group>"; };
-		04C386DC213E093F0063A799 /* XBShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBShareManager.swift; sourceTree = "<group>"; };
 		04C386DD213E093F0063A799 /* AddImagePickerFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddImagePickerFragment.swift; sourceTree = "<group>"; };
 		04C386DE213E093F0063A799 /* XBEmptyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBEmptyManager.swift; sourceTree = "<group>"; };
 		04C386E0213E093F0063A799 /* XBUploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBUploadManager.swift; sourceTree = "<group>"; };
-		04C386E1213E093F0063A799 /* XBAddressManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBAddressManager.swift; sourceTree = "<group>"; };
 		04C386E3213E093F0063A799 /* XBUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBUserManager.swift; sourceTree = "<group>"; };
 		04C386E4213E093F0063A799 /* XBRxSectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBRxSectionManager.swift; sourceTree = "<group>"; };
 		04C386E6213E093F0063A799 /* Array+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
@@ -1635,12 +1631,10 @@
 				04C386D7213E093F0063A799 /* XBNotificationManager.swift */,
 				04C386DA213E093F0063A799 /* city.json */,
 				04C386DB213E093F0063A799 /* XBJpushManager.swift */,
-				04C386DC213E093F0063A799 /* XBShareManager.swift */,
 				04C386DD213E093F0063A799 /* AddImagePickerFragment.swift */,
 				04C386DE213E093F0063A799 /* XBEmptyManager.swift */,
 				04C386E0213E093F0063A799 /* XBUploadManager.swift */,
 				0461CBD32154DB1700DF4C9A /* DeviceManager.swift */,
-				04C386E1213E093F0063A799 /* XBAddressManager.swift */,
 				04C386E3213E093F0063A799 /* XBUserManager.swift */,
 				04C386E4213E093F0063A799 /* XBRxSectionManager.swift */,
 				0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */,
@@ -2187,7 +2181,6 @@
 				2D312A94213D560100FCC499 /* Frameworks */,
 				2D312A95213D560100FCC499 /* Resources */,
 				28097B602E05C0FFDBCB2D2B /* [CP] Embed Pods Frameworks */,
-				B0D48240E065D01B719E0241 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2387,21 +2380,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B0D48240E065D01B719E0241 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2669,7 +2647,6 @@
 				042EEF862150E15F00DBD492 /* EaseBubbleView+Image.m in Sources */,
 				042EEF242150E15F00DBD492 /* MJRefreshConst.m in Sources */,
 				042EEF4A2150E15F00DBD492 /* MWGridCell.m in Sources */,
-				04C38725213E093F0063A799 /* XBAddressManager.swift in Sources */,
 				042EEF772150E15F00DBD492 /* EaseBaseMessageCell.m in Sources */,
 				042EEF802150E15F00DBD492 /* EaseBubbleView+Text.m in Sources */,
 				2DBD88CB215CFBE000BC543A /* wavwriter.c in Sources */,
@@ -2680,7 +2657,6 @@
 				04C38727213E093F0063A799 /* XBUserManager.swift in Sources */,
 				042EEF582150E15F00DBD492 /* PSTGridLayoutItem.m in Sources */,
 				04C38724213E093F0063A799 /* XBUploadManager.swift in Sources */,
-				04C38720213E093F0063A799 /* XBShareManager.swift in Sources */,
 				042EEF7D2150E15F00DBD492 /* EaseChatToolbar.m in Sources */,
 				04C38A18213E79240063A799 /* SearchViewController.swift in Sources */,
 				04C38738213E093F0063A799 /* PhotoBrowser.swift in Sources */,
