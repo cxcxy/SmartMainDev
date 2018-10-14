@@ -103,6 +103,7 @@ class ContentMainVC: XBBaseViewController {
         }
         makeRightNavigationItem(navMessageView, left: false)
         configChatMessage()
+//        self.registerShowIntractiveWithEdgeGesture()
         XBDelay.start(delay: 1) {
             self.setupUnreadMessageCount()
         }
@@ -199,20 +200,29 @@ class ContentMainVC: XBBaseViewController {
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
     
-//        DeviceManager.isOnline { isOnline in
-//            if isOnline {
+        DeviceManager.isOnline { (isOnline, _)  in
+            if isOnline {
                 let vc = SmartPlayerViewController()
                 self.pushVC(vc)
-//            } else {
-//                XBHud.showMsg("当前设备不在线")
-//            }
-//        }
+            } else {
+        
+                XBHud.showMsg("当前设备不在线")
+            }
+        }
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()
         self.cw_showDrawerViewController(drawerViewController,
                                          animationType: .mask,
                                          configuration: CWLateralSlideConfiguration())
+    }
+    func registerShowIntractiveWithEdgeGesture()  {
+        self.cw_registerShowIntractive(withEdgeGesture: true) {[weak self] (direction) in
+             guard let `self` = self else { return }
+            if direction == .fromLeft {
+                self.maskAnimationFromLeft()
+            }
+        }
     }
     //MARK:配置所对应的左右滑动ViewControler
     func configMagicView()  {

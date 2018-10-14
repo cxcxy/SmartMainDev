@@ -90,15 +90,15 @@ extension Array {
         /**
          *   检查上拉刷新，下拉加载状态 ，判断是否有下一页
          */
-        func checkRefreshStatus(_ pageIndex:Int) -> RefreshStatus{
-            if self.count < XBPageSize  {
+    func checkRefreshStatus(_ pageIndex:Int, paseSize: Int = XBPageSize) -> RefreshStatus{
+            if self.count < paseSize  {
                 return .NoMoreData
             }
             
-            if pageIndex == 1 && self.count == XBPageSize{
+            if pageIndex == 1 && self.count == paseSize{
                 return .PullSuccess
             }
-            if pageIndex > 1 && self.count == XBPageSize {
+            if pageIndex > 1 && self.count == paseSize {
                 return .PushSuccess
             }
             return .NoMoreData

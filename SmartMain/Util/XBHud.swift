@@ -48,7 +48,16 @@ struct XBHud {
             SVProgressHUD.showText(withStatus: msg)
         }
     }
-    
+    // 提示语
+    static func showConfigNetMsg(){
+        DispatchQueue.main.async {
+            
+//            configSVHud(5.0)
+            SVProgressHUD.setBackgroundColor(UIColor.darkGray)
+            SVProgressHUD.setForegroundColor(UIColor.white)
+            SVProgressHUD.show(withStatus: "配置中")
+        }
+    }
     // 错误
     static func showWarnMsg(_ message:String?){
         DispatchQueue.main.async {
@@ -59,7 +68,7 @@ struct XBHud {
         }
     }
     
-    static func configSVHud(){
+    static func configSVHud(_ timeInterval: TimeInterval = 1.0){
         
         SVProgressHUD.setFadeInAnimationDuration(0.0)
         SVProgressHUD.setFadeOutAnimationDuration(0.0)
@@ -67,7 +76,7 @@ struct XBHud {
         SVProgressHUD.setDefaultStyle(.custom)
         SVProgressHUD.setBackgroundColor(MGRgb(0, g: 0, b: 0, alpha: 0.8))
         SVProgressHUD.setForegroundColor(UIColor.white)
-        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
+        SVProgressHUD.setMinimumDismissTimeInterval(timeInterval)
         SVProgressHUD.setCornerRadius(10)
         
     }

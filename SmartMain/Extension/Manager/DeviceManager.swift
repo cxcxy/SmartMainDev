@@ -13,7 +13,7 @@ class DeviceManager: NSObject {
     /**
      *   判断当前设备是否在线  isCheckDevices: 检查是否绑定设备 ，isShowLoading： 是否弹出loading框
      */
-    class func isOnline(isCheckDevices: Bool = true,closure: @escaping (Bool) -> ()) {
+    class func isOnline(isCheckDevices: Bool = true,closure: @escaping (Bool,Int) -> ()) {
 
         if isCheckDevices {
             guard XBUserManager.device_Id != "" else {
@@ -21,11 +21,11 @@ class DeviceManager: NSObject {
                 return
             }
         }
-        EquimentViewModel().requestCheckEquipmentOnline(isShowLoading: false) { (onLine) in
+        EquimentViewModel().requestCheckEquipmentOnline(isShowLoading: false) { (onLine,electricity) in
             if onLine {
-                closure(true)
+                closure(true, electricity)
             } else {
-                closure(false)
+                closure(false, electricity)
             }
         }
     }

@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 import AVKit
-
+import SVProgressHUD
 class NetInfo: NSObject {
     
     var name: String = XBUtil.getUsedSSID()
@@ -85,13 +85,14 @@ class ConfigNetViewController: XBBaseViewController {
         self.view.layer.addSublayer(playerLayer)
         // 开始播放
         player.play()
-        
+//        SVProgressHUD.showProgress(5, status: "配置网络中")
+        XBHud.showConfigNetMsg()
         XBDelay.start(delay: 5) {
             self.sureVoiceDevice(url: url)
         }
     }
     func sureVoiceDevice(url: String) {
-        
+        XBHud.dismiss()
         let v = NetSuccessView.loadFromNib()
         v.btnSuccess.addAction {[weak self] in
             guard let `self` = self else { return }

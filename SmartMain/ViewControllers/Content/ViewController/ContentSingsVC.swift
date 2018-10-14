@@ -108,6 +108,10 @@ class ContentSingsVC: XBBaseViewController {
             XBHud.showMsg("请先绑定设备")
             return
         }
+        guard self.trackList.count > 0 else {
+            XBHud.showMsg("当前机器无歌单")
+            return
+        }
         let v = PlaySongListView.loadFromNib()
         v.lbTitleDes.set_text = "添加至"
         v.listViewType = .trackList
@@ -148,15 +152,6 @@ extension ContentSingsVC {
         cell.modelData = dataArr[indexPath.row]
         cell.headerInfo = self.headerInfo
         cell.lbLineNumber.set_text = (indexPath.row + 1).toString
-//        guard XBUserManager.device_Id != "" else {
-//            XBHud.showMsg("请先绑定设备")
-//            return
-//        }
-//        if XBUserManager.device_Id == "" {
-//            cell.setArr = ["收藏"]
-//        }else {
-//            cell.setArr = ["添加到播单","收藏"]
-//        }
         cell.setArr = ["添加到播单","收藏"]
         cell.trackList = self.trackList
         
@@ -177,7 +172,7 @@ extension ContentSingsVC {
             return
         }
         viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: arr[1], deviceId: XBUserManager.device_Id) {
-
+            
         }
     }
 }

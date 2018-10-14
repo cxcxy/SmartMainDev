@@ -29,7 +29,7 @@ class EquimentViewModel: NSObject {
         })
     }
     /// 检查设备是否在线
-    func requestCheckEquipmentOnline(isShowLoading: Bool = false,closure: @escaping (Bool) -> ())  {
+    func requestCheckEquipmentOnline(isShowLoading: Bool = false,closure: @escaping (Bool,Int) -> ())  {
 
         Net.requestWithTarget(.getEquimentInfo(deviceId: XBUserManager.device_Id),isShowLoding: isShowLoading, successClosure: { (result, code, message) in
             if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
@@ -37,17 +37,17 @@ class EquimentViewModel: NSObject {
                 if model.online == 1 {
                     print("当前设备在线")
                     XBUserManager.online = true
-                    closure(true)
+                    closure(true, model.electricity ?? 0)
                 }else {
                     print("当前设备不在线")
                     XBUserManager.online = false
-                    closure(false)
+                    closure(false, 0)
                 }
                 
             }else {
                 print("当前设备不在线")
                 XBUserManager.online = false
-                closure(false)
+                closure(false, 0)
             }
         })
     }

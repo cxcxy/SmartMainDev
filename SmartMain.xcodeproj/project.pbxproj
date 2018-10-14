@@ -858,6 +858,7 @@
 		2DBD88E7215D0B6A00BC543A /* EquipmentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListViewController.swift; sourceTree = "<group>"; };
 		2DBD88E8215D0B6A00BC543A /* EquipmentListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EquipmentListViewController.xib; sourceTree = "<group>"; };
 		2DBD88EB215D12FA00BC543A /* DevicesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesListModel.swift; sourceTree = "<group>"; };
+		2DC33BE82173670E00AB46B2 /* SmartMain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmartMain.entitlements; sourceTree = "<group>"; };
 		2DC95585213E9EBB004D6F65 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		2DC95586213E9EBB004D6F65 /* MeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeViewController.xib; sourceTree = "<group>"; };
 		2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentSettingVC.swift; sourceTree = "<group>"; };
@@ -1983,6 +1984,7 @@
 		2D312A99213D560100FCC499 /* SmartMain */ = {
 			isa = PBXGroup;
 			children = (
+				2DC33BE82173670E00AB46B2 /* SmartMain.entitlements */,
 				04C386C8213E093F0063A799 /* WebService */,
 				04C386CF213E093F0063A799 /* Extension */,
 				04C3870C213E093F0063A799 /* Util */,
@@ -2205,6 +2207,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2817,8 +2824,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SmartMain/SmartMain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AZF2TUZCNL;
+				DEVELOPMENT_TEAM = 8GL929UJPB;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2830,7 +2838,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Opencore-AMR/lib",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiben.pmdebug.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2846,8 +2854,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SmartMain/SmartMain.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AZF2TUZCNL;
+				DEVELOPMENT_TEAM = 8GL929UJPB;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2859,7 +2868,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Opencore-AMR/lib",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiben.pmdebug.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

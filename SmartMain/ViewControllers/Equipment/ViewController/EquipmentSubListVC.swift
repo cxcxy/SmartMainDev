@@ -39,7 +39,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
 
     override func request() {
         super.request()
-        DeviceManager.isOnline { isOnline in
+        DeviceManager.isOnline { (isOnline, _) in
             self.deviceOnline = isOnline
         }
         var params_task = [String: Any]()
@@ -75,7 +75,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
     //MARK: 发送MQTT -- 恢复默认列表， 获取到 改 列表的原始列表 ids
     func sendTopicSetDefault()  {
         
-        DeviceManager.isOnline { isOnline in
+        DeviceManager.isOnline { (isOnline, _)  in
             if isOnline {
                 ScoketMQTTManager.share.sendSetDefault(trackListId: self.trackListId)
             } else {

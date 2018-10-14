@@ -9,11 +9,17 @@
 import UIKit
 
 class SearchViewController: XBBaseViewController {
-    var dataArr: [ConetentLikeModel] = []
+//    var dataArr: [ConetentLikeModel] = []
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var viewSearchTop: UIView!
-     var viewModel = ContentViewModel()
+    
+    var trackList: [EquipmentModel] = [] // 预制列表 数组
+    
+    var headerInfo:ConetentSingAlbumModel?
+    var dataArr: [ConetentSingModel] = []
+    var viewModel = ContentViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,11 +31,48 @@ class SearchViewController: XBBaseViewController {
         self.currentNavigationHidden        = true
         viewSearchTop.setCornerRadius(radius: 10)
         textField.becomeFirstResponder()
-        self.configTableView(tableView, register_cell: ["HistorySongCell"])
+        self.configTableView(tableView, register_cell: ["ContentSingCell"])
         self.textField.delegate = self
+        requestTrackList()
+    }
+    override func request()  {
+        super.request()
+        var params_task = [String: Any]()
+        params_task["clientId"] = XBUserManager.device_Id
+        params_task["keywords"] = [self.textField.text]
+        params_task["page"]     = self.pageIndex
+        params_task["ranges"] = ["resource"]
+        Net.requestWithTarget(.getSearchResource(req: params_task), successClosure: { (result, code, message) in
+            if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["resources"].arrayObject) {
+                if self.pageIndex == 1 {
+                    self.tableView.mj_footer = self.mj_footer
+                    self.dataArr.removeAll()
+                }
+                self.dataArr += arr
+                self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex,paseSize: 20))
+            }
+            if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["resourcesPager"].object) {
+                self.headerInfo = topModel
+            }
+            self.tableView.reloadData()
+        })
     }
     @IBAction func clickCancelAction(_ sender: Any) {
         self.popVC()
+    }
+    func requestTrackList() {
+        guard XBUserManager.device_Id != "" else {
+            endRefresh()
+            return
+        }
+        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            print(result)
+            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+                self.endRefresh()
+                self.trackList = arr
+                self.tableView.reloadData()
+            }
+        })
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,59 +82,35 @@ class SearchViewController: XBBaseViewController {
 }
 extension SearchViewController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataArr.count
-    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        let m  = dataArr[section]
-        return m.isExpanded ? 2 : 1
-        
+        return dataArr.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-            let m  = dataArr[indexPath.section]
-            cell.lbTitle.set_text = m.title
-            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
-            cell.btnExtension.isSelected = m.isExpanded
-            cell.btnExtension.addAction {[weak self] in
-                guard let `self` = self else { return }
-                self.clickExtensionAction(indexPath: indexPath)
-            }
-            return cell
-        }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
-            cell.viewAdd.isHidden = true
-            cell.viewDel.isHidden = true
-            cell.lbLike.set_text = "取消收藏"
-            cell.btnLike.isSelected = true
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
+        
+        cell.modelData = dataArr[indexPath.row]
+        cell.headerInfo = self.headerInfo
+        cell.lbLineNumber.set_text = (indexPath.row + 1).toString
+        cell.setArr = ["添加到播单","收藏"]
+        cell.trackList = self.trackList
+        
+        return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard XBUserManager.device_Id != "" else {
             XBHud.showMsg("请先绑定设备")
             return
         }
-        self.requestOnlineSing(trackId: dataArr[indexPath.section].trackId?.toString ?? "")
-    }
-    func clickExtensionAction(indexPath: IndexPath)  {
-        if indexPath.row == 0 {
-            let m  = dataArr[indexPath.section]
-            m.isExpanded = !m.isExpanded
-            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
-        }
-        if indexPath.row == 1 {
-            let m  = dataArr[indexPath.section]
-            self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
-        }
+        self.requestOnlineSing(trackId: dataArr[indexPath.row].resId ?? "")
     }
     //MARK: 在线点播歌曲
     func requestOnlineSing(trackId: String)  {
-        
-        viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId, deviceId: XBUserManager.device_Id) {
+        let arr = trackId.components(separatedBy: ":")
+        guard arr.count > 1 else {
+            return
+        }
+        viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: arr[1], deviceId: XBUserManager.device_Id) {
             
         }
     }
@@ -115,25 +134,14 @@ extension SearchViewController {
                 }
             }
         })
-        
     }
 }
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.textField {
-            self.requestSearchData()
+            self.request()
         }
         return true
     }
-    func requestSearchData()  {
-//        Net.
-        var params_task = [String: Any]()
-        params_task["clientId"] = XBUserManager.device_Id
-        params_task["keywords"] = self.textField.text
-        params_task["page"]     = 1
-        params_task["ranges"] = ["resource"]
-        Net.requestWithTarget(.getSearchResource(req: params_task), successClosure: { (result, code, message) in
-            print(result)
-        })
-    }
+
 }

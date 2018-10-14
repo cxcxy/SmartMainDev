@@ -19,7 +19,9 @@
                 <outlet property="imgLight" destination="697-1g-kir" id="hYY-eF-24B"/>
                 <outlet property="imgLock" destination="RhT-Yr-bwj" id="J21-u0-EE7"/>
                 <outlet property="imgPhoto" destination="y4I-vD-U74" id="zEL-SD-Pux"/>
+                <outlet property="imgWifi" destination="Uuo-OE-lLm" id="UdL-X9-JRJ"/>
                 <outlet property="lbDvnick" destination="RIa-pq-s3I" id="hj4-5d-yua"/>
+                <outlet property="lbElectricity" destination="9y4-sY-i2j" id="tST-80-vwx"/>
                 <outlet property="lbLight" destination="z3p-PB-D0v" id="eNc-8j-E48"/>
                 <outlet property="lbLock" destination="QBV-sy-GyW" id="IUL-la-wIK"/>
                 <outlet property="tableView" destination="4Yj-rl-Rxi" id="wz0-0t-zhl"/>
@@ -49,15 +51,43 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_unwifi" translatesAutoresizingMaskIntoConstraints="NO" id="Uuo-OE-lLm">
+                            <rect key="frame" x="100" y="81" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="BuC-ya-t37"/>
+                                <constraint firstAttribute="height" constant="16" id="IDS-cH-8Wa"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ electricity" translatesAutoresizingMaskIntoConstraints="NO" id="aw1-l9-ThS">
+                            <rect key="frame" x="121" y="84" width="20" height="10"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="10" id="lGB-b4-6DT"/>
+                                <constraint firstAttribute="width" constant="20" id="wdk-TH-524"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9y4-sY-i2j">
+                            <rect key="frame" x="121" y="84" width="16" height="10"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="RIa-pq-s3I" firstAttribute="leading" secondItem="y4I-vD-U74" secondAttribute="trailing" constant="15" id="0Yz-TF-OrO"/>
+                        <constraint firstItem="aw1-l9-ThS" firstAttribute="leading" secondItem="Uuo-OE-lLm" secondAttribute="trailing" constant="5" id="0wh-w1-JBT"/>
+                        <constraint firstItem="9y4-sY-i2j" firstAttribute="height" secondItem="aw1-l9-ThS" secondAttribute="height" id="3I9-QD-exJ"/>
+                        <constraint firstItem="aw1-l9-ThS" firstAttribute="centerY" secondItem="Uuo-OE-lLm" secondAttribute="centerY" id="9be-I0-7uL"/>
                         <constraint firstAttribute="height" constant="150" id="BYS-Ds-8VX"/>
                         <constraint firstItem="y4I-vD-U74" firstAttribute="leading" secondItem="vjf-le-xWl" secondAttribute="leading" constant="20" id="GGX-ed-IMJ"/>
+                        <constraint firstItem="9y4-sY-i2j" firstAttribute="leading" secondItem="aw1-l9-ThS" secondAttribute="leading" id="HzW-as-48Y"/>
                         <constraint firstItem="RIa-pq-s3I" firstAttribute="top" secondItem="y4I-vD-U74" secondAttribute="top" constant="10" id="L3J-t0-aci"/>
+                        <constraint firstItem="Uuo-OE-lLm" firstAttribute="leading" secondItem="RIa-pq-s3I" secondAttribute="leading" id="LJD-du-Afs"/>
+                        <constraint firstItem="9y4-sY-i2j" firstAttribute="centerY" secondItem="aw1-l9-ThS" secondAttribute="centerY" id="MEM-I9-A8c"/>
+                        <constraint firstItem="Uuo-OE-lLm" firstAttribute="top" secondItem="RIa-pq-s3I" secondAttribute="bottom" constant="8" id="eXC-ae-Yrl"/>
                         <constraint firstAttribute="trailing" secondItem="RIa-pq-s3I" secondAttribute="trailing" constant="15" id="lh1-Wh-jRm"/>
                         <constraint firstItem="y4I-vD-U74" firstAttribute="centerY" secondItem="vjf-le-xWl" secondAttribute="centerY" id="pTk-IZ-3BT"/>
+                        <constraint firstItem="9y4-sY-i2j" firstAttribute="width" secondItem="aw1-l9-ThS" secondAttribute="width" constant="-4" id="s0E-ki-Wrb"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xny-3d-of8">
@@ -297,10 +327,11 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Yj-rl-Rxi" secondAttribute="trailing" id="fcs-qz-Kwz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="19.5" y="47.5"/>
+            <point key="canvasLocation" x="18.399999999999999" y="47.226386806596707"/>
         </view>
     </objects>
     <resources>
+        <image name="icon_ electricity" width="16" height="8"/>
         <image name="icon_back_blue" width="60" height="78"/>
         <image name="icon_back_green" width="60" height="78"/>
         <image name="icon_back_orangn" width="60" height="78"/>
@@ -308,5 +339,6 @@
         <image name="icon_groupLaght" width="24" height="34"/>
         <image name="icon_groupNight" width="34" height="34"/>
         <image name="icon_groupVolume" width="34" height="34"/>
+        <image name="icon_unwifi" width="16" height="16"/>
     </resources>
 </document>

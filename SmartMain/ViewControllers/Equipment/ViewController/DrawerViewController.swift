@@ -17,8 +17,11 @@ class DrawerViewController: XBBaseViewController {
     var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "icon_group6",cellType: 6)
     var eqArr: [XBStyleCellModel] = []
     var accountArr: [XBStyleCellModel] = []
+
     
-    
+    @IBOutlet weak var imgWifi: UIImageView!
+//    @IBOutlet weak var imgElectricity: UIImageView!
+    @IBOutlet weak var lbElectricity: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imgPhoto: UIImageView!
@@ -41,7 +44,11 @@ class DrawerViewController: XBBaseViewController {
     let scoketModel = ScoketMQTTManager.share
     
     var viewModel = LoginViewModel()
-    var deviceOnline:Bool = false
+    var deviceOnline:Bool = false {
+        didSet {
+            imgWifi.set_img = deviceOnline ? "icon_wifi" : "icon_unwifi"
+        }
+    }
     lazy var popWindow:UIWindow = {
         let w = UIApplication.shared.delegate as! AppDelegate
         return w.window!
@@ -72,8 +79,9 @@ class DrawerViewController: XBBaseViewController {
             self.cw_push(vc)
         }
 
-        DeviceManager.isOnline(isCheckDevices: false) { (isOnline) in
+        DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
             self.deviceOnline = isOnline
+            self.lbElectricity.set_text = electricity.toString
         }
 
     }

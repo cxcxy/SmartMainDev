@@ -62,6 +62,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func applicationWillResignActive(_ application: UIApplication) {
     }
+    
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+
+        print("环信注册deviceToken")
+        EMClient.shared()?.registerForRemoteNotifications(withDeviceToken: deviceToken, completion: { (error) in
+            print(error ?? "环信注册deviceToken 成功")
+        })
+    }
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        
+    }
+//    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+//        application.registerForRemoteNotifications()
+//    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+//            [[EaseSDKHelper shareHelper] hyphenateApplication:application didReceiveRemoteNotification:userInfo];
+        EaseSDKHelper.share()?.hyphenateApplication(application, didReceiveRemoteNotification: userInfo)
+    }
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(error)
+    }
     // 进入后台
     func applicationDidEnterBackground(_ application: UIApplication) {
         EMClient.shared().applicationDidEnterBackground(application)
