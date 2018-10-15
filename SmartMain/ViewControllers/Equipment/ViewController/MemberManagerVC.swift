@@ -107,6 +107,8 @@ class MemberManagerVC: XBBaseViewController {
         collectionView.cellId_register("DeviceChooseCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
    
     }
     override func didReceiveMemoryWarning() {

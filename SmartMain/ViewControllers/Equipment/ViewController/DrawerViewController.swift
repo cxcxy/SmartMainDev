@@ -111,7 +111,13 @@ class DrawerViewController: XBBaseViewController {
     func configUserInfo()  {
         imgPhoto.roundView()
         imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
-        lbDvnick.set_text = XBUserManager.nickname
+//        lbDvnick.set_text = XBUserManager.nickname
+        if XBUserManager.device_Id == "" &&  XBUserManager.dv_babyname == ""{
+            lbDvnick.set_text = XBUserManager.nickname
+        }else {
+            lbDvnick.set_text = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
+        }
+        
         self.tableView.reloadData()
     }
     override func didReceiveMemoryWarning() {

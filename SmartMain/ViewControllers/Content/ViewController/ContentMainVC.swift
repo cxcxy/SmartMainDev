@@ -76,7 +76,7 @@ class ContentMainVC: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        self.title = "内容"
+//        self.title = "内容"
        
         configMagicView()
         addBottomSongView()
@@ -120,7 +120,6 @@ class ContentMainVC: XBBaseViewController {
         }
         viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
             guard let `self` = self else { return }
-//            self.configUIInfo()
             self.title = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
         }
     }

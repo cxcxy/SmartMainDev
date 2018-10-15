@@ -45,6 +45,8 @@ class EquipmentListViewController: XBBaseViewController {
         collectionView.delegate     = self
         collectionView.dataSource   = self
         collectionView.cellId_register("DeviceChooseCell")
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
     }
     // 解绑设备
     func requestQuitDevice()  {
