@@ -46,7 +46,6 @@ class HistoryViewController: XBBaseViewController {
         super.request()
         self.currentDeviceId = XBUserManager.device_Id
         guard let deviceId = user_defaults.get(for: .deviceId) else {
-//            XBHud.showMsg("请登录")
             self.loading = true
             return
         }
@@ -63,7 +62,14 @@ class HistoryViewController: XBBaseViewController {
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
             }
-        })
+        }){ (errorMsg) in
+            if errorMsg == ERROR_TIMEOUT {
+                self.loadingTimerOut = true
+            } else {
+                self.loading = true
+            }
+            self.endRefresh()
+        }
     }
     func starAnimationWithTableView(tableView: UITableView) {
         //        table

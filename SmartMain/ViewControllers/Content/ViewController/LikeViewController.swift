@@ -40,7 +40,14 @@ class LikeViewController: XBBaseTableViewController {
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
             }
-        })
+        }){ (errorMsg) in
+            if errorMsg == ERROR_TIMEOUT {
+                self.loadingTimerOut = true
+            } else {
+                self.loading = true
+            }
+            self.endRefresh()
+        }
     }
     func starAnimationWithTableView(tableView: UITableView) {
         //        table

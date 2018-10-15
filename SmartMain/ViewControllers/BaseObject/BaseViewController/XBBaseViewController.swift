@@ -45,6 +45,13 @@ public enum RefreshStatus: Int {
             }
         }
     }
+    var loadingTimerOut: Bool = false {
+        didSet {
+            if let tableViewNew = tableViewNew {
+                tableViewNew.reloadEmptyDataSet()
+            }
+        }
+    }
     var tableViewNew:UITableView?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -309,12 +316,15 @@ extension XBBaseViewController:UITableViewDelegate,UITableViewDataSource {
 // 空白展位图
 extension XBBaseViewController:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     @objc(titleForEmptyDataSet:) func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
+            return NSAttributedString()
+        }
         guard self.loading else {
             return NSAttributedString.init()
         }
         if XBUserManager.device_Id == "" {
             //MARK: tableView 无数据展示状态
-            let XBNoDataTitle:NSAttributedString    =   NSAttributedString(string: "暂无绑定设备",
+            let XBNoDataTitle:NSAttributedString = NSAttributedString(string: "暂无绑定设备",
                                                                            attributes:[NSAttributedStringKey.foregroundColor:MGRgb(0, g: 0, b: 0, alpha: 0.5),
                                                                                        NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
             return XBNoDataTitle
@@ -328,19 +338,34 @@ extension XBBaseViewController:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     @objc(backgroundColorForEmptyDataSet:) func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return tableColor
     }
-//    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
-//        guard self.loading else {
-//            return UIView()
-//        }
-////        if WOWNetWorkType.getNetWorkType() {
-////            let viewNoneTask =  ArchivesNoDataView.loadFromNib()
-////            viewNoneTask.lbContent.text = XBEmptyManager.emptyArr[self.identifier()]
-////            viewNoneTask.lbContent.setXBLine_Style()
-////            return viewNoneTask
-////        }else {
-//            return UIView()
-////        }
-//    }
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
+            return UIImage.init(named: "network_error")
+        }
+        return UIImage.init()
+    }
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+
+        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
+            let text = "网络不给力，请点击重试哦~"
+            let attStr = NSMutableAttributedString(string: text)
+            attStr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15.0), range: NSRange(location: 0, length: text.count))
+            attStr.addAttribute(.foregroundColor, value: UIColor.lightGray, range: NSRange(location: 0, length: text.count))
+            attStr.addAttribute(.foregroundColor, value: viewColor, range: NSRange(location: 7, length: 4))
+            return attStr
+        }
+        return NSAttributedString.init()
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        print("点击了网络不给力")
+        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
+            self.mj_header.beginRefreshing()
+            self.request()
+        }
+
+    }
+
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return true
     }

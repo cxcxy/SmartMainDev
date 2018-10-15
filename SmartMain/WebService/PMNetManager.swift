@@ -12,6 +12,9 @@ import ObjectMapper
 import Moya
 import Result
 
+let ERROR_MSG = "系统错误"
+let ERROR_TIMEOUT = "请求超时"
+
 typealias FailClosure               = (_ errorMsg:String?) -> ()
 typealias SuccessClosure            = (_ result:AnyObject, _ code: Int?,_ message: String?) ->()
 
@@ -75,7 +78,7 @@ class XBNetManager {
     }
     public static let requestTimeoutClosure = { (endpoint: Endpoint, done: @escaping MoyaProvider<RequestApi>.RequestResultClosure) in
         guard var request = try? endpoint.urlRequest() else { return }
-        request.timeoutInterval = TimeInterval(15) //设置请求超时时间
+        request.timeoutInterval = TimeInterval(2) //设置请求超时时间
         done(.success(request))
     }
     let requestProvider = MoyaProvider<RequestApi>(endpointClosure: XBNetManager.endpointClosure,
@@ -94,6 +97,9 @@ class XBNetManager {
         if !NetWorkType.getNetWorkType() {
             self.endRrefreshing()
             XBHud.showWarnMsg("您的网络不太给力～")
+            if let failClosure = failClosure {
+                failClosure(ERROR_MSG)
+            }
             return
         }
         if isShowLoding {
@@ -116,9 +122,9 @@ class XBNetManager {
                 let statusCode = response.statusCode
                 guard  statusCode == 200 else {
                     print(jsonString)
-                    XBHud.showWarnMsg("系统错误")
+                    XBHud.showWarnMsg(ERROR_MSG)
                     if let failClosure = failClosure{
-                        failClosure("系统错误")
+                        failClosure(ERROR_MSG)
                     }
                     return
                 }
@@ -138,11 +144,23 @@ class XBNetManager {
 
                 successClosure(data, info.code,info.message)
                 
-            case .failure(_):
-                XBHud.showWarnMsg("系统错误")
-                if let failClosure = failClosure{
-                    failClosure("系统错误")
+            case .failure(let error):
+                print(error._code)
+                if error._code == 6 { // 超时处理
+                    //HANDLE TIMEOUT HERE
+                    self.cancelAllRequest() // 取消所有的网络请求
+                    self.configNetBadEmptyDataSet() // 设置网络不好 默认图
+                    XBHud.showWarnMsg(ERROR_TIMEOUT)
+                    if let failClosure = failClosure{
+                        failClosure(ERROR_TIMEOUT)
+                    }
+                } else {
+                    XBHud.showWarnMsg(ERROR_MSG)
+                    if let failClosure = failClosure{
+                        failClosure(ERROR_MSG)
+                    }
                 }
+
                 break
             }
             
@@ -179,6 +197,7 @@ extension XBNetManager {
         
         DispatchQueue.main.async {
             (UIApplication.currentViewController() as? XBBaseViewController)?.endRefresh()
+//            print(UIApplication.currentViewController())
         }
 
     }
@@ -188,6 +207,14 @@ extension XBNetManager {
     func configEmptyDataSet() {
         DispatchQueue.main.async {
              (UIApplication.currentViewController() as? XBBaseViewController)?.loading       = true
+        }
+    }
+    /**
+     *  配置请求超时默认图显示
+     */
+    func configNetBadEmptyDataSet() {
+        DispatchQueue.main.async {
+            (UIApplication.currentViewController() as? XBBaseViewController)?.loadingTimerOut       = true
         }
     }
     /**

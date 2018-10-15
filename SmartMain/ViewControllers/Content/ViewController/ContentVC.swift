@@ -29,9 +29,22 @@ class ContentVC: XBBaseTableViewController {
         var params_task = [String: Any]()
         params_task["clientId"] = XBUserManager.device_Id
         params_task["tags"] = ["six"]
+//        Net.requestWithTarget(.contentModules(req: params_task), successClosure: { (result, code, message) in
+//            if let arr = Mapper<ModulesResModel>().mapArray(JSONObject:JSON(result)["modules"].arrayObject) {
+//               let filterArr = arr.filter({ (item) -> Bool in
+//                    if let contents = item.contents {
+//                        return contents.count > 0
+//                    }
+//                    return false
+//                })
+//                self.dataArr = filterArr
+//                self.endRefresh()
+//                self.tableView.reloadData()
+//            }
+//        })
         Net.requestWithTarget(.contentModules(req: params_task), successClosure: { (result, code, message) in
             if let arr = Mapper<ModulesResModel>().mapArray(JSONObject:JSON(result)["modules"].arrayObject) {
-               let filterArr = arr.filter({ (item) -> Bool in
+                let filterArr = arr.filter({ (item) -> Bool in
                     if let contents = item.contents {
                         return contents.count > 0
                     }
@@ -40,9 +53,15 @@ class ContentVC: XBBaseTableViewController {
                 self.dataArr = filterArr
                 self.endRefresh()
                 self.tableView.reloadData()
-//                self.starAnimationWithTableView(tableView: self.tableView)
             }
-        })
+        }) { (errorMsg) in
+            if errorMsg == ERROR_TIMEOUT {
+                self.loadingTimerOut = true
+            } else {
+                self.loading = true
+            }
+            self.endRefresh()
+        }
     }
     func starAnimationWithTableView(tableView: UITableView) {
 

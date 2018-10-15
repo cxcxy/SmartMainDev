@@ -51,6 +51,7 @@ class TrackListViewController: XBBaseTableViewController {
             endRefresh()
             return
         }
+
         Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
                 self.loading = true
@@ -59,7 +60,15 @@ class TrackListViewController: XBBaseTableViewController {
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
             }
-        })
+        }) { (errorMsg) in
+            if errorMsg == ERROR_TIMEOUT {
+                self.loadingTimerOut = true
+            } else {
+                self.loading = true
+            }
+            self.endRefresh()
+        }
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
