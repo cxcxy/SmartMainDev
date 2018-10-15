@@ -59,16 +59,8 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
         print(localPath)
         super.sendVoiceMessage(withLocalPath: localPath, duration: duration)
         
-   
         let fileManager = FileManager.default
-        let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
-                                                           .userDomainMask, true)[0] as String
-        let filePath = "\(rootPath)/voice_mav.wav"
-        let convertedPath = VoiceConverter.getPathByFileName("_AmrToWav", ofType: "wav")
-        let result = VoiceConverter.decodeAmr(toWav: localPath, wavSavePath: filePath, sampleRateType: Sample_Rate(rawValue: 0)!)
 
-        print(result)
-       
         if (fileManager.fileExists(atPath: localPath)){
             Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: XBUserManager.userName, body: localPath),isShowLoding: false, successClosure: { (result, code, message) in
                 if let str = result as? String {

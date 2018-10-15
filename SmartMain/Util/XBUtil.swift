@@ -156,35 +156,7 @@ public class XBUtil {
         }
         return rootViewController
     }
-    /**
-     *   获取本地Token
-     */
-   class func getToken() -> String {
-
-        let userDefault = UserDefaults.standard
-        let refreshToken = userDefault.object(forKey: "refreshToken") as? String
-        if let refreshToken = refreshToken {
-            return refreshToken
-        }else {
-            print("token error...")
-            return ""
-        }
-    }
-  
-    // 拼接图片url 后台定义的 以“,”间隔~~  类似于“a,b,c”
-   class func jointImgStr(imgArray:[String],spaceStr:String) -> String {
-        var imgStr = ""
-        for str in imgArray.enumerated(){
-            if str.offset == 0 {
-                imgStr = str.element
-            }else {
-                imgStr = imgStr + spaceStr + str.element
-            }
-            
-            
-        }
-        return imgStr
-    }
+ 
 
     //／ 获取 当前字符串 占多少位字节
     static func numberOfChars(_ str: String) -> String {
@@ -219,22 +191,7 @@ public class XBUtil {
         pasteboard.string = str
         XBHud.showMsg("复制成功")
     }
-    /**
-     *   保存图片至本地
-     */
-      public class  func saveImage(_ img: UIImage) {
 
-//        PHPhotoLibrary.shared().performChanges({
-//            PHAssetChangeRequest.creationRequestForAsset(from: img)
-//        }) { (isSuccess: Bool, error: Error?) in
-//            if isSuccess {
-//    
-//                XBHud.showMsg("已保存至相册!")
-//            } else{
-//                XBHud.showMsg("保存失败")
-//            }
-//        }
-    }
     // MARK: - 把秒数转换成时分秒（00小时00分00秒）格式
     ///
     /// - Parameter time: time(Int格式)
@@ -278,23 +235,7 @@ public class XBUtil {
         
     }
 }
-extension XBUtil {
-    /**
-     *   过滤掉 手机里面的非法内容，比如" ", "-", "+", "86"
-     */
-   class func filterPhoneNumber(_ phone: String) -> String{
-        
-        let phoneStr = phone.replace(target: " ", withString: "")
-        var newStr = phoneStr.replace(target: "-", withString: "")
-        newStr = newStr.replace(target: "+", withString: "")
-        if newStr.isFirstInclude("86") {
-            let index  = newStr.index(newStr.startIndex, offsetBy: 2)
-            newStr = String(newStr[index...])
-        }
-        return newStr
-        
-    }
-}
+
 public extension UIDevice {
     /**
      *   获取当前手机型号

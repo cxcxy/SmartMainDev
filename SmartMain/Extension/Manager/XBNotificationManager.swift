@@ -27,6 +27,7 @@ public func Noti_post(_ name: XBNotificationName, object: AnyObject? = nil){
 
 
 public enum XBNotificationName: String {
+    
     /// 登录成功
     case loginSuccess           = "loginSuccess"
     /// 刷新 当前设备的 预制播放列表
@@ -37,20 +38,10 @@ public enum XBNotificationName: String {
     case refreshEquipmentInfo        = "refreshEquipmentInfo"
     /// 刷新群组信息
     case refreshGroupInfo        = "refreshGroupInfo"
-    case refreshMsgDetail       = "refreshMsgDetail"
+    
     /// 退出登录
     case logout                 = "Noti_Logout"
-    /// textFiled value changed
-    case tf_valuechanged        = "UITextFieldTextDidChangeNotification"
-    
-    case refreshMsgList         = "refreshMsgList"
-    case getVoucherList         = "getVoucherList"
-    case getMyCompanyList       = "getMyCompanyList"
-    case getAuthorizerList      = "getAuthorizerList"
-    case getCompanyDetail       = "getCompanyDetail"
-    case getAccountDetail       = "getAccountDetail"
-    case getMerchantsDetai      = "getMerchantsDetai"
-    case refreshSafeMessage     = "refreshSafeMessage"
+
 
 }
 

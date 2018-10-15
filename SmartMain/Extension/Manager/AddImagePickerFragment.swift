@@ -7,10 +7,7 @@
 //
 
 import UIKit
-enum XBGetUploadTokenType:String {
-    case userPhoto  = "2"   // 获取用户头像Token
-    case attachment = "1"   // 获取附件Token
-}
+
 protocol XBImagePickerToolDelegate:class {
     func getImagePicker(image:UIImage)
 }
@@ -27,11 +24,7 @@ class XBAddImagePickerFragment: NSObject,UIActionSheetDelegate,UIImagePickerCont
         v.allowsEditing     = true
         return v
     }()
-    var chooseImgtype:XBGetUploadTokenType = .userPhoto {
-        didSet {
-            self.imagePicker.allowsEditing = (chooseImgtype == .userPhoto ? true:false)
-        }
-    }
+
     func show(_ vc:UIViewController)  {
         self.current_vc = vc
         let alertController = UIAlertController(title: nil,
@@ -79,11 +72,7 @@ class XBAddImagePickerFragment: NSObject,UIActionSheetDelegate,UIImagePickerCont
             
         }
     }
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-//
-//
-//
-//    }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let choseImage = info[imagePicker.allowsEditing ?UIImagePickerControllerEditedImage:UIImagePickerControllerOriginalImage] as! UIImage
 
@@ -92,10 +81,5 @@ class XBAddImagePickerFragment: NSObject,UIActionSheetDelegate,UIImagePickerCont
         }
         picker.dismiss(animated: true, completion: nil)
     }
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//
-//    }
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//
-//    }
+
 }

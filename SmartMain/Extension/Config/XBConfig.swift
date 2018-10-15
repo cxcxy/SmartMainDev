@@ -36,30 +36,19 @@ struct XBDelay {
     }
     
 }
-let XBUrl   = "https://www.96369.net/mobile/pmprotocal.html"
-let HelpUrl = "http://www.96369.net/mobile/pmhelp.html"
+
 public let MGScreenWidth:CGFloat        = UIScreen.main.bounds.size.width
 public let MGScreenHeight:CGFloat       = UIScreen.main.bounds.size.height
 public let MGScreenWidthHalf:CGFloat    = MGScreenWidth / 2
 public let MGScreenHeightHalf:CGFloat   = MGScreenHeight / 2
 
+
 //／ 最小值 类似 0.0001
 let XBMin:CGFloat = CGFloat.leastNormalMagnitude
-//／ 顶部布局自适应高度
-var XBTopHeight:CGFloat! {
-    get {
-        if UIDevice.deviceType == .dt_iPhone6_Plus {
-            return MGScreenWidth * (14 / 25)
-        }else {
-             return 210
-        }
-    }
-}
 
 
-public func XBRgb(_ r:CGFloat,g:CGFloat,b:CGFloat,alpha:CGFloat = 1) -> UIColor{
-    return UIColor(red:r/255.0, green: g/255.0, blue: b/255.0, alpha:alpha)
-}
+
+
 
 //MARK: tableView 无数据展示状态
 let XBNoDataTitle:NSAttributedString    =   NSAttributedString(string: "暂无数据",
@@ -68,27 +57,7 @@ let XBNoDataTitle:NSAttributedString    =   NSAttributedString(string: "暂无�
 
 
 let XBStatusBarHight                = UIApplication.shared.statusBarFrame.height
-//MARK: 登录成功
-let Noti_LoginSuccess             = "Noti_LoginSuccess"
-//MARK: 刷新公司列表
-let Noti_RefreshCompany             = "Noti_RefreshCompany"
-//MARK: 刷新任务数量列表
-let Noti_RefreshMissionList         = "Noti_RefreshListCompany"
-//MARK: 刷新部门列表任务数量
-let Noti_RefreshDeartmentMissionList         = "Noti_RefreshDeartmentMissionList"
-//MARK: 退出登录
-let Noti_Logout                     = "Noti_Logout"
-//MARK :刷新未完成的流程列表
-let Noti_RefreshWorkFlowList        = "Noti_RefreshWorkFlowList"
 
-//MARK :刷新部门任务列表数据
-let Noti_RefreshDepartTaskList        = "Noti_RefreshDepartTaskList"
-//MARK :刷新 返回到档案列表页面，而且刷新档案列表
-let Noti_RefreshArchivesList        = "Noti_RefreshArchivesList"
-//MARK :刷新 返回到添加部门页面时， 成员数量
-let Noti_RefreshAddDepartmentData        = "Noti_RefreshAddDepartmentData"
-//MARK :添加商家刷新数据
-let Noti_RefreshAddCompanyRefreshData        = "Noti_RefreshAddCompanyRefreshData"
 
 //MARK: 全局分页行数
 let XBPageSize:Int                  =  15

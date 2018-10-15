@@ -83,18 +83,6 @@ class XBNetManager {
     
     func requestWithTarget(
         _ target:RequestApi,
-        isShowLoding: Bool              = true,  // 是否弹出loading框， 默认是
-        isDissmissLoding: Bool          = true,  // 是否消失loading框， 默认是
-        isShowErrorMessage: Bool        = true,  // 是否弹出错误提示， 默认是
-        successClosure: @escaping SuccessClosure,
-        failClosure: FailClosure? = nil
-        ){
-        // 之所以封装了一层， 是可以区分， 有一些接口，不需要此 判断本地Token 逻辑的时候，  直接调用 requestBaseWithTarget
-        /// 本地刷新token逻辑
-        self.requestBaseWithTarget(target, isShowLoding: isShowLoding, isDissmissLoding: isDissmissLoding, isShowErrorMessage: isShowErrorMessage, successClosure: successClosure, failClosure: failClosure)
-    }
-    func requestBaseWithTarget(
-        _ target:RequestApi,
         isShowLoding:    Bool        = true,  // 是否弹出loading框， 默认是
         isDissmissLoding:    Bool    = true,  // 是否消失loading框， 默认是
         isShowErrorMessage: Bool     = true,  // 是否弹出错误提示， 默认是
