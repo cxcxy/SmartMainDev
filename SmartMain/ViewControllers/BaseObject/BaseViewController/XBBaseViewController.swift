@@ -359,10 +359,10 @@ extension XBBaseViewController:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     
     func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
         print("点击了网络不给力")
-        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
+//        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
             self.mj_header.beginRefreshing()
             self.request()
-        }
+//        }
 
     }
 
