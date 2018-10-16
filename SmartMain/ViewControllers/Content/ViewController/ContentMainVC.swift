@@ -51,9 +51,10 @@ class ContentMainVC: XBBaseViewController {
         guard let currentDeviceId = currentDeviceId else {
             return
         }
-        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
+        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化 重新拉去请求 ,重新拉去当前MQTT 命令，重新配置底部播放view
             request()
-//            self.title = ""
+            configResetBottomSongView()
+            configScoketModel()
         }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -76,8 +77,6 @@ class ContentMainVC: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-//        self.title = "内容"
-       
         configMagicView()
         addBottomSongView()
         /// 当切换设备或者绑定设备的时候，重新订阅 scoket MQTT 信息
@@ -86,11 +85,45 @@ class ContentMainVC: XBBaseViewController {
             self.configScoketModel()
         })
         configScoketModel()
+        configNavBarItem()
+        configChatMessage()
+//        self.registerShowIntractiveWithEdgeGesture()
+        XBDelay.start(delay: 1) {
+            self.setupUnreadMessageCount()
+        }
+        self.request()
+    }
+    
+    override func request()  {
+        super.request()
+
+        self.currentDeviceId = XBUserManager.device_Id
+        guard XBUserManager.device_Id != "" else {
+            self.loading = true
+            endRefresh()
+            self.title = "暂无绑定设备"
+            return
+        }
+        viewModelLogin.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in // 获取最新的用户信息
+            guard let `self` = self else { return }
+            self.requestDevicesBabyInfo()
+        }
+
+    }
+    //MARK: 获取最新的设备信息
+    func requestDevicesBabyInfo() {
+        viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+            guard let `self` = self else { return }
+            self.title = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
+        }
+    }
+    //MARK: 配置导航条左右Item
+    func configNavBarItem()  {
         makeCustomerImageNavigationItem("iconmenu", left: true) {[weak self] in
             guard let `self` = self else { return }
             self.maskAnimationFromLeft()
         }
-    
+        
         navMessageView.viewMessage.addTapGesture { [weak self](sender) in
             guard let `self` = self else { return }
             let vc = ChatMainViewController()
@@ -102,35 +135,18 @@ class ContentMainVC: XBBaseViewController {
             self.pushVC(vc)
         }
         makeRightNavigationItem(navMessageView, left: false)
-        configChatMessage()
-//        self.registerShowIntractiveWithEdgeGesture()
-        XBDelay.start(delay: 1) {
-            self.setupUnreadMessageCount()
-        }
-        self.request()
     }
-    override func request()  {
-        super.request()
-        self.currentDeviceId = XBUserManager.device_Id
-        guard XBUserManager.device_Id != "" else {
-            self.loading = true
-            endRefresh()
-            self.title = "暂无绑定设备"
-            return
-        }
-        viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
-            guard let `self` = self else { return }
-            self.title = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
-        }
-    }
+    //MARK: 配置环信聊天
     func configChatMessage()  {
         EMClient.shared().chatManager.add(self, delegateQueue: nil)
     }
     deinit {
         EMClient.shared()?.chatManager.remove(self)
     }
+    //MARK: 配置scoket 链接
     func configScoketModel() {
         guard XBUserManager.device_Id != "" else {
+            configResetBottomSongView()
             return
         }
         scoketModel.sendGetTrack()
@@ -194,6 +210,14 @@ class ContentMainVC: XBBaseViewController {
     func configBottomSongView(singsDetail: SingDetailModel)  {
         bottomSongView.lbSingsTitle.set_text = singsDetail.title
         bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
+        
+    }
+    //MARK: 重置 底部 播放view
+    func configResetBottomSongView()  {
+        
+        bottomSongView.lbSingsTitle.set_text = "暂无播放歌曲"
+        bottomSongView.imgSong.set_Img_Url("")
+        bottomSongView.btnPlay.isSelected = false
         
     }
     //MARK: 跳转音乐播放器页面

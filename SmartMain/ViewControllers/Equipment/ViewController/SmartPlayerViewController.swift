@@ -61,7 +61,7 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     
     @IBOutlet weak var rightSliderLayout: NSLayoutConstraint!
-    var allTimer:Float    = 100 // 歌曲的全部时间
+    var allTimer:Float    = 0 // 歌曲的全部时间
     
     var currentVolume: Int = 0
     @IBOutlet weak var btnDown: UIButton!
@@ -136,7 +136,7 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.repeatStatus.asObserver().bind(to: btnRepeat.rx.isSelected).disposed(by: rx_disposeBag)
         
         //MARK: 测试用
-        self.configTimer(songDuration: allTimer)
+//        self.configTimer(songDuration: allTimer)
         
         
     }

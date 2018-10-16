@@ -68,7 +68,7 @@ class DrawerViewController: XBBaseViewController {
     
     override func setUI() {
         super.setUI()
-        request()
+//        request()
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
         self.cofigDeviceInfo()
         view.backgroundColor = viewColor
@@ -85,13 +85,13 @@ class DrawerViewController: XBBaseViewController {
         }
 
     }
-    override func request() {
-        super.request()
-        viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
-            guard let `self` = self else { return }
-            self.cofigDeviceInfo()
-        }
-    }
+//    override func request() {
+//        super.request()
+//        viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
+//            guard let `self` = self else { return }
+//            self.cofigDeviceInfo()
+//        }
+//    }
     // 配置 设备信息 数据
     func cofigDeviceInfo()  { // ！ 这个应该在首页写
         if XBUserManager.userDevices.count > 0 && XBUserManager.device_Id != ""  { // 有绑定设备

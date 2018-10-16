@@ -7,11 +7,11 @@
 //
 
 import UIKit
-//let socket_host             = "zb.mqtt.athenamuses.cn"
+let socket_host             = "zb.mqtt.athenamuses.cn" // 线下地址
 let socket_port: UInt16     = 1893
-let socket_host             = "zhiban.mqtt.athenamuses.cn"
+//let socket_host             = "zhiban.mqtt.athenamuses.cn" // 线上地址
 //let socket_port: UInt16     = 8094
-let socket_clientID         = XBUserManager.device_Id
+
 //let socket_clientID         = "3010290000045007_1275"
 //let socket_clientID         = "3010290000047373_50056"
 class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
@@ -56,6 +56,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      */
     let getPoweroff = PublishSubject<Int>()
     
+    var current_socket_clientID         = ""
     
     static let share = ScoketMQTTManager()
     override init() {
@@ -73,6 +74,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         mqttSession.connect { (error) in
             if  error == .none {
                 print("Connected.")
+                self.current_socket_clientID = XBUserManager.device_Id
                 self.subscribeToChannel(socket_clientId: XBUserManager.device_Id)
             } else {
                 print("Connected error.")
@@ -83,24 +85,48 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      *   订阅机器信息
      */
     func subscribeToChannel(socket_clientId: String) {
-        guard socket_clientId != "" else {
+        if socket_clientId == "" && self.current_socket_clientID != ""{ // 当为空时，取消订阅之前的
+            self.unSubscribeToChannel(socket_clientId: self.current_socket_clientID)
             return
         }
-        
+        if self.current_socket_clientID != socket_clientId { // 当发现订阅的 clientID与新的clientID不同时，则取消订阅之前的，重新订阅最新的
+            self.unSubscribeToChannel(socket_clientId: self.current_socket_clientID)
+            self.current_socket_clientID = socket_clientId // 重新赋值 给当前的 currentId
+        }
+
         let channel = "storybox/\(socket_clientId)/client"
-        mqttSession.subscribe(to: channel, delivering: .atLeastOnce) { (error) in
+        self.mqttSession.subscribe(to: channel, delivering: .atLeastOnce) { (error) in
             if error == .none {
-                print("订阅机器信息成功 ，Subscribed to \(channel)")
+                    print("订阅机器信息成功 ，Subscribed to \(channel)")
             } else {
-                
+                    
             }
         }
+
+    }
+    /**
+     *   取消订阅机器信息
+     */
+    func unSubscribeToChannel(socket_clientId: String) {
+        if socket_clientId == "" {
+            return
+        }
+
+        let channel = "storybox/\(socket_clientId)/client"
+        self.mqttSession.unSubscribe(from: channel) { (error) in
+            if error == .none {
+                    print("取消订阅机器信息 ，Subscribed to \(channel)")
+            } else {
+                    
+            }
+        }
+        
     }
     /**
      *   向机器发出订阅信息
      */
     func sendPressed(socketModel: XBSocketModel)  {
-        let channel = "storybox/\(socket_clientID)/server/page"
+        let channel = "storybox/\(XBUserManager.device_Id)/server/page"
         
         guard let message = socketModel.toJSONString() else {
             return
@@ -118,7 +144,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      *   向机器发出订阅信息New
      */
     func sendNewPressed(socketModel: XBSocketValueModel)  {
-        let channel = "storybox/\(socket_clientID)/server/page"
+        let channel = "storybox/\(XBUserManager.device_Id)/server/page"
         
         guard let message = socketModel.toJSONString() else {
             return
@@ -396,6 +422,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
     
     func mqttDidDisconnect(session: MQTTSession, error: MQTTSessionError) {
         print("Keep-alive ping 断开.")
+        
     }
     
 }
