@@ -207,7 +207,7 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
                         })
                     }
                     if actionType == 1 { // 管理员解散群组 ！！！ 解散完之后，移除 用户设备ID
-                        
+                        XBUserManager.clearDeviceInfo()
                         self.viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
                             guard let `self` = self else { return }
 //                            self.cofigDeviceInfo()
@@ -215,7 +215,8 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
                         }
                     }
                     if actionType == 2 { // 用户主动退出群组
-                        self.popToRootVC()
+//                        self.popToRootVC()
+                        XBUserManager.clearDeviceInfo()
                         self.viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
                             guard let `self` = self else { return }
 //                            self.cofigDeviceInfo()

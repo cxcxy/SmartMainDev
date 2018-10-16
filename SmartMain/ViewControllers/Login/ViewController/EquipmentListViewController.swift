@@ -96,7 +96,7 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
             Noti_post(.refreshDeviceHistory)
             Noti_post(.refreshTrackList)
             XBUserManager.saveDeviceInfo(m)
-            ScoketMQTTManager.share.subscribeToChannel(socket_clientId: m.deviceid ?? "")
+    
             self.popToRootVC()
         }
         out.show()

@@ -141,8 +141,10 @@ extension XBUserManager { // 保存设备宝宝 信息
          user_defaults.set(deviceModel.birthday ?? "", for: .dv_birthday)
          user_defaults.set(deviceModel.headimgurl ?? "", for: .dv_headimgurl)
          user_defaults.set(deviceModel.recordtime ?? "", for: .dv_recordtime)
-         user_defaults.set(deviceModel.deviceid ?? "", for: .deviceId)
-         
+
+         XBUserManager.device_Id = deviceModel.deviceid ?? ""
+         // 修改 当前 所链接的MQTT deviceid
+        
     }
     // 清空当前设备信息
     static func clearDeviceInfo() {
@@ -190,7 +192,9 @@ struct XBUserManager {
             return user_defaults.get(for: .deviceId) ?? ""
         }
         set{
+            
             user_defaults.set(newValue, for: .deviceId)
+            ScoketMQTTManager.share.subscribeToChannel(socket_clientId: newValue)
         }
     }
     
@@ -219,11 +223,16 @@ struct XBUserManager {
         user_defaults.set(model.nickname ?? "", for: .nickname)
         user_defaults.set(model.headImgUrl ?? "", for: .headImgUrl)
         user_defaults.set(model.deviceId ?? [], for: .userDevices) // 更新用户所绑定的 devices
+        
+        
+        
         if XBUserManager.userDevices.contains(XBUserManager.device_Id) { // 看当前用户所使用的 deviceId 是否 存在于 用户 所有绑定的 devices 里面
             
         } else {
             if XBUserManager.userDevices.count != 0 {
              XBUserManager.device_Id = XBUserManager.userDevices[0] // 给当前deviceId 第一个
+                // 修改 当前 所链接的MQTT deviceid
+             ScoketMQTTManager.share.subscribeToChannel(socket_clientId: XBUserManager.device_Id)
             }else {
                 XBUserManager.device_Id = ""
             }

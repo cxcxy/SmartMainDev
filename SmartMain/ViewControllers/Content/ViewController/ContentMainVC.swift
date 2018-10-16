@@ -51,9 +51,10 @@ class ContentMainVC: XBBaseViewController {
         guard let currentDeviceId = currentDeviceId else {
             return
         }
-        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
+        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化 重新拉去请求 ,重新拉去当前MQTT 命令，重新配置底部播放view
             request()
-//            self.title = ""
+            configResetBottomSongView()
+            configScoketModel()
         }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -95,6 +96,7 @@ class ContentMainVC: XBBaseViewController {
     
     override func request()  {
         super.request()
+
         self.currentDeviceId = XBUserManager.device_Id
         guard XBUserManager.device_Id != "" else {
             self.loading = true
@@ -144,6 +146,7 @@ class ContentMainVC: XBBaseViewController {
     //MARK: 配置scoket 链接
     func configScoketModel() {
         guard XBUserManager.device_Id != "" else {
+            configResetBottomSongView()
             return
         }
         scoketModel.sendGetTrack()
@@ -207,6 +210,14 @@ class ContentMainVC: XBBaseViewController {
     func configBottomSongView(singsDetail: SingDetailModel)  {
         bottomSongView.lbSingsTitle.set_text = singsDetail.title
         bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
+        
+    }
+    //MARK: 重置 底部 播放view
+    func configResetBottomSongView()  {
+        
+        bottomSongView.lbSingsTitle.set_text = "暂无播放歌曲"
+        bottomSongView.imgSong.set_Img_Url("")
+        bottomSongView.btnPlay.isSelected = false
         
     }
     //MARK: 跳转音乐播放器页面

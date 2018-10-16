@@ -78,7 +78,7 @@ class XBNetManager {
     }
     public static let requestTimeoutClosure = { (endpoint: Endpoint, done: @escaping MoyaProvider<RequestApi>.RequestResultClosure) in
         guard var request = try? endpoint.urlRequest() else { return }
-        request.timeoutInterval = TimeInterval(2) //设置请求超时时间
+        request.timeoutInterval = TimeInterval(20) //设置请求超时时间
         done(.success(request))
     }
     let requestProvider = MoyaProvider<RequestApi>(endpointClosure: XBNetManager.endpointClosure,

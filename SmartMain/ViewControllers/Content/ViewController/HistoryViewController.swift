@@ -45,11 +45,11 @@ class HistoryViewController: XBBaseViewController {
     override func request() {
         super.request()
         self.currentDeviceId = XBUserManager.device_Id
-        guard let deviceId = user_defaults.get(for: .deviceId) else {
+        guard XBUserManager.device_Id != "" else {
             self.loading = true
             return
         }
-        Net.requestWithTarget(.getHistoryList(deviceId: deviceId), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.getHistoryList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             print(result)
             if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
                 if self.pageIndex == 1 {

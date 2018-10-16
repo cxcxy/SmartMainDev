@@ -162,7 +162,7 @@ extension XBScanViewController {
             if let str = result as? String {
                 if str == "ok" {
                     print("加入成功")
-                    user_defaults.set(deviceId, for: .deviceId)
+                    XBUserManager.device_Id = deviceId
                     var devices = XBUserManager.userDevices
                     devices.append(deviceId)
                     XBUserManager.userDevices = devices
@@ -178,6 +178,7 @@ extension XBScanViewController {
                     })
                 } else if str == "hasBinded" {
                     XBHud.showMsg("该用户已经绑定了此设备")
+                    self.popToRootVC()
                 } else {
                     XBHud.showMsg("第二步加入失败")
                 }
