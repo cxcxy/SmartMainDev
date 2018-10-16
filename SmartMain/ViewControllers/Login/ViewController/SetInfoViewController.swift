@@ -140,15 +140,20 @@ class SetInfoViewController: XBBaseViewController {
         switch self.setInfoType {
         case .editUserInfo:
             
+            self.headImgUrl = user_defaults.get(for: .headImgUrl) ?? ""
             self.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
             self.tfNick.text = user_defaults.get(for: .nickname)
 
             break
         case .editDeviceInfo:
+            
+            self.headImgUrl = user_defaults.get(for: .dv_headimgurl) ?? ""
+            self.birth = XBUserManager.dv_birthday
+            
             self.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
             self.tfNick.text = XBUserManager.dv_babyname
             self.tfBirth.text = XBUserManager.dv_birthday
-            self.birth = XBUserManager.dv_birthday
+            
             if XBUserManager.dv_sex == "0" {
                 self.btnMan.isSelected = true
                 self.btnWomen.isSelected = false
