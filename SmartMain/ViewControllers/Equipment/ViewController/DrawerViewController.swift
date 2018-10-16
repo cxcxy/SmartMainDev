@@ -260,7 +260,7 @@ extension DrawerViewController {
             print("getLight ===：", $0.element ?? 0)
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
             if let light = $0.element {
-                self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_groupNight_on"
+                self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_lamp"
                 
             }
 //            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
@@ -305,7 +305,7 @@ extension DrawerViewController {
         }
         if btnLight.isSelected {
             scoketModel.sendClooseLight(0)
-            self.imgLight.set_img = "icon_groupLaght"
+            self.imgLight.set_img = "icon_lamp"
             self.lbLight.set_text = "开呼吸灯"
         }else {
             scoketModel.sendClooseLight(1)
