@@ -19,10 +19,10 @@ class ContentShowThreeCell: BaseTableViewCell {
 //    let itemWidth:CGFloat = CGFloat( Int( MGScreenWidth - 20 - 20 ) / 3 )// item 宽度
    
 //    static let itemLineSpacing:CGFloat = 20 // item 间隔
-    static let itemSpacing:CGFloat = 30 // item 间隔
-    static let itemWidth:CGFloat = CGFloat(Int(MGScreenWidth - itemSpacing - itemSpacing - 20) / 3) // item 宽度
+    static let itemSpacing:CGFloat = 20 // item 间隔
+    static let itemWidth:CGFloat = CGFloat(Int(MGScreenWidth - itemSpacing - itemSpacing - 40) / 3) // item 宽度
     static let cell_img_H:CGFloat   = ContentShowThreeCell.itemWidth // item里面img 高度
-    static let cell_title_H:CGFloat = 35
+    static let cell_title_H:CGFloat = 29
     static let itemHight:CGFloat = ContentShowThreeCell.cell_img_H + ContentShowThreeCell.cell_title_H
     
     
@@ -45,8 +45,11 @@ class ContentShowThreeCell: BaseTableViewCell {
             collectionView.reloadData()
             itemCount = contentArr.count > 9 ? 9 : contentArr.count
             lineNumber = itemCount / 3
-            let heightLine:CGFloat  = CGFloat((lineNumber - 1) * 20)
-            self.heightCollectionViewLayout.constant      = CGFloat(lineNumber * Int(ContentShowThreeCell.itemHight))
+            let heightLine:CGFloat  = CGFloat((lineNumber - 1) * 15)
+            let contentHeight = CGFloat(lineNumber * Int(ContentShowThreeCell.itemHight))
+            let line_All_h = CGFloat(Int((lineNumber - 1) * Int(heightLine)))
+            
+            self.heightCollectionViewLayout.constant      = contentHeight + line_All_h
         }
     }
     var itemCount: Int = 0
@@ -59,7 +62,7 @@ class ContentShowThreeCell: BaseTableViewCell {
         
         collectionView.delegate     = self
         collectionView.dataSource   = self
-        collectionView.cellId_register("TwoItemCVCell")
+        collectionView.cellId_register("ContentNineGridItem")
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -73,15 +76,15 @@ extension ContentShowThreeCell:UICollectionViewDelegate,UICollectionViewDataSour
         return contentArr.count > (lineNumber * 3) ? lineNumber * 3 : contentArr.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TwoItemCVCell", for: indexPath)as! TwoItemCVCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentNineGridItem", for: indexPath)as! ContentNineGridItem
         cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgSmall)
-        cell.aspectConstraint.constant = 1
+//        cell.aspectConstraint.constant = 1
         cell.lbTitle.set_text = contentArr[indexPath.row].name
         return cell
     }
     //最小item间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return XBMin
+        return 15
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return ContentShowThreeCell.itemSpacing

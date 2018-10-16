@@ -70,11 +70,13 @@ class ModulesConetentModel: XBDataModel {
     var name: String?
     var imgLarge: String?
     var imgSmall: String?
+    var total: Int?
     var albumType: Int?
     override func mapping(map: Map) {
         id             <-    map["id"]
         type             <-    map["type"]
         name          <-    map["name"]
+        total  <-    map["total"]
         imgLarge            <-    map["imgLarge"]
         imgSmall            <-    map["imgSmall"]
         albumType            <-    map["albumType"]

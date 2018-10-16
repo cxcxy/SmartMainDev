@@ -253,7 +253,7 @@ class ContentMainVC: XBBaseViewController {
         v.magicView.dataSource                  = self
         v.magicView.delegate                    = self
         v.magicView.needPreloading      = false
-        let vc = ContentVC()
+        let vc = ContentVC.init(style: .grouped)
         let vc_list = TrackListViewController()
         let vc1 = LikeViewController()
         let vc2 = HistoryViewController()

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SingSongSectionHeader" customModule="SmartMain" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysM-Z5-1yt">
+                    <rect key="frame" x="0.0" y="25" width="162" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_title_red" translatesAutoresizingMaskIntoConstraints="NO" id="IIG-9c-aIm">
+                            <rect key="frame" x="0.0" y="0.0" width="162" height="30"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="限时免费" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrJ-UX-hLf">
+                            <rect key="frame" x="20" y="8" width="49.5" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tab-uR-Tbz">
+                            <rect key="frame" x="74.5" y="7.5" width="1" height="15"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="AzJ-LO-4Hf"/>
+                                <constraint firstAttribute="height" constant="15" id="EOI-7g-7GS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYC-IU-Zq9">
+                            <rect key="frame" x="75.5" y="0.0" width="86.5" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-Er-1Qf">
+                            <rect key="frame" x="80.5" y="7.5" width="25" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="IIG-9c-aIm" firstAttribute="top" secondItem="ysM-Z5-1yt" secondAttribute="top" id="4se-tc-2BN"/>
+                        <constraint firstItem="IIG-9c-aIm" firstAttribute="leading" secondItem="ysM-Z5-1yt" secondAttribute="leading" id="5eZ-sY-fH4"/>
+                        <constraint firstItem="tab-uR-Tbz" firstAttribute="leading" secondItem="QrJ-UX-hLf" secondAttribute="trailing" constant="5" id="8sB-v9-znZ"/>
+                        <constraint firstAttribute="bottom" secondItem="KYC-IU-Zq9" secondAttribute="bottom" id="KkQ-OK-DfT"/>
+                        <constraint firstItem="KYC-IU-Zq9" firstAttribute="top" secondItem="ysM-Z5-1yt" secondAttribute="top" id="Lp1-6h-b2b"/>
+                        <constraint firstAttribute="bottom" secondItem="IIG-9c-aIm" secondAttribute="bottom" id="VED-5l-YIU"/>
+                        <constraint firstItem="QrJ-UX-hLf" firstAttribute="leading" secondItem="ysM-Z5-1yt" secondAttribute="leading" constant="20" id="Vxb-pG-f1t"/>
+                        <constraint firstAttribute="trailing" secondItem="IIG-9c-aIm" secondAttribute="trailing" id="crv-qd-m6V"/>
+                        <constraint firstAttribute="height" constant="30" id="e2D-2D-KmG"/>
+                        <constraint firstItem="KYC-IU-Zq9" firstAttribute="leading" secondItem="tab-uR-Tbz" secondAttribute="trailing" id="giB-rB-Y8C"/>
+                        <constraint firstAttribute="trailing" secondItem="KYC-IU-Zq9" secondAttribute="trailing" id="krN-Q5-bv6"/>
+                        <constraint firstItem="aFw-Er-1Qf" firstAttribute="leading" secondItem="tab-uR-Tbz" secondAttribute="trailing" constant="5" id="lhq-98-zsF"/>
+                        <constraint firstItem="tab-uR-Tbz" firstAttribute="centerY" secondItem="QrJ-UX-hLf" secondAttribute="centerY" id="m2l-pi-rIY"/>
+                        <constraint firstItem="QrJ-UX-hLf" firstAttribute="centerY" secondItem="IIG-9c-aIm" secondAttribute="centerY" id="o6l-To-FA1"/>
+                        <constraint firstItem="aFw-Er-1Qf" firstAttribute="centerY" secondItem="tab-uR-Tbz" secondAttribute="centerY" id="wth-dZ-vdq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ysM-Z5-1yt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="NPI-Cs-nT2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ysM-Z5-1yt" secondAttribute="bottom" id="ecd-Pv-S32"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnAll" destination="KYC-IU-Zq9" id="0rZ-FR-OKV"/>
+                <outlet property="lbTitle" destination="QrJ-UX-hLf" id="khR-Xi-Jha"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_title_red" width="162" height="33"/>
+    </resources>
+</document>

@@ -17,6 +17,10 @@ class ContentVC: XBBaseTableViewController {
         tableView.cellId_register("ContentHeaderCell")
         tableView.cellId_register("ContentShowCell")
         tableView.cellId_register("ContentShowThreeCell")
+        tableView.cellId_register("ContentScrollCell")
+        tableView.cellId_register("ContentSingSongCell")
+        
+        
         tableView.mj_header = self.mj_header
     }
     override func setUI() {
@@ -77,35 +81,76 @@ class ContentVC: XBBaseTableViewController {
     
 }
 extension ContentVC {
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         guard dataArr.count > 0 else {
-            return 0 
+            return 0
         }
         return dataArr.count > 6 ? 7 : dataArr.count + 1
-        
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        if section == 4 {
+            return 5
+        }else {
+            return 1
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentHeaderCell", for: indexPath) as! ContentHeaderCell
 //            cell.dataArr = self.dataTrackArr
             return cell
         }
-        if indexPath.row == 1 || indexPath.row == 2 {
+        if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentShowCell", for: indexPath) as! ContentShowCell
 //            cell.collectionDataArr = ["1","2","3","4"]
-            cell.dataModel = dataArr[indexPath.row - 1]
+            cell.dataModel = dataArr[indexPath.section - 1]
 //            let img = dataArr[0]
             
             return cell
         }
+        if indexPath.section == 2 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentScrollCell", for: indexPath) as! ContentScrollCell
+            //            cell.collectionDataArr = ["1","2","3","4"]
+            cell.dataModel = dataArr[indexPath.section - 1]
+            //            let img = dataArr[0]
+            
+            return cell
+        }
+        if indexPath.section == 4 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingSongCell", for: indexPath) as! ContentSingSongCell
+            let sectionModel = dataArr[indexPath.section - 1]
+            let contentArr = sectionModel.contents ?? []
+            cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgLarge)
+            cell.lbTitle.set_text = contentArr[indexPath.row].name
+            return cell
+
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContentShowThreeCell", for: indexPath) as! ContentShowThreeCell
 //        cell.collectionDataArr = ["1","2","3","4","1","2","3","4","1"]
-        cell.dataModel = dataArr[indexPath.row - 1]
+        cell.dataModel = dataArr[indexPath.section - 1]
         return cell
         
     }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 4 {
+            let v = SingSongSectionHeader.loadFromNib()
+            let sectionModel = dataArr[section - 1]
+            v.lbTitle.set_text = sectionModel.name
+            return v
+        }
+        return nil
+    }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 4 {
+            return 55
+        }
+        return XBMin
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        VCRouter.toContentSubVC()
 //        let vc = ContentSubVC()

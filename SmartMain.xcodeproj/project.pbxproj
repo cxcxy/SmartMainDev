@@ -349,6 +349,16 @@
 		2DCA869F2167677B001F9E04 /* XBCustomItemLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA869E21676779001F9E04 /* XBCustomItemLayout.swift */; };
 		2DCA86A1216B81E8001F9E04 /* ChatRedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCA86A0216B81E8001F9E04 /* ChatRedView.swift */; };
 		2DCA86A3216B81F2001F9E04 /* ChatRedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DCA86A2216B81F2001F9E04 /* ChatRedView.xib */; };
+		2DF075AB21761D2A006F0818 /* ContentScrollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075A921761D2A006F0818 /* ContentScrollCell.swift */; };
+		2DF075AC21761D2A006F0818 /* ContentScrollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075AA21761D2A006F0818 /* ContentScrollCell.xib */; };
+		2DF075AF21761F2F006F0818 /* ContentScrollItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075AD21761F2F006F0818 /* ContentScrollItem.swift */; };
+		2DF075B021761F2F006F0818 /* ContentScrollItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075AE21761F2F006F0818 /* ContentScrollItem.xib */; };
+		2DF075B3217628E1006F0818 /* ContentNineGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075B1217628E1006F0818 /* ContentNineGridItem.swift */; };
+		2DF075B4217628E1006F0818 /* ContentNineGridItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075B2217628E1006F0818 /* ContentNineGridItem.xib */; };
+		2DF075BB21762DE1006F0818 /* ContentSingSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075B921762DE1006F0818 /* ContentSingSongCell.swift */; };
+		2DF075BC21762DE1006F0818 /* ContentSingSongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075BA21762DE1006F0818 /* ContentSingSongCell.xib */; };
+		2DF075BE21762FBB006F0818 /* SingSongSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075BD21762FBB006F0818 /* SingSongSectionHeader.swift */; };
+		2DF075C021762FC3006F0818 /* SingSongSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075BF21762FC3006F0818 /* SingSongSectionHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -845,6 +855,18 @@
 		2DCA869E21676779001F9E04 /* XBCustomItemLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBCustomItemLayout.swift; sourceTree = "<group>"; };
 		2DCA86A0216B81E8001F9E04 /* ChatRedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRedView.swift; sourceTree = "<group>"; };
 		2DCA86A2216B81F2001F9E04 /* ChatRedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRedView.xib; sourceTree = "<group>"; };
+		2DF075A921761D2A006F0818 /* ContentScrollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScrollCell.swift; sourceTree = "<group>"; };
+		2DF075AA21761D2A006F0818 /* ContentScrollCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentScrollCell.xib; sourceTree = "<group>"; };
+		2DF075AD21761F2F006F0818 /* ContentScrollItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScrollItem.swift; sourceTree = "<group>"; };
+		2DF075AE21761F2F006F0818 /* ContentScrollItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentScrollItem.xib; sourceTree = "<group>"; };
+		2DF075B1217628E1006F0818 /* ContentNineGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNineGridItem.swift; sourceTree = "<group>"; };
+		2DF075B2217628E1006F0818 /* ContentNineGridItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentNineGridItem.xib; sourceTree = "<group>"; };
+		2DF075B521762D22006F0818 /* ContentSingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSingCell.swift; sourceTree = "<group>"; };
+		2DF075B621762D22006F0818 /* ContentSingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingCell.xib; sourceTree = "<group>"; };
+		2DF075B921762DE1006F0818 /* ContentSingSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSingSongCell.swift; sourceTree = "<group>"; };
+		2DF075BA21762DE1006F0818 /* ContentSingSongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingSongCell.xib; sourceTree = "<group>"; };
+		2DF075BD21762FBB006F0818 /* SingSongSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingSongSectionHeader.swift; sourceTree = "<group>"; };
+		2DF075BF21762FC3006F0818 /* SingSongSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingSongSectionHeader.xib; sourceTree = "<group>"; };
 		91EAC16658F9A180871B0B3F /* Pods-SmartMain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.release.xcconfig"; sourceTree = "<group>"; };
 		CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD6F9026177145A29A261A /* Pods-SmartMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1846,10 +1868,22 @@
 				04C38A03213E671F0063A799 /* ContentShowCell.xib */,
 				2DCA86962160C738001F9E04 /* TwoItemCVCell.swift */,
 				2DCA86972160C738001F9E04 /* TwoItemCVCell.xib */,
+				2DF075A921761D2A006F0818 /* ContentScrollCell.swift */,
+				2DF075AA21761D2A006F0818 /* ContentScrollCell.xib */,
+				2DF075AD21761F2F006F0818 /* ContentScrollItem.swift */,
+				2DF075AE21761F2F006F0818 /* ContentScrollItem.xib */,
 				043E118A213FB3120067ADF3 /* ContentSubShowCell.swift */,
 				043E118B213FB3120067ADF3 /* ContentSubShowCell.xib */,
 				04C38A12213E6FE70063A799 /* ContentShowThreeCell.swift */,
 				04C38A13213E6FE70063A799 /* ContentShowThreeCell.xib */,
+				2DF075B1217628E1006F0818 /* ContentNineGridItem.swift */,
+				2DF075B2217628E1006F0818 /* ContentNineGridItem.xib */,
+				2DF075B921762DE1006F0818 /* ContentSingSongCell.swift */,
+				2DF075BA21762DE1006F0818 /* ContentSingSongCell.xib */,
+				2DF075BD21762FBB006F0818 /* SingSongSectionHeader.swift */,
+				2DF075BF21762FC3006F0818 /* SingSongSectionHeader.xib */,
+				2DF075B521762D22006F0818 /* ContentSingCell.swift */,
+				2DF075B621762D22006F0818 /* ContentSingCell.xib */,
 				04C38A0A213E6D850063A799 /* ContentLikeCell.swift */,
 				04C38A0B213E6D850063A799 /* ContentLikeCell.xib */,
 				04C38A06213E6CD60063A799 /* ContentShowCVCell.swift */,
@@ -2122,6 +2156,7 @@
 				0402E77E215E27160040919C /* XBLaunchView.xib in Resources */,
 				04C1436C2147A8FD00FC2000 /* ShowChooseView.xib in Resources */,
 				042EEF892150E15F00DBD492 /* EaseUIResource.bundle in Resources */,
+				2DF075B021761F2F006F0818 /* ContentScrollItem.xib in Resources */,
 				04C38A0D213E6D850063A799 /* ContentLikeCell.xib in Resources */,
 				2D9195D52153BE2500F4A9A1 /* DrawControlHeader.xib in Resources */,
 				2DC955A8213FFC8C004D6F65 /* AboutMeVC.xib in Resources */,
@@ -2149,6 +2184,7 @@
 				0485CCBD2148F7EC00F54927 /* SmartPlayerViewController.xib in Resources */,
 				04C389EF213E25800063A799 /* EquipmentTopView.xib in Resources */,
 				2DCA86992160C738001F9E04 /* TwoItemCVCell.xib in Resources */,
+				2DF075AC21761D2A006F0818 /* ContentScrollCell.xib in Resources */,
 				04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */,
 				2DC955B5213FFED4004D6F65 /* MeInfoNameCell.xib in Resources */,
 				04C38A05213E671F0063A799 /* ContentShowCell.xib in Resources */,
@@ -2176,15 +2212,18 @@
 				04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */,
 				2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */,
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
+				2DF075B4217628E1006F0818 /* ContentNineGridItem.xib in Resources */,
 				2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */,
 				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
 				2DCA86A3216B81F2001F9E04 /* ChatRedView.xib in Resources */,
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
 				2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */,
 				0473BA0A215A299A003D688F /* ScreenControlView.xib in Resources */,
+				2DF075C021762FC3006F0818 /* SingSongSectionHeader.xib in Resources */,
 				04E537C9216DDFFB002DE58C /* TrackListHeaderView.xib in Resources */,
 				04C38A01213E64170063A799 /* ContentHeaderCell.xib in Resources */,
 				0473BA0E215A2E27003D688F /* OpenEquViewController.xib in Resources */,
+				2DF075BC21762DE1006F0818 /* ContentSingSongCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2385,6 +2424,7 @@
 				042EEF392150E15F00DBD492 /* amrFileCodec.mm in Sources */,
 				046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */,
 				04C3872B213E093F0063A799 /* String+.swift in Sources */,
+				2DF075AF21761F2F006F0818 /* ContentScrollItem.swift in Sources */,
 				042EEF452150E15F00DBD492 /* UIImage+MWPhotoBrowser.m in Sources */,
 				04E537C7216DDFF2002DE58C /* TrackListHeaderView.swift in Sources */,
 				04C389ED213E25500063A799 /* EquipmentTopView.swift in Sources */,
@@ -2424,10 +2464,12 @@
 				04A5E628216ED99F00CFCE4B /* UserModel.swift in Sources */,
 				0485CCB02148A89200F54927 /* MQTTPubMsg.swift in Sources */,
 				2D20DB14215CEF8E002EF372 /* ContentViewModel.swift in Sources */,
+				2DF075AB21761D2A006F0818 /* ContentScrollCell.swift in Sources */,
 				0485CCB42148A89200F54927 /* MQTTPacket.swift in Sources */,
 				0485CCB32148A89200F54927 /* MQTTStreamable.swift in Sources */,
 				04C38736213E093F0063A799 /* BYFoundationLog.m in Sources */,
 				0402E777215E18390040919C /* XBAddContactCell.swift in Sources */,
+				2DF075B3217628E1006F0818 /* ContentNineGridItem.swift in Sources */,
 				042EEF2C2150E15F00DBD492 /* MJRefreshAutoGifFooter.m in Sources */,
 				04C38734213E093F0063A799 /* ETPopupViewExtension.swift in Sources */,
 				0485CCAB2148A89200F54927 /* MQTTPingResp.swift in Sources */,
@@ -2467,6 +2509,7 @@
 				0485CCA72148A89200F54927 /* MQTTSubAckPacket.swift in Sources */,
 				04C38A25213E7FF40063A799 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				042EEF472150E15F00DBD492 /* MWPhoto.m in Sources */,
+				2DF075BE21762FBB006F0818 /* SingSongSectionHeader.swift in Sources */,
 				04C3871B213E093F0063A799 /* XBNotificationManager.swift in Sources */,
 				0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */,
 				2D0ACC48215A70C40047103C /* HistorySongContentCell.swift in Sources */,
@@ -2506,6 +2549,7 @@
 				042EEF152150E15F00DBD492 /* NSString+Valid.m in Sources */,
 				0413BED321426EB8006E3A44 /* ChatViewController.swift in Sources */,
 				042EEF672150E15F00DBD492 /* UIView+WebCacheOperation.m in Sources */,
+				2DF075BB21762DE1006F0818 /* ContentSingSongCell.swift in Sources */,
 				2D83D416215E705E0097900F /* TableViewAnimationKit.m in Sources */,
 				042EEF6E2150E15F00DBD492 /* EaseUsersListViewController.m in Sources */,
 				0422ECDF214110E000A42D7A /* ContentTitleCVCell.swift in Sources */,
