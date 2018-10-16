@@ -176,9 +176,9 @@ extension XBScanViewController {
                         Noti_post(.refreshTrackList)
                         self.popToRootVC()
                     })
-
-                   
-                }else {
+                } else if str == "hasBinded" {
+                    XBHud.showMsg("该用户已经绑定了此设备")
+                } else {
                     XBHud.showMsg("第二步加入失败")
                 }
             }
