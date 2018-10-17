@@ -88,6 +88,10 @@ class LoginViewController: XBBaseViewController {
             XBHud.showMsg("请输入手机号")
             return
         }
+        if !tfPhone.text!.validateMobile() {
+            XBHud.showMsg("请输入正确手机号")
+            return
+        }
         requestPasswordLogin()
 //        self.btnCode.isSelected ? requestAuthCodeLogin() : requestPasswordLogin()
 

@@ -31,8 +31,16 @@ class VCRouter {
         }
     }
     class func toPlayVC()  {
-        let vc = SmartPlayerViewController()
-        topVC?.pushVC(vc)
+        DeviceManager.isOnline { (isOnline, _)  in
+            if isOnline {
+                let vc = SmartPlayerViewController()
+                topVC?.pushVC(vc)
+            } else {
+                
+                XBHud.showMsg("当前设备不在线")
+            }
+        }
+
     }
     // MARK: - 跳转设备设置
     class func toEquipmentSettingVC() {

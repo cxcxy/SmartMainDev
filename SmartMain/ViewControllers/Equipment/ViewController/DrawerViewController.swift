@@ -22,7 +22,7 @@ class DrawerViewController: XBBaseViewController {
     @IBOutlet weak var imgWifi: UIImageView!
 //    @IBOutlet weak var imgElectricity: UIImageView!
     @IBOutlet weak var lbElectricity: UILabel!
-    
+     @IBOutlet weak var imgElectricity: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbDvnick: UILabel!
@@ -81,7 +81,15 @@ class DrawerViewController: XBBaseViewController {
 
         DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
             self.deviceOnline = isOnline
-            self.lbElectricity.set_text = electricity.toString
+            if electricity == 101 { // 当前正在充电
+                self.lbElectricity.isHidden = true
+                self.imgElectricity.set_img = "icon_charging"
+            }else {
+                self.lbElectricity.isHidden = false
+                self.lbElectricity.set_text = electricity.toString
+                self.imgElectricity.set_img = "icon_electricity"
+            }
+            
         }
 
     }
@@ -261,7 +269,7 @@ extension DrawerViewController {
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
             if let light = $0.element {
                 self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_lamp"
-                
+                self.lbLight.set_text = light == 1 ? "关呼吸灯" : "开呼吸灯"
             }
 //            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
@@ -270,6 +278,7 @@ extension DrawerViewController {
             print("getLock ===：", $0.element ?? 0)
             if let light = $0.element {
                 self.imgLock.set_img = light == 1 ? "icon_groupLaght_on" : "icon_groupLaght"
+                self.lbLock.set_text = light == 1 ? "关闭童锁" : "打开童锁"
             }
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
 //            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false

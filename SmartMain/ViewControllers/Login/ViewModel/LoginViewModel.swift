@@ -15,6 +15,10 @@ class LoginViewModel: NSObject {
             XBHud.showMsg("请输入手机号")
             return
         }
+        if !mobile.validateMobile() {
+            XBHud.showMsg("请输入正确手机号")
+            return
+        }
         Net.requestWithTarget(.getAuthCode(mobile: mobile), successClosure: { (result, code, message) in
             XBHud.showMsg("发送验证码成功")
             closure()
@@ -24,6 +28,10 @@ class LoginViewModel: NSObject {
     func requestRegister(mobile: String,code: String,pass: String,closure: @escaping () -> ())  {
         guard mobile != "" else {
             XBHud.showMsg("请输入手机号")
+            return
+        }
+        if !mobile.validateMobile() {
+            XBHud.showMsg("请输入正确手机号")
             return
         }
         guard code != "" else {
@@ -62,6 +70,10 @@ class LoginViewModel: NSObject {
             XBHud.showMsg("请输入手机号")
             return
         }
+        if !mobile.validateMobile() {
+            XBHud.showMsg("请输入正确手机号")
+            return
+        }
         var params_task = [String: Any]()
         params_task["openId"] = mobile
         params_task["type"] = 2
@@ -83,6 +95,10 @@ class LoginViewModel: NSObject {
             XBHud.showMsg("请输入手机号")
             return
         }
+        if !mobile.validateMobile() {
+            XBHud.showMsg("请输入正确手机号")
+            return
+        }
         guard code != "" else {
             XBHud.showMsg("请输入密码")
             return
@@ -99,6 +115,10 @@ class LoginViewModel: NSObject {
             XBHud.showMsg("请输入手机号")
             return
         }
+        if !mobile.validateMobile() {
+            XBHud.showMsg("请输入正确手机号")
+            return
+        }
         guard code != "" else {
             XBHud.showMsg("请输入验证码")
             return
@@ -113,6 +133,10 @@ class LoginViewModel: NSObject {
     func requestResetPass(mobile: String,code: String,onePass: String,twoPass: String)  {
         guard mobile != "" else {
             XBHud.showMsg("请输入手机号")
+            return
+        }
+        if !mobile.validateMobile() {
+            XBHud.showMsg("请输入正确手机号")
             return
         }
         guard code != "" else {

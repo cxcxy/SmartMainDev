@@ -203,7 +203,7 @@ class ContentMainVC: XBBaseViewController {
     //MARK: 底部弹出播放列表
     func showTrackListView(trackList: [EquipmentModel])  {
         let v = PlaySongListView.loadFromNib()
-        v.listViewType = .trackList
+        v.listViewType = .trackList_main
         v.trackArr = trackList
         v.show()
     }
@@ -242,16 +242,16 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
-    
-        DeviceManager.isOnline { (isOnline, _)  in
-            if isOnline {
-                let vc = SmartPlayerViewController()
-                self.pushVC(vc)
-            } else {
-        
-                XBHud.showMsg("当前设备不在线")
-            }
-        }
+        VCRouter.toPlayVC()
+//        DeviceManager.isOnline { (isOnline, _)  in
+//            if isOnline {
+//                let vc = SmartPlayerViewController()
+//                self.pushVC(vc)
+//            } else {
+//
+//                XBHud.showMsg("当前设备不在线")
+//            }
+//        }
         
     }
     func maskAnimationFromLeft() {
@@ -275,11 +275,11 @@ class ContentMainVC: XBBaseViewController {
         v.magicView.delegate                    = self
         v.magicView.needPreloading      = false
         let vc = ContentVC.init(style: .grouped)
-        let vc_list = TrackListViewController()
+//        let vc_list = TrackListViewController()
         let vc1 = LikeViewController()
         let vc2 = HistoryViewController()
         
-        controllerArray = [vc,vc_list,vc1,vc2]
+        controllerArray = [vc,vc1,vc2]
         v.magicView.reloadData()
         self.addChildViewController(v)
         self.view.addSubview(v.magicView)
@@ -309,7 +309,7 @@ extension ContentMainVC:VTMagicViewDataSource{
     }
     func menuTitles(for magicView: VTMagicView) -> [String] {
         
-        return ["内容","歌单","收藏","历史"]
+        return ["内容","收藏","历史"]
         
     }
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton{

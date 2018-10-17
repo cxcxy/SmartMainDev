@@ -83,6 +83,10 @@ extension LikeViewController {
                 guard let `self` = self else { return }
                 self.clickExtensionAction(indexPath: indexPath)
             }
+            cell.imgIcon.addTapGesture {[weak self] (sender) in
+                guard let `self` = self else { return }
+                VCRouter.toPlayVC()
+            }
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
@@ -90,6 +94,9 @@ extension LikeViewController {
             cell.viewDel.isHidden = true
             cell.lbLike.set_text = "取消收藏"
             cell.btnLike.isSelected = true
+//            cell.viewLike.addTapGesture {[weak self] (sender) in
+//
+//            }
             return cell
         }
     }
@@ -98,7 +105,8 @@ extension LikeViewController {
             XBHud.showMsg("请先绑定设备")
             return
         }
-        self.requestOnlineSing(trackId: dataArr[indexPath.section].trackId?.toString ?? "")
+//        self.requestOnlineSing(trackId: dataArr[indexPath.section].trackId?.toString ?? "")
+        self.clickExtensionAction(indexPath: indexPath)
         
     }
     func clickExtensionAction(indexPath: IndexPath)  {

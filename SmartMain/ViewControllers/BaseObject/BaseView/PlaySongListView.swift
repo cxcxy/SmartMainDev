@@ -8,7 +8,8 @@
 
 import UIKit
 enum BottomListViewType {
-    case trackList  // 预制列表
+    case trackList_main  // 预制列表
+    case trackList_song  // 预制列表
     case songList   // 歌单列表
 }
 typealias BottomGetTrackListId = (_ trackId: Int, _ trackName: String) -> ()
@@ -31,7 +32,7 @@ class PlaySongListView: ETPopupView {
             switch listViewType {
             case .songList:
                 requestSongList()
-            case .trackList:
+            case .trackList_main,.trackList_song:
                 tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0)
                 break
             }
@@ -158,7 +159,7 @@ extension PlaySongListView: UITableViewDelegate,UITableViewDataSource {
         switch listViewType {
         case .songList:
              return dataArr.count
-        case .trackList:
+        case .trackList_main,.trackList_song:
              return trackArr.count
         }
     }
@@ -187,7 +188,7 @@ extension PlaySongListView: UITableViewDelegate,UITableViewDataSource {
         case .songList:
              self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
             break
-        case .trackList:
+        case .trackList_main,.trackList_song:
             if let getTrackListIdBlock = self.getTrackListIdBlock {
                 getTrackListIdBlock(trackArr[indexPath.row].id ?? 0, trackArr[indexPath.row].name ?? "")
             }

@@ -197,7 +197,7 @@ class ContentSingsVC: XBBaseViewController {
         }
         let v = PlaySongListView.loadFromNib()
         v.lbTitleDes.set_text = "添加至"
-        v.listViewType = .trackList
+        v.listViewType = .trackList_song
         v.trackArr = self.trackList
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
