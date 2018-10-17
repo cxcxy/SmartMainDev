@@ -131,34 +131,34 @@ class ContentSingCell: BaseTableViewCell {
      *   增加歌曲到预制列表中
      */
     func requestAddSingWithList(listId: Int,listName: String)  {
-        guard let m = self.modelData,let headerInfo = self.headerInfo else {
-            XBHud.showMsg("所需信息不全")
-            return
-        }
-        let req_model = AddSongTrackReqModel()
-        if let arr = m.resId?.components(separatedBy: ":") {
-            if arr.count > 0 {
-                req_model.id = arr[1].toInt()
-            }
-        }
-        req_model.title = m.name
-        req_model.coverSmallUrl = ""
-        req_model.duration = m.length
-        req_model.albumTitle = headerInfo.name
-        req_model.albumCoverSmallUrl = headerInfo.imgSmall
-        req_model.url = m.content
-        req_model.downloadSize = 1
-        req_model.downloadUrl = m.content
-        Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, listId: listId, listName: listName, trackIds: [req_model]), successClosure: { (result, code, message) in
-            print(result)
-            if let str = result as? String {
-                if str == "ok" {
-                    XBHud.showMsg("加入成功")
-                }else if str == "duplicate" {
-                    XBHud.showMsg("歌单已经存在")
-                }
-            }
-        })
+//        guard let m = self.modelData,let headerInfo = self.headerInfo else {
+//            XBHud.showMsg("所需信息不全")
+//            return
+//        }
+//        let req_model = AddSongTrackReqModel()
+//        if let arr = m.resId?.components(separatedBy: ":") {
+//            if arr.count > 0 {
+//                req_model.id = arr[1].toInt()
+//            }
+//        }
+//        req_model.title = m.name
+//        req_model.coverSmallUrl = ""
+//        req_model.duration = m.length
+//        req_model.albumTitle = headerInfo.name
+//        req_model.albumCoverSmallUrl = headerInfo.imgSmall
+//        req_model.url = m.content
+//        req_model.downloadSize = 1
+//        req_model.downloadUrl = m.content
+//        Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, listId: listId, listName: listName, trackIds: [req_model]), successClosure: { (result, code, message) in
+//            print(result)
+//            if let str = result as? String {
+//                if str == "ok" {
+//                    XBHud.showMsg("加入成功")
+//                }else if str == "duplicate" {
+//                    XBHud.showMsg("歌单已经存在")
+//                }
+//            }
+//        })
     }
     /**
      *   从预制列表中删除

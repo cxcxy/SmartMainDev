@@ -156,6 +156,9 @@
 		043E1197213FC1090067ADF3 /* ContentSingHaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E1196213FC1090067ADF3 /* ContentSingHaderView.xib */; };
 		043E119A213FCCAC0067ADF3 /* ContentSingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */; };
 		043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */; };
+		044CED0A2176C8180068C75A /* ContentSubItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044CED082176C8180068C75A /* ContentSubItem.swift */; };
+		044CED0B2176C8180068C75A /* ContentSubItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044CED092176C8180068C75A /* ContentSubItem.xib */; };
+		044CED0D2176C8D80068C75A /* ContentSubVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044CED0C2176C8D80068C75A /* ContentSubVC.xib */; };
 		0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460495821536D7A00BEDCD6 /* LoginViewModel.swift */; };
 		0460495B2153839400BEDCD6 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460495A2153839400BEDCD6 /* DrawerViewController.swift */; };
 		046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */; };
@@ -647,6 +650,9 @@
 		043E1196213FC1090067ADF3 /* ContentSingHaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingHaderView.xib; sourceTree = "<group>"; };
 		043E1198213FCCAC0067ADF3 /* ContentSingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSingCell.swift; sourceTree = "<group>"; };
 		043E1199213FCCAC0067ADF3 /* ContentSingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingCell.xib; sourceTree = "<group>"; };
+		044CED082176C8180068C75A /* ContentSubItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSubItem.swift; sourceTree = "<group>"; };
+		044CED092176C8180068C75A /* ContentSubItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSubItem.xib; sourceTree = "<group>"; };
+		044CED0C2176C8D80068C75A /* ContentSubVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSubVC.xib; sourceTree = "<group>"; };
 		0460495821536D7A00BEDCD6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0460495A2153839400BEDCD6 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
 		0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
@@ -1847,6 +1853,7 @@
 				04C389F8213E33330063A799 /* ContentMainVC.swift */,
 				04C389FA213E5FC80063A799 /* ContentVC.swift */,
 				2DC95599213ECD62004D6F65 /* ContentSubVC.swift */,
+				044CED0C2176C8D80068C75A /* ContentSubVC.xib */,
 				043E118E213FB8FE0067ADF3 /* ContentSingsVC.swift */,
 				043E118F213FB8FE0067ADF3 /* ContentSingsVC.xib */,
 				04C38A0E213E6ED60063A799 /* LikeViewController.swift */,
@@ -1901,6 +1908,8 @@
 				0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */,
 				04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */,
 				04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */,
+				044CED082176C8180068C75A /* ContentSubItem.swift */,
+				044CED092176C8180068C75A /* ContentSubItem.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2192,6 +2201,7 @@
 				04C38A19213E79240063A799 /* SearchViewController.xib in Resources */,
 				2DC955A4213FFA98004D6F65 /* RegisterViewController.xib in Resources */,
 				042EEF692150E15F00DBD492 /* MWPhotoBrowser.bundle in Resources */,
+				044CED0B2176C8180068C75A /* ContentSubItem.xib in Resources */,
 				04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */,
 				0402E77B215E19FA0040919C /* VolumeControlView.xib in Resources */,
 				04C38A15213E6FE70063A799 /* ContentShowThreeCell.xib in Resources */,
@@ -2205,6 +2215,7 @@
 				2D312AA2213D560100FCC499 /* Assets.xcassets in Resources */,
 				2D312AA0213D560100FCC499 /* Main.storyboard in Resources */,
 				0460496D215398D800BEDCD6 /* DrawerViewController.xib in Resources */,
+				044CED0D2176C8D80068C75A /* ContentSubVC.xib in Resources */,
 				2D83D40E215E4D8D0097900F /* MemberCVCell.xib in Resources */,
 				0413BED021424BC9006E3A44 /* MemberManagerVC.xib in Resources */,
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
@@ -2482,6 +2493,7 @@
 				042EEF432150E15F00DBD492 /* MWCaptionView.m in Sources */,
 				04C38722213E093F0063A799 /* XBEmptyManager.swift in Sources */,
 				042EEF1B2150E15F00DBD492 /* EaseChineseToPinyin.m in Sources */,
+				044CED0A2176C8180068C75A /* ContentSubItem.swift in Sources */,
 				04C3872D213E093F0063A799 /* UILabel+.swift in Sources */,
 				04C3897E213E0B5A0063A799 /* XBBaseNavigation.swift in Sources */,
 				042EEF522150E15F00DBD492 /* PSTCollectionViewUpdateItem.m in Sources */,

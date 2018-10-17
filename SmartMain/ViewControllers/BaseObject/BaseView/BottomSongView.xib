@@ -28,13 +28,10 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D24-47-9Iv">
                             <rect key="frame" x="250" y="17.5" width="110" height="30"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUt-2R-hIx">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifP-43-QK0">
                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="L5t-zS-mDM"/>
-                                    </constraints>
-                                    <state key="normal" image="icon_play_up">
+                                    <state key="normal" title="下" image="icon_play_down">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
@@ -51,10 +48,13 @@
                                     </state>
                                     <state key="selected" title="暂停" image="icon_pause"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifP-43-QK0">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUt-2R-hIx">
                                     <rect key="frame" x="80" y="0.0" width="30" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="下" image="icon_play_down">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="L5t-zS-mDM"/>
+                                    </constraints>
+                                    <state key="normal" image="icon_songList">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
@@ -97,8 +97,8 @@
             <connections>
                 <outlet property="bottomView" destination="7NH-6Q-YJL" id="sj3-jt-X45"/>
                 <outlet property="btnDown" destination="ifP-43-QK0" id="jQG-Di-ko0"/>
-                <outlet property="btnOn" destination="nUt-2R-hIx" id="UXh-zD-BRX"/>
                 <outlet property="btnPlay" destination="nus-2G-2Ri" id="xrP-8R-M0V"/>
+                <outlet property="btnTrackList" destination="nUt-2R-hIx" id="ewa-TP-zZk"/>
                 <outlet property="imgSong" destination="Zh0-2T-A0A" id="rw8-To-Ehk"/>
                 <outlet property="lbSingsTitle" destination="HWj-ja-Heu" id="Sc5-Xl-9hw"/>
             </connections>
@@ -110,6 +110,6 @@
         <image name="icon_photo" width="180" height="180"/>
         <image name="icon_play" width="83" height="82"/>
         <image name="icon_play_down" width="48" height="48"/>
-        <image name="icon_play_up" width="48" height="48"/>
+        <image name="icon_songList" width="28" height="28"/>
     </resources>
 </document>

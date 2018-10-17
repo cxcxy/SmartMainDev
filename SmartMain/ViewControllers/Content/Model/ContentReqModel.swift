@@ -91,6 +91,8 @@ class ConetentSingModel: XBDataModel {
     var playUrls: ConetentSingPlayModel?
     var type: Int?
     var name: String?
+    var isExpanded: Bool = false // 是否展开
+    var isPlay: Bool = false // 是否播放
     override func mapping(map: Map) {
         length             <-    map["length"]
         content             <-    map["content"]

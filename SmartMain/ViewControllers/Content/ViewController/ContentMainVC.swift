@@ -160,7 +160,7 @@ class ContentMainVC: XBBaseViewController {
     }
     // 获取歌曲详情
     func requestSingsDetail(trackId: Int)  {
-        Net.requestWithTarget(.getSingDetail(trackId: trackId), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.getSingDetail(trackId: trackId),isShowLoding: false,isDissmissLoding: false, successClosure: { (result, code, message) in
             
             guard let result = result as? String else {
                 return
@@ -191,9 +191,9 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             self.bottomSongView.btnPlay.isSelected ?  self.scoketModel.sendPausePlay() : self.scoketModel.sendResumePlay()
         }
-        bottomSongView.btnOn.addAction {[weak self] in
+        bottomSongView.btnTrackList.addAction {[weak self] in
             guard let `self` = self else { return }
-            self.scoketModel.sendSongOn()
+            self.requestTrackList()
         }
         bottomSongView.btnDown.addAction {[weak self] in
             guard let `self` = self else { return }
@@ -201,13 +201,33 @@ class ContentMainVC: XBBaseViewController {
         }
     }
     //MARK: 底部弹出播放列表
-    func showTrackListView(trackListId: Int)  {
+    func showTrackListView(trackList: [EquipmentModel])  {
         let v = PlaySongListView.loadFromNib()
-        v.trackListId = 3709
+        v.listViewType = .trackList
+        v.trackArr = trackList
         v.show()
+    }
+    func requestTrackList()  {
+        guard XBUserManager.device_Id != "" else {
+            self.loading = true
+            endRefresh()
+            return
+        }
+        
+        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+                self.loading = true
+                self.endRefresh()
+                self.showTrackListView(trackList: arr)
+            }
+        }) { (errorMsg) in
+ 
+            self.endRefresh()
+        }
     }
     //MARK: 配置底部 播放view
     func configBottomSongView(singsDetail: SingDetailModel)  {
+        
         bottomSongView.lbSingsTitle.set_text = singsDetail.title
         bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
         
@@ -232,6 +252,7 @@ class ContentMainVC: XBBaseViewController {
                 XBHud.showMsg("当前设备不在线")
             }
         }
+        
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()

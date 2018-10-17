@@ -28,13 +28,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LnT-ZM-Cv8">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9V-6p-IBC">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9V-6p-IBC">
                                                 <rect key="frame" x="35" y="12.5" width="20" height="20"/>
-                                                <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="PPe-sU-ir5"/>
                                                     <constraint firstAttribute="height" constant="20" id="ilZ-zn-7c3"/>
                                                 </constraints>
+                                                <state key="normal" image="icon_tracklist"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加到播单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtJ-fk-HBb">
                                                 <rect key="frame" x="65" y="16.5" width="51.5" height="12"/>
@@ -78,8 +79,8 @@
                                                 <state key="normal" image="icon_unlike"/>
                                                 <state key="selected" image="icon_like"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收藏到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3db-ox-e7L">
-                                                <rect key="frame" x="65" y="16" width="31" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3db-ox-e7L">
+                                                <rect key="frame" x="65" y="16" width="20.5" height="12"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -168,6 +169,7 @@
     <resources>
         <image name="icon_exp" width="16" height="16"/>
         <image name="icon_like" width="22" height="20"/>
+        <image name="icon_tracklist" width="14" height="16"/>
         <image name="icon_unlike" width="16" height="13"/>
     </resources>
 </document>

@@ -30,6 +30,10 @@ class VCRouter {
             return topViewController
         }
     }
+    class func toPlayVC()  {
+        let vc = SmartPlayerViewController()
+        topVC?.pushVC(vc)
+    }
     // MARK: - 跳转设备设置
     class func toEquipmentSettingVC() {
         

@@ -49,7 +49,7 @@ enum RequestApi{
     case copyToNewTrackList(req: [String: Any])
     case moveToNewTrackList(req: [String: Any])
     case removeSingsList(deviceId: String, listId:Int, trackIds:[String])
-    case addSongToList(deviceId: String, listId:Int, listName: String, trackIds:[AddSongTrackReqModel])
+    case addSongToList(deviceId: String, trackId:Int, trackName: String, trackIds:[AddSongTrackReqModel])
     case addTrackList(req: [String: Any])
     case deleteTrackList(req: [String: Any])
     case deleteLikeSing(req: [String: Any])

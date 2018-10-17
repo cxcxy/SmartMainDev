@@ -11,7 +11,7 @@ enum BottomListViewType {
     case trackList  // 预制列表
     case songList   // 歌单列表
 }
-typealias BottomGetTrackListId = (_ trackId: Int) -> ()
+typealias BottomGetTrackListId = (_ trackId: Int, _ trackName: String) -> ()
 class PlaySongListView: ETPopupView {
     
     @IBOutlet weak var lbTitleDes: UILabel!
@@ -189,7 +189,7 @@ extension PlaySongListView: UITableViewDelegate,UITableViewDataSource {
             break
         case .trackList:
             if let getTrackListIdBlock = self.getTrackListIdBlock {
-                getTrackListIdBlock(trackArr[indexPath.row].id ?? 0)
+                getTrackListIdBlock(trackArr[indexPath.row].id ?? 0, trackArr[indexPath.row].name ?? "")
             }
             break
         }

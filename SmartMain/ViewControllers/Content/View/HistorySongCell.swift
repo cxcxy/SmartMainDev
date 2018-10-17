@@ -7,14 +7,32 @@
 //
 
 import UIKit
-
+enum SongsIconType {
+    case songList_play
+    case songList_pause
+    case likeList
+}
 class HistorySongCell: BaseTableViewCell {
-    
+//    @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var btnExtension: UIButton!
-    
+    var iconType: SongsIconType = .likeList {
+        didSet {
+            switch iconType {
+            case .songList_play:
+                imgIcon.set_img = "icon_list_play"
+                break
+            case .songList_pause:
+                imgIcon.set_img = "icon_list_pause"
+                break
+            case .likeList:
+                imgIcon.set_img = "icon_play_song"
+                break
+            }
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
