@@ -65,7 +65,8 @@ class EquipmentSingModel: XBDataModel {
     var downloadUrlHashCode: String?
     var downloadSize: Int?
     var status: Int?
-    
+    var isExpanded: Bool = false // 是否展开
+    var isPlay: Bool = false
     
     override func mapping(map: Map) {
         id             <-    map["id"]

@@ -17,16 +17,20 @@ class EquipmentSubListVC: XBBaseTableViewController {
     var viewModel = ContentViewModel()
     var viewDeviceModel = EquimentViewModel()
     var deviceOnline:Bool = false
+    var scoketModel = ScoketMQTTManager.share
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     override func setUI() {
         super.setUI()
-        self.registerCells(register_cells: ["ContentSingCell"])
+        self.registerCells(register_cells: ["ContentSingCell",
+                                            "HistorySongCell",
+                                            "HistorySongContentCell"])
         self.tableView.mj_header = self.mj_header
         
         request()
+        configCurrentSongsId()
 //        requestTrackList()
         ScoketMQTTManager.share.getSetDefaultMessage.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
@@ -36,7 +40,14 @@ class EquipmentSubListVC: XBBaseTableViewController {
             }
         }.disposed(by: rx_disposeBag)
     }
-
+    func configCurrentSongsId()  {
+        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getPalyingSingsId ===：", $0.element ?? 0)
+            
+            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
+            }.disposed(by: rx_disposeBag)
+    }
     override func request() {
         super.request()
         DeviceManager.isOnline { (isOnline, _) in
@@ -56,11 +67,29 @@ class EquipmentSubListVC: XBBaseTableViewController {
                 self.dataArr += arr
                 self.total = JSON.init(parseJSON: result as! String)["totalCount"].int
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
             }
            
         })
+    }
+    
+    func mapSongsArrPlayingStatus(songId: Int)  {
+        self.dataArr.forEachEnumerated { (index, item) in
+//            if let arr = item.resId?.components(separatedBy: ":") {
+//                if arr.count > 0 {
+                    if let song_Id = item.id {
+                        if song_Id == songId {
+                            item.isPlay = true
+                        }else {
+                            item.isPlay = false
+                        }
+                    }
+//                }
+//            }
+        }
+        self.tableView.reloadData()
     }
     func starAnimationWithTableView(tableView: UITableView) {
   
@@ -121,13 +150,24 @@ class EquipmentSubListVC: XBBaseTableViewController {
 }
 extension EquipmentSubListVC {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return dataArr.count
     }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let m  = dataArr[section]
+        return m.isExpanded ? 2 : 1
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        if section == 0 {
+            return 50
+        }
+        return XBMin
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 0 else {
+            return nil
+        }
         let v = TrackListHeaderView.loadFromNib()
         v.btnDefault.addAction {[weak self] in
             guard let `self` = self else { return }
@@ -141,17 +181,98 @@ extension EquipmentSubListVC {
         return v
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
-        cell.singModelData = dataArr[indexPath.row]
-        cell.listId = self.trackListId
-        cell.lbLineNumber.set_text = (indexPath.row + 1).toString
-        cell.setArr = ["添加到播单","收藏","删除"]
-        cell.trackList = self.trackList
-        return cell
+        if indexPath.row == 0 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+            let m  = dataArr[indexPath.section]
+            cell.lbTitle.set_text = m.title
+            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
+            cell.btnExtension.isSelected = m.isExpanded
+            cell.iconType = m.isPlay ? .songList_pause : .songList_play
+            cell.btnExtension.addAction {[weak self] in
+                guard let `self` = self else { return }
+                self.clickExtensionAction(indexPath: indexPath)
+            }
+            cell.imgIcon.addTapGesture {[weak self] (sender) in
+                guard let `self` = self else { return }
+                if m.isPlay { // 当前正在播放， 跳转播放器页面
+//                    VCRouter.toPlayVC()
+                }else {
+                    self.requestOnlineSing(trackId: m.id?.toString ?? "")
+                }
+                
+            }
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+            let m  = dataArr[indexPath.section]
+            cell.viewAdd.isHidden = true
+            cell.viewLike.addTapGesture {[weak self]  (sender) in
+                guard let `self` = self else { return }
+                self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
+            }
+            cell.viewDel.addTapGesture {[weak self] (sender) in
+                guard let `self` = self else { return }
+                self.requestDeleteSingWithList(trackId: m.id?.toString ?? "")
+            }
+            return cell
+        }
+
+    }
+ 
+    /**
+     *   从预制列表中删除
+     */
+    func requestDeleteSingWithList(trackId: String)  {
+        Net.requestWithTarget(.removeSingsList(deviceId: XBUserManager.device_Id, listId: self.trackListId, trackIds: [trackId]), successClosure: { (result, code, message) in
+            print(result)
+            if let str = result as? String {
+                if str == "ok" {
+                    XBHud.showMsg("删除成功")
+                }else {
+                    XBHud.showMsg("删除失败")
+                }
+            }
+        })
+    }
+    /**
+     *   收藏歌曲
+     */
+    func requestLikeSing(songId: Int?,duration: Int, title: String)  {
+        guard let songId = songId else {
+            XBHud.showMsg("当前歌曲ID错误")
+            return
+        }
+        var params_task = [String: Any]()
+        params_task["openId"] = XBUserManager.userName
+        params_task["trackId"]  = songId
+        params_task["duration"] = duration
+        params_task["title"]    = title
+        Net.requestWithTarget(.saveLikeSing(req: params_task), successClosure: { (result, code, message) in
+            print(result)
+            if let str = result as? String {
+                if str == "ok" {
+                    XBHud.showMsg("收藏成功")
+                }else {
+                    XBHud.showMsg("收藏失败")
+                }
+            }
+        })
         
     }
-    
+    func clickExtensionAction(indexPath: IndexPath)  {
+        
+        if indexPath.row == 0 {
+            let m  = dataArr[indexPath.section]
+            m.isExpanded = !m.isExpanded
+            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+        }
+        if indexPath.row == 1 {
+            let m  = dataArr[indexPath.section]
+  
+        }
+        
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard self.deviceOnline else {
             XBHud.showMsg("当前设备不在线")
