@@ -43,6 +43,10 @@ class ContentSingsVC: XBBaseViewController {
         request()
         requestTrackList()
         configCurrentSongsId()
+        makeCustomerImageNavigationItem("icon_music_white", left: false) { [weak self] in
+            guard let `self` = self else { return }
+            VCRouter.toPlayVC()
+        }
     }
     //MARK: 配置顶部信息
     func configTopHeadeaInfp(model: ConetentSingAlbumModel!)  {

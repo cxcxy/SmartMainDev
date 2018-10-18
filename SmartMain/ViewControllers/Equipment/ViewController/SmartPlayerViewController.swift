@@ -105,7 +105,7 @@ class SmartPlayerViewController: XBBaseViewController {
         setSiderThumeImage()
         scoketModel.sendGetTrack()
         scoketModel.sendGetMode()
-        scoketModel.sendPlayStatus()
+        
         scoketModel.sendGetVolume()
         
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
@@ -131,8 +131,22 @@ class SmartPlayerViewController: XBBaseViewController {
 //            self.sliderProgress.setValue(Float($0.element ?? 0), animated: true)
             self.currentSongProgress = $0.element ?? 0
         }.disposed(by: rx_disposeBag)
-        
-        scoketModel.playStatus.asObserver().bind(to: btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
+        scoketModel.playStatus.asObserver().subscribe { [weak self](status) in
+            guard let `self` = self else { return }
+            if let status = status.element {
+                
+                if status { // 正在播放
+                    self.btnPlay.isSelected = true
+                    self.resetTimer()
+                    self.configTimer(songDuration: self.allTimer, isPlay: true)
+                    self.scoketModel.sendGetPlayProgress()
+                }else { // 暂停了
+                    self.btnPlay.isSelected = false
+                    self.resetTimer()
+                }
+            }
+        }.disposed(by: rx_disposeBag)
+//        scoketModel.playStatus.asObserver().bind(to: btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
         scoketModel.repeatStatus.asObserver().bind(to: btnRepeat.rx.isSelected).disposed(by: rx_disposeBag)
         
         //MARK: 测试用
@@ -140,12 +154,12 @@ class SmartPlayerViewController: XBBaseViewController {
         
         
     }
-    func configTimer(songDuration: Float)  {
+    func configTimer(songDuration: Float, isPlay: Bool = false)  {
 //        guard let `self` = self else { return }
         
         self.allTimer = songDuration
-        if self.isFirst == false { // 当是第一次进去的时候
-            self.scoketModel.sendGetPlayProgress()
+        if self.isFirst == false || isPlay{ // 当是第一次进去的时候 或者从暂停，到播放
+//            self.scoketModel.sendGetPlayProgress()
             self.isFirst = true
         }else {
             self.currentSongProgress = 0 // 当发现切换歌曲的时候， 播放 从 0 开始
@@ -181,7 +195,7 @@ class SmartPlayerViewController: XBBaseViewController {
      **/
     @objc func tickDown()
     {
-        print(currentSongProgress)
+//        print(currentSongProgress)
         
         currentSongProgress      = currentSongProgress + 1
         if currentSongProgress >= Int(allTimer) { // 当前歌曲播放完毕
@@ -232,6 +246,7 @@ class SmartPlayerViewController: XBBaseViewController {
             }
         })
     }
+    //MARK: 获取歌曲详情
     func requestSingsDetail(trackId: Int)  {
         Net.requestWithTarget(.getSingDetail(trackId: trackId), successClosure: { [weak self] (result, code, message) in
             guard let `self` = self else { return }
@@ -240,7 +255,10 @@ class SmartPlayerViewController: XBBaseViewController {
             }
             
             self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
-            
+            self.allTimer = Float(self.currentSongModel?.duration ?? 0)
+            self.resetTimer()
+            // 获取播放状态
+            self.scoketModel.sendPlayStatus()
         })
     }
     func configUI(singsDetail: SingDetailModel) {
@@ -250,7 +268,7 @@ class SmartPlayerViewController: XBBaseViewController {
         self.resetTimer()
         
         // 计时器开始工作
-        self.configTimer(songDuration: Float(singsDetail.duration ?? 0))
+//        self.configTimer(songDuration: Float(singsDetail.duration ?? 0))
     }
 
     @IBAction func clickRepeatAction(_ sender: Any) {

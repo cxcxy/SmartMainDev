@@ -16,7 +16,7 @@ class HistoryViewController: XBBaseViewController {
      var viewModel = ContentViewModel()
     var trackList: [EquipmentModel] = [] // 预制列表数据model
     var dataArr: [ConetentLikeModel] = []
-    
+     var scoketModel = ScoketMQTTManager.share
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let currentDeviceId = currentDeviceId else {
@@ -41,6 +41,7 @@ class HistoryViewController: XBBaseViewController {
             self.request()
         })
         request()
+        configCurrentSongsId()
     }
     override func request() {
         super.request()
@@ -59,6 +60,7 @@ class HistoryViewController: XBBaseViewController {
                 self.loading = true
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
             }
@@ -70,6 +72,27 @@ class HistoryViewController: XBBaseViewController {
             }
             self.endRefresh()
         }
+    }
+    func configCurrentSongsId()  {
+        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getPalyingSingsId ===：", $0.element ?? 0)
+            
+            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
+            }.disposed(by: rx_disposeBag)
+    }
+    //    m.trackId
+    func mapSongsArrPlayingStatus(songId: Int)  {
+        self.dataArr.forEachEnumerated { (index, item) in
+            if let song_Id = item.trackId {
+                if song_Id == songId {
+                    item.isPlay = true
+                }else {
+                    item.isPlay = false
+                }
+            }
+        }
+        self.tableView.reloadData()
     }
     func starAnimationWithTableView(tableView: UITableView) {
         //        table
@@ -183,13 +206,19 @@ extension HistoryViewController {
             cell.lbTitle.set_text = m.title
             cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
             cell.btnExtension.isSelected = m.isExpanded
+            cell.iconType = m.isPlay ? .songList_pause : .songList_play
             cell.btnExtension.addAction {[weak self] in
                 guard let `self` = self else { return }
                 self.clickExtensionAction(indexPath: indexPath)
             }
             cell.imgIcon.addTapGesture {[weak self] (sender) in
                 guard let `self` = self else { return }
-                VCRouter.toPlayVC()
+                if m.isPlay { // 当前正在播放， 跳转播放器页面
+                    VCRouter.toPlayVC()
+                }else {
+                    self.requestOnlineSing(trackId: m.trackId?.toString ?? "")
+                }
+                
             }
             return cell
         }else {

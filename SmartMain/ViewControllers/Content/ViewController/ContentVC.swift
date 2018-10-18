@@ -137,9 +137,13 @@ extension ContentVC {
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 4 {
+            let dataModel = dataArr[section - 1]
             let v = SingSongSectionHeader.loadFromNib()
             let sectionModel = dataArr[section - 1]
             v.lbTitle.set_text = sectionModel.name
+            v.btnAll.addAction {
+                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, modouleId: dataModel.id, navTitle: dataModel.name)
+            }
             return v
         }
         return nil
@@ -159,6 +163,16 @@ extension ContentVC {
 ////        vc.modouleId = modouleId
 //        vc.title = "222"
 //        self.pushVC(vc)
+        if indexPath.section == 4 {
+            let sectionModel = dataArr[indexPath.section - 1]
+            let contentArr = sectionModel.contents ?? []
+            let model = contentArr[indexPath.row]
+            if model.albumType == 2 {
+                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
+            }else {
+                VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+            }
+        }
     }
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //设置cell的显示动画为3D缩放

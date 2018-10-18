@@ -205,6 +205,13 @@ class ContentMainVC: XBBaseViewController {
         let v = PlaySongListView.loadFromNib()
         v.listViewType = .trackList_main
         v.trackArr = trackList
+        v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
+            guard let `self` = self else { return }
+            v.hide()
+//            let model = dataArr[indexPath.row]
+            VCRouter.toEquipmentSubListVC(trackListId: trackId,navTitle: trackName,trackList: trackList)
+            
+        }
         v.show()
     }
     func requestTrackList()  {

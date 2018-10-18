@@ -30,6 +30,10 @@ class ContentSubVC: XBBaseViewController {
 //        self.cofigMjHeader()
         request()
         view.backgroundColor = UIColor.init(hexString: "CDE5B2")
+        makeCustomerImageNavigationItem("icon_music_white", left: false) { [weak self] in
+            guard let `self` = self else { return }
+            VCRouter.toPlayVC()
+        }
     }
     func configCollectionView()  {
         collectionView.cellId_register("ContentSubItem")

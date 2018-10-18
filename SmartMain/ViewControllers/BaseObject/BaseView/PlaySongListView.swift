@@ -188,7 +188,12 @@ extension PlaySongListView: UITableViewDelegate,UITableViewDataSource {
         case .songList:
              self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
             break
-        case .trackList_main,.trackList_song:
+        case .trackList_song:
+            if let getTrackListIdBlock = self.getTrackListIdBlock {
+                getTrackListIdBlock(trackArr[indexPath.row].id ?? 0, trackArr[indexPath.row].name ?? "")
+            }
+            break
+        case .trackList_main:
             if let getTrackListIdBlock = self.getTrackListIdBlock {
                 getTrackListIdBlock(trackArr[indexPath.row].id ?? 0, trackArr[indexPath.row].name ?? "")
             }

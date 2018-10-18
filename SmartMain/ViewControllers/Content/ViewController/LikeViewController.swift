@@ -11,6 +11,7 @@ import UIKit
 class LikeViewController: XBBaseTableViewController {
     var dataArr: [ConetentLikeModel] = []
     var viewModel = ContentViewModel()
+    var scoketModel = ScoketMQTTManager.share
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.cellId_register("HistorySongCell")
@@ -21,6 +22,7 @@ class LikeViewController: XBBaseTableViewController {
         super.setUI()
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         request()
+          configCurrentSongsId()
     }
     override func request() {
         super.request()
@@ -37,6 +39,7 @@ class LikeViewController: XBBaseTableViewController {
                 }
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
             }
@@ -48,6 +51,27 @@ class LikeViewController: XBBaseTableViewController {
             }
             self.endRefresh()
         }
+    }
+    func configCurrentSongsId()  {
+        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getPalyingSingsId ===：", $0.element ?? 0)
+            
+            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
+            }.disposed(by: rx_disposeBag)
+    }
+//    m.trackId
+    func mapSongsArrPlayingStatus(songId: Int)  {
+        self.dataArr.forEachEnumerated { (index, item) in
+                if let song_Id = item.trackId {
+                    if song_Id == songId {
+                    item.isPlay = true
+                }else {
+                    item.isPlay = false
+                }
+            }
+        }
+        self.tableView.reloadData()
     }
     func starAnimationWithTableView(tableView: UITableView) {
         //        table
@@ -79,24 +103,33 @@ extension LikeViewController {
             cell.lbTitle.set_text = m.title
             cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
             cell.btnExtension.isSelected = m.isExpanded
+            cell.iconType = m.isPlay ? .songList_pause : .songList_play
             cell.btnExtension.addAction {[weak self] in
                 guard let `self` = self else { return }
                 self.clickExtensionAction(indexPath: indexPath)
             }
             cell.imgIcon.addTapGesture {[weak self] (sender) in
                 guard let `self` = self else { return }
-                VCRouter.toPlayVC()
+                if m.isPlay { // 当前正在播放， 跳转播放器页面
+                    VCRouter.toPlayVC()
+                }else {
+                    self.requestOnlineSing(trackId: m.trackId?.toString ?? "")
+                }
+                
             }
+
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+            let m  = dataArr[indexPath.section]
             cell.viewAdd.isHidden = true
             cell.viewDel.isHidden = true
             cell.lbLike.set_text = "取消收藏"
             cell.btnLike.isSelected = true
-//            cell.viewLike.addTapGesture {[weak self] (sender) in
-//
-//            }
+            cell.viewLike.addTapGesture {[weak self] (sender) in
+                guard let `self` = self else { return }
+                self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
+            }
             return cell
         }
     }
@@ -105,8 +138,7 @@ extension LikeViewController {
             XBHud.showMsg("请先绑定设备")
             return
         }
-//        self.requestOnlineSing(trackId: dataArr[indexPath.section].trackId?.toString ?? "")
-        self.clickExtensionAction(indexPath: indexPath)
+//        self.clickExtensionAction(indexPath: indexPath)
         
     }
     func clickExtensionAction(indexPath: IndexPath)  {
