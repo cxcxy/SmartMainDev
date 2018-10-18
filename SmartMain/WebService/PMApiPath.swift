@@ -96,6 +96,9 @@ extension RequestApi {
         case .getNetVoice:                  return "/sinvoice/set.do"
         // 群组成员操作
         case .quitGroup(let byAdmin, _):                  return "/suportAPP/familymember/quit.do?byAdmin=\(byAdmin)"
+            
+        case .getAppVersion: return "/suportAPP/getNewVersion.do"
+
         default:
             return ""
         }

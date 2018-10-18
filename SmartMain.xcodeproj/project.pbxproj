@@ -199,6 +199,13 @@
 		0485CCB92148BC3300F54927 /* ScoketMQTTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */; };
 		0485CCBC2148F7EC00F54927 /* SmartPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */; };
 		0485CCBD2148F7EC00F54927 /* SmartPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */; };
+		0495F17121783154002FB1F8 /* XBUpdateHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0495F16B21783154002FB1F8 /* XBUpdateHead.xib */; };
+		0495F17221783154002FB1F8 /* XBUpdateVersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495F16C21783154002FB1F8 /* XBUpdateVersionView.swift */; };
+		0495F17321783154002FB1F8 /* XBUpdateVersionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0495F16D21783154002FB1F8 /* XBUpdateVersionView.xib */; };
+		0495F17421783154002FB1F8 /* XBUpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0495F16E21783154002FB1F8 /* XBUpdateCell.xib */; };
+		0495F17521783154002FB1F8 /* XBUpdateHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495F16F21783154002FB1F8 /* XBUpdateHead.swift */; };
+		0495F17621783154002FB1F8 /* XBUpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495F17021783154002FB1F8 /* XBUpdateCell.swift */; };
+		0495F178217831AA002FB1F8 /* XBUpdateVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495F177217831AA002FB1F8 /* XBUpdateVersionManager.swift */; };
 		04A5E628216ED99F00CFCE4B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E627216ED99F00CFCE4B /* UserModel.swift */; };
 		04A5E62B216EF4D100CFCE4B /* DeviceChooseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E629216EF4D100CFCE4B /* DeviceChooseCell.swift */; };
 		04A5E62C216EF4D100CFCE4B /* DeviceChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */; };
@@ -698,6 +705,13 @@
 		0485CCB82148BC3300F54927 /* ScoketMQTTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoketMQTTManager.swift; sourceTree = "<group>"; };
 		0485CCBA2148F7EC00F54927 /* SmartPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPlayerViewController.swift; sourceTree = "<group>"; };
 		0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartPlayerViewController.xib; sourceTree = "<group>"; };
+		0495F16B21783154002FB1F8 /* XBUpdateHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBUpdateHead.xib; sourceTree = "<group>"; };
+		0495F16C21783154002FB1F8 /* XBUpdateVersionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBUpdateVersionView.swift; sourceTree = "<group>"; };
+		0495F16D21783154002FB1F8 /* XBUpdateVersionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBUpdateVersionView.xib; sourceTree = "<group>"; };
+		0495F16E21783154002FB1F8 /* XBUpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBUpdateCell.xib; sourceTree = "<group>"; };
+		0495F16F21783154002FB1F8 /* XBUpdateHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBUpdateHead.swift; sourceTree = "<group>"; };
+		0495F17021783154002FB1F8 /* XBUpdateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBUpdateCell.swift; sourceTree = "<group>"; };
+		0495F177217831AA002FB1F8 /* XBUpdateVersionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBUpdateVersionManager.swift; sourceTree = "<group>"; };
 		04A5E627216ED99F00CFCE4B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		04A5E629216EF4D100CFCE4B /* DeviceChooseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceChooseCell.swift; sourceTree = "<group>"; };
 		04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceChooseCell.xib; sourceTree = "<group>"; };
@@ -1552,6 +1566,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		0495F16A21783154002FB1F8 /* UpdateView */ = {
+			isa = PBXGroup;
+			children = (
+				0495F177217831AA002FB1F8 /* XBUpdateVersionManager.swift */,
+				0495F16F21783154002FB1F8 /* XBUpdateHead.swift */,
+				0495F16B21783154002FB1F8 /* XBUpdateHead.xib */,
+				0495F16C21783154002FB1F8 /* XBUpdateVersionView.swift */,
+				0495F16D21783154002FB1F8 /* XBUpdateVersionView.xib */,
+				0495F17021783154002FB1F8 /* XBUpdateCell.swift */,
+				0495F16E21783154002FB1F8 /* XBUpdateCell.xib */,
+			);
+			path = UpdateView;
+			sourceTree = "<group>";
+		};
 		04A5E626216ED98D00CFCE4B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1714,6 +1742,7 @@
 		04C38818213E0B590063A799 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				0495F16A21783154002FB1F8 /* UpdateView */,
 				04E537CA216DEF41002DE58C /* XBLoginOutView.swift */,
 				04E537CB216DEF41002DE58C /* XBLoginOutView.xib */,
 				2DCA869E21676779001F9E04 /* XBCustomItemLayout.swift */,
@@ -2172,6 +2201,7 @@
 				04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */,
 				0402E776215E18390040919C /* XBAddContactCell.xib in Resources */,
 				2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */,
+				0495F17421783154002FB1F8 /* XBUpdateCell.xib in Resources */,
 				2DBD88EA215D0B6A00BC543A /* EquipmentListViewController.xib in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
@@ -2180,6 +2210,7 @@
 				04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */,
 				043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */,
 				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
+				0495F17121783154002FB1F8 /* XBUpdateHead.xib in Resources */,
 				2DCA869D21676468001F9E04 /* ConfigNetCVCell.xib in Resources */,
 				2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */,
 				2DC955B1213FFE17004D6F65 /* MeInfoHaderCell.xib in Resources */,
@@ -2226,6 +2257,7 @@
 				2DF075B4217628E1006F0818 /* ContentNineGridItem.xib in Resources */,
 				2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */,
 				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
+				0495F17321783154002FB1F8 /* XBUpdateVersionView.xib in Resources */,
 				2DCA86A3216B81F2001F9E04 /* ChatRedView.xib in Resources */,
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
 				2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */,
@@ -2388,6 +2420,7 @@
 				04C38988213E0B5A0063A799 /* XBBaseModel.swift in Sources */,
 				0485CCA82148A89200F54927 /* MQTTConnAckPacket.swift in Sources */,
 				0485CCB12148A89200F54927 /* MQTTMessage.swift in Sources */,
+				0495F17621783154002FB1F8 /* XBUpdateCell.swift in Sources */,
 				042EEF8A2150E15F00DBD492 /* EaseUI.m in Sources */,
 				042EEF572150E15F00DBD492 /* PSTCollectionViewLayout.m in Sources */,
 				042EEF2E2150E15F00DBD492 /* MJRefreshNormalHeader.m in Sources */,
@@ -2476,6 +2509,7 @@
 				0485CCB02148A89200F54927 /* MQTTPubMsg.swift in Sources */,
 				2D20DB14215CEF8E002EF372 /* ContentViewModel.swift in Sources */,
 				2DF075AB21761D2A006F0818 /* ContentScrollCell.swift in Sources */,
+				0495F17521783154002FB1F8 /* XBUpdateHead.swift in Sources */,
 				0485CCB42148A89200F54927 /* MQTTPacket.swift in Sources */,
 				0485CCB32148A89200F54927 /* MQTTStreamable.swift in Sources */,
 				04C38736213E093F0063A799 /* BYFoundationLog.m in Sources */,
@@ -2520,6 +2554,7 @@
 				2DC955A3213FFA98004D6F65 /* RegisterViewController.swift in Sources */,
 				0485CCA72148A89200F54927 /* MQTTSubAckPacket.swift in Sources */,
 				04C38A25213E7FF40063A799 /* FSPagerViewLayoutAttributes.swift in Sources */,
+				0495F178217831AA002FB1F8 /* XBUpdateVersionManager.swift in Sources */,
 				042EEF472150E15F00DBD492 /* MWPhoto.m in Sources */,
 				2DF075BE21762FBB006F0818 /* SingSongSectionHeader.swift in Sources */,
 				04C3871B213E093F0063A799 /* XBNotificationManager.swift in Sources */,
@@ -2584,6 +2619,7 @@
 				042EEF532150E15F00DBD492 /* PSTGridLayoutSection.m in Sources */,
 				2D9195E02153DBA800F4A9A1 /* ChatCreateView.swift in Sources */,
 				0485CCB52148A89200F54927 /* MQTTDisconnectPacket.swift in Sources */,
+				0495F17221783154002FB1F8 /* XBUpdateVersionView.swift in Sources */,
 				042EEF6B2150E15F00DBD492 /* MBProgressHUD+Add.m in Sources */,
 				04C38727213E093F0063A799 /* XBUserManager.swift in Sources */,
 				042EEF582150E15F00DBD492 /* PSTGridLayoutItem.m in Sources */,

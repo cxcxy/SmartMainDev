@@ -74,6 +74,21 @@ public class XBUtil {
         }
         return resultDateStr
     }
+    
+    // 拼接图片url 后台定义的 以“,”间隔~~  类似于“a,b,c”
+    class func jointImgStr(imgArray:[String],spaceStr:String) -> String {
+        var imgStr = ""
+        for str in imgArray.enumerated(){
+            if str.offset == 0 {
+                imgStr = str.element
+            }else {
+                imgStr = imgStr + spaceStr + str.element
+            }
+            
+            
+        }
+        return imgStr
+    }
     // MARK: - 输入时间(特定)-输出时间(特定)
     public class func dateToDate(_ date: Date?, dateFormat: String?) -> Date? {
         let inputFormatter = DateFormatter()

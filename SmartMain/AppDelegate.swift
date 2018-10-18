@@ -31,9 +31,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         if (launchOptions == nil) {
 //            showADLaunchView()
+            requestCheakVersion()
         }
 
         return true
+    }
+    // 检查更新 接口
+    func requestCheakVersion() {
+        XBUpdateVersionManager.checkUpdateVersion { (versionType,versionModel) in
+            
+            guard let iosUrl = versionModel.iosurl else {
+                return
+            }
+            guard let urlString = URL.init(string: iosUrl) else{
+                return
+            }
+            if versionType == .oldVersion {
+                let v = XBUpdateVersionView.loadFromNib()
+                v.versionType   = versionType
+                v.versionModel  = versionModel
+                v.initOrigin()
+                v.clickActionTouchBlock = {(_ type: String) -> Void in
+                    if (type == "update") {
+                        
+                        UIApplication.shared.openURL(urlString)
+                        
+                    }
+                }
+                v.show()
+            }
+        }
     }
     //MARK: 弹出广告页
     func showADLaunchView()  {

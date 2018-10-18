@@ -60,6 +60,7 @@ enum RequestApi{
     case modifyNickname(req: [String: Any])
     case getNetVoice(req: [String: Any])
     case quitGroup(byAdmin: Bool, req: [String: Any])
+    case getAppVersion()
 }
 extension RequestApi {
     /**
@@ -237,7 +238,7 @@ extension RequestApi:TargetType{
     public var method:Moya.Method{
         switch self {
         case .getLikeList,.getHistoryList,.getTrackList,.getTrackSubList,.getDeviceIds,
-             .getEquimentInfo,.getFamilyMemberList,.getSingleTrack,.getSingDetail,.getBabyInfo,.getUserInfo:
+             .getEquimentInfo,.getFamilyMemberList,.getSingleTrack,.getSingDetail,.getBabyInfo,.getUserInfo,.getAppVersion:
             return .get
         default:
             return .post
