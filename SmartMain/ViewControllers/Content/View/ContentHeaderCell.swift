@@ -9,6 +9,7 @@
 import UIKit
 
 class ContentHeaderCell: BaseTableViewCell {
+    
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -19,13 +20,20 @@ class ContentHeaderCell: BaseTableViewCell {
         }
     }
     
-    var sourceArr: [String] = ["WechatIMG1275","WechatIMG1276","WechatIMG1277"]
+    
+    var sourceArr: [String] = [] {
+        didSet{
+            pagerView.reloadData()
+        }
+    }
     
     let itemWidth:CGFloat = ( MGScreenWidth - 20 - 30 ) / 4 // item 宽度
-//    @IBOutlet weak var collectionView: UICollectionView!
-    var dataArr: [EquipmentModel] = [] {
+
+    var dataArr: [ResourceBannerModel] = [] {
         didSet {
-//            collectionView.reloadData()
+            self.sourceArr =  dataArr.compactMap { (item) -> String in
+                return item.picture ?? ""
+            }
         }
     }
     override func awakeFromNib() {
@@ -56,7 +64,8 @@ extension ContentHeaderCell: FSPagerViewDataSource,FSPagerViewDelegate {
         cell.imageView?.clipsToBounds = true
         cell.imageView?.backgroundColor = UIColor.orange
         cell.imageView?.setCornerRadius(radius: 5)
-        cell.imageView?.set_img = sourceArr[index]
+//        cell.imageView?.set_img = sourceArr[index]
+        cell.imageView?.set_Img_Url(sourceArr[index])
         return cell
     }
     

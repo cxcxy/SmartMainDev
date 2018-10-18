@@ -99,6 +99,9 @@ extension RequestApi {
             
         case .getAppVersion: return "/suportAPP/getNewVersion.do"
 
+        case .getResourceAll: return "/turingGetResource.do?inter=open/category/list"
+            
+        case .getResourceBanner: return "/suportAPP/getBanner.do"
         default:
             return ""
         }

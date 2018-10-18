@@ -8,45 +8,34 @@
 
 import UIKit
 
-class ContentVC: XBBaseTableViewController {
-    var dataArr: [ModulesResModel] = []
+class ResourceAllVC: XBBaseTableViewController {
+    var dataArr: [ResourceAllModel] = []
     var dataTrackArr: [EquipmentModel] = []
-    var bannersArr: [ResourceBannerModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
+        
         tableView.cellId_register("ContentHeaderCell")
         tableView.cellId_register("ContentShowCell")
         tableView.cellId_register("ContentShowThreeCell")
         tableView.cellId_register("ContentScrollCell")
         tableView.cellId_register("ContentSingSongCell")
         
-        
         tableView.mj_header = self.mj_header
     }
     override func setUI() {
         super.setUI()
         request()
-        
     }
     override func request() {
         super.request()
-        
-        var params_task = [String: Any]()
-        params_task["clientId"] = XBUserManager.device_Id
-        params_task["tags"] = ["six"]
-        Net.requestWithTarget(.contentModules(req: params_task), successClosure: { (result, code, message) in
-            if let arr = Mapper<ModulesResModel>().mapArray(JSONObject:JSON(result)["modules"].arrayObject) {
-                let filterArr = arr.filter({ (item) -> Bool in
-                    if let contents = item.contents {
-                        return contents.count > 0
-                    }
-                    return false
-                })
-                self.dataArr = filterArr
-//                self.endRefresh()
-                self.requestResourceBanners()
-//                self.tableView.reloadData()
+
+        Net.requestWithTarget(.getResourceAll(), successClosure: { (result, code, message) in
+            if let arr = Mapper<ResourceAllModel>().mapArray(JSONObject:JSON(result)["body"].arrayObject) {
+
+                self.dataArr = arr
+                self.endRefresh()
+                self.tableView.reloadData()
             }
         }) { (errorMsg) in
             if errorMsg == ERROR_TIMEOUT {
@@ -57,34 +46,21 @@ class ContentVC: XBBaseTableViewController {
             self.endRefresh()
         }
     }
-    //MARK: 请求顶部banner 接口
-    func requestResourceBanners()  {
-        Net.requestWithTarget(.getResourceBanner(customer: "zhiban"), successClosure: { (result, code, message) in
-            if let obj = Net.filterStatus(jsonString: result) {
-                if let banners = Mapper<ResourceBannerModel>().mapArray(JSONObject: obj.object) {
-                    self.bannersArr = banners
-                    self.endRefresh()
-                    self.tableView.reloadData()
-                }
-            }
-        }) { (errorMsg) in
-
-        }
-    }
+    
     func starAnimationWithTableView(tableView: UITableView) {
-
+        
         if self.pageIndex == 1 {
             TableViewAnimationKit.show(with: .moveSpring, tableView: tableView)
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
 }
-extension ContentVC {
+extension ResourceAllVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         guard dataArr.count > 0 else {
             return 0
@@ -92,50 +68,47 @@ extension ContentVC {
         return dataArr.count > 6 ? 7 : dataArr.count + 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         if section == 4 {
             return 5
         }else {
             return 1
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentHeaderCell", for: indexPath) as! ContentHeaderCell
-            cell.dataArr = self.bannersArr
+            //            cell.dataArr = self.dataTrackArr
             return cell
         }
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentShowCell", for: indexPath) as! ContentShowCell
-//            cell.collectionDataArr = ["1","2","3","4"]
-            cell.dataModel = dataArr[indexPath.section - 1]
-//            let img = dataArr[0]
-            
+            cell.resourceModel = dataArr[indexPath.section - 1]
             return cell
         }
         if indexPath.section == 2 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentScrollCell", for: indexPath) as! ContentScrollCell
-            //            cell.collectionDataArr = ["1","2","3","4"]
-            cell.dataModel = dataArr[indexPath.section - 1]
-            //            let img = dataArr[0]
+ 
+            cell.resourceModel = dataArr[indexPath.section - 1]
+
             
             return cell
         }
         if indexPath.section == 4 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingSongCell", for: indexPath) as! ContentSingSongCell
-            let sectionModel = dataArr[indexPath.section - 1]
-            let contentArr = sectionModel.contents ?? []
-            cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgLarge)
-            cell.lbTitle.set_text = contentArr[indexPath.row].name
+//            let sectionModel = dataArr[indexPath.section - 1]
+//            let contentArr = sectionModel.contents ?? []
+//            cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgLarge)
+//            cell.lbTitle.set_text = contentArr[indexPath.row].name
             return cell
-
+            
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContentShowThreeCell", for: indexPath) as! ContentShowThreeCell
-//        cell.collectionDataArr = ["1","2","3","4","1","2","3","4","1"]
-        cell.dataModel = dataArr[indexPath.section - 1]
+        //        cell.collectionDataArr = ["1","2","3","4","1","2","3","4","1"]
+        cell.resourceModel = dataArr[indexPath.section - 1]
         return cell
         
     }
@@ -145,9 +118,9 @@ extension ContentVC {
             let v = SingSongSectionHeader.loadFromNib()
             let sectionModel = dataArr[section - 1]
             v.lbTitle.set_text = sectionModel.name
-            v.btnAll.addAction {
-                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, modouleId: dataModel.id, navTitle: dataModel.name)
-            }
+//            v.btnAll.addAction {
+//                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, modouleId: dataModel.id, navTitle: dataModel.name)
+//            }
             return v
         }
         return nil
@@ -160,17 +133,17 @@ extension ContentVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        if indexPath.section == 4 {
-            let sectionModel = dataArr[indexPath.section - 1]
-            let contentArr = sectionModel.contents ?? []
-            let model = contentArr[indexPath.row]
-            if model.albumType == 2 {
-                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
-            }else {
-                VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
-            }
-        }
+        
+//        if indexPath.section == 4 {
+//            let sectionModel = dataArr[indexPath.section - 1]
+//            let contentArr = sectionModel.contents ?? []
+//            let model = contentArr[indexPath.row]
+//            if model.albumType == 2 {
+//                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
+//            }else {
+//                VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+//            }
+//        }
     }
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //设置cell的显示动画为3D缩放
@@ -184,5 +157,5 @@ extension ContentVC {
             cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
         }
     }
-
+    
 }

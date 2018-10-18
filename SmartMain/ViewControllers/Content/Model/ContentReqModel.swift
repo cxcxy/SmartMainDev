@@ -187,3 +187,59 @@ class ConetentLikeModel: Mappable {
         opDate            <-    map["opDate"]
     }
 }
+
+//MARK: 图灵全部资源 一级model
+class ResourceAllModel: Mappable {
+
+    var id: Int?
+    var name: String?
+    var imgLarge:String?
+    var categories: [ResourceAllModel]?
+
+    init() {
+        
+    }
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        id                  <-    map["id"]
+        name                <-    map["name"]
+        categories          <-    map["categories"]
+
+    }
+}
+//MARK: 资源 顶部banner model
+class ResourceBannerModel: Mappable {
+    
+    var id: Int?
+    var name: String?
+    var customer: String?
+    var desc: String?
+    var linkurl:String?
+    var picture:String?
+    var sortid:Int?
+    var status:Int?
+    
+    init() {
+        
+    }
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        id                  <-    map["id"]
+        name                <-    map["name"]
+        customer          <-    map["customer"]
+        desc          <-    map["desc"]
+        linkurl          <-    map["linkurl"]
+        picture          <-    map["picture"]
+        sortid          <-    map["sortid"]
+        status          <-    map["status"]
+        
+    }
+}

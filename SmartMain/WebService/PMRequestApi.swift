@@ -61,6 +61,8 @@ enum RequestApi{
     case getNetVoice(req: [String: Any])
     case quitGroup(byAdmin: Bool, req: [String: Any])
     case getAppVersion()
+    case getResourceAll()
+    case getResourceBanner(customer: String)
 }
 extension RequestApi {
     /**
@@ -136,6 +138,10 @@ extension RequestApi:TargetType{
             break
         case .getSingleTrack(let id):
             params_task["id"] = id
+            return .requestParameters(parameters: params_task,
+                                      encoding: URLEncoding.default)
+        case .getResourceBanner(let customer):
+            params_task["customer"] = customer
             return .requestParameters(parameters: params_task,
                                       encoding: URLEncoding.default)
         case .getDeviceIds(let username):
@@ -238,7 +244,7 @@ extension RequestApi:TargetType{
     public var method:Moya.Method{
         switch self {
         case .getLikeList,.getHistoryList,.getTrackList,.getTrackSubList,.getDeviceIds,
-             .getEquimentInfo,.getFamilyMemberList,.getSingleTrack,.getSingDetail,.getBabyInfo,.getUserInfo,.getAppVersion:
+             .getEquimentInfo,.getFamilyMemberList,.getSingleTrack,.getSingDetail,.getBabyInfo,.getUserInfo,.getAppVersion,.getResourceAll,.getResourceBanner:
             return .get
         default:
             return .post

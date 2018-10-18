@@ -52,6 +52,34 @@ class ContentShowThreeCell: BaseTableViewCell {
             self.heightCollectionViewLayout.constant      = contentHeight + line_All_h
         }
     }
+    
+    var resourceModel: ResourceAllModel? {
+        didSet {
+            guard let m = resourceModel else {
+                return
+            }
+            if let arr = m.categories {
+                self.resourceArr = arr
+            }
+            self.lbTitle.set_text = m.name
+        }
+    }
+    var resourceArr: [ResourceAllModel] = [] {
+        didSet {
+            collectionView.reloadData()
+            itemCount = resourceArr.count > 9 ? 9 : resourceArr.count
+            lineNumber = itemCount / 3
+            let heightLine:CGFloat  = CGFloat((lineNumber - 1) * 15)
+            let contentHeight = CGFloat(lineNumber * Int(ContentShowThreeCell.itemHight))
+            let line_All_h = CGFloat(Int((lineNumber - 1) * Int(heightLine)))
+            
+            self.heightCollectionViewLayout.constant      = contentHeight + line_All_h
+        }
+    }
+    
+    
+
+    
     var itemCount: Int = 0
     var lineNumber: Int = 0
 

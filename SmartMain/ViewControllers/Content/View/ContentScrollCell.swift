@@ -30,13 +30,32 @@ class ContentScrollCell: BaseTableViewCell {
             self.lbTitle.set_text = m.name
         }
     }
-    @IBOutlet weak var lbTitle: UILabel!
     var contentArr: [ModulesConetentModel] = [] {
         didSet {
             collectionView.reloadData()
             self.heightCollectionViewLayout.constant      = CGFloat(ContentScrollCell.itemHight)
         }
     }
+    
+    var resourceArr: [ResourceAllModel] = [] {
+        didSet {
+            collectionView.reloadData()
+            self.heightCollectionViewLayout.constant      = CGFloat(ContentShowCell.itemHight)
+        }
+    }
+    var resourceModel: ResourceAllModel? { // 图灵资源
+        didSet {
+            guard let m = resourceModel else {
+                return
+            }
+            if let arr = m.categories {
+                self.resourceArr = arr
+            }
+            self.lbTitle.set_text = m.name
+        }
+    }
+    @IBOutlet weak var lbTitle: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

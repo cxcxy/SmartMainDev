@@ -7,13 +7,20 @@
 //
 
 import UIKit
-
+enum ResourceType {
+    case zhiban
+    case tuling
+}
 class ContentShowCell: BaseTableViewCell {
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var resourctType : ResourceType = .zhiban
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configCollectionView()
-//        uisc
+
     }
     let itemSpacing:CGFloat = 20 // item 间隔
     static let itemWidth:CGFloat = ( MGScreenWidth - 20 * 5 ) / 4 // item 宽度
@@ -24,7 +31,7 @@ class ContentShowCell: BaseTableViewCell {
     @IBOutlet weak var heightCollectionViewLayout: NSLayoutConstraint!
     var modouleId : String?
     @IBOutlet weak var lbTitle: UILabel!
-    var dataModel: ModulesResModel? {
+    var dataModel: ModulesResModel? { // 智伴资源
         didSet {
             guard let m = dataModel else {
                 return
@@ -35,14 +42,33 @@ class ContentShowCell: BaseTableViewCell {
             self.lbTitle.set_text = m.name
         }
     }
+
     var contentArr: [ModulesConetentModel] = [] {
         didSet {
             collectionView.reloadData()
-//            let heightLine:CGFloat  = contentArr.count > 2 ? 20 : 0
             self.heightCollectionViewLayout.constant      = CGFloat(ContentShowCell.itemHight)
         }
     }
 
+    var resourceArr: [ResourceAllModel] = [] {
+        didSet {
+            collectionView.reloadData()
+            self.heightCollectionViewLayout.constant      = CGFloat(ContentShowCell.itemHight)
+        }
+    }
+    var resourceModel: ResourceAllModel? { // 图灵资源
+        didSet {
+            guard let m = resourceModel else {
+                return
+            }
+            if let arr = m.categories {
+                self.resourceArr = arr
+            }
+            self.lbTitle.set_text = m.name
+        }
+    }
+    
+    
     func configCollectionView()  {
         
         collectionView.delegate     = self
@@ -62,12 +88,28 @@ class ContentShowCell: BaseTableViewCell {
 }
 extension ContentShowCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return contentArr.count > 4 ? 4 : contentArr.count
+        switch resourctType {
+        case .zhiban:
+            return contentArr.count > 4 ? 4 : contentArr.count
+        case .tuling:
+            return resourceArr.count > 4 ? 4: resourceArr.count
+        }
+
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TwoItemCVCell", for: indexPath)as! TwoItemCVCell
-        cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgLarge)
-        cell.lbTitle.set_text = contentArr[indexPath.row].name
+        
+        switch resourctType {
+        case .zhiban:
+            cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgLarge)
+            cell.lbTitle.set_text = contentArr[indexPath.row].name
+            break
+        case .tuling:
+            cell.imgIcon.set_Img_Url(resourceArr[indexPath.row].imgLarge)
+            cell.lbTitle.set_text = resourceArr[indexPath.row].name
+            break
+        }
+
         cell.aspectConstraint.constant = 2/1
         return cell
     }
@@ -81,11 +123,20 @@ extension ContentShowCell:UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = contentArr[indexPath.row]
-        if model.albumType == 2 {
-            VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
-        }else {
-            VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+
+        switch resourctType {
+        case .zhiban:
+            let model = contentArr[indexPath.row]
+            if model.albumType == 2 {
+                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
+            }else {
+                VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+            }
+            break
+        case .tuling:
+//            cell.imgIcon.set_Img_Url(resourceArr[indexPath.row].imgLarge)
+//            cell.lbTitle.set_text = resourceArr[indexPath.row].name
+            break
         }
     }
 }

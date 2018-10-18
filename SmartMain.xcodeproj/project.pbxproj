@@ -369,6 +369,7 @@
 		2DF075BC21762DE1006F0818 /* ContentSingSongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075BA21762DE1006F0818 /* ContentSingSongCell.xib */; };
 		2DF075BE21762FBB006F0818 /* SingSongSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075BD21762FBB006F0818 /* SingSongSectionHeader.swift */; };
 		2DF075C021762FC3006F0818 /* SingSongSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075BF21762FC3006F0818 /* SingSongSectionHeader.xib */; };
+		2DF075C22178B3EF006F0818 /* ResourceAllVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075C12178B3EF006F0818 /* ResourceAllVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -887,6 +888,7 @@
 		2DF075BA21762DE1006F0818 /* ContentSingSongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSingSongCell.xib; sourceTree = "<group>"; };
 		2DF075BD21762FBB006F0818 /* SingSongSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingSongSectionHeader.swift; sourceTree = "<group>"; };
 		2DF075BF21762FC3006F0818 /* SingSongSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingSongSectionHeader.xib; sourceTree = "<group>"; };
+		2DF075C12178B3EF006F0818 /* ResourceAllVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAllVC.swift; sourceTree = "<group>"; };
 		91EAC16658F9A180871B0B3F /* Pods-SmartMain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.release.xcconfig"; sourceTree = "<group>"; };
 		CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD6F9026177145A29A261A /* Pods-SmartMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1881,6 +1883,7 @@
 			children = (
 				04C389F8213E33330063A799 /* ContentMainVC.swift */,
 				04C389FA213E5FC80063A799 /* ContentVC.swift */,
+				2DF075C12178B3EF006F0818 /* ResourceAllVC.swift */,
 				2DC95599213ECD62004D6F65 /* ContentSubVC.swift */,
 				044CED0C2176C8D80068C75A /* ContentSubVC.xib */,
 				043E118E213FB8FE0067ADF3 /* ContentSingsVC.swift */,
@@ -2362,6 +2365,7 @@
 				042EEF302150E15F00DBD492 /* MJRefreshGifHeader.m in Sources */,
 				2DC9558D213EAC4C004D6F65 /* EquipmentSetHeaderCell.swift in Sources */,
 				2DC95587213E9EBB004D6F65 /* MeViewController.swift in Sources */,
+				2DF075C22178B3EF006F0818 /* ResourceAllVC.swift in Sources */,
 				042EEF612150E15F00DBD492 /* SDWebImageCompat.m in Sources */,
 				042EEF7B2150E15F00DBD492 /* EaseFaceView.m in Sources */,
 				04C38729213E093F0063A799 /* Array+.swift in Sources */,
