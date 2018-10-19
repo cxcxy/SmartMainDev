@@ -46,7 +46,7 @@ class SearchViewController: XBBaseViewController {
         self.currentNavigationHidden        = true
         viewSearchTop.setCornerRadius(radius: 10)
         textField.becomeFirstResponder()
-        self.configTableView(tableView, register_cell: ["ContentSingCell","HistorySongCell"])
+        self.configTableView(tableView, register_cell: ["HistorySongCell","ContentSingSongCell"])
         tableView.delegate = nil
         tableView.dataSource = nil
         self.textField.delegate = self
@@ -66,15 +66,18 @@ class SearchViewController: XBBaseViewController {
                     if let itemModel = element as? SearchResourceModel{
                         cell.lbTitle.set_text = itemModel.name
                         cell.lbTime.set_text  = "专辑：" + (itemModel.categoryName ?? "")
-                        cell.btnExtension.addAction {
-                            self.showArr()
+                        cell.btnExtension.addAction { [weak self] in
+                            guard let `self` = self else { return }
+                            self.showArr(item: itemModel)
                         }
                     }
                     return cell
                 case .resourceAlbum:
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingSongCell", for: indexPath) as! ContentSingSongCell
                     if let itemModel = element as? SearchResourceAlbumModel{
                         cell.lbTitle.set_text = itemModel.name
+                        cell.imgIcon.set_Img_Url(itemModel.picCover)
+                        cell.imgRight.isHidden = false
                     }
                     return cell
                 }
@@ -160,28 +163,38 @@ class SearchViewController: XBBaseViewController {
         }
         
     }
-    func showArr()  {
+    func showArr(item: SearchResourceModel)  {
         VCRouter.prentSheetAction(dataArr: ["添加到播单","收藏"]) {[weak self] (index) in
             guard let `self` = self else { return }
             if index == 0 {
-                self.showTrackListView(trackList: self.trackList)
+                self.showTrackListView(trackList: self.trackList,item: item)
             }
             if index == 1 {
 //                self.requestLikeSing()
+                print("收藏")
+                self.requestListSong(songId: item.id,
+                                     duration: item.duration ?? 0,
+                                     title: item.name ?? "")
             }
         }
     }
     //MARK: 底部弹出播放列表
-    func showTrackListView(trackList: [EquipmentModel])  {
+    func showTrackListView(trackList: [EquipmentModel],item: SearchResourceModel)  {
         let v = PlaySongListView.loadFromNib()
-        v.listViewType = .songList
+        v.listViewType = .trackList_song
         v.trackArr = trackList
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()
-            //            let model = dataArr[indexPath.row]
-//            VCRouter.toEquipmentSubListVC(trackListId: trackId,navTitle: trackName,trackList: trackList)
-//            self.requestListSong(songId: trackId, duration: <#T##Int#>, title: trackName)
+
+            self.requestAddSingWithList(trackId: trackId,
+                                        songId: item.id,
+                                        songName: item.name,
+                                        songDuration: item.duration,
+                                        albumTitle: item.categoryName,
+                                        albumCoverSmallUrl: item.picCover,
+                                        songUrl: item.downloadUrl,
+                                        trackName: trackName)
         }
         v.show()
     }
@@ -244,12 +257,12 @@ extension SearchViewController {
      *   增加歌曲到预制列表中 添加单个歌曲
      */
     func requestAddSingWithList(trackId: Int,
-                                songId: Int,
-                                songName: String,
-                                songDuration: Int,
-                                albumTitle: String,
-                                albumCoverSmallUrl: String,
-                                songUrl: String,
+                                songId: Int?,
+                                songName: String?,
+                                songDuration: Int?,
+                                albumTitle: String?,
+                                albumCoverSmallUrl: String?,
+                                songUrl: String?,
                                 trackName: String)  {
 
         let req_model = AddSongTrackReqModel()

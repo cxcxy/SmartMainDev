@@ -248,10 +248,12 @@ class SearchResourceModel: Mappable {
     
     var id: Int?
     var name: String?
+    var downloadUrl: String?
     var duration: Int?
     var desc: String?
     var linkurl:String?
-    var picture:String?
+    var picCover:String?
+//    var duration:Int?
     var sortid:Int?
     var status:Int?
     var categoryName: String?
@@ -269,7 +271,8 @@ class SearchResourceModel: Mappable {
         duration          <-    map["duration"]
         desc          <-    map["desc"]
         linkurl          <-    map["linkurl"]
-        picture          <-    map["picture"]
+        picCover          <-    map["picCover"]
+        duration        <-    map["duration"]
         sortid          <-    map["sortid"]
         status          <-    map["status"]
         categoryName <-    map["categoryName"]
@@ -283,7 +286,7 @@ class SearchResourceAlbumModel: Mappable {
     var customer: String?
     var desc: String?
     var linkurl:String?
-    var picture:String?
+    var picCover:String?
     var sortid:Int?
     var status:Int?
     
@@ -301,7 +304,7 @@ class SearchResourceAlbumModel: Mappable {
         customer          <-    map["customer"]
         desc          <-    map["desc"]
         linkurl          <-    map["linkurl"]
-        picture          <-    map["picture"]
+        picCover          <-    map["picCover"]
         sortid          <-    map["sortid"]
         status          <-    map["status"]
         

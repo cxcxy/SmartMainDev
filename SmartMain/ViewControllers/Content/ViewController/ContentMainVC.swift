@@ -320,7 +320,7 @@ extension ContentMainVC:VTMagicViewDataSource{
     }
     func menuTitles(for magicView: VTMagicView) -> [String] {
         
-        return ["内容","收藏","历史"]
+        return ["内容","收藏","搜索"]
         
     }
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton{

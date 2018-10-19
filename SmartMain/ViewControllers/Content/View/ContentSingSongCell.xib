@@ -27,11 +27,18 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXh-hX-VLw">
-                        <rect key="frame" x="95" y="37" width="36" height="17"/>
+                        <rect key="frame" x="95" y="37" width="186" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_right" translatesAutoresizingMaskIntoConstraints="NO" id="ot8-dl-1dR">
+                        <rect key="frame" x="296" y="37.5" width="9" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="jeS-rP-jie"/>
+                            <constraint firstAttribute="width" constant="9" id="wKS-qL-LWb"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhN-fG-6ys">
                         <rect key="frame" x="20" y="90.5" width="300" height="0.5"/>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -45,21 +52,28 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="a6x-Lv-jIi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="25v-0X-tIQ"/>
+                    <constraint firstItem="ot8-dl-1dR" firstAttribute="centerY" secondItem="qXh-hX-VLw" secondAttribute="centerY" id="BVJ-HY-hMF"/>
+                    <constraint firstItem="ot8-dl-1dR" firstAttribute="leading" secondItem="qXh-hX-VLw" secondAttribute="trailing" constant="15" id="Ep1-ja-aoV"/>
                     <constraint firstAttribute="trailing" secondItem="nhN-fG-6ys" secondAttribute="trailing" id="HNs-tC-GqM"/>
                     <constraint firstItem="qXh-hX-VLw" firstAttribute="centerY" secondItem="a6x-Lv-jIi" secondAttribute="centerY" id="PiX-he-weU"/>
                     <constraint firstAttribute="bottom" secondItem="a6x-Lv-jIi" secondAttribute="bottom" constant="15" id="bEZ-Zf-B7V"/>
                     <constraint firstItem="a6x-Lv-jIi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="myC-JP-AgA"/>
                     <constraint firstItem="nhN-fG-6ys" firstAttribute="top" secondItem="a6x-Lv-jIi" secondAttribute="bottom" constant="15" id="siv-g8-6Un"/>
                     <constraint firstItem="nhN-fG-6ys" firstAttribute="leading" secondItem="a6x-Lv-jIi" secondAttribute="leading" id="te4-cY-puj"/>
+                    <constraint firstAttribute="trailing" secondItem="ot8-dl-1dR" secondAttribute="trailing" constant="15" id="v9s-Js-E1c"/>
                     <constraint firstItem="qXh-hX-VLw" firstAttribute="leading" secondItem="a6x-Lv-jIi" secondAttribute="trailing" constant="15" id="wq2-c0-3yA"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgIcon" destination="a6x-Lv-jIi" id="ELs-UE-F9h"/>
+                <outlet property="imgRight" destination="ot8-dl-1dR" id="VVz-YD-hnJ"/>
                 <outlet property="lbTitle" destination="qXh-hX-VLw" id="nE8-3X-t0t"/>
             </connections>
             <point key="canvasLocation" x="49.600000000000001" y="93.553223388305852"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_right" width="8" height="16"/>
+    </resources>
 </document>

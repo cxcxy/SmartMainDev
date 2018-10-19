@@ -11,10 +11,12 @@ import UIKit
 class ContentSingSongCell: BaseTableViewCell {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
+    @IBOutlet weak var imgRight: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         imgIcon.roundView()
         // Initialization code
+        imgRight.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
