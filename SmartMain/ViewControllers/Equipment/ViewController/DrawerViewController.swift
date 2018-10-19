@@ -259,10 +259,9 @@ extension DrawerViewController {
 }
 extension DrawerViewController {
     func getMQTT() {
+        
         scoketModel.sendLight()
         scoketModel.sendGetLock()
-      
-        
         scoketModel.getLight.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getLight ===：", $0.element ?? 0)

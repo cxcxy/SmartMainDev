@@ -20,6 +20,7 @@ class SleepModel: NSObject {
 }
 class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var lbSelector: UILabel!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var btnSure: UIButton!
@@ -59,7 +60,9 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
         //将delegate设置成自己
         pickerView.delegate = self
         //设置选择框的默认值
-        pickerView.selectRow(1,inComponent:0,animated:true)
+        let defaultIndex = 1
+        pickerView.selectRow(defaultIndex,inComponent:0,animated:true)
+        lbSelector.set_text = dataArr[defaultIndex].title
     
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -77,6 +80,7 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(dataArr[row])
+        lbSelector.set_text = dataArr[row].title
     }
 //    setPowerOff
     //触摸按钮时，获得被选中的索引
