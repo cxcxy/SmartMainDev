@@ -123,17 +123,21 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             self.maskAnimationFromLeft()
         }
-        
-        navMessageView.viewMessage.addTapGesture { [weak self](sender) in
+//        makeCustomerImageNavigationItem("", left: false) {[weak self] in
+//            guard let `self` = self else { return }
+//            let vc = ChatMainViewController()
+//            self.pushVC(vc)
+//        }
+        navMessageView.addTapGesture { [weak self](sender) in
             guard let `self` = self else { return }
             let vc = ChatMainViewController()
             self.pushVC(vc)
         }
-        navMessageView.viewSearch.addTapGesture { [weak self](sender) in
-            guard let `self` = self else { return }
-            let vc = SearchViewController()
-            self.pushVC(vc)
-        }
+//        navMessageView.viewSearch.addTapGesture { [weak self](sender) in
+//            guard let `self` = self else { return }
+//            let vc = SearchViewController()
+//            self.pushVC(vc)
+//        }
         makeRightNavigationItem(navMessageView, left: false)
     }
     //MARK: 配置环信聊天

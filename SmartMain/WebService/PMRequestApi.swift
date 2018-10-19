@@ -63,6 +63,8 @@ enum RequestApi{
     case getAppVersion()
     case getResourceAll()
     case getResourceBanner(customer: String)
+    case searchResource(req: [String: Any])
+    case searchResourceAlbum(req: [String: Any])
 }
 extension RequestApi {
     /**
@@ -127,7 +129,9 @@ extension RequestApi:TargetType{
              .updateBabyInfo(let req),
              .getNetVoice(let req),
              .updateUserInfo(let req),
-             .getSearchResource(let req):
+             .getSearchResource(let req),
+             .searchResource(let req),
+             .searchResourceAlbum(let req):
             params_task = req
             break
         case .quitGroup(_,let req):

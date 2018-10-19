@@ -102,6 +102,8 @@ extension RequestApi {
         case .getResourceAll: return "/turingGetResource.do?inter=open/category/list"
             
         case .getResourceBanner: return "/suportAPP/getBanner.do"
+        case .searchResource: return "/turingPostResource.do?inter=open/audio/list"
+        case .searchResourceAlbum: return "/turingPostResource.do?inter=open/album/list"
         default:
             return ""
         }

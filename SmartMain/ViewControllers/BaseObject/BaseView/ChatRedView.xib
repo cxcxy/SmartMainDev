@@ -16,13 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="61" height="23"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="yyU-S7-ldN">
-                    <rect key="frame" x="0.0" y="0.0" width="23" height="23"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="23" id="C6M-ik-wB0"/>
-                        <constraint firstAttribute="height" constant="23" id="u3u-fh-dwG"/>
-                    </constraints>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_chat" translatesAutoresizingMaskIntoConstraints="NO" id="P6i-yy-52a">
                     <rect key="frame" x="34" y="2" width="23" height="19"/>
                     <constraints>
@@ -42,30 +35,24 @@
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="P6i-yy-52a" secondAttribute="bottom" constant="2" id="7tD-xl-vi6"/>
-                <constraint firstItem="yyU-S7-ldN" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="L7f-jO-xwN"/>
-                <constraint firstItem="yyU-S7-ldN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NnE-y7-nzP"/>
+                <constraint firstItem="P6i-yy-52a" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="2" id="Jjy-VU-E4S"/>
                 <constraint firstItem="P6i-yy-52a" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="OuX-ks-Ch1"/>
                 <constraint firstItem="cbg-kz-CTW" firstAttribute="top" secondItem="P6i-yy-52a" secondAttribute="top" constant="-2" id="PWe-eS-nYr"/>
-                <constraint firstItem="yyU-S7-ldN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="QGp-7T-6O7"/>
-                <constraint firstItem="P6i-yy-52a" firstAttribute="leading" secondItem="yyU-S7-ldN" secondAttribute="trailing" constant="11" id="XEt-s3-EUf"/>
+                <constraint firstItem="P6i-yy-52a" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="34" id="fL9-9F-FJ6"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P6i-yy-52a" secondAttribute="trailing" constant="4" id="ip2-75-Uiy"/>
                 <constraint firstItem="cbg-kz-CTW" firstAttribute="trailing" secondItem="P6i-yy-52a" secondAttribute="trailing" constant="2" id="j5H-pR-ppb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P6i-yy-52a" secondAttribute="trailing" constant="4" id="lBQ-f1-VUt"/>
-                <constraint firstItem="P6i-yy-52a" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="2" id="nNB-wN-3zH"/>
-                <constraint firstItem="yyU-S7-ldN" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="xo7-ss-ntV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="viewMessage" destination="P6i-yy-52a" id="gps-kO-woK"/>
                 <outlet property="viewRed" destination="cbg-kz-CTW" id="8zz-w4-Ayf"/>
-                <outlet property="viewSearch" destination="yyU-S7-ldN" id="u5I-AG-jqd"/>
             </connections>
             <point key="canvasLocation" x="64.799999999999997" y="70.614692653673174"/>
         </view>
     </objects>
     <resources>
         <image name="icon_chat" width="23" height="19"/>
-        <image name="icon_search" width="24" height="24"/>
     </resources>
 </document>

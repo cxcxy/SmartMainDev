@@ -12,10 +12,15 @@ class HistoryViewController: XBBaseViewController {
     var currentDeviceId: String?
     @IBOutlet weak var tfSearch: UITextField!
     
+    @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var tableView: UITableView!
      var viewModel = ContentViewModel()
     var trackList: [EquipmentModel] = [] // 预制列表数据model
     var dataArr: [ConetentLikeModel] = []
+    
+    @IBOutlet weak var btnClear: UIButton!
+    
+    
      var scoketModel = ScoketMQTTManager.share
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,10 +41,16 @@ class HistoryViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
+        viewSearch.setCornerRadius(radius: 15)
         _ = Noti(.refreshDeviceHistory).takeUntil(self.rx.deallocated).subscribe(onNext: {[weak self] (value) in
             guard let `self` = self else { return }
             self.request()
         })
+        viewSearch.addTapGesture { [weak self](sender) in
+            guard let `self` = self else { return }
+            let vc = SearchViewController()
+            self.pushVC(vc)
+        }
         request()
         configCurrentSongsId()
     }

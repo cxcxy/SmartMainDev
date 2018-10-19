@@ -243,3 +243,67 @@ class ResourceBannerModel: Mappable {
         
     }
 }
+//MARK: 搜索 资源 model
+class SearchResourceModel: Mappable {
+    
+    var id: Int?
+    var name: String?
+    var duration: Int?
+    var desc: String?
+    var linkurl:String?
+    var picture:String?
+    var sortid:Int?
+    var status:Int?
+    var categoryName: String?
+    init() {
+        
+    }
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        id                  <-    map["id"]
+        name                <-    map["name"]
+        duration          <-    map["duration"]
+        desc          <-    map["desc"]
+        linkurl          <-    map["linkurl"]
+        picture          <-    map["picture"]
+        sortid          <-    map["sortid"]
+        status          <-    map["status"]
+        categoryName <-    map["categoryName"]
+    }
+}
+//MARK: 搜索 资源 专辑 model
+class SearchResourceAlbumModel: Mappable {
+    
+    var id: Int?
+    var name: String?
+    var customer: String?
+    var desc: String?
+    var linkurl:String?
+    var picture:String?
+    var sortid:Int?
+    var status:Int?
+    
+    init() {
+        
+    }
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        id                  <-    map["id"]
+        name                <-    map["name"]
+        customer          <-    map["customer"]
+        desc          <-    map["desc"]
+        linkurl          <-    map["linkurl"]
+        picture          <-    map["picture"]
+        sortid          <-    map["sortid"]
+        status          <-    map["status"]
+        
+    }
+}

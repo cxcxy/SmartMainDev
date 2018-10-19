@@ -26,4 +26,70 @@ class ContentViewModel: NSObject {
             }
         })
     }
+    //MARK: 按关键字搜索资源
+    func requestSearchResource(req: [String: Any]) -> Observable<[SearchResourceModel]>  {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.searchResource(req: req), successClosure: { (result, code, message) in
+                
+                if let result = result as? String {
+                    if let arr = Mapper<SearchResourceModel>().mapArray(JSONObject:result.json_Str()["body"]["content"].arrayObject) {
+                        observer.onNext(arr)
+                        
+                    }
+                    
+                }
+                
+            })
+            
+            return Disposables.create {
+            }
+            
+        }
+
+    }
+    //MARK: 按关键字搜索专辑
+    func requestSearchResourceAlbum(req: [String: Any]) -> Observable<[SearchResourceAlbumModel]> {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.searchResourceAlbum(req: req), successClosure: { (result, code, message) in
+                if let result = result as? String {
+                    if let arr = Mapper<SearchResourceAlbumModel>().mapArray(JSONObject:result.json_Str()["body"]["content"].arrayObject) {
+                        observer.onNext(arr)
+                    }
+                }
+            })
+            
+            return Disposables.create {
+            }
+            
+        }
+    }
+    /**
+     *   收藏歌曲
+     */
+    func requestLikeSing(songId: Int?,duration: Int, title: String,closure: @escaping () -> ())  {
+        guard let songId = songId else {
+            XBHud.showMsg("当前歌曲ID错误")
+            return
+        }
+        var params_task = [String: Any]()
+        params_task["openId"] = XBUserManager.userName
+        params_task["trackId"]  = songId
+        params_task["duration"] = duration
+        params_task["title"]    = title
+        Net.requestWithTarget(.saveLikeSing(req: params_task), successClosure: { (result, code, message) in
+            print(result)
+            if let str = result as? String {
+                if str == "ok" {
+                    XBHud.showMsg("收藏成功")
+                    closure()
+                }else {
+                    XBHud.showMsg("收藏失败")
+                }
+            }
+        })
+    }
 }
