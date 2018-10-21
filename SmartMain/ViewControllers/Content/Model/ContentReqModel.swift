@@ -278,6 +278,109 @@ class SearchResourceModel: Mappable {
         categoryName <-    map["categoryName"]
     }
 }
+//MARK: 专辑排行榜 相当于 二级列表
+class ResourceTopListModel: Mappable {
+    
+    var id: Int?
+    var name: String?
+    var picCover:String?
+    var description:String?
+    var categoryId:Int?
+    var audioTotal:Int?
+    
+    init() {
+        
+    }
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        id                  <-    map["id"]
+        name                <-    map["name"]
+        picCover          <-    map["picCover"]
+        description          <-    map["description"]
+        categoryId          <-    map["categoryId"]
+        audioTotal          <-    map["audioTotal"]
+
+    }
+}
+//public protocol TransformType {
+//    associatedtype Object
+//    associatedtype JSON
+//
+//    func transformFromJSON(_ value: Any?) -> Object?
+//    func transformToJSON(_ value: Object?) -> JSON?
+//}
+//open class DateTransform: TransformType {
+//    public typealias Object = Date
+//    public typealias JSON = Double
+//
+//    public init() {}
+//
+//    open func transformFromJSON(_ value: Any?) -> Date? {
+//        if let timeInt = value as? Double {
+//            return Date(timeIntervalSince1970: TimeInterval(timeInt))
+//        }
+//
+//        if let timeStr = value as? String {
+//            return Date(timeIntervalSince1970: TimeInterval(atof(timeStr)))
+//        }
+//
+//        return nil
+//    }
+//
+//    open func transformToJSON(_ value: Date?) -> Double? {
+//        if let date = value {
+//            return Double(date.timeIntervalSince1970)
+//        }
+//        return nil
+//    }
+//}
+//MARK: 音频列表 相当于 三级列表
+class ResourceAudioListModel: Mappable {
+    
+    var id: Int?
+    var name: String?
+    var picCover:String?
+    var description:String?
+    var categoryId:Int?
+    var audioTotal:Int?
+    var duration: Int?
+    var downloadUrl: String?
+    
+    
+    var isPlay: Bool = false
+    var isExpanded: Bool = false
+    init() {
+        
+    }
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        id                  <-    map["id"]
+        name                <-    map["name"]
+        picCover          <-    map["picCover"]
+        description          <-    map["description"]
+        categoryId          <-    map["categoryId"]
+        audioTotal          <-    map["audioTotal"]
+        duration <-    map["duration"]
+        downloadUrl      <-    map["downloadUrl"]
+        
+        
+        if let duration = duration {
+             self.tranfromDuration(duration: duration)
+        }
+       
+    }
+    func tranfromDuration(duration: Int)  {
+        self.duration = duration / 1000
+    }
+}
 //MARK: 搜索 资源 专辑 model
 class SearchResourceAlbumModel: Mappable {
     

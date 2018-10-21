@@ -312,6 +312,8 @@
 		2D312AA0213D560100FCC499 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D312A9E213D560100FCC499 /* Main.storyboard */; };
 		2D312AA2213D560100FCC499 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D312AA1213D560100FCC499 /* Assets.xcassets */; };
 		2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D312AA3213D560100FCC499 /* LaunchScreen.storyboard */; };
+		2D404D50217CA5550017DA54 /* ResourceAudioListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D404D4E217CA5550017DA54 /* ResourceAudioListVC.swift */; };
+		2D404D51217CA5550017DA54 /* ResourceAudioListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D404D4F217CA5550017DA54 /* ResourceAudioListVC.xib */; };
 		2D83D40D215E4D8D0097900F /* MemberCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83D40B215E4D8D0097900F /* MemberCVCell.swift */; };
 		2D83D40E215E4D8D0097900F /* MemberCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D83D40C215E4D8D0097900F /* MemberCVCell.xib */; };
 		2D83D416215E705E0097900F /* TableViewAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D83D410215E705D0097900F /* TableViewAnimationKit.m */; };
@@ -330,6 +332,8 @@
 		2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */; };
 		2D9195E02153DBA800F4A9A1 /* ChatCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */; };
 		2D9195E22153DBB100F4A9A1 /* ChatCreateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */; };
+		2DB801FA217CB0590026FC8F /* ResourceAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB801F8217CB0590026FC8F /* ResourceAlbumVC.swift */; };
+		2DB801FB217CB0590026FC8F /* ResourceAlbumVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DB801F9217CB0590026FC8F /* ResourceAlbumVC.xib */; };
 		2DBD88E9215D0B6A00BC543A /* EquipmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88E7215D0B6A00BC543A /* EquipmentListViewController.swift */; };
 		2DBD88EA215D0B6A00BC543A /* EquipmentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD88E8215D0B6A00BC543A /* EquipmentListViewController.xib */; };
 		2DBD88EC215D12FA00BC543A /* DevicesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD88EB215D12FA00BC543A /* DevicesListModel.swift */; };
@@ -822,6 +826,8 @@
 		2D312AA4213D560100FCC499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D312AA6213D560100FCC499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D312AAC213D619F00FCC499 /* SmartMain-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartMain-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D404D4E217CA5550017DA54 /* ResourceAudioListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAudioListVC.swift; sourceTree = "<group>"; };
+		2D404D4F217CA5550017DA54 /* ResourceAudioListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResourceAudioListVC.xib; sourceTree = "<group>"; };
 		2D83D40B215E4D8D0097900F /* MemberCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCVCell.swift; sourceTree = "<group>"; };
 		2D83D40C215E4D8D0097900F /* MemberCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCVCell.xib; sourceTree = "<group>"; };
 		2D83D410215E705D0097900F /* TableViewAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewAnimationKit.m; sourceTree = "<group>"; };
@@ -844,6 +850,8 @@
 		2D9195DC2153D7F000F4A9A1 /* ChatMainCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMainCell.xib; sourceTree = "<group>"; };
 		2D9195DF2153DBA800F4A9A1 /* ChatCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCreateView.swift; sourceTree = "<group>"; };
 		2D9195E12153DBB100F4A9A1 /* ChatCreateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCreateView.xib; sourceTree = "<group>"; };
+		2DB801F8217CB0590026FC8F /* ResourceAlbumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAlbumVC.swift; sourceTree = "<group>"; };
+		2DB801F9217CB0590026FC8F /* ResourceAlbumVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResourceAlbumVC.xib; sourceTree = "<group>"; };
 		2DBD88E7215D0B6A00BC543A /* EquipmentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListViewController.swift; sourceTree = "<group>"; };
 		2DBD88E8215D0B6A00BC543A /* EquipmentListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EquipmentListViewController.xib; sourceTree = "<group>"; };
 		2DBD88EB215D12FA00BC543A /* DevicesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesListModel.swift; sourceTree = "<group>"; };
@@ -1888,6 +1896,10 @@
 				044CED0C2176C8D80068C75A /* ContentSubVC.xib */,
 				043E118E213FB8FE0067ADF3 /* ContentSingsVC.swift */,
 				043E118F213FB8FE0067ADF3 /* ContentSingsVC.xib */,
+				2DB801F8217CB0590026FC8F /* ResourceAlbumVC.swift */,
+				2DB801F9217CB0590026FC8F /* ResourceAlbumVC.xib */,
+				2D404D4E217CA5550017DA54 /* ResourceAudioListVC.swift */,
+				2D404D4F217CA5550017DA54 /* ResourceAudioListVC.xib */,
 				04C38A0E213E6ED60063A799 /* LikeViewController.swift */,
 				0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */,
 				04C38A10213E6EEA0063A799 /* HistoryViewController.swift */,
@@ -2211,6 +2223,7 @@
 				2D0ACC4D215A74EC0047103C /* AccountInfoViewController.xib in Resources */,
 				043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */,
 				04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */,
+				2D404D51217CA5550017DA54 /* ResourceAudioListVC.xib in Resources */,
 				043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */,
 				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
 				0495F17121783154002FB1F8 /* XBUpdateHead.xib in Resources */,
@@ -2225,6 +2238,7 @@
 				043E1197213FC1090067ADF3 /* ContentSingHaderView.xib in Resources */,
 				04C389F3213E27CA0063A799 /* EquipmentListCell.xib in Resources */,
 				0485CCBD2148F7EC00F54927 /* SmartPlayerViewController.xib in Resources */,
+				2DB801FB217CB0590026FC8F /* ResourceAlbumVC.xib in Resources */,
 				04C389EF213E25800063A799 /* EquipmentTopView.xib in Resources */,
 				2DCA86992160C738001F9E04 /* TwoItemCVCell.xib in Resources */,
 				2DF075AC21761D2A006F0818 /* ContentScrollCell.xib in Resources */,
@@ -2567,6 +2581,7 @@
 				042EEF1E2150E15F00DBD492 /* EaseEmojiEmoticons.m in Sources */,
 				042EEF4C2150E15F00DBD492 /* PSTCollectionViewController.m in Sources */,
 				042EEF3A2150E15F00DBD492 /* EMVoiceConverter.mm in Sources */,
+				2DB801FA217CB0590026FC8F /* ResourceAlbumVC.swift in Sources */,
 				04CF492E215B31E10052CD67 /* GroupAddViewController.swift in Sources */,
 				04B876CD216C47DB00D0430F /* NetSuccessView.swift in Sources */,
 				042EEF352150E15F00DBD492 /* MJRefreshComponent.m in Sources */,
@@ -2644,6 +2659,7 @@
 				042EEF172150E15F00DBD492 /* NSDateFormatter+Category.m in Sources */,
 				04C3872A213E093F0063A799 /* UIView+.swift in Sources */,
 				042EED152150DE6800DBD492 /* ChatSingViewController.swift in Sources */,
+				2D404D50217CA5550017DA54 /* ResourceAudioListVC.swift in Sources */,
 				042EEF312150E15F00DBD492 /* MJRefreshFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -92,4 +92,143 @@ class ContentViewModel: NSObject {
             }
         })
     }
+    
+}
+// 首页
+extension ContentViewModel {
+    //MARK: 请求顶部所有资源 接口
+    func requestResourceAll() -> Observable<[ResourceAllModel]> {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.getResourceAll(), successClosure: { (result, code, message) in
+                guard let result = result as? String else{
+                    return
+                }
+                if let arr = Mapper<ResourceAllModel>().mapArray(JSONObject:result.json_Str()["body"].arrayObject) {
+                    observer.onNext(arr)
+    
+                }
+            }) { (errorMsg) in
+//                if errorMsg == ERROR_TIMEOUT {
+//                    self.loadingTimerOut = true
+//                } else {
+//                    self.loading = true
+//                }
+//                self.endRefresh()
+            }
+            
+            return Disposables.create {
+            }
+            
+        }
+    }
+   //MARK: 请求顶部banner 接口
+    func requestResourceBanners() -> Observable<[ResourceBannerModel]> {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.getResourceBanner(customer: "zhiban"), successClosure: { (result, code, message) in
+//                guard let result = result as? String else{
+//                    return
+//                }
+                if let obj = Net.filterStatus(jsonString: result) {
+                    if let banners = Mapper<ResourceBannerModel>().mapArray(JSONObject: obj.object) {
+                      observer.onNext(banners)
+                    }
+                }
+
+            }) { (errorMsg) in
+                //                if errorMsg == ERROR_TIMEOUT {
+                //                    self.loadingTimerOut = true
+                //                } else {
+                //                    self.loading = true
+                //                }
+                //                self.endRefresh()
+            }
+            
+            return Disposables.create {
+            }
+            
+        }
+    }
+    
+    //MARK: 获取资源全部分类
+    func requestResourceCategory() -> Observable<[ResourceAllModel]> {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.getResourceAll(), successClosure: { (result, code, message) in
+                guard let result = result as? String else{
+                    return
+                }
+                if let arr = Mapper<ResourceAllModel>().mapArray(JSONObject:result.json_Str()["body"].arrayObject) {
+                     observer.onNext(arr)
+                }
+            }) { (errorMsg) in
+//                if errorMsg == ERROR_TIMEOUT {
+//                    self.loadingTimerOut = true
+//                } else {
+//                    self.loading = true
+//                }
+//                self.endRefresh()
+            }
+            
+            return Disposables.create {
+            }
+            
+        }
+    }
+    //MARK: 获取专辑排行列表
+    func requestResourceTopList(req: [String: Any]) -> Observable<[ResourceTopListModel]> {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.getResourceListTop(req: req), successClosure: { (result, code, message) in
+                guard let result = result as? String else{
+                    return
+                }
+                if let arr = Mapper<ResourceTopListModel>().mapArray(JSONObject:result.json_Str()["body"]["content"].arrayObject) {
+                    observer.onNext(arr)
+                }
+            }) { (errorMsg) in
+                //                if errorMsg == ERROR_TIMEOUT {
+                //                    self.loadingTimerOut = true
+                //                } else {
+                //                    self.loading = true
+                //                }
+                //                self.endRefresh()
+            }
+            
+            return Disposables.create {
+            }
+            
+        }
+    }
+    //MARK: 获取音频列表
+    func requestResourceAudioList(req: [String: Any]) -> Observable<[ResourceAudioListModel]> {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.getAudioListTop(req: req), successClosure: { (result, code, message) in
+                guard let result = result as? String else{
+                    return
+                }
+                if let arr = Mapper<ResourceAudioListModel>().mapArray(JSONObject:result.json_Str()["body"]["content"].arrayObject) {
+                    observer.onNext(arr)
+                }
+            }) { (errorMsg) in
+                //                if errorMsg == ERROR_TIMEOUT {
+                //                    self.loadingTimerOut = true
+                //                } else {
+                //                    self.loading = true
+                //                }
+                //                self.endRefresh()
+            }
+            
+            return Disposables.create {
+            }
+            
+        }
+    }
 }

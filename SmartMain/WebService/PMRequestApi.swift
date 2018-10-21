@@ -62,6 +62,9 @@ enum RequestApi{
     case quitGroup(byAdmin: Bool, req: [String: Any])
     case getAppVersion()
     case getResourceAll()
+    case getResourceListTop(req: [String: Any])
+    case getResourceAlbumList(req: [String: Any])
+    case getAudioListTop(req: [String: Any])
     case getResourceBanner(customer: String)
     case searchResource(req: [String: Any])
     case searchResourceAlbum(req: [String: Any])
@@ -131,7 +134,10 @@ extension RequestApi:TargetType{
              .updateUserInfo(let req),
              .getSearchResource(let req),
              .searchResource(let req),
-             .searchResourceAlbum(let req):
+             .searchResourceAlbum(let req),
+             .getResourceListTop(let req),
+             .getAudioListTop(let req),
+             .getResourceAlbumList(let req):
             params_task = req
             break
         case .quitGroup(_,let req):

@@ -96,13 +96,21 @@ extension RequestApi {
         case .getNetVoice:                  return "/sinvoice/set.do"
         // 群组成员操作
         case .quitGroup(let byAdmin, _):                  return "/suportAPP/familymember/quit.do?byAdmin=\(byAdmin)"
-            
+            // 获取app 最新信息
         case .getAppVersion: return "/suportAPP/getNewVersion.do"
-
+// 获取资源全部分类
         case .getResourceAll: return "/turingGetResource.do?inter=open/category/list"
-            
+            // 获取专辑排行列表
+        case .getResourceListTop: return "/turingPostResource.do?inter=open/album/top"
+        // 获取专辑列表
+        case .getResourceAlbumList: return "/turingPostResource.do?inter=open/album/list"
+        // 获取音频列表
+        case .getAudioListTop: return "/turingPostResource.do?inter=open/audio/list"
+            // 获取首页顶部banner
         case .getResourceBanner: return "/suportAPP/getBanner.do"
+        // 搜索资源歌曲
         case .searchResource: return "/turingPostResource.do?inter=open/audio/list"
+            // 搜索资源专辑
         case .searchResourceAlbum: return "/turingPostResource.do?inter=open/album/list"
         default:
             return ""

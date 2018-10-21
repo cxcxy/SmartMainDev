@@ -115,8 +115,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnMore" destination="kJn-e5-Mni" id="u1a-jw-woo"/>
                 <outlet property="collectionView" destination="mYT-NH-MII" id="zes-oO-4e8"/>
                 <outlet property="heightCollectionViewLayout" destination="lPX-La-ZLf" id="Ig1-6N-S9N"/>
+                <outlet property="lbMore" destination="2XN-Wm-eyG" id="ChV-8F-B49"/>
                 <outlet property="lbTitle" destination="Nth-LC-z4L" id="ySa-Wb-LCx"/>
             </connections>
             <point key="canvasLocation" x="8" y="-183"/>

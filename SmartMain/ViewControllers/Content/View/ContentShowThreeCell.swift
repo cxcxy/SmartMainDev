@@ -19,6 +19,8 @@ class ContentShowThreeCell: BaseTableViewCell {
 //    let itemWidth:CGFloat = CGFloat( Int( MGScreenWidth - 20 - 20 ) / 3 )// item 宽度
    
 //    static let itemLineSpacing:CGFloat = 20 // item 间隔
+    
+    
     static let itemSpacing:CGFloat = 20 // item 间隔
     static let itemWidth:CGFloat = CGFloat(Int(MGScreenWidth - itemSpacing - itemSpacing - 40) / 3) // item 宽度
     static let cell_img_H:CGFloat   = ContentShowThreeCell.itemWidth // item里面img 高度
@@ -26,6 +28,8 @@ class ContentShowThreeCell: BaseTableViewCell {
     static let itemHight:CGFloat = ContentShowThreeCell.cell_img_H + ContentShowThreeCell.cell_title_H
     
     
+    var topTypeString : String = ""
+    var resourctType : ResourceType = .zhiban
     
     @IBOutlet weak var heightCollectionViewLayout: NSLayoutConstraint!
     @IBOutlet weak var lbTitle: UILabel!
@@ -45,33 +49,21 @@ class ContentShowThreeCell: BaseTableViewCell {
             collectionView.reloadData()
             itemCount = contentArr.count > 9 ? 9 : contentArr.count
             lineNumber = itemCount / 3
-            let heightLine:CGFloat  = CGFloat((lineNumber - 1) * 15)
             let contentHeight = CGFloat(lineNumber * Int(ContentShowThreeCell.itemHight))
-            let line_All_h = CGFloat(Int((lineNumber - 1) * Int(heightLine)))
+            let line_All_h = CGFloat(Int((lineNumber - 1) * 20))
             
             self.heightCollectionViewLayout.constant      = contentHeight + line_All_h
         }
     }
     
-    var resourceModel: ResourceAllModel? {
+   var resourceTopListArr: [ResourceTopListModel] = [] {
         didSet {
-            guard let m = resourceModel else {
-                return
-            }
-            if let arr = m.categories {
-                self.resourceArr = arr
-            }
-            self.lbTitle.set_text = m.name
-        }
-    }
-    var resourceArr: [ResourceAllModel] = [] {
-        didSet {
+            
             collectionView.reloadData()
-            itemCount = resourceArr.count > 9 ? 9 : resourceArr.count
+            itemCount = resourceTopListArr.count > 9 ? 9 : resourceTopListArr.count
             lineNumber = itemCount / 3
-            let heightLine:CGFloat  = CGFloat((lineNumber - 1) * 15)
             let contentHeight = CGFloat(lineNumber * Int(ContentShowThreeCell.itemHight))
-            let line_All_h = CGFloat(Int((lineNumber - 1) * Int(heightLine)))
+            let line_All_h = CGFloat(Int((lineNumber - 1) * 20))
             
             self.heightCollectionViewLayout.constant      = contentHeight + line_All_h
         }
@@ -84,7 +76,15 @@ class ContentShowThreeCell: BaseTableViewCell {
     var lineNumber: Int = 0
 
     @IBAction func clickMoreAction(_ sender: Any) {
-                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, modouleId: dataModel?.id, navTitle: dataModel?.name)
+        switch resourctType {
+        case .zhiban:
+            VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, modouleId: dataModel?.id, navTitle: dataModel?.name)
+        case .tuling:
+//            VCRouter.toAlbumListVC(albumId: <#T##Int!#>, albumName: <#T##String#>)
+            VCRouter.toTopAlbumListVC(resourceType: topTypeString,albumName: lbTitle.text!)
+            break
+        }
+
     }
     func configCollectionView()  {
         
@@ -101,18 +101,30 @@ class ContentShowThreeCell: BaseTableViewCell {
 }
 extension ContentShowThreeCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return contentArr.count > (lineNumber * 3) ? lineNumber * 3 : contentArr.count
+        switch resourctType {
+        case .zhiban:
+            return contentArr.count > (lineNumber * 3) ? lineNumber * 3 : contentArr.count
+        case .tuling:
+            return resourceTopListArr.count > (lineNumber * 3) ? lineNumber * 3 : resourceTopListArr.count
+        }
+        
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentNineGridItem", for: indexPath)as! ContentNineGridItem
-        cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgSmall)
-//        cell.aspectConstraint.constant = 1
-        cell.lbTitle.set_text = contentArr[indexPath.row].name
+        switch resourctType {
+        case .zhiban:
+            cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgSmall)
+            cell.lbTitle.set_text = contentArr[indexPath.row].name
+        case .tuling:
+            cell.imgIcon.set_Img_Url(resourceTopListArr[indexPath.row].picCover)
+            cell.lbTitle.set_text = resourceTopListArr[indexPath.row].name
+        }
+
         return cell
     }
     //最小item间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 15
+        return ContentShowThreeCell.itemSpacing
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return ContentShowThreeCell.itemSpacing
@@ -123,11 +135,19 @@ extension ContentShowThreeCell:UICollectionViewDelegate,UICollectionViewDataSour
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = contentArr[indexPath.row]
-        if model.albumType == 2 {
-            VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
-        }else {
-            VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+//        ResourceAudioListVC
+        switch resourctType {
+        case .zhiban:
+            let model = contentArr[indexPath.row]
+            if model.albumType == 2 {
+                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
+            }else {
+                VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+            }
+        case .tuling:
+            let model = resourceTopListArr[indexPath.row]
+            VCRouter.toAudioListVC(albumId: model.id?.toString, topDes: model.name, topTotal: model.audioTotal?.toString, topImg: model.picCover)
         }
+
     }
 }

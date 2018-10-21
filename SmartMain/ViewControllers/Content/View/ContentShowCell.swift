@@ -15,7 +15,19 @@ class ContentShowCell: BaseTableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var resourctType : ResourceType = .zhiban
+    var resourctType : ResourceType = .zhiban {
+        didSet {
+            switch resourctType {
+            case .zhiban:
+                btnMore.isHidden = false
+                lbMore.isHidden = false
+            case .tuling:
+                lbMore.isHidden = true
+                btnMore.isHidden = true
+                break
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,11 +38,13 @@ class ContentShowCell: BaseTableViewCell {
     static let itemWidth:CGFloat = ( MGScreenWidth - 20 * 5 ) / 4 // item 宽度
     static let cell_img_H:CGFloat   =  ( MGScreenWidth - 20 * 5 ) / 4 // item里面img 高度
     static let cell_title_H:CGFloat = 35
-    static let itemHight:CGFloat = ContentShowCell.cell_img_H + ContentShowCell.cell_title_H
+    static let itemHight:CGFloat = (ContentShowCell.cell_img_H + ContentShowCell.cell_title_H)
 
     @IBOutlet weak var heightCollectionViewLayout: NSLayoutConstraint!
     var modouleId : String?
     @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var lbMore: UILabel!
+     @IBOutlet weak var btnMore: UIButton!
     var dataModel: ModulesResModel? { // 智伴资源
         didSet {
             guard let m = dataModel else {
@@ -53,7 +67,7 @@ class ContentShowCell: BaseTableViewCell {
     var resourceArr: [ResourceAllModel] = [] {
         didSet {
             collectionView.reloadData()
-            self.heightCollectionViewLayout.constant      = CGFloat(ContentShowCell.itemHight)
+               self.heightCollectionViewLayout.constant      = CGFloat(ContentShowCell.itemHight * 2 + 20)
         }
     }
     var resourceModel: ResourceAllModel? { // 图灵资源
@@ -77,7 +91,13 @@ class ContentShowCell: BaseTableViewCell {
     }
     
     @IBAction func clickAllAction(_ sender: Any) {
-        VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, modouleId: dataModel?.id, navTitle: dataModel?.name)
+        switch resourctType {
+        case .zhiban:
+            VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, modouleId: dataModel?.id, navTitle: dataModel?.name)
+        case .tuling:
+            break
+        }
+
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -92,7 +112,7 @@ extension ContentShowCell:UICollectionViewDelegate,UICollectionViewDataSource,UI
         case .zhiban:
             return contentArr.count > 4 ? 4 : contentArr.count
         case .tuling:
-            return resourceArr.count > 4 ? 4: resourceArr.count
+            return resourceArr.count > 8 ? 8: resourceArr.count
         }
 
     }
@@ -115,7 +135,7 @@ extension ContentShowCell:UICollectionViewDelegate,UICollectionViewDataSource,UI
     }
     //最小item间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return XBMin
+        return 20
     }
     //item 的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -134,8 +154,11 @@ extension ContentShowCell:UICollectionViewDelegate,UICollectionViewDataSource,UI
             }
             break
         case .tuling:
-//            cell.imgIcon.set_Img_Url(resourceArr[indexPath.row].imgLarge)
-//            cell.lbTitle.set_text = resourceArr[indexPath.row].name
+            let model = resourceArr[indexPath.row]
+            if let albumId = model.id {
+                VCRouter.toAlbumListVC(albumId: albumId,albumName: model.name ?? "")
+            }
+            
             break
         }
     }

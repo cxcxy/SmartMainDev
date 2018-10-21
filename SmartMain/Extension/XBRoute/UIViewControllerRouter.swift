@@ -77,6 +77,38 @@ class VCRouter {
         topVC?.pushVC(vc)
         
     }
+    
+    // MARK: - 跳转图灵 专辑列表 相当于第二级歌单页面,从全部资源点击进去
+    class func toAlbumListVC(albumId:Int!,albumName: String) {
+        
+        let vc = ResourceAlbumVC()
+        vc.albumId = albumId
+        vc.albumName = albumName
+        vc.resouceType = .resource
+        topVC?.pushVC(vc)
+        
+    }
+    // MARK: - 跳转图灵 专辑列表 相当于第二级歌单页面,从最新最热更多点击进去
+    class func toTopAlbumListVC(resourceType:String!,albumName: String) {
+        
+        let vc = ResourceAlbumVC()
+        vc.topType = resourceType
+        vc.resouceType = .topmore
+        vc.albumName = albumName
+        topVC?.pushVC(vc)
+        
+    }
+    // MARK: - 跳转图灵 音频列表 相当于第三级歌单页面
+    class func toAudioListVC(albumId:String!,topDes: String?, topTotal: String?, topImg:String?) {
+        let vc = ResourceAudioListVC()
+        vc.albumId = albumId
+        vc.topDes = topDes
+        vc.topTotal = topTotal
+        vc.topImg = topImg
+        topVC?.pushVC(vc)
+        
+    }
+
     // MARK: - 跳转预制歌单列表界面
     class func toEquipmentSubListVC(trackListId: Int!, navTitle: String?, trackList: [EquipmentModel]) {
         
