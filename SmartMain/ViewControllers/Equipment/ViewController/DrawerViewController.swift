@@ -270,7 +270,7 @@ extension DrawerViewController {
                 self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_lamp"
                 self.lbLight.set_text = light == 1 ? "关呼吸灯" : "开呼吸灯"
             }
-//            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
+            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
         scoketModel.getLock.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
@@ -280,7 +280,7 @@ extension DrawerViewController {
                 self.lbLock.set_text = light == 1 ? "关闭童锁" : "打开童锁"
             }
             //            self.requestSingsDetail(trackId: $0.element ?? 0)
-//            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
+            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
         
 
