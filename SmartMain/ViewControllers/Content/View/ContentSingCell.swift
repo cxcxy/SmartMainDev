@@ -43,11 +43,12 @@ class ContentSingCell: BaseTableViewCell {
             }
             self.lbTitle.set_text = m.name
             self.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.length)
-            if let arr = m.resId?.components(separatedBy: ":") {
-                if arr.count > 0 {
-                    self.trackId = arr[1]
-                }
-            }
+//            if let arr = m.resId?.components(separatedBy: ":") {
+//                if arr.count > 0 {
+//                    self.trackId = arr[1]
+//                }
+//            }
+            self.trackId = m.trackId?.toString
             self.duration = m.length?.toString
             self.title = m.name
         }

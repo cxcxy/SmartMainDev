@@ -85,10 +85,52 @@ class ContentViewModel: NSObject {
             if let str = result as? String {
                 if str == "ok" {
                     XBHud.showMsg("收藏成功")
+                    let likeItem = ConetentLikeModel()
+                    likeItem.trackId = songId
+                    likeItem.duration = duration
+                    likeItem.title = title
+                    userLikeList.append(likeItem)
                     closure()
                 }else {
                     XBHud.showMsg("收藏失败")
                 }
+            }
+        })
+    }
+    /**
+     *   取消收藏歌曲
+     */
+    func  requestCancleLikeSing(trackId: Int,closure: @escaping () -> ())  {
+        
+        var params_task = [String: Any]()
+        params_task["openId"] = XBUserManager.userName
+        params_task["trackId"]  = trackId
+        Net.requestWithTarget(.deleteLikeSing(req: params_task), successClosure: { (result, code, message) in
+            print(result)
+            if let str = result as? String {
+                if str == "ok" {
+                    XBHud.showMsg("取消收藏成功")
+                    userLikeList =  userLikeList.filter({ (item) -> Bool in
+                        return item.trackId != trackId
+                    })
+                    closure()
+                }else {
+                    XBHud.showMsg("取消收藏失败")
+                }
+            }
+        })
+        
+    }
+
+    func requestLikeListSong(closure: @escaping ([ConetentLikeModel]) -> ())  {
+        guard let phone = user_defaults.get(for: .userName) else {
+            XBHud.showMsg("请登录")
+            return
+        }
+
+        Net.requestWithTarget(.getLikeList(openId: phone), successClosure: {(result, code, message) in
+            if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
+                closure(arr)
             }
         })
     }

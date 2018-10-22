@@ -219,22 +219,10 @@ class ResourceAudioListVC: XBBaseViewController {
             XBHud.showMsg("当前歌曲ID错误")
             return
         }
-        var params_task = [String: Any]()
-        params_task["openId"] = XBUserManager.userName
-        params_task["trackId"]  = songId
-        params_task["duration"] = duration
-        params_task["title"]    = title
-        Net.requestWithTarget(.saveLikeSing(req: params_task), successClosure: { (result, code, message) in
-            print(result)
-            if let str = result as? String {
-                if str == "ok" {
-                    XBHud.showMsg("收藏成功")
-                }else {
-                    XBHud.showMsg("收藏失败")
-                }
-            }
-        })
-        
+
+        viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {
+ 
+        }
     }
 }
 extension ResourceAudioListVC {

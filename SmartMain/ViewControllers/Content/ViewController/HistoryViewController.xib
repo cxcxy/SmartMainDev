@@ -25,13 +25,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H4p-xz-YAM">
-                    <rect key="frame" x="0.0" y="20" width="375" height="190"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="145"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVO-Pv-D49">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myG-HL-me7">
-                                    <rect key="frame" x="30" y="85" width="315" height="30"/>
+                                    <rect key="frame" x="30" y="40" width="315" height="30"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_history_search" translatesAutoresizingMaskIntoConstraints="NO" id="LJ0-9G-PKW">
                                             <rect key="frame" x="15" y="7" width="16" height="16"/>
@@ -71,7 +71,7 @@
                             </subviews>
                             <color key="backgroundColor" red="0.2470588235" green="0.2666666667" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="145" id="9fM-0M-oE5"/>
+                                <constraint firstAttribute="height" constant="100" id="9fM-0M-oE5"/>
                                 <constraint firstAttribute="trailing" secondItem="myG-HL-me7" secondAttribute="trailing" constant="30" id="Mh3-YO-cU1"/>
                                 <constraint firstAttribute="bottom" secondItem="myG-HL-me7" secondAttribute="bottom" constant="30" id="RxT-Oo-0ai"/>
                                 <constraint firstItem="myG-HL-me7" firstAttribute="leading" secondItem="JVO-Pv-D49" secondAttribute="leading" constant="30" id="VNg-uB-hn5"/>
@@ -79,7 +79,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98b-GG-dLH">
-                            <rect key="frame" x="0.0" y="145" width="375" height="45"/>
+                            <rect key="frame" x="0.0" y="100" width="375" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="历史记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evj-fB-JHk">
                                     <rect key="frame" x="15" y="14" width="58" height="17"/>
@@ -120,7 +120,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="190" id="1Nf-TY-YMx"/>
+                        <constraint firstAttribute="height" constant="145" id="1Nf-TY-YMx"/>
                         <constraint firstItem="JVO-Pv-D49" firstAttribute="top" secondItem="H4p-xz-YAM" secondAttribute="top" id="2Bm-yj-zwx"/>
                         <constraint firstItem="98b-GG-dLH" firstAttribute="leading" secondItem="H4p-xz-YAM" secondAttribute="leading" id="3mm-Gx-VVu"/>
                         <constraint firstAttribute="trailing" secondItem="JVO-Pv-D49" secondAttribute="trailing" id="741-ZS-492"/>
@@ -132,7 +132,7 @@
                     <viewLayoutGuide key="safeArea" id="iUf-5l-2Lz"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-KV-BQX">
-                    <rect key="frame" x="0.0" y="210" width="375" height="457"/>
+                    <rect key="frame" x="0.0" y="165" width="375" height="502"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
             </subviews>

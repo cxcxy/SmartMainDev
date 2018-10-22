@@ -25,6 +25,9 @@ class VCVTMagic:VTMagicController{
     }
     
 }
+
+var userLikeList : [ConetentLikeModel] = []
+
 class ContentMainVC: XBBaseViewController {
     var controllerArray     : [UIViewController] = []  // 存放controller 的array
     var v                   : VCVTMagic!  // 统一的左滑 右滑 控制View
@@ -96,7 +99,9 @@ class ContentMainVC: XBBaseViewController {
     
     override func request()  {
         super.request()
-
+        ContentViewModel().requestLikeListSong { (arr) in
+            userLikeList = arr
+        }
         self.currentDeviceId = XBUserManager.device_Id
         guard XBUserManager.device_Id != "" else {
             self.loading = true
@@ -285,7 +290,7 @@ class ContentMainVC: XBBaseViewController {
         v.magicView.dataSource                  = self
         v.magicView.delegate                    = self
         v.magicView.needPreloading      = false
-        let vc = ResourceAllVC.init(style: .grouped)
+        let vc = ContentVC.init(style: .grouped)
 //        let vc_list = TrackListViewController()
         let vc1 = LikeViewController()
         let vc2 = HistoryViewController()

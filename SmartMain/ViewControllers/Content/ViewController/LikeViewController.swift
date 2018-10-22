@@ -24,6 +24,10 @@ class LikeViewController: XBBaseTableViewController {
         request()
           configCurrentSongsId()
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        request()
+//    }
     override func request() {
         super.request()
         guard let phone = user_defaults.get(for: .userName) else {
@@ -38,6 +42,7 @@ class LikeViewController: XBBaseTableViewController {
                     self.dataArr.removeAll()
                 }
                 self.dataArr += arr
+                userLikeList = self.dataArr // 刷新我的最爱数据
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
@@ -164,21 +169,11 @@ extension LikeViewController {
      */
     func requestCancleLikeSing(trackId: String?,section: Int)  {
         
-        var params_task = [String: Any]()
-        params_task["openId"] = XBUserManager.userName
-        params_task["trackId"]  = trackId
-        Net.requestWithTarget(.deleteLikeSing(req: params_task), successClosure: { (result, code, message) in
-            print(result)
-            if let str = result as? String {
-                if str == "ok" {
-                    XBHud.showMsg("取消收藏成功")
-                    self.dataArr.remove(at: section)
-                    self.tableView.reloadData()
-                }else {
-                    XBHud.showMsg("取消收藏失败")
-                }
-            }
-        })
+        viewModel.requestCancleLikeSing(trackId: trackId?.toInt() ?? 0) {
+            self.dataArr.remove(at: section)
+            self.tableView.reloadData()
+            
+        }
         
     }
 }

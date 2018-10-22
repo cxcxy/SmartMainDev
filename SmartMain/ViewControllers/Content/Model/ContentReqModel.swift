@@ -88,20 +88,33 @@ class ConetentSingModel: XBDataModel {
     var artist: String?
     var favoriteId: String?
     var resId: String?
+    var trackId: Int?
     var playUrls: ConetentSingPlayModel?
     var type: Int?
     var name: String?
     var isExpanded: Bool = false // 是否展开
     var isPlay: Bool = false // 是否播放
+    var isLike: Bool = false // 是否喜欢
     override func mapping(map: Map) {
         length             <-    map["length"]
         content             <-    map["content"]
         artist          <-    map["artist"]
         favoriteId            <-    map["favoriteId"]
         resId            <-    map["resId"]
+        if let resId = resId {
+            self.transfromTrackId(resId: resId)
+        }
         playUrls            <-    map["playUrls"]
         type            <-    map["type"]
         name            <-    map["name"]
+    }
+    func transfromTrackId(resId: String)  {
+//        if let arr =  {
+        let arr = resId.components(separatedBy: ":")
+        if arr.count > 0 {
+            self.trackId = arr[1].toInt()
+        }
+//        }
     }
 }
 class AddSongTrackReqModel: XBDataModel {

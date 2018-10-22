@@ -15,6 +15,18 @@ class HistorySongContentCell: BaseTableViewCell {
     @IBOutlet weak var viewLike: UIView!
     @IBOutlet weak var lbLike: UILabel!
     @IBOutlet weak var btnLike: UIButton!
+    
+    var likeList: [ConetentLikeModel] = []
+    
+    var isLike: Bool = false {
+        didSet {
+            
+            lbLike.set_text = isLike ? "取消收藏" : "收藏"
+            btnLike.isSelected = isLike
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

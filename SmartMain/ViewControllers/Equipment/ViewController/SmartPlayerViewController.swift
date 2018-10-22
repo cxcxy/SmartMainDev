@@ -80,6 +80,7 @@ class SmartPlayerViewController: XBBaseViewController {
         }
     }
     let scoketModel = ScoketMQTTManager.share
+    let viewModel = ContentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "歌曲名"
@@ -235,16 +236,10 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     override func request() {
         super.request()
-        guard let phone = user_defaults.get(for: .userName) else {
-            XBHud.showMsg("请登录")
-            return
-        }
-        Net.requestWithTarget(.getLikeList(openId: phone), successClosure: {[weak self] (result, code, message) in
+        viewModel.requestLikeListSong { [weak self](arr) in
             guard let `self` = self else { return }
-            if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
-                self.dataLikeArr = arr
-            }
-        })
+            self.dataLikeArr = arr
+        }
     }
     //MARK: 获取歌曲详情
     func requestSingsDetail(trackId: Int)  {
@@ -290,46 +285,22 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     func requestLikeSing()  {
         
-        var params_task = [String: Any]()
-        params_task["openId"] = XBUserManager.userName
-        params_task["trackId"]  = currentSongModel?.id
-        params_task["duration"] = currentSongModel?.duration
-        params_task["title"]    = currentSongModel?.title
-        Net.requestWithTarget(.saveLikeSing(req: params_task), successClosure: { [weak self](result, code, message) in
-            guard let `self` = self else { return }
-            if let str = result as? String {
-                if str == "ok" {
-                    XBHud.showMsg("收藏成功")
-                    let likeModel = ConetentLikeModel()
-                    likeModel.trackId = self.currentSongModel?.id
-                    self.dataLikeArr.append(likeModel)
-                    self.btnLike.isSelected = true
-                }else {
-                    XBHud.showMsg("收藏失败")
-                }
-            }
-        })
-        
+        viewModel.requestLikeSing(songId: currentSongModel?.id ?? 0, duration: currentSongModel?.duration ?? 0, title: currentSongModel?.title ?? "") {
+            let likeModel = ConetentLikeModel()
+            likeModel.trackId = self.currentSongModel?.id
+            self.dataLikeArr.append(likeModel)
+            self.btnLike.isSelected = true
+        }
     }
     func requestCancleLikeSing()  {
         
-        var params_task = [String: Any]()
-        params_task["openId"] = XBUserManager.userName
-        params_task["trackId"]  = currentSongModel?.id
-        Net.requestWithTarget(.deleteLikeSing(req: params_task), successClosure: { [weak self](result, code, message) in
-            guard let `self` = self else { return }
-            if let str = result as? String {
-                if str == "ok" {
-                    XBHud.showMsg("取消收藏成功")
-                   self.dataLikeArr =  self.dataLikeArr.filter({ (item) -> Bool in
-                    return item.trackId != self.currentSongModel?.id
-                    })
-                    self.btnLike.isSelected = false
-                }else {
-                    XBHud.showMsg("取消收藏失败")
-                }
-            }
-        })
+        viewModel.requestCancleLikeSing(trackId: currentSongModel?.id ?? 0) {
+            self.dataLikeArr =  self.dataLikeArr.filter({ (item) -> Bool in
+                return item.trackId != self.currentSongModel?.id
+            })
+            self.btnLike.isSelected = false
+        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

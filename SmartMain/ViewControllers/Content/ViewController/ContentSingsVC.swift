@@ -23,7 +23,7 @@ class ContentSingsVC: XBBaseViewController {
     
     var viewModel   = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
-    
+    var likeList: [ConetentLikeModel] = []
     
     
     override func viewDidLoad() {
@@ -67,17 +67,17 @@ class ContentSingsVC: XBBaseViewController {
     
     func mapSongsArrPlayingStatus(songId: Int)  {
         self.dataArr.forEachEnumerated { (index, item) in
-            if let arr = item.resId?.components(separatedBy: ":") {
-                if arr.count > 0 {
-                    if let song_Id = arr[1].toInt() {
+//            if let arr = item.resId?.components(separatedBy: ":") {
+//                if arr.count > 0 {
+                    if let song_Id = item.trackId {
                         if song_Id == songId {
                             item.isPlay = true
                         }else {
                             item.isPlay = false
                         }
                     }
-                }
-            }
+//                }
+//            }
         }
         self.tableView.reloadData()
     }
@@ -96,7 +96,8 @@ class ContentSingsVC: XBBaseViewController {
                     self.tableView.mj_footer = self.mj_footer
                     self.dataArr.removeAll()
                 }
-                self.dataArr += arr
+                
+                self.dataArr += self.flatMapLikeList(arr: arr)
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["album"].object) {
@@ -114,6 +115,23 @@ class ContentSingsVC: XBBaseViewController {
         }
         
     }
+    func flatMapLikeList(arr: [ConetentSingModel]) -> [ConetentSingModel] {
+        for item in arr {
+            for likeitem in userLikeList {
+//                if let ids = item.resId?.components(separatedBy: ":") {
+//                    if ids.count > 0 {
+                        if likeitem.trackId == item.trackId {
+                            item.isLike = true
+                            continue
+                        }
+//                    }
+//                }
+            }
+        }
+        return arr
+    }
+
+    //MARK: 请求预制列表数据
     func requestTrackList() {
         guard XBUserManager.device_Id != "" else {
             endRefresh()
@@ -165,11 +183,12 @@ class ContentSingsVC: XBBaseViewController {
             return
         }
         let req_model = AddSongTrackReqModel()
-        if let arr = m.resId?.components(separatedBy: ":") {
-            if arr.count > 0 {
-                req_model.id = arr[1].toInt()
-            }
-        }
+//        if let arr = m.resId?.components(separatedBy: ":") {
+//            if arr.count > 0 {
+//                req_model.id = arr[1].toInt()
+//            }
+//        }
+        req_model.id = m.trackId
         req_model.title = m.name
         req_model.coverSmallUrl = ""
         req_model.duration = m.length
@@ -223,22 +242,30 @@ class ContentSingsVC: XBBaseViewController {
             XBHud.showMsg("当前歌曲ID错误")
             return
         }
-        var params_task = [String: Any]()
-        params_task["openId"] = XBUserManager.userName
-        params_task["trackId"]  = songId
-        params_task["duration"] = duration
-        params_task["title"]    = title
-        Net.requestWithTarget(.saveLikeSing(req: params_task), successClosure: { (result, code, message) in
-            print(result)
-            if let str = result as? String {
-                if str == "ok" {
-                    XBHud.showMsg("收藏成功")
-                }else {
-                    XBHud.showMsg("收藏失败")
+        viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {
+            self.dataArr.forEachEnumerated({ (index, item) in
+                if item.trackId == songId {
+                    item.isLike = true
                 }
-            }
-        })
-        
+            })
+            self.tableView.reloadData()
+        }
+    }
+    //MARK: 取消收藏歌曲
+    func requestCancelSong(songId: Int?)  {
+        guard let songId = songId else {
+            XBHud.showMsg("当前歌曲ID错误")
+            return
+        }
+        viewModel.requestCancleLikeSing(trackId: songId) { [weak self] in
+            guard let `self` = self else { return }
+            self.dataArr.forEachEnumerated({ (index, item) in
+                if item.trackId == songId {
+                    item.isLike = false
+                }
+            })
+            self.tableView.reloadData()
+        }
     }
 }
 extension ContentSingsVC {
@@ -296,14 +323,21 @@ extension ContentSingsVC {
                 guard let `self` = self else { return }
                 self.clickSongsToTrackList(isAll: false,songModel: m)
             }
-   
+            cell.isLike = m.isLike
             cell.viewLike.addTapGesture {[weak self]  (sender) in
                 guard let `self` = self else { return }
-                if let arr = m.resId?.components(separatedBy: ":") {
-                    if arr.count > 0 {
-                        self.requestLikeSing(songId: arr[1].toInt(), duration: m.length ?? 0, title: m.name ?? "")
-                    }
-                }
+    
+//                    if let arr = m.resId?.components(separatedBy: ":") {
+//                        if arr.count > 0 {
+                            if m.isLike {
+                                self.requestCancelSong(songId: m.trackId)
+                            }else {
+                                self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
+                            }
+//                        }
+//                    }
+//                }
+
             }
             return cell
         }
