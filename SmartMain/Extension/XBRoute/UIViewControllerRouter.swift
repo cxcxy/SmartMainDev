@@ -130,8 +130,10 @@ class VCRouter {
     // MARK: - 跳转WebView
     class func toWebView(webUrl: String) {
         
-  
-
+        let vc = XBWebViewController()
+        vc.url = webUrl
+        topVC?.pushVC(vc)
+        
     }
     class func prentAlertAction(message: String,closure: @escaping () -> ())  {
         

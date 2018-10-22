@@ -24,6 +24,7 @@
 		0422ECDC2140D08B00A42D7A /* EquipmentSubListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422ECDB2140D08B00A42D7A /* EquipmentSubListVC.swift */; };
 		0422ECDF214110E000A42D7A /* ContentTitleCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422ECDD214110E000A42D7A /* ContentTitleCVCell.swift */; };
 		0422ECE0214110E000A42D7A /* ContentTitleCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0422ECDE214110E000A42D7A /* ContentTitleCVCell.xib */; };
+		0423E0DB217DBEBD0028E855 /* XBWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423E0DA217DBEBD0028E855 /* XBWebViewController.swift */; };
 		042EED152150DE6800DBD492 /* ChatSingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042EED142150DE6800DBD492 /* ChatSingViewController.swift */; };
 		042EEF132150E15F00DBD492 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EEDF12150E15F00DBD492 /* UIViewController+HUD.m */; };
 		042EEF142150E15F00DBD492 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EEDF22150E15F00DBD492 /* NSDate+Category.m */; };
@@ -394,6 +395,7 @@
 		0422ECDB2140D08B00A42D7A /* EquipmentSubListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentSubListVC.swift; sourceTree = "<group>"; };
 		0422ECDD214110E000A42D7A /* ContentTitleCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTitleCVCell.swift; sourceTree = "<group>"; };
 		0422ECDE214110E000A42D7A /* ContentTitleCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTitleCVCell.xib; sourceTree = "<group>"; };
+		0423E0DA217DBEBD0028E855 /* XBWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBWebViewController.swift; sourceTree = "<group>"; };
 		042EED142150DE6800DBD492 /* ChatSingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSingViewController.swift; sourceTree = "<group>"; };
 		042EEDEB2150E15F00DBD492 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
 		042EEDEE2150E15F00DBD492 /* EaseLocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseLocalDefine.h; sourceTree = "<group>"; };
@@ -1779,6 +1781,7 @@
 		04C38838213E0B590063A799 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0423E0DA217DBEBD0028E855 /* XBWebViewController.swift */,
 				04C389D2213E160E0063A799 /* XBTabBarController.swift */,
 				04C38843213E0B590063A799 /* XBBaseViewController.swift */,
 				04C3883A213E0B590063A799 /* XBBaseNavigation.swift */,
@@ -2531,6 +2534,7 @@
 				0485CCB42148A89200F54927 /* MQTTPacket.swift in Sources */,
 				0485CCB32148A89200F54927 /* MQTTStreamable.swift in Sources */,
 				04C38736213E093F0063A799 /* BYFoundationLog.m in Sources */,
+				0423E0DB217DBEBD0028E855 /* XBWebViewController.swift in Sources */,
 				0402E777215E18390040919C /* XBAddContactCell.swift in Sources */,
 				2DF075B3217628E1006F0818 /* ContentNineGridItem.swift in Sources */,
 				042EEF2C2150E15F00DBD492 /* MJRefreshAutoGifFooter.m in Sources */,

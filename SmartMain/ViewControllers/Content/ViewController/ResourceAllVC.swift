@@ -68,6 +68,7 @@ class ResourceAllVC: XBBaseTableViewController {
             self.hotArr     = hotArr
             self.eliteArr   = eliteArr
             self.latestArr  = latestArr
+            self.endRefresh()
             self.tableView.reloadData()
             }, onError: {[weak self] (error) in
                 guard let `self` = self else { return }

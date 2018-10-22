@@ -72,8 +72,10 @@ extension ContentHeaderCell: FSPagerViewDataSource,FSPagerViewDelegate {
     // MARK:- FSPagerView Delegate
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        pagerView.deselectItem(at: index, animated: true)
-        pagerView.scrollToItem(at: index, animated: true)
+//        pagerView.deselectItem(at: index, animated: true)
+//        pagerView.scrollToItem(at: index, animated: true)
+        let model = dataArr[index]
+        VCRouter.toWebView(webUrl: model.linkurl ?? "")
     }
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {
