@@ -172,7 +172,7 @@ class XBFilePlaceholderModel:NSObject {
 class XBStyleCellModel:NSObject {
     var title:String    = ""
     var content:String  = ""
-    var isRight:Bool    = false
+    var isEdit:Bool    = false
     var imgIcon:String  = ""
     var isSwitchOpen:Bool?
     var cellType:Int    = 0
@@ -181,14 +181,14 @@ class XBStyleCellModel:NSObject {
     init(title:String = "",
          imgIcon:String = "",
          content:String = "",
-         isRight:Bool = false,
+         isEdit:Bool = false,
          isSwitchOpen:Bool? = nil,
          cellType:Int = 0,
          extraDic:[String: String] = [String: String](),
          isHidden: Bool = false) {
         self.title = title
         self.content = content
-        self.isRight = isRight
+        self.isEdit = isEdit
         self.imgIcon = imgIcon
         self.isSwitchOpen = isSwitchOpen
         self.cellType = cellType

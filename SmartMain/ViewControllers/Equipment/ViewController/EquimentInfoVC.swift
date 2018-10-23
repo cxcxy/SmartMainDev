@@ -47,7 +47,7 @@ extension EquimentInfoVC {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentListCell", for: indexPath) as! EquipmentListCell
         cell.lbTitle.set_text = sourceArr[indexPath.row]
-        cell.lbNumber.set_text = valueArr[indexPath.row]
+//        cell.lbNumber.set_text = valueArr[indexPath.row]
         return cell
 
         

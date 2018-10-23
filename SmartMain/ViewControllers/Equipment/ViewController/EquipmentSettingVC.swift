@@ -9,28 +9,71 @@
 import UIKit
 
 class EquipmentSettingVC: XBBaseTableViewController {
-    var sourceArr : [String] = ["设备信息","修改网络","解绑设备","成员管理","使用说明"]
+    var sourceArr : [[XBStyleCellModel]] = []
     var equimentModel: EquipmentInfoModel?
+    let cell_photo = XBStyleCellModel.init(title: "头像", cellType: 1, isHidden: false)
+    let cell_name = XBStyleCellModel.init(title: "名称",isEdit: true, cellType: 2, isHidden: false)
+    let cell_device = XBStyleCellModel.init(title: "设备号", cellType: 3, isHidden: true)
+    let cell_memory = XBStyleCellModel.init(title: "存储空间", cellType: 4, isHidden: true)
+    let cell_version = XBStyleCellModel.init(title: "固件版本", cellType: 5, isHidden: true)
+    let cell_net = XBStyleCellModel.init(title: "所在网络", cellType: 6, isHidden: true)
+    
+    var viewModel = LoginViewModel()
+    var babyname:String = ""
+    var headimgurl:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func setUI() {
         super.setUI()
-        self.title = "设备设置"
+        self.title = "设备信息"
         tableView.cellId_register("EquipmentListCell")
         tableView.cellId_register("EquipmentSetHeaderCell")
         request()
+        let setion_one = [cell_photo,cell_name]
+        let setion_two = [cell_device,cell_memory,cell_version]
+        let setion_four = [cell_net]
+        sourceArr = [setion_one,setion_two,setion_four]
     }
     override func request() {
         super.request()
-//
         Net.requestWithTarget(.getEquimentInfo(deviceId: testDeviceId), successClosure: { (result, code, message) in
             if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
                 self.endRefresh()
                 self.equimentModel = model
-                self.tableView.reloadData()
+                self.cell_net.content = model.net ?? ""
+                self.cell_version.content = model.firmwareVersion ?? ""
+                let cardAvailable = model.cardAvailable?.toString ?? ""
+                let cardTotal = model.cardTotal?.toString ?? ""
+                self.cell_memory.content = cardAvailable + "MB/" + cardTotal + "MB"
+                self.cell_device.content = model.id ?? ""
+                self.getDeviceBabyInfo()
             }
         })
+    }
+    func getDeviceBabyInfo() { // 获取设备信息
+        
+        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+            guard let `self` = self else { return }
+//            self.configUIInfo()
+            self.cell_name.content = XBUserManager.dv_babyname
+            self.tableView.reloadData()
+        }
+    }
+    //MARK: 更新设备信息
+    func requestUpdateBabyInfo(babyName: String, headImgUrl: String)  {
+        
+        viewModel.requestUpdateBabyInfo(device_Id: XBUserManager.device_Id,
+                                        babyname: babyName,
+                                        headimgurl: headImgUrl) { model in
+
+                XBHud.showMsg("修改成功")
+                XBUserManager.saveDeviceInfo(model)
+                self.cell_name.content = XBUserManager.dv_babyname
+                self.tableView.reloadData()
+
+        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -41,46 +84,126 @@ class EquipmentSettingVC: XBBaseTableViewController {
             print(result)
         })
     }
+    //MARK: 相册选择器
+    lazy var imagePicker: XBAddImagePickerFragment = {
+        let img = XBAddImagePickerFragment.init()
+        img.delegate = self
+        return img
+    }()
 }
-extension EquipmentSettingVC {
+extension EquipmentSettingVC: XBImagePickerToolDelegate {
+    //MARK: 点击选择照片
+    func choosePhotoAction() {
+        self.imagePicker.show(self)
+    }
     
+    //MARK: 代理方法， 拿到选择的照片
+    func getImagePicker(image: UIImage) {
+        //将选择的图片保存到Document目录下
+        let fileManager = FileManager.default
+        let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                           .userDomainMask, true)[0] as String
+        let filePath = "\(rootPath)/pickedimage.png"
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
+//        self.imgPhoto.image = image
+        let openId = XBUserManager.device_Id
+
+        if (fileManager.fileExists(atPath: filePath)){
+            
+            Net.requestWithTarget(.uploadAvatar(openId: openId, body: filePath), successClosure: { (result, code, message) in
+                if let str = result as? String {
+                    XBLog("上传成功 ==\(str)")
+
+//                    XBHud.showMsg("修改头像成功")
+                    if let headImgUrl = user_defaults.get(for: .dv_headimgurl){
+                        ImageCache.default.removeImage(forKey: headImgUrl)
+                    }
+                    self.requestUpdateBabyInfo(babyName: XBUserManager.dv_babyname, headImgUrl: str)
+//                    XBUserManager.dv_headimgurl = str
+//                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+}
+
+extension EquipmentSettingVC {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return sourceArr.count > 0 ? sourceArr.count + 1 : 0
+    }
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 6
+        if section == 0 {
+            return 1
+        }
+        return sourceArr.count > 0 ? sourceArr[section - 1].count : 0
         
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentSetHeaderCell", for: indexPath) as! EquipmentSetHeaderCell
-            
+            cell.lbTitle.set_text = XBUserManager.dv_babyname
+            cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+            if equimentModel?.electricity == 101 { // 当前正在充电
+                cell.lbElectricity.set_text = "正在充电"
+            }else {
+                let electricity = equimentModel?.electricity?.toString  ?? ""
+                cell.lbElectricity.set_text = "设备剩余电量：" + electricity
+            }
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentListCell", for: indexPath) as! EquipmentListCell
-        cell.lbTitle.text = sourceArr[indexPath.row - 1]
-        if indexPath.row == 2 {
-            cell.lbNumber.set_text = self.equimentModel?.net
-        }else {
-            cell.lbNumber.set_text = ""
+        let model = sourceArr[indexPath.section - 1]
+        let item = model[indexPath.row]
+        cell.lbTitle.text = item.title
+        cell.tfDes.isUserInteractionEnabled = item.isEdit
+        cell.tfDes.text = item.content
+        cell.viewBtn.isHidden = item.isHidden
+        cell.btnItme.addAction { [weak self]in
+            guard let `self` = self else { return }
+            if item.cellType == 1 {
+                self.choosePhotoAction()
+            }
+            if item.cellType == 2 {
+                if cell.tfDes.text! != XBUserManager.dv_babyname {
+                    self.requestUpdateBabyInfo(babyName: cell.tfDes.text!, headImgUrl: XBUserManager.dv_headimgurl)
+                }
+
+            }
         }
         return cell
         
     }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
+    func clickChangeAction(celltype: Int)  {
+        switch celltype {
         case 1:
-            if let equimentModel = self.equimentModel {
-                VCRouter.toEquipmentInfoVC(equimentModel: equimentModel)
-            }
-        case 3:
-            print("解除绑定设备")
-            requestQuitEquiment()
-        case 4:
-            let vc = MemberManagerVC()
-            self.pushVC(vc)
+            
+            break
+        case 2:
+            self.requestUpdateBabyInfo(babyName: "", headImgUrl: XBUserManager.dv_headimgurl)
+            break
         default:
             break
         }
     }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        switch indexPath.row {
+//        case 1:
+//            if let equimentModel = self.equimentModel {
+//                VCRouter.toEquipmentInfoVC(equimentModel: equimentModel)
+//            }
+//        case 3:
+//            print("解除绑定设备")
+//            requestQuitEquiment()
+//        case 4:
+//            let vc = MemberManagerVC()
+//            self.pushVC(vc)
+//        default:
+//            break
+//        }
+//    }
 
 }

@@ -12,7 +12,7 @@ class DrawerViewController: XBBaseViewController {
     var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "icon_group2",cellType: 2)
     var eqThree  = XBStyleCellModel.init(title: "切换设备", imgIcon: "icon_group3",cellType: 3)
     var eqFour   = XBStyleCellModel.init(title: "设备成员", imgIcon: "icon_member",cellType: 7)
-    var accountOne  = XBStyleCellModel.init(title: "宝宝信息", imgIcon: "icon_group4",cellType: 4)
+    var accountOne  = XBStyleCellModel.init(title: "设备信息", imgIcon: "icon_group4",cellType: 4)
     var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "icon_group5",cellType: 5)
     var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "icon_group6",cellType: 6)
     var eqArr: [XBStyleCellModel] = []
@@ -168,11 +168,12 @@ extension DrawerViewController {
             let vc = EquipmentListViewController()
             self.cw_push(vc)
         case 4:
-            let vc = SetInfoViewController()
-            vc.isAdd = false
-            vc.deviceId = XBUserManager.device_Id
-            vc.setInfoType = .editDeviceInfo
+            let vc = EquipmentSettingVC()
+//            vc.isAdd = false
+//            vc.deviceId = XBUserManager.device_Id
+//            vc.setInfoType = .editDeviceInfo
             self.cw_push(vc)
+            
         case 5:
             let vc = AccountInfoViewController()
             self.cw_push(vc)

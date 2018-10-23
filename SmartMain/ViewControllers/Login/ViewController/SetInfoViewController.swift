@@ -101,9 +101,13 @@ class SetInfoViewController: XBBaseViewController {
             title = "用户信息"
             break
         case .editDeviceInfo:
+            viewSex.isHidden = true
+            viewBirthday.isHidden = true
             title = "宝贝信息"
             break
         case .setDeviceInfo:
+            viewSex.isHidden = true
+            viewBirthday.isHidden = true
             title = "宝贝信息"
             break
         }
@@ -233,7 +237,7 @@ class SetInfoViewController: XBBaseViewController {
     }
     //MARK: 更新设备信息
     func requestUpdateBabyInfo()  {
-        viewModel.requestUpdateBabyInfo(device_Id: deviceId, babyname: tfNick.text!, headimgurl: self.headImgUrl, sex: currentSex, birthday: self.birth) { model in
+        viewModel.requestUpdateBabyInfo(device_Id: deviceId, babyname: tfNick.text!, headimgurl: self.headImgUrl) { model in
             if self.isAdd {
                 print("新增成功")
                 if let del = self.delegate {

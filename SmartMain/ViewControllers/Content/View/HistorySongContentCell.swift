@@ -15,6 +15,8 @@ class HistorySongContentCell: BaseTableViewCell {
     @IBOutlet weak var viewLike: UIView!
     @IBOutlet weak var lbLike: UILabel!
     @IBOutlet weak var btnLike: UIButton!
+    @IBOutlet weak var viewAudition: UIView! // 试听View
+    @IBOutlet weak var lbAudition: UILabel! // 试听View
     
     var likeList: [ConetentLikeModel] = []
     
@@ -30,6 +32,7 @@ class HistorySongContentCell: BaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        viewAudition.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

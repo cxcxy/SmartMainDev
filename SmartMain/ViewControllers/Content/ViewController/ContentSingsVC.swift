@@ -25,7 +25,8 @@ class ContentSingsVC: XBBaseViewController {
     var scoketModel = ScoketMQTTManager.share
     var likeList: [ConetentLikeModel] = []
     
-    
+    let playerLayer:AVPlayerLayer = AVPlayerLayer.init()
+    var player:AVPlayer = AVPlayer.init()
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.currentNavigationNone = true
@@ -43,6 +44,7 @@ class ContentSingsVC: XBBaseViewController {
         request()
         requestTrackList()
         configCurrentSongsId()
+        configPlay()
         makeCustomerImageNavigationItem("icon_music_white", left: false) { [weak self] in
             guard let `self` = self else { return }
             VCRouter.toPlayVC()
@@ -81,7 +83,15 @@ class ContentSingsVC: XBBaseViewController {
         }
         self.tableView.reloadData()
     }
-    
+    func configPlay()  {
+
+        playerLayer.frame = CGRect.init(x: 10, y: 30, w: self.view.bounds.size.width - 20, h: 200)
+        // 设置画面缩放模式
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+        // 在视图上添加播放器
+        self.view.layer.addSublayer(playerLayer)
+
+    }
     override func request() {
         super.request()
        
@@ -183,11 +193,6 @@ class ContentSingsVC: XBBaseViewController {
             return
         }
         let req_model = AddSongTrackReqModel()
-//        if let arr = m.resId?.components(separatedBy: ":") {
-//            if arr.count > 0 {
-//                req_model.id = arr[1].toInt()
-//            }
-//        }
         req_model.id = m.trackId
         req_model.title = m.name
         req_model.coverSmallUrl = ""
@@ -276,22 +281,7 @@ extension ContentSingsVC {
         let m  = dataArr[section]
         return m.isExpanded ? 2 : 1
     }
-//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 50
-//    }
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let v = ContentSingHaderView.loadFromNib()
-//        if let total = headerInfo?.total {
-//            v.lbTotal.set_text = "共" + total.toString + "首"
-//        }else {
-//            v.lbTotal.set_text = ""
-//        }
-//        v.btnAddAll.addAction { [weak self]in
-//            guard let `self` = self else { return }
-//            self.clickAddAllSongsToTrackList()
-//        }
-//        return v
-//    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
@@ -326,32 +316,23 @@ extension ContentSingsVC {
             cell.isLike = m.isLike
             cell.viewLike.addTapGesture {[weak self]  (sender) in
                 guard let `self` = self else { return }
-    
-//                    if let arr = m.resId?.components(separatedBy: ":") {
-//                        if arr.count > 0 {
-                            if m.isLike {
-                                self.requestCancelSong(songId: m.trackId)
-                            }else {
-                                self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
-                            }
-//                        }
-//                    }
-//                }
+                    if m.isLike {
+                        self.requestCancelSong(songId: m.trackId)
+                    }else {
+                        self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
+                    }
 
             }
+            
+            cell.viewAudition.addTapGesture {[weak self]  (sender) in
+                guard let `self` = self else { return }
+                self.playVoice(model: m)
+                
+            }
+            cell.lbAudition.set_text = m.isAudition ? "暂停" : "试听"
+            cell.viewAudition.isHidden = false
             return cell
         }
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSingCell", for: indexPath) as! ContentSingCell
-//
-//        cell.modelData = dataArr[indexPath.row]
-//        cell.headerInfo = self.headerInfo
-//        cell.lbLineNumber.set_text = (indexPath.row + 1).toString
-//        cell.setArr = ["添加到播单","收藏"]
-//        cell.trackList = self.trackList
-//
-//        return cell
-        
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard XBUserManager.device_Id != "" else {
@@ -369,7 +350,36 @@ extension ContentSingsVC {
         if indexPath.row == 1 {
             let m  = dataArr[indexPath.section]
 //            self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
+            
         }
+    }
+    
+    //MARK: 点击试听
+    func playVoice(model: ConetentSingModel)  {
+        guard let urlTask =  URL.init(string: model.content ?? "") else {
+            XBLog("歌曲地址有误")
+            return
+        }
+        if model.isAudition {
+            player.pause()
+            
+        }else {
+            let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
+            self.player = AVPlayer(playerItem: playerItem)
+            playerLayer.player = player
+
+            // 开始播放
+            player.play()
+        }
+        model.isAudition = !model.isAudition
+        dataArr.forEach { (item) in
+            if item.trackId != model.trackId {
+                item.isAudition = false
+            }
+        }
+      
+        self.tableView.reloadData()
+
     }
     //MARK: 在线点播歌曲
     func requestOnlineSing(trackId: String)  {

@@ -10,11 +10,15 @@ import UIKit
 
 class EquipmentListCell: BaseTableViewCell {
 
-    @IBOutlet weak var lbNumber: UILabel!
+    @IBOutlet weak var btnItme: UIButton!
+    @IBOutlet weak var viewBtn: UIView!
+    @IBOutlet weak var tfDes: UITextField!
+//    @IBOutlet weak var lbNumber: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        btnItme.setCornerRadius(radius: 8)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

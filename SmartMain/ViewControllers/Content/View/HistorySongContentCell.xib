@@ -13,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="KGk-i7-Jjw" customClass="HistorySongContentCell" customModule="SmartMain" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="131.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="175.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoI-7E-NTi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="132.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="176.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hwL-UU-yOu">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="132.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="176.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LnT-ZM-Cv8">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
@@ -136,6 +136,34 @@
                                             <constraint firstItem="Zz5-CN-wre" firstAttribute="centerY" secondItem="vqw-Ng-D5R" secondAttribute="centerY" id="nBx-zg-q2G"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVV-oD-6Jt">
+                                        <rect key="frame" x="0.0" y="132.5" width="320" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccS-U3-uak">
+                                                <rect key="frame" x="35" y="12" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="1sY-qJ-P3z"/>
+                                                    <constraint firstAttribute="width" constant="20" id="Qrv-f3-pbR"/>
+                                                </constraints>
+                                                <state key="normal" image="icon_audition"/>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="试听" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpY-WX-M9g">
+                                                <rect key="frame" x="65" y="16" width="20.5" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="qpY-WX-M9g" firstAttribute="leading" secondItem="ccS-U3-uak" secondAttribute="trailing" constant="10" id="4Ov-ue-EvS"/>
+                                            <constraint firstAttribute="height" constant="44" id="Ih2-bO-rgM"/>
+                                            <constraint firstItem="ccS-U3-uak" firstAttribute="centerY" secondItem="qVV-oD-6Jt" secondAttribute="centerY" id="Mfp-7r-Jf0"/>
+                                            <constraint firstItem="qpY-WX-M9g" firstAttribute="centerY" secondItem="ccS-U3-uak" secondAttribute="centerY" id="NjC-YQ-Oeq"/>
+                                            <constraint firstItem="ccS-U3-uak" firstAttribute="leading" secondItem="qVV-oD-6Jt" secondAttribute="leading" constant="35" id="nfa-Qo-aop"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -158,8 +186,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnLike" destination="CO3-cS-af5" id="ANP-ih-6tA"/>
+                <outlet property="lbAudition" destination="qpY-WX-M9g" id="vgu-YH-sIS"/>
                 <outlet property="lbLike" destination="3db-ox-e7L" id="IS5-uO-j5h"/>
                 <outlet property="viewAdd" destination="LnT-ZM-Cv8" id="yjI-Z1-YF4"/>
+                <outlet property="viewAudition" destination="qVV-oD-6Jt" id="lWg-6W-0dj"/>
                 <outlet property="viewDel" destination="vqw-Ng-D5R" id="Cdw-eF-cvl"/>
                 <outlet property="viewLike" destination="CpM-1X-dmv" id="Xui-Sz-ZaY"/>
             </connections>
@@ -167,6 +197,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_audition" width="16" height="12"/>
         <image name="icon_exp" width="16" height="16"/>
         <image name="icon_like" width="22" height="20"/>
         <image name="icon_tracklist" width="14" height="16"/>

@@ -9,10 +9,13 @@
 import UIKit
 
 class EquipmentSetHeaderCell: UITableViewCell {
-
+    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var lbElectricity: UILabel!
+    @IBOutlet weak var imgPhoto: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgPhoto.roundView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

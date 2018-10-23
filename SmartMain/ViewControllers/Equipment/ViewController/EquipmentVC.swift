@@ -98,7 +98,7 @@ extension EquipmentVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentListCell", for: indexPath) as! EquipmentListCell
         cell.lbTitle.set_text = dataArr[indexPath.row].name
         let trackCount = dataArr[indexPath.row].trackCount ?? 0
-        cell.lbNumber.set_text = "共" + trackCount.toString + "首"
+//        cell.lbNumber.set_text = "共" + trackCount.toString + "首"
         return cell
         
     }

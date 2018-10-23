@@ -204,21 +204,21 @@ class LoginViewModel: NSObject {
         })
     }
     /// 修改信息
-    func requestUpdateBabyInfo(device_Id: String,babyname: String,headimgurl: String,sex: Int,birthday: String,closure: @escaping (XBDeviceBabyModel) -> ())  {
+    func requestUpdateBabyInfo(device_Id: String,babyname: String,headimgurl: String,closure: @escaping (XBDeviceBabyModel) -> ())  {
         guard babyname != "" else {
             XBHud.showMsg("请输入昵称")
             return
         }
-        guard birthday != "" else {
-            XBHud.showMsg("请选择生日")
-            return
-        }
+//        guard birthday != "" else {
+//            XBHud.showMsg("请选择生日")
+//            return
+//        }
         var params_task = [String: Any]()
         params_task["deviceid"] = device_Id
         params_task["babyname"] = babyname
         params_task["headimgurl"] = headimgurl
-        params_task["sex"] = sex
-        params_task["birthday"] = birthday
+//        params_task["sex"] = sex
+//        params_task["birthday"] = birthday
         Net.requestWithTarget(.updateBabyInfo(req: params_task), successClosure: { (result, code, message) in
             if let obj = Net.filterStatus(jsonString: result) {
                 if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
