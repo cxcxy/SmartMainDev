@@ -42,6 +42,10 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      */
     let getPlayProgress = PublishSubject<Int>()
     /**
+     *   获取设备版本号
+     */
+    let getDeviceVersion = PublishSubject<String>()
+    /**
      *   1 开 0 为 关
      */
     let getLock = PublishSubject<Int>()
@@ -203,6 +207,10 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
             }
             self.getSetDefaultMessage.onNext(message)
         }
+        if cmd_str == "boxInfo" {
+            let key_str = json_str["firmwareVersion"].stringValue
+            self.getDeviceVersion.onNext(key_str)
+        }
     }
     /**
      *   询问机器此时播放的是哪个列表的那首歌曲
@@ -261,6 +269,14 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         let socket = XBSocketModel()
         socket.cmd = "customer"
         socket.key = "getPoweroff"
+        self.sendPressed(socketModel: socket)
+    }
+    /**
+     *  询问机器此时的设备版本号
+     */
+    func sendGetDeviceVersion() {
+        let socket = XBSocketModel()
+        socket.cmd = "getBoxInfo"
         self.sendPressed(socketModel: socket)
     }
     /**
@@ -408,6 +424,19 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         
         self.sendNewPressed(socketModel: socket)
     }
+    /**
+     *   移动端点击 控制设备升级
+     */
+    func sendUpdateDevice(_ versionName: String,url: String) {
+        
+        let socket = XBSocketModel()
+        socket.cmd          = "upgrade"
+        socket.versionName  = versionName
+        socket.firmwareUrl  = url
+        
+        self.sendPressed(socketModel: socket)
+    }
+    
     func mqttDidReceive(message: MQTTMessage, from session: MQTTSession) {
         print("接收到 topic message:\n \(message.stringRepresentation ?? "<>")")
         if let message = message.stringRepresentation {

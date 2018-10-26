@@ -17,7 +17,11 @@ class ContentScrollCell: BaseTableViewCell {
     static let cell_title_H:CGFloat = 35
     static let itemHight:CGFloat = ContentScrollCell.itemWidth * 110 / 80
     
-      @IBOutlet weak var heightCollectionViewLayout: NSLayoutConstraint!
+    @IBOutlet weak var btnOn: UIButton!
+    @IBOutlet weak var btnNext: UIButton!
+    
+    
+    @IBOutlet weak var heightCollectionViewLayout: NSLayoutConstraint!
     
     var dataModel: ModulesResModel? {
         didSet {
@@ -55,7 +59,7 @@ class ContentScrollCell: BaseTableViewCell {
         }
     }
     @IBOutlet weak var lbTitle: UILabel!
-
+    var currentIndex: Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -67,6 +71,33 @@ class ContentScrollCell: BaseTableViewCell {
         collectionView.dataSource   = self
         collectionView.cellId_register("ContentScrollItem")
     }
+    
+    @IBAction func clickOnAction(_ sender: Any) {
+        if currentIndex == 0 {
+//            XBHud.showMsg("当前是第一步哦～")
+            return
+        }
+        currentIndex = currentIndex - 1
+        let index = IndexPath.init(row: currentIndex, section: 0)
+        collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+//        print(self.configNetInfo.name,self.configNetInfo.password)
+        
+    }
+    @IBAction func clickNextAction(_ sender: Any) {
+        if currentIndex >= contentArr.count - 1 {
+//            self.requestVoice()
+            return
+        }
+        currentIndex = currentIndex + 1
+        let index = IndexPath.init(row: currentIndex, section: 0)
+        collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+//        print(self.configNetInfo.name,self.configNetInfo.password)
+//        collectionView.setc
+        print(collectionView.contentOffset)
+        
+    }
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -75,8 +106,9 @@ class ContentScrollCell: BaseTableViewCell {
     
 }
 extension ContentScrollCell:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return contentArr.count > 4 ? 4 : contentArr.count
+        return contentArr.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentScrollItem", for: indexPath)as! ContentScrollItem
@@ -102,6 +134,14 @@ extension ContentScrollCell:UICollectionViewDelegate,UICollectionViewDataSource,
             VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
         }else {
             VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+        }
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) { // 滑动结束，通过偏移量，获取当前item的位置，
+        if scrollView == collectionView {
+            // 获取当前偏移量
+            let index = Int( scrollView.contentOffset.x / (ContentScrollCell.itemWidth + 15) ) // 每个item的 间距 = item 的宽 + item之间的间距
+            print(index)
+
         }
     }
 }
