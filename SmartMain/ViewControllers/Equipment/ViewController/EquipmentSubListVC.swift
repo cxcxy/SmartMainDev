@@ -267,7 +267,7 @@ extension EquipmentSubListVC {
             XBHud.showMsg("当前设备不在线")
             return
         }
-        self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
+//        self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
     }
     
     //MARK: 获取歌曲详情

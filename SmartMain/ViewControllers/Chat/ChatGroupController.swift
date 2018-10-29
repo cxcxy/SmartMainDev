@@ -77,7 +77,7 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
         var params_task = [String: Any]()
         params_task["username"] = XBUserManager.userName
         params_task["nickname"] = XBUserManager.userName // 暂定qq 不能中文， 用户的nickname 可能为中文
-        params_task["deviceId"] = XBUserManager.device_Id
+        params_task["groupId"] = self.conversation.conversationId
         params_task["content"] = text
         Net.requestWithTarget(.sendTextDevice(req: params_task),isShowLoding: false, successClosure: { (result, code, message) in
             

@@ -242,7 +242,7 @@ extension RequestApi:TargetType{
         case .sendVoiceDevice(let username,let deviceid,let nickname, _):
             var params_task = [String: String]()
             params_task["username"] = username
-            params_task["deviceid"] = deviceid
+            params_task["groupId"] = deviceid
             params_task["nickname"] = "qq"
             params_task["Content-Type"] = "multipart/form-data"
             return params_task
