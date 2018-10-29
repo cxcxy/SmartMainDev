@@ -375,6 +375,7 @@
 		2DF075BE21762FBB006F0818 /* SingSongSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075BD21762FBB006F0818 /* SingSongSectionHeader.swift */; };
 		2DF075C021762FC3006F0818 /* SingSongSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF075BF21762FC3006F0818 /* SingSongSectionHeader.xib */; };
 		2DF075C22178B3EF006F0818 /* ResourceAllVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF075C12178B3EF006F0818 /* ResourceAllVC.swift */; };
+		2DF9182021872D5B00880CF7 /* ccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9181F21872D5B00880CF7 /* ccViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -899,6 +900,7 @@
 		2DF075BD21762FBB006F0818 /* SingSongSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingSongSectionHeader.swift; sourceTree = "<group>"; };
 		2DF075BF21762FC3006F0818 /* SingSongSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingSongSectionHeader.xib; sourceTree = "<group>"; };
 		2DF075C12178B3EF006F0818 /* ResourceAllVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAllVC.swift; sourceTree = "<group>"; };
+		2DF9181F21872D5B00880CF7 /* ccViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ccViewController.swift; sourceTree = "<group>"; };
 		91EAC16658F9A180871B0B3F /* Pods-SmartMain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.release.xcconfig"; sourceTree = "<group>"; };
 		CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD6F9026177145A29A261A /* Pods-SmartMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1909,6 +1911,7 @@
 				2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */,
 				04C38A16213E79240063A799 /* SearchViewController.swift */,
 				04C38A17213E79240063A799 /* SearchViewController.xib */,
+				2DF9181F21872D5B00880CF7 /* ccViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2400,6 +2403,7 @@
 				04C38728213E093F0063A799 /* XBRxSectionManager.swift in Sources */,
 				042EEF292150E15F00DBD492 /* MJRefreshBackStateFooter.m in Sources */,
 				0402E779215E19F30040919C /* VolumeControlView.swift in Sources */,
+				2DF9182021872D5B00880CF7 /* ccViewController.swift in Sources */,
 				042EEF332150E15F00DBD492 /* MJRefreshBackFooter.m in Sources */,
 				042EEF212150E15F00DBD492 /* EaseConversationModel.m in Sources */,
 				2DBD88E9215D0B6A00BC543A /* EquipmentListViewController.swift in Sources */,

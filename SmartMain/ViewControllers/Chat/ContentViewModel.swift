@@ -26,6 +26,40 @@ class ContentViewModel: NSObject {
             }
         })
     }
+    //// zhiban
+    //MARK: 按关键字搜索资源
+    func requestZhiBanSearchResource(req: [String: Any]) -> Observable<[ConetentSingModel]>  {
+        
+        return Observable.create { observer -> Disposable in
+            
+            Net.requestWithTarget(.getSearchResource(req: req), successClosure: { (result, code, message) in
+                
+                if let result = result as? String {
+                   if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["resources"].arrayObject) {
+                        observer.onNext(arr)
+                    }
+                }
+                
+            })
+            return Disposables.create {
+            }
+        }
+    }
+    //MARK: 按关键字搜索专辑
+    func requestZhiBanSearchResourceAlbum(req: [String: Any]) -> Observable<[SearchResourceAlbumModel]> {
+        return Observable.create { observer -> Disposable in
+            Net.requestWithTarget(.getSearchResource(req: req), successClosure: { (result, code, message) in
+                if let result = result as? String {
+                    if let arr = Mapper<SearchResourceAlbumModel>().mapArray(JSONObject:result.json_Str()["body"]["content"].arrayObject) {
+                        observer.onNext(arr)
+                    }
+                }
+            })
+            return Disposables.create {
+            }
+        }
+    }
+    //// tuling ：：
     //MARK: 按关键字搜索资源
     func requestSearchResource(req: [String: Any]) -> Observable<[SearchResourceModel]>  {
         
@@ -42,18 +76,13 @@ class ContentViewModel: NSObject {
                 }
                 
             })
-            
             return Disposables.create {
             }
-            
         }
-
     }
     //MARK: 按关键字搜索专辑
     func requestSearchResourceAlbum(req: [String: Any]) -> Observable<[SearchResourceAlbumModel]> {
-        
         return Observable.create { observer -> Disposable in
-            
             Net.requestWithTarget(.searchResourceAlbum(req: req), successClosure: { (result, code, message) in
                 if let result = result as? String {
                     if let arr = Mapper<SearchResourceAlbumModel>().mapArray(JSONObject:result.json_Str()["body"]["content"].arrayObject) {
@@ -61,10 +90,8 @@ class ContentViewModel: NSObject {
                     }
                 }
             })
-            
             return Disposables.create {
             }
-            
         }
     }
     /**
