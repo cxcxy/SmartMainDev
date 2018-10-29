@@ -112,7 +112,7 @@ extension RequestApi {
         case .searchResource: return "/turingPostResource.do?inter=open/audio/list"
             // 搜索资源专辑
         case .searchResourceAlbum: return "/turingPostResource.do?inter=open/album/list"
-        case getDevicesVersion:  return "/boxinfo/getversion.do"
+        case .getDevicesVersion:  return "/boxinfo/getversion.do"
         default:
             return ""
         }
