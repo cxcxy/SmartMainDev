@@ -21,6 +21,9 @@ class EquipmentSettingVC: XBBaseTableViewController {
     var viewModel = LoginViewModel()
     var babyname:String = ""
     var headimgurl:String = ""
+    
+     let scoketModel = ScoketMQTTManager.share
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -34,10 +37,16 @@ class EquipmentSettingVC: XBBaseTableViewController {
         let setion_two = [cell_device,cell_memory,cell_version]
         let setion_four = [cell_net]
         sourceArr = [setion_one,setion_two,setion_four]
+        scoketModel.getDeviceVersion.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("firmwareVersion ===：", $0.element ?? "")
+            //            self.requestSingsDetail(trackId: $0.element ?? 0)
+            self.compareVersion(currentDeviceVersion: $0.element ?? "")
+        }.disposed(by: rx_disposeBag)
     }
     override func request() {
         super.request()
-        Net.requestWithTarget(.getEquimentInfo(deviceId: testDeviceId), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.getEquimentInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
                 self.endRefresh()
                 self.equimentModel = model
@@ -48,8 +57,41 @@ class EquipmentSettingVC: XBBaseTableViewController {
                 self.cell_memory.content = cardAvailable + "MB/" + cardTotal + "MB"
                 self.cell_device.content = model.id ?? ""
                 self.getDeviceBabyInfo()
+//                self.scoketModel.sendGetDeviceVersion()
             }
         })
+        Net.requestWithTarget(.getDevicesVersion(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            print(result)
+//            if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
+//                self.endRefresh()
+//                self.equimentModel = model
+//                self.cell_net.content = model.net ?? ""
+//                self.cell_version.content = model.firmwareVersion ?? ""
+//                let cardAvailable = model.cardAvailable?.toString ?? ""
+//                let cardTotal = model.cardTotal?.toString ?? ""
+//                self.cell_memory.content = cardAvailable + "MB/" + cardTotal + "MB"
+//                self.cell_device.content = model.id ?? ""
+//                self.getDeviceBabyInfo()
+//                self.scoketModel.sendGetDeviceVersion()
+//            }
+        })
+    }
+    /**
+     *   currentDeviceVersion 当前机器发送过来的 版本号
+     */
+    func compareVersion(currentDeviceVersion: String) {
+        guard currentDeviceVersion != "" && self.cell_version.content != "" else {
+            return
+        }
+        if currentDeviceVersion.compare(self.cell_version.content).rawValue == 0 { // 版本号相同
+            
+        }
+        if currentDeviceVersion.compare(self.cell_version.content).rawValue == -1 { // 机器版本号，小于，服务器版本号
+            
+        }
+        if currentDeviceVersion.compare(self.cell_version.content).rawValue == 1 { // 机器版本号，大于，服务器版本号
+            
+        }
     }
     func getDeviceBabyInfo() { // 获取设备信息
         

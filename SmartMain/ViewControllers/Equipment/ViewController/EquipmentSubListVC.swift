@@ -64,14 +64,13 @@ class EquipmentSubListVC: XBBaseTableViewController {
                     self.dataArr.removeAll()
                     self.tableView.mj_footer = self.mj_footer
                 }
-                self.dataArr += arr
+                self.dataArr += self.flatMapLikeList(arr: arr)
                 self.total = JSON.init(parseJSON: result as! String)["totalCount"].int
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
             }
-           
         })
     }
     
@@ -90,6 +89,21 @@ class EquipmentSubListVC: XBBaseTableViewController {
 //            }
         }
         self.tableView.reloadData()
+    }
+    func flatMapLikeList(arr: [EquipmentSingModel]) -> [EquipmentSingModel] {
+        for item in arr {
+            for likeitem in userLikeList {
+                //                if let ids = item.resId?.components(separatedBy: ":") {
+                //                    if ids.count > 0 {
+                if likeitem.trackId == item.id {
+                    item.isLike = true
+                    continue
+                }
+                //                    }
+                //                }
+            }
+        }
+        return arr
     }
     func starAnimationWithTableView(tableView: UITableView) {
   
@@ -209,12 +223,19 @@ extension EquipmentSubListVC {
             cell.viewAdd.isHidden = true
             cell.viewLike.addTapGesture {[weak self]  (sender) in
                 guard let `self` = self else { return }
-                self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
+                if m.isLike {
+                    self.requestCancelSong(songId: m.id)
+                }else {
+//                    self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
+                    self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
+                }
+//                self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
             }
             cell.viewDel.addTapGesture {[weak self] (sender) in
                 guard let `self` = self else { return }
                 self.requestDeleteSingWithList(trackId: m.id?.toString ?? "")
             }
+            cell.isLike = m.isLike
             return cell
         }
 
@@ -245,9 +266,30 @@ extension EquipmentSubListVC {
         }
 
         viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {
-            
+            self.dataArr.forEachEnumerated({ (index, item) in
+                if item.id == songId {
+                    item.isLike = true
+                }
+            })
+            self.tableView.reloadData()
         }
         
+    }
+    //MARK: 取消收藏歌曲
+    func requestCancelSong(songId: Int?)  {
+        guard let songId = songId else {
+            XBHud.showMsg("当前歌曲ID错误")
+            return
+        }
+        viewModel.requestCancleLikeSing(trackId: songId) { [weak self] in
+            guard let `self` = self else { return }
+            self.dataArr.forEachEnumerated({ (index, item) in
+                if item.id == songId {
+                    item.isLike = false
+                }
+            })
+            self.tableView.reloadData()
+        }
     }
     func clickExtensionAction(indexPath: IndexPath)  {
         

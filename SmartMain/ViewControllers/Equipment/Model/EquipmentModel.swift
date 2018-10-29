@@ -67,7 +67,7 @@ class EquipmentSingModel: XBDataModel {
     var status: Int?
     var isExpanded: Bool = false // 是否展开
     var isPlay: Bool = false
-    
+    var isLike: Bool = false
     override func mapping(map: Map) {
         id             <-    map["id"]
         title             <-    map["title"]

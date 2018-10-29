@@ -54,6 +54,8 @@ class XBSocketModel: Mappable {
     var trackId : Int?
     var url : String?
     var downloadUrl : String?
+    var firmwareUrl : String?
+    var versionName : String?
     required init?(map: Map) {
         
     }
@@ -68,6 +70,8 @@ class XBSocketModel: Mappable {
         trackId <- map["trackId"]
         url <- map["url"]
         downloadUrl <- map["downloadUrl"]
+        firmwareUrl <- map["firmwareUrl"]
+        versionName <- map["versionName"]
     }
 }
 /**

@@ -36,8 +36,8 @@
                             <constraint firstItem="VRy-f3-lUi" firstAttribute="centerX" secondItem="bcL-WG-I7t" secondAttribute="centerX" id="odT-4I-0eo"/>
                         </constraints>
                     </view>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tjt-kt-l60">
-                        <rect key="frame" x="40" y="80" width="240" height="99.5"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tjt-kt-l60">
+                        <rect key="frame" x="45" y="80" width="235" height="99.5"/>
                         <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="100" id="N69-3n-QHG"/>
@@ -49,12 +49,38 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sts-Kp-PXP">
+                        <rect key="frame" x="5" y="115" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="prG-dC-kmx"/>
+                            <constraint firstAttribute="height" constant="30" id="q00-yN-RQ9"/>
+                        </constraints>
+                        <state key="normal" image="icon_scroll_on"/>
+                        <connections>
+                            <action selector="clickOnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6S9-oI-HtH"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3t-C4-L1E">
+                        <rect key="frame" x="285" y="115" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="g0B-p1-fig"/>
+                            <constraint firstAttribute="height" constant="30" id="nNj-Lu-ArV"/>
+                        </constraints>
+                        <state key="normal" image="icon_scroll_next"/>
+                        <connections>
+                            <action selector="clickNextAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NCi-4y-z70"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tjt-kt-l60" firstAttribute="top" secondItem="bcL-WG-I7t" secondAttribute="bottom" id="83Q-f0-8fj"/>
                     <constraint firstAttribute="trailing" secondItem="tjt-kt-l60" secondAttribute="trailing" constant="40" id="MVi-hJ-Ctj"/>
                     <constraint firstItem="bcL-WG-I7t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="W5B-ta-Xg0"/>
-                    <constraint firstItem="tjt-kt-l60" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="ZvV-rI-gMb"/>
+                    <constraint firstItem="tjt-kt-l60" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="45" id="ZvV-rI-gMb"/>
+                    <constraint firstItem="B3t-C4-L1E" firstAttribute="centerY" secondItem="tjt-kt-l60" secondAttribute="centerY" id="cdh-qe-JF1"/>
+                    <constraint firstItem="sts-Kp-PXP" firstAttribute="centerY" secondItem="tjt-kt-l60" secondAttribute="centerY" id="njK-6I-yen"/>
+                    <constraint firstItem="B3t-C4-L1E" firstAttribute="leading" secondItem="tjt-kt-l60" secondAttribute="trailing" constant="5" id="p7V-g1-wJO"/>
+                    <constraint firstItem="tjt-kt-l60" firstAttribute="leading" secondItem="sts-Kp-PXP" secondAttribute="trailing" constant="10" id="qw8-QE-Ed9"/>
                     <constraint firstItem="bcL-WG-I7t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vAw-Z4-8LG"/>
                     <constraint firstAttribute="trailing" secondItem="bcL-WG-I7t" secondAttribute="trailing" id="y7r-gg-USw"/>
                     <constraint firstAttribute="bottom" secondItem="tjt-kt-l60" secondAttribute="bottom" constant="20" id="zrE-Sz-ZoO"/>
@@ -63,11 +89,17 @@
             <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnNext" destination="B3t-C4-L1E" id="59F-K3-Xp4"/>
+                <outlet property="btnOn" destination="sts-Kp-PXP" id="Wv0-ts-lbJ"/>
                 <outlet property="collectionView" destination="tjt-kt-l60" id="FoH-Li-k4g"/>
                 <outlet property="heightCollectionViewLayout" destination="N69-3n-QHG" id="HV2-Iy-6RS"/>
                 <outlet property="lbTitle" destination="VRy-f3-lUi" id="2DE-kw-JjJ"/>
             </connections>
-            <point key="canvasLocation" x="60.799999999999997" y="52.623688155922046"/>
+            <point key="canvasLocation" x="60.799999999999997" y="52.173913043478265"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_scroll_next" width="24" height="24"/>
+        <image name="icon_scroll_on" width="24" height="24"/>
+    </resources>
 </document>

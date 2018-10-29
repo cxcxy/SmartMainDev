@@ -68,6 +68,7 @@ enum RequestApi{
     case getResourceBanner(customer: String)
     case searchResource(req: [String: Any])
     case searchResourceAlbum(req: [String: Any])
+    case getDevicesVersion(deviceId: String)
 }
 extension RequestApi {
     /**
@@ -162,6 +163,10 @@ extension RequestApi:TargetType{
             params_task["trackId"] = trackId
             return .requestParameters(parameters: params_task,
                                       encoding: URLEncoding.default)
+        case .getDevicesVersion(let deviceId):
+            params_task["deviceId"] = deviceId
+            return .requestParameters(parameters: params_task,
+                                      encoding: URLEncoding.default)
         case .removeSingsList(_,_,let trackIds):
             return .requestData(trackIds.toData())
         case .addSongToList(_,_,_,let trackIds):
@@ -254,7 +259,7 @@ extension RequestApi:TargetType{
     public var method:Moya.Method{
         switch self {
         case .getLikeList,.getHistoryList,.getTrackList,.getTrackSubList,.getDeviceIds,
-             .getEquimentInfo,.getFamilyMemberList,.getSingleTrack,.getSingDetail,.getBabyInfo,.getUserInfo,.getAppVersion,.getResourceAll,.getResourceBanner:
+             .getEquimentInfo,.getFamilyMemberList,.getSingleTrack,.getSingDetail,.getBabyInfo,.getUserInfo,.getAppVersion,.getResourceAll,.getResourceBanner,.getDevicesVersion:
             return .get
         default:
             return .post
