@@ -92,6 +92,12 @@ class ConetentSingModel: XBDataModel {
     var playUrls: ConetentSingPlayModel?
     var type: Int?
     var name: String?
+    var total: Int?
+    var imgSmall: String?
+//    var albumType: Int?
+    
+    var albumId: Int?
+    
     var isExpanded: Bool = false // 是否展开
     var isPlay: Bool = false // 是否播放
     var isLike: Bool = false // 是否喜欢
@@ -108,6 +114,10 @@ class ConetentSingModel: XBDataModel {
         playUrls            <-    map["playUrls"]
         type            <-    map["type"]
         name            <-    map["name"]
+        total    <-    map["total"]
+        imgSmall  <-    map["imgSmall"]
+//        albumType  <-    map["albumType"]
+        albumId              <-    map["albumId"]
     }
     func transfromTrackId(resId: String)  {
 //        if let arr =  {

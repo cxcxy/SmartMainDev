@@ -9,6 +9,7 @@
 import UIKit
 class SearchSectionModel: NSObject {
     var sectionType: String = ""
+    var sectionModel: ConetentSingModel?
     var sectionArr: [ConetentSingModel] = []
 }
 class SearchViewController: XBBaseViewController {
@@ -30,7 +31,7 @@ class SearchViewController: XBBaseViewController {
     var player:AVPlayer = AVPlayer.init()
     
     var sectionArr: [SearchSectionModel] = []
-    
+    var sectionNumber: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +62,7 @@ class SearchViewController: XBBaseViewController {
     /// 搜索资源
     override func request()  {
         super.request()
-      
+        self.sectionArr.remove_All()
         var params_task = [String: Any]()
         params_task["clientId"] = XBUserManager.device_Id
         params_task["keywords"] = [self.textField.text]
@@ -69,23 +70,22 @@ class SearchViewController: XBBaseViewController {
         params_task["ranges"] = ["resource"]
         Net.requestWithTarget(.getSearchResource(req: params_task), successClosure: { (result, code, message) in
             if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["resources"].arrayObject) {
-                if self.pageIndex == 1 {
-                    self.tableView.mj_footer = self.mj_footer
-                    self.resourceArr.removeAll()
-                }
-                self.resourceArr += self.flatMapLikeList(arr: arr)
-                
-                let sectionItem = SearchSectionModel()
-                sectionItem.sectionType = "resource"
-                sectionItem.sectionArr =  self.resourceArr
-                self.sectionArr.append(sectionItem)
+                self.resourceArr = self.flatMapLikeList(arr: arr)
+                self.resourceArr.forEachEnumerated({ (index, item) in
+                    if index < 5 {
+                        let sectionItem = SearchSectionModel()
+                        sectionItem.sectionType = "resource"
+                        sectionItem.sectionModel =  item
+                        self.sectionArr.append(sectionItem)
+                    }
+                })
+    
                 self.requestResourceAlbum()
-//                self.sectionArr += [["resource": self.resourceArr]]
+
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["resourcesPager"].object) {
                 self.headerInfo = topModel
             }
-//            self.tableView.reloadData()
         })
     }
     /// 搜索专辑
@@ -97,15 +97,11 @@ class SearchViewController: XBBaseViewController {
         params_album["ranges"] = ["album"]
         Net.requestWithTarget(.getSearchResource(req: params_album), successClosure: { (result, code, message) in
             if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["albums"].arrayObject) {
-                if self.pageIndex == 1 {
-                    self.tableView.mj_footer = self.mj_footer
-                    self.resourceAlbum.removeAll()
-                }
                 self.resourceAlbum = arr
-
                 let sectionItem = SearchSectionModel()
                 sectionItem.sectionType = "album"
                 sectionItem.sectionArr =  self.resourceAlbum
+                self.sectionNumber += 1
                 self.sectionArr.append(sectionItem)
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["albumsPager"].object) {
@@ -117,14 +113,10 @@ class SearchViewController: XBBaseViewController {
     func flatMapLikeList(arr: [ConetentSingModel]) -> [ConetentSingModel] {
         for item in arr {
             for likeitem in userLikeList {
-                //                if let ids = item.resId?.components(separatedBy: ":") {
-                //                    if ids.count > 0 {
                 if likeitem.trackId == item.trackId {
                     item.isLike = true
                     continue
                 }
-                //                    }
-                //                }
             }
         }
         return arr
@@ -155,105 +147,127 @@ class SearchViewController: XBBaseViewController {
 extension SearchViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-//        if resourceArr.count > 0 && resourceAlbum.count > 0 {
-//            return 2
-//        }
-//        if resourceArr.count > 0 || resourceAlbum.count > 0 {
-//            return 1
-//        }
-        return sectionArr.count
+        return self.sectionArr.count
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            let m  = resourceArr[section]
-            return m.isExpanded ? 2 : 1
+        let sectionItem = sectionArr[section]
+        if sectionItem.sectionType == "resource", let item = sectionItem.sectionModel{
+            return item.isExpanded ? 2 : 1
         }
-        if section == 1 {
-            return self.resourceAlbum.count
+        if sectionItem.sectionType == "album" {
+            return sectionItem.sectionArr.count > 5 ? 5 : sectionItem.sectionArr.count
         }
        return 0
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-                let m  = resourceArr[indexPath.section]
-                cell.lbTitle.set_text = m.name
-                cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.length)
-                cell.btnExtension.isSelected = m.isExpanded
-                cell.btnExtension.addAction {[weak self] in
-                    guard let `self` = self else { return }
-                    self.clickExtensionAction(indexPath: indexPath)
-                }
-                return cell
-            }else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
-                cell.viewDel.isHidden = true
-                let m  = resourceArr[indexPath.section]
-                cell.viewAdd.addTapGesture {[weak self] (sender) in
-                    guard let `self` = self else { return }
-                    self.clickSongsToTrackList(isAll: false,songModel: m)
-                }
-                cell.isLike = m.isLike
-                cell.viewLike.addTapGesture {[weak self]  (sender) in
-                    guard let `self` = self else { return }
-                    if m.isLike {
-                        self.requestCancelSong(songId: m.trackId)
-                    }else {
-                        self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
-                    }
-                }
-                
-                cell.viewAudition.addTapGesture {[weak self]  (sender) in
-                    guard let `self` = self else { return }
-                    self.playVoice(model: m)
-                    
-                }
-                cell.lbAudition.set_text = m.isAudition ? "暂停" : "试听"
-                cell.viewAudition.isHidden = false
-                return cell
-            }
-        }else {
+    func getResourceCell(_ tableView: UITableView, indexPath: IndexPath , sectionItem: ConetentSingModel) -> UITableViewCell {
+        if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-            let m  = resourceAlbum[indexPath.section]
+            let m  = sectionItem
             cell.lbTitle.set_text = m.name
             cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.length)
+            cell.btnExtension.isHidden = false
             cell.btnExtension.isSelected = m.isExpanded
             cell.btnExtension.addAction {[weak self] in
                 guard let `self` = self else { return }
                 self.clickExtensionAction(indexPath: indexPath)
             }
+             cell.imgIcon.set_img = "icon_play_song"
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+            cell.viewDel.isHidden = true
+            let m  = sectionItem
+            cell.viewAdd.addTapGesture {[weak self] (sender) in
+                guard let `self` = self else { return }
+                self.clickSongsToTrackList(isAll: false,songModel: m)
+            }
+            cell.isLike = m.isLike
+            cell.viewLike.addTapGesture {[weak self]  (sender) in
+                guard let `self` = self else { return }
+                if m.isLike {
+                    self.requestCancelSong(songId: m.trackId)
+                }else {
+                    self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
+                }
+            }
+            
+            cell.viewAudition.addTapGesture {[weak self]  (sender) in
+                guard let `self` = self else { return }
+                self.playVoice(model: m)
+                
+            }
+            cell.lbAudition.set_text = m.isAudition ? "暂停" : "试听"
+            cell.viewAudition.isHidden = false
             return cell
         }
-       
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let sectionItem = sectionArr[indexPath.section]
+        if sectionItem.sectionType == "resource", let item = sectionItem.sectionModel{
+           return self.getResourceCell(tableView, indexPath: indexPath, sectionItem: item)
+        }
+        if sectionItem.sectionType == "album" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+            let m  = sectionItem.sectionArr[indexPath.row]
+            cell.lbTitle.set_text = m.name
+            let totalStr = m.total?.toString ?? ""
+            cell.lbTime.set_text = "共" + totalStr + "首"
+            cell.btnExtension.isHidden = true
+            cell.imgIcon.set_Img_Url(m.imgSmall)
+            return cell
+        }
+        return UITableViewCell()
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        let sectionItem = sectionArr[section]
+        if sectionItem.sectionType == "resource"{
+            if section == 0 {
+                return 50
+            }
+            return XBMin
+        }
+        if sectionItem.sectionType == "album" {
+            return 50
+        }
+        return XBMin
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let v = TrackListHeaderView.loadFromNib()
-        
-//        let m = dataRxArr.value[section]
-//
-//        switch m.model {
-//        case .resource:
-//            v.lbTotal.set_text = "相关资源"
-//        case .resourceAlbum:
-//            v.lbTotal.set_text = "相关专辑"
-//        }
-        
-        v.btnDefault.isHidden = true
-        v.viewDefault.isHidden = true
-        return v
+        let sectionItem = sectionArr[section]
+        if sectionItem.sectionType == "resource"{
+            if section == 0 {
+                let v = TrackListHeaderView.loadFromNib()
+                v.lbTotal.set_text = "相关资源"
+                v.btnDefault.isHidden = false
+                v.btnDefault.set_Title("更多")
+                v.viewDefault.isHidden = false
+                return v
+            }
+            return nil
+        }
+        if sectionItem.sectionType == "album" {
+            let v = TrackListHeaderView.loadFromNib()
+            v.lbTotal.set_text = "相关专辑"
+            v.btnDefault.isHidden = false
+            v.btnDefault.set_Title("更多")
+            v.viewDefault.isHidden = false
+            return v
+        }
+        return nil
     }
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard XBUserManager.device_Id != "" else {
             XBHud.showMsg("请先绑定设备")
             return
         }
-        self.requestOnlineSing(trackId: dataArr[indexPath.row].resId ?? "")
+        let sectionItem = sectionArr[indexPath.section]
+        if sectionItem.sectionType == "resource", let item = sectionItem.sectionModel{
+            self.requestOnlineSing(trackId: item.resId ?? "")
+        }
+        if sectionItem.sectionType == "album" {
+            let model  = sectionItem.sectionArr[indexPath.row]
+            VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.albumId?.toString ?? "")
+        }
     }
     /**
      *   收藏歌曲
@@ -264,7 +278,7 @@ extension SearchViewController {
             return
         }
         viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {
-            self.dataArr.forEachEnumerated({ (index, item) in
+            self.resourceArr.forEachEnumerated({ (index, item) in
                 if item.trackId == songId {
                     item.isLike = true
                 }
@@ -280,7 +294,7 @@ extension SearchViewController {
         }
         viewModel.requestCancleLikeSing(trackId: songId) { [weak self] in
             guard let `self` = self else { return }
-            self.dataArr.forEachEnumerated({ (index, item) in
+            self.resourceArr.forEachEnumerated({ (index, item) in
                 if item.trackId == songId {
                     item.isLike = false
                 }
@@ -305,10 +319,7 @@ extension SearchViewController {
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()
-            
             self.requestAddSingWithList(trackId: trackId, songModel: songModel, trackName: trackName)
-            
-            
         }
         v.show()
     }
@@ -342,14 +353,12 @@ extension SearchViewController {
         })
     }
     func clickExtensionAction(indexPath: IndexPath)  {
-        if indexPath.row == 0 {
-            let m  = dataArr[indexPath.section]
-            m.isExpanded = !m.isExpanded
-            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
-        }
-        if indexPath.row == 1 {
-            let m  = dataArr[indexPath.section]
-            //            self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
+        let sectionItem = sectionArr[indexPath.section]
+        if sectionItem.sectionType == "resource", let item = sectionItem.sectionModel{
+            if indexPath.row == 0 {
+                item.isExpanded = !item.isExpanded
+                tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+            }
         }
     }
     //MARK: 点击试听
@@ -370,7 +379,7 @@ extension SearchViewController {
             player.play()
         }
         model.isAudition = !model.isAudition
-        dataArr.forEach { (item) in
+        resourceArr.forEach { (item) in
             if item.trackId != model.trackId {
                 item.isAudition = false
             }
@@ -402,7 +411,7 @@ extension SearchViewController {
             if let str = result as? String {
                 if str == "ok" {
                     XBHud.showMsg("取消收藏成功")
-                    self.dataArr.remove(at: section)
+                    self.resourceArr.remove(at: section)
                     self.tableView.reloadData()
                 }else {
                     XBHud.showMsg("取消收藏失败")
