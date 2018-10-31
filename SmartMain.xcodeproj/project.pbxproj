@@ -380,6 +380,7 @@
 		2DF9182021872D5B00880CF7 /* ccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF9181F21872D5B00880CF7 /* ccViewController.swift */; };
 		2DF918222189DF9100880CF7 /* SwitchPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF918212189DF9100880CF7 /* SwitchPlayView.swift */; };
 		2DF918242189DF9C00880CF7 /* SwitchPlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF918232189DF9C00880CF7 /* SwitchPlayView.xib */; };
+		2DF918262189E79B00880CF7 /* SearchSongsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF918252189E79B00880CF7 /* SearchSongsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -909,6 +910,7 @@
 		2DF9181F21872D5B00880CF7 /* ccViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ccViewController.swift; sourceTree = "<group>"; };
 		2DF918212189DF9100880CF7 /* SwitchPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPlayView.swift; sourceTree = "<group>"; };
 		2DF918232189DF9C00880CF7 /* SwitchPlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchPlayView.xib; sourceTree = "<group>"; };
+		2DF918252189E79B00880CF7 /* SearchSongsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSongsViewController.xib; sourceTree = "<group>"; };
 		91EAC16658F9A180871B0B3F /* Pods-SmartMain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.release.xcconfig"; sourceTree = "<group>"; };
 		CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD6F9026177145A29A261A /* Pods-SmartMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1922,6 +1924,7 @@
 				04C38A16213E79240063A799 /* SearchViewController.swift */,
 				04C38A17213E79240063A799 /* SearchViewController.xib */,
 				04F15FF92189A6B90032EF12 /* SearchSongsViewController.swift */,
+				2DF918252189E79B00880CF7 /* SearchSongsViewController.xib */,
 				044712CD2188057500009F9E /* AlbumMoreViewController.swift */,
 				2DF9181F21872D5B00880CF7 /* ccViewController.swift */,
 			);
@@ -2285,6 +2288,7 @@
 				2D83D40E215E4D8D0097900F /* MemberCVCell.xib in Resources */,
 				0413BED021424BC9006E3A44 /* MemberManagerVC.xib in Resources */,
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
+				2DF918262189E79B00880CF7 /* SearchSongsViewController.xib in Resources */,
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
 				04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */,
 				2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */,

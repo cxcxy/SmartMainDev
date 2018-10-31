@@ -8,17 +8,18 @@
 
 import UIKit
 
-class SearchSongsViewController: XBBaseTableViewController {
+class SearchSongsViewController: XBBaseViewController {
     var clientId: String! // 当前设备ID
     var albumId: String! // 当前歌曲列表 ID
     var dataArr: [ConetentSingModel] = []
     var trackList: [EquipmentModel] = [] // 预制列表 数组
     var headerInfo:ConetentSingAlbumModel?
     
+    @IBOutlet weak var headerView: UIView!
     var viewModel   = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
     var likeList: [ConetentLikeModel] = []
-    
+    @IBOutlet weak var tableView: UITableView!
     var searchKey: String = ""
     
     let playerLayer:AVPlayerLayer = AVPlayerLayer.init()
@@ -43,8 +44,25 @@ class SearchSongsViewController: XBBaseTableViewController {
             guard let `self` = self else { return }
             VCRouter.toPlayVC()
         }
+        configTopHeaderView()
     }
-
+    lazy var topView: TrackListHeaderView = {
+        let v = TrackListHeaderView.loadFromNib()
+        v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth
+            , h: 50)
+//        v.viewDefault.isHidden = true
+        v.btnDefault.set_Title("添加全部")
+        v.btnDefault.addAction {
+            self.clickAllAction()
+        }
+        return v
+    }()
+    func configTopHeaderView()  {
+        self.headerView.addSubview(topView)
+    }
+    func setTopViewInfo(total: String)  {
+        topView.lbTotal.set_text = "共" + total + "首"
+    }
     func configCurrentSongsId()  {
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
@@ -53,7 +71,26 @@ class SearchSongsViewController: XBBaseTableViewController {
             self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
             }.disposed(by: rx_disposeBag)
     }
-    
+//    //MARK: 添加列表内全部歌曲 到 预制列表中
+//    func requestAddSingsTrackList(trackId: Int) {
+//        var params_task = [String: Any]()
+//        params_task["deviceId"] = XBUserManager.device_Id
+//        params_task["id"] = trackId
+//        params_task["name"] = self.headerInfo?.name ?? ""
+//        params_task["list"] = self.dataArr.toJSON()
+//        Net.requestWithTarget(.addSingsToTrack(req: params_task), successClosure: { (result, code, message) in
+//            if let str = result as? String {
+//                if str == "ok" {
+//                    XBHud.showMsg("添加成功")
+//                    XBDelay.start(delay: 1, closure: {
+//                        self.requestTrackList()
+//                    })
+//                }else {
+//                    XBHud.showMsg("添加失败")
+//                }
+//            }
+//        })
+//    }
     func mapSongsArrPlayingStatus(songId: Int)  {
         self.dataArr.forEachEnumerated { (index, item) in
             //            if let arr = item.resId?.components(separatedBy: ":") {
@@ -96,7 +133,9 @@ class SearchSongsViewController: XBBaseTableViewController {
                 self.dataArr += self.flatMapLikeList(arr: arr)
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex,paseSize: 20))
             }
-
+            if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["resourcesPager"].object) {
+                self.setTopViewInfo(total: topModel.total?.toString ?? "")
+            }
             self.scoketModel.sendGetTrack()
             self.tableView.reloadData()
             self.starAnimationWithTableView(tableView: self.tableView)
@@ -145,7 +184,7 @@ class SearchSongsViewController: XBBaseTableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func clickAllAction(_ sender: Any) {
+    func clickAllAction() {
         self.clickSongsToTrackList(isAll: true)
     }
     

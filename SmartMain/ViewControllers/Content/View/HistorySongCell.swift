@@ -18,6 +18,10 @@ class HistorySongCell: BaseTableViewCell {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var btnExtension: UIButton!
+    
+    @IBOutlet weak var imgRight: UIImageView!
+    
+    
     var iconType: SongsIconType = .likeList {
         didSet {
             switch iconType {
@@ -36,6 +40,7 @@ class HistorySongCell: BaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgRight.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
