@@ -296,6 +296,7 @@
 		04E537C9216DDFFB002DE58C /* TrackListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */; };
 		04E537CC216DEF41002DE58C /* XBLoginOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E537CA216DEF41002DE58C /* XBLoginOutView.swift */; };
 		04E537CD216DEF41002DE58C /* XBLoginOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E537CB216DEF41002DE58C /* XBLoginOutView.xib */; };
+		04F15FFA2189A6B90032EF12 /* SearchSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F15FF92189A6B90032EF12 /* SearchSongsViewController.swift */; };
 		04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */; };
 		04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */; };
 		04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */; };
@@ -811,6 +812,7 @@
 		04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListHeaderView.xib; sourceTree = "<group>"; };
 		04E537CA216DEF41002DE58C /* XBLoginOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBLoginOutView.swift; sourceTree = "<group>"; };
 		04E537CB216DEF41002DE58C /* XBLoginOutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBLoginOutView.xib; sourceTree = "<group>"; };
+		04F15FF92189A6B90032EF12 /* SearchSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSongsViewController.swift; sourceTree = "<group>"; };
 		04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigNetViewController.swift; sourceTree = "<group>"; };
 		04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigNetViewController.xib; sourceTree = "<group>"; };
 		04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EquimentViewModel.swift; path = SmartMain/ViewControllers/Equipment/ViewController/EquimentViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -1913,6 +1915,7 @@
 				2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */,
 				04C38A16213E79240063A799 /* SearchViewController.swift */,
 				04C38A17213E79240063A799 /* SearchViewController.xib */,
+				04F15FF92189A6B90032EF12 /* SearchSongsViewController.swift */,
 				044712CD2188057500009F9E /* AlbumMoreViewController.swift */,
 				2DF9181F21872D5B00880CF7 /* ccViewController.swift */,
 			);
@@ -2527,6 +2530,7 @@
 				042EEF422150E15F00DBD492 /* MWPhotoBrowser.m in Sources */,
 				043E119A213FCCAC0067ADF3 /* ContentSingCell.swift in Sources */,
 				042EEF1C2150E15F00DBD492 /* EaseEmoji.m in Sources */,
+				04F15FFA2189A6B90032EF12 /* SearchSongsViewController.swift in Sources */,
 				042EEF282150E15F00DBD492 /* MJRefreshBackGifFooter.m in Sources */,
 				04C389FB213E5FC80063A799 /* ContentVC.swift in Sources */,
 				042EEF752150E15F00DBD492 /* EaseCustomMessageCell.m in Sources */,

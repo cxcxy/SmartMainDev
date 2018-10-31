@@ -148,7 +148,7 @@ extension XBUserManager { // 保存设备宝宝 信息
     }
     // 清空当前设备信息
     static func clearDeviceInfo() {
-
+        ScoketMQTTManager.share.unSubscribeToChannel(socket_clientId: XBUserManager.device_Id)
         user_defaults.clear(.dv_babyname)
         user_defaults.clear(.dv_sex)
         user_defaults.clear(.dv_birthday)

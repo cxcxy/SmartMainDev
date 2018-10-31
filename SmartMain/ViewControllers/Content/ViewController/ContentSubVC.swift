@@ -7,12 +7,23 @@
 //
 
 import UIKit
-
+enum ContentSubType {
+    case search // 从搜索点击进来
+    case none // 默认进来
+}
 class ContentSubVC: XBBaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     let itemWidth:CGFloat = ( MGScreenWidth - 20 - 20 - 20 ) / 2 // item 宽度
+    // 顶部刷新
+    let header = MJRefreshNormalHeader()
+    // 底部加载
+    let footer = MJRefreshAutoNormalFooter()
+    
+    var listType: ContentSubType = .none
+    var searchKey: String = ""
+    var resourceAlbum: [ConetentSingModel]   = []
     
     var clientId: String!
     var albumId: String?
@@ -25,9 +36,12 @@ class ContentSubVC: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        configCollectionView() 
-//        tableView.cellId_register("ContentSubShowCell")
-//        self.cofigMjHeader()
+        configCollectionView()
+        //下拉刷新相关设置
+        header.setRefreshingTarget(self, refreshingAction: #selector(pullToRefresh))
+        
+        //上拉加载相关设置
+        footer.setRefreshingTarget(self, refreshingAction: #selector(loadMore))
         request()
         view.backgroundColor = UIColor.init(hexString: "CDE5B2")
         makeCustomerImageNavigationItem("icon_music_white", left: false) { [weak self] in
@@ -45,6 +59,23 @@ class ContentSubVC: XBBaseViewController {
     }
     override func request() {
         super.request()
+        switch listType {
+        case .none:
+            requestNoneList()
+            break
+        case .search:
+            requestResourceAlbum()
+            break
+
+        }
+
+        
+    }
+    func collectionViewEndRefresh()  {
+        self.header.endRefreshing()
+        self.footer.endRefreshing()
+    }
+    func requestNoneList() {
         var params_task = [String: Any]()
         params_task["clientId"] = clientId
         params_task["moduleId"] = modouleId
@@ -55,24 +86,37 @@ class ContentSubVC: XBBaseViewController {
             if let arr = Mapper<ModulesConetentModel>().mapArray(JSONObject:JSON(result)["categories"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.dataArr.removeAll()
-//                    self.cofigMjFooter()
-                   
+                    self.collectionView.mj_footer = self.footer
+                    
                 }
                 self.dataArr += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.collectionViewEndRefresh()
                 self.collectionView.reloadData()
-//                self.starAnimationWithTableView(tableView: self.tableView)
             }
         })
-        
     }
-    func starAnimationWithTableView(tableView: UITableView) {
-//        table
-        if self.pageIndex == 1 {
-            TableViewAnimationKit.show(with: .layDown, tableView: tableView)
-        }
-        
+    /// 搜索专辑
+    func requestResourceAlbum()  {
+        var params_album = [String: Any]()
+        params_album["clientId"] = XBUserManager.device_Id
+        params_album["keywords"] = [searchKey]
+        params_album["page"]     = self.pageIndex
+        params_album["ranges"] = ["album"]
+        Net.requestWithTarget(.getSearchResource(req: params_album), successClosure: { (result, code, message) in
+            if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["albums"].arrayObject) {
+                if self.pageIndex == 1 {
+                    self.resourceAlbum.removeAll()
+                    self.collectionView.mj_footer = self.footer
+                }
+                self.resourceAlbum += arr
+                self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.collectionViewEndRefresh()
+                self.collectionView.reloadData()
+            }
+        })
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -80,15 +124,28 @@ class ContentSubVC: XBBaseViewController {
 extension ContentSubVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataArr.count
+        switch listType {
+        case .none:
+            return dataArr.count
+        case .search:
+            return resourceAlbum.count
+        }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentSubItem", for: indexPath)as! ContentSubItem
         //        cell.imgIcon.contentMode = .scaleAspectFit
-        cell.lbTitle.set_text = dataArr[indexPath.row].name
-        cell.imgIcon.set_Img_Url(dataArr[indexPath.row].imgSmall)
-        let totalStr = dataArr[indexPath.row].total?.toString ?? ""
-        cell.lbTotal.set_text = "共" + totalStr + "首"
+        switch listType {
+        case .none:
+            cell.lbTitle.set_text = dataArr[indexPath.row].name
+            cell.imgIcon.set_Img_Url(dataArr[indexPath.row].imgSmall)
+            let totalStr = dataArr[indexPath.row].total?.toString ?? ""
+            cell.lbTotal.set_text = "共" + totalStr + "首"
+        case .search:
+            cell.lbTitle.set_text = resourceAlbum[indexPath.row].name
+            cell.imgIcon.set_Img_Url(resourceAlbum[indexPath.row].imgSmall)
+            let totalStr = resourceAlbum[indexPath.row].total?.toString ?? ""
+            cell.lbTotal.set_text = "共" + totalStr + "首"
+        }
 
         return cell
     }
@@ -109,12 +166,19 @@ extension ContentSubVC: UICollectionViewDelegate,UICollectionViewDataSource,UICo
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = dataArr[indexPath.row]
-        if model.albumType == 2 {
-            VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
-        }else {
-            VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+        switch listType {
+        case .none:
+            let model = dataArr[indexPath.row]
+            if model.albumType == 2 {
+                VCRouter.toContentSubVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "", navTitle: model.name)
+            }else {
+                VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.id ?? "")
+            }
+        case .search:
+            let model = resourceAlbum[indexPath.row]
+            VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.albumId?.toString ?? "")
         }
+
     }
 
 }

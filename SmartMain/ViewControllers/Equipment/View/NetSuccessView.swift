@@ -7,10 +7,32 @@
 //
 
 import UIKit
-
+enum NetSuccessViewType {
+    case configNet
+    case updateVersion
+}
 class NetSuccessView: ETPopupView {
      @IBOutlet weak var btnSuccess: UIButton!
      @IBOutlet weak var btnError: UIButton!
+     @IBOutlet weak var lbTitle: UILabel!
+     @IBOutlet weak var imgIcon: UIImageView!
+    var viewType: NetSuccessViewType = .configNet {
+        didSet {
+            switch viewType {
+            case .configNet:
+                lbTitle.set_text = "机器人收到网络信息了吗？"
+                btnSuccess.set_Title("成功配网")
+                btnError.set_Title("配网不成功")
+                break
+            case .updateVersion:
+                imgIcon.set_img = "update"
+                btnSuccess.set_Title("立刻升级")
+                btnError.set_Title("跳过此版本")
+                break
+            }
+        }
+    }
+//     @IBOutlet weak var btnError: UILabel!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

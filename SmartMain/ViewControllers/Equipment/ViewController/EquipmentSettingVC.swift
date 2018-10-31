@@ -22,6 +22,9 @@ class EquipmentSettingVC: XBBaseTableViewController {
     var babyname:String = ""
     var headimgurl:String = ""
     
+    var newVersionURL: String = ""
+    var newVersion: String = ""
+    
      let scoketModel = ScoketMQTTManager.share
     
     override func viewDidLoad() {
@@ -57,39 +60,37 @@ class EquipmentSettingVC: XBBaseTableViewController {
                 self.cell_memory.content = cardAvailable + "MB/" + cardTotal + "MB"
                 self.cell_device.content = model.id ?? ""
                 self.getDeviceBabyInfo()
-//                self.scoketModel.sendGetDeviceVersion()
+
             }
         })
         Net.requestWithTarget(.getDevicesVersion(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
-            print(result)
-//            if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
-//                self.endRefresh()
-//                self.equimentModel = model
-//                self.cell_net.content = model.net ?? ""
-//                self.cell_version.content = model.firmwareVersion ?? ""
-//                let cardAvailable = model.cardAvailable?.toString ?? ""
-//                let cardTotal = model.cardTotal?.toString ?? ""
-//                self.cell_memory.content = cardAvailable + "MB/" + cardTotal + "MB"
-//                self.cell_device.content = model.id ?? ""
-//                self.getDeviceBabyInfo()
-//                self.scoketModel.sendGetDeviceVersion()
-//            }
+         
+            if let str = result as? String {
+                 let jsonObj = JSON.init(parseJSON: str).arrayValue
+                self.newVersion = jsonObj[0].string ?? ""
+                self.newVersionURL = jsonObj[1].string ?? ""
+                if self.newVersion != "" && self.newVersionURL != "" {
+                     self.scoketModel.sendGetDeviceVersion()
+                }
+               
+            }
         })
     }
     /**
      *   currentDeviceVersion 当前机器发送过来的 版本号
      */
     func compareVersion(currentDeviceVersion: String) {
-        guard currentDeviceVersion != "" && self.cell_version.content != "" else {
+        guard currentDeviceVersion != "" && self.newVersion != "" else {
             return
         }
-        if currentDeviceVersion.compare(self.cell_version.content).rawValue == 0 { // 版本号相同
+        if currentDeviceVersion.compare(self.newVersion).rawValue == 0 { // 版本号相同
             
         }
-        if currentDeviceVersion.compare(self.cell_version.content).rawValue == -1 { // 机器版本号，小于，服务器版本号
-            
+        if currentDeviceVersion.compare(self.newVersion).rawValue == -1 { // 机器版本号，小于，服务器版本号
+            self.cell_version.isHidden = false
+            self.tableView.reloadData()
         }
-        if currentDeviceVersion.compare(self.cell_version.content).rawValue == 1 { // 机器版本号，大于，服务器版本号
+        if currentDeviceVersion.compare(self.newVersion).rawValue == 1 { // 机器版本号，大于，服务器版本号
             
         }
     }
@@ -215,9 +216,26 @@ extension EquipmentSettingVC {
                 }
 
             }
+            if item.cellType == 5 { // 用户点击升级 版本
+                self.clickUpdateVersionAction()
+            }
         }
         return cell
         
+    }
+    func clickUpdateVersionAction()  {
+        let v = NetSuccessView.loadFromNib()
+        v.lbTitle.set_text = "是否升级" + self.newVersion + "?"
+        v.btnSuccess.addAction {[weak self] in
+            guard let `self` = self else { return }
+            v.hide()
+            self.scoketModel.sendUpdateDevice(self.newVersion, url: self.newVersionURL)
+        }
+        v.btnError.addAction {[weak self] in
+            guard let `self` = self else { return }
+            v.hide()
+        }
+        v.show()
     }
     func clickChangeAction(celltype: Int)  {
         switch celltype {

@@ -59,6 +59,10 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
         print(localPath)
         super.sendVoiceMessage(withLocalPath: localPath, duration: duration)
         
+        guard XBUserManager.device_Id != "" else {
+            return
+        }
+        
         let fileManager = FileManager.default
 
         if (fileManager.fileExists(atPath: localPath)){
@@ -73,6 +77,9 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
     override func sendTextMessage(_ text: String!) {
         print(text)
         super.sendTextMessage(text)
+        guard XBUserManager.device_Id != "" else {
+            return
+        }
 //        sendVoiceDevice
         var params_task = [String: Any]()
         params_task["username"] = XBUserManager.userName

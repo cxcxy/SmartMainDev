@@ -20,7 +20,8 @@ class SearchViewController: XBBaseViewController {
     
     var trackList: [EquipmentModel] = [] // 预制列表 数组
     
-    var headerInfo:ConetentSingAlbumModel?
+    var headerSongInfo:ConetentSingAlbumModel?
+    var headerAlbumInfo:ConetentSingAlbumModel?
     var dataArr: [ConetentSingModel] = []
     var viewModel = ContentViewModel()
     
@@ -84,7 +85,7 @@ class SearchViewController: XBBaseViewController {
 
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["resourcesPager"].object) {
-                self.headerInfo = topModel
+                self.headerSongInfo = topModel
             }
         })
     }
@@ -105,7 +106,7 @@ class SearchViewController: XBBaseViewController {
                 self.sectionArr.append(sectionItem)
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["albumsPager"].object) {
-                self.headerInfo = topModel
+                self.headerAlbumInfo = topModel
             }
             self.tableView.reloadData()
         })
@@ -237,9 +238,16 @@ extension SearchViewController {
         if sectionItem.sectionType == "resource"{
             if section == 0 {
                 let v = TrackListHeaderView.loadFromNib()
-                v.lbTotal.set_text = "相关资源"
+                let total = self.headerSongInfo?.total?.toString ?? ""
+                v.lbTotal.set_text = "共搜索相关【歌曲】结果" + total + "条"
                 v.btnDefault.isHidden = false
-                v.btnDefault.set_Title("更多")
+                v.btnDefault.set_Title("查看更多")
+                v.btnDefault.addAction {
+                    let vc = SearchSongsViewController()
+                    vc.searchKey = self.textField.text!
+                    self.pushVC(vc)
+//                    VCRouter.toContentSubVCFromSearch(searchKey: self.textField.text!)
+                }
                 v.viewDefault.isHidden = false
                 return v
             }
@@ -247,27 +255,34 @@ extension SearchViewController {
         }
         if sectionItem.sectionType == "album" {
             let v = TrackListHeaderView.loadFromNib()
-            v.lbTotal.set_text = "相关专辑"
+            let total = self.headerAlbumInfo?.total?.toString ?? ""
+            v.lbTotal.set_text = "共搜索相关【专辑】结果" + total + "条"
             v.btnDefault.isHidden = false
-            v.btnDefault.set_Title("更多")
+            v.btnDefault.set_Title("查看更多")
             v.viewDefault.isHidden = false
+            v.btnDefault.addAction {
+                VCRouter.toContentSubVCFromSearch(searchKey: self.textField.text!)
+            }
             return v
         }
         return nil
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard XBUserManager.device_Id != "" else {
-            XBHud.showMsg("请先绑定设备")
-            return
-        }
         let sectionItem = sectionArr[indexPath.section]
-        if sectionItem.sectionType == "resource", let item = sectionItem.sectionModel{
-            self.requestOnlineSing(trackId: item.resId ?? "")
-        }
         if sectionItem.sectionType == "album" {
             let model  = sectionItem.sectionArr[indexPath.row]
             VCRouter.toContentSingsVC(clientId: XBUserManager.device_Id, albumId: model.albumId?.toString ?? "")
         }
+
+      
+        if sectionItem.sectionType == "resource", let item = sectionItem.sectionModel{
+            guard XBUserManager.device_Id != "" else {
+                XBHud.showMsg("请先绑定设备")
+                return
+            }
+            self.requestOnlineSing(trackId: item.resId ?? "")
+        }
+
     }
     /**
      *   收藏歌曲
@@ -336,8 +351,8 @@ extension SearchViewController {
         req_model.title = m.name
         req_model.coverSmallUrl = ""
         req_model.duration = m.length
-        req_model.albumTitle = self.headerInfo?.name ?? ""
-        req_model.albumCoverSmallUrl = self.headerInfo?.imgSmall ?? ""
+        req_model.albumTitle = self.headerSongInfo?.name ?? ""
+        req_model.albumCoverSmallUrl = self.headerSongInfo?.imgSmall ?? ""
         req_model.url = m.content
         req_model.downloadSize = 1
         req_model.downloadUrl = m.content

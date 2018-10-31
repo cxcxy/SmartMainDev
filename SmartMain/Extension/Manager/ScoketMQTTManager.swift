@@ -97,11 +97,10 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
             self.unSubscribeToChannel(socket_clientId: self.current_socket_clientID)
             self.current_socket_clientID = socket_clientId // 重新赋值 给当前的 currentId
         }
-
         let channel = "storybox/\(socket_clientId)/client"
         self.mqttSession.subscribe(to: channel, delivering: .atLeastOnce) { (error) in
             if error == .none {
-                    print("订阅机器信息成功 ，Subscribed to \(channel)")
+                print("订阅机器信息成功 ，Subscribed to \(channel)")
             } else {
                     
             }
@@ -207,9 +206,9 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
             }
             self.getSetDefaultMessage.onNext(message)
         }
-        if cmd_str == "boxInfo" {
-            let key_str = json_str["firmwareVersion"].stringValue
-            self.getDeviceVersion.onNext(key_str)
+        if let firmwareVersion = json_str["boxInfo"]["firmwareVersion"].string {
+         
+            self.getDeviceVersion.onNext(firmwareVersion)
         }
     }
     /**

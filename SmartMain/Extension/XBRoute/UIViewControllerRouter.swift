@@ -58,13 +58,22 @@ class VCRouter {
         
     }
     // MARK: - 跳转第二级页面
-    class func toContentSubVC(clientId: String!, albumId:String? = nil,modouleId:String? = nil, navTitle: String?) {
+    class func toContentSubVC(clientId: String!, albumId:String? = nil,modouleId:String? = nil, navTitle: String?, listType: ContentSubType = .none) {
         
         let vc = ContentSubVC()
         vc.clientId = clientId
         vc.albumId = albumId
         vc.modouleId = modouleId
         vc.title = navTitle
+        topVC?.pushVC(vc)
+        
+    }
+    class func toContentSubVCFromSearch(searchKey: String!, listType: ContentSubType = .search) {
+        
+        let vc = ContentSubVC()
+        vc.listType = listType
+        vc.searchKey = searchKey
+        vc.title = "更多专辑"
         topVC?.pushVC(vc)
         
     }
