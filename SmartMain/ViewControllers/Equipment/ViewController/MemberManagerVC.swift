@@ -70,7 +70,7 @@ class MemberManagerVC: XBBaseViewController {
         self.btnBootomAnimation(status: status)
     }
     func btnBootomAnimation(status: Bool) {
-        btnBootomLayout.constant = status ? 15 : -58
+        btnBootomLayout.constant = status ? 15 : -80
         self.view.setNeedsLayout()
         UIView.animate(withDuration: 0.3, animations: {[weak self] in
             if let strongSelf = self {
