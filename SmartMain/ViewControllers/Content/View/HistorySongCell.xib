@@ -55,7 +55,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J36-U3-Bro">
-                        <rect key="frame" x="60" y="47.5" width="230" height="15"/>
+                        <rect key="frame" x="60" y="42.5" width="230" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.0" alpha="0.4960669949" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                     <constraint firstItem="t2b-SU-7na" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="FKm-mb-l77"/>
                     <constraint firstItem="t2b-SU-7na" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Gvl-AN-sEC"/>
                     <constraint firstAttribute="bottom" secondItem="t2b-SU-7na" secondAttribute="bottom" constant="25" id="Vjg-BE-TLN"/>
-                    <constraint firstItem="J36-U3-Bro" firstAttribute="top" secondItem="M7F-i5-uD2" secondAttribute="bottom" constant="10" id="Y6q-hm-jFA"/>
+                    <constraint firstItem="J36-U3-Bro" firstAttribute="top" secondItem="M7F-i5-uD2" secondAttribute="bottom" constant="5" id="Y6q-hm-jFA"/>
                     <constraint firstAttribute="trailing" secondItem="mtF-7B-Kfi" secondAttribute="trailing" constant="15" id="ZDP-os-a7t"/>
                     <constraint firstItem="M7F-i5-uD2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="dSf-8U-MMQ"/>
                     <constraint firstItem="M7F-i5-uD2" firstAttribute="leading" secondItem="t2b-SU-7na" secondAttribute="trailing" constant="15" id="jl0-AH-skW"/>
