@@ -190,12 +190,17 @@ extension EquipmentSettingVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentSetHeaderCell", for: indexPath) as! EquipmentSetHeaderCell
             cell.lbTitle.set_text = XBUserManager.dv_babyname
             cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
-            if equimentModel?.electricity == 101 { // 当前正在充电
-                cell.lbElectricity.set_text = "正在充电"
+            if equimentModel?.online == 1 {
+                if equimentModel?.electricity == 101 { // 当前正在充电
+                    cell.lbElectricity.set_text = "正在充电"
+                }else {
+                    let electricity = equimentModel?.electricity?.toString  ?? ""
+                    cell.lbElectricity.set_text = "设备剩余电量：" + electricity
+                }
             }else {
-                let electricity = equimentModel?.electricity?.toString  ?? ""
-                cell.lbElectricity.set_text = "设备剩余电量：" + electricity
+                cell.lbElectricity.set_text = "当前设备不在线"
             }
+
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentListCell", for: indexPath) as! EquipmentListCell

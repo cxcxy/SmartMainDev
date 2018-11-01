@@ -216,6 +216,7 @@ extension SearchViewController {
             cell.lbTime.set_text = "共" + totalStr + "首"
             cell.btnExtension.isHidden = true
             cell.imgIcon.set_Img_Url(m.imgSmall)
+            cell.imgRight.isHidden = false
             return cell
         }
         return UITableViewCell()

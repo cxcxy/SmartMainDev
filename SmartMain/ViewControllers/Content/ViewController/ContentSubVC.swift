@@ -75,6 +75,27 @@ class ContentSubVC: XBBaseViewController {
         self.header.endRefreshing()
         self.footer.endRefreshing()
     }
+    /**
+     *   根据状态来处理 上拉刷新，下来加载的控件展示与否
+     */
+    func refreshCollectionViewStatus(status:RefreshStatus){
+        switch status {
+        case .PullSuccess:
+            self.footer.isHidden = false
+            collectionViewEndRefresh()
+        case .PushSuccess:
+            self.footer.isHidden = false
+            collectionViewEndRefresh()
+        case .RefreshFailure:
+            collectionViewEndRefresh()
+            self.footer.isHidden = true
+        case .NoMoreData :
+            collectionViewEndRefresh()
+            self.footer.isHidden = true
+            
+        case .Unknown: break
+        }
+    }
     func requestNoneList() {
         var params_task = [String: Any]()
         params_task["clientId"] = clientId
@@ -90,7 +111,7 @@ class ContentSubVC: XBBaseViewController {
                     
                 }
                 self.dataArr += arr
-                self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.refreshCollectionViewStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.collectionViewEndRefresh()
                 self.collectionView.reloadData()
             }
@@ -110,7 +131,7 @@ class ContentSubVC: XBBaseViewController {
                     self.collectionView.mj_footer = self.footer
                 }
                 self.resourceAlbum += arr
-                self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.refreshCollectionViewStatus(status: arr.checkRefreshStatus(self.pageIndex,paseSize: 20))
                 self.collectionViewEndRefresh()
                 self.collectionView.reloadData()
             }

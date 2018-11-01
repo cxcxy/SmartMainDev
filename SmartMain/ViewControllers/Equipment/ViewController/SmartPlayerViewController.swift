@@ -265,9 +265,31 @@ class SmartPlayerViewController: XBBaseViewController {
         // 计时器开始工作
 //        self.configTimer(songDuration: Float(singsDetail.duration ?? 0))
     }
-
+    func showSwitchPlayView()  {
+        let v = SwitchPlayView.loadFromNib()
+        v.imgAll.isHidden = !self.btnRepeat.isSelected
+        v.imgSing.isHidden = self.btnRepeat.isSelected
+        v.viewAll.addAction { [weak self] in
+            guard let `self` = self else { return }
+            v.hide()
+            if !self.btnRepeat.isSelected { // 顺序播放
+                self.scoketModel.sendRepeatAll()
+            }
+            
+        }
+        v.viewSing.addAction { [weak self] in
+             guard let `self` = self else { return }
+            v.hide()
+            if self.btnRepeat.isSelected { // 顺序播放
+                self.scoketModel.sendRepeatOne()
+            }
+            
+        }
+        v.show()
+    }
     @IBAction func clickRepeatAction(_ sender: Any) {
-        self.btnRepeat.isSelected ? scoketModel.sendRepeatOne() : scoketModel.sendRepeatAll()
+//        self.btnRepeat.isSelected ? scoketModel.sendRepeatOne() : scoketModel.sendRepeatAll()
+        showSwitchPlayView()
     }
     @IBAction func clickOnAction(_ sender: Any) {
         scoketModel.sendSongOn()

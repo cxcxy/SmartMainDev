@@ -33,6 +33,13 @@
                         <color key="textColor" white="0.0" alpha="0.90279858732876717" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_right" translatesAutoresizingMaskIntoConstraints="NO" id="AN5-gH-p6s">
+                        <rect key="frame" x="296" y="32.5" width="9" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="9" id="a68-fo-yf4"/>
+                            <constraint firstAttribute="height" constant="16" id="dS9-JI-5vY"/>
+                        </constraints>
+                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtF-7B-Kfi">
                         <rect key="frame" x="275" y="25.5" width="30" height="30"/>
                         <constraints>
@@ -55,7 +62,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J36-U3-Bro">
-                        <rect key="frame" x="60" y="47.5" width="230" height="15"/>
+                        <rect key="frame" x="60" y="42.5" width="230" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.0" alpha="0.4960669949" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -70,9 +77,11 @@
                     <constraint firstItem="t2b-SU-7na" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="FKm-mb-l77"/>
                     <constraint firstItem="t2b-SU-7na" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Gvl-AN-sEC"/>
                     <constraint firstAttribute="bottom" secondItem="t2b-SU-7na" secondAttribute="bottom" constant="25" id="Vjg-BE-TLN"/>
-                    <constraint firstItem="J36-U3-Bro" firstAttribute="top" secondItem="M7F-i5-uD2" secondAttribute="bottom" constant="10" id="Y6q-hm-jFA"/>
+                    <constraint firstItem="J36-U3-Bro" firstAttribute="top" secondItem="M7F-i5-uD2" secondAttribute="bottom" constant="5" id="Y6q-hm-jFA"/>
                     <constraint firstAttribute="trailing" secondItem="mtF-7B-Kfi" secondAttribute="trailing" constant="15" id="ZDP-os-a7t"/>
+                    <constraint firstAttribute="trailing" secondItem="AN5-gH-p6s" secondAttribute="trailing" constant="15" id="aer-Qm-YcE"/>
                     <constraint firstItem="M7F-i5-uD2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="dSf-8U-MMQ"/>
+                    <constraint firstItem="AN5-gH-p6s" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="f1G-fl-UUR"/>
                     <constraint firstItem="M7F-i5-uD2" firstAttribute="leading" secondItem="t2b-SU-7na" secondAttribute="trailing" constant="15" id="jl0-AH-skW"/>
                     <constraint firstAttribute="trailing" secondItem="8QG-lq-weQ" secondAttribute="trailing" id="kPA-HY-kJC"/>
                     <constraint firstItem="J36-U3-Bro" firstAttribute="leading" secondItem="M7F-i5-uD2" secondAttribute="leading" id="pLP-qQ-BMQ"/>
@@ -83,6 +92,7 @@
             <connections>
                 <outlet property="btnExtension" destination="mtF-7B-Kfi" id="ZIq-FL-IjR"/>
                 <outlet property="imgIcon" destination="t2b-SU-7na" id="daS-3c-e9J"/>
+                <outlet property="imgRight" destination="AN5-gH-p6s" id="Ui9-Ib-Ft3"/>
                 <outlet property="lbTime" destination="J36-U3-Bro" id="hYu-Sr-x3K"/>
                 <outlet property="lbTitle" destination="M7F-i5-uD2" id="cop-FC-buq"/>
             </connections>
@@ -93,5 +103,6 @@
         <image name="icon_exp" width="16" height="16"/>
         <image name="icon_more" width="26" height="6"/>
         <image name="icon_play_song" width="21" height="17"/>
+        <image name="icon_right" width="8" height="16"/>
     </resources>
 </document>

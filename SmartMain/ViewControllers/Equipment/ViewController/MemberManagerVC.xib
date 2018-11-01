@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="z2T-Oo-qlO">
-                    <rect key="frame" x="20" y="40" width="335" height="627"/>
+                    <rect key="frame" x="20" y="40" width="335" height="649"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="juG-vY-ubi">
                         <size key="itemSize" width="50" height="50"/>
@@ -34,7 +34,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgQ-d9-Bdb">
-                    <rect key="frame" x="15" y="682" width="345" height="43"/>
+                    <rect key="frame" x="15" y="704" width="345" height="43"/>
                     <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="FAG-As-Z3B"/>
@@ -54,7 +54,7 @@
                 <constraint firstItem="z2T-Oo-qlO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="QHC-iZ-C5M"/>
                 <constraint firstItem="JgQ-d9-Bdb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="XCa-cy-S2B"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="z2T-Oo-qlO" secondAttribute="trailing" constant="20" id="c6h-Oa-h0l"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JgQ-d9-Bdb" secondAttribute="bottom" constant="-58" id="n9J-ZY-fo6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JgQ-d9-Bdb" secondAttribute="bottom" constant="-80" id="n9J-ZY-fo6"/>
                 <constraint firstItem="z2T-Oo-qlO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yIb-OT-HjC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
