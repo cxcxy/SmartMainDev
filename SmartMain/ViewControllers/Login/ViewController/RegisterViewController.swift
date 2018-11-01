@@ -11,8 +11,8 @@ import UIKit
 class RegisterViewController: XBBaseViewController {
     
     @IBOutlet weak var btnRegister: UIButton!
-    @IBOutlet weak var tfPhone: UITextField!
-    @IBOutlet weak var thPassword: UITextField!
+    @IBOutlet weak var tfPhone: XBTextView!
+    @IBOutlet weak var thPassword: XBTextView!
     @IBOutlet weak var tfCode: UITextField!
     @IBOutlet weak var btnCode: UIButton!
     var viewModel = LoginViewModel()

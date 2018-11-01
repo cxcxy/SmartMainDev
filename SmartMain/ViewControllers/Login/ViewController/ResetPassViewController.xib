@@ -15,9 +15,9 @@
                 <outlet property="btnCode" destination="VJu-GD-6aY" id="faf-vh-xM8"/>
                 <outlet property="btnReset" destination="RCO-yw-mSy" id="HB3-ke-1HM"/>
                 <outlet property="tfCode" destination="omD-E4-Mea" id="SUU-w0-rjw"/>
-                <outlet property="tfOnePass" destination="OUE-5s-TPS" id="PyD-Am-VAE"/>
-                <outlet property="tfPhone" destination="bgq-6w-Z73" id="akP-fF-d0w"/>
-                <outlet property="tfTwoPass" destination="MNl-XN-9vj" id="r0Q-ZN-Lxd"/>
+                <outlet property="tfOnePass" destination="vSK-Et-QGz" id="QDT-zh-f9i"/>
+                <outlet property="tfPhone" destination="EWc-8d-lK6" id="gVx-nh-z52"/>
+                <outlet property="tfTwoPass" destination="ybg-wJ-aP4" id="8eh-sJ-sqB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,35 +29,16 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pNG-ks-Xdw">
                     <rect key="frame" x="20" y="40" width="335" height="232"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWc-8d-lK6" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWc-8d-lK6" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bgq-6w-Z73">
-                                    <rect key="frame" x="18" y="0.0" width="272" height="43"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdL-nd-fKW">
-                                    <rect key="frame" x="300" y="11.5" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="LgU-Uo-k9S"/>
-                                        <constraint firstAttribute="width" constant="20" id="ZdO-ay-E4O"/>
-                                    </constraints>
-                                    <state key="normal" title="Button" image="icon_cexiao"/>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="jdL-nd-fKW" firstAttribute="leading" secondItem="bgq-6w-Z73" secondAttribute="trailing" constant="10" id="4T0-DP-Ei8"/>
-                                <constraint firstItem="bgq-6w-Z73" firstAttribute="leading" secondItem="pOQ-r9-Nm4" secondAttribute="leading" constant="18" id="6oE-RV-jbt"/>
-                                <constraint firstItem="bgq-6w-Z73" firstAttribute="top" secondItem="EWc-8d-lK6" secondAttribute="top" id="6vA-GB-smo"/>
-                                <constraint firstItem="pOQ-r9-Nm4" firstAttribute="trailing" secondItem="jdL-nd-fKW" secondAttribute="trailing" constant="15" id="Aos-qe-8Yi"/>
-                                <constraint firstItem="pOQ-r9-Nm4" firstAttribute="bottom" secondItem="bgq-6w-Z73" secondAttribute="bottom" id="BN1-08-RdB"/>
-                                <constraint firstItem="jdL-nd-fKW" firstAttribute="centerY" secondItem="bgq-6w-Z73" secondAttribute="centerY" id="KLQ-Ua-yhz"/>
                                 <constraint firstAttribute="height" constant="43" id="qBQ-LP-Hdv"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="pOQ-r9-Nm4"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入手机号"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbi-Cs-ekB" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="63" width="335" height="43"/>
@@ -96,45 +77,23 @@
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="b7i-KU-nDf"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSK-Et-QGz" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSK-Et-QGz" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="126" width="335" height="43"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUE-5s-TPS">
-                                    <rect key="frame" x="18" y="0.0" width="299" height="43"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                </textField>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="Rkf-3U-qb2" firstAttribute="trailing" secondItem="OUE-5s-TPS" secondAttribute="trailing" constant="18" id="PEA-t5-XdR"/>
-                                <constraint firstItem="OUE-5s-TPS" firstAttribute="centerY" secondItem="Rkf-3U-qb2" secondAttribute="centerY" id="Quz-tG-709"/>
-                                <constraint firstItem="OUE-5s-TPS" firstAttribute="leading" secondItem="Rkf-3U-qb2" secondAttribute="leading" constant="18" id="WLB-J6-Lh0"/>
-                                <constraint firstItem="OUE-5s-TPS" firstAttribute="top" secondItem="Rkf-3U-qb2" secondAttribute="top" id="Ya6-ge-Wce"/>
-                                <constraint firstItem="Rkf-3U-qb2" firstAttribute="bottom" secondItem="OUE-5s-TPS" secondAttribute="bottom" id="rdN-Mp-ViF"/>
-                            </constraints>
                             <viewLayoutGuide key="safeArea" id="Rkf-3U-qb2"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入新密码"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPass" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybg-wJ-aP4" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybg-wJ-aP4" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="189" width="335" height="43"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNl-XN-9vj">
-                                    <rect key="frame" x="18" y="0.0" width="299" height="43"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                </textField>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="Yxb-r4-RlH" firstAttribute="trailing" secondItem="MNl-XN-9vj" secondAttribute="trailing" constant="18" id="EVD-UK-pb6"/>
-                                <constraint firstItem="Yxb-r4-RlH" firstAttribute="bottom" secondItem="MNl-XN-9vj" secondAttribute="bottom" id="Gux-VD-q0W"/>
-                                <constraint firstItem="MNl-XN-9vj" firstAttribute="top" secondItem="Yxb-r4-RlH" secondAttribute="top" id="bGJ-Wr-59K"/>
-                                <constraint firstItem="MNl-XN-9vj" firstAttribute="centerY" secondItem="Yxb-r4-RlH" secondAttribute="centerY" id="lp7-u2-d3B"/>
-                                <constraint firstItem="MNl-XN-9vj" firstAttribute="leading" secondItem="Yxb-r4-RlH" secondAttribute="leading" constant="18" id="sqC-xY-V8K"/>
-                            </constraints>
                             <viewLayoutGuide key="safeArea" id="Yxb-r4-RlH"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="再次输入新密码"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPass" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                 </stackView>
@@ -164,7 +123,4 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon_cexiao" width="19" height="19"/>
-    </resources>
 </document>

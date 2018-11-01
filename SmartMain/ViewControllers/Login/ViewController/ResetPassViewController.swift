@@ -11,11 +11,11 @@ import UIKit
 class ResetPassViewController: XBBaseViewController {
 
     @IBOutlet weak var btnReset: UIButton!
-    @IBOutlet weak var tfTwoPass: UITextField!
-    @IBOutlet weak var tfOnePass: UITextField!
+    @IBOutlet weak var tfTwoPass: XBTextView!
+    @IBOutlet weak var tfOnePass: XBTextView!
     @IBOutlet weak var btnCode: UIButton!
     @IBOutlet weak var tfCode: UITextField!
-    @IBOutlet weak var tfPhone: UITextField!
+    @IBOutlet weak var tfPhone: XBTextView!
     var viewModel = LoginViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class ResetPassViewController: XBBaseViewController {
         viewModel.requestResetPass(mobile: tfPhone.text!,
                                    code: tfCode.text!,
                                    onePass: tfOnePass.text!,
-                                   twoPass: tfOnePass.text!)
+                                   twoPass: tfTwoPass.text!)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

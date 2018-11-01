@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,8 +15,8 @@
                 <outlet property="btnCode" destination="Yri-4r-pKq" id="qil-V8-kdw"/>
                 <outlet property="btnRegister" destination="ZwS-Pu-VN3" id="1EJ-Le-Wa6"/>
                 <outlet property="tfCode" destination="Vn4-Mq-D07" id="8dl-bm-hu1"/>
-                <outlet property="tfPhone" destination="dQP-Vh-Yet" id="2jd-RN-Yer"/>
-                <outlet property="thPassword" destination="mEs-06-ZAG" id="hUY-cV-ZeR"/>
+                <outlet property="tfPhone" destination="fz6-Di-QcI" id="4Qx-YV-Fvt"/>
+                <outlet property="thPassword" destination="Xhm-ZA-Hhw" id="gej-yh-oeJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,38 +28,16 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GWz-rI-Cng">
                     <rect key="frame" x="20" y="40" width="335" height="169"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fz6-Di-QcI" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fz6-Di-QcI" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dQP-Vh-Yet">
-                                    <rect key="frame" x="18" y="0.0" width="272" height="42.5"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpv-Ty-Rnd">
-                                    <rect key="frame" x="300" y="11.5" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="WpQ-uW-DSS"/>
-                                        <constraint firstAttribute="width" constant="20" id="xLx-WT-t3q"/>
-                                    </constraints>
-                                    <state key="normal" title="Button" image="icon_cexiao"/>
-                                    <connections>
-                                        <action selector="clickClearPhoneAction:" destination="-1" eventType="touchUpInside" id="Ubf-nj-gOv"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="43" id="6ge-ch-ESl"/>
-                                <constraint firstItem="Zpv-Ty-Rnd" firstAttribute="leading" secondItem="dQP-Vh-Yet" secondAttribute="trailing" constant="10" id="77n-Q5-GKd"/>
-                                <constraint firstItem="9Rh-ku-419" firstAttribute="bottom" secondItem="dQP-Vh-Yet" secondAttribute="bottom" id="Cml-o5-dhm"/>
-                                <constraint firstItem="dQP-Vh-Yet" firstAttribute="leading" secondItem="9Rh-ku-419" secondAttribute="leading" constant="18" id="Oeo-92-Jy7"/>
-                                <constraint firstItem="9Rh-ku-419" firstAttribute="trailing" secondItem="Zpv-Ty-Rnd" secondAttribute="trailing" constant="15" id="b2c-U2-Ffa"/>
-                                <constraint firstItem="Zpv-Ty-Rnd" firstAttribute="centerY" secondItem="dQP-Vh-Yet" secondAttribute="centerY" id="f18-kp-ETC"/>
-                                <constraint firstItem="dQP-Vh-Yet" firstAttribute="top" secondItem="fz6-Di-QcI" secondAttribute="top" id="pbi-ey-suq"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="9Rh-ku-419"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入手机号"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPk-w7-8N6" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="63" width="335" height="43"/>
@@ -98,25 +76,14 @@
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="EKQ-8c-t0I"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-ZA-Hhw" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-ZA-Hhw" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="126" width="335" height="43"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-06-ZAG">
-                                    <rect key="frame" x="18" y="0.0" width="299" height="43"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                </textField>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="mEs-06-ZAG" firstAttribute="top" secondItem="ro5-lh-8RT" secondAttribute="top" id="91m-ZY-poH"/>
-                                <constraint firstItem="ro5-lh-8RT" firstAttribute="bottom" secondItem="mEs-06-ZAG" secondAttribute="bottom" id="9At-s8-dDR"/>
-                                <constraint firstItem="mEs-06-ZAG" firstAttribute="centerY" secondItem="ro5-lh-8RT" secondAttribute="centerY" id="UaZ-QS-guE"/>
-                                <constraint firstItem="ro5-lh-8RT" firstAttribute="trailing" secondItem="mEs-06-ZAG" secondAttribute="trailing" constant="18" id="i6X-Hm-lwn"/>
-                                <constraint firstItem="mEs-06-ZAG" firstAttribute="leading" secondItem="ro5-lh-8RT" secondAttribute="leading" constant="18" id="ss3-1L-4Xf"/>
-                            </constraints>
                             <viewLayoutGuide key="safeArea" id="ro5-lh-8RT"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入密码"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPass" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                 </stackView>
@@ -146,7 +113,4 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon_cexiao" width="19" height="19"/>
-    </resources>
 </document>

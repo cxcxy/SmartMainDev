@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
+                <outlet property="btnClear" destination="nFy-m7-eu2" id="eg0-pX-bmK"/>
                 <outlet property="tableView" destination="bIY-u7-94Q" id="WWR-IW-ua5"/>
                 <outlet property="textField" destination="pdm-Mk-Iwu" id="QSN-im-nev"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -66,18 +67,31 @@
                                         <action selector="clickCancelAction:" destination="-1" eventType="touchUpInside" id="oXx-0y-v5u"/>
                                     </connections>
                                 </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFy-m7-eu2">
+                                    <rect key="frame" x="264.5" y="12.5" width="15" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="15" id="2SU-NQ-B7J"/>
+                                        <constraint firstAttribute="height" constant="15" id="GsJ-Ev-xQH"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="icon_cexiao"/>
+                                    <connections>
+                                        <action selector="clickClearAction:" destination="-1" eventType="touchUpInside" id="XqD-Q1-dwI"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="LLp-fe-169" secondAttribute="trailing" id="07e-hI-p3e"/>
                                 <constraint firstItem="LLp-fe-169" firstAttribute="top" secondItem="Duy-wV-kyU" secondAttribute="top" id="6wf-Tx-3MB"/>
                                 <constraint firstItem="pdm-Mk-Iwu" firstAttribute="top" secondItem="Duy-wV-kyU" secondAttribute="top" id="Gow-1B-Jml"/>
+                                <constraint firstItem="nFy-m7-eu2" firstAttribute="centerY" secondItem="LLp-fe-169" secondAttribute="centerY" id="MxW-pO-Jid"/>
                                 <constraint firstItem="pdm-Mk-Iwu" firstAttribute="leading" secondItem="xEa-Kc-L0l" secondAttribute="trailing" constant="15" id="P6w-pS-Thk"/>
                                 <constraint firstAttribute="bottom" secondItem="LLp-fe-169" secondAttribute="bottom" id="PXi-OG-oyh"/>
                                 <constraint firstItem="Yyv-Hy-7aC" firstAttribute="centerY" secondItem="LLp-fe-169" secondAttribute="centerY" id="Qn0-Uk-wU1"/>
                                 <constraint firstItem="xEa-Kc-L0l" firstAttribute="leading" secondItem="Duy-wV-kyU" secondAttribute="leading" constant="10" id="Tgo-FI-KoM"/>
                                 <constraint firstItem="LLp-fe-169" firstAttribute="leading" secondItem="Yyv-Hy-7aC" secondAttribute="trailing" id="WEV-dU-sgt"/>
                                 <constraint firstItem="Yyv-Hy-7aC" firstAttribute="leading" secondItem="pdm-Mk-Iwu" secondAttribute="trailing" constant="20" id="ZM7-ZV-Tet"/>
+                                <constraint firstItem="Yyv-Hy-7aC" firstAttribute="leading" secondItem="nFy-m7-eu2" secondAttribute="trailing" constant="5" id="cra-Os-fc6"/>
                                 <constraint firstItem="xEa-Kc-L0l" firstAttribute="centerY" secondItem="Duy-wV-kyU" secondAttribute="centerY" id="hvw-Rb-1ar"/>
                                 <constraint firstAttribute="height" constant="40" id="uDo-iz-f9J"/>
                                 <constraint firstAttribute="bottom" secondItem="pdm-Mk-Iwu" secondAttribute="bottom" id="wLr-Oz-o4U"/>
@@ -112,6 +126,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_cexiao" width="19" height="19"/>
         <image name="search" width="14" height="14"/>
     </resources>
 </document>

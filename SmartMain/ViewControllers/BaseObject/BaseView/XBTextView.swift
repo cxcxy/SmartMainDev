@@ -32,7 +32,25 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
             textField.placeholder = placeholder
         }
     }
+    @IBInspectable open var isPass: Bool = false {
+        didSet {
+            textField.isSecureTextEntry = isPass
+        }
+    }
+    @IBInspectable open var isBoard: Bool = true {
+        didSet {
+            if isBoard {
+                self.setCornerRadius(radius: 20)
+                self.addBorder(width: 0.5, color: viewColor)
+            }else {
+                self.setCornerRadius(radius: 0)
+                self.addBorder(width: 0.0, color: UIColor.clear)
+            }
+        }
+    }
     func initialSetup()  {
+        self.setCornerRadius(radius: 20)
+        self.addBorder(width: 0.5, color: viewColor)
         btnClear.isHidden = true
         textField.delegate = self
         let input = textField.rx.text.orEmpty.asDriver()

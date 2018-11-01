@@ -46,6 +46,7 @@
                             <viewLayoutGuide key="safeArea" id="xM6-kI-6bu"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入密码"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPass" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIC-be-JBY" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">

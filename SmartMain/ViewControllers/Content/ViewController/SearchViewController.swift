@@ -20,11 +20,12 @@ class SearchViewController: XBBaseViewController {
     
     var trackList: [EquipmentModel] = [] // 预制列表 数组
     
+    @IBOutlet weak var btnClear: UIButton!
     var headerSongInfo:ConetentSingAlbumModel?
     var headerAlbumInfo:ConetentSingAlbumModel?
     var dataArr: [ConetentSingModel] = []
     var viewModel = ContentViewModel()
-    
+       let disposeBag = DisposeBag()
     var resourceArr:[ConetentSingModel]      = []
     var resourceAlbum: [ConetentSingModel]   = []
 
@@ -38,6 +39,9 @@ class SearchViewController: XBBaseViewController {
         
         // Do any additional setup after loading the view.
     }
+    @IBAction func clickClearAction(_ sender: Any) {
+        self.textField.text = ""
+    }
     override func setUI() {
         super.setUI()
         self.view.backgroundColor = UIColor.white
@@ -45,6 +49,10 @@ class SearchViewController: XBBaseViewController {
         viewSearchTop.setCornerRadius(radius: 10)
         textField.becomeFirstResponder()
         configPlay()
+        let input = textField.rx.text.orEmpty.asDriver()
+        input.map{ $0.count == 0 }
+            .drive(btnClear.rx.isHidden)
+            .disposed(by: disposeBag)
         self.configTableView(tableView, register_cell: ["ContentSingCell",
                                                         "HistorySongCell",
                                                         "HistorySongContentCell"])
