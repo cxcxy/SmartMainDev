@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,8 +15,6 @@
                 <outlet property="btnLogin" destination="4FL-nD-5uk" id="WZ1-qI-kUi"/>
                 <outlet property="btnSendCode" destination="Pym-7e-Ecd" id="ATQ-PV-9wv"/>
                 <outlet property="tfCode" destination="HFY-Bv-E7o" id="XCA-sS-CFj"/>
-                <outlet property="tfPassword" destination="YtK-wV-zdF" id="Zhd-in-SZT"/>
-                <outlet property="tfPhone" destination="VdR-XB-7l0" id="2Fi-37-J4O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewCode" destination="gIC-be-JBY" id="vLP-F4-PQm"/>
                 <outlet property="viewPassword" destination="Ujf-wf-KMB" id="V5h-iq-Kmr"/>
@@ -31,58 +29,24 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9Cv-me-nGe">
                     <rect key="frame" x="20" y="64" width="335" height="169"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-am-4l4" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3E-am-4l4" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VdR-XB-7l0">
-                                    <rect key="frame" x="18" y="0.0" width="272" height="42.666666666666664"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8v-bq-e2I">
-                                    <rect key="frame" x="300" y="11.666666666666671" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="YKN-06-BmO"/>
-                                        <constraint firstAttribute="height" constant="20" id="tw8-Lw-Oyi"/>
-                                    </constraints>
-                                    <state key="normal" title="Button" image="icon_cexiao"/>
-                                    <connections>
-                                        <action selector="clickResetAction:" destination="-1" eventType="touchUpInside" id="FbN-yy-BPc"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="VdR-XB-7l0" firstAttribute="top" secondItem="P3E-am-4l4" secondAttribute="top" id="2zB-7L-5yd"/>
-                                <constraint firstItem="I0e-2c-khT" firstAttribute="bottom" secondItem="VdR-XB-7l0" secondAttribute="bottom" id="3uK-Sx-OHj"/>
-                                <constraint firstItem="VdR-XB-7l0" firstAttribute="leading" secondItem="I0e-2c-khT" secondAttribute="leading" constant="18" id="Aju-GN-85I"/>
-                                <constraint firstItem="G8v-bq-e2I" firstAttribute="centerY" secondItem="VdR-XB-7l0" secondAttribute="centerY" id="ZWv-Fw-TB0"/>
-                                <constraint firstItem="G8v-bq-e2I" firstAttribute="leading" secondItem="VdR-XB-7l0" secondAttribute="trailing" constant="10" id="Zfi-nF-rh6"/>
                                 <constraint firstAttribute="height" constant="43" id="jzR-pX-TW6"/>
-                                <constraint firstItem="I0e-2c-khT" firstAttribute="trailing" secondItem="G8v-bq-e2I" secondAttribute="trailing" constant="15" id="rrG-8H-L3F"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="I0e-2c-khT"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入手机号"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujf-wf-KMB" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujf-wf-KMB" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="63" width="335" height="43"/>
-                            <subviews>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YtK-wV-zdF">
-                                    <rect key="frame" x="18" y="0.0" width="299" height="43"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                </textField>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="xM6-kI-6bu" firstAttribute="bottom" secondItem="YtK-wV-zdF" secondAttribute="bottom" id="5Vc-tH-S0C"/>
-                                <constraint firstItem="xM6-kI-6bu" firstAttribute="trailing" secondItem="YtK-wV-zdF" secondAttribute="trailing" constant="18" id="Uca-iw-D6T"/>
-                                <constraint firstItem="YtK-wV-zdF" firstAttribute="top" secondItem="xM6-kI-6bu" secondAttribute="top" id="c1e-tW-vxJ"/>
-                                <constraint firstItem="YtK-wV-zdF" firstAttribute="leading" secondItem="xM6-kI-6bu" secondAttribute="leading" constant="18" id="hgs-NM-q4y"/>
-                                <constraint firstItem="YtK-wV-zdF" firstAttribute="centerY" secondItem="xM6-kI-6bu" secondAttribute="centerY" id="tz4-Ic-ZVD"/>
-                            </constraints>
                             <viewLayoutGuide key="safeArea" id="xM6-kI-6bu"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入密码"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIC-be-JBY" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
                             <rect key="frame" x="0.0" y="126" width="335" height="43"/>
@@ -94,7 +58,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pym-7e-Ecd">
-                                    <rect key="frame" x="273" y="-0.33333333333334281" width="62" height="43"/>
+                                    <rect key="frame" x="273" y="0.0" width="62" height="43"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <state key="normal" title="获取验证码"/>
                                     <connections>
@@ -129,7 +93,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3r-Cm-QA8">
-                    <rect key="frame" x="147.33333333333334" y="248" width="80" height="22"/>
+                    <rect key="frame" x="147.66666666666666" y="248" width="80" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="d3W-Fa-0OA"/>
                         <constraint firstAttribute="height" constant="22" id="iZD-el-aDL"/>
@@ -159,7 +123,4 @@
             <point key="canvasLocation" x="-952" y="-289"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon_cexiao" width="19" height="19"/>
-    </resources>
 </document>

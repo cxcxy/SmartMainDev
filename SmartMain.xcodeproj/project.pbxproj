@@ -213,6 +213,8 @@
 		04A5E62C216EF4D100CFCE4B /* DeviceChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */; };
 		04A5E62F216F1C9600CFCE4B /* TrackListHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */; };
 		04A5E630216F1C9600CFCE4B /* TrackListHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */; };
+		04AE5D46218AF63F00DE3632 /* XBTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AE5D44218AF63F00DE3632 /* XBTextView.xib */; };
+		04AE5D47218AF63F00DE3632 /* XBTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE5D45218AF63F00DE3632 /* XBTextView.swift */; };
 		04B2B1FD216C507E00D14E7C /* PlaySongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */; };
 		04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2B1FE216C508600D14E7C /* PlaySongListView.xib */; };
 		04B876CD216C47DB00D0430F /* NetSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B876CC216C47DB00D0430F /* NetSuccessView.swift */; };
@@ -728,6 +730,8 @@
 		04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceChooseCell.xib; sourceTree = "<group>"; };
 		04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListHomeCell.swift; sourceTree = "<group>"; };
 		04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListHomeCell.xib; sourceTree = "<group>"; };
+		04AE5D44218AF63F00DE3632 /* XBTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBTextView.xib; sourceTree = "<group>"; };
+		04AE5D45218AF63F00DE3632 /* XBTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBTextView.swift; sourceTree = "<group>"; };
 		04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySongListView.swift; sourceTree = "<group>"; };
 		04B2B1FE216C508600D14E7C /* PlaySongListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySongListView.xib; sourceTree = "<group>"; };
 		04B876CC216C47DB00D0430F /* NetSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetSuccessView.swift; sourceTree = "<group>"; };
@@ -1780,6 +1784,8 @@
 				2DCA86A2216B81F2001F9E04 /* ChatRedView.xib */,
 				04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */,
 				04B2B1FE216C508600D14E7C /* PlaySongListView.xib */,
+				04AE5D45218AF63F00DE3632 /* XBTextView.swift */,
+				04AE5D44218AF63F00DE3632 /* XBTextView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -2281,6 +2287,7 @@
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
 				04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */,
+				04AE5D46218AF63F00DE3632 /* XBTextView.xib in Resources */,
 				2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */,
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
 				2DF075B4217628E1006F0818 /* ContentNineGridItem.xib in Resources */,
@@ -2450,6 +2457,7 @@
 				04C3872C213E093F0063A799 /* UIViewController+.swift in Sources */,
 				04C38988213E0B5A0063A799 /* XBBaseModel.swift in Sources */,
 				0485CCA82148A89200F54927 /* MQTTConnAckPacket.swift in Sources */,
+				04AE5D47218AF63F00DE3632 /* XBTextView.swift in Sources */,
 				0485CCB12148A89200F54927 /* MQTTMessage.swift in Sources */,
 				0495F17621783154002FB1F8 /* XBUpdateCell.swift in Sources */,
 				042EEF8A2150E15F00DBD492 /* EaseUI.m in Sources */,

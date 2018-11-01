@@ -24,16 +24,14 @@ class BoaderView: UIView {
     }
 }
 class LoginViewController: XBBaseViewController {
-    @IBOutlet weak var viewPassword: UIView!
+    @IBOutlet weak var viewPassword: XBTextView!
     @IBOutlet weak var btnSendCode: UIButton!
     
     @IBOutlet weak var btnCode: UIButton!
     @IBOutlet weak var tfCode: UITextField!
     @IBOutlet weak var viewCode: IQPreviousNextView!
-    @IBOutlet weak var tfPassword: UITextField!
-    @IBOutlet weak var tfPhone: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var viewPhone: UIView!
+    @IBOutlet weak var viewPhone: XBTextView!
 //    @IBOutlet weak var viewPhoto: UIView!
     var viewModel = LoginViewModel()
     override func viewDidLoad() {
@@ -58,7 +56,7 @@ class LoginViewController: XBBaseViewController {
     }
     
     @IBAction func clickSendCodeAction(_ sender: Any) {
-        viewModel.requestGetCode(mobile: tfPhone.text!) { [weak self] in
+        viewModel.requestGetCode(mobile: viewPhone.text!) { [weak self] in
             guard let `self` = self else { return }
             self.sendCodeWithBtnTimer()
         }
@@ -73,22 +71,22 @@ class LoginViewController: XBBaseViewController {
     }
 
     @IBAction func clickResetAction(_ sender: Any) {
-        self.tfPhone.text = ""
+        self.viewPhone.text = ""
     }
     
     @IBAction func clicResetPassAction(_ sender: Any) {
-        tfPassword.text = ""
+        viewPassword.text = ""
     }
     lazy var popWindow:UIWindow = {
         let w = UIApplication.shared.delegate as! AppDelegate
         return w.window!
     }()
     @IBAction func clickLoginAction(_ sender: Any) {
-        if tfPhone.text! == "" {
+        if viewPhone.text! == "" {
             XBHud.showMsg("请输入手机号")
             return
         }
-        if !tfPhone.text!.validateMobile() {
+        if !viewPhone.text!.validateMobile() {
             XBHud.showMsg("请输入正确手机号")
             return
         }
@@ -97,13 +95,13 @@ class LoginViewController: XBBaseViewController {
 
     }
     func requestPasswordLogin()  {
-        viewModel.requestPassLogin(mobile: tfPhone.text!, code: tfPassword.text!) { [weak self] in
+        viewModel.requestPassLogin(mobile: viewPhone.text!, code: viewPassword.text!) { [weak self] in
             guard let `self` = self else { return }
             self.toHome()
         }
     }
     func requestAuthCodeLogin()  {
-        viewModel.requestCodeLogin(mobile: tfPhone.text!, code: "1111") { [weak self] in
+        viewModel.requestCodeLogin(mobile: viewPhone.text!, code: "1111") { [weak self] in
             guard let `self` = self else { return }
             self.toHome()
         }
