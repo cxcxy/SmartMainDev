@@ -73,7 +73,7 @@
                                         <constraint firstAttribute="width" constant="15" id="2SU-NQ-B7J"/>
                                         <constraint firstAttribute="height" constant="15" id="GsJ-Ev-xQH"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="icon_cexiao"/>
+                                    <state key="normal" title="Button" image="icon_delete"/>
                                     <connections>
                                         <action selector="clickClearAction:" destination="-1" eventType="touchUpInside" id="XqD-Q1-dwI"/>
                                     </connections>
@@ -126,7 +126,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_cexiao" width="19" height="19"/>
+        <image name="icon_delete" width="17" height="17"/>
         <image name="search" width="14" height="14"/>
     </resources>
 </document>

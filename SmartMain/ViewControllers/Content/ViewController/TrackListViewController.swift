@@ -92,6 +92,7 @@ extension TrackListViewController {
         let trackCount = model.trackCount ?? 0
         let count = "（" + trackCount.toString + "首）"
         cell.lbTitle.set_text = model.name
+        
         cell.lbTatal.set_text = count
         return cell
         
