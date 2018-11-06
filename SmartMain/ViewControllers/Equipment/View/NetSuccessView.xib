@@ -70,6 +70,8 @@
             <connections>
                 <outlet property="btnError" destination="hAV-Ik-4ul" id="9Nx-bb-IO5"/>
                 <outlet property="btnSuccess" destination="XPO-nU-NaZ" id="hHn-FU-afc"/>
+                <outlet property="imgIcon" destination="saK-Ab-pDQ" id="gJR-vM-olD"/>
+                <outlet property="lbTitle" destination="GJk-BX-cLT" id="SYP-Dm-HYU"/>
             </connections>
             <point key="canvasLocation" x="71" y="57"/>
         </view>

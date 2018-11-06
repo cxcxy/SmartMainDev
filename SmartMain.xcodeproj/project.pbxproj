@@ -61,8 +61,8 @@
 		042EEF332150E15F00DBD492 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EEE3E2150E15F00DBD492 /* MJRefreshBackFooter.m */; };
 		042EEF342150E15F00DBD492 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EEE3F2150E15F00DBD492 /* MJRefreshAutoFooter.m */; };
 		042EEF352150E15F00DBD492 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EEE412150E15F00DBD492 /* MJRefreshComponent.m */; };
-		042EEF362150E15F00DBD492 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042EEE472150E15F00DBD492 /* libopencore-amrwb.a */; };
-		042EEF372150E15F00DBD492 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042EEE4D2150E15F00DBD492 /* libopencore-amrnb.a */; };
+		042EEF362150E15F00DBD492 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042EEE472150E15F00DBD492 /* libopencore-amrwb.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		042EEF372150E15F00DBD492 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042EEE4D2150E15F00DBD492 /* libopencore-amrnb.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		042EEF382150E15F00DBD492 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = 042EEE502150E15F00DBD492 /* wav.mm */; };
 		042EEF392150E15F00DBD492 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 042EEE512150E15F00DBD492 /* amrFileCodec.mm */; };
 		042EEF3A2150E15F00DBD492 /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 042EEE542150E15F00DBD492 /* EMVoiceConverter.mm */; };
@@ -302,7 +302,7 @@
 		04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */; };
 		04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */; };
 		04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */; };
-		1AAA75D9F5935AC30D1FE386 /* Pods_SmartMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */; };
+		1AAA75D9F5935AC30D1FE386 /* Pods_SmartMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */; };
 		2D0ACC44215A6EB90047103C /* HistorySongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC42215A6EB90047103C /* HistorySongCell.swift */; };
 		2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC43215A6EB90047103C /* HistorySongCell.xib */; };

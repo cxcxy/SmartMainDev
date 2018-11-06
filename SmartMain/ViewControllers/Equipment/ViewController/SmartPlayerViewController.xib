@@ -37,10 +37,9 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cm2_fm_bg" translatesAutoresizingMaskIntoConstraints="NO" id="1Ni-UW-RmP">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdg-Ll-tv9">
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdg-Ll-tv9">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="43Y-Nk-UNR">
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="43Y-Nk-UNR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
@@ -373,17 +372,21 @@
             <constraints>
                 <constraint firstItem="IeF-Vk-Fma" firstAttribute="top" secondItem="uZ1-hP-1s4" secondAttribute="bottom" constant="30" id="5Mx-RP-AsS"/>
                 <constraint firstItem="1Ni-UW-RmP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BUe-K3-dLq"/>
+                <constraint firstItem="mdg-Ll-tv9" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Cgj-T4-zPw"/>
                 <constraint firstItem="1Ni-UW-RmP" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Eyv-ZZ-7hJ"/>
                 <constraint firstItem="1Ni-UW-RmP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MgC-hq-s2j"/>
                 <constraint firstItem="18Y-8I-3Di" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Odv-7p-jdA"/>
                 <constraint firstAttribute="bottom" secondItem="1Ni-UW-RmP" secondAttribute="bottom" id="Ohy-cd-Ibe"/>
+                <constraint firstItem="mdg-Ll-tv9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PKd-Hf-7WN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="18Y-8I-3Di" secondAttribute="trailing" id="USp-aD-D9q"/>
                 <constraint firstItem="1Ni-UW-RmP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VUA-3v-YJU"/>
+                <constraint firstItem="mdg-Ll-tv9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Wd6-3D-p2w"/>
                 <constraint firstAttribute="bottom" secondItem="18Y-8I-3Di" secondAttribute="bottom" id="XW9-pC-jyd"/>
                 <constraint firstItem="uZ1-hP-1s4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="b4n-rm-Nu8"/>
                 <constraint firstItem="uZ1-hP-1s4" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="bHF-0u-sYT"/>
                 <constraint firstItem="1Ni-UW-RmP" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="eLI-ad-fYX"/>
                 <constraint firstAttribute="trailing" secondItem="1Ni-UW-RmP" secondAttribute="trailing" id="gqj-hQ-neR"/>
+                <constraint firstItem="mdg-Ll-tv9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="q9o-Ln-ezO"/>
                 <constraint firstItem="1Ni-UW-RmP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tZb-TG-pr2"/>
                 <constraint firstItem="IeF-Vk-Fma" firstAttribute="centerX" secondItem="uZ1-hP-1s4" secondAttribute="centerX" id="ynE-k0-lfS"/>
             </constraints>

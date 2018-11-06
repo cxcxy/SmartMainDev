@@ -54,7 +54,7 @@ enum RequestApi{
     case deleteTrackList(req: [String: Any])
     case deleteLikeSing(req: [String: Any])
     case sendTextDevice(req: [String: Any])
-    case sendVoiceDevice(username: String,deviceid:String,nickname: String,body: String)
+    case sendVoiceDevice(username: String,groupId:String,nickname: String,body: String)
     case uploadAvatar(openId: String, body: String)
     case resetAvatar(req: [String: Any])
     case modifyNickname(req: [String: Any])
@@ -244,10 +244,10 @@ extension RequestApi:TargetType{
         switch self {
         case .uploadAvatar:
             return ["Content-Type": "multipart/form-data"]
-        case .sendVoiceDevice(let username,let deviceid,let nickname, _):
+        case .sendVoiceDevice(let username,let groupId,let nickname, _):
             var params_task = [String: String]()
             params_task["username"] = username
-            params_task["groupId"] = deviceid
+            params_task["groupId"] = groupId
             params_task["nickname"] = "qq"
             params_task["Content-Type"] = "multipart/form-data"
             return params_task

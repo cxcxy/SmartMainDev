@@ -296,7 +296,7 @@ class ContentMainVC: XBBaseViewController {
         let vc2 = HistoryViewController()
         
         controllerArray = [vc,vc1,vc2]
-        v.magicView.reloadData()
+        
         self.addChildViewController(v)
         self.view.addSubview(v.magicView)
         v.magicView.snp.makeConstraints {[weak self] (make) -> Void in
@@ -305,6 +305,7 @@ class ContentMainVC: XBBaseViewController {
                 
             }
         }
+        v.magicView.reloadData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

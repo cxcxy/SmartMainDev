@@ -31,11 +31,12 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HlW-4y-tv2">
                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="HlW-4y-tv2" secondAttribute="height" priority="750" id="93A-Jr-G3d"/>
+                            <constraint firstAttribute="width" secondItem="HlW-4y-tv2" secondAttribute="height" id="93A-Jr-G3d"/>
                         </constraints>
                     </imageView>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="HlW-4y-tv2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="05T-Mi-RVX"/>
                 <constraint firstItem="9nU-8Q-NXg" firstAttribute="top" secondItem="HlW-4y-tv2" secondAttribute="bottom" id="7X9-7A-uJ3"/>

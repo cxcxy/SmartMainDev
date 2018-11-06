@@ -84,10 +84,11 @@ class ContentShowCell: BaseTableViewCell {
     
     
     func configCollectionView()  {
-        
+        self.contentView.layoutIfNeeded()
         collectionView.delegate     = self
         collectionView.dataSource   = self
         collectionView.cellId_register("TwoItemCVCell")
+        collectionView.reloadData()
     }
     
     @IBAction func clickAllAction(_ sender: Any) {
@@ -122,6 +123,7 @@ extension ContentShowCell:UICollectionViewDelegate,UICollectionViewDataSource,UI
         switch resourctType {
         case .zhiban:
             cell.imgIcon.set_Img_Url(contentArr[indexPath.row].imgLarge)
+            cell.imgIcon.setCornerRadius(radius: ContentShowCell.itemWidth / 2)
             cell.lbTitle.set_text = contentArr[indexPath.row].name
             break
         case .tuling:

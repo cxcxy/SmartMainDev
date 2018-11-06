@@ -338,11 +338,11 @@ extension XBBaseViewController:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
     @objc(backgroundColorForEmptyDataSet:) func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return tableColor
     }
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    @objc(imageForEmptyDataSet:) func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage? {
         if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
             return UIImage.init(named: "network_error")
         }
-        return UIImage.init()
+        return nil
     }
     func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
 

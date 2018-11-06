@@ -210,6 +210,8 @@ extension EquipmentSettingVC {
         cell.tfDes.isUserInteractionEnabled = item.isEdit
         cell.tfDes.text = item.content
         cell.viewBtn.isHidden = item.isHidden
+        let btnText = item.cellType == 5 ? "升级" : "修改"
+        cell.btnItme.set_Title(btnText)
         cell.btnItme.addAction { [weak self]in
             guard let `self` = self else { return }
             if item.cellType == 1 {
@@ -231,6 +233,7 @@ extension EquipmentSettingVC {
     func clickUpdateVersionAction()  {
         let v = NetSuccessView.loadFromNib()
         v.lbTitle.set_text = "是否升级" + self.newVersion + "?"
+        v.viewType = .updateVersion
         v.btnSuccess.addAction {[weak self] in
             guard let `self` = self else { return }
             v.hide()

@@ -19,7 +19,12 @@ class TwoItemCVCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
 //        imgIcon.setCornerRadius(radius: 5)
-        imgIcon.roundView()
+//        self.setNeedsLayout()
+//        self.layoutIfNeeded()
+//         self.contentView.layoutIfNeeded()
+//        imgIcon.roundView()
+//        self.setNeedsLayout()
+//         self.layoutIfNeeded()
     }
 
 }

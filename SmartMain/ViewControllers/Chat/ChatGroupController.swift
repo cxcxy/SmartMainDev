@@ -66,7 +66,7 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
         let fileManager = FileManager.default
 
         if (fileManager.fileExists(atPath: localPath)){
-            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, deviceid: XBUserManager.device_Id, nickname: XBUserManager.userName, body: localPath),isShowLoding: false, successClosure: { (result, code, message) in
+            Net.requestWithTarget(.sendVoiceDevice(username: XBUserManager.userName, groupId: self.conversation.conversationId, nickname: XBUserManager.userName, body: localPath),isShowLoding: false, successClosure: { (result, code, message) in
                 if let str = result as? String {
                     print(str)
                 }

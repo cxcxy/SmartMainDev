@@ -50,8 +50,8 @@ class NetSuccessView: ETPopupView {
         let viewWidth = MGScreenWidth - 60
         let viewHeight = viewWidth * 3 / 2
         self.snp.makeConstraints { (make) in
-            make.width.equalTo(viewWidth)
-            make.height.equalTo(viewHeight)
+            make.width.equalTo(300)
+            make.height.equalTo(410)
         }
         ETPopupWindow.sharedWindow().touchWildToHide = true
         self.setCornerRadius(radius: 5.0)
