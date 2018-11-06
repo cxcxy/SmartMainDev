@@ -18,6 +18,7 @@ class GroupAddViewController: XBBaseTableViewController {
     
     var groupOwner: Bool  = false // 是否是管理员
     var ownerPhone : String = ""
+      var viewModel = LoginViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -88,7 +89,12 @@ class GroupAddViewController: XBBaseTableViewController {
                 if let str = result as? String {
                         print(str)
                     XBHud.showMsg("解散成功")
-                    self.popToRootVC()
+                    XBUserManager.clearDeviceInfo()
+                    self.viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
+                        guard let `self` = self else { return }
+                        //                            self.cofigDeviceInfo()
+                        self.popToRootVC()
+                    }
                 }
             })
         } else {
@@ -101,7 +107,13 @@ class GroupAddViewController: XBBaseTableViewController {
                 if let str = result as? String {
                     print(str)
                     XBHud.showMsg("退出成功")
-                    self.popToRootVC()
+                    XBUserManager.clearDeviceInfo()
+                    self.viewModel.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
+                        guard let `self` = self else { return }
+                        //                            self.cofigDeviceInfo()
+                        self.popToRootVC()
+                    }
+//                    self.popToRootVC()
                 }
             })
 //            EMClient.shared().groupManager.leaveGroup(groupId) { [weak self] (error) in

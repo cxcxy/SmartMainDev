@@ -120,7 +120,7 @@ class DrawerViewController: XBBaseViewController {
         imgPhoto.roundView()
         imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
 //        lbDvnick.set_text = XBUserManager.nickname
-        if XBUserManager.device_Id == "" &&  XBUserManager.dv_babyname == ""{
+        if XBUserManager.device_Id == ""{
             lbDvnick.set_text = XBUserManager.nickname
         }else {
             lbDvnick.set_text = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
