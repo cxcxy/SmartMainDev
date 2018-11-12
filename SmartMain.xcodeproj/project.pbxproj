@@ -319,6 +319,7 @@
 		2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D312AA3213D560100FCC499 /* LaunchScreen.storyboard */; };
 		2D404D50217CA5550017DA54 /* ResourceAudioListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D404D4E217CA5550017DA54 /* ResourceAudioListVC.swift */; };
 		2D404D51217CA5550017DA54 /* ResourceAudioListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D404D4F217CA5550017DA54 /* ResourceAudioListVC.xib */; };
+		2D7A2B382199BFC600C406F3 /* SectionedSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7A2B372199BFC600C406F3 /* SectionedSlider.swift */; };
 		2D83D40D215E4D8D0097900F /* MemberCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D83D40B215E4D8D0097900F /* MemberCVCell.swift */; };
 		2D83D40E215E4D8D0097900F /* MemberCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D83D40C215E4D8D0097900F /* MemberCVCell.xib */; };
 		2D83D416215E705E0097900F /* TableViewAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D83D410215E705D0097900F /* TableViewAnimationKit.m */; };
@@ -842,6 +843,7 @@
 		2D312AAC213D619F00FCC499 /* SmartMain-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartMain-Bridging-Header.h"; sourceTree = "<group>"; };
 		2D404D4E217CA5550017DA54 /* ResourceAudioListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAudioListVC.swift; sourceTree = "<group>"; };
 		2D404D4F217CA5550017DA54 /* ResourceAudioListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResourceAudioListVC.xib; sourceTree = "<group>"; };
+		2D7A2B372199BFC600C406F3 /* SectionedSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionedSlider.swift; sourceTree = "<group>"; };
 		2D83D40B215E4D8D0097900F /* MemberCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCVCell.swift; sourceTree = "<group>"; };
 		2D83D40C215E4D8D0097900F /* MemberCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCVCell.xib; sourceTree = "<group>"; };
 		2D83D410215E705D0097900F /* TableViewAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewAnimationKit.m; sourceTree = "<group>"; };
@@ -1792,6 +1794,7 @@
 				04B2B1FE216C508600D14E7C /* PlaySongListView.xib */,
 				04AE5D45218AF63F00DE3632 /* XBTextView.swift */,
 				04AE5D44218AF63F00DE3632 /* XBTextView.xib */,
+				2D7A2B372199BFC600C406F3 /* SectionedSlider.swift */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -2581,6 +2584,7 @@
 				04C38722213E093F0063A799 /* XBEmptyManager.swift in Sources */,
 				042EEF1B2150E15F00DBD492 /* EaseChineseToPinyin.m in Sources */,
 				044CED0A2176C8180068C75A /* ContentSubItem.swift in Sources */,
+				2D7A2B382199BFC600C406F3 /* SectionedSlider.swift in Sources */,
 				04C3872D213E093F0063A799 /* UILabel+.swift in Sources */,
 				04C3897E213E0B5A0063A799 /* XBBaseNavigation.swift in Sources */,
 				042EEF522150E15F00DBD492 /* PSTCollectionViewUpdateItem.m in Sources */,
