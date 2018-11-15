@@ -10,8 +10,10 @@ import UIKit
 
 class DeviceChooseCell: UICollectionViewCell {
 
+    @IBOutlet weak var imgManagerWidth: NSLayoutConstraint!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var imgPhoto: UIImageView!
+    @IBOutlet weak var imgManager: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbCurrent: UILabel!
     @IBOutlet weak var btnDel: UIButton!
@@ -24,8 +26,10 @@ class DeviceChooseCell: UICollectionViewCell {
             lbName.set_text = m.babyname
             imgPhoto.set_Img_Url(m.headimgurl)
             viewContainer.backgroundColor = m.isCurrent ? UIColor.init(hexString: "BEDEA9") : UIColor.init(hexString: "ECBD9C")
-            lbCurrent.isHidden = m.isCurrent ? false : true
+            imgManager.isHidden = m.isCurrent ? false : true
             btnDel.isHidden = m.isCurrent ? false : true
+            imgManager.set_img = "icon_use"
+            imgManagerWidth.constant = 68
         }
     }
     override func awakeFromNib() {
@@ -35,6 +39,7 @@ class DeviceChooseCell: UICollectionViewCell {
         viewContainer.setCornerRadius(radius: 8)
         imgPhoto.roundView()
         btnDel.isHidden = false
+//        lbCurrent.isHidden = true
     }
 
 }

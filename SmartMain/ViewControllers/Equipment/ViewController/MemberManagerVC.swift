@@ -127,13 +127,15 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
         cell.lbName.set_text = dataArr[indexPath.row].nickname
       
         let model = dataArr[indexPath.row]
+//        cell.lbCurrent.isHidden = true
         if model.easeadmin == "1" {
-            cell.lbCurrent.isHidden = false
-            cell.lbCurrent.set_text = "管理员"
+//            cell.lbCurrent.isHidden = false
+//            cell.lbCurrent.set_text = "管理员"
+            cell.imgManager.isHidden = false
             cell.btnDel.isHidden = true
         }else {
-            cell.lbCurrent.isHidden = true
-            cell.lbCurrent.set_text = ""
+            cell.imgManager.isHidden = true
+//            cell.lbCurrent.set_text = ""
             if currentIsAdmin {
                 cell.btnDel.isHidden =  !self.editStatus
             }else {

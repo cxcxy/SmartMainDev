@@ -44,10 +44,13 @@ class SmartPlayerViewController: XBBaseViewController {
     
     @IBOutlet weak var viewVolume: UIView!
     
+    @IBOutlet weak var viewVolumeContainer: UIView!
     @IBOutlet weak var viewProgress: UIView!
     @IBOutlet weak var sliderProgress: UISlider!
     @IBOutlet weak var sliderVolume: UISlider!
     
+    @IBOutlet weak var lbVolumeRight: NSLayoutConstraint!
+//    @IBOutlet weak var lbVolume: UILabel!
     fileprivate var timer: Timer? // 歌曲进度条
     
     var isFirst: Bool = false
@@ -120,7 +123,7 @@ class SmartPlayerViewController: XBBaseViewController {
             print("getPalyingVolume ===：", $0.element ?? 0)
             let volumeValue: Float = Float($0.element ?? 0)
             self.sliderVolume.setValue(volumeValue, animated: true)
-            //            self.lbVolume.set_text       = Int($0.element ?? 0).toString
+            self.updateLbVolumeFrame()
             self.currentVolume = $0.element ?? 0
         }.disposed(by: rx_disposeBag)
         
@@ -204,6 +207,11 @@ class SmartPlayerViewController: XBBaseViewController {
             self.currentSongProgress = 0
         }
     }
+    func updateLbVolumeFrame()  {
+        let v = Float(viewVolume.w) / sliderVolume.maximumValue
+        lbVolumeRight.constant = CGFloat(sliderVolume.value * v) - 8
+        lbVolume.set_text = String(Int(sliderVolume.value))
+    }
     @IBAction func sliderProgressVauleChanged(_ sender: Any) {
         let value:Float = sliderProgress.value
         print("歌曲时间",Int(sliderProgress.value))
@@ -212,9 +220,9 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     
     @IBAction func sliderVolumeValueChanged(_ sender: Any) {
-        print(Int(sliderVolume.value))
         scoketModel.setVolumeValue(value: Int(sliderVolume.value))
         self.currentVolume = Int(sliderVolume.value)
+        self.updateLbVolumeFrame()
     }
     
     @IBAction func clickCutAction(_ sender: Any) {
@@ -224,6 +232,7 @@ class SmartPlayerViewController: XBBaseViewController {
         self.currentVolume = self.currentVolume - 1
         scoketModel.setVolumeValue(value: currentVolume)
         sliderVolume.setValue(Float(self.currentVolume), animated: true)
+        self.updateLbVolumeFrame()
     }
     
     @IBAction func clickAddAction(_ sender: Any) {
@@ -233,6 +242,7 @@ class SmartPlayerViewController: XBBaseViewController {
         self.currentVolume = self.currentVolume + 1
         scoketModel.setVolumeValue(value: currentVolume)
         sliderVolume.setValue(Float(self.currentVolume), animated: true)
+        self.updateLbVolumeFrame()
     }
     override func request() {
         super.request()
