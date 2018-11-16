@@ -20,6 +20,8 @@ class SleepModel: NSObject {
 }
 class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var heightLayout: NSLayoutConstraint!
+    @IBOutlet weak var widthLayout: NSLayoutConstraint!
     @IBOutlet weak var lbSelector: UILabel!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var viewContainer: UIView!
@@ -41,6 +43,10 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
         }
         viewContainer.setCornerRadius(radius: 8)
         btnSure.radius_ll()
+        if UIDevice.deviceType == .dt_iPhone5 {
+            widthLayout.constant = 180
+            heightLayout.constant = 289
+        }
 //        let toolbar = UIToolbar.init(frame: self.frame)
 //        toolbar.barStyle = UIBarStyle.blackTranslucent
 //        toolbar.alpha = 0.8

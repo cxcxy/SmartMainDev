@@ -11,6 +11,9 @@ import UIKit
 class DeviceChooseCell: UICollectionViewCell {
 
     @IBOutlet weak var imgManagerWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var imgPhotoWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var imgManager: UIImageView!
@@ -26,18 +29,41 @@ class DeviceChooseCell: UICollectionViewCell {
             lbName.set_text = m.babyname
             imgPhoto.set_Img_Url(m.headimgurl)
             viewContainer.backgroundColor = m.isCurrent ? UIColor.init(hexString: "BEDEA9") : UIColor.init(hexString: "ECBD9C")
-            imgManager.isHidden = m.isCurrent ? false : true
+//            imgManager.isHidden = m.isCurrent ? false : true
             btnDel.isHidden = m.isCurrent ? false : true
-            imgManager.set_img = "icon_use"
-            imgManagerWidth.constant = 68
+
+            if m.onLine || m.isCurrent{ // 当在线的时候 或者是当前所使用的
+                imgManager.isHidden = false
+                if m.isCurrent {
+                     imgManager.set_img = "icon_use"
+                    imgManagerWidth.constant = 68
+                } else {
+                    imgManager.set_img = "icon_online"
+                    imgManagerWidth.constant = 48
+                }
+                
+            } else {
+                imgManager.isHidden = true
+            }
+            
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        viewContainer.layoutIfNeeded()
+        
+        if UIDevice.deviceType == .dt_iPhone5 {
+            imgPhotoWidth.constant = 60
+            imgPhoto.layoutIfNeeded()
+            imgPhoto.roundView()
+        } else {
+            imgPhoto.layoutIfNeeded()
+            imgPhoto.roundView()
+        }
+        
+        imgPhoto.setNeedsUpdateConstraints()
         viewContainer.setCornerRadius(radius: 8)
-        imgPhoto.roundView()
+        
         btnDel.isHidden = false
 //        lbCurrent.isHidden = true
     }

@@ -24,7 +24,7 @@
                     </view>
                     <blurEffect style="light"/>
                 </visualEffectView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m83-UQ-c1r" customClass="SectionedSlider" customModule="Slider" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m83-UQ-c1r" customClass="SectionedSlider" customModule="SmartMain" customModuleProvider="target">
                     <rect key="frame" x="121.5" y="161.5" width="132" height="337"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -99,8 +99,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="btnSure" destination="6d4-y2-Eri" id="hxE-1U-xYM"/>
+                <outlet property="heightLayout" destination="7Aj-v7-mcj" id="eNw-lM-EWi"/>
                 <outlet property="lbVolume" destination="XZk-dI-maN" id="1Dc-oz-RrM"/>
                 <outlet property="sliderView" destination="m83-UQ-c1r" id="AXp-dK-yqw"/>
+                <outlet property="widthLayout" destination="ccU-PC-G7D" id="hQO-vB-DGp"/>
             </connections>
             <point key="canvasLocation" x="42.5" y="78.5"/>
         </view>

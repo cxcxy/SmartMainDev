@@ -32,7 +32,7 @@ class LoginViewController: XBBaseViewController {
     @IBOutlet weak var viewCode: IQPreviousNextView!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var viewPhone: XBTextView!
-//    @IBOutlet weak var viewPhoto: UIView!
+
     var viewModel = LoginViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()

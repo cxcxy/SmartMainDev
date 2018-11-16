@@ -123,9 +123,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="btnSure" destination="ZQu-z6-CV2" id="jn4-nk-gUH"/>
+                <outlet property="heightLayout" destination="MiH-ko-XKz" id="XOw-I3-FPt"/>
                 <outlet property="lbSelector" destination="m42-hb-EIn" id="X5R-ub-7Aw"/>
                 <outlet property="pickerView" destination="bMw-F8-tjD" id="SL9-xl-sQp"/>
                 <outlet property="viewContainer" destination="y2H-e1-UZf" id="9KK-ld-0FY"/>
+                <outlet property="widthLayout" destination="80K-hw-tsm" id="0rz-e0-xqx"/>
             </connections>
         </view>
     </objects>

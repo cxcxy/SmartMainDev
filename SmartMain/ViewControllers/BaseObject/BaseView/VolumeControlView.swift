@@ -17,6 +17,8 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var btnSure: UIButton!
     
+    @IBOutlet weak var widthLayout: NSLayoutConstraint!
+    @IBOutlet weak var heightLayout: NSLayoutConstraint!
     @IBOutlet weak var sliderView: SectionedSlider!
     var currentVolume: Int = 0
     
@@ -41,6 +43,11 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate {
         //        sliderView.
         sliderView.layer.cornerRadius = 30
         sliderView.layer.masksToBounds = true
+        
+        if UIDevice.deviceType == .dt_iPhone5 {
+            widthLayout.constant = 100
+            heightLayout.constant = 255
+        }
         
         self.configVolume()
     }

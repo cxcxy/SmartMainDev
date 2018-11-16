@@ -32,6 +32,11 @@ class DrawerViewController: XBBaseViewController {
     @IBOutlet weak var imgLight: UIImageView!
     @IBOutlet weak var lbLight: UILabel!
     
+    @IBOutlet weak var mneuStackview: UIStackView!
+    @IBOutlet weak var heightMneuLayout: NSLayoutConstraint!
+    
+    @IBOutlet weak var leftMnueLayout: NSLayoutConstraint!
+    @IBOutlet weak var rightMnueLayout: NSLayoutConstraint!
     
     @IBOutlet weak var btnLock: UIButton!
     @IBOutlet weak var btnLight: UIButton!
@@ -64,6 +69,13 @@ class DrawerViewController: XBBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIDevice.deviceType == .dt_iPhone5 {
+            heightMneuLayout.constant = 80
+            mneuStackview.spacing = 8
+            leftMnueLayout.constant = 8
+            rightMnueLayout.constant = 8
+            
+        }
     }
     
     override func setUI() {

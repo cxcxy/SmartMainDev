@@ -42,13 +42,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yr6-jI-Da5">
                                 <rect key="frame" x="40" y="25" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="GvL-ft-rjP"/>
+                                    <constraint firstAttribute="width" constant="80" id="pQX-rd-KBW"/>
                                     <constraint firstAttribute="width" secondItem="yr6-jI-Da5" secondAttribute="height" id="v2x-Pb-ubd"/>
-                                    <constraint firstAttribute="height" constant="80" id="zaG-Kn-0ON"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="机器人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKS-FZ-5hR">
                                 <rect key="frame" x="58.5" y="120" width="43" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="cZM-Cq-c8u"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,6 +73,7 @@
                             <constraint firstItem="iKS-FZ-5hR" firstAttribute="top" secondItem="yr6-jI-Da5" secondAttribute="bottom" constant="15" id="WdW-9n-70O"/>
                             <constraint firstItem="yr6-jI-Da5" firstAttribute="top" secondItem="DJ4-2C-Uh5" secondAttribute="top" constant="25" id="aPK-uH-u3M"/>
                             <constraint firstItem="Okh-KH-APJ" firstAttribute="top" secondItem="DJ4-2C-Uh5" secondAttribute="top" id="e21-YH-mYW"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="iKS-FZ-5hR" secondAttribute="bottom" constant="15" id="epX-DE-8M0"/>
                             <constraint firstAttribute="trailing" secondItem="Okh-KH-APJ" secondAttribute="trailing" id="rKb-xI-vxy"/>
                         </constraints>
                     </view>
@@ -88,9 +91,11 @@
                 <outlet property="imgManager" destination="tEe-kg-Kpf" id="L7q-Vf-rjo"/>
                 <outlet property="imgManagerWidth" destination="qUQ-0a-oF5" id="deo-ZZ-YIs"/>
                 <outlet property="imgPhoto" destination="yr6-jI-Da5" id="itu-Ic-X5g"/>
+                <outlet property="imgPhotoWidth" destination="pQX-rd-KBW" id="73M-aJ-fiy"/>
                 <outlet property="lbName" destination="iKS-FZ-5hR" id="9jc-H8-G0h"/>
                 <outlet property="viewContainer" destination="DJ4-2C-Uh5" id="MWl-5H-BXH"/>
             </connections>
+            <point key="canvasLocation" x="-42" y="-55"/>
         </collectionViewCell>
     </objects>
     <resources>

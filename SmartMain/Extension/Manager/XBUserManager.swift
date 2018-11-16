@@ -38,6 +38,7 @@ class XBDeviceBabyModel:  Mappable{
     var birthday : String? //
     var recordtime : String?
     var isCurrent: Bool = false // 是否是当前用户所选择的设备
+    var onLine: Bool = false
     required init?(map: Map){}
     
     func mapping(map: Map)
@@ -50,7 +51,7 @@ class XBDeviceBabyModel:  Mappable{
         sex <- map["sex"]
         birthday <- map["birthday"]
         recordtime <- map["recordtime"]
-        
+        onLine <- map["onLine"]
     }
     
 }
