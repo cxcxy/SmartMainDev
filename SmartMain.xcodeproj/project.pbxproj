@@ -384,6 +384,8 @@
 		2DF918222189DF9100880CF7 /* SwitchPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF918212189DF9100880CF7 /* SwitchPlayView.swift */; };
 		2DF918242189DF9C00880CF7 /* SwitchPlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF918232189DF9C00880CF7 /* SwitchPlayView.xib */; };
 		2DF918262189E79B00880CF7 /* SearchSongsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF918252189E79B00880CF7 /* SearchSongsViewController.xib */; };
+		BE16E2A221A2F1EE003B24D7 /* SearchAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16E2A021A2F1EE003B24D7 /* SearchAlbumViewController.swift */; };
+		BE16E2A321A2F1EE003B24D7 /* SearchAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE16E2A121A2F1EE003B24D7 /* SearchAlbumViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -918,6 +920,8 @@
 		2DF918232189DF9C00880CF7 /* SwitchPlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchPlayView.xib; sourceTree = "<group>"; };
 		2DF918252189E79B00880CF7 /* SearchSongsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchSongsViewController.xib; sourceTree = "<group>"; };
 		91EAC16658F9A180871B0B3F /* Pods-SmartMain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.release.xcconfig"; sourceTree = "<group>"; };
+		BE16E2A021A2F1EE003B24D7 /* SearchAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAlbumViewController.swift; sourceTree = "<group>"; };
+		BE16E2A121A2F1EE003B24D7 /* SearchAlbumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchAlbumViewController.xib; sourceTree = "<group>"; };
 		CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD6F9026177145A29A261A /* Pods-SmartMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1934,6 +1938,8 @@
 				04C38A17213E79240063A799 /* SearchViewController.xib */,
 				04F15FF92189A6B90032EF12 /* SearchSongsViewController.swift */,
 				2DF918252189E79B00880CF7 /* SearchSongsViewController.xib */,
+				BE16E2A021A2F1EE003B24D7 /* SearchAlbumViewController.swift */,
+				BE16E2A121A2F1EE003B24D7 /* SearchAlbumViewController.xib */,
 				044712CD2188057500009F9E /* AlbumMoreViewController.swift */,
 				2DF9181F21872D5B00880CF7 /* ccViewController.swift */,
 			);
@@ -2300,6 +2306,7 @@
 				2DF918262189E79B00880CF7 /* SearchSongsViewController.xib in Resources */,
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
 				04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */,
+				BE16E2A321A2F1EE003B24D7 /* SearchAlbumViewController.xib in Resources */,
 				04AE5D46218AF63F00DE3632 /* XBTextView.xib in Resources */,
 				2D9195D12153BCE300F4A9A1 /* DrawFromCell.xib in Resources */,
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
@@ -2648,6 +2655,7 @@
 				042EEF1F2150E15F00DBD492 /* EaseEmotionManager.m in Sources */,
 				042EEF6F2150E15F00DBD492 /* EaseRefreshTableViewController.m in Sources */,
 				04CF4932215B328A0052CD67 /* GroupItemCell.swift in Sources */,
+				BE16E2A221A2F1EE003B24D7 /* SearchAlbumViewController.swift in Sources */,
 				04C38739213E093F0063A799 /* UIViewExtension.swift in Sources */,
 				2DC9558A213EAC18004D6F65 /* EquipmentSettingVC.swift in Sources */,
 				042EEF652150E15F00DBD492 /* NSData+ImageContentType.m in Sources */,

@@ -11,9 +11,30 @@ import UIKit
 class SearchSongsViewController: XBBaseViewController {
     var clientId: String! // 当前设备ID
     var albumId: String! // 当前歌曲列表 ID
-    var dataArr: [ConetentSingModel] = []
+    
+    var dataArrFromSearch : [ConetentSingModel] = [] { // 从搜索传进来
+        didSet {
+            self.tableView.mj_footer = self.mj_footer
+            self.dataArr.removeAll()
+            self.dataArr = self.flatMapLikeList(arr: self.dataArrFromSearch)
+            self.refreshStatus(status: dataArrFromSearch.checkRefreshStatus(self.pageIndex,paseSize: 20))
+        }
+    }
+    
+    var dataArr: [ConetentSingModel] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     var trackList: [EquipmentModel] = [] // 预制列表 数组
-    var headerInfo:ConetentSingAlbumModel?
+    var headerInfo:ConetentSingAlbumModel? {
+        didSet {
+            guard let m = headerInfo else {
+                return
+            }
+            self.setTopViewInfo(total: m.total?.toString ?? "")
+        }
+    }
     
     @IBOutlet weak var headerView: UIView!
     var viewModel   = ContentViewModel()
@@ -26,7 +47,7 @@ class SearchSongsViewController: XBBaseViewController {
     var player:AVPlayer = AVPlayer.init()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        self.currentNavigationNone = true
+        self.currentNavigationHidden        = true
     }
     override func setUI() {
         super.setUI()
@@ -36,8 +57,7 @@ class SearchSongsViewController: XBBaseViewController {
                                                         "HistorySongContentCell"])
         self.tableView.mj_header = self.mj_header
 
-        request()
-        requestTrackList()
+        self.tableView.mj_footer = self.mj_footer
         configCurrentSongsId()
         configPlay()
         makeCustomerImageNavigationItem("icon_music_white", left: false) { [weak self] in
@@ -46,22 +66,28 @@ class SearchSongsViewController: XBBaseViewController {
         }
         configTopHeaderView()
     }
+    func configDataArr() {
+        self.dataArr += self.flatMapLikeList(arr: self.dataArr)
+    }
     lazy var topView: TrackListHeaderView = {
         let v = TrackListHeaderView.loadFromNib()
         v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth
-            , h: 50)
-//        v.viewDefault.isHidden = true
-        v.btnDefault.set_Title("添加全部")
-        v.btnDefault.addAction {
-            self.clickAllAction()
-        }
+            , h: 42)
+        v.viewBack.backgroundColor = UIColor.white
+        v.lbTotal.textColor = UIColor.black
+        v.viewDefault.isHidden = true
+//        v.btnDefault.set_Title("添加全部")
+//        v.btnDefault.addAction {
+//            self.clickAllAction()
+//        }
+        v.addBorderBottom(size: 0.5, color: lineColor)
         return v
     }()
     func configTopHeaderView()  {
         self.headerView.addSubview(topView)
     }
     func setTopViewInfo(total: String)  {
-        topView.lbTotal.set_text = "共" + total + "首"
+        topView.lbTotal.set_text = "共" + total + "条结果"
     }
     func configCurrentSongsId()  {
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
@@ -71,30 +97,9 @@ class SearchSongsViewController: XBBaseViewController {
             self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
             }.disposed(by: rx_disposeBag)
     }
-//    //MARK: 添加列表内全部歌曲 到 预制列表中
-//    func requestAddSingsTrackList(trackId: Int) {
-//        var params_task = [String: Any]()
-//        params_task["deviceId"] = XBUserManager.device_Id
-//        params_task["id"] = trackId
-//        params_task["name"] = self.headerInfo?.name ?? ""
-//        params_task["list"] = self.dataArr.toJSON()
-//        Net.requestWithTarget(.addSingsToTrack(req: params_task), successClosure: { (result, code, message) in
-//            if let str = result as? String {
-//                if str == "ok" {
-//                    XBHud.showMsg("添加成功")
-//                    XBDelay.start(delay: 1, closure: {
-//                        self.requestTrackList()
-//                    })
-//                }else {
-//                    XBHud.showMsg("添加失败")
-//                }
-//            }
-//        })
-//    }
+
     func mapSongsArrPlayingStatus(songId: Int)  {
         self.dataArr.forEachEnumerated { (index, item) in
-            //            if let arr = item.resId?.components(separatedBy: ":") {
-            //                if arr.count > 0 {
             if let song_Id = item.trackId {
                 if song_Id == songId {
                     item.isPlay = true
@@ -102,8 +107,6 @@ class SearchSongsViewController: XBBaseViewController {
                     item.isPlay = false
                 }
             }
-            //                }
-            //            }
         }
         self.tableView.reloadData()
     }
@@ -134,7 +137,8 @@ class SearchSongsViewController: XBBaseViewController {
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex,paseSize: 20))
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["resourcesPager"].object) {
-                self.setTopViewInfo(total: topModel.total?.toString ?? "")
+//                self.setTopViewInfo(total: topModel.total?.toString ?? "")
+                self.headerInfo  = topModel
             }
             self.scoketModel.sendGetTrack()
             self.tableView.reloadData()

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T0G-kD-aqY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T0G-kD-aqY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_photo" translatesAutoresizingMaskIntoConstraints="NO" id="I9V-Dy-meW">
-                                <rect key="frame" x="97" y="134" width="180" height="180"/>
+                                <rect key="frame" x="97.5" y="134" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="OJg-1S-2Pd"/>
                                     <constraint firstAttribute="width" constant="180" id="Q7S-D3-jCN"/>
@@ -27,13 +27,13 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaZ-4k-PK0">
                                 <rect key="frame" x="92.5" y="354" width="190" height="40"/>
-                                <color key="backgroundColor" red="0.074509803921568626" green="0.56862745098039214" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="7Q4-kP-bd8"/>
                                     <constraint firstAttribute="height" constant="40" id="m38-qa-Zor"/>
                                 </constraints>
-                                <state key="normal" title="手机号登录">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="登录">
+                                    <color key="titleColor" red="0.49411764705882355" green="0.80000000000000004" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="clickLoginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NLs-7W-THu"/>
@@ -41,13 +41,13 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSv-ha-7Wr">
                                 <rect key="frame" x="92.5" y="414" width="190" height="40"/>
-                                <color key="backgroundColor" red="0.50196078431372548" green="0.792156862745098" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="Keu-g4-m9b"/>
                                     <constraint firstAttribute="height" constant="40" id="xfZ-WP-Ee8"/>
                                 </constraints>
                                 <state key="normal" title="注册">
-                                    <color key="titleColor" red="0.0" green="0.5490196078431373" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.49411764705882355" green="0.80000000000000004" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="clickRegisterAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gU6-0B-dha"/>

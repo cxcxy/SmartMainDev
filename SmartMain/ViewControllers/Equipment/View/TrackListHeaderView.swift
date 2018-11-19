@@ -11,6 +11,7 @@ import UIKit
 class TrackListHeaderView: UIView {
     @IBOutlet weak var lbTotal: UILabel!
     @IBOutlet weak var viewDefault: UIView!
+    @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var btnDefault: UIButton!
     /*
     // Only override draw() if you perform custom drawing.

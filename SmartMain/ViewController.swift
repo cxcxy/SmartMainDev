@@ -22,7 +22,7 @@ class ViewController: XBBaseViewController {
         view.backgroundColor = viewColor
         btnLogin.setCornerRadius(radius: 20)
         btnRegister.setCornerRadius(radius: 20)
-        btnRegister.addBorder(width: 2, color: UIColor.init(hexString: "008C48")! )
+//        btnRegister.addBorder(width: 2, color: UIColor.init(hexString: "008C48")! )
     }
     @IBAction func clickLoginAction(_ sender: Any) {
 

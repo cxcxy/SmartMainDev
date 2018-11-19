@@ -22,7 +22,7 @@ class ResetPassViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        title = "重设密码"
+        title = "重置密码"
         btnCode.radius_l()
         btnReset.radius_ll()
     }
