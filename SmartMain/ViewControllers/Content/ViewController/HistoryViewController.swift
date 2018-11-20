@@ -33,7 +33,7 @@ class HistoryViewController: XBBaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.currentNavigationHidden = true
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         self.configTableView(tableView, register_cell: ["HistorySongCell","HistorySongContentCell"])
         self.tableView.mj_header = self.mj_header

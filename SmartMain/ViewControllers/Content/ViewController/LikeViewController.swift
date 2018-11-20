@@ -22,6 +22,7 @@ class LikeViewController: XBBaseTableViewController {
         super.setUI()
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         request()
+        self.currentNavigationHidden = true
           configCurrentSongsId()
     }
 //    override func viewWillAppear(_ animated: Bool) {

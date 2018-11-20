@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContentTopNavView" customModule="SmartMain" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ulc-3b-kLd">
+                    <rect key="frame" x="20" y="35.5" width="25" height="25"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmenu" translatesAutoresizingMaskIntoConstraints="NO" id="HYX-fQ-8yl">
+                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="DYz-tq-WR3"/>
+                        <constraint firstAttribute="height" constant="25" id="MCY-xC-Vlc"/>
+                        <constraint firstAttribute="bottom" secondItem="HYX-fQ-8yl" secondAttribute="bottom" id="OYU-pQ-7GB"/>
+                        <constraint firstItem="HYX-fQ-8yl" firstAttribute="top" secondItem="Ulc-3b-kLd" secondAttribute="top" id="d74-sL-FDF"/>
+                        <constraint firstAttribute="trailing" secondItem="HYX-fQ-8yl" secondAttribute="trailing" id="fWC-fr-pdj"/>
+                        <constraint firstItem="HYX-fQ-8yl" firstAttribute="leading" secondItem="Ulc-3b-kLd" secondAttribute="leading" id="k65-rl-SbQ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="e97-vM-XYb"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHh-T5-igW">
+                    <rect key="frame" x="77.5" y="33" width="220" height="30"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BTK-yZ-UtM">
+                            <rect key="frame" x="0.0" y="0.0" width="220" height="30"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fm5-PA-Ccn" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
+                                    <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="Pxh-Fs-Inq"/>
+                                    </constraints>
+                                    <viewLayoutGuide key="safeArea" id="AOR-K5-UxE"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PL5-iY-fwS" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="0.0" width="40" height="30"/>
+                                    <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="Rne-nf-aqf"/>
+                                    </constraints>
+                                    <viewLayoutGuide key="safeArea" id="DpS-5k-0EI"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqh-DT-asg" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                    <rect key="frame" x="120" y="0.0" width="40" height="30"/>
+                                    <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="ncp-yR-qdO"/>
+                                    </constraints>
+                                    <viewLayoutGuide key="safeArea" id="JLk-9V-qw4"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OlJ-qh-Kln" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                    <rect key="frame" x="180" y="0.0" width="40" height="30"/>
+                                    <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="F6r-QU-yBe"/>
+                                    </constraints>
+                                    <viewLayoutGuide key="safeArea" id="5XT-wm-Kja"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="APj-KM-ZCA"/>
+                        <constraint firstAttribute="trailing" secondItem="BTK-yZ-UtM" secondAttribute="trailing" id="Ky0-8T-4LG"/>
+                        <constraint firstAttribute="bottom" secondItem="BTK-yZ-UtM" secondAttribute="bottom" id="YBB-P0-jRd"/>
+                        <constraint firstItem="BTK-yZ-UtM" firstAttribute="top" secondItem="QHh-T5-igW" secondAttribute="top" id="ivs-ch-Bxc"/>
+                        <constraint firstItem="BTK-yZ-UtM" firstAttribute="leading" secondItem="QHh-T5-igW" secondAttribute="leading" id="kyW-vv-MH8"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVf-25-lNE">
+                    <rect key="frame" x="330" y="35.5" width="25" height="25"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2U-QA-TmM" customClass="ChatRedView" customModule="SmartMain" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_chat" translatesAutoresizingMaskIntoConstraints="NO" id="oTC-Lq-Mc0">
+                                    <rect key="frame" x="1" y="3" width="23" height="19"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="23" id="HTM-Ja-luq"/>
+                                        <constraint firstAttribute="height" constant="19" id="WgV-fK-Yv4"/>
+                                    </constraints>
+                                </imageView>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNB-C1-8Nc">
+                                    <rect key="frame" x="18" y="1" width="8" height="8"/>
+                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="8" id="9j0-qg-K5T"/>
+                                        <constraint firstAttribute="height" constant="8" id="yjt-BZ-p1r"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="ZNB-C1-8Nc" firstAttribute="top" secondItem="oTC-Lq-Mc0" secondAttribute="top" constant="-2" id="Kkw-G4-Oby"/>
+                                <constraint firstItem="oTC-Lq-Mc0" firstAttribute="centerX" secondItem="Nfq-l7-CKl" secondAttribute="centerX" id="bh8-7d-TVs"/>
+                                <constraint firstItem="ZNB-C1-8Nc" firstAttribute="trailing" secondItem="oTC-Lq-Mc0" secondAttribute="trailing" constant="2" id="oWO-fC-Skn"/>
+                                <constraint firstItem="oTC-Lq-Mc0" firstAttribute="centerY" secondItem="Nfq-l7-CKl" secondAttribute="centerY" id="wnF-5Z-pnB"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="Nfq-l7-CKl"/>
+                            <connections>
+                                <outlet property="viewMessage" destination="oTC-Lq-Mc0" id="rFR-R7-M9q"/>
+                                <outlet property="viewRed" destination="ZNB-C1-8Nc" id="khd-Ny-OM9"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Z2U-QA-TmM" firstAttribute="leading" secondItem="OVf-25-lNE" secondAttribute="leading" id="Grr-4P-xBy"/>
+                        <constraint firstAttribute="trailing" secondItem="Z2U-QA-TmM" secondAttribute="trailing" id="JJG-Rx-KGD"/>
+                        <constraint firstAttribute="width" constant="25" id="UZW-se-JJ6"/>
+                        <constraint firstItem="Z2U-QA-TmM" firstAttribute="top" secondItem="UEf-dX-8bv" secondAttribute="top" id="Yfg-XJ-3ps"/>
+                        <constraint firstItem="UEf-dX-8bv" firstAttribute="bottom" secondItem="Z2U-QA-TmM" secondAttribute="bottom" id="ZAK-Ir-mhQ"/>
+                        <constraint firstAttribute="height" constant="25" id="ji0-rx-Xtc"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="UEf-dX-8bv"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.49411764705882355" green="0.80000000000000004" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QHh-T5-igW" secondAttribute="bottom" constant="15" id="3Mn-tz-lgI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OVf-25-lNE" secondAttribute="trailing" constant="20" id="J36-jC-DWl"/>
+                <constraint firstItem="QHh-T5-igW" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="LCo-Rc-yjs"/>
+                <constraint firstItem="QHh-T5-igW" firstAttribute="centerY" secondItem="Ulc-3b-kLd" secondAttribute="centerY" id="SVN-Uz-cGI"/>
+                <constraint firstItem="Ulc-3b-kLd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="cwx-kS-sMu"/>
+                <constraint firstItem="OVf-25-lNE" firstAttribute="centerY" secondItem="QHh-T5-igW" secondAttribute="centerY" id="mDz-ps-ded"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="32.799999999999997" y="-78.260869565217391"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_chat" width="23" height="19"/>
+        <image name="iconmenu" width="24" height="17"/>
+    </resources>
+</document>

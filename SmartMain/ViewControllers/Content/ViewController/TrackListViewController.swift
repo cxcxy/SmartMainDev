@@ -13,6 +13,7 @@ class TrackListViewController: XBBaseTableViewController {
     var dataArr: [EquipmentModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.currentNavigationHidden = true
         tableView.cellId_register("TrackListHomeCell")
         self.cofigMjHeader()
     }
@@ -90,7 +91,7 @@ extension TrackListViewController {
         
         let model = dataArr[indexPath.row]
         let trackCount = model.trackCount ?? 0
-        let count = "（" + trackCount.toString + "首）"
+        let count = "共" + trackCount.toString + "首"
         cell.lbTitle.set_text = model.name
         
         cell.lbTatal.set_text = count

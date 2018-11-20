@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+enum  EquipmentSubListType{
+    case none
+    case trackScollList // 从预制列表左右滚动视图进来
+}
 class EquipmentSubListVC: XBBaseTableViewController {
     var trackListId: Int! // 列表id
     var trackList: [EquipmentModel] = []
@@ -18,6 +21,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
     var viewDeviceModel = EquimentViewModel()
     var deviceOnline:Bool = false
     var scoketModel = ScoketMQTTManager.share
+    var listType : EquipmentSubListType = .none
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -173,13 +177,13 @@ extension EquipmentSubListVC {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
+        if section == 0 && listType == .none{
             return 50
         }
         return XBMin
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 else {
+        guard section == 0 && listType == .none else {
             return nil
         }
         let v = TrackListHeaderView.loadFromNib()

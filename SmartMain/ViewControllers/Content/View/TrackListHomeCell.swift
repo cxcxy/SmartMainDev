@@ -13,11 +13,11 @@ class TrackListHomeCell: BaseTableViewCell {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var lbTatal: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
-    
+    @IBOutlet weak var imgIcon: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        viewContainer.setCornerRadius(radius: 8)
+        imgIcon.setCornerRadius(radius: 8)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

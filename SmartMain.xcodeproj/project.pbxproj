@@ -386,6 +386,12 @@
 		2DF918262189E79B00880CF7 /* SearchSongsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF918252189E79B00880CF7 /* SearchSongsViewController.xib */; };
 		BE16E2A221A2F1EE003B24D7 /* SearchAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16E2A021A2F1EE003B24D7 /* SearchAlbumViewController.swift */; };
 		BE16E2A321A2F1EE003B24D7 /* SearchAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE16E2A121A2F1EE003B24D7 /* SearchAlbumViewController.xib */; };
+		BE16E2A521A42FCD003B24D7 /* ContentTopNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16E2A421A42FCD003B24D7 /* ContentTopNavView.swift */; };
+		BE16E2A721A42FE4003B24D7 /* ContentTopNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE16E2A621A42FE4003B24D7 /* ContentTopNavView.xib */; };
+		BE16E2A921A43B07003B24D7 /* ContentMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE16E2A821A43B07003B24D7 /* ContentMainVC.xib */; };
+		BE16E2AB21A4454A003B24D7 /* ContentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE16E2AA21A4454A003B24D7 /* ContentVC.xib */; };
+		BE16E2AD21A44B83003B24D7 /* TrackListScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE16E2AC21A44B83003B24D7 /* TrackListScrollView.swift */; };
+		BE16E2AF21A44B8B003B24D7 /* TrackListScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE16E2AE21A44B8B003B24D7 /* TrackListScrollView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -922,6 +928,12 @@
 		91EAC16658F9A180871B0B3F /* Pods-SmartMain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.release.xcconfig"; sourceTree = "<group>"; };
 		BE16E2A021A2F1EE003B24D7 /* SearchAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAlbumViewController.swift; sourceTree = "<group>"; };
 		BE16E2A121A2F1EE003B24D7 /* SearchAlbumViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchAlbumViewController.xib; sourceTree = "<group>"; };
+		BE16E2A421A42FCD003B24D7 /* ContentTopNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTopNavView.swift; sourceTree = "<group>"; };
+		BE16E2A621A42FE4003B24D7 /* ContentTopNavView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentTopNavView.xib; sourceTree = "<group>"; };
+		BE16E2A821A43B07003B24D7 /* ContentMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentMainVC.xib; sourceTree = "<group>"; };
+		BE16E2AA21A4454A003B24D7 /* ContentVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentVC.xib; sourceTree = "<group>"; };
+		BE16E2AC21A44B83003B24D7 /* TrackListScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListScrollView.swift; sourceTree = "<group>"; };
+		BE16E2AE21A44B8B003B24D7 /* TrackListScrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListScrollView.xib; sourceTree = "<group>"; };
 		CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD6F9026177145A29A261A /* Pods-SmartMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1799,6 +1811,10 @@
 				04AE5D45218AF63F00DE3632 /* XBTextView.swift */,
 				04AE5D44218AF63F00DE3632 /* XBTextView.xib */,
 				2D7A2B372199BFC600C406F3 /* SectionedSlider.swift */,
+				BE16E2A421A42FCD003B24D7 /* ContentTopNavView.swift */,
+				BE16E2A621A42FE4003B24D7 /* ContentTopNavView.xib */,
+				BE16E2AC21A44B83003B24D7 /* TrackListScrollView.swift */,
+				BE16E2AE21A44B8B003B24D7 /* TrackListScrollView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1920,7 +1936,9 @@
 			isa = PBXGroup;
 			children = (
 				04C389F8213E33330063A799 /* ContentMainVC.swift */,
+				BE16E2A821A43B07003B24D7 /* ContentMainVC.xib */,
 				04C389FA213E5FC80063A799 /* ContentVC.swift */,
+				BE16E2AA21A4454A003B24D7 /* ContentVC.xib */,
 				2DF075C12178B3EF006F0818 /* ResourceAllVC.swift */,
 				2DC95599213ECD62004D6F65 /* ContentSubVC.swift */,
 				044CED0C2176C8D80068C75A /* ContentSubVC.xib */,
@@ -2293,10 +2311,13 @@
 				04C38A09213E6CD70063A799 /* ContentShowCVCell.xib in Resources */,
 				04A5E630216F1C9600CFCE4B /* TrackListHomeCell.xib in Resources */,
 				043E1191213FB8FE0067ADF3 /* ContentSingsVC.xib in Resources */,
+				BE16E2AB21A4454A003B24D7 /* ContentVC.xib in Resources */,
 				04E537CD216DEF41002DE58C /* XBLoginOutView.xib in Resources */,
 				04B876CF216C47EA00D0430F /* NetSuccessView.xib in Resources */,
+				BE16E2A721A42FE4003B24D7 /* ContentTopNavView.xib in Resources */,
 				04C38712213E093F0063A799 /* Configuration.plist in Resources */,
 				2D312AA2213D560100FCC499 /* Assets.xcassets in Resources */,
+				BE16E2AF21A44B8B003B24D7 /* TrackListScrollView.xib in Resources */,
 				2D312AA0213D560100FCC499 /* Main.storyboard in Resources */,
 				0460496D215398D800BEDCD6 /* DrawerViewController.xib in Resources */,
 				044CED0D2176C8D80068C75A /* ContentSubVC.xib in Resources */,
@@ -2320,6 +2341,7 @@
 				0473BA0A215A299A003D688F /* ScreenControlView.xib in Resources */,
 				2DF075C021762FC3006F0818 /* SingSongSectionHeader.xib in Resources */,
 				04E537C9216DDFFB002DE58C /* TrackListHeaderView.xib in Resources */,
+				BE16E2A921A43B07003B24D7 /* ContentMainVC.xib in Resources */,
 				2DF918242189DF9C00880CF7 /* SwitchPlayView.xib in Resources */,
 				04C38A01213E64170063A799 /* ContentHeaderCell.xib in Resources */,
 				0473BA0E215A2E27003D688F /* OpenEquViewController.xib in Resources */,
@@ -2660,6 +2682,7 @@
 				2DC9558A213EAC18004D6F65 /* EquipmentSettingVC.swift in Sources */,
 				042EEF652150E15F00DBD492 /* NSData+ImageContentType.m in Sources */,
 				042EEF762150E15F00DBD492 /* EaseMessageCell.m in Sources */,
+				BE16E2A521A42FCD003B24D7 /* ContentTopNavView.swift in Sources */,
 				042EEF152150E15F00DBD492 /* NSString+Valid.m in Sources */,
 				0413BED321426EB8006E3A44 /* ChatViewController.swift in Sources */,
 				042EEF672150E15F00DBD492 /* UIView+WebCacheOperation.m in Sources */,
@@ -2701,6 +2724,7 @@
 				04C389D3213E160E0063A799 /* XBTabBarController.swift in Sources */,
 				0402E77F215E27160040919C /* XBLaunchView.swift in Sources */,
 				042EEF7A2150E15F00DBD492 /* EaseFacialView.m in Sources */,
+				BE16E2AD21A44B83003B24D7 /* TrackListScrollView.swift in Sources */,
 				04C38717213E093F0063A799 /* XBConfig.swift in Sources */,
 				042EEF492150E15F00DBD492 /* MWGridViewController.m in Sources */,
 				0485CCB72148A89200F54927 /* MQTTSession.swift in Sources */,

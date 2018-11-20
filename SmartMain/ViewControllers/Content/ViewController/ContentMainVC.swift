@@ -45,6 +45,11 @@ class ContentMainVC: XBBaseViewController {
     }
     var viewModel = EquimentViewModel()
     var viewModelLogin = LoginViewModel()
+    var trackList: [EquipmentModel] = []
+    @IBOutlet weak var viewContainer: UIView!
+    
+    @IBOutlet weak var topItemStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.currentNavigationTitleColor = UIColor.white
@@ -80,6 +85,7 @@ class ContentMainVC: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
+        self.currentNavigationHidden = true
         configMagicView()
         addBottomSongView()
         /// 当切换设备或者绑定设备的时候，重新订阅 scoket MQTT 信息
@@ -88,15 +94,35 @@ class ContentMainVC: XBBaseViewController {
             self.configScoketModel()
         })
         configScoketModel()
-        configNavBarItem()
-        configChatMessage()
+//        configNavBarItem()
+//        configChatMessage()
+        
+        
 //        self.registerShowIntractiveWithEdgeGesture()
+        
         XBDelay.start(delay: 1) {
             self.setupUnreadMessageCount()
         }
         self.request()
+        
+
     }
-    
+    //MARK: 请求预制列表数据
+//    func requestTrackList() {
+//        guard XBUserManager.device_Id != "" else {
+//            endRefresh()
+//            return
+//        }
+//        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+//            print(result)
+//            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+//                self.endRefresh()
+//                self.trackList = arr
+////                self.tableView.reloadData()
+//            }
+//        })
+//    }
+
     override func request()  {
         super.request()
         ContentViewModel().requestLikeListSong { (arr) in
@@ -113,6 +139,7 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             self.requestDevicesBabyInfo()
         }
+        self.requestTrackList()
 
     }
     //MARK: 获取最新的设备信息
@@ -234,6 +261,7 @@ class ContentMainVC: XBBaseViewController {
             if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
                 self.loading = true
                 self.endRefresh()
+                self.trackList = arr
                 self.showTrackListView(trackList: arr)
             }
         }) { (errorMsg) in
@@ -258,17 +286,12 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
-        VCRouter.toPlayVC()
-//        DeviceManager.isOnline { (isOnline, _)  in
-//            if isOnline {
-//                let vc = SmartPlayerViewController()
-//                self.pushVC(vc)
-//            } else {
-//
-//                XBHud.showMsg("当前设备不在线")
-//            }
-//        }
         
+//        VCRouter.toPlayVC()
+
+        let v = TrackListScrollView.loadFromNib()
+        v.trackList = self.trackList
+        v.show()
     }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()
@@ -290,18 +313,19 @@ class ContentMainVC: XBBaseViewController {
         v.magicView.dataSource                  = self
         v.magicView.delegate                    = self
         v.magicView.needPreloading      = false
-        let vc = ContentVC.init(style: .grouped)
-//        let vc_list = TrackListViewController()
+        v.magicView.navigationView.isHidden = true
+        v.magicView.navigationHeight = 0
+        let vc = ContentVC()
         let vc1 = LikeViewController()
         let vc2 = HistoryViewController()
-        
-        controllerArray = [vc,vc1,vc2]
+        let vc3 = TrackListViewController()
+        controllerArray = [vc3,vc,vc1,vc2]
         
         self.addChildViewController(v)
-        self.view.addSubview(v.magicView)
+        self.viewContainer.addSubview(v.magicView)
         v.magicView.snp.makeConstraints {[weak self] (make) -> Void in
             if let strongSelf = self {
-                make.size.equalTo(strongSelf.view)
+                make.size.equalTo(strongSelf.viewContainer)
                 
             }
         }
@@ -326,7 +350,7 @@ extension ContentMainVC:VTMagicViewDataSource{
     }
     func menuTitles(for magicView: VTMagicView) -> [String] {
         
-        return ["内容","收藏","搜索"]
+        return ["内容","收藏","搜索","搜索"]
         
     }
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton{
@@ -355,12 +379,26 @@ extension ContentMainVC:VTMagicViewDataSource{
 }
 //MARK:VTMagicViewDelegate
 extension ContentMainVC :VTMagicViewDelegate{
+    
     func magicView(_ magicView: VTMagicView, viewDidAppear viewController: UIViewController, atPage pageIndex: UInt){
-        
+        print("pageIndex",pageIndex)
+//        for sub_View in self.topItemStackView.subviews {  // 遍历 子View 找出Btn改变其状态
+            for navItem in self.topItemStackView.subviews {
+                if let navItem = navItem as? ContentTopNavItem {
+                    if navItem.tag == pageIndex {
+//                        b.isSelected = true
+                        navItem.isSelect = true
+                    }else {
+                        navItem.isSelect = false
+//                        navItem.lbName.font = UIFont.systemFont(ofSize: 14)
+                    }
+                }
+            }
+//        }
     }
     
     func magicView(_ magicView: VTMagicView, didSelectItemAt itemIndex: UInt){
-        
+        print("itemIndex",itemIndex)
     }
     
 }
