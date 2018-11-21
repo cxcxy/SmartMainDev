@@ -34,7 +34,7 @@ class ContentMainVC: XBBaseViewController {
     var bottomSongView = BottomSongView.loadFromNib()
     var navMessageView = ChatRedView.loadFromNib()
     let scoketModel = ScoketMQTTManager.share
-     var currentDeviceId: String?
+    var currentDeviceId: String?
     var currentSongModel:SingDetailModel? { // 当前正在播放歌曲的信息
         didSet {
             guard let m = currentSongModel else {
@@ -107,6 +107,8 @@ class ContentMainVC: XBBaseViewController {
         
 
     }
+
+
     //MARK: 请求预制列表数据
 //    func requestTrackList() {
 //        guard XBUserManager.device_Id != "" else {
@@ -229,7 +231,7 @@ class ContentMainVC: XBBaseViewController {
         }
         bottomSongView.btnTrackList.addAction {[weak self] in
             guard let `self` = self else { return }
-            self.requestTrackList()
+            self.showTrackListScrollView()
         }
         bottomSongView.btnDown.addAction {[weak self] in
             guard let `self` = self else { return }
@@ -244,10 +246,14 @@ class ContentMainVC: XBBaseViewController {
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()
-//            let model = dataArr[indexPath.row]
             VCRouter.toEquipmentSubListVC(trackListId: trackId,navTitle: trackName,trackList: trackList)
             
         }
+        v.show()
+    }
+    func showTrackListScrollView()  {
+        let v = TrackListScrollView.loadFromNib()
+        v.trackList = self.trackList
         v.show()
     }
     func requestTrackList()  {
@@ -262,7 +268,7 @@ class ContentMainVC: XBBaseViewController {
                 self.loading = true
                 self.endRefresh()
                 self.trackList = arr
-                self.showTrackListView(trackList: arr)
+//                self.showTrackListView(trackList: arr)
             }
         }) { (errorMsg) in
  
@@ -287,12 +293,10 @@ class ContentMainVC: XBBaseViewController {
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
         
-//        VCRouter.toPlayVC()
+        VCRouter.toPlayVC()
 
-        let v = TrackListScrollView.loadFromNib()
-        v.trackList = self.trackList
-        v.show()
     }
+    
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()
         self.cw_showDrawerViewController(drawerViewController,

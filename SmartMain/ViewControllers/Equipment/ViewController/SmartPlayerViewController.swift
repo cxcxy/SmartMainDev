@@ -7,24 +7,29 @@
 //
 
 import UIKit
-//class Block {
-//    let f : T
-//    init(_ f: T) { self.f = f }
-//}
-//extension Timer {
-//    class func app_scheduledTimer(withTimeInterval interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Swift.Void) -> Timer {
-//        if #available(iOS 10.0, *) {
-//            return Timer.scheduledTimer(withTimeInterval: interval, repeats: repeats, block: block)
-//        }
-//        return Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(app_timerAction), userInfo: Block(block), repeats: repeats)
-//    }
-//
-//    @objc class func app_timerAction(_ sender: Timer) {
-//        if let block = sender.userInfo as? Block {
-//            block.f(sender)
-//        }
-//    }
-//}
+
+extension CALayer {
+    ///暂停动画
+    func pauseAnimation() {
+        //取出当前时间,转成动画暂停的时间
+        let pausedTime = self.convertTime(CACurrentMediaTime(), from: nil)
+        //设置动画运行速度为0
+        self.speed = 0.0;
+        //设置动画的时间偏移量，指定时间偏移量的目的是让动画定格在该时间点的位置
+        self.timeOffset = pausedTime
+    }
+    ///恢复动画
+    func resumeAnimation() {
+        //获取暂停的时间差
+        let pausedTime = self.timeOffset
+        self.speed = 1.0
+        self.timeOffset = 0.0
+        self.beginTime = 0.0
+        //用现在的时间减去时间差,就是之前暂停的时间,从之前暂停的时间开始动画
+        let timeSincePause = self.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        self.beginTime = timeSincePause
+    }
+}
 
 class SmartPlayerViewController: XBBaseViewController {
     
@@ -49,7 +54,9 @@ class SmartPlayerViewController: XBBaseViewController {
     @IBOutlet weak var sliderProgress: UISlider!
     @IBOutlet weak var sliderVolume: UISlider!
     
+    @IBOutlet weak var viewPhoto: UIView!
     @IBOutlet weak var lbVolumeRight: NSLayoutConstraint!
+    var trackList: [EquipmentModel] = []
 //    @IBOutlet weak var lbVolume: UILabel!
     fileprivate var timer: Timer? // 歌曲进度条
     
@@ -87,30 +94,38 @@ class SmartPlayerViewController: XBBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "歌曲名"
+        self.currentNavigationHidden = true
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.resetTimer()
     }
     func setSiderThumeImage()  {
-        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
-        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
-        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
-        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
+//        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
+//        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
+//        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
+//        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
 //        viewVolume.setCornerRadius(radius: 5)
         viewVolume.layer.cornerRadius = 5
-        viewProgress.layer.cornerRadius = 5
+//        viewProgress.layer.cornerRadius = 5
+        viewProgress.setCornerRadius(radius: 5)
 //        viewProgress.setCornerRadius(radius: 5)
+    }
+    func configPhoto()  {
+        viewPhoto.roundView()
+        imgSings.roundView()
     }
     override func setUI() {
         super.setUI()
         request()
-        
+        configPhoto()
         setSiderThumeImage()
         scoketModel.sendGetTrack()
         scoketModel.sendGetMode()
         
         scoketModel.sendGetVolume()
+        
+        addRotationAnim()
         
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
@@ -157,6 +172,35 @@ class SmartPlayerViewController: XBBaseViewController {
 //        self.configTimer(songDuration: allTimer)
         
         
+    }
+    func addRotationAnim() {
+        
+        if let ani = self.imgSings.layer.animation(forKey: "rotationAnimation") {
+            print("已经添加过")
+        }else {
+            // 1.创建动画
+            let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
+            
+            // 2.设置动画的属性
+            rotationAnim.fromValue = 0
+            rotationAnim.toValue = Double.pi * 2
+            rotationAnim.repeatCount = MAXFLOAT
+            rotationAnim.duration = 40
+            // 这个属性很重要 如果不设置当页面运行到后台再次进入该页面的时候 动画会停止
+            rotationAnim.isRemovedOnCompletion = false
+            
+            // 3.将动画添加到layer中
+            imgSings.layer.add(rotationAnim, forKey: "rotationAnimation")
+        }
+
+    }
+ // 暂停播放旋转动画
+    func pauseRotate() {
+        self.imgSings.layer.pauseAnimation()
+    }
+    // 恢复播放旋转动画
+    func resumeRotate() {
+        self.imgSings.layer.resumeAnimation()
     }
     func configTimer(songDuration: Float, isPlay: Bool = false)  {
 //        guard let `self` = self else { return }
@@ -250,6 +294,26 @@ class SmartPlayerViewController: XBBaseViewController {
             guard let `self` = self else { return }
             self.dataLikeArr = arr
         }
+        requestTrackList()
+    }
+    func requestTrackList()  {
+        guard XBUserManager.device_Id != "" else {
+            self.loading = true
+            endRefresh()
+            return
+        }
+        
+        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+                self.loading = true
+                self.endRefresh()
+                self.trackList = arr
+                //                self.showTrackListView(trackList: arr)
+            }
+        }) { (errorMsg) in
+            
+            self.endRefresh()
+        }
     }
     //MARK: 获取歌曲详情
     func requestSingsDetail(trackId: Int)  {
@@ -314,6 +378,27 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     @IBAction func clickLikeAction(_ sender: Any) {
         self.btnLike.isSelected ? requestCancleLikeSing() : requestLikeSing()
+    }
+    
+    @IBAction func clickShowTrackListAction(_ sender: Any) {
+        let v = TrackListScrollView.loadFromNib()
+        v.trackList = self.trackList
+        v.show()
+    }
+    /// 点击试听
+    @IBAction func clickAudition(_ sender: Any) {
+        
+    }
+    /// 点击添加预制列表
+    @IBAction func clickAddTrackAction(_ sender: Any) {
+    }
+    /// 点击返回
+    @IBAction func clickBackAction(_ sender: Any) {
+        self.popVC()
+    }
+    /// 点击更多
+    @IBAction func clickMoreAction(_ sender: Any) {
+        print("点击更多")
     }
     func requestLikeSing()  {
         
