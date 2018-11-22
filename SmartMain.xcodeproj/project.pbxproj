@@ -174,6 +174,10 @@
 		0461CBD42154DB1700DF4C9A /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD32154DB1700DF4C9A /* DeviceManager.swift */; };
 		0461CBD62154E35E00DF4C9A /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */; };
 		0461CBD82154E44200DF4C9A /* SMTrackListViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */; };
+		046A38B721A65080005FFC10 /* NewTrackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A38B621A65080005FFC10 /* NewTrackListView.swift */; };
+		046A38B921A6508F005FFC10 /* NewTrackListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046A38B821A6508F005FFC10 /* NewTrackListView.xib */; };
+		046A38BB21A673CE005FFC10 /* PlayVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A38BA21A673CE005FFC10 /* PlayVolumeView.swift */; };
+		046A38BD21A673D4005FFC10 /* PlayVolumeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046A38BC21A673D4005FFC10 /* PlayVolumeView.xib */; };
 		0473BA08215A298E003D688F /* ScreenControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BA07215A298E003D688F /* ScreenControlView.swift */; };
 		0473BA0A215A299A003D688F /* ScreenControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0473BA09215A299A003D688F /* ScreenControlView.xib */; };
 		0473BA0D215A2E27003D688F /* OpenEquViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0473BA0B215A2E27003D688F /* OpenEquViewController.swift */; };
@@ -703,6 +707,10 @@
 		0461CBD32154DB1700DF4C9A /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
 		0461CBD72154E44100DF4C9A /* SMTrackListViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMTrackListViewHeader.swift; sourceTree = "<group>"; };
+		046A38B621A65080005FFC10 /* NewTrackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrackListView.swift; sourceTree = "<group>"; };
+		046A38B821A6508F005FFC10 /* NewTrackListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTrackListView.xib; sourceTree = "<group>"; };
+		046A38BA21A673CE005FFC10 /* PlayVolumeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVolumeView.swift; sourceTree = "<group>"; };
+		046A38BC21A673D4005FFC10 /* PlayVolumeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayVolumeView.xib; sourceTree = "<group>"; };
 		0473BA07215A298E003D688F /* ScreenControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenControlView.swift; sourceTree = "<group>"; };
 		0473BA09215A299A003D688F /* ScreenControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenControlView.xib; sourceTree = "<group>"; };
 		0473BA0B215A2E27003D688F /* OpenEquViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenEquViewController.swift; sourceTree = "<group>"; };
@@ -1808,6 +1816,8 @@
 				2DCA86A2216B81F2001F9E04 /* ChatRedView.xib */,
 				04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */,
 				04B2B1FE216C508600D14E7C /* PlaySongListView.xib */,
+				046A38BA21A673CE005FFC10 /* PlayVolumeView.swift */,
+				046A38BC21A673D4005FFC10 /* PlayVolumeView.xib */,
 				04AE5D45218AF63F00DE3632 /* XBTextView.swift */,
 				04AE5D44218AF63F00DE3632 /* XBTextView.xib */,
 				2D7A2B372199BFC600C406F3 /* SectionedSlider.swift */,
@@ -1815,6 +1825,8 @@
 				BE16E2A621A42FE4003B24D7 /* ContentTopNavView.xib */,
 				BE16E2AC21A44B83003B24D7 /* TrackListScrollView.swift */,
 				BE16E2AE21A44B8B003B24D7 /* TrackListScrollView.xib */,
+				046A38B621A65080005FFC10 /* NewTrackListView.swift */,
+				046A38B821A6508F005FFC10 /* NewTrackListView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -2280,6 +2292,7 @@
 				2D404D51217CA5550017DA54 /* ResourceAudioListVC.xib in Resources */,
 				043E119B213FCCAC0067ADF3 /* ContentSingCell.xib in Resources */,
 				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
+				046A38BD21A673D4005FFC10 /* PlayVolumeView.xib in Resources */,
 				0495F17121783154002FB1F8 /* XBUpdateHead.xib in Resources */,
 				2DCA869D21676468001F9E04 /* ConfigNetCVCell.xib in Resources */,
 				2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */,
@@ -2297,6 +2310,7 @@
 				2DCA86992160C738001F9E04 /* TwoItemCVCell.xib in Resources */,
 				2DF075AC21761D2A006F0818 /* ContentScrollCell.xib in Resources */,
 				04B2B1FF216C508600D14E7C /* PlaySongListView.xib in Resources */,
+				046A38B921A6508F005FFC10 /* NewTrackListView.xib in Resources */,
 				2DC955B5213FFED4004D6F65 /* MeInfoNameCell.xib in Resources */,
 				04C38A05213E671F0063A799 /* ContentShowCell.xib in Resources */,
 				04A5E62C216EF4D100CFCE4B /* DeviceChooseCell.xib in Resources */,
@@ -2643,6 +2657,7 @@
 				04C38A25213E7FF40063A799 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				0495F178217831AA002FB1F8 /* XBUpdateVersionManager.swift in Sources */,
 				042EEF472150E15F00DBD492 /* MWPhoto.m in Sources */,
+				046A38BB21A673CE005FFC10 /* PlayVolumeView.swift in Sources */,
 				2DF075BE21762FBB006F0818 /* SingSongSectionHeader.swift in Sources */,
 				04C3871B213E093F0063A799 /* XBNotificationManager.swift in Sources */,
 				0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */,
@@ -2723,6 +2738,7 @@
 				2D0ACC4C215A74EC0047103C /* AccountInfoViewController.swift in Sources */,
 				04C389D3213E160E0063A799 /* XBTabBarController.swift in Sources */,
 				0402E77F215E27160040919C /* XBLaunchView.swift in Sources */,
+				046A38B721A65080005FFC10 /* NewTrackListView.swift in Sources */,
 				042EEF7A2150E15F00DBD492 /* EaseFacialView.m in Sources */,
 				BE16E2AD21A44B83003B24D7 /* TrackListScrollView.swift in Sources */,
 				04C38717213E093F0063A799 /* XBConfig.swift in Sources */,

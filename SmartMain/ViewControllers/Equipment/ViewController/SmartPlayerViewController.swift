@@ -34,7 +34,7 @@ extension CALayer {
 class SmartPlayerViewController: XBBaseViewController {
     
     
-    @IBOutlet weak var lbVolume: UILabel!
+
     
     var dataLikeArr: [ConetentLikeModel] = []
     @IBOutlet weak var imgSings: UIImageView!
@@ -47,17 +47,22 @@ class SmartPlayerViewController: XBBaseViewController {
     @IBOutlet weak var lbCurrentSongProgress: UILabel!
     @IBOutlet weak var lbSongProgress: UILabel!
     
-    @IBOutlet weak var viewVolume: UIView!
+  
     
-    @IBOutlet weak var viewVolumeContainer: UIView!
+  
     @IBOutlet weak var viewProgress: UIView!
     @IBOutlet weak var sliderProgress: UISlider!
-    @IBOutlet weak var sliderVolume: UISlider!
+    
+    @IBOutlet weak var sliderProgressView: UIProgressView!
+    
+    let playerLayer:AVPlayerLayer = AVPlayerLayer.init()
+    var player:AVPlayer = AVPlayer.init()
     
     @IBOutlet weak var viewPhoto: UIView!
-    @IBOutlet weak var lbVolumeRight: NSLayoutConstraint!
+ 
     var trackList: [EquipmentModel] = []
-//    @IBOutlet weak var lbVolume: UILabel!
+
+    
     fileprivate var timer: Timer? // 歌曲进度条
     
     var isFirst: Bool = false
@@ -65,12 +70,17 @@ class SmartPlayerViewController: XBBaseViewController {
     var currentSongProgress  = 0 { // 歌曲的当前时间
         didSet {
             lbCurrentSongProgress.text = XBUtil.getDetailTimeWithTimestamp(timeStamp: Int(currentSongProgress),formatTypeText: false)
-            self.sliderProgress.value = Float(currentSongProgress)
-//            rightSliderLayout.constant = CGFloat(self.sliderProgress.value / self.sliderProgress.maximumValue) * self.viewProgress.w
+
+            self.configProgressSlider(value: Float(currentSongProgress))
+
         }
     }
     
     @IBOutlet weak var rightSliderLayout: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var photoWidthLayout: NSLayoutConstraint!
+    
     var allTimer:Float    = 0 // 歌曲的全部时间
     
     var currentVolume: Int = 0
@@ -101,31 +111,53 @@ class SmartPlayerViewController: XBBaseViewController {
         self.resetTimer()
     }
     func setSiderThumeImage()  {
-//        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
-//        sliderProgress.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
-//        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .normal)
-//        sliderVolume.setThumbImage(UIImage.init(named: "icon_play_slider"), for: .highlighted)
-//        viewVolume.setCornerRadius(radius: 5)
-        viewVolume.layer.cornerRadius = 5
-//        viewProgress.layer.cornerRadius = 5
+
         viewProgress.setCornerRadius(radius: 5)
-//        viewProgress.setCornerRadius(radius: 5)
+
     }
     func configPhoto()  {
         viewPhoto.roundView()
         imgSings.roundView()
     }
+    //MARK: 绑定 音乐进度条
+    func configProgressSlider(value: Float)  {
+
+        self.sliderProgress.value = value
+        sliderProgressView.progress = sliderProgress.maximumValue == 0 ? 0 : ( value / sliderProgress.maximumValue )
+        
+//        let input =  sliderProgress.rx.value.asDriver()
+//        input.map { print("qqq",$0) }
+//            .drive(sliderProgressView.rx.progress)
+//            .disposed(by: rx_disposeBag)
+        
+        
+    }
+    func adapterUI()  {
+        if UIDevice.deviceType == .dt_iPhone5 {
+            self.photoWidthLayout.constant = 160
+//            self.loadViewIfNeeded()
+            self.viewPhoto.setCornerRadius(radius: 80)
+//            imgSings.roundView()
+            self.imgSings.setCornerRadius(radius: 76)
+        }else {
+            self.configPhoto()
+        }
+        
+    }
     override func setUI() {
         super.setUI()
+        adapterUI()
+        configPlay()
         request()
-        configPhoto()
+//        configPhoto()
         setSiderThumeImage()
         scoketModel.sendGetTrack()
         scoketModel.sendGetMode()
-        
         scoketModel.sendGetVolume()
         
         addRotationAnim()
+        
+        configProgressSlider(value: 0.0)
         
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
@@ -136,9 +168,6 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.getPlayVolume.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getPalyingVolume ===：", $0.element ?? 0)
-            let volumeValue: Float = Float($0.element ?? 0)
-            self.sliderVolume.setValue(volumeValue, animated: true)
-            self.updateLbVolumeFrame()
             self.currentVolume = $0.element ?? 0
         }.disposed(by: rx_disposeBag)
         
@@ -159,9 +188,11 @@ class SmartPlayerViewController: XBBaseViewController {
                     self.resetTimer()
                     self.configTimer(songDuration: self.allTimer, isPlay: true)
                     self.scoketModel.sendGetPlayProgress()
+                    self.resumeRotate()
                 }else { // 暂停了
                     self.btnPlay.isSelected = false
                     self.resetTimer()
+                    self.pauseRotate()
                 }
             }
         }.disposed(by: rx_disposeBag)
@@ -173,14 +204,13 @@ class SmartPlayerViewController: XBBaseViewController {
         
         
     }
+    
     func addRotationAnim() {
-        
         if let ani = self.imgSings.layer.animation(forKey: "rotationAnimation") {
             print("已经添加过")
         }else {
             // 1.创建动画
             let rotationAnim = CABasicAnimation(keyPath: "transform.rotation.z")
-            
             // 2.设置动画的属性
             rotationAnim.fromValue = 0
             rotationAnim.toValue = Double.pi * 2
@@ -191,6 +221,7 @@ class SmartPlayerViewController: XBBaseViewController {
             
             // 3.将动画添加到layer中
             imgSings.layer.add(rotationAnim, forKey: "rotationAnimation")
+            self.pauseRotate()
         }
 
     }
@@ -227,6 +258,7 @@ class SmartPlayerViewController: XBBaseViewController {
          RunLoop.main.add(timer!, forMode: .commonModes)
         // 设置 时间
         sliderProgress.maximumValue = songDuration
+//        self.configProgressSlider()
         lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: Int(songDuration),formatTypeText: false)
         
     }
@@ -251,11 +283,7 @@ class SmartPlayerViewController: XBBaseViewController {
             self.currentSongProgress = 0
         }
     }
-    func updateLbVolumeFrame()  {
-        let v = Float(viewVolume.w) / sliderVolume.maximumValue
-        lbVolumeRight.constant = CGFloat(sliderVolume.value * v) - 8
-        lbVolume.set_text = String(Int(sliderVolume.value))
-    }
+
     @IBAction func sliderProgressVauleChanged(_ sender: Any) {
         let value:Float = sliderProgress.value
         print("歌曲时间",Int(sliderProgress.value))
@@ -264,29 +292,29 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     
     @IBAction func sliderVolumeValueChanged(_ sender: Any) {
-        scoketModel.setVolumeValue(value: Int(sliderVolume.value))
-        self.currentVolume = Int(sliderVolume.value)
-        self.updateLbVolumeFrame()
+//        scoketModel.setVolumeValue(value: Int(sliderVolume.value))
+//        self.currentVolume = Int(sliderVolume.value)
+//        self.updateLbVolumeFrame()
     }
     
     @IBAction func clickCutAction(_ sender: Any) {
-        if self.currentVolume <= 0 {
-            return
-        }
-        self.currentVolume = self.currentVolume - 1
-        scoketModel.setVolumeValue(value: currentVolume)
-        sliderVolume.setValue(Float(self.currentVolume), animated: true)
-        self.updateLbVolumeFrame()
+//        if self.currentVolume <= 0 {
+//            return
+//        }
+//        self.currentVolume = self.currentVolume - 1
+//        scoketModel.setVolumeValue(value: currentVolume)
+//        sliderVolume.setValue(Float(self.currentVolume), animated: true)
+//        self.updateLbVolumeFrame()
     }
     
     @IBAction func clickAddAction(_ sender: Any) {
-        if self.currentVolume >= 100 {
-            return
-        }
-        self.currentVolume = self.currentVolume + 1
-        scoketModel.setVolumeValue(value: currentVolume)
-        sliderVolume.setValue(Float(self.currentVolume), animated: true)
-        self.updateLbVolumeFrame()
+//        if self.currentVolume >= 100 {
+//            return
+//        }
+//        self.currentVolume = self.currentVolume + 1
+//        scoketModel.setVolumeValue(value: currentVolume)
+//        sliderVolume.setValue(Float(self.currentVolume), animated: true)
+//        self.updateLbVolumeFrame()
     }
     override func request() {
         super.request()
@@ -387,10 +415,32 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     /// 点击试听
     @IBAction func clickAudition(_ sender: Any) {
+        guard let urlTask =  URL.init(string: self.currentSongModel?.url ?? "") else {
+            XBLog("歌曲地址有误")
+            return
+        }
+        let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
+        self.player = AVPlayer(playerItem: playerItem)
+        playerLayer.player = player
+        
+        // 开始播放
+        player.play()
+    }
+    func configPlay()  {
+        
+        playerLayer.frame = CGRect.init(x: 10, y: 30, w: self.view.bounds.size.width - 20, h: 200)
+        // 设置画面缩放模式
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+        // 在视图上添加播放器
+        self.view.layer.addSublayer(playerLayer)
         
     }
     /// 点击添加预制列表
     @IBAction func clickAddTrackAction(_ sender: Any) {
+        let v = NewTrackListView.loadFromNib()
+        v.trackList = self.trackList
+        v.songModel = self.currentSongModel
+        v.show()
     }
     /// 点击返回
     @IBAction func clickBackAction(_ sender: Any) {
@@ -399,6 +449,11 @@ class SmartPlayerViewController: XBBaseViewController {
     /// 点击更多
     @IBAction func clickMoreAction(_ sender: Any) {
         print("点击更多")
+        let v = PlayVolumeView.loadFromNib()
+//        v.currentVolume = self.currentVolume
+        v.updateLbVolumeFrame(value: Float(self.currentVolume))
+        v.delegate = self
+        v.show()
     }
     func requestLikeSing()  {
         
@@ -421,5 +476,10 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+}
+extension SmartPlayerViewController: PlayVolumeChangeDelegate {
+    func getVolumeValue(volumeValue: Int) {
+        self.currentVolume = volumeValue
     }
 }

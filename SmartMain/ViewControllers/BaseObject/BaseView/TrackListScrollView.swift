@@ -51,13 +51,11 @@ class TrackListScrollView: ETPopupView {
         v.magicView.needPreloading      = false
         v.magicView.navigationView.isHidden = true
         v.magicView.navigationHeight = 0
+        self.layoutIfNeeded()
+        self.viewContainer.layoutIfNeeded()
+        v.magicView.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: viewContainer.height)
         self.viewContainer.addSubview(v.magicView)
-        v.magicView.snp.makeConstraints {[weak self] (make) -> Void in
-            if let strongSelf = self {
-                make.size.equalTo(strongSelf.viewContainer)
-                
-            }
-        }
+
         v.magicView.reloadData()
     }
 }

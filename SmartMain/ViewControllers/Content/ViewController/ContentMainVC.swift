@@ -83,6 +83,10 @@ class ContentMainVC: XBBaseViewController {
         }
         print("未读消息数量" , unreadCount)
     }
+    
+    @IBAction func clickMenuAction(_ sender: Any) {
+        self.maskAnimationFromLeft()
+    }
     override func setUI() {
         super.setUI()
         self.currentNavigationHidden = true
@@ -325,14 +329,17 @@ class ContentMainVC: XBBaseViewController {
         let vc3 = TrackListViewController()
         controllerArray = [vc3,vc,vc1,vc2]
         
-        self.addChildViewController(v)
+//        self.addChildViewController(v)
+        self.view.layoutIfNeeded()
+        self.viewContainer.layoutIfNeeded()
+        v.magicView.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: viewContainer.height)
         self.viewContainer.addSubview(v.magicView)
-        v.magicView.snp.makeConstraints {[weak self] (make) -> Void in
-            if let strongSelf = self {
-                make.size.equalTo(strongSelf.viewContainer)
-                
-            }
-        }
+//        v.magicView.snp.makeConstraints {[weak self] (make) -> Void in
+//            if let strongSelf = self {
+//                make.size.equalTo(strongSelf.viewContainer)
+//
+//            }
+//        }
         v.magicView.reloadData()
     }
     override func didReceiveMemoryWarning() {
@@ -412,4 +419,5 @@ extension ContentMainVC: EMChatManagerDelegate {
         print("收到消息", aMessages)
         self.setupUnreadMessageCount()
     }
+    
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class TrackListViewController: XBBaseTableViewController {
     var currentDeviceId: String?
     var dataArr: [EquipmentModel] = []

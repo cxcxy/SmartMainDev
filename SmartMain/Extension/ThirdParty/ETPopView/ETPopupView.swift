@@ -78,6 +78,7 @@ enum ETPopupType {
     case alert
     case sheet
     case custom
+    case top
 }
 
 typealias ETPopupBlock = (ETPopupView) -> Void
@@ -99,6 +100,9 @@ class ETPopupView: UIView {
             case .custom:
                 self.showAnimation = customShowAnimation()
                 self.hideAnimation = customHideAnimation()
+            case .top:
+                self.showAnimation = topShowAnimation()
+                self.hideAnimation = topHideAnimation()
             }
         }
     }
@@ -459,6 +463,78 @@ class ETPopupView: UIView {
         
         return block
     }
+    private func topShowAnimation() -> ETPopupBlock {
+        
+        let block: (ETPopupView) -> Void = {
+            [weak self] (popupView: ETPopupView) in
+            
+            if self?.superview == nil {
+                
+                self?.attachedView.mm_dimBackgroundView.addSubview(self!)
+//                self?.snp.makeConstraints({ (make) in
+//                    make.centerX.equalTo((self?.attachedView)!)
+//                    make.bottom.equalTo((self?.attachedView.snp.bottom)!).offset((self?.attachedView.frame.size.height)!)
+//                })
+                
+                self?.superview?.layoutIfNeeded()
+            }
+            
+            UIView.animate(withDuration: (self?.animationDuration)!,
+                           delay: 0.0,
+                           options: [.curveEaseOut, .beginFromCurrentState],
+                           animations: {
+                            
+//                            self?.snp.updateConstraints({ (make) in
+//                                make.bottom.equalTo((self?.attachedView.snp.bottom)!).offset(0)
+//                            })
+//
+                            self?.superview?.layoutIfNeeded()
+                            
+            }, completion: { (finished) in
+                
+                if let complete = self?.showCompletionBlock {
+                    complete(self!, finished)
+                }
+                
+            })
+            
+        }
+        
+        return block
+    }
     
+    private func topHideAnimation() -> ETPopupBlock {
+        
+        let block: (ETPopupView) -> Void = {
+            [weak self] _ in
+            
+            UIView.animate(withDuration: (self?.animationDuration)!,
+                           delay: 0.0,
+                           options: [.curveEaseIn, .beginFromCurrentState],
+                           animations: {
+                            
+//                            self?.snp.updateConstraints({ (make) in
+//                                make.centerY.equalTo((self?.attachedView)!).offset((self?.attachedView.bounds.size.height)!)
+//
+//                            })
+                            self?.superview?.layoutIfNeeded()
+                            
+            }, completion: { (finished) in
+                
+                if finished {
+                    self?.removeFromSuperview()
+                }
+                
+                if let complete = self?.hideCompletionBlock {
+                    complete(self!, finished)
+                }
+                
+            })
+            
+        }
+        
+        
+        return block
+    }
 }
 

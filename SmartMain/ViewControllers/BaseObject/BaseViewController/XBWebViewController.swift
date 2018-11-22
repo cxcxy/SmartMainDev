@@ -2,6 +2,7 @@ import UIKit
 import WebKit
 
 
+
 class XBWebViewController: XBBaseViewController {
     
     var progressView: UIProgressView = {
