@@ -228,11 +228,11 @@ open class SectionedSlider: UIView {
         }
     }
     
-    @IBInspectable open var sections: Int = 10 {
+    @IBInspectable open var sections: Int = 100 {
         willSet {
-            if newValue < 2 || newValue > 20 {
-                debugPrint("sections must be between 2 and 20")
-            }
+//            if newValue < 2 || newValue > 20 {
+//                debugPrint("sections must be between 2 and 20")
+//            }
         }
     }
 
@@ -241,14 +241,15 @@ open class SectionedSlider: UIView {
             if selectedSection < 0 || selectedSection > sections {
                 debugPrint("sections must be between 0 and \(sections)")
             } else {
-                factor = CGFloat(selectedSection) / CGFloat(sections) - 0.0001
+                factor = CGFloat(selectedSection) / CGFloat(sections)
             }
         }
     }
 
-    private var factor: CGFloat = 0.0 {
+    var factor: CGFloat = 0.0 {
         willSet {
             (layer as? SectionedSliderLayer)?.factor = newValue
+            print("newValue----",newValue)
             print("factor----",abs(Int(ceil(CGFloat(newValue) * CGFloat(sections)))))
 			delegate?.sectionChanged(slider: self, selected: abs(Int(ceil(CGFloat(newValue) * CGFloat(sections)))))
 

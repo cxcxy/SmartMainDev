@@ -46,10 +46,7 @@ class SmartPlayerViewController: XBBaseViewController {
     @IBOutlet weak var btnOn: UIButton!
     @IBOutlet weak var lbCurrentSongProgress: UILabel!
     @IBOutlet weak var lbSongProgress: UILabel!
-    
-  
-    
-  
+    @IBOutlet weak var btnAudion: UIButton!
     @IBOutlet weak var viewProgress: UIView!
     @IBOutlet weak var sliderProgress: UISlider!
     
@@ -135,9 +132,7 @@ class SmartPlayerViewController: XBBaseViewController {
     func adapterUI()  {
         if UIDevice.deviceType == .dt_iPhone5 {
             self.photoWidthLayout.constant = 160
-//            self.loadViewIfNeeded()
             self.viewPhoto.setCornerRadius(radius: 80)
-//            imgSings.roundView()
             self.imgSings.setCornerRadius(radius: 76)
         }else {
             self.configPhoto()
@@ -291,6 +286,8 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.setPlayProgressValue(value: Int(value))
     }
     
+    
+    
     @IBAction func sliderVolumeValueChanged(_ sender: Any) {
 //        scoketModel.setVolumeValue(value: Int(sliderVolume.value))
 //        self.currentVolume = Int(sliderVolume.value)
@@ -419,12 +416,20 @@ class SmartPlayerViewController: XBBaseViewController {
             XBLog("歌曲地址有误")
             return
         }
-        let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
-        self.player = AVPlayer(playerItem: playerItem)
-        playerLayer.player = player
-        
-        // 开始播放
-        player.play()
+        let isAudition = currentSongModel?.isAudition ?? false
+        if isAudition {
+            player.pause()
+            
+        }else {
+            let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
+            self.player = AVPlayer(playerItem: playerItem)
+            playerLayer.player = player
+            
+            // 开始播放
+            player.play()
+        }
+        currentSongModel?.isAudition = !isAudition
+        btnAudion.isSelected = !isAudition
     }
     func configPlay()  {
         

@@ -137,7 +137,7 @@ class SingDetailModel: XBDataModel {
     var downloadUrlHashCode: String?
     var downloadSize: String?
     var status: Int?
-    
+    var isAudition: Bool = false
     override func mapping(map: Map) {
         
         id             <-    map["id"]

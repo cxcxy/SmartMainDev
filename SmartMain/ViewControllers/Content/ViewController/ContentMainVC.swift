@@ -32,7 +32,7 @@ class ContentMainVC: XBBaseViewController {
     var controllerArray     : [UIViewController] = []  // 存放controller 的array
     var v                   : VCVTMagic!  // 统一的左滑 右滑 控制View
     var bottomSongView = BottomSongView.loadFromNib()
-    var navMessageView = ChatRedView.loadFromNib()
+//    var navMessageView = ChatRedView.loadFromNib()
     let scoketModel = ScoketMQTTManager.share
     var currentDeviceId: String?
     var currentSongModel:SingDetailModel? { // 当前正在播放歌曲的信息
@@ -47,6 +47,8 @@ class ContentMainVC: XBBaseViewController {
     var viewModelLogin = LoginViewModel()
     var trackList: [EquipmentModel] = []
     @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var navMessageView: UIView!
+    @IBOutlet weak var viewMessageRed: UIView!
     
     @IBOutlet weak var topItemStackView: UIStackView!
     
@@ -77,9 +79,9 @@ class ContentMainVC: XBBaseViewController {
             unreadCount += Int(item.unreadMessagesCount)
         }
         if unreadCount > 0 {
-            self.navMessageView.viewRed.isHidden = false
+            self.viewMessageRed.isHidden = false
         }else {
-            self.navMessageView.viewRed.isHidden = true
+            self.viewMessageRed.isHidden = true
         }
         print("未读消息数量" , unreadCount)
     }
@@ -98,8 +100,10 @@ class ContentMainVC: XBBaseViewController {
             self.configScoketModel()
         })
         configScoketModel()
+        
 //        configNavBarItem()
-//        configChatMessage()
+        
+        configChatMessage()
         
         
 //        self.registerShowIntractiveWithEdgeGesture()
@@ -166,21 +170,26 @@ class ContentMainVC: XBBaseViewController {
 //            let vc = ChatMainViewController()
 //            self.pushVC(vc)
 //        }
-        navMessageView.addTapGesture { [weak self](sender) in
-            guard let `self` = self else { return }
-            let vc = ChatMainViewController()
-            self.pushVC(vc)
-        }
+//        navMessageView.addTapGesture { [weak self](sender) in
+//            guard let `self` = self else { return }
+//            let vc = ChatMainViewController()
+//            self.pushVC(vc)
+//        }
 //        navMessageView.viewSearch.addTapGesture { [weak self](sender) in
 //            guard let `self` = self else { return }
 //            let vc = SearchViewController()
 //            self.pushVC(vc)
 //        }
-        makeRightNavigationItem(navMessageView, left: false)
+//        makeRightNavigationItem(navMessageView, left: false)
     }
     //MARK: 配置环信聊天
     func configChatMessage()  {
         EMClient.shared().chatManager.add(self, delegateQueue: nil)
+        navMessageView.addTapGesture { [weak self](sender) in
+            guard let `self` = self else { return }
+            let vc = ChatMainViewController()
+            self.pushVC(vc)
+        }
     }
     deinit {
         EMClient.shared()?.chatManager.remove(self)
@@ -300,7 +309,21 @@ class ContentMainVC: XBBaseViewController {
         VCRouter.toPlayVC()
 
     }
-    
+    /**
+     *   点击顶部按钮
+     */
+    @IBAction func clickTopNavItemAction(_ sender: UIButton) {
+        for navItem in self.topItemStackView.subviews {
+            if let navItem = navItem as? ContentTopNavItem {
+                if navItem.tag == sender.tag {
+                    navItem.isSelect = true
+                }else {
+                    navItem.isSelect = false
+                }
+            }
+        }
+        v.switch(toPage: UInt(sender.tag), animated: true)
+    }
     func maskAnimationFromLeft() {
         let drawerViewController = DrawerViewController()
         self.cw_showDrawerViewController(drawerViewController,

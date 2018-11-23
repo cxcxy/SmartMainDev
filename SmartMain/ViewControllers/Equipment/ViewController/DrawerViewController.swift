@@ -7,17 +7,27 @@
 //
 
 import UIKit
+class DrawerSectionItme: NSObject {
+    var section: Int = 0
+    var items: [XBStyleCellModel] = []
+}
 class DrawerViewController: XBBaseViewController {
-    var eqOne    = XBStyleCellModel.init(title: "设备配网", imgIcon: "icon_group1",cellType: 1)
+    var one1    = XBStyleCellModel.init(title: "儿童锁", imgIcon: "icon_menu_unlock",isSwitchOpen: false, cellType: 11)
+    var one2    = XBStyleCellModel.init(title: "呼吸灯", imgIcon: "icon_menu_unlamp",isSwitchOpen: false, cellType: 12)
+    var one3    = XBStyleCellModel.init(title: "音量调整", imgIcon: "icon_menu_volume", content: "音量",cellType: 13)
+    var one4    = XBStyleCellModel.init(title: "定时休眠", imgIcon: "icon_menu_unsleep", content: "",cellType: 14)
+    
+    var eqOne    = XBStyleCellModel.init(title: "设备连接", imgIcon: "icon_menu_connection",cellType: 1)
     var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "icon_group2",cellType: 2)
-    var eqThree  = XBStyleCellModel.init(title: "切换设备", imgIcon: "icon_group3",cellType: 3)
-    var eqFour   = XBStyleCellModel.init(title: "设备成员", imgIcon: "icon_member",cellType: 7)
-    var accountOne  = XBStyleCellModel.init(title: "设备信息", imgIcon: "icon_group4",cellType: 4)
-    var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "icon_group5",cellType: 5)
+    var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "icon_menu_cloose",cellType: 3)
+    var eqFour   = XBStyleCellModel.init(title: "设备成员", imgIcon: "icon_menu_member",cellType: 7)
+    var accountOne  = XBStyleCellModel.init(title: "用户信息", imgIcon: "icon_menu_info",cellType: 4)
+    var accountTwo  = XBStyleCellModel.init(title: "关于", imgIcon: "icon_menu_about",cellType: 5)
     var accountThree  = XBStyleCellModel.init(title: "退出登录", imgIcon: "icon_group6",cellType: 6)
     var eqArr: [XBStyleCellModel] = []
     var accountArr: [XBStyleCellModel] = []
 
+    var sectionData: [DrawerSectionItme] = []
     
     @IBOutlet weak var imgWifi: UIImageView!
 //    @IBOutlet weak var imgElectricity: UIImageView!
@@ -27,21 +37,21 @@ class DrawerViewController: XBBaseViewController {
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbDvnick: UILabel!
     
-    @IBOutlet weak var imgLock: UIImageView!
-    @IBOutlet weak var lbLock: UILabel!
-    @IBOutlet weak var imgLight: UIImageView!
-    @IBOutlet weak var lbLight: UILabel!
+//    @IBOutlet weak var imgLock: UIImageView!
+//    @IBOutlet weak var lbLock: UILabel!
+//    @IBOutlet weak var imgLight: UIImageView!
+//    @IBOutlet weak var lbLight: UILabel!
     
-    @IBOutlet weak var mneuStackview: UIStackView!
-    @IBOutlet weak var heightMneuLayout: NSLayoutConstraint!
+//    @IBOutlet weak var mneuStackview: UIStackView!
+//    @IBOutlet weak var heightMneuLayout: NSLayoutConstraint!
     
-    @IBOutlet weak var leftMnueLayout: NSLayoutConstraint!
-    @IBOutlet weak var rightMnueLayout: NSLayoutConstraint!
+//    @IBOutlet weak var leftMnueLayout: NSLayoutConstraint!
+//    @IBOutlet weak var rightMnueLayout: NSLayoutConstraint!
     
-    @IBOutlet weak var btnLock: UIButton!
-    @IBOutlet weak var btnLight: UIButton!
-    @IBOutlet weak var btnVolume: UIButton!
-    @IBOutlet weak var btnSleep: UIButton!
+//    @IBOutlet weak var btnLock: UIButton!
+//    @IBOutlet weak var btnLight: UIButton!
+//    @IBOutlet weak var btnVolume: UIButton!
+//    @IBOutlet weak var btnSleep: UIButton!
     
     
     @IBOutlet weak var topTableLayout: NSLayoutConstraint!
@@ -69,13 +79,12 @@ class DrawerViewController: XBBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UIDevice.deviceType == .dt_iPhone5 {
-            heightMneuLayout.constant = 80
-            mneuStackview.spacing = 8
-            leftMnueLayout.constant = 8
-            rightMnueLayout.constant = 8
-            
-        }
+//        if UIDevice.deviceType == .dt_iPhone5 {
+//            heightMneuLayout.constant = 80
+//            mneuStackview.spacing = 8
+//            leftMnueLayout.constant = 8
+//            rightMnueLayout.constant = 8
+//        }
     }
     
     override func setUI() {
@@ -93,15 +102,15 @@ class DrawerViewController: XBBaseViewController {
 
         DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
             self.deviceOnline = isOnline
-            if electricity == 101 { // 当前正在充电
-                self.lbElectricity.isHidden = true
-                self.imgElectricity.set_img = "icon_charging"
-            }else {
-                self.lbElectricity.isHidden = false
-                self.lbElectricity.set_text = electricity.toString
-                self.imgElectricity.set_img = "icon_electricity"
-            }
-            
+//            if electricity == 101 { // 当前正在充电
+//                self.lbElectricity.isHidden = true
+//                self.imgElectricity.set_img = "icon_charging"
+//            }else {
+//                self.lbElectricity.isHidden = false
+//                self.lbElectricity.set_text = electricity.toString
+//                self.imgElectricity.set_img = "icon_electricity"
+//            }
+
         }
 
     }
@@ -115,15 +124,31 @@ class DrawerViewController: XBBaseViewController {
     // 配置 设备信息 数据
     func cofigDeviceInfo()  { // ！ 这个应该在首页写
         if XBUserManager.userDevices.count > 0 && XBUserManager.device_Id != ""  { // 有绑定设备
-                topTableLayout.constant = 110
-                eqArr       = [eqOne,eqTwo,eqThree,eqFour]
-                accountArr  = [accountOne,accountTwo,accountThree]
+                topTableLayout.constant = 0
+            
+                let model1 = DrawerSectionItme.init()
+                model1.section = 1
+                model1.items = [one1,one2,one3,one4]
+                let model2 = DrawerSectionItme.init()
+                model2.section = 2
+                model2.items = [eqOne,eqThree,eqFour]
+                let model3 = DrawerSectionItme.init()
+                model3.section = 3
+                model3.items = [accountOne, accountTwo]
+                self.sectionData = [model1,model2,model3]
+            
+                eqArr       = [eqOne,eqTwo, eqThree, eqFour]
+                accountArr  = [accountOne, accountTwo]
                 getMQTT()
             
         } else {
-            topTableLayout.constant = 0
-            eqArr       = [eqTwo]
-            accountArr  = [accountTwo,accountThree]
+            let model3 = DrawerSectionItme.init()
+            model3.section = 3
+            model3.items = [accountOne, accountTwo]
+            self.sectionData = [model3]
+//            topTableLayout.constant = 0
+//            eqArr       = [eqTwo]
+//            accountArr  = [accountTwo,accountThree]
         }
         self.configUserInfo()
         
@@ -140,37 +165,53 @@ class DrawerViewController: XBBaseViewController {
         
         self.tableView.reloadData()
     }
+    
+    @IBAction func clickBindingAction(_ sender: Any) {
+        self.toQRCodeVC()
+    }
+    
+    @IBAction func clickLoginOutAction(_ sender: Any) {
+        loginOutAction()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }
 extension DrawerViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sectionData.count
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return section == 0 ? eqArr.count : accountArr.count
+        return sectionData[section].items.count
         
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return section == 0 ? XBMin : 40
+        return section == 0 ? XBMin : 0.5
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return section == 0 ? nil : getAccountView()
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DrawFromCell", for: indexPath) as! DrawFromCell
-        cell.lbDes.set_text = indexPath.section == 0 ? eqArr[indexPath.row].title : accountArr[indexPath.row].title
-        cell.imgIcon.set_img = indexPath.section == 0 ? eqArr[indexPath.row].imgIcon : accountArr[indexPath.row].imgIcon
+        let item  = sectionData[indexPath.section].items[indexPath.row]
+        cell.modelData = item
+        cell.delegate = self
+        
         return cell
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = indexPath.section == 0 ? eqArr[indexPath.row] : accountArr[indexPath.row]
+        let model = sectionData[indexPath.section].items[indexPath.row]
         print(model.title)
         switch model.cellType {
+        case 13:
+            self.toVolumeAction()
+            break
+        case 14:
+            self.toSleepAction()
+            break
         case 1:
             let vc = ConfigNetViewController()
             self.cw_push(vc)
@@ -190,7 +231,7 @@ extension DrawerViewController {
             let vc = AccountInfoViewController()
             self.cw_push(vc)
         case 6:
-            loginOutAction()
+            
             break
         case 7:
             let vc = MemberManagerVC()
@@ -260,13 +301,8 @@ extension DrawerViewController {
     }
     func getAccountView() -> UIView {
         let v = UIView()
-        v.frame = CGRect.init(x: 0, y: 0, w: tableView.w, h: 40)
+        v.frame = CGRect.init(x: 0, y: 0, w: tableView.w, h: 0.5)
         v.addBorderTop(size: 0.5, color: MGRgb(229, g: 229, b: 229))
-        let title = UILabel.init(x: 15, y: 0, w: 85, h: 40)
-        title.set_text = "账号设置"
-        title.font = UIFont.systemFont(ofSize: 14)
-        title.textColor = viewColor
-        v.addSubview(title)
         return v
     }
 }
@@ -275,77 +311,103 @@ extension DrawerViewController {
         
         scoketModel.sendLight()
         scoketModel.sendGetLock()
+        scoketModel.sendGetVolume()
         scoketModel.getLight.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getLight ===：", $0.element ?? 0)
-            //            self.requestSingsDetail(trackId: $0.element ?? 0)
-            if let light = $0.element {
-                self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_lamp"
-                self.lbLight.set_text = light == 1 ? "关呼吸灯" : "开呼吸灯"
+            if let Lamp = $0.element {
+//                self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_lamp"
+//                self.lbLight.set_text = light == 1 ? "关呼吸灯" : "开呼吸灯"
+                self.reloadDeviceLamp(isLamp: Lamp == 0)
             }
-            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
+//            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
         scoketModel.getLock.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getLock ===：", $0.element ?? 0)
-            if let light = $0.element {
-                self.imgLock.set_img = light == 1 ? "icon_groupLaght_on" : "icon_groupLaght"
-                self.lbLock.set_text = light == 1 ? "关闭童锁" : "打开童锁"
+            if let Lock = $0.element {
+//                self.imgLock.set_img = light == 1 ? "icon_groupLaght_on" : "icon_groupLaght"
+//                self.lbLock.set_text = light == 1 ? "关闭童锁" : "打开童锁"
+                self.reloadDeviceLock(isLock: Lock == 0)
             }
-            //            self.requestSingsDetail(trackId: $0.element ?? 0)
-            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
+//            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
+        }.disposed(by: rx_disposeBag)
+        scoketModel.getPlayVolume.asObservable().subscribe { [weak self] in
+            guard let `self` = self else { return }
+            print("getPalyingVolume ===：", $0.element ?? 0)
+//            self.currentVolume = $0.element ?? 0
+            self.reloadDeviceVolume(volume: $0.element ?? 0)
             }.disposed(by: rx_disposeBag)
-        
 
         
     }
-    @IBAction func clickLockAction(_ sender: Any) {
-        guard self.deviceOnline else {
-            XBHud.showMsg("当前设备不在线")
-            return
-        }
-        
-        if btnLock.isSelected {
-            scoketModel.sendCortolLock(0)
-            self.imgLock.set_img =  "icon_groupLaght"
-            self.lbLock.set_text = "打开童锁"
-        }else {
-            scoketModel.sendCortolLock(1)
-            self.imgLock.set_img =  "icon_groupLaght_on"
-            self.lbLock.set_text = "关闭童锁"
-        }
-       btnLock.isSelected = !btnLock.isSelected
-        
-        
+    // 刷新tableView 儿童锁状态
+    func reloadDeviceLock(isLock: Bool) {
+        one1.isSwitchOpen = isLock
+        one1.imgIcon = isLock ? "icon_menu_lock" : "icon_menu_unlock"
+        tableView.reloadData()
+    }
+    // 刷新tableView 呼吸灯状态
+    func reloadDeviceLamp(isLamp: Bool) {
+        one2.isSwitchOpen = isLamp
+        one2.imgIcon = isLamp ? "icon_menu_lamp" : "icon_menu_unlamp"
+        tableView.reloadData()
+    }
+    // 刷新tableView 音量状态
+    func reloadDeviceVolume(volume: Int) {
+        one3.content = "音量" + (volume.toString)
+        tableView.reloadData()
     }
     
-    @IBAction func btnLightAction(_ sender: Any) {
-        guard self.deviceOnline else {
-            XBHud.showMsg("当前设备不在线")
-            return
-        }
-        if btnLight.isSelected {
-            scoketModel.sendClooseLight(0)
-            self.imgLight.set_img = "icon_lamp"
-            self.lbLight.set_text = "开呼吸灯"
-        }else {
-            scoketModel.sendClooseLight(1)
-            self.imgLight.set_img = "icon_groupNight_on"
-            self.lbLight.set_text = "关呼吸灯"
-        }
-        btnLight.isSelected = !btnLight.isSelected
-    }
     
-    @IBAction func clickVolumeAction(_ sender: Any) {
+//    @IBAction func clickLockAction(_ sender: Any) {
+//        guard self.deviceOnline else {
+//            XBHud.showMsg("当前设备不在线")
+//            return
+//        }
+//
+//        if btnLock.isSelected {
+//            scoketModel.sendCortolLock(0)
+//            self.imgLock.set_img =  "icon_groupLaght"
+//            self.lbLock.set_text = "打开童锁"
+//        }else {
+//            scoketModel.sendCortolLock(1)
+//            self.imgLock.set_img =  "icon_groupLaght_on"
+//            self.lbLock.set_text = "关闭童锁"
+//        }
+//       btnLock.isSelected = !btnLock.isSelected
+//
+//
+//    }
+//
+//    @IBAction func btnLightAction(_ sender: Any) {
+//        guard self.deviceOnline else {
+//            XBHud.showMsg("当前设备不在线")
+//            return
+//        }
+//        if btnLight.isSelected {
+//            scoketModel.sendClooseLight(0)
+//            self.imgLight.set_img = "icon_lamp"
+//            self.lbLight.set_text = "开呼吸灯"
+//        }else {
+//            scoketModel.sendClooseLight(1)
+//            self.imgLight.set_img = "icon_groupNight_on"
+//            self.lbLight.set_text = "关呼吸灯"
+//        }
+//        btnLight.isSelected = !btnLight.isSelected
+//    }
+//
+    func toVolumeAction() {
         guard self.deviceOnline else {
             XBHud.showMsg("当前设备不在线")
             return
         }
         let v = VolumeControlView.loadFromNib()
         v.show()
+         v.configVolume()
     }
-    
-    @IBAction func clickSleepAction(_ sender: Any) {
+
+    func toSleepAction() {
         guard self.deviceOnline else {
             XBHud.showMsg("当前设备不在线")
             return
@@ -355,10 +417,20 @@ extension DrawerViewController {
     }
     
 }
-extension DrawerViewController {
+extension DrawerViewController: DrawFromCellDelegate {
     func toQRCodeVC()  {
         let vc = OpenEquViewController()
         self.cw_push(vc)
 //        self.cw_present(alertC)
+    }
+    func switchValueChangeAction(modelData: XBStyleCellModel,isSwitch: Bool) {
+        if modelData.cellType == 11 {
+            self.reloadDeviceLock(isLock: isSwitch)
+             scoketModel.sendCortolLock(isSwitch ? 0 : 1)
+        }
+        if modelData.cellType == 12 {
+            self.reloadDeviceLamp(isLamp: isSwitch)
+            scoketModel.sendClooseLight(isSwitch ? 0 : 1)
+        }
     }
 }

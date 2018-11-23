@@ -49,7 +49,7 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate {
             heightLayout.constant = 255
         }
         
-        self.configVolume()
+       
     }
     func configVolume()  {
         scoketModel.sendGetVolume()
@@ -58,7 +58,9 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate {
             print("getPalyingVolume ===：", $0.element ?? 0)
             let volumeValue: Int = Int($0.element ?? 0)
 //            self.sliderVolume.setValue(volumeValue, animated: true)
-            self.sliderView.selectedSection = volumeValue
+           let str = String(format: "%.2f", Float(volumeValue / 100))
+        
+            self.sliderView.factor = CGFloat.init(Float(str) ?? 0)
 //            self.lbVolume.set_text       = Int($0.element ?? 0).toString
             self.currentVolume = $0.element ?? 0
             }.disposed(by: rx_disposeBag)

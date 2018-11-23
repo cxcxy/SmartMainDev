@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SmartPlayerViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
+                <outlet property="btnAudion" destination="QsW-MI-r2W" id="pdU-qp-kGK"/>
                 <outlet property="btnDown" destination="q19-gM-tCk" id="tpp-LE-aaI"/>
                 <outlet property="btnLike" destination="Eh4-X4-VT2" id="4Jh-jX-e7E"/>
                 <outlet property="btnOn" destination="DMH-Cj-iov" id="AGy-qd-Xs2"/>
@@ -269,7 +270,7 @@
                                                         <constraint firstAttribute="height" constant="50" id="3bP-cu-8K7"/>
                                                         <constraint firstAttribute="width" constant="50" id="uyo-9C-TbV"/>
                                                     </constraints>
-                                                    <state key="normal" title="上" image="icon_play_up">
+                                                    <state key="normal" title="上" image="icon_play_shang">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -277,7 +278,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="DMH-Cj-iov" firstAttribute="centerY" secondItem="RUg-hT-dzf" secondAttribute="centerY" id="0Fy-Me-V6F"/>
                                                 <constraint firstAttribute="height" constant="50" id="QuJ-q2-W4T"/>
@@ -323,7 +324,7 @@
                                                         <constraint firstAttribute="height" constant="50" id="t7N-WI-J4Y"/>
                                                         <constraint firstAttribute="width" constant="50" id="wQZ-Ko-jAB"/>
                                                     </constraints>
-                                                    <state key="normal" title="下" image="icon_play_down">
+                                                    <state key="normal" title="下" image="icon_play_xia">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -331,7 +332,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Gkq-ZK-P5f"/>
                                                 <constraint firstItem="q19-gM-tCk" firstAttribute="centerY" secondItem="xNu-uW-cpc" secondAttribute="centerY" id="Xr1-Ai-KK3"/>
@@ -408,7 +409,7 @@
                                             <state key="normal" image="icon_play_shiting">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
-                                            <state key="selected" image="icon_paly_like"/>
+                                            <state key="selected" image="icon_play_zanting"/>
                                             <connections>
                                                 <action selector="clickAudition:" destination="-1" eventType="touchUpInside" id="rIi-tw-GQL"/>
                                             </connections>
@@ -460,7 +461,7 @@
                                             <state key="normal" image="icon_play_unlike">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
-                                            <state key="selected" image="icon_play_xihuan"/>
+                                            <state key="selected" image="icon_play_like"/>
                                             <connections>
                                                 <action selector="clickLikeAction:" destination="-1" eventType="touchUpInside" id="lA5-H9-nZc"/>
                                             </connections>
@@ -522,16 +523,17 @@
         <image name="icon_play_add" width="29" height="29"/>
         <image name="icon_play_all" width="35" height="35"/>
         <image name="icon_play_back" width="26" height="26"/>
-        <image name="icon_play_down" width="48" height="48"/>
+        <image name="icon_play_like" width="29" height="29"/>
         <image name="icon_play_list" width="35" height="35"/>
         <image name="icon_play_moreNew" width="26" height="26"/>
         <image name="icon_play_only" width="35" height="35"/>
         <image name="icon_play_pause" width="84" height="82"/>
         <image name="icon_play_play" width="83" height="82"/>
+        <image name="icon_play_shang" width="50" height="50"/>
         <image name="icon_play_shiting" width="29" height="29"/>
         <image name="icon_play_unlike" width="29" height="29"/>
-        <image name="icon_play_up" width="48" height="48"/>
-        <image name="icon_play_xihuan" width="29" height="29"/>
+        <image name="icon_play_xia" width="50" height="50"/>
+        <image name="icon_play_zanting" width="29" height="29"/>
         <image name="test4" width="1080" height="1080"/>
     </resources>
 </document>
