@@ -52,18 +52,18 @@ class PlaySongListView: ETPopupView {
         super.awakeFromNib()
         animationDuration = 0.3
         type = .sheet
-        viewContent.setCornerRadius(radius: 10)
+//        viewContent.setCornerRadius(radius: 10)
         
         self.snp.makeConstraints { (make) in
             make.width.equalTo(MGScreenWidth)
-            make.height.equalTo(MGScreenWidth + 50)
+            make.height.equalTo(330)
         }
         ETPopupWindow.sharedWindow().touchWildToHide = true
         self.layoutIfNeeded()
-        self.btnCloose.addAction {[weak self] in
-            guard let `self` = self else { return }
-            self.hide()
-        }
+//        self.btnCloose.addAction {[weak self] in
+//            guard let `self` = self else { return }
+//            self.hide()
+//        }
         configTableView()
     }
     
@@ -176,7 +176,7 @@ extension PlaySongListView: UITableViewDelegate,UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TrackListHomeCell", for: indexPath) as! TrackListHomeCell
             let model = trackArr[indexPath.row]
             let trackCount = model.trackCount ?? 0
-            let count = "（" + trackCount.toString + "首）"
+            let count = "共" + trackCount.toString + "首"
             cell.lbTitle.set_text = model.name
             cell.lbTatal.set_text = count
             return cell

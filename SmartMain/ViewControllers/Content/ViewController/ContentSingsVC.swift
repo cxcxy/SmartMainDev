@@ -8,81 +8,82 @@
 
 import UIKit
 
-class ContentSingsVC: XBBaseViewController {
+class ContentSingsVC: XBBaseTableViewController {
     var clientId: String! // 当前设备ID
     var albumId: String! // 当前歌曲列表 ID
-    var dataArr: [ConetentSingModel] = []
+    var dataArr: [ConetentSingModel] = [] {
+        didSet {
+            self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
+                let listItem = BaseListItem()
+                listItem.title      = item.name ?? ""
+                listItem.time       =  item.length
+                listItem.trackId    = item.trackId
+                listItem.isLike     = item.isLike
+                return listItem
+            })
+            self.dataDelegate.songsArr = dataArr
+        }
+    }
+    
+    
     var trackList: [EquipmentModel] = [] // 预制列表 数组
     var headerInfo:ConetentSingAlbumModel?
     
-    @IBOutlet weak var btnAddAll: UIButton!
-    @IBOutlet weak var lbTopDes: UILabel!
-    @IBOutlet weak var lbTopTotal: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var imgTop: UIImageView!
-    
+//    @IBOutlet weak var btnAddAll: UIButton!
+//    @IBOutlet weak var lbTopDes: UILabel!
+//    @IBOutlet weak var lbTopTotal: UILabel!
+//    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var imgTop: UIImageView!
+//    @IBOutlet weak var imgBackground: UIImageView!
     var viewModel   = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
     var likeList: [ConetentLikeModel] = []
+    
+    var dataDelegate: BaseTableViewDelegate = BaseTableViewDelegate()
     
     let playerLayer:AVPlayerLayer = AVPlayerLayer.init()
     var player:AVPlayer = AVPlayer.init()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.currentNavigationNone = true
+        self.currentNavigationNone = true
+    
+        title = "专辑"
     }
     override func setUI() {
         super.setUI()
-        self.configTableView(tableView, register_cell: ["ContentSingCell",
-                                                        "HistorySongCell",
-                                                        "HistorySongContentCell"])
+//        self.configTableView(tableView, register_cell: ["ContentSingCell",
+//                                                        "HistorySongCell",
+//                                                        "HistorySongContentCell"])
         self.tableView.mj_header = self.mj_header
-        imgTop.addBorder(width: 2.0, color: UIColor.white)
-        btnAddAll.addBorder(width: 0.5, color: UIColor.white)
-        btnAddAll.setCornerRadius(radius: 10)
-        imgTop.setCornerRadius(radius: 8)
+//        imgTop.addBorder(width: 2.0, color: UIColor.white)
+//        btnAddAll.addBorder(width: 0.5, color: UIColor.white)
+//        btnAddAll.setCornerRadius(radius: 10)
+//        imgTop.setCornerRadius(radius: 8)
         request()
         requestTrackList()
-        configCurrentSongsId()
+
         configPlay()
+        
+        dataDelegate.songListType = .songs
+        dataDelegate.tableView = self.tableView
+        
         makeCustomerImageNavigationItem("icon_music_white", left: false) { [weak self] in
             guard let `self` = self else { return }
             VCRouter.toPlayVC()
         }
     }
-    //MARK: 配置顶部信息
-    func configTopHeadeaInfp(model: ConetentSingAlbumModel!)  {
-        self.headerInfo = model
-        lbTopDes.set_text = model.name
-        let totalStr = model.total?.toString ?? ""
-        lbTopTotal.set_text =  "共" + totalStr + "首"
-        imgTop.set_Img_Url(model.imgLarge)
-    }
-    func configCurrentSongsId()  {
-        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
-            guard let `self` = self else { return }
-            print("getPalyingSingsId ===：", $0.element ?? 0)
-            
-            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
-        }.disposed(by: rx_disposeBag)
-    }
+//    //MARK: 配置顶部信息
+//    func configTopHeadeaInfp(model: ConetentSingAlbumModel!)  {
+//        self.headerInfo = model
+//        lbTopDes.set_text = model.name
+//        let totalStr = model.total?.toString ?? ""
+//        lbTopTotal.set_text =  "共" + totalStr + "首"
+//        imgTop.set_Img_Url(model.imgLarge)
+//        imgBackground.set_Img_Url(model.imgLarge)
+//    }
+
     
-    func mapSongsArrPlayingStatus(songId: Int)  {
-        self.dataArr.forEachEnumerated { (index, item) in
-//            if let arr = item.resId?.components(separatedBy: ":") {
-//                if arr.count > 0 {
-                    if let song_Id = item.trackId {
-                        if song_Id == songId {
-                            item.isPlay = true
-                        }else {
-                            item.isPlay = false
-                        }
-                    }
-//                }
-//            }
-        }
-        self.tableView.reloadData()
-    }
+
     func configPlay()  {
 
         playerLayer.frame = CGRect.init(x: 10, y: 30, w: self.view.bounds.size.width - 20, h: 200)
@@ -111,9 +112,9 @@ class ContentSingsVC: XBBaseViewController {
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["album"].object) {
-                self.configTopHeadeaInfp(model: topModel)
+//                self.configTopHeadeaInfp(model: topModel)
+                self.dataDelegate.albumModel = topModel
             }
-            self.scoketModel.sendGetTrack()
             self.tableView.reloadData()
             self.starAnimationWithTableView(tableView: self.tableView)
         })
@@ -152,6 +153,7 @@ class ContentSingsVC: XBBaseViewController {
             if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
                 self.endRefresh()
                 self.trackList = arr
+                self.dataDelegate.trackList = self.trackList
                 self.tableView.reloadData()
             }
         })
@@ -273,127 +275,127 @@ class ContentSingsVC: XBBaseViewController {
         }
     }
 }
-extension ContentSingsVC {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataArr.count
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let m  = dataArr[section]
-        return m.isExpanded ? 2 : 1
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-            let m  = dataArr[indexPath.section]
-            cell.lbTitle.set_text = m.name
-            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.length)
-            cell.btnExtension.isSelected = m.isExpanded
-            cell.iconType = m.isPlay ? .songList_pause : .songList_play
-            cell.btnExtension.addAction {[weak self] in
-                guard let `self` = self else { return }
-                self.clickExtensionAction(indexPath: indexPath)
-            }
-            cell.imgIcon.addTapGesture {[weak self] (sender) in
-                guard let `self` = self else { return }
-                if m.isPlay { // 当前正在播放， 跳转播放器页面
-                    VCRouter.toPlayVC()
-                }else {
-                    self.requestOnlineSing(trackId: m.resId ?? "")
-                }
-                
-            }
-            return cell
-        }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
-           
-            cell.viewDel.isHidden = true
-             let m  = dataArr[indexPath.section]
-            cell.viewAdd.addTapGesture {[weak self] (sender) in
-                guard let `self` = self else { return }
-                self.clickSongsToTrackList(isAll: false,songModel: m)
-            }
-            cell.isLike = m.isLike
-            cell.viewLike.addTapGesture {[weak self]  (sender) in
-                guard let `self` = self else { return }
-                    if m.isLike {
-                        self.requestCancelSong(songId: m.trackId)
-                    }else {
-                        self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
-                    }
-
-            }
-            
-            cell.viewAudition.addTapGesture {[weak self]  (sender) in
-                guard let `self` = self else { return }
-                self.playVoice(model: m)
-                
-            }
-            cell.lbAudition.set_text = m.isAudition ? "暂停" : "试听"
-            cell.viewAudition.isHidden = false
-            return cell
-        }
-    }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard XBUserManager.device_Id != "" else {
-            XBHud.showMsg("请先绑定设备")
-            return
-        }
-//        self.requestOnlineSing(trackId: dataArr[indexPath.row].resId ?? "")
-    }
-    func clickExtensionAction(indexPath: IndexPath)  {
-        if indexPath.row == 0 {
-            let m  = dataArr[indexPath.section]
-            m.isExpanded = !m.isExpanded
-            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
-        }
-        if indexPath.row == 1 {
-            let m  = dataArr[indexPath.section]
-//            self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
-            
-        }
-    }
-    
-    //MARK: 点击试听
-    func playVoice(model: ConetentSingModel)  {
-        guard let urlTask =  URL.init(string: model.content ?? "") else {
-            XBLog("歌曲地址有误")
-            return
-        }
-        if model.isAudition {
-            player.pause()
-            
-        }else {
-            let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
-            self.player = AVPlayer(playerItem: playerItem)
-            playerLayer.player = player
-
-            // 开始播放
-            player.play()
-        }
-        model.isAudition = !model.isAudition
-        dataArr.forEach { (item) in
-            if item.trackId != model.trackId {
-                item.isAudition = false
-            }
-        }
-      
-        self.tableView.reloadData()
-
-    }
-    //MARK: 在线点播歌曲
-    func requestOnlineSing(trackId: String)  {
-        guard XBUserManager.device_Id != "" else {
-            XBHud.showMsg("请先绑定设备")
-            return
-        }
-        
-        let arr = trackId.components(separatedBy: ":")
-        guard arr.count > 1 else {
-            return
-        }
-        viewModel.requestOnlineSing(openId: XBUserManager.userName, trackId: arr[1], deviceId: XBUserManager.device_Id) {
-            VCRouter.toPlayVC()
-        }
-    }
-}
+//extension ContentSingsVC {
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return dataArr.count
+//    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        let m  = dataArr[section]
+//        return m.isExpanded ? 2 : 1
+//    }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.row == 0 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+//            let m  = dataArr[indexPath.section]
+//            cell.lbTitle.set_text = m.name
+//            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.length)
+//            cell.btnExtension.isSelected = m.isExpanded
+//            cell.iconType = m.isPlay ? .songList_pause : .songList_play
+//            cell.btnExtension.addAction {[weak self] in
+//                guard let `self` = self else { return }
+//                self.clickExtensionAction(indexPath: indexPath)
+//            }
+//            cell.imgIcon.addTapGesture {[weak self] (sender) in
+//                guard let `self` = self else { return }
+//                if m.isPlay { // 当前正在播放， 跳转播放器页面
+//                    VCRouter.toPlayVC()
+//                }else {
+//                    self.requestOnlineSing(trackId: m.resId ?? "")
+//                }
+//                
+//            }
+//            return cell
+//        }else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+//           
+//            cell.viewDel.isHidden = true
+//             let m  = dataArr[indexPath.section]
+//            cell.viewAdd.addTapGesture {[weak self] (sender) in
+//                guard let `self` = self else { return }
+//                self.clickSongsToTrackList(isAll: false,songModel: m)
+//            }
+//            cell.isLike = m.isLike
+//            cell.viewLike.addTapGesture {[weak self]  (sender) in
+//                guard let `self` = self else { return }
+//                    if m.isLike {
+//                        self.requestCancelSong(songId: m.trackId)
+//                    }else {
+//                        self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
+//                    }
+//
+//            }
+//            
+//            cell.viewAudition.addTapGesture {[weak self]  (sender) in
+//                guard let `self` = self else { return }
+//                self.playVoice(model: m)
+//                
+//            }
+//            cell.lbAudition.set_text = m.isAudition ? "暂停" : "试听"
+//            cell.viewAudition.isHidden = false
+//            return cell
+//        }
+//    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard XBUserManager.device_Id != "" else {
+//            XBHud.showMsg("请先绑定设备")
+//            return
+//        }
+////        self.requestOnlineSing(trackId: dataArr[indexPath.row].resId ?? "")
+//    }
+//    func clickExtensionAction(indexPath: IndexPath)  {
+//        if indexPath.row == 0 {
+//            let m  = dataArr[indexPath.section]
+//            m.isExpanded = !m.isExpanded
+//            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+//        }
+//        if indexPath.row == 1 {
+//            let m  = dataArr[indexPath.section]
+////            self.requestCancleLikeSing(trackId: m.trackId?.toString, section: indexPath.section)
+//            
+//        }
+//    }
+//    
+//    //MARK: 点击试听
+//    func playVoice(model: ConetentSingModel)  {
+//        guard let urlTask =  URL.init(string: model.content ?? "") else {
+//            XBLog("歌曲地址有误")
+//            return
+//        }
+//        if model.isAudition {
+//            player.pause()
+//            
+//        }else {
+//            let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
+//            self.player = AVPlayer(playerItem: playerItem)
+//            playerLayer.player = player
+//
+//            // 开始播放
+//            player.play()
+//        }
+//        model.isAudition = !model.isAudition
+//        dataArr.forEach { (item) in
+//            if item.trackId != model.trackId {
+//                item.isAudition = false
+//            }
+//        }
+//      
+//        self.tableView.reloadData()
+//
+//    }
+//    //MARK: 在线点播歌曲
+//    func requestOnlineSing(trackId: String)  {
+//        guard XBUserManager.device_Id != "" else {
+//            XBHud.showMsg("请先绑定设备")
+//            return
+//        }
+//        
+//        let arr = trackId.components(separatedBy: ":")
+//        guard arr.count > 1 else {
+//            return
+//        }
+//        viewModel.requestOnlineSing(openId: XBUserManager.userName, trackId: arr[1], deviceId: XBUserManager.device_Id) {
+//            VCRouter.toPlayVC()
+//        }
+//    }
+//}

@@ -97,14 +97,18 @@ class LoginViewController: XBBaseViewController {
     func requestPasswordLogin()  {
         viewModel.requestPassLogin(mobile: viewPhone.text!, code: viewPassword.text!) { [weak self] in
             guard let `self` = self else { return }
-            self.toHome()
+            XBHud.showMsg("登录成功")
+            XBDelay.start(delay: 0.5, closure: {
+                 self.toHome()
+            })
+           
         }
     }
     func requestAuthCodeLogin()  {
-        viewModel.requestCodeLogin(mobile: viewPhone.text!, code: "1111") { [weak self] in
-            guard let `self` = self else { return }
-            self.toHome()
-        }
+//        viewModel.requestCodeLogin(mobile: viewPhone.text!, code: "1111") { [weak self] in
+//            guard let `self` = self else { return }
+//            self.toHome()
+//        }
     }
     func toHome()  {
 

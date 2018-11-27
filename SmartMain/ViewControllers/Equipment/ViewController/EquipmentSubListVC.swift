@@ -12,9 +12,20 @@ enum  EquipmentSubListType{
     case trackScollList // 从预制列表左右滚动视图进来
 }
 class EquipmentSubListVC: XBBaseTableViewController {
+    
     var trackListId: Int! // 列表id
     var trackList: [EquipmentModel] = []
-    var dataArr: [EquipmentSingModel] = []
+    var dataArr: [EquipmentSingModel] = [] {
+        didSet {
+            self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
+                let listItem = BaseListItem()
+                listItem.title = item.title ?? ""
+                listItem.time =  item.duration
+                listItem.trackId = item.id ?? 0
+                return listItem
+            })
+        }
+    }
     var headerInfo:ConetentSingAlbumModel?
     var total: Int?
     var viewModel = ContentViewModel()
@@ -22,6 +33,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
     var deviceOnline:Bool = false
     var scoketModel = ScoketMQTTManager.share
     var listType : EquipmentSubListType = .none
+    var dataDelegate: BaseTableViewDelegate = BaseTableViewDelegate()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +55,10 @@ class EquipmentSubListVC: XBBaseTableViewController {
                 self.requestSetDefault(model: model)
             }
         }.disposed(by: rx_disposeBag)
+        
+//        tableView.dataSource = dataDelegate
+        dataDelegate.trackListId = self.trackListId
+        dataDelegate.tableView = self.tableView
     }
     func configCurrentSongsId()  {
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
@@ -166,178 +182,178 @@ class EquipmentSubListVC: XBBaseTableViewController {
         
     }
 }
-extension EquipmentSubListVC {
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataArr.count
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let m  = dataArr[section]
-        return m.isExpanded ? 2 : 1
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 && listType == .none{
-            return 50
-        }
-        return XBMin
-    }
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 && listType == .none else {
-            return nil
-        }
-        let v = TrackListHeaderView.loadFromNib()
-        v.btnDefault.addAction {[weak self] in
-            guard let `self` = self else { return }
-            self.sendTopicSetDefault()
-        }
-        if let total = self.total {
-            v.lbTotal.set_text = "共" + total.toString + "首"
-        }else {
-            v.lbTotal.set_text = ""
-        }
-        return v
-    }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
-            let m  = dataArr[indexPath.section]
-            cell.lbTitle.set_text = m.title
-            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
-            cell.btnExtension.isSelected = m.isExpanded
-            cell.iconType = m.isPlay ? .songList_pause : .songList_play
-            cell.btnExtension.addAction {[weak self] in
-                guard let `self` = self else { return }
-                self.clickExtensionAction(indexPath: indexPath)
-            }
-            cell.imgIcon.addTapGesture {[weak self] (sender) in
-                guard let `self` = self else { return }
-                if m.isPlay { // 当前正在播放， 跳转播放器页面
-//                    VCRouter.toPlayVC()
-                }else {
-                    self.requestOnlineSing(trackId: m.id?.toString ?? "")
-                }
-                
-            }
-            return cell
-        }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
-            let m  = dataArr[indexPath.section]
-            cell.viewAdd.isHidden = true
-            cell.viewLike.addTapGesture {[weak self]  (sender) in
-                guard let `self` = self else { return }
-                if m.isLike {
-                    self.requestCancelSong(songId: m.id)
-                }else {
-//                    self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
-                    self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
-                }
-//                self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
-            }
-            cell.viewDel.addTapGesture {[weak self] (sender) in
-                guard let `self` = self else { return }
-                self.requestDeleteSingWithList(trackId: m.id?.toString ?? "")
-            }
-            cell.isLike = m.isLike
-            return cell
-        }
-
-    }
- 
-    /**
-     *   从预制列表中删除
-     */
-    func requestDeleteSingWithList(trackId: String)  {
-        Net.requestWithTarget(.removeSingsList(deviceId: XBUserManager.device_Id, listId: self.trackListId, trackIds: [trackId]), successClosure: { (result, code, message) in
-            print(result)
-            if let str = result as? String {
-                if str == "ok" {
-                    XBHud.showMsg("删除成功")
-                }else {
-                    XBHud.showMsg("删除失败")
-                }
-            }
-        })
-    }
-    /**
-     *   收藏歌曲
-     */
-    func requestLikeSing(songId: Int?,duration: Int, title: String)  {
-        guard let songId = songId else {
-            XBHud.showMsg("当前歌曲ID错误")
-            return
-        }
-
-        viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {
-            self.dataArr.forEachEnumerated({ (index, item) in
-                if item.id == songId {
-                    item.isLike = true
-                }
-            })
-            self.tableView.reloadData()
-        }
-        
-    }
-    //MARK: 取消收藏歌曲
-    func requestCancelSong(songId: Int?)  {
-        guard let songId = songId else {
-            XBHud.showMsg("当前歌曲ID错误")
-            return
-        }
-        viewModel.requestCancleLikeSing(trackId: songId) { [weak self] in
-            guard let `self` = self else { return }
-            self.dataArr.forEachEnumerated({ (index, item) in
-                if item.id == songId {
-                    item.isLike = false
-                }
-            })
-            self.tableView.reloadData()
-        }
-    }
-    func clickExtensionAction(indexPath: IndexPath)  {
-        
-        if indexPath.row == 0 {
-            let m  = dataArr[indexPath.section]
-            m.isExpanded = !m.isExpanded
-            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
-        }
-        if indexPath.row == 1 {
-            let m  = dataArr[indexPath.section]
-  
-        }
-        
-    }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard self.deviceOnline else {
-            XBHud.showMsg("当前设备不在线")
-            return
-        }
-//        self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
-    }
-    
-    //MARK: 获取歌曲详情
-    func requestSingDetail(trackId: Int)   {
-        Net.requestWithTarget(.getSingDetail(trackId: trackId), successClosure: { (result, code, message) in
-            guard let result = result as? String else {
-                return
-            }
-            if let model = Mapper<SingDetailModel>().map(JSONString: result) {
-                self.sendTopicSingDetail(singModel: model)
-            }
-        })
-    }
-    // 发送预制列表点播 MQTT
-    func sendTopicSingDetail(singModel: SingDetailModel)  {
-        ScoketMQTTManager.share.sendTrackListPlay(trackListId: trackListId, singModel: singModel)
-    }
-    //MARK: 在线点播
-    func requestOnlineSing(trackId: String)  {
-        
-        viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId, deviceId: XBUserManager.device_Id) {
-            
-        }
-    }
-}
+//extension EquipmentSubListVC {
+//    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return dataArr.count
+//    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        let m  = dataArr[section]
+//        return m.isExpanded ? 2 : 1
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 && listType == .none{
+//            return 50
+//        }
+//        return XBMin
+//    }
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard section == 0 && listType == .none else {
+//            return nil
+//        }
+//        let v = TrackListHeaderView.loadFromNib()
+//        v.btnDefault.addAction {[weak self] in
+//            guard let `self` = self else { return }
+//            self.sendTopicSetDefault()
+//        }
+//        if let total = self.total {
+//            v.lbTotal.set_text = "共" + total.toString + "首"
+//        }else {
+//            v.lbTotal.set_text = ""
+//        }
+//        return v
+//    }
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.row == 0 {
+//            
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongCell", for: indexPath) as! HistorySongCell
+//            let m  = dataArr[indexPath.section]
+//            cell.lbTitle.set_text = m.title
+//            cell.lbTime.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: m.duration)
+//            cell.btnExtension.isSelected = m.isExpanded
+//            cell.iconType = m.isPlay ? .songList_pause : .songList_play
+//            cell.btnExtension.addAction {[weak self] in
+//                guard let `self` = self else { return }
+//                self.clickExtensionAction(indexPath: indexPath)
+//            }
+//            cell.imgIcon.addTapGesture {[weak self] (sender) in
+//                guard let `self` = self else { return }
+//                if m.isPlay { // 当前正在播放， 跳转播放器页面
+////                    VCRouter.toPlayVC()
+//                }else {
+//                    self.requestOnlineSing(trackId: m.id?.toString ?? "")
+//                }
+//                
+//            }
+//            return cell
+//        }else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "HistorySongContentCell", for: indexPath) as! HistorySongContentCell
+//            let m  = dataArr[indexPath.section]
+//            cell.viewAdd.isHidden = true
+//            cell.viewLike.addTapGesture {[weak self]  (sender) in
+//                guard let `self` = self else { return }
+//                if m.isLike {
+//                    self.requestCancelSong(songId: m.id)
+//                }else {
+////                    self.requestLikeSing(songId: m.trackId, duration: m.length ?? 0, title: m.name ?? "")
+//                    self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
+//                }
+////                self.requestLikeSing(songId: m.id, duration: m.duration ?? 0, title: m.title ?? "")
+//            }
+//            cell.viewDel.addTapGesture {[weak self] (sender) in
+//                guard let `self` = self else { return }
+//                self.requestDeleteSingWithList(trackId: m.id?.toString ?? "")
+//            }
+//            cell.isLike = m.isLike
+//            return cell
+//        }
+//
+//    }
+// 
+//    /**
+//     *   从预制列表中删除
+//     */
+//    func requestDeleteSingWithList(trackId: String)  {
+//        Net.requestWithTarget(.removeSingsList(deviceId: XBUserManager.device_Id, listId: self.trackListId, trackIds: [trackId]), successClosure: { (result, code, message) in
+//            print(result)
+//            if let str = result as? String {
+//                if str == "ok" {
+//                    XBHud.showMsg("删除成功")
+//                }else {
+//                    XBHud.showMsg("删除失败")
+//                }
+//            }
+//        })
+//    }
+//    /**
+//     *   收藏歌曲
+//     */
+//    func requestLikeSing(songId: Int?,duration: Int, title: String)  {
+//        guard let songId = songId else {
+//            XBHud.showMsg("当前歌曲ID错误")
+//            return
+//        }
+//
+//        viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {
+//            self.dataArr.forEachEnumerated({ (index, item) in
+//                if item.id == songId {
+//                    item.isLike = true
+//                }
+//            })
+//            self.tableView.reloadData()
+//        }
+//        
+//    }
+//    //MARK: 取消收藏歌曲
+//    func requestCancelSong(songId: Int?)  {
+//        guard let songId = songId else {
+//            XBHud.showMsg("当前歌曲ID错误")
+//            return
+//        }
+//        viewModel.requestCancleLikeSing(trackId: songId) { [weak self] in
+//            guard let `self` = self else { return }
+//            self.dataArr.forEachEnumerated({ (index, item) in
+//                if item.id == songId {
+//                    item.isLike = false
+//                }
+//            })
+//            self.tableView.reloadData()
+//        }
+//    }
+//    func clickExtensionAction(indexPath: IndexPath)  {
+//        
+//        if indexPath.row == 0 {
+//            let m  = dataArr[indexPath.section]
+//            m.isExpanded = !m.isExpanded
+//            tableView.reloadSections([indexPath.section], animationStyle: .automatic)
+//        }
+//        if indexPath.row == 1 {
+//            let m  = dataArr[indexPath.section]
+//  
+//        }
+//        
+//    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard self.deviceOnline else {
+//            XBHud.showMsg("当前设备不在线")
+//            return
+//        }
+////        self.requestSingDetail(trackId: dataArr[indexPath.row].id ?? 0)
+//    }
+//    
+//    //MARK: 获取歌曲详情
+//    func requestSingDetail(trackId: Int)   {
+//        Net.requestWithTarget(.getSingDetail(trackId: trackId), successClosure: { (result, code, message) in
+//            guard let result = result as? String else {
+//                return
+//            }
+//            if let model = Mapper<SingDetailModel>().map(JSONString: result) {
+//                self.sendTopicSingDetail(singModel: model)
+//            }
+//        })
+//    }
+//    // 发送预制列表点播 MQTT
+//    func sendTopicSingDetail(singModel: SingDetailModel)  {
+//        ScoketMQTTManager.share.sendTrackListPlay(trackListId: trackListId, singModel: singModel)
+//    }
+//    //MARK: 在线点播
+//    func requestOnlineSing(trackId: String)  {
+//        
+//        viewModel.requestOnlineSing(openId: user_defaults.get(for: .userName)!, trackId: trackId, deviceId: XBUserManager.device_Id) {
+//            
+//        }
+//    }
+//}
 
 

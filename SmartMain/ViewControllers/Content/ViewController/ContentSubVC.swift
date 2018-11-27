@@ -36,7 +36,7 @@ class ContentSubVC: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        self.currentNavigationHidden = true
+//        self.currentNavigationHidden = true
         configCollectionView()
         //下拉刷新相关设置
         header.setRefreshingTarget(self, refreshingAction: #selector(pullToRefresh))
@@ -49,9 +49,9 @@ class ContentSubVC: XBBaseViewController {
             guard let `self` = self else { return }
             VCRouter.toPlayVC()
         }
-        let v = ContentTopNavView.loadFromNib()
-        v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: 135)
-        self.view.addSubview(v)
+//        let v = ContentTopNavView.loadFromNib()
+//        v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: 135)
+//        self.view.addSubview(v)
     }
     func configCollectionView()  {
         collectionView.cellId_register("ContentSubItem")

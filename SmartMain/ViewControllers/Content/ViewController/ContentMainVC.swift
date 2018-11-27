@@ -207,6 +207,7 @@ class ContentMainVC: XBBaseViewController {
             print("getPalyingSingsId ===：", $0.element ?? 0)
             self.requestSingsDetail(trackId: $0.element ?? 0)
         }.disposed(by: rx_disposeBag)
+        
         scoketModel.playStatus.asObserver().bind(to: bottomSongView.btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
     }
     // 获取歌曲详情

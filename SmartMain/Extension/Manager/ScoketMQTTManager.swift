@@ -25,9 +25,11 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      */
     let repeatStatus = PublishSubject<Bool>()
     /**
-     *   获取当前正在播放的歌曲Id
+     *   监听 当前正在播放的歌曲Id 变化
      */
     let getPalyingSingsId = PublishSubject<Int>()
+    
+    var playingSongId: Int?
     /**
      *   回复默认预制列表 数据
      */
@@ -168,6 +170,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         if let _ = json_str["trackListId"].int, // 拿到歌曲信息
            let trackId = json_str["trackId"].int,
            let _ = json_str["type"].int{
+            self.playingSongId = trackId
             getPalyingSingsId.onNext(trackId)
         }
         

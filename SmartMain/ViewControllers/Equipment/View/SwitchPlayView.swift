@@ -7,30 +7,62 @@
 //
 
 import UIKit
-
+enum SwitchPlayType {
+    case track // 预制列表
+    case songs // 歌单
+    case playing // 播放界面
+}
 class SwitchPlayView: ETPopupView {
 
     @IBOutlet weak var imgAll: UIImageView!
     @IBOutlet weak var imgSing: UIImageView!
     @IBOutlet weak var viewContainer: UIView!
+    
     @IBOutlet weak var viewSing: UIView!
     @IBOutlet weak var viewAll: UIView!
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var viewThree: UIView!
+    
+    @IBOutlet weak var lbOne: UILabel!
+    @IBOutlet weak var lbTwo: UILabel!
+    @IBOutlet weak var lbThree: UILabel!
+    
+    var switchPlayType: SwitchPlayType = .playing {
+        didSet {
+            switch switchPlayType {
+            case .playing:
+                lbOne.set_text = "单曲循环"
+                lbTwo.set_text = "顺序播放"
+                viewThree.isHidden = true
+            case .track:
+                lbOne.set_text = "收藏"
+                lbTwo.set_text = "删除"
+                
+                imgAll.isHidden = true
+                imgSing.isHidden = true
+                viewThree.isHidden = true
+            case .songs:
+                lbOne.set_text = "试听"
+                lbTwo.set_text = "添加到播单"
+                lbThree.set_text = "收藏"
+                
+                imgAll.isHidden = true
+                imgSing.isHidden = true
+                viewThree.isHidden = false
+
+            }
+        }
     }
-    */
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         viewContainer.setCornerRadius(radius: 8)
         animationDuration = 0.3
         type = .sheet
+        
         self.snp.makeConstraints { (make) in
             make.width.equalTo(MGScreenWidth)
-            make.height.equalTo(120)
         }
+        
         ETPopupWindow.sharedWindow().touchWildToHide = true
         self.setCornerRadius(radius: 5.0)
         self.layoutIfNeeded()
