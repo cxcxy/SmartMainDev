@@ -195,10 +195,10 @@ extension XBNetManager {
      */
     func endRrefreshing()  {
         
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             (UIApplication.currentViewController() as? XBBaseViewController)?.endRefresh()
 //            print(UIApplication.currentViewController())
-        }
+//        }
 
     }
     /**

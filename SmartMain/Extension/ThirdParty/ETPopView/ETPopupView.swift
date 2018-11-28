@@ -235,6 +235,10 @@ class ETPopupView: UIView {
         if let show = self.showAnimation {
             show(self)
         }
+        self.showKeyBoard()
+    }
+    open func showKeyBoard() {
+        
     }
     
     open func hideWithBlock(_ block: ETPopupCompletionBlock?) {

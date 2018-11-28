@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ShowUpdateNameView" customModule="SmartMain" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="207"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称限制6个字以内" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDY-N8-MPj">
+                    <rect key="frame" x="42" y="39" width="80" height="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFx-vw-tB4" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
+                    <rect key="frame" x="28" y="56" width="319" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="l6x-Qj-VeJ"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="3HP-8w-fuU"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请输入昵称"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPass" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isBoard" value="NO"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxInput">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKp-Jc-fBM">
+                    <rect key="frame" x="28" y="111" width="319" height="43"/>
+                    <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="GNr-Ji-CJ0"/>
+                    </constraints>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="eFx-vw-tB4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="0gU-8b-aIP"/>
+                <constraint firstItem="gDY-N8-MPj" firstAttribute="leading" secondItem="eFx-vw-tB4" secondAttribute="leading" constant="14" id="76a-KG-Jgp"/>
+                <constraint firstItem="DKp-Jc-fBM" firstAttribute="leading" secondItem="eFx-vw-tB4" secondAttribute="leading" id="Nr3-8f-mPz"/>
+                <constraint firstItem="DKp-Jc-fBM" firstAttribute="top" secondItem="eFx-vw-tB4" secondAttribute="bottom" constant="15" id="U0n-0Q-qAu"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eFx-vw-tB4" secondAttribute="trailing" constant="28" id="qez-SP-E2r"/>
+                <constraint firstItem="DKp-Jc-fBM" firstAttribute="trailing" secondItem="eFx-vw-tB4" secondAttribute="trailing" id="sMX-1d-x4b"/>
+                <constraint firstItem="eFx-vw-tB4" firstAttribute="top" secondItem="gDY-N8-MPj" secondAttribute="bottom" constant="6" id="unM-Lc-e5s"/>
+                <constraint firstItem="eFx-vw-tB4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="56" id="w6e-k3-2Pk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="DKp-Jc-fBM" secondAttribute="bottom" constant="53" id="zu3-Hb-atW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnLogin" destination="DKp-Jc-fBM" id="4hE-gY-OR5"/>
+                <outlet property="textView" destination="eFx-vw-tB4" id="0go-km-tbk"/>
+            </connections>
+            <point key="canvasLocation" x="33" y="27"/>
+        </view>
+    </objects>
+</document>

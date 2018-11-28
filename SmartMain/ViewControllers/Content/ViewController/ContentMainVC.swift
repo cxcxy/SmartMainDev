@@ -232,7 +232,7 @@ class ContentMainVC: XBBaseViewController {
     func addBottomSongView()  {
         view.addSubview(bottomSongView)
         bottomSongView.snp.makeConstraints { (make) in
-            make.height.equalTo(80)
+            make.height.equalTo(65)
             make.left.right.bottom.equalTo(0)
         }
         bottomSongView.imgSong.addTapGesture {[weak self] (sender) in
@@ -353,18 +353,15 @@ class ContentMainVC: XBBaseViewController {
         let vc3 = TrackListViewController()
         controllerArray = [vc3,vc,vc1,vc2]
         
-//        self.addChildViewController(v)
-        self.view.layoutIfNeeded()
-        self.viewContainer.layoutIfNeeded()
+
         v.magicView.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: viewContainer.height)
         self.viewContainer.addSubview(v.magicView)
-//        v.magicView.snp.makeConstraints {[weak self] (make) -> Void in
-//            if let strongSelf = self {
-//                make.size.equalTo(strongSelf.viewContainer)
-//
-//            }
-//        }
+
         v.magicView.reloadData()
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        v.magicView.h = self.viewContainer.h
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

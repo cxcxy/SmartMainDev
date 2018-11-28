@@ -20,6 +20,7 @@
                 <outlet property="tableView" destination="4Yj-rl-Rxi" id="wz0-0t-zhl"/>
                 <outlet property="topTableLayout" destination="2qF-i9-REP" id="Hu4-EU-yLK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ubg-xF-C3C"/>
+                <outlet property="viewTopInfo" destination="vjf-le-xWl" id="4uB-DX-MR9"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

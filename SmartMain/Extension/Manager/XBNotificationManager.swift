@@ -38,7 +38,8 @@ public enum XBNotificationName: String {
     case refreshEquipmentInfo        = "refreshEquipmentInfo"
     /// 刷新群组信息
     case refreshGroupInfo        = "refreshGroupInfo"
-    
+    /// textFiled value changed
+    case tf_valuechanged        = "UITextFieldTextDidChangeNotification"
     /// 退出登录
     case logout                 = "Noti_Logout"
 

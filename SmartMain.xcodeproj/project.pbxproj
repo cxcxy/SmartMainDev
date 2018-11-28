@@ -216,6 +216,10 @@
 		04A5E62C216EF4D100CFCE4B /* DeviceChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */; };
 		04A5E62F216F1C9600CFCE4B /* TrackListHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */; };
 		04A5E630216F1C9600CFCE4B /* TrackListHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */; };
+		04ACD5B921AE3A59001BBE5D /* ShowUpdateNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD5B821AE3A59001BBE5D /* ShowUpdateNameView.swift */; };
+		04ACD5BB21AE3A60001BBE5D /* ShowUpdateNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04ACD5BA21AE3A60001BBE5D /* ShowUpdateNameView.xib */; };
+		04ACD5BD21AE618D001BBE5D /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ACD5BC21AE618D001BBE5D /* UserInfoViewController.swift */; };
+		04ACD5BF21AE7A0C001BBE5D /* LikeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04ACD5BE21AE7A0C001BBE5D /* LikeViewController.xib */; };
 		04AE5D46218AF63F00DE3632 /* XBTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AE5D44218AF63F00DE3632 /* XBTextView.xib */; };
 		04AE5D47218AF63F00DE3632 /* XBTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE5D45218AF63F00DE3632 /* XBTextView.swift */; };
 		04B2B1FD216C507E00D14E7C /* PlaySongListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */; };
@@ -755,6 +759,10 @@
 		04A5E62A216EF4D100CFCE4B /* DeviceChooseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceChooseCell.xib; sourceTree = "<group>"; };
 		04A5E62D216F1C9600CFCE4B /* TrackListHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListHomeCell.swift; sourceTree = "<group>"; };
 		04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListHomeCell.xib; sourceTree = "<group>"; };
+		04ACD5B821AE3A59001BBE5D /* ShowUpdateNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowUpdateNameView.swift; sourceTree = "<group>"; };
+		04ACD5BA21AE3A60001BBE5D /* ShowUpdateNameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowUpdateNameView.xib; sourceTree = "<group>"; };
+		04ACD5BC21AE618D001BBE5D /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		04ACD5BE21AE7A0C001BBE5D /* LikeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeViewController.xib; sourceTree = "<group>"; };
 		04AE5D44218AF63F00DE3632 /* XBTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XBTextView.xib; sourceTree = "<group>"; };
 		04AE5D45218AF63F00DE3632 /* XBTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBTextView.swift; sourceTree = "<group>"; };
 		04B2B1FC216C507E00D14E7C /* PlaySongListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySongListView.swift; sourceTree = "<group>"; };
@@ -1839,6 +1847,8 @@
 				BE16E2AE21A44B8B003B24D7 /* TrackListScrollView.xib */,
 				046A38B621A65080005FFC10 /* NewTrackListView.swift */,
 				046A38B821A6508F005FFC10 /* NewTrackListView.xib */,
+				04ACD5B821AE3A59001BBE5D /* ShowUpdateNameView.swift */,
+				04ACD5BA21AE3A60001BBE5D /* ShowUpdateNameView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1919,6 +1929,7 @@
 				0485CCBB2148F7EC00F54927 /* SmartPlayerViewController.xib */,
 				0460495A2153839400BEDCD6 /* DrawerViewController.swift */,
 				0460496C215398D800BEDCD6 /* DrawerViewController.xib */,
+				04ACD5BC21AE618D001BBE5D /* UserInfoViewController.swift */,
 				2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */,
 				2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */,
 				04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */,
@@ -1979,6 +1990,7 @@
 				2D404D4E217CA5550017DA54 /* ResourceAudioListVC.swift */,
 				2D404D4F217CA5550017DA54 /* ResourceAudioListVC.xib */,
 				04C38A0E213E6ED60063A799 /* LikeViewController.swift */,
+				04ACD5BE21AE7A0C001BBE5D /* LikeViewController.xib */,
 				0461CBD52154E35E00DF4C9A /* TrackListViewController.swift */,
 				04C38A10213E6EEA0063A799 /* HistoryViewController.swift */,
 				2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */,
@@ -2365,9 +2377,11 @@
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
 				2DF075B4217628E1006F0818 /* ContentNineGridItem.xib in Resources */,
 				2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */,
+				04ACD5BF21AE7A0C001BBE5D /* LikeViewController.xib in Resources */,
 				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
 				0495F17321783154002FB1F8 /* XBUpdateVersionView.xib in Resources */,
 				2DCA86A3216B81F2001F9E04 /* ChatRedView.xib in Resources */,
+				04ACD5BB21AE3A60001BBE5D /* ShowUpdateNameView.xib in Resources */,
 				0422ECD52140BE9E00A42D7A /* XBScanViewController.xib in Resources */,
 				2D9195DE2153D7F000F4A9A1 /* ChatMainCell.xib in Resources */,
 				0473BA0A215A299A003D688F /* ScreenControlView.xib in Resources */,
@@ -2584,6 +2598,7 @@
 				042EEF232150E15F00DBD492 /* UIScrollView+MJRefresh.m in Sources */,
 				042EEF392150E15F00DBD492 /* amrFileCodec.mm in Sources */,
 				046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */,
+				04ACD5BD21AE618D001BBE5D /* UserInfoViewController.swift in Sources */,
 				04C3872B213E093F0063A799 /* String+.swift in Sources */,
 				2DF075AF21761F2F006F0818 /* ContentScrollItem.swift in Sources */,
 				042EEF452150E15F00DBD492 /* UIImage+MWPhotoBrowser.m in Sources */,
@@ -2746,6 +2761,7 @@
 				042EEF532150E15F00DBD492 /* PSTGridLayoutSection.m in Sources */,
 				2D9195E02153DBA800F4A9A1 /* ChatCreateView.swift in Sources */,
 				0485CCB52148A89200F54927 /* MQTTDisconnectPacket.swift in Sources */,
+				04ACD5B921AE3A59001BBE5D /* ShowUpdateNameView.swift in Sources */,
 				0495F17221783154002FB1F8 /* XBUpdateVersionView.swift in Sources */,
 				042EEF6B2150E15F00DBD492 /* MBProgressHUD+Add.m in Sources */,
 				04C38727213E093F0063A799 /* XBUserManager.swift in Sources */,

@@ -91,10 +91,13 @@ extension Array {
          *   检查上拉刷新，下拉加载状态 ，判断是否有下一页
          */
     func checkRefreshStatus(_ pageIndex:Int, paseSize: Int = XBPageSize) -> RefreshStatus{
+            if pageIndex == 1 && self.count == 0{
+                return .noneData
+            }
             if self.count < paseSize  {
                 return .NoMoreData
             }
-            
+
             if pageIndex == 1 && self.count == paseSize{
                 return .PullSuccess
             }

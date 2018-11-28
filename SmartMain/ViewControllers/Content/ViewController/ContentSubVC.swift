@@ -96,7 +96,9 @@ class ContentSubVC: XBBaseViewController {
         case .NoMoreData :
             collectionViewEndRefresh()
             self.footer.isHidden = true
-            
+        case .noneData:
+            endRefresh()
+            self.footer.isHidden = true
         case .Unknown: break
         }
     }

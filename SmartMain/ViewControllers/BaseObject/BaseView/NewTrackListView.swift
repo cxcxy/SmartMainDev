@@ -115,6 +115,20 @@ class ETPopupViewSheet: ETPopupView{
         
     }
 }
+class ETPopupViewCustom: ETPopupView{
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        animationDuration = 0.3
+        type = .custom
+        
+    
+        ETPopupWindow.sharedWindow().touchWildToHide = true
+        UIApplication.shared.keyWindow?.endEditing(true)
+        //        self.setCornerRadius(radius: 5.0)
+        self.layoutIfNeeded()
+        
+    }
+}
 class BaseTableView: UITableView {
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)

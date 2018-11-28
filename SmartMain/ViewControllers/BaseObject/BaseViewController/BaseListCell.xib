@@ -29,6 +29,15 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtg-yN-KGJ">
+                        <rect key="frame" x="20" y="19.5" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="Kqq-og-smd"/>
+                            <constraint firstAttribute="height" constant="22" id="OCB-gI-aiF"/>
+                        </constraints>
+                        <state key="normal" image="icon_list_unselect"/>
+                        <state key="selected" image="icon_list_select"/>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuo-kF-380">
                         <rect key="frame" x="57" y="8.5" width="223" height="44"/>
                         <subviews>
@@ -92,18 +101,22 @@
                     <constraint firstAttribute="trailing" secondItem="SJb-XO-CPN" secondAttribute="trailing" constant="20" id="DX8-NH-Euw"/>
                     <constraint firstItem="cuo-kF-380" firstAttribute="leading" secondItem="ind-0j-RU2" secondAttribute="trailing" constant="15" id="EV8-vp-aUb"/>
                     <constraint firstAttribute="trailing" secondItem="Gr2-Id-TGJ" secondAttribute="trailing" id="HrJ-hy-y6S"/>
+                    <constraint firstItem="cuo-kF-380" firstAttribute="leading" secondItem="vtg-yN-KGJ" secondAttribute="trailing" constant="15" id="MJz-BE-ydh"/>
                     <constraint firstAttribute="bottom" secondItem="Gr2-Id-TGJ" secondAttribute="bottom" id="WvY-d1-nxi"/>
                     <constraint firstItem="ind-0j-RU2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xmo-cc-o3S"/>
                     <constraint firstItem="ind-0j-RU2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Z4Y-fC-NkA"/>
                     <constraint firstItem="cuo-kF-380" firstAttribute="centerY" secondItem="ind-0j-RU2" secondAttribute="centerY" id="dXe-NO-Ihu"/>
+                    <constraint firstItem="vtg-yN-KGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gtK-Qb-eMg"/>
                     <constraint firstItem="SJb-XO-CPN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hX6-Mp-fvl"/>
                     <constraint firstAttribute="trailing" secondItem="cuo-kF-380" secondAttribute="trailing" constant="40" id="nKq-T8-1VX"/>
                     <constraint firstItem="Gr2-Id-TGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="nUJ-wo-mpG"/>
+                    <constraint firstItem="vtg-yN-KGJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oQI-sM-JEx"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnMore" destination="SJb-XO-CPN" id="HLu-de-Atz"/>
+                <outlet property="btnSelect" destination="vtg-yN-KGJ" id="iuZ-tP-B87"/>
                 <outlet property="iconPlaying" destination="uTP-ZR-sI7" id="OFm-zJ-f0C"/>
                 <outlet property="lbLineNumber" destination="ind-0j-RU2" id="rXh-wd-zmf"/>
                 <outlet property="lbTime" destination="syd-lJ-oFb" id="yco-67-kp2"/>
@@ -114,6 +127,8 @@
     </objects>
     <resources>
         <image name="icon_list_more" width="23" height="23"/>
+        <image name="icon_list_select" width="16" height="16"/>
+        <image name="icon_list_unselect" width="16" height="16"/>
         <image name="icon_playing" width="42" height="15"/>
     </resources>
 </document>

@@ -133,7 +133,9 @@ class PlaySongListView: ETPopupView {
         case .NoMoreData :
             endRefresh()
             self.mj_footer.isHidden = true
-            
+        case .noneData:
+            endRefresh()
+            self.mj_footer.isHidden = true
         case .Unknown: break
         }
     }

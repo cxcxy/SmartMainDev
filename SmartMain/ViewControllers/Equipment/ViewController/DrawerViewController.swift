@@ -37,7 +37,7 @@ class DrawerViewController: XBBaseViewController {
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbDvnick: UILabel!
     
-//    @IBOutlet weak var imgLock: UIImageView!
+    @IBOutlet weak var viewTopInfo: UIView!
 //    @IBOutlet weak var lbLock: UILabel!
 //    @IBOutlet weak var imgLight: UIImageView!
 //    @IBOutlet weak var lbLight: UILabel!
@@ -93,13 +93,16 @@ class DrawerViewController: XBBaseViewController {
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
         self.cofigDeviceInfo()
         view.backgroundColor = viewColor
-        imgPhoto.addTapGesture {[weak self] (sender) in
+        viewTopInfo.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
-            let vc = SetInfoViewController()
-            vc.setInfoType = .editUserInfo
+            let vc = EquipmentSettingVC()
+            //            vc.isAdd = false
+            //            vc.deviceId = XBUserManager.device_Id
+            //            vc.setInfoType = .editDeviceInfo
             self.cw_push(vc)
-        }
 
+        }
+        
         DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
             self.deviceOnline = isOnline
 //            if electricity == 101 { // 当前正在充电
@@ -221,10 +224,8 @@ extension DrawerViewController {
             let vc = EquipmentListViewController()
             self.cw_push(vc)
         case 4:
-            let vc = EquipmentSettingVC()
-//            vc.isAdd = false
-//            vc.deviceId = XBUserManager.device_Id
-//            vc.setInfoType = .editDeviceInfo
+            let vc = SetInfoViewController()
+            vc.setInfoType = .editUserInfo
             self.cw_push(vc)
             
         case 5:

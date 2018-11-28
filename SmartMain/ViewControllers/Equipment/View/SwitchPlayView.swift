@@ -11,6 +11,7 @@ enum SwitchPlayType {
     case track // 预制列表
     case songs // 歌单
     case playing // 播放界面
+    case photo // 选择照片
 }
 class SwitchPlayView: ETPopupView {
 
@@ -36,7 +37,6 @@ class SwitchPlayView: ETPopupView {
             case .track:
                 lbOne.set_text = "收藏"
                 lbTwo.set_text = "删除"
-                
                 imgAll.isHidden = true
                 imgSing.isHidden = true
                 viewThree.isHidden = true
@@ -44,10 +44,15 @@ class SwitchPlayView: ETPopupView {
                 lbOne.set_text = "试听"
                 lbTwo.set_text = "添加到播单"
                 lbThree.set_text = "收藏"
-                
                 imgAll.isHidden = true
                 imgSing.isHidden = true
                 viewThree.isHidden = false
+            case .photo:
+                lbOne.set_text = "拍照上传"
+                lbTwo.set_text = "相册选择"
+                imgAll.isHidden = true
+                imgSing.isHidden = true
+                viewThree.isHidden = true
 
             }
         }

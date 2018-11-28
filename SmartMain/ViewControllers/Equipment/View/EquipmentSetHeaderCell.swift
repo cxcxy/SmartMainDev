@@ -8,14 +8,22 @@
 
 import UIKit
 
-class EquipmentSetHeaderCell: UITableViewCell {
+class EquipmentSetHeaderCell: BaseTableViewCell {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbElectricity: UILabel!
     @IBOutlet weak var imgPhoto: UIImageView!
+    @IBOutlet weak var viewPhoto: UIView!
+    
+    @IBOutlet weak var viewName: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         imgPhoto.roundView()
+        
+//        lbTitle.set_text = XBUserManager.dv_babyname
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

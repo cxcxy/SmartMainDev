@@ -8,7 +8,16 @@
 
 import UIKit
 
-class LikeViewController: XBBaseTableViewController {
+class LikeViewController: XBBaseViewController {
+    @IBOutlet weak var lbTotal: UILabel!
+    //    @IBOutlet weak var viewSearch: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var viewAllSelect: UIView!
+    
+    @IBOutlet weak var btnEdit: UIButton!
+    @IBOutlet weak var btnAllSelect: UIButton!
+    @IBOutlet weak var bottomDeleteView: UIView!
     var dataArr: [ConetentLikeModel] = [] {
         didSet {
             self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
@@ -25,17 +34,29 @@ class LikeViewController: XBBaseTableViewController {
         var dataDelegate: BaseTableViewDelegate = BaseTableViewDelegate()
     var viewModel = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
+    
+    var isHiddenEditDelete: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.cellId_register("HistorySongCell")
-        tableView.cellId_register("HistorySongContentCell")
-        self.cofigMjHeader()
+//        tableView.cellId_register("HistorySongCell")
+//        tableView.cellId_register("HistorySongContentCell")
+        self.tableView.mj_header = self.mj_header
+//        self.configTableView(tableView, register_cell: ["HistorySongCell","HistorySongContentCell"])
     }
     override func setUI() {
         super.setUI()
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
+        self.viewAllSelect.isHidden = true
+        bottomDeleteView.isHidden = true
+        
+//        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         dataDelegate.tableView = self.tableView
         dataDelegate.songListType = .like
+        
+        dataDelegate.selectStatus = { [weak self](status) in
+            guard let `self` = self else { return }
+            self.btnAllSelect.isSelected = (status == 2)
+        }
         request()
         self.currentNavigationHidden = true
           configCurrentSongsId()
@@ -44,6 +65,27 @@ class LikeViewController: XBBaseTableViewController {
 //        super.viewWillAppear(animated)
 //        request()
 //    }
+    
+    @IBAction func clickEditAction(_ sender: Any) {
+        UIView.animate(withDuration: 0.3) {
+            self.bottomDeleteView.isHidden = !self.isHiddenEditDelete
+        }
+        dataDelegate.isAllSelect = false // 重置选择状态
+        self.btnAllSelect.isSelected = false
+        self.mj_header.isHidden = self.isHiddenEditDelete // 隐藏下拉刷新组建
+        self.btnEdit.isSelected = self.isHiddenEditDelete // 更新编辑按钮文案
+        self.viewAllSelect.isHidden = !self.isHiddenEditDelete
+        self.lbTotal.isHidden = self.isHiddenEditDelete
+        dataDelegate.isEdit = self.isHiddenEditDelete
+        self.isHiddenEditDelete = !self.isHiddenEditDelete
+        
+    }
+    
+    @IBAction func clickEditAllSelectAction(_ sender: UIButton) {
+        dataDelegate.isAllSelect = !btnAllSelect.isSelected
+        btnAllSelect.isSelected = !btnAllSelect.isSelected
+        
+    }
     override func request() {
         super.request()
         guard let phone = user_defaults.get(for: .userName) else {
@@ -52,12 +94,16 @@ class LikeViewController: XBBaseTableViewController {
         }
         Net.requestWithTarget(.getLikeList(openId: phone), successClosure: { (result, code, message) in
             print(result)
+             self.endRefresh()
             if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
                 if self.pageIndex == 1 {
-                    self.cofigMjFooter()
+  
+                    self.tableView.mj_footer = self.mj_footer
                     self.dataArr.removeAll()
                 }
+               
                 self.dataArr += arr
+                self.lbTotal.set_text = "共" + arr.count.toString + "首"
                 userLikeList = self.dataArr // 刷新我的最爱数据
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.scoketModel.sendGetTrack()

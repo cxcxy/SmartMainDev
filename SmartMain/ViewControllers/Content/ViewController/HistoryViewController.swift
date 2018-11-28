@@ -12,7 +12,8 @@ class HistoryViewController: XBBaseViewController {
     var currentDeviceId: String?
 //    @IBOutlet weak var tfSearch: UITextField!
     
-//    @IBOutlet weak var viewSearch: UIView!
+    @IBOutlet weak var lbTotal: UILabel!
+    //    @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var tableView: UITableView!
      var viewModel = ContentViewModel()
     var trackList: [EquipmentModel] = [] // 预制列表数据model
@@ -76,13 +77,16 @@ class HistoryViewController: XBBaseViewController {
         }
         Net.requestWithTarget(.getHistoryList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             print(result)
+            self.endRefresh()
             if let arr = Mapper<ConetentLikeModel>().mapArray(JSONString: result as! String) {
                 if self.pageIndex == 1 {
                     self.tableView.mj_footer = self.mj_footer
                     self.dataArr.removeAll()
                 }
+                
                 self.loading = true
                 self.dataArr += arr
+                self.lbTotal.set_text = "共" + arr.count.toString + "首"
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()

@@ -13,6 +13,7 @@ public enum RefreshStatus: Int {
     case RefreshFailure      // 刷新失败
     case NoMoreData          // 没有更多的数据
     case Unknown             // 未知错误
+    case noneData   // 无数据
 }
 @objcMembers class XBBaseViewController: UIViewController {
     var pageIndex = 1 //翻页
@@ -221,6 +222,9 @@ public enum RefreshStatus: Int {
      */
     lazy var mj_footer:MJRefreshAutoNormalFooter = {
         let f = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction:#selector(loadMore))!
+        f.setTitle("全部加载完毕",  for: .noMoreData)
+        f.stateLabel.textColor = UIColor(hexString: "CCCCCC")
+        f.stateLabel.font = UIFont.systemFont(ofSize: 14)
         return f
     }()
     /**
@@ -259,9 +263,14 @@ public enum RefreshStatus: Int {
             endRefresh()
             self.mj_footer.isHidden = true
         case .NoMoreData :
+//            endRefresh()
+//            self.mj_footer.isHidden = true
+            self.mj_footer.isHidden = false
+            self.mj_footer.endRefreshingWithNoMoreData()
+//            tableViewNew?.mj_footer.endRefreshingWithNoMoreData()
+        case .noneData:
             endRefresh()
             self.mj_footer.isHidden = true
-            
         case .Unknown: break
         }
     }

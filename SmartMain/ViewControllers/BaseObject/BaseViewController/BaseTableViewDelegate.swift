@@ -14,6 +14,7 @@ class BaseListItem: NSObject {
     var isPlay: Bool = false// 是否正在播放
     var isLike: Bool = false // 是否喜欢
     var isAudition: Bool = false // 是否在试听
+    var isSelect: Bool = false // 是否选中
 }
 enum SongListType {
     case track // 预制列表
@@ -21,9 +22,12 @@ enum SongListType {
     case histroy // 历史列表
     case songs
 }
+// 0 都未选中 ，1 选择部分 2 全部选中
+typealias AllSelectStatus = ((_ status: Int) -> ())
 class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
-    var songListType : SongListType = .track
     
+    var songListType : SongListType = .track
+    var selectStatus: AllSelectStatus?
     var trackList: [EquipmentModel] = [] // 预制列表 数组
     var songsArr: [ConetentSingModel] = []
     var dataArr: [BaseListItem] = [] {
@@ -38,6 +42,19 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             self.tableView.reloadData()
         }
     }
+    var isEdit: Bool = false {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    var isAllSelect: Bool = false {
+        didSet {
+            self.dataArr.forEach { (item) in
+                item.isSelect = isAllSelect
+            }
+            self.tableView.reloadData()
+        }
+    }
     var trackListId: Int! // 预制列表id
     var viewModel = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
@@ -49,7 +66,9 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             self.tableView.estimatedRowHeight = 60
             self.tableView.delegate           = self
             self.tableView.dataSource         = self
-  
+            tableView.separatorStyle       = .none
+            tableView.keyboardDismissMode  = .onDrag
+            tableView.showsVerticalScrollIndicator = false
         }
     }
     override init() {
@@ -117,10 +136,12 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BaseListCell", for: indexPath) as! BaseListCell
         cell.lbLineNumber.set_text = (indexPath.row + 1).toString
+        cell.isEdit = self.isEdit
         let model = dataArr[indexPath.row]
         cell.modelData = model
         cell.indexPathRow = indexPath.row
-    
+        
+       
         cell.delegate = self
         switch songListType {
         case .track,.songs:
@@ -133,7 +154,8 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let trackId = dataArr[indexPath.row].trackId else {
+        let model = dataArr[indexPath.row]
+        guard let trackId = model.trackId else {
             XBHud.showMsg("歌曲ID有误")
             return
         }
@@ -141,11 +163,39 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         case .track:
             self.requestSingDetail(trackId: trackId)
         case .like:
-            self.requestOnlineSing(trackId: trackId.toString)
+            if self.isEdit {
+                model.isSelect = !model.isSelect
+                mapAllSelect()
+                self.tableView.reloadData()
+            } else {
+                self.requestOnlineSing(trackId: trackId.toString)
+            }
+            
         default:
             break
         }
         
+    }
+    func mapAllSelect()  {
+        let arr = self.dataArr.filter { (item) -> Bool in
+            return item.isSelect
+        }
+        if arr.count == 0 {
+            print("全部未选择")
+            if let selectStatus = self.selectStatus {
+                selectStatus(0)
+            }
+        } else if arr.count == self.dataArr.count {
+            print("全部选择")
+            if let selectStatus = self.selectStatus {
+                selectStatus(2)
+            }
+        } else {
+            print("部分选择")
+            if let selectStatus = self.selectStatus {
+                selectStatus(1)
+            }
+        }
     }
 }
 extension BaseTableViewDelegate {
@@ -155,7 +205,7 @@ extension BaseTableViewDelegate {
         let totalStr = model.total?.toString ?? ""
         view.lbTopTotal.set_text =  "共" + totalStr + "首"
         view.imgTop.set_Img_Url(model.imgLarge)
-//        view.imgBackground.set_Img_Url(model.imgLarge)
+        view.imgBackground.set_Img_Url(model.imgLarge)
     }
     //MARK: 获取歌曲详情
     func requestSingDetail(trackId: Int)   {
@@ -330,13 +380,13 @@ extension BaseTableViewDelegate: BaseListCellDelegate {
         v.viewSing.addAction { [weak self] in
             guard let `self` = self else { return }
             v.hide()
-            self.clickOneAction(trackId: trackId)
+            self.clickOneAction(trackId: trackId, duration: duration, title: title, indexPathRow: indexPathRow)
             
         }
         v.viewAll.addAction { [weak self] in
             guard let `self` = self else { return }
             v.hide()
-            self.clickTwoAction(trackId: trackId, duration: duration, title: title, indexPathRow: indexPathRow)
+            self.clickTwoAction(trackId: trackId,indexPathRow: indexPathRow)
             
         }
         v.viewThree.addAction { [weak self] in
@@ -347,20 +397,21 @@ extension BaseTableViewDelegate: BaseListCellDelegate {
         }
         v.show()
     }
-    func clickOneAction(trackId: Int)  {
+    func clickOneAction(trackId: Int,duration: Int?, title: String?,indexPathRow: Int)  {
         switch songListType {
         case .track:
-            self.requestDeleteSingWithList(trackId: trackId.toString)
+            self.requestLikeSing(trackId: trackId, duration: duration ?? 0, title: title ?? "")
+            
         case .songs:
             print("试听")
         default:
             break
         }
     }
-    func clickTwoAction(trackId: Int,duration: Int?, title: String?,indexPathRow: Int)  {
+    func clickTwoAction(trackId: Int,indexPathRow: Int)  {
         switch songListType {
         case .track:
-             self.requestLikeSing(trackId: trackId, duration: duration ?? 0, title: title ?? "")
+            self.requestDeleteSingWithList(trackId: trackId.toString)
         case .songs:
             
             self.clickSongsToTrackList(isAll: false, songModel: self.songsArr[indexPathRow])

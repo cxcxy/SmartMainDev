@@ -37,6 +37,8 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
             textField.isSecureTextEntry = isPass
         }
     }
+    @IBInspectable open var maxInput: Int = 1000
+    
     @IBInspectable open var isBoard: Bool = true {
         didSet {
             if isBoard {
@@ -57,8 +59,30 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
         input.map{ $0.count == 0 }
             .drive(btnClear.rx.isHidden)
             .disposed(by: disposeBag)
+        
+        Noti(.tf_valuechanged, object: self.textField).takeUntil(self.rx.deallocated).subscribe(onNext: { [weak self](notification) in
+            guard let `self` = self else { return }
+            self.greetingTextFieldChanged(sender: notification as NSNotification)
+        }).disposed(by: rx_disposeBag)
+        
+//        NotificationCenter.default.addObserver(self, selector:
+//            #selector(self.greetingTextFieldChanged), name:
+//            NSNotification.Name(rawValue:
+//                "UITextFieldTextDidChangeNotification"),
+//                                                      object: self.textField)
+//
     }
-    
+    @objc func greetingTextFieldChanged(sender:NSNotification) {
+        
+        let textField: UITextField = sender.object as! UITextField
+        guard let _: UITextRange = textField.markedTextRange else{
+            if (textField.text! as NSString).length > maxInput{
+                textField.text = (textField.text! as NSString).substring(to: maxInput)
+            }
+            return
+        }
+        
+    }
     @IBAction func clickClearAction(_ sender: Any) {
         textField.text = ""
     }

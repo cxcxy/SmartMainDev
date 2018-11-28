@@ -12,11 +12,12 @@ class EquipmentSettingVC: XBBaseTableViewController {
     var sourceArr : [[XBStyleCellModel]] = []
     var equimentModel: EquipmentInfoModel?
     let cell_photo = XBStyleCellModel.init(title: "头像", cellType: 1, isHidden: false)
-    let cell_name = XBStyleCellModel.init(title: "名称",isEdit: true, cellType: 2, isHidden: false)
+    let cell_name = XBStyleCellModel.init(title: "名字",isEdit: true, cellType: 2, isHidden: false)
     let cell_device = XBStyleCellModel.init(title: "设备号", cellType: 3, isHidden: true)
     let cell_memory = XBStyleCellModel.init(title: "存储空间", cellType: 4, isHidden: true)
     let cell_version = XBStyleCellModel.init(title: "固件版本", cellType: 5, isHidden: true)
     let cell_net = XBStyleCellModel.init(title: "所在网络", cellType: 6, isHidden: true)
+    let cell_dian = XBStyleCellModel.init(title: "电量", cellType: 6, isHidden: true)
     
     var viewModel = LoginViewModel()
     var babyname:String = ""
@@ -36,10 +37,10 @@ class EquipmentSettingVC: XBBaseTableViewController {
         tableView.cellId_register("EquipmentListCell")
         tableView.cellId_register("EquipmentSetHeaderCell")
         request()
-        let setion_one = [cell_photo,cell_name]
+
         let setion_two = [cell_device,cell_memory,cell_version]
-        let setion_four = [cell_net]
-        sourceArr = [setion_one,setion_two,setion_four]
+        let setion_four = [cell_net,cell_dian]
+        sourceArr = [setion_two,setion_four]
         scoketModel.getDeviceVersion.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("firmwareVersion ===：", $0.element ?? "")
@@ -53,6 +54,7 @@ class EquipmentSettingVC: XBBaseTableViewController {
             if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
                 self.endRefresh()
                 self.equimentModel = model
+                self.configElectricity(equimentModel: model)
                 self.cell_net.content = model.net ?? ""
                 self.cell_version.content = model.firmwareVersion ?? ""
                 let cardAvailable = model.cardAvailable?.toString ?? ""
@@ -75,6 +77,21 @@ class EquipmentSettingVC: XBBaseTableViewController {
                
             }
         })
+    }
+    func configElectricity(equimentModel: EquipmentInfoModel)  {
+        if equimentModel.online == 1 {
+            if equimentModel.electricity == 101 { // 当前正在充电
+//                cell.lbElectricity.set_text = "正在充电"
+                cell_dian.content = "正在充电"
+            }else {
+                let electricity = equimentModel.electricity?.toString  ?? ""
+                cell_dian.content = electricity + "%"
+            }
+        }else {
+            cell_dian.content = "当前设备不在线"
+        }
+//        self.tableView.reloadData()
+
     }
     /**
      *   currentDeviceVersion 当前机器发送过来的 版本号
@@ -135,9 +152,39 @@ class EquipmentSettingVC: XBBaseTableViewController {
     }()
 }
 extension EquipmentSettingVC: XBImagePickerToolDelegate {
+    func clickUpdateName()  {
+        print("修改名字")
+        let v = ShowUpdateNameView.loadFromNib()
+        v.textView.text = XBUserManager.dv_babyname
+        v.btnLogin.addAction {[weak self] in
+            guard let `self` = self else { return }
+            if v.textView.text! == "" {
+                XBHud.showMsg("请输入昵称")
+            }else {
+                v.hide()
+                self.requestUpdateBabyInfo(babyName: v.textView.text ?? "", headImgUrl: XBUserManager.dv_headimgurl)
+            }
+            
+        }
+        v.show()
+    }
     //MARK: 点击选择照片
     func choosePhotoAction() {
-        self.imagePicker.show(self)
+        let v = SwitchPlayView.loadFromNib()
+        v.switchPlayType = .photo
+        v.viewSing.addAction { [weak self] in
+            guard let `self` = self else { return }
+            v.hide()
+            self.imagePicker.showCamera(self)
+            
+        }
+        v.viewAll.addAction { [weak self] in
+            guard let `self` = self else { return }
+            v.hide()
+            self.imagePicker.showPhotoLibrary(self)
+        }
+
+        v.show()
     }
     
     //MARK: 代理方法， 拿到选择的照片
@@ -176,6 +223,9 @@ extension EquipmentSettingVC {
         return sourceArr.count > 0 ? sourceArr.count + 1 : 0
     }
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == sourceArr.count {
+            return XBMin
+        }
         return 10
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -188,30 +238,29 @@ extension EquipmentSettingVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentSetHeaderCell", for: indexPath) as! EquipmentSetHeaderCell
-            cell.lbTitle.set_text = XBUserManager.dv_babyname
-            cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
-            if equimentModel?.online == 1 {
-                if equimentModel?.electricity == 101 { // 当前正在充电
-                    cell.lbElectricity.set_text = "正在充电"
-                }else {
-                    let electricity = equimentModel?.electricity?.toString  ?? ""
-                    cell.lbElectricity.set_text = "设备剩余电量：" + electricity
-                }
-            }else {
-                cell.lbElectricity.set_text = "当前设备不在线"
+            cell.viewPhoto.addTapGesture { [weak self](sender) in
+                guard let `self` = self else { return }
+                self.choosePhotoAction()
             }
-
+            cell.viewName.addTapGesture { [weak self](sender) in
+                guard let `self` = self else { return }
+                self.clickUpdateName()
+            }
+            cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+            cell.lbTitle.set_text = XBUserManager.dv_babyname
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentListCell", for: indexPath) as! EquipmentListCell
         let model = sourceArr[indexPath.section - 1]
         let item = model[indexPath.row]
         cell.lbTitle.text = item.title
-        cell.tfDes.isUserInteractionEnabled = item.isEdit
+//        cell.tfDes.isUserInteractionEnabled = item.isEdit
+//        cell.imgRight.isHidden = !item.isEdit
         cell.tfDes.text = item.content
         cell.viewBtn.isHidden = item.isHidden
         let btnText = item.cellType == 5 ? "升级" : "修改"
         cell.btnItme.set_Title(btnText)
+        cell.lbLine.isHidden = item.cellType == 5
         cell.btnItme.addAction { [weak self]in
             guard let `self` = self else { return }
             if item.cellType == 1 {

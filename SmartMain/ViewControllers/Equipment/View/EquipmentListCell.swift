@@ -15,6 +15,11 @@ class EquipmentListCell: BaseTableViewCell {
     @IBOutlet weak var tfDes: UITextField!
 //    @IBOutlet weak var lbNumber: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
+    
+     @IBOutlet weak var lbLine: UILabel!
+    
+    @IBOutlet weak var imgRight: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

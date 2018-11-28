@@ -206,16 +206,16 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxA-5C-VjZ">
-                    <rect key="frame" x="0.0" y="85" width="375" height="582"/>
+                    <rect key="frame" x="0.0" y="85" width="375" height="517"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="0LR-kA-98W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8MO-v8-drV"/>
-                <constraint firstItem="CxA-5C-VjZ" firstAttribute="bottom" secondItem="ZoX-MU-wDC" secondAttribute="bottom" id="Igc-F1-01i"/>
                 <constraint firstItem="CxA-5C-VjZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Oso-ts-GoQ"/>
                 <constraint firstAttribute="trailing" secondItem="CxA-5C-VjZ" secondAttribute="trailing" id="RXr-r7-odR"/>
+                <constraint firstAttribute="bottom" secondItem="CxA-5C-VjZ" secondAttribute="bottom" constant="65" id="W35-zo-NGI"/>
                 <constraint firstAttribute="trailing" secondItem="0LR-kA-98W" secondAttribute="trailing" id="gGJ-8l-1Ec"/>
                 <constraint firstItem="0LR-kA-98W" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nKs-54-MfW"/>
                 <constraint firstItem="CxA-5C-VjZ" firstAttribute="top" secondItem="0LR-kA-98W" secondAttribute="bottom" id="vJS-Cc-RnN"/>

@@ -10,8 +10,11 @@ import UIKit
 protocol BaseListCellDelegate: class {
     func clickItemMoreAction(trackId: Int,duration: Int?, title: String?,indexPathRow: Int)
 }
-class BaseListCell: UITableViewCell {
+class BaseListCell: BaseTableViewCell {
     var indexPathRow: Int!
+    
+    @IBOutlet weak var btnSelect: UIButton!
+    
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbLineNumber: UILabel!
@@ -26,12 +29,25 @@ class BaseListCell: UITableViewCell {
             lbTitle.set_text = model.title
             lbTime.set_text =  XBUtil.getDetailTimeWithTimestamp(timeStamp: model.time)
             iconPlaying.isHidden = !model.isPlay
+//             btnSelect.isSelect = item.
+            if isEdit {
+                btnSelect.isSelected = model.isSelect
+            }
+            
+        }
+    }
+    var isEdit: Bool = false {
+        didSet {
+//            self.tableView.reloadData()
+            lbLineNumber.isHidden = isEdit
+            btnSelect.isHidden = !isEdit
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         btnMore.isHidden = true
+        btnSelect.isHidden = true
     }
     @IBAction func clickMoreAction(_ sender: Any) {
         if let del = self.delegate, let trackId =  modelData?.trackId{
