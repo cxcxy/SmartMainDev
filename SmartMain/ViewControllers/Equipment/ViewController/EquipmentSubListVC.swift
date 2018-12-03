@@ -11,8 +11,8 @@ enum  EquipmentSubListType{
     case none
     case trackScollList // 从预制列表左右滚动视图进来
 }
-class EquipmentSubListVC: XBBaseTableViewController {
-    
+class EquipmentSubListVC: XBBaseViewController {
+    @IBOutlet weak var tableView: UITableView!
     var trackListId: Int! // 列表id
     var trackList: [EquipmentModel] = []
     var dataArr: [EquipmentSingModel] = [] {
@@ -34,16 +34,24 @@ class EquipmentSubListVC: XBBaseTableViewController {
     var scoketModel = ScoketMQTTManager.share
     var listType : EquipmentSubListType = .none
     var dataDelegate: BaseTableViewDelegate = BaseTableViewDelegate()
+    
+    @IBOutlet weak var viewTopTotal: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     override func setUI() {
         super.setUI()
-        self.registerCells(register_cells: ["ContentSingCell",
-                                            "HistorySongCell",
-                                            "HistorySongContentCell"])
-        self.tableView.mj_header = self.mj_header
+//        self.registerCells(register_cells: ["ContentSingCell",
+//                                            "HistorySongCell",
+//                                            "HistorySongContentCell"])
+ 
+        if listType == .trackScollList {
+            self.viewTopTotal.isHidden = true
+        }else {
+            self.viewTopTotal.isHidden = false
+        }
         
         request()
         configCurrentSongsId()
@@ -59,6 +67,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
 //        tableView.dataSource = dataDelegate
         dataDelegate.trackListId = self.trackListId
         dataDelegate.tableView = self.tableView
+         self.dataDelegate.tableView.mj_header = self.mj_header
     }
     func configCurrentSongsId()  {
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
@@ -82,14 +91,14 @@ class EquipmentSubListVC: XBBaseTableViewController {
             if let arr = Mapper<EquipmentSingModel>().mapArray(JSONObject: JSON.init(parseJSON: result as! String)["tracks"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.dataArr.removeAll()
-                    self.tableView.mj_footer = self.mj_footer
+                    self.dataDelegate.tableView.mj_footer = self.mj_footer
                 }
                 self.dataArr += self.flatMapLikeList(arr: arr)
                 self.total = JSON.init(parseJSON: result as! String)["totalCount"].int
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                 self.scoketModel.sendGetTrack()
-                self.tableView.reloadData()
-                self.starAnimationWithTableView(tableView: self.tableView)
+                self.dataDelegate.tableView.reloadData()
+//                self.starAnimationWithTableView(tableView: self.tableView)
             }
         })
     }
@@ -108,7 +117,7 @@ class EquipmentSubListVC: XBBaseTableViewController {
 //                }
 //            }
         }
-        self.tableView.reloadData()
+        self.dataDelegate.tableView.reloadData()
     }
     func flatMapLikeList(arr: [EquipmentSingModel]) -> [EquipmentSingModel] {
         for item in arr {
@@ -134,6 +143,43 @@ class EquipmentSubListVC: XBBaseTableViewController {
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    /// 点击播放全部
+    @IBAction func clickAllAction(_ sender: Any) {
+        let trackId = dataArr[0].id
+        var params_task = [String: Any]()
+        params_task["openId"] = XBUserManager.userName
+        params_task["deviceId"] = XBUserManager.device_Id
+        params_task["trackListId"] = trackListId
+        params_task["trackId"] = trackId
+        Net.requestWithTarget(.trackPlaySing(req: params_task), successClosure: { (result, code, message) in
+            print(result)
+            if let str = result as? Int {
+                if str == 0 {
+                    XBHud.showMsg("播放成功")
+                }
+                if str == 2 {
+                    XBHud.showMsg("该openId没有和该deviceId绑定")
+                }
+                if str == 1 {
+                    XBHud.showMsg("设备不在线")
+                }
+            }
+        })
+        
+    }
+    
+    @IBAction func clickResetListAction(_ sender: Any) {
+        let v = SmartHindView.loadFromNib()
+        v.hindType = .resetDefault
+        v.block = { [weak self](isSure) in
+            guard let `self` = self else { return }
+            if isSure {
+                self.sendTopicSetDefault()
+            }
+        }
+        v.show()
+        
     }
     //MARK: 发送MQTT -- 恢复默认列表， 获取到 改 列表的原始列表 ids
     func sendTopicSetDefault()  {

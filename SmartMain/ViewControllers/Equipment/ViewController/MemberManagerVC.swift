@@ -25,6 +25,9 @@ class MemberManagerVC: XBBaseViewController {
     @IBOutlet weak var btnBottom: UIButton!
     @IBOutlet weak var btnBootomLayout: NSLayoutConstraint!
     
+    @IBOutlet weak var viewBottomContainer: UIView!
+    
+    
     var currentIsAdmin: Bool = false {
         didSet {
             self.configBottomBtnTitle(isAdmin: currentIsAdmin)
@@ -34,57 +37,78 @@ class MemberManagerVC: XBBaseViewController {
     var editStatus: Bool = false {
         didSet {
             self.editStatusChangeAction(status: editStatus)
+            
         }
     }
     var groupId: String?
+      @IBOutlet weak var lbMember: UILabel!
     var viewModel = LoginViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func setUI() {
         super.setUI()
-        title = "设备成员"
+//        title = "设备成员"
+        
         configCollectionView()
         request()
-        makeCustomerNavigationItem("编辑", left: false) {
-            self.editStatus = true
-        }
+//        makeCustomerNavigationItem("编辑", left: false) {
+//            self.editStatus = true
+//        }
+
         self.btnBottom.radius_ll()
         self.configBottomBtnTitle(isAdmin: currentIsAdmin)
     }
     func configBottomBtnTitle(isAdmin: Bool)  {
-        self.btnBottom.set_Title(isAdmin ? "解散该群组" : "退出该群组")
+        if isAdmin {
+            self.navigationItem.titleView = UIImageView(image: UIImage(named: "icon_devicemanager"))
+            self.viewBottomContainer.isHidden = false
+        }else {
+            self.title = "设备成员"
+            self.viewBottomContainer.isHidden = true
+        }
+//        self.btnBottom.set_Title(isAdmin ? "解散该群组" : "退出该群组")
+        makeCustomerNavigationItem("退出", left: false) { [weak self] in
+            guard let `self` = self else { return }
+            //            self.editStatus = false
+            guard let groupId = self.groupId else {
+                        return
+            }
+            self.managerGroup(easeadmin: self.currentIsAdmin ? "1" : "0", username: XBUserManager.userName, groupId: groupId)
+        }
     }
     func editStatusChangeAction(status: Bool)  {
-        if status {
-            makeCustomerNavigationItem("取消", left: false) {
-                self.editStatus = false
-            }
-            
-        }else {
-            makeCustomerNavigationItem("编辑", left: false) {
-                self.editStatus = true
-            }
-        }
+//        if status {
+//
+//        }else {
+//            makeCustomerNavigationItem("", left: false) {
+//            }
+//        }
         
-        self.btnBootomAnimation(status: status)
+        self.collectionView.reloadData()
     }
+
     func btnBootomAnimation(status: Bool) {
-        btnBootomLayout.constant = status ? 15 : -80
-        self.view.setNeedsLayout()
-        UIView.animate(withDuration: 0.3, animations: {[weak self] in
-            if let strongSelf = self {
-                strongSelf.view.layoutIfNeeded()
-                strongSelf.collectionView.reloadData()
-            }
-        })
+//        btnBootomLayout.constant = status ? 15 : -80
+//        self.view.setNeedsLayout()
+//        UIView.animate(withDuration: 0.3, animations: {[weak self] in
+//            if let strongSelf = self {
+//                strongSelf.view.layoutIfNeeded()
+//                strongSelf.collectionView.reloadData()
+//            }
+//        })
     }
     
     @IBAction func clickBottomAction(_ sender: Any) {
-        guard let groupId = self.groupId else {
-            return
-        }
-        self.managerGroup(easeadmin: self.currentIsAdmin ? "1" : "0", username: XBUserManager.userName, groupId: groupId)
+        
+        self.editStatus = true
+        
+        self.collectionView.reloadData()
+        
+//        guard let groupId = self.groupId else {
+//            return
+//        }
+//        self.managerGroup(easeadmin: self.currentIsAdmin ? "1" : "0", username: XBUserManager.userName, groupId: groupId)
     }
     override func request() {
         super.request()
@@ -98,6 +122,7 @@ class MemberManagerVC: XBBaseViewController {
                     self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
                     self.collectionView.reloadData()
                     self.groupId = arr.get(at: 0)?.groupid
+                    self.lbMember.set_text = "共" + arr.count.toString + "个成员"
             }
         })
     }
@@ -139,7 +164,7 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
             if currentIsAdmin {
                 cell.btnDel.isHidden =  !self.editStatus
             }else {
-                 cell.btnDel.isHidden = true
+                cell.btnDel.isHidden = true
             }
             
         }
@@ -153,9 +178,12 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 20, left: 20, bottom: 20, right: 20)
+    }
     //item 的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:itemWidth ,height:itemWidth)
+        return CGSize(width:itemWidth ,height:itemWidth * 190 / 160)
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -180,6 +208,11 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
         } else if currentIsAdmin && username != XBUserManager.userName {// 当前用户为管理员 切当前点击的不是自己
             out.lbTitleDes.set_text = "是否将用户移出群组？"
             actionType = 0
+            out.cancelBlock = { [weak self] in
+                guard let `self` = self else { return }
+                self.editStatus = false
+//                self.clickOutAction(easeadmin: easeadmin, username: username, groupId: groupId, actionType: actionType)
+            }
             
         } else { // 当前是家庭成员
             out.lbTitleDes.set_text = "是否要退出群组？"
@@ -189,6 +222,7 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
             guard let `self` = self else { return }
             self.clickOutAction(easeadmin: easeadmin, username: username, groupId: groupId, actionType: actionType)
         }
+        
          out.show()
     }
     func clickOutAction(easeadmin: String,username: String,groupId: String, actionType: Int)  {

@@ -27,7 +27,7 @@ class TrackListScrollView: ETPopupView {
     } // 预制列表数据model
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
-    
+    var trackListId: Int? // 列表id
     @IBOutlet weak var lbTrackName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,6 +57,44 @@ class TrackListScrollView: ETPopupView {
         self.viewContainer.addSubview(v.magicView)
 
         v.magicView.reloadData()
+    }
+    @IBAction func clickResetListAction(_ sender: Any) {
+//        let v = SmartHindView.loadFromNib()
+//        v.hindType = .resetDefault
+//        v.block = { [weak self](isSure) in
+//            guard let `self` = self else { return }
+//            if isSure {
+//                self.sendTopicSetDefault()
+//            }
+//        }
+//        v.show()
+        DeviceManager.isOnline { (isOnline, _)  in
+            if isOnline {
+                if let trackListId = self.trackListId {
+                    ScoketMQTTManager.share.sendSetDefault(trackListId: trackListId)
+                }
+                
+            } else {
+                XBHud.showMsg("当前设备不在线")
+            }
+        }
+        
+    }
+    //MARK: 发送MQTT -- 恢复默认列表， 获取到 改 列表的原始列表 ids
+    func sendTopicSetDefault()  {
+        
+        DeviceManager.isOnline { (isOnline, _)  in
+            if isOnline {
+                if let trackListId = self.trackListId {
+                    ScoketMQTTManager.share.sendSetDefault(trackListId: trackListId)
+                }
+                
+            } else {
+                XBHud.showMsg("当前设备不在线")
+            }
+        }
+        //        DeviceManager.isOnline(isCheckDevices: <#T##Bool#>, closure: <#T##(Bool) -> ()#>)
+        
     }
 }
 //MARK:VTMagicViewDataSource
@@ -111,6 +149,7 @@ extension TrackListScrollView: VTMagicViewDelegate{
         let index = Int(pageIndex)
         pageControl.currentPage = index
         self.lbTrackName.set_text = "播单-" + (trackList[index].name ?? "")
+        self.trackListId = trackList[index].id
     }
     
     func magicView(_ magicView: VTMagicView, didSelectItemAt itemIndex: UInt){

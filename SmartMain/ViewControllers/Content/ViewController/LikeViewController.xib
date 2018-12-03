@@ -175,13 +175,23 @@
                                         <constraint firstItem="7Wl-my-xz6" firstAttribute="leading" secondItem="Kk3-nI-gqW" secondAttribute="leading" id="xn1-mX-Mzk"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BU5-1C-9Dh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                    <connections>
+                                        <action selector="clickRangeDeleteAction:" destination="-1" eventType="touchUpInside" id="07L-xc-STw"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="Kk3-nI-gqW" secondAttribute="bottom" id="2ax-em-h78"/>
                                 <constraint firstItem="Kk3-nI-gqW" firstAttribute="top" secondItem="kdz-1d-CaJ" secondAttribute="top" id="2qd-Bd-R9T"/>
+                                <constraint firstAttribute="bottom" secondItem="BU5-1C-9Dh" secondAttribute="bottom" id="GfX-Xv-jxu"/>
+                                <constraint firstItem="BU5-1C-9Dh" firstAttribute="leading" secondItem="kdz-1d-CaJ" secondAttribute="leading" id="Rah-2L-AQr"/>
                                 <constraint firstAttribute="trailing" secondItem="Kk3-nI-gqW" secondAttribute="trailing" id="Uk5-jo-jzY"/>
                                 <constraint firstItem="Kk3-nI-gqW" firstAttribute="leading" secondItem="kdz-1d-CaJ" secondAttribute="leading" id="au2-ka-eJk"/>
+                                <constraint firstAttribute="trailing" secondItem="BU5-1C-9Dh" secondAttribute="trailing" id="lJo-3C-oyF"/>
+                                <constraint firstItem="BU5-1C-9Dh" firstAttribute="top" secondItem="kdz-1d-CaJ" secondAttribute="top" id="ydX-kn-Jqc"/>
                             </constraints>
                         </view>
                     </subviews>

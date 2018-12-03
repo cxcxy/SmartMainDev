@@ -13,12 +13,17 @@ class EquipmentListViewController: XBBaseViewController {
     let itemWidth:CGFloat = ( MGScreenWidth - 20 - 20 - 20 ) / 2 // item 宽度
     @IBOutlet weak var collectionView: UICollectionView!
     var dataArr : [XBDeviceBabyModel] = []
+    
+    @IBOutlet weak var lbMember: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func setUI() {
         super.setUI()
-        title = "切换设备"
+        title = "选择设备"
         request()
         configCollectionView()
     }
@@ -35,6 +40,7 @@ class EquipmentListViewController: XBBaseViewController {
                         }
                     }
                     self.dataArr = arr
+                    self.lbMember.set_text = "共" + arr.count.toString + "台设备"
                     self.collectionView.reloadData()
                 }
             }
@@ -76,9 +82,12 @@ extension EquipmentListViewController:UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 20, left: 0, bottom: 20, right: 0)
+    }
     //item 的尺寸
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:itemWidth,height:itemWidth)
+         return CGSize(width:itemWidth ,height:itemWidth * 190 / 160)
     }
     //item 对应的点击事件
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

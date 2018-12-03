@@ -24,6 +24,8 @@ class ContentVC: XBBaseViewController {
         tableView.cellId_register("ContentShowThreeCell")
         tableView.cellId_register("ContentScrollCell")
         tableView.cellId_register("ContentSingSongCell")
+        tableView.cellId_register("Cell_801_Product")
+        
         self.configTableView(tableView)
         tableView.mj_header = self.mj_header
         
@@ -111,6 +113,13 @@ extension ContentVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentHeaderCell", for: indexPath) as! ContentHeaderCell
             cell.dataArr = self.bannersArr
             return cell
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell_801_Product", for: indexPath) as! Cell_801_Product
+//            let model1 = ConfigNetModel()
+//            model1.title = "1"
+//            model1.des = "2"
+//            cell.dataSourceArray = [model1,model1,model1]
+//            return cell
+            
         }
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentShowCell", for: indexPath) as! ContentShowCell

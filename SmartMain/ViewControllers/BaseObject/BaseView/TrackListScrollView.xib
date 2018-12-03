@@ -34,11 +34,21 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48a-z4-fre">
+                                    <rect key="frame" x="0.0" y="0.0" width="95" height="41"/>
+                                    <connections>
+                                        <action selector="clickResetListAction:" destination="ZTG-ky-oW0" eventType="touchUpInside" id="YNK-hS-BNb"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.49411764705882355" green="0.80000000000000004" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="48a-z4-fre" firstAttribute="top" secondItem="j1X-RD-4bi" secondAttribute="top" id="68a-5y-BFG"/>
                                 <constraint firstItem="nby-8Y-e4o" firstAttribute="centerY" secondItem="j1X-RD-4bi" secondAttribute="centerY" id="GSY-jk-clR"/>
                                 <constraint firstItem="nby-8Y-e4o" firstAttribute="centerX" secondItem="j1X-RD-4bi" secondAttribute="centerX" id="TR7-IE-UuB"/>
+                                <constraint firstAttribute="bottom" secondItem="48a-z4-fre" secondAttribute="bottom" id="W2j-lz-4wY"/>
+                                <constraint firstItem="48a-z4-fre" firstAttribute="leading" secondItem="j1X-RD-4bi" secondAttribute="leading" id="fqL-vg-7mC"/>
+                                <constraint firstAttribute="trailing" secondItem="48a-z4-fre" secondAttribute="trailing" id="v9Y-dr-t2K"/>
                                 <constraint firstAttribute="width" constant="95" id="vHC-cS-AX7"/>
                             </constraints>
                         </view>

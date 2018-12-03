@@ -20,14 +20,7 @@ class LikeViewController: XBBaseViewController {
     @IBOutlet weak var bottomDeleteView: UIView!
     var dataArr: [ConetentLikeModel] = [] {
         didSet {
-            self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
-                let listItem = BaseListItem()
-                listItem.title = item.title ?? ""
-                listItem.time =  item.duration
-                listItem.trackId = item.trackId ?? 0
-                listItem.isLike = true
-                return listItem
-            })
+            self.configDelegateArr()
         }
         
     }
@@ -67,6 +60,10 @@ class LikeViewController: XBBaseViewController {
 //    }
     
     @IBAction func clickEditAction(_ sender: Any) {
+
+        self.reloadEditStatus()
+    }
+    func reloadEditStatus()  {
         UIView.animate(withDuration: 0.3) {
             self.bottomDeleteView.isHidden = !self.isHiddenEditDelete
         }
@@ -78,9 +75,85 @@ class LikeViewController: XBBaseViewController {
         self.lbTotal.isHidden = self.isHiddenEditDelete
         dataDelegate.isEdit = self.isHiddenEditDelete
         self.isHiddenEditDelete = !self.isHiddenEditDelete
+    }
+    /// 配置tableView里面的数据源
+    func configDelegateArr()  {
+        self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
+            let listItem = BaseListItem()
+            listItem.title = item.title ?? ""
+            listItem.time =  item.duration
+            listItem.trackId = item.trackId ?? 0
+            listItem.isLike = true
+            return listItem
+        })
+        self.lbTotal.set_text = "共" + self.dataDelegate.dataArr.count.toString + "首"
+    }
+    /// 本地删除数据源
+    func deleteArr(selectIds: [Int])  {
+        for item in self.dataArr.enumerated() {
+            for id in selectIds {
+                if item.element.trackId == id {
+                    self.dataArr.remove(at: item.offset)
+                }
+            }
+        }
+        self.configDelegateArr()
+        self.reloadEditStatus()
         
+        self.tableView.reloadData()
+        self.tableView.mj_footer.endRefreshingWithNoMoreData()
+//        self.refreshStatus(status: .NoMoreData)
     }
     
+    func requestDeleteRangeSing(phone: String, selectIds: [Int])  {
+
+        Net.requestWithTarget(.deleteLikeRangeSing(openId: phone, trackIds: selectIds), successClosure: { (result, code, message) in
+            print(result)
+            if let result = result as? String {
+                guard let status = result.json_Str()["status"].int else {
+                    return
+                }
+                if status == 200 {
+                    self.deleteArr(selectIds: selectIds)
+                }
+                if status == 404 {
+                    XBHud.showWarnMsg("此用户没有歌单")
+                }
+            }
+            
+            self.endRefresh()
+            
+        }){ (errorMsg) in
+            
+        }
+    }
+    @IBAction func clickRangeDeleteAction(_ sender: Any) {
+        guard let phone = user_defaults.get(for: .userName) else {
+            XBHud.showMsg("请登录")
+            return
+        }
+        let selectIds =  self.dataDelegate.dataArr.compactMap { (item) -> Int? in
+            if item.isSelect {
+                return item.trackId ?? 0
+            }else {
+                return nil
+            }
+        }
+        guard selectIds.count > 0 else {
+            XBHud.showMsg("请选择歌曲")
+            return
+        }
+        let v = SmartHindView.loadFromNib()
+        v.hindType = .delete
+        v.block = { [weak self](isSure) in
+            guard let `self` = self else { return }
+            if isSure {
+                self.requestDeleteRangeSing(phone: phone, selectIds: selectIds)
+            }
+        }
+        v.show()
+     
+    }
     @IBAction func clickEditAllSelectAction(_ sender: UIButton) {
         dataDelegate.isAllSelect = !btnAllSelect.isSelected
         btnAllSelect.isSelected = !btnAllSelect.isSelected
@@ -103,9 +176,9 @@ class LikeViewController: XBBaseViewController {
                 }
                
                 self.dataArr += arr
-                self.lbTotal.set_text = "共" + arr.count.toString + "首"
+                
                 userLikeList = self.dataArr // 刷新我的最爱数据
-                self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.refreshStatus(status: .NoMoreData)
                 self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)

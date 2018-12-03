@@ -35,7 +35,7 @@ class PlayVolumeView: ETPopupView{
         ETPopupWindow.sharedWindow().touchWildToHide = true
         UIApplication.shared.keyWindow?.endEditing(true)
         self.layoutIfNeeded()
-        sliderVolume.maximumValue = 100
+        sliderVolume.maximumValue = 40
         self.configScoketModel()
         
     }

@@ -319,7 +319,7 @@ extension DrawerViewController {
             if let Lamp = $0.element {
 //                self.imgLight.set_img = light == 1 ? "icon_groupNight_on" : "icon_lamp"
 //                self.lbLight.set_text = light == 1 ? "关呼吸灯" : "开呼吸灯"
-                self.reloadDeviceLamp(isLamp: Lamp == 0)
+                self.reloadDeviceLamp(isLamp: Lamp == 1)
             }
 //            self.btnLight.isSelected = ($0.element ?? 0) == 1 ? true : false
             }.disposed(by: rx_disposeBag)
@@ -329,7 +329,7 @@ extension DrawerViewController {
             if let Lock = $0.element {
 //                self.imgLock.set_img = light == 1 ? "icon_groupLaght_on" : "icon_groupLaght"
 //                self.lbLock.set_text = light == 1 ? "关闭童锁" : "打开童锁"
-                self.reloadDeviceLock(isLock: Lock == 0)
+                self.reloadDeviceLock(isLock: Lock == 1)
             }
 //            self.btnLock.isSelected = ($0.element ?? 0) == 1 ? true : false
         }.disposed(by: rx_disposeBag)

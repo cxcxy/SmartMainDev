@@ -301,6 +301,16 @@
 		04C38A26213E7FF40063A799 /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A1F213E7FF40063A799 /* FSPageViewLayout.swift */; };
 		04C38A27213E7FF40063A799 /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A20213E7FF40063A799 /* FSPageControl.swift */; };
 		04C38A28213E7FF40063A799 /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */; };
+		04C51D4121B4CE340098B511 /* EquipmentSubListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C51D4021B4CE340098B511 /* EquipmentSubListVC.xib */; };
+		04C51D4321B4D32D0098B511 /* SmartHindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C51D4221B4D32D0098B511 /* SmartHindView.swift */; };
+		04C51D4521B4D3340098B511 /* SmartHindView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C51D4421B4D3340098B511 /* SmartHindView.xib */; };
+		04C51D4821B5012C0098B511 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C51D4621B5012C0098B511 /* TestCollectionViewCell.swift */; };
+		04C51D4921B5012C0098B511 /* TestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C51D4721B5012C0098B511 /* TestCollectionViewCell.xib */; };
+		04C51D5021B505B30098B511 /* Cell_801_Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C51D4B21B505B20098B511 /* Cell_801_Product.swift */; };
+		04C51D5121B505B30098B511 /* WOW_SingProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C51D4C21B505B20098B511 /* WOW_SingProductView.swift */; };
+		04C51D5221B505B30098B511 /* PagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C51D4D21B505B20098B511 /* PagingScrollView.swift */; };
+		04C51D5421B505B30098B511 /* WOW_SingProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C51D4F21B505B30098B511 /* WOW_SingProductView.xib */; };
+		04C51D5621B50BAA0098B511 /* Cell_801_Product.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C51D5521B50BAA0098B511 /* Cell_801_Product.xib */; };
 		04CF4929215B1B890052CD67 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4928215B1B890052CD67 /* ChatManager.swift */; };
 		04CF492E215B31E10052CD67 /* GroupAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF492C215B31E10052CD67 /* GroupAddViewController.swift */; };
 		04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF492D215B31E10052CD67 /* GroupAddViewController.xib */; };
@@ -845,6 +855,16 @@
 		04C38A1F213E7FF40063A799 /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		04C38A20213E7FF40063A799 /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
 		04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
+		04C51D4021B4CE340098B511 /* EquipmentSubListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EquipmentSubListVC.xib; sourceTree = "<group>"; };
+		04C51D4221B4D32D0098B511 /* SmartHindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartHindView.swift; sourceTree = "<group>"; };
+		04C51D4421B4D3340098B511 /* SmartHindView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartHindView.xib; sourceTree = "<group>"; };
+		04C51D4621B5012C0098B511 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
+		04C51D4721B5012C0098B511 /* TestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestCollectionViewCell.xib; sourceTree = "<group>"; };
+		04C51D4B21B505B20098B511 /* Cell_801_Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_801_Product.swift; sourceTree = "<group>"; };
+		04C51D4C21B505B20098B511 /* WOW_SingProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOW_SingProductView.swift; sourceTree = "<group>"; };
+		04C51D4D21B505B20098B511 /* PagingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingScrollView.swift; sourceTree = "<group>"; };
+		04C51D4F21B505B30098B511 /* WOW_SingProductView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WOW_SingProductView.xib; sourceTree = "<group>"; };
+		04C51D5521B50BAA0098B511 /* Cell_801_Product.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell_801_Product.xib; sourceTree = "<group>"; };
 		04CF4928215B1B890052CD67 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		04CF492C215B31E10052CD67 /* GroupAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddViewController.swift; sourceTree = "<group>"; };
 		04CF492D215B31E10052CD67 /* GroupAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAddViewController.xib; sourceTree = "<group>"; };
@@ -1816,6 +1836,7 @@
 		04C38818213E0B590063A799 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
+				04C51D4A21B505A20098B511 /* ConfigNetView */,
 				0495F16A21783154002FB1F8 /* UpdateView */,
 				04E537CA216DEF41002DE58C /* XBLoginOutView.swift */,
 				04E537CB216DEF41002DE58C /* XBLoginOutView.xib */,
@@ -1849,6 +1870,8 @@
 				046A38B821A6508F005FFC10 /* NewTrackListView.xib */,
 				04ACD5B821AE3A59001BBE5D /* ShowUpdateNameView.swift */,
 				04ACD5BA21AE3A60001BBE5D /* ShowUpdateNameView.xib */,
+				04C51D4221B4D32D0098B511 /* SmartHindView.swift */,
+				04C51D4421B4D3340098B511 /* SmartHindView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1916,6 +1939,7 @@
 			children = (
 				04C389EA213E231D0063A799 /* EquipmentVC.swift */,
 				0422ECDB2140D08B00A42D7A /* EquipmentSubListVC.swift */,
+				04C51D4021B4CE340098B511 /* EquipmentSubListVC.xib */,
 				2DC95589213EAC18004D6F65 /* EquipmentSettingVC.swift */,
 				2DC9558F213EB210004D6F65 /* EquimentInfoVC.swift */,
 				0413BECD21424BC9006E3A44 /* MemberManagerVC.swift */,
@@ -2050,6 +2074,8 @@
 				04A5E62E216F1C9600CFCE4B /* TrackListHomeCell.xib */,
 				044CED082176C8180068C75A /* ContentSubItem.swift */,
 				044CED092176C8180068C75A /* ContentSubItem.xib */,
+				04C51D4621B5012C0098B511 /* TestCollectionViewCell.swift */,
+				04C51D4721B5012C0098B511 /* TestCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2066,6 +2092,18 @@
 				04C38A21213E7FF40063A799 /* FSPagerCollectionView.swift */,
 			);
 			path = FSPagerView;
+			sourceTree = "<group>";
+		};
+		04C51D4A21B505A20098B511 /* ConfigNetView */ = {
+			isa = PBXGroup;
+			children = (
+				04C51D4B21B505B20098B511 /* Cell_801_Product.swift */,
+				04C51D5521B50BAA0098B511 /* Cell_801_Product.xib */,
+				04C51D4D21B505B20098B511 /* PagingScrollView.swift */,
+				04C51D4C21B505B20098B511 /* WOW_SingProductView.swift */,
+				04C51D4F21B505B30098B511 /* WOW_SingProductView.xib */,
+			);
+			path = ConfigNetView;
 			sourceTree = "<group>";
 		};
 		04F67906215CD08F00CAA0CA /* ViewModel */ = {
@@ -2305,6 +2343,7 @@
 				0402E77E215E27160040919C /* XBLaunchView.xib in Resources */,
 				04C1436C2147A8FD00FC2000 /* ShowChooseView.xib in Resources */,
 				042EEF892150E15F00DBD492 /* EaseUIResource.bundle in Resources */,
+				04C51D5621B50BAA0098B511 /* Cell_801_Product.xib in Resources */,
 				2DF075B021761F2F006F0818 /* ContentScrollItem.xib in Resources */,
 				04C38A0D213E6D850063A799 /* ContentLikeCell.xib in Resources */,
 				2D9195D52153BE2500F4A9A1 /* DrawControlHeader.xib in Resources */,
@@ -2313,6 +2352,7 @@
 				0402E776215E18390040919C /* XBAddContactCell.xib in Resources */,
 				2D312AA5213D560100FCC499 /* LaunchScreen.storyboard in Resources */,
 				0495F17421783154002FB1F8 /* XBUpdateCell.xib in Resources */,
+				04C51D4521B4D3340098B511 /* SmartHindView.xib in Resources */,
 				2DBD88EA215D0B6A00BC543A /* EquipmentListViewController.xib in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
@@ -2324,9 +2364,11 @@
 				2D9195D92153CE6900F4A9A1 /* BottomSongView.xib in Resources */,
 				046A38BD21A673D4005FFC10 /* PlayVolumeView.xib in Resources */,
 				0495F17121783154002FB1F8 /* XBUpdateHead.xib in Resources */,
+				04C51D4921B5012C0098B511 /* TestCollectionViewCell.xib in Resources */,
 				2DCA869D21676468001F9E04 /* ConfigNetCVCell.xib in Resources */,
 				2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */,
 				2DC955B1213FFE17004D6F65 /* MeInfoHaderCell.xib in Resources */,
+				04C51D4121B4CE340098B511 /* EquipmentSubListVC.xib in Resources */,
 				2D9195E22153DBB100F4A9A1 /* ChatCreateView.xib in Resources */,
 				2D0ACC49215A70C40047103C /* HistorySongContentCell.xib in Resources */,
 				042EEF252150E15F00DBD492 /* MJRefresh.bundle in Resources */,
@@ -2348,6 +2390,7 @@
 				2DC955A4213FFA98004D6F65 /* RegisterViewController.xib in Resources */,
 				042EEF692150E15F00DBD492 /* MWPhotoBrowser.bundle in Resources */,
 				044CED0B2176C8180068C75A /* ContentSubItem.xib in Resources */,
+				04C51D5421B505B30098B511 /* WOW_SingProductView.xib in Resources */,
 				04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */,
 				0402E77B215E19FA0040919C /* VolumeControlView.xib in Resources */,
 				04C38A15213E6FE70063A799 /* ContentShowThreeCell.xib in Resources */,
@@ -2497,6 +2540,7 @@
 				042EEF702150E15F00DBD492 /* EaseMessageViewController.m in Sources */,
 				04C38A24213E7FF40063A799 /* FSPagerViewCell.swift in Sources */,
 				04C38A28213E7FF40063A799 /* FSPagerCollectionView.swift in Sources */,
+				04C51D4821B5012C0098B511 /* TestCollectionViewCell.swift in Sources */,
 				04C38748213E09400063A799 /* XBUtil.swift in Sources */,
 				042EEF4E2150E15F00DBD492 /* PSTCollectionViewCell.m in Sources */,
 				0461CBD82154E44200DF4C9A /* SMTrackListViewHeader.swift in Sources */,
@@ -2637,6 +2681,8 @@
 				042EEF752150E15F00DBD492 /* EaseCustomMessageCell.m in Sources */,
 				04C38714213E093F0063A799 /* PMApiPath.swift in Sources */,
 				0485CCBC2148F7EC00F54927 /* SmartPlayerViewController.swift in Sources */,
+				04C51D4321B4D32D0098B511 /* SmartHindView.swift in Sources */,
+				04C51D5221B505B30098B511 /* PagingScrollView.swift in Sources */,
 				04C38737213E093F0063A799 /* SimpleHUD.swift in Sources */,
 				04A5E628216ED99F00CFCE4B /* UserModel.swift in Sources */,
 				0485CCB02148A89200F54927 /* MQTTPubMsg.swift in Sources */,
@@ -2664,6 +2710,7 @@
 				042EEF1B2150E15F00DBD492 /* EaseChineseToPinyin.m in Sources */,
 				044CED0A2176C8180068C75A /* ContentSubItem.swift in Sources */,
 				2D7A2B382199BFC600C406F3 /* SectionedSlider.swift in Sources */,
+				04C51D5121B505B30098B511 /* WOW_SingProductView.swift in Sources */,
 				04C3872D213E093F0063A799 /* UILabel+.swift in Sources */,
 				04C3897E213E0B5A0063A799 /* XBBaseNavigation.swift in Sources */,
 				042EEF522150E15F00DBD492 /* PSTCollectionViewUpdateItem.m in Sources */,
@@ -2681,6 +2728,7 @@
 				042EEF592150E15F00DBD492 /* UIImage+WebP.m in Sources */,
 				04C3873B213E093F0063A799 /* PhotoViewCell.swift in Sources */,
 				2DC955AB213FFDE4004D6F65 /* MeInfoVC.swift in Sources */,
+				04C51D5021B505B30098B511 /* Cell_801_Product.swift in Sources */,
 				044712CE2188057500009F9E /* AlbumMoreViewController.swift in Sources */,
 				0485CCA42148A89200F54927 /* MQTTSessionStream.swift in Sources */,
 				0413BECC21422542006E3A44 /* Defaults.swift in Sources */,

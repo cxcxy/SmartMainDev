@@ -12,7 +12,7 @@ class DeviceChooseCell: UICollectionViewCell {
 
     @IBOutlet weak var imgManagerWidth: NSLayoutConstraint!
     
-    @IBOutlet weak var imgPhotoWidth: NSLayoutConstraint!
+//    @IBOutlet weak var imgPhotoWidth: NSLayoutConstraint!
     
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var imgPhoto: UIImageView!
@@ -28,7 +28,7 @@ class DeviceChooseCell: UICollectionViewCell {
             }
             lbName.set_text = m.babyname
             imgPhoto.set_Img_Url(m.headimgurl)
-            viewContainer.backgroundColor = m.isCurrent ? UIColor.init(hexString: "BEDEA9") : UIColor.init(hexString: "ECBD9C")
+//            viewContainer.backgroundColor = m.isCurrent ? UIColor.init(hexString: "BEDEA9") : UIColor.init(hexString: "ECBD9C")
 //            imgManager.isHidden = m.isCurrent ? false : true
             btnDel.isHidden = m.isCurrent ? false : true
 
@@ -53,7 +53,7 @@ class DeviceChooseCell: UICollectionViewCell {
         // Initialization code
         
         if UIDevice.deviceType == .dt_iPhone5 {
-            imgPhotoWidth.constant = 60
+//            imgPhotoWidth.constant = 60
             imgPhoto.layoutIfNeeded()
             imgPhoto.roundView()
         } else {
@@ -63,7 +63,7 @@ class DeviceChooseCell: UICollectionViewCell {
         
         imgPhoto.setNeedsUpdateConstraints()
         viewContainer.setCornerRadius(radius: 8)
-        
+        viewContainer.addBorder(width: 0.5, color: UIColor.init(hexString: "eaeaea")!)
         btnDel.isHidden = false
 //        lbCurrent.isHidden = true
     }

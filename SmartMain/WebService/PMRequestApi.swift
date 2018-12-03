@@ -42,7 +42,9 @@ enum RequestApi{
     case quitEquiment(openId:String,isAdmin: Bool)
     case getFamilyMemberList(deviceId: String)
     case onlineSing(openId:String, trackId: String,deviceId: String)
+    case trackPlaySing(req: [String: Any])
     case deleteDemand(req: [String: Any])
+    case deleteAllDemand(deviceId: String)
     case saveLikeSing(req: [String: Any])
     case getSingDetail(trackId: Int)
     case addSingsToTrack(req: [String: Any])
@@ -53,6 +55,7 @@ enum RequestApi{
     case addTrackList(req: [String: Any])
     case deleteTrackList(req: [String: Any])
     case deleteLikeSing(req: [String: Any])
+    case deleteLikeRangeSing(openId: String, trackIds: [Int])
     case sendTextDevice(req: [String: Any])
     case sendVoiceDevice(username: String,groupId:String,nickname: String,body: String)
     case uploadAvatar(openId: String, body: String)
@@ -138,12 +141,18 @@ extension RequestApi:TargetType{
              .searchResourceAlbum(let req),
              .getResourceListTop(let req),
              .getAudioListTop(let req),
-             .getResourceAlbumList(let req):
+             .getResourceAlbumList(let req),
+             .trackPlaySing(let req):
             params_task = req
             break
+        case .deleteLikeRangeSing(let openId, let trackIds):
+            params_task["openId"] = openId
+            params_task["trackIds"] = trackIds
         case .quitGroup(_,let req):
             params_task = req
             break
+        case .deleteAllDemand(let deviceId):
+            params_task["deviceId"] = deviceId
         case .resetPassword(_, let req):
             params_task = req
             break

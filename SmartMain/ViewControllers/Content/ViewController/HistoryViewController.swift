@@ -20,13 +20,7 @@ class HistoryViewController: XBBaseViewController {
     
     var dataArr: [ConetentLikeModel] = [] {
         didSet {
-            self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
-                let listItem = BaseListItem()
-                listItem.title = item.title ?? ""
-                listItem.time = item.duration
-                listItem.trackId = item.trackId ?? 0
-                return listItem
-            })
+            self.configDelegateArr()
         }
     }
     var dataDelegate: BaseTableViewDelegate = BaseTableViewDelegate()
@@ -68,6 +62,17 @@ class HistoryViewController: XBBaseViewController {
         request()
         configCurrentSongsId()
     }
+    /// 配置tableView里面的数据源
+    func configDelegateArr()  {
+        self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
+            let listItem = BaseListItem()
+            listItem.title = item.title ?? ""
+            listItem.time = item.duration
+            listItem.trackId = item.trackId ?? 0
+            return listItem
+        })
+        self.lbTotal.set_text = "共" + self.dataDelegate.dataArr.count.toString + "首"
+    }
     override func request() {
         super.request()
         self.currentDeviceId = XBUserManager.device_Id
@@ -87,7 +92,7 @@ class HistoryViewController: XBBaseViewController {
                 self.loading = true
                 self.dataArr += arr
                 self.lbTotal.set_text = "共" + arr.count.toString + "首"
-                self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+                self.refreshStatus(status: .NoMoreData)
                 self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)
@@ -159,6 +164,40 @@ class HistoryViewController: XBBaseViewController {
             let trackName = self.trackList[index].name ?? ""
             self.requestAddSingWithList(listId: trackId,listName: trackName)
         }
+    }
+    
+    @IBAction func clickDeleteAllAction(_ sender: Any) {
+        guard XBUserManager.device_Id != "" else {
+            XBHud.showWarnMsg("未绑定设备")
+            return
+        }
+        let v = SmartHindView.loadFromNib()
+        v.hindType = .reset
+        v.block = { [weak self](isSure) in
+            guard let `self` = self else { return }
+            if isSure {
+                self.requestDeleteAll()
+            }
+        }
+        v.show()
+
+    }
+    func requestDeleteAll()  {
+        Net.requestWithTarget(.deleteAllDemand(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            print(result)
+            if let result = result as? String {
+                guard let status = result.json_Str()["status"].int else {
+                    return
+                }
+                if status == 200 {
+                    self.dataArr = []
+                    self.tableView.reloadData()
+                }
+                if status == 404 {
+                    XBHud.showWarnMsg("无点播历史列表")
+                }
+            }
+        })
     }
     /**
      *   删除点播历史

@@ -60,12 +60,18 @@ extension RequestApi {
         case .getFamilyMemberList:      return "/suportAPP/familymember/getlist.do"
         //在线点播
         case .onlineSing:               return "/suportAPP/demand/online/save.do"
+        //预制列表点播
+        case .trackPlaySing:               return "/suportAPP/demand/track/save.do"
         // 删除点播
         case .deleteDemand:          return "/demand/delete.do"
+        // 清空点播历史列表
+        case .deleteAllDemand:          return "/suportAPP/history/deleteAll.do"
         // 保存收藏
         case .saveLikeSing:          return "/favorite/save.do"
         // 删除收藏
         case .deleteLikeSing:          return "/favorite/delete.do"
+        // 批量删除收藏
+        case .deleteLikeRangeSing:          return "/suportAPP/favorite/deleteBatch.do"
         // 获取歌曲详情
         case .getSingDetail:          return "/track/getid.do"
         // 添加多首歌曲到预制列表

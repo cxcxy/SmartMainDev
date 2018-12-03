@@ -272,6 +272,7 @@ extension BaseTableViewDelegate {
                     item.isLike = true
                 }
             })
+            self.tableView.mj_footer.endRefreshingWithNoMoreData()
             self.tableView.reloadData()
         }
     }
