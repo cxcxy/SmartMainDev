@@ -88,8 +88,8 @@
                     <subviews>
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="gSC-9t-ISa">
                             <rect key="frame" x="164.5" y="6.5" width="39" height="37"/>
-                            <color key="pageIndicatorTintColor" red="0.84843069314956665" green="0.84556788206100464" blue="0.84852796792984009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="currentPageIndicatorTintColor" red="0.60618376731872559" green="0.60665732622146606" blue="0.60625714063644409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="pageIndicatorTintColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="currentPageIndicatorTintColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </pageControl>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

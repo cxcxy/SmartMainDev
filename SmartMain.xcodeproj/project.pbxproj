@@ -326,6 +326,14 @@
 		04F67903215CCCF200CAA0CA /* ConfigNetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */; };
 		04F67904215CCCF200CAA0CA /* ConfigNetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */; };
 		04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */; };
+		04FA4D6F21B651450037F093 /* ConfigNetTipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA4D6D21B651450037F093 /* ConfigNetTipController.swift */; };
+		04FA4D7021B651450037F093 /* ConfigNetTipController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA4D6E21B651450037F093 /* ConfigNetTipController.xib */; };
+		04FA4D7321B6526C0037F093 /* ConfigNetInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA4D7121B6526C0037F093 /* ConfigNetInfoController.swift */; };
+		04FA4D7421B6526C0037F093 /* ConfigNetInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA4D7221B6526C0037F093 /* ConfigNetInfoController.xib */; };
+		04FA4D7621B665240037F093 /* NetConfigLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA4D7521B665240037F093 /* NetConfigLoading.swift */; };
+		04FA4D7821B667480037F093 /* NetConfigLoading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA4D7721B667480037F093 /* NetConfigLoading.xib */; };
+		04FA4D7A21B66ACF0037F093 /* NetConfigTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA4D7921B66ACF0037F093 /* NetConfigTipView.swift */; };
+		04FA4D7C21B66AD60037F093 /* NetConfigTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA4D7B21B66AD60037F093 /* NetConfigTipView.xib */; };
 		1AAA75D9F5935AC30D1FE386 /* Pods_SmartMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6A84A3D73AD65D2EE9B86B /* Pods_SmartMain.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */; };
 		2D0ACC44215A6EB90047103C /* HistorySongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ACC42215A6EB90047103C /* HistorySongCell.swift */; };
@@ -880,6 +888,14 @@
 		04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigNetViewController.swift; sourceTree = "<group>"; };
 		04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigNetViewController.xib; sourceTree = "<group>"; };
 		04F67907215CD0A800CAA0CA /* EquimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EquimentViewModel.swift; path = SmartMain/ViewControllers/Equipment/ViewController/EquimentViewModel.swift; sourceTree = SOURCE_ROOT; };
+		04FA4D6D21B651450037F093 /* ConfigNetTipController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigNetTipController.swift; sourceTree = "<group>"; };
+		04FA4D6E21B651450037F093 /* ConfigNetTipController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigNetTipController.xib; sourceTree = "<group>"; };
+		04FA4D7121B6526C0037F093 /* ConfigNetInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigNetInfoController.swift; sourceTree = "<group>"; };
+		04FA4D7221B6526C0037F093 /* ConfigNetInfoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigNetInfoController.xib; sourceTree = "<group>"; };
+		04FA4D7521B665240037F093 /* NetConfigLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetConfigLoading.swift; sourceTree = "<group>"; };
+		04FA4D7721B667480037F093 /* NetConfigLoading.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetConfigLoading.xib; sourceTree = "<group>"; };
+		04FA4D7921B66ACF0037F093 /* NetConfigTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetConfigTipView.swift; sourceTree = "<group>"; };
+		04FA4D7B21B66AD60037F093 /* NetConfigTipView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetConfigTipView.xib; sourceTree = "<group>"; };
 		2D0ACC40215A6D2A0047103C /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		2D0ACC42215A6EB90047103C /* HistorySongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySongCell.swift; sourceTree = "<group>"; };
 		2D0ACC43215A6EB90047103C /* HistorySongCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistorySongCell.xib; sourceTree = "<group>"; };
@@ -1956,6 +1972,10 @@
 				04ACD5BC21AE618D001BBE5D /* UserInfoViewController.swift */,
 				2D0ACC4A215A74EC0047103C /* AccountInfoViewController.swift */,
 				2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */,
+				04FA4D6D21B651450037F093 /* ConfigNetTipController.swift */,
+				04FA4D6E21B651450037F093 /* ConfigNetTipController.xib */,
+				04FA4D7121B6526C0037F093 /* ConfigNetInfoController.swift */,
+				04FA4D7221B6526C0037F093 /* ConfigNetInfoController.xib */,
 				04F67901215CCCF200CAA0CA /* ConfigNetViewController.swift */,
 				04F67902215CCCF200CAA0CA /* ConfigNetViewController.xib */,
 			);
@@ -1981,6 +2001,10 @@
 				2DCA869B21676468001F9E04 /* ConfigNetCVCell.xib */,
 				04B876CC216C47DB00D0430F /* NetSuccessView.swift */,
 				04B876CE216C47EA00D0430F /* NetSuccessView.xib */,
+				04FA4D7521B665240037F093 /* NetConfigLoading.swift */,
+				04FA4D7721B667480037F093 /* NetConfigLoading.xib */,
+				04FA4D7921B66ACF0037F093 /* NetConfigTipView.swift */,
+				04FA4D7B21B66AD60037F093 /* NetConfigTipView.xib */,
 				04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */,
 				04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */,
 				2DF918212189DF9100880CF7 /* SwitchPlayView.swift */,
@@ -2356,6 +2380,7 @@
 				2DBD88EA215D0B6A00BC543A /* EquipmentListViewController.xib in Resources */,
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
+				04FA4D7821B667480037F093 /* NetConfigLoading.xib in Resources */,
 				2D0ACC4D215A74EC0047103C /* AccountInfoViewController.xib in Resources */,
 				043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */,
 				04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */,
@@ -2365,6 +2390,7 @@
 				046A38BD21A673D4005FFC10 /* PlayVolumeView.xib in Resources */,
 				0495F17121783154002FB1F8 /* XBUpdateHead.xib in Resources */,
 				04C51D4921B5012C0098B511 /* TestCollectionViewCell.xib in Resources */,
+				04FA4D7021B651450037F093 /* ConfigNetTipController.xib in Resources */,
 				2DCA869D21676468001F9E04 /* ConfigNetCVCell.xib in Resources */,
 				2D0ACC45215A6EB90047103C /* HistorySongCell.xib in Resources */,
 				2DC955B1213FFE17004D6F65 /* MeInfoHaderCell.xib in Resources */,
@@ -2396,6 +2422,7 @@
 				04C38A15213E6FE70063A799 /* ContentShowThreeCell.xib in Resources */,
 				2DC9558E213EAC4C004D6F65 /* EquipmentSetHeaderCell.xib in Resources */,
 				04C38A09213E6CD70063A799 /* ContentShowCVCell.xib in Resources */,
+				04FA4D7421B6526C0037F093 /* ConfigNetInfoController.xib in Resources */,
 				04A5E630216F1C9600CFCE4B /* TrackListHomeCell.xib in Resources */,
 				BE16E2AB21A4454A003B24D7 /* ContentVC.xib in Resources */,
 				04E537CD216DEF41002DE58C /* XBLoginOutView.xib in Resources */,
@@ -2413,6 +2440,7 @@
 				2DC95588213E9EBB004D6F65 /* MeViewController.xib in Resources */,
 				2DF918262189E79B00880CF7 /* SearchSongsViewController.xib in Resources */,
 				2D9195C921528AB400F4A9A1 /* ResetPassViewController.xib in Resources */,
+				04FA4D7C21B66AD60037F093 /* NetConfigTipView.xib in Resources */,
 				04CF492F215B31E10052CD67 /* GroupAddViewController.xib in Resources */,
 				BE16E2A321A2F1EE003B24D7 /* SearchAlbumViewController.xib in Resources */,
 				04AE5D46218AF63F00DE3632 /* XBTextView.xib in Resources */,
@@ -2540,6 +2568,7 @@
 				042EEF702150E15F00DBD492 /* EaseMessageViewController.m in Sources */,
 				04C38A24213E7FF40063A799 /* FSPagerViewCell.swift in Sources */,
 				04C38A28213E7FF40063A799 /* FSPagerCollectionView.swift in Sources */,
+				04FA4D7A21B66ACF0037F093 /* NetConfigTipView.swift in Sources */,
 				04C51D4821B5012C0098B511 /* TestCollectionViewCell.swift in Sources */,
 				04C38748213E09400063A799 /* XBUtil.swift in Sources */,
 				042EEF4E2150E15F00DBD492 /* PSTCollectionViewCell.m in Sources */,
@@ -2593,6 +2622,7 @@
 				04C38988213E0B5A0063A799 /* XBBaseModel.swift in Sources */,
 				0485CCA82148A89200F54927 /* MQTTConnAckPacket.swift in Sources */,
 				04AE5D47218AF63F00DE3632 /* XBTextView.swift in Sources */,
+				04FA4D6F21B651450037F093 /* ConfigNetTipController.swift in Sources */,
 				0485CCB12148A89200F54927 /* MQTTMessage.swift in Sources */,
 				0495F17621783154002FB1F8 /* XBUpdateCell.swift in Sources */,
 				042EEF8A2150E15F00DBD492 /* EaseUI.m in Sources */,
@@ -2701,6 +2731,7 @@
 				04CF4936215B65C20052CD67 /* GroupAddMemberController.swift in Sources */,
 				0461CBD62154E35E00DF4C9A /* TrackListViewController.swift in Sources */,
 				2DF918222189DF9100880CF7 /* SwitchPlayView.swift in Sources */,
+				04FA4D7321B6526C0037F093 /* ConfigNetInfoController.swift in Sources */,
 				2D9195D72153CE5C00F4A9A1 /* BottomSongView.swift in Sources */,
 				043E1193213FC0E70067ADF3 /* ContentSingHaderView.swift in Sources */,
 				043E1190213FB8FE0067ADF3 /* ContentSingsVC.swift in Sources */,
@@ -2770,6 +2801,7 @@
 				042EEF662150E15F00DBD492 /* UIImageView+WebCache.m in Sources */,
 				042EEF622150E15F00DBD492 /* SDWebImagePrefetcher.m in Sources */,
 				042EEF3C2150E15F00DBD492 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				04FA4D7621B665240037F093 /* NetConfigLoading.swift in Sources */,
 				04F67908215CD0A800CAA0CA /* EquimentViewModel.swift in Sources */,
 				042EEF2B2150E15F00DBD492 /* MJRefreshAutoStateFooter.m in Sources */,
 				04C38A08213E6CD70063A799 /* ContentShowCVCell.swift in Sources */,

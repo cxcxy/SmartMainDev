@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NetConfigLoading" customModule="SmartMain" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="310" height="285"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="声波配网中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWI-kF-hSY">
+                    <rect key="frame" x="94" y="25" width="122" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBq-fO-rCi">
+                    <rect key="frame" x="60" y="69" width="190" height="152.5"/>
+                    <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请将手机靠近设备 尽量选择安静的环境" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDT-Zd-iSb">
+                    <rect key="frame" x="90.5" y="236.5" width="129" height="33.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="UDT-Zd-iSb" firstAttribute="centerX" secondItem="ZBq-fO-rCi" secondAttribute="centerX" id="9fu-WM-aDh"/>
+                <constraint firstItem="ZBq-fO-rCi" firstAttribute="top" secondItem="sWI-kF-hSY" secondAttribute="bottom" constant="15" id="Q06-P6-gN8"/>
+                <constraint firstItem="UDT-Zd-iSb" firstAttribute="top" secondItem="ZBq-fO-rCi" secondAttribute="bottom" constant="15" id="daa-js-fAg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZBq-fO-rCi" secondAttribute="trailing" constant="60" id="hx6-qU-cFT"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="UDT-Zd-iSb" secondAttribute="bottom" constant="15" id="iCH-GX-d6q"/>
+                <constraint firstItem="sWI-kF-hSY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="pFW-ch-c5t"/>
+                <constraint firstItem="sWI-kF-hSY" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="sDE-nG-xEg"/>
+                <constraint firstItem="ZBq-fO-rCi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="60" id="yf8-AA-hrf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="40" y="108.39580209895054"/>
+        </view>
+    </objects>
+</document>

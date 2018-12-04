@@ -100,6 +100,14 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
 //        alertController.addAction(okAction)
 //        self.present(alertController, animated: true, completion: nil)
     }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.font = UIFont.systemFont(ofSize: 14)
+        pickerLabel.numberOfLines = 0
+        pickerLabel.textAlignment = .center
+        pickerLabel.text = self.pickerView(pickerView, titleForRow: row, forComponent: component)
+        return pickerLabel
+    }
     @IBAction func clickSureAction(_ sender: Any) {
         let selectRow = pickerView.selectedRow(inComponent: 0)
         let model = dataArr[selectRow].value

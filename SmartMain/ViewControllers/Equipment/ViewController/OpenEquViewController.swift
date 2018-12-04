@@ -25,6 +25,7 @@ class OpenEquViewController: XBBaseViewController {
     override func setUI() {
         super.setUI()
         title = "开启设备"
+        btnScan.radius_ll()
     }
     @IBAction func clickScanAction(_ sender: Any) {
             let scanVC = XBScanViewController()

@@ -216,7 +216,7 @@ extension DrawerViewController {
             self.toSleepAction()
             break
         case 1:
-            let vc = ConfigNetViewController()
+            let vc = ConfigNetTipController()
             self.cw_push(vc)
         case 2:
             self.toQRCodeVC()

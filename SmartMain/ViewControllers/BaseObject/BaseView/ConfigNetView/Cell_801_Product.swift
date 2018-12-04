@@ -79,7 +79,7 @@ class Cell_801_Product: UIView {
     func configureAutoScrollTimer() {
         if autoScrollTimer == nil {
         //设置一个定时器，每三秒钟滚动一次
-        autoScrollTimer = Timer.scheduledTimer(timeInterval: 5, target: self,
+        autoScrollTimer = Timer.scheduledTimer(timeInterval: 3, target: self,
                                                selector: #selector(letItScroll),
                                                userInfo: nil, repeats: true)
         RunLoop.current.add(autoScrollTimer!, forMode: RunLoopMode.commonModes)
@@ -158,7 +158,7 @@ class Cell_801_Product: UIView {
         pagingScrollView.scrollView.delegate    = self
         pagingScrollView.scrollView.contentSize = CGSize(width: self.scrollerViewWidth * 3, height: self.scrollerViewHeight)
         
-        pagingScrollView.cardCount      =     CGFloat(3)
+        pagingScrollView.cardCount      =     CGFloat(4)
         pagingScrollView.pagingWidth    =     self.scrollerViewWidth
         pagingScrollView.pagingHeight   =     self.scrollerViewHeight
         
@@ -200,11 +200,10 @@ class Cell_801_Product: UIView {
     // 重新配置各个页面的信息
     func configureModel(model: ConfigNetModel?,v: WOW_SingProductView?){
         
-
         v?.lb_SingTodayName.set_text = model?.title
         v?.priceLabel.set_text = model?.des
-
-
+        v?.pageControl.currentPage = self.currentIndex
+        
     }
 
     

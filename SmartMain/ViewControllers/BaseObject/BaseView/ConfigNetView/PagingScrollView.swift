@@ -83,7 +83,7 @@ class PagingScrollView: UIView {
     fileprivate func setup() {
         
         self.addSubview(self.scrollView)
-        self.addSubview(self.pageControl)
+
         self.scrollView.snp.makeConstraints { (make) -> Void in
             make.center.equalTo(self)
             make.width.equalTo(self.pagingWidth)
@@ -91,12 +91,6 @@ class PagingScrollView: UIView {
             self.widthContraint = make.width.equalTo(self.snp.width).constraint
             self.heightContraint = make.height.equalTo(self.snp.height).constraint
         }
-        self.pageControl.snp.makeConstraints { (make) in
-            make.left.right.equalTo(self)
-            make.height.equalTo(10)
-            make.bottom.equalTo(-10)
-        }
-        
     }
     
     open lazy var pageControl:UIPageControl = {
