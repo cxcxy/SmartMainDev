@@ -18,7 +18,9 @@
                 <outlet property="btnOn" destination="DMH-Cj-iov" id="AGy-qd-Xs2"/>
                 <outlet property="btnPlay" destination="AsY-Bv-FMl" id="lwO-Yl-TGT"/>
                 <outlet property="btnRepeat" destination="y53-fQ-EsE" id="oi1-6h-4aK"/>
+                <outlet property="imgBackGround" destination="1Ni-UW-RmP" id="V8c-h4-QRK"/>
                 <outlet property="imgSings" destination="uZ1-hP-1s4" id="97S-pP-feZ"/>
+                <outlet property="lbAlbumName" destination="asd-eD-PUv" id="Oty-6a-I51"/>
                 <outlet property="lbCurrentSongProgress" destination="JFN-XQ-ygd" id="MWC-86-AQ9"/>
                 <outlet property="lbSingsTitle" destination="IeF-Vk-Fma" id="AIb-Zo-3Uz"/>
                 <outlet property="lbSongProgress" destination="FaE-8s-tb4" id="6ju-J6-Hhf"/>
@@ -36,7 +38,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test4" translatesAutoresizingMaskIntoConstraints="NO" id="1Ni-UW-RmP">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test4" translatesAutoresizingMaskIntoConstraints="NO" id="1Ni-UW-RmP">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdg-Ll-tv9">

@@ -21,9 +21,9 @@ class TrackListViewController: XBBaseTableViewController {
         guard let currentDeviceId = currentDeviceId else {
             return
         }
-        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
+//        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
             request()
-        }
+//        }
     }
     override func setUI() {
         super.setUI()
@@ -58,7 +58,7 @@ class TrackListViewController: XBBaseTableViewController {
                 self.endRefresh()
                 self.dataArr = arr
                 self.tableView.reloadData()
-                self.starAnimationWithTableView(tableView: self.tableView)
+//                self.starAnimationWithTableView(tableView: self.tableView)
             }
         }) { (errorMsg) in
             if errorMsg == ERROR_TIMEOUT {

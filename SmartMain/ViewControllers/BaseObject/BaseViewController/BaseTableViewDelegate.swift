@@ -18,6 +18,7 @@ class BaseListItem: NSObject {
 }
 enum SongListType {
     case track // 预制列表
+    case trackScrollView // 预制列表
     case like // 收藏列表
     case histroy // 历史列表
     case songs
@@ -66,6 +67,8 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             self.tableView.estimatedRowHeight = 60
             self.tableView.delegate           = self
             self.tableView.dataSource         = self
+            tableView.emptyDataSetDelegate = self
+            tableView.emptyDataSetSource   = self
             tableView.separatorStyle       = .none
             tableView.keyboardDismissMode  = .onDrag
             tableView.showsVerticalScrollIndicator = false
@@ -146,7 +149,7 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         switch songListType {
         case .track,.songs:
             cell.btnMore.isHidden = false
-        case .like:
+        case .like,.trackScrollView:
             cell.btnMore.isHidden = true
         default:
             break
@@ -160,8 +163,8 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             return
         }
         switch songListType {
-        case .track:
-            self.requestSingDetail(trackId: trackId)
+        case .track,.trackScrollView:
+            self.requestPlayTrackList(trackId: trackId)
         case .like:
             if self.isEdit {
                 model.isSelect = !model.isSelect
@@ -209,7 +212,7 @@ extension BaseTableViewDelegate {
     }
     //MARK: 获取歌曲详情
     func requestSingDetail(trackId: Int)   {
-        Net.requestWithTarget(.getSingDetail(trackId: trackId), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.getSingDetail(trackId: trackId),isEndRrefreshing: false, successClosure: { (result, code, message) in
             guard let result = result as? String else {
                 return
             }
@@ -238,7 +241,7 @@ extension BaseTableViewDelegate {
      *   从预制列表中删除
      */
     func requestDeleteSingWithList(trackId: String)  {
-        Net.requestWithTarget(.removeSingsList(deviceId: XBUserManager.device_Id, listId: self.trackListId, trackIds: [trackId]), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.removeSingsList(deviceId: XBUserManager.device_Id, listId: self.trackListId, trackIds: [trackId]),isEndRrefreshing: false, successClosure: { (result, code, message) in
             if let str = result as? String {
                 if str == "ok" {
                     XBHud.showMsg("删除成功")
@@ -272,7 +275,6 @@ extension BaseTableViewDelegate {
                     item.isLike = true
                 }
             })
-//            self.tableView.mj_footer.endRefreshingWithNoMoreData()
             self.tableView.reloadData()
         }
     }
@@ -299,7 +301,7 @@ extension BaseTableViewDelegate {
         params_task["id"] = trackId
         params_task["name"] = self.albumModel?.name ?? ""
         params_task["list"] = self.songsArr.toJSON()
-        Net.requestWithTarget(.addSingsToTrack(req: params_task), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.addSingsToTrack(req: params_task),isEndRrefreshing: false, successClosure: { (result, code, message) in
             if let str = result as? String {
                 if str == "ok" {
                     XBHud.showMsg("添加成功")
@@ -328,7 +330,7 @@ extension BaseTableViewDelegate {
         req_model.url = m.content
         req_model.downloadUrl = m.content
         
-        Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, trackId: trackId, trackName: trackName, trackIds: [req_model]), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, trackId: trackId, trackName: trackName, trackIds: [req_model]),isEndRrefreshing: false, successClosure: { (result, code, message) in
             print(result)
             if let str = result as? String {
                 if str == "ok" {
@@ -341,18 +343,19 @@ extension BaseTableViewDelegate {
     }
     //MARK: 点击添加全部
     func clickSongsToTrackList(isAll: Bool,songModel: ConetentSingModel? = nil)  {
+//        requestPlayTrackList(trackId: <#T##Int#>)
         guard XBUserManager.device_Id != "" else {
             XBHud.showMsg("请先绑定设备")
             return
         }
-        guard self.trackList.count > 0 else {
-            XBHud.showMsg("当前机器无歌单")
-            return
-        }
+//        guard self.trackList.count > 0 else {
+//            XBHud.showMsg("当前机器无歌单")
+//            return
+//        }
         let v = PlaySongListView.loadFromNib()
         v.lbTitleDes.set_text = "添加至"
         v.listViewType = .trackList_song
-        v.trackArr = self.trackList
+//        v.trackArr = self.trackList
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()
@@ -364,6 +367,28 @@ extension BaseTableViewDelegate {
             
         }
         v.show()
+    }
+    func requestPlayTrackList(trackId: Int) {
+        var params_task = [String: Any]()
+        params_task["openId"] = XBUserManager.userName
+        params_task["deviceId"] = XBUserManager.device_Id
+        params_task["trackListId"] = trackListId
+        params_task["trackId"] = trackId
+        Net.requestWithTarget(.trackPlaySing(req: params_task), successClosure: { (result, code, message) in
+            print(result)
+//            result as? NSNumber
+             if let str = result as? String {
+                if str == "0" {
+                    XBHud.showMsg("播放成功")
+                }
+                if str == "2" {
+                    XBHud.showMsg("该openId没有和该deviceId绑定")
+                }
+                if str == "1" {
+                    XBHud.showMsg("设备不在线")
+                }
+            }
+        })
     }
 }
 extension BaseTableViewDelegate: BaseListCellDelegate {
@@ -429,5 +454,58 @@ extension BaseTableViewDelegate: BaseListCellDelegate {
         default:
             break
         }
+    }
+}
+// 空白展位图
+extension BaseTableViewDelegate:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
+    @objc(titleForEmptyDataSet:) func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if  !NetWorkType.getNetWorkType() { // 无网络状态  或者 出现超时错误
+            return NSAttributedString()
+        }
+        if XBUserManager.device_Id == "" {
+            //MARK: tableView 无数据展示状态
+            let XBNoDataTitle:NSAttributedString = NSAttributedString(string: "暂无绑定设备",
+                                                                      attributes:[NSAttributedStringKey.foregroundColor:MGRgb(0, g: 0, b: 0, alpha: 0.5),
+                                                                                  NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
+            return XBNoDataTitle
+        }
+        //MARK: tableView 无数据展示状态
+        let XBNoDataTitle:NSAttributedString    =   NSAttributedString(string: "暂无数据",
+                                                                       attributes:[NSAttributedStringKey.foregroundColor:MGRgb(0, g: 0, b: 0, alpha: 0.5),
+                                                                                   NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
+        return XBNoDataTitle
+    }
+    @objc(backgroundColorForEmptyDataSet:) func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return tableColor
+    }
+    @objc(imageForEmptyDataSet:) func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage? {
+        if  !NetWorkType.getNetWorkType() { // 无网络状态  或者 出现超时错误
+            return UIImage.init(named: "network_error")
+        }
+        return nil
+    }
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+        
+        if  !NetWorkType.getNetWorkType(){ // 无网络状态  或者 出现超时错误
+            let text = "网络不给力，请点击重试哦~"
+            let attStr = NSMutableAttributedString(string: text)
+            attStr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15.0), range: NSRange(location: 0, length: text.count))
+            attStr.addAttribute(.foregroundColor, value: UIColor.lightGray, range: NSRange(location: 0, length: text.count))
+            attStr.addAttribute(.foregroundColor, value: viewColor, range: NSRange(location: 7, length: 4))
+            return attStr
+        }
+        return NSAttributedString.init()
+    }
+    
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        print("点击了网络不给力")
+        //        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
+
+        //        }
+        
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }

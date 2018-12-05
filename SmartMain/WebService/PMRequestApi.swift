@@ -19,6 +19,7 @@ enum RequestApi{
     case getTrackList(deviceId: String)
     case getSingleTrack(id: Int)
     case getTrackSubList(req: [String: Any])
+    case getResourceDetail(req: [String: Any])
     case setTrackListDefult(trackListId: Int,deviceId: String,trackIds: [Int])
     case getSearchResource(req: [String: Any])
     case contentsings(req: [String: Any])
@@ -142,7 +143,8 @@ extension RequestApi:TargetType{
              .getResourceListTop(let req),
              .getAudioListTop(let req),
              .getResourceAlbumList(let req),
-             .trackPlaySing(let req):
+             .trackPlaySing(let req),
+             .getResourceDetail(let req):
             params_task = req
             break
         case .deleteLikeRangeSing(let openId, let trackIds):

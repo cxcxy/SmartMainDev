@@ -102,6 +102,7 @@ class ContentSingsVC: XBBaseTableViewController {
         params_task["page"] = self.pageIndex
         params_task["count"] = XBPageSize
         Net.requestWithTarget(.contentsings(req: params_task), successClosure: { (result, code, message) in
+            self.endRefresh()
             if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["list"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.tableView.mj_footer = self.mj_footer
@@ -144,19 +145,19 @@ class ContentSingsVC: XBBaseTableViewController {
 
     //MARK: 请求预制列表数据
     func requestTrackList() {
-        guard XBUserManager.device_Id != "" else {
-            endRefresh()
-            return
-        }
-        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
-            print(result)
-            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
-                self.endRefresh()
-                self.trackList = arr
-                self.dataDelegate.trackList = self.trackList
-                self.tableView.reloadData()
-            }
-        })
+//        guard XBUserManager.device_Id != "" else {
+//            endRefresh()
+//            return
+//        }
+//        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+//            print(result)
+//            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+//                self.endRefresh()
+//                self.trackList = arr
+//                self.dataDelegate.trackList = self.trackList
+//                self.tableView.reloadData()
+//            }
+//        })
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -221,14 +222,14 @@ class ContentSingsVC: XBBaseTableViewController {
             XBHud.showMsg("请先绑定设备")
             return
         }
-        guard self.trackList.count > 0 else {
-            XBHud.showMsg("当前机器无歌单")
-            return
-        }
+//        guard self.trackList.count > 0 else {
+//            XBHud.showMsg("当前机器无歌单")
+//            return
+//        }
         let v = PlaySongListView.loadFromNib()
         v.lbTitleDes.set_text = "添加至"
         v.listViewType = .trackList_song
-        v.trackArr = self.trackList
+//        v.trackArr = self.trackList
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()

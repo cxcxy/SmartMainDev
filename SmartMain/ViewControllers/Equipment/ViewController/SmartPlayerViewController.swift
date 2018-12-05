@@ -43,6 +43,7 @@ class SmartPlayerViewController: XBBaseViewController {
     @IBOutlet weak var btnRepeat: UIButton!
     @IBOutlet weak var btnPlay: UIButton!
     
+    @IBOutlet weak var lbAlbumName: UILabel!
     @IBOutlet weak var btnOn: UIButton!
     @IBOutlet weak var lbCurrentSongProgress: UILabel!
     @IBOutlet weak var lbSongProgress: UILabel!
@@ -78,6 +79,7 @@ class SmartPlayerViewController: XBBaseViewController {
     
     @IBOutlet weak var photoWidthLayout: NSLayoutConstraint!
     
+    @IBOutlet weak var imgBackGround: UIImageView!
     var allTimer:Float    = 0 // 歌曲的全部时间
     
     var currentVolume: Int = 0
@@ -93,7 +95,7 @@ class SmartPlayerViewController: XBBaseViewController {
             }
             self.btnLike.isSelected = isLike.count == 0 ? false : true
             sliderProgress.maximumValue = Float(m.duration ?? 0)
-            self.configUI(singsDetail: m)
+            
         }
     }
     let scoketModel = ScoketMQTTManager.share
@@ -158,6 +160,7 @@ class SmartPlayerViewController: XBBaseViewController {
             guard let `self` = self else { return }
             print("getPalyingSingsId ===：", $0.element ?? 0)
             self.requestSingsDetail(trackId: $0.element ?? 0)
+            self.requestResourcesDetail(trackId: $0.element ?? 0)
         }.disposed(by: rx_disposeBag)
        
         scoketModel.getPlayVolume.asObservable().subscribe { [weak self] in
@@ -351,14 +354,36 @@ class SmartPlayerViewController: XBBaseViewController {
             self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
             self.allTimer = Float(self.currentSongModel?.duration ?? 0)
             self.resetTimer()
+            
             // 获取播放状态
             self.scoketModel.sendPlayStatus()
         })
     }
-    func configUI(singsDetail: SingDetailModel) {
-        imgSings.set_Img_Url(singsDetail.coverSmallUrl)
-        lbSingsTitle.set_text = singsDetail.title
-        lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.duration)
+    func requestResourcesDetail(trackId: Int)  {
+        var params_task = [String: Any]()
+        params_task["clientId"] = XBUserManager.device_Id
+        params_task["resId"] = "aires:" + trackId.toString
+        Net.requestWithTarget(.getResourceDetail(req: params_task), successClosure: { [weak self] (result, code, message) in
+            guard let `self` = self else { return }
+            print(result)
+            
+            if let model = Mapper<ResourceDetailModel>().map(JSONObject: result) {
+                self.configUI(singsDetail: model)
+            }
+            
+//            self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
+//            self.allTimer = Float(self.currentSongModel?.duration ?? 0)
+//            self.resetTimer()
+//            // 获取播放状态
+//            self.scoketModel.sendPlayStatus()
+        })
+    }
+    func configUI(singsDetail: ResourceDetailModel) {
+        imgBackGround.set_Img_Url(singsDetail.album?.imgSmall)
+        imgSings.set_Img_Url(singsDetail.album?.imgSmall)
+        lbSingsTitle.set_text = singsDetail.name
+        lbAlbumName.set_text =  "来自:" + (singsDetail.album?.name ?? "")
+        lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.length)
         self.resetTimer()
         
         // 计时器开始工作
@@ -442,10 +467,59 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     /// 点击添加预制列表
     @IBAction func clickAddTrackAction(_ sender: Any) {
-        let v = NewTrackListView.loadFromNib()
-        v.trackList = self.trackList
-        v.songModel = self.currentSongModel
+//        let v = NewTrackListView.loadFromNib()
+//        v.trackList = self.trackList
+//        v.songModel = self.currentSongModel
+//        v.show()
+        
+        let v = PlaySongListView.loadFromNib()
+        v.lbTitleDes.set_text = "添加至"
+        v.listViewType = .trackList_song
+
+        v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
+            guard let `self` = self else { return }
+            v.hide()
+            self.requestAddSingWithList(trackId: trackId, trackName: trackName)
+
+            
+        }
         v.show()
+    }
+    /**
+     *   增加歌曲到预制列表中 添加单个歌曲
+     */
+    func requestAddSingWithList(trackId: Int? ,trackName: String?)  {
+        guard let m = self.currentSongModel else {
+            XBHud.showMsg("所需歌曲信息不全")
+            return
+        }
+        guard let trackId = trackId else {
+            XBHud.showMsg("无歌单ID")
+            return
+        }
+        guard let trackName = trackName else {
+            XBHud.showMsg("无歌单名称")
+            return
+        }
+        let req_model = AddSongTrackReqModel()
+        req_model.id = m.id
+        req_model.title = m.title
+        req_model.coverSmallUrl = m.coverSmallUrl
+        req_model.duration = m.duration
+        req_model.url = m.url
+        req_model.downloadSize = m.downloadSize?.toInt()
+        req_model.downloadUrl = m.downloadUrl
+        
+        Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, trackId: trackId, trackName: trackName, trackIds: [req_model]), successClosure: { (result, code, message) in
+            print(result)
+            if let str = result as? String {
+                if str == "ok" {
+                    XBHud.showMsg("加入成功")
+                }else if str == "duplicate" {
+                    XBHud.showMsg("歌单已经存在")
+                }
+            }
+        })
     }
     /// 点击返回
     @IBAction func clickBackAction(_ sender: Any) {

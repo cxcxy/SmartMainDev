@@ -17,6 +17,13 @@ class EquipmentSubListVC: XBBaseViewController {
     var trackList: [EquipmentModel] = []
     var dataArr: [EquipmentSingModel] = [] {
         didSet {
+            if dataArr.count > 0 {
+                self.viewTopTotal.isHidden = false
+            }
+            if listType == .trackScollList {
+                self.viewTopTotal.isHidden = true
+                self.dataDelegate.songListType = .trackScrollView
+            }
             self.dataDelegate.dataArr = self.dataArr.map({ (item) -> BaseListItem in
                 let listItem = BaseListItem()
                 listItem.title = item.title ?? ""
@@ -47,12 +54,8 @@ class EquipmentSubListVC: XBBaseViewController {
 //                                            "HistorySongCell",
 //                                            "HistorySongContentCell"])
  
-        if listType == .trackScollList {
-            self.viewTopTotal.isHidden = true
-        }else {
-            self.viewTopTotal.isHidden = false
-        }
-        
+
+       
         request()
         configCurrentSongsId()
 //        requestTrackList()
@@ -60,14 +63,19 @@ class EquipmentSubListVC: XBBaseViewController {
             guard let `self` = self else { return }
             print("getSetDefaultMessage ===：", $0.element ?? "")
             if let model = Mapper<GetTrackListDefault>().map(JSONString: $0.element!) {
-                self.requestSetDefault(model: model)
+                if model.trackListId == self.trackListId {
+                    self.requestSetDefault(model: model)
+                }
+                
             }
         }.disposed(by: rx_disposeBag)
         
 //        tableView.dataSource = dataDelegate
         dataDelegate.trackListId = self.trackListId
         dataDelegate.tableView = self.tableView
-         self.dataDelegate.tableView.mj_header = self.mj_header
+        self.dataDelegate.tableView.mj_header = self.mj_header
+        self.viewTopTotal.isHidden = true
+
     }
     func configCurrentSongsId()  {
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
@@ -87,7 +95,7 @@ class EquipmentSubListVC: XBBaseViewController {
         params_task["currentPage"] = self.pageIndex
         params_task["pageSize"] = XBPageSize
         Net.requestWithTarget(.getTrackSubList(req: params_task), successClosure: { (result, code, message) in
-            
+            self.endRefresh()
             if let arr = Mapper<EquipmentSingModel>().mapArray(JSONObject: JSON.init(parseJSON: result as! String)["tracks"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.dataArr.removeAll()
@@ -146,29 +154,31 @@ class EquipmentSubListVC: XBBaseViewController {
     }
     /// 点击播放全部
     @IBAction func clickAllAction(_ sender: Any) {
-        let trackId = dataArr[0].id
+        if let trackId = dataArr[0].id  {
+            self.requestPlayTrackList(trackId: trackId)
+        }
+       
+    }
+    func requestPlayTrackList(trackId: Int) {
         var params_task = [String: Any]()
         params_task["openId"] = XBUserManager.userName
         params_task["deviceId"] = XBUserManager.device_Id
         params_task["trackListId"] = trackListId
         params_task["trackId"] = trackId
         Net.requestWithTarget(.trackPlaySing(req: params_task), successClosure: { (result, code, message) in
-            print(result)
-            if let str = result as? Int {
-                if str == 0 {
+            if let str = result as? String {
+                if str == "0" {
                     XBHud.showMsg("播放成功")
                 }
-                if str == 2 {
+                if str == "2" {
                     XBHud.showMsg("该openId没有和该deviceId绑定")
                 }
-                if str == 1 {
+                if str == "1" {
                     XBHud.showMsg("设备不在线")
                 }
             }
         })
-        
     }
-    
     @IBAction func clickResetListAction(_ sender: Any) {
         let v = SmartHindView.loadFromNib()
         v.hindType = .resetDefault

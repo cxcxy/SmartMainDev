@@ -60,6 +60,7 @@ extension RequestApi {
         case .getFamilyMemberList:      return "/suportAPP/familymember/getlist.do"
         //在线点播
         case .onlineSing:               return "/suportAPP/demand/online/save.do"
+        case .getResourceDetail:         return "/resource/appInterface.do?inter=/resources/info"
         //预制列表点播
         case .trackPlaySing:               return "/suportAPP/demand/track/save.do"
         // 删除点播

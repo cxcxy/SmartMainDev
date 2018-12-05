@@ -16,12 +16,13 @@ class ContentSubNewController: XBBaseViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        self.currentNavigationColor = UIColor.white
         // Do any additional setup after loading the view.
     }
     override func setUI() {
         super.setUI()
         self.configTableView(tableView, register_cell: ["TrackListHomeCell"])
+        
         request()
     }
     override func request() {
@@ -34,6 +35,7 @@ class ContentSubNewController: XBBaseViewController {
         params_task["page"] = self.pageIndex
         params_task["count"] = XBPageSize
         Net.requestWithTarget(.contentsub(req: params_task), successClosure: { (result, code, message) in
+            self.endRefresh()
             if let arr = Mapper<ModulesConetentModel>().mapArray(JSONObject:JSON(result)["categories"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.dataArr.removeAll()

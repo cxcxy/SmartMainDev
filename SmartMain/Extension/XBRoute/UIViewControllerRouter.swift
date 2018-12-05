@@ -98,7 +98,13 @@ class VCRouter {
         topVC?.pushVC(vc)
         
     }
-    
+    // MARK: - 跳转第三级歌单页面
+    class func toSearchSingsVC() {
+        
+        let vc = SearchViewController()
+        topVC?.pushVC(vc)
+        
+    }
     // MARK: - 跳转图灵 专辑列表 相当于第二级歌单页面,从全部资源点击进去
     class func toAlbumListVC(albumId:Int!,albumName: String) {
         

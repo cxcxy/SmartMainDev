@@ -104,7 +104,7 @@ class LikeViewController: XBBaseViewController {
         self.tableView.mj_footer.endRefreshingWithNoMoreData()
 //        self.refreshStatus(status: .NoMoreData)
     }
-    
+    // 删除收藏歌曲
     func requestDeleteRangeSing(phone: String, selectIds: [Int])  {
 
         Net.requestWithTarget(.deleteLikeRangeSing(openId: phone, trackIds: selectIds), successClosure: { (result, code, message) in
@@ -121,7 +121,7 @@ class LikeViewController: XBBaseViewController {
                 }
             }
             
-            self.endRefresh()
+//            self.endRefresh()
             
         }){ (errorMsg) in
             

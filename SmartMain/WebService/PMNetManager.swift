@@ -96,7 +96,7 @@ class XBNetManager {
         let task_log = "request target： \n请求的URL：\(target.path)\n请求的参数：\(target.task.getTaskParams())"
         XBApiLog(task_log)
         if !NetWorkType.getNetWorkType() {
-            self.endRrefreshing()
+//            self.endRrefreshing()
             XBHud.showWarnMsg("您的网络不太给力～")
             if let failClosure = failClosure {
                 failClosure(ERROR_MSG)
@@ -110,9 +110,10 @@ class XBNetManager {
         _ =  requestProvider.request(target) { (result) in
             if isDissmissLoding {
                 XBHud.dismiss()
+//                self.endRrefreshing()
             }
             if isEndRrefreshing {
-                self.endRrefreshing()
+                
             }
             switch result{
                 

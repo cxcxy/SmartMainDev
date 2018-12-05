@@ -152,7 +152,7 @@ public enum RefreshStatus: Int {
     }
     
     //MARK: 返回按钮
-    func setCustomerBack(_ backIconName:String = "icon_fanhui") {
+    func setCustomerBack(_ backIconName:String = "icon_back") {
         if let count = navigationController?.viewControllers.count {
             if count > 1 {
                 let img = UIImage.init(named: backIconName)?.withRenderingMode(.alwaysOriginal) // 使用原图渲染方式

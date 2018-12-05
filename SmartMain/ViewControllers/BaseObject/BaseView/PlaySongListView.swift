@@ -32,7 +32,9 @@ class PlaySongListView: ETPopupView {
             switch listViewType {
             case .songList:
                 requestSongList()
-            case .trackList_main,.trackList_song:
+            case .trackList_song:
+                requestTrackList()
+            case .trackList_main:
                 tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0)
                 break
             }
@@ -93,6 +95,20 @@ class PlaySongListView: ETPopupView {
                 self.tableView.reloadData()
             }
             
+        })
+    }
+    //MARK: 请求预制列表数据
+    func requestTrackList() {
+        guard XBUserManager.device_Id != "" else {
+            endRefresh()
+            return
+        }
+        Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            print(result)
+            if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
+                self.trackArr = arr
+                self.tableView.reloadData()
+            }
         })
     }
     /**

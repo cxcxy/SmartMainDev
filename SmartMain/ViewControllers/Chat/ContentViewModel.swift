@@ -12,7 +12,7 @@ class ContentViewModel: NSObject {
     /// 云端资源在线点播
     func requestOnlineSing(openId: String,trackId: String,deviceId: String,closure: @escaping () -> ())  {
 
-        Net.requestWithTarget(.onlineSing(openId: openId, trackId: trackId, deviceId: deviceId), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.onlineSing(openId: openId, trackId: trackId, deviceId: deviceId),isEndRrefreshing: false, successClosure: { (result, code, message) in
             if let str = result as? String {
                 if str == "0" {
                     XBHud.showMsg("点播成功")
@@ -107,7 +107,7 @@ class ContentViewModel: NSObject {
         params_task["trackId"]  = songId
         params_task["duration"] = duration
         params_task["title"]    = title
-        Net.requestWithTarget(.saveLikeSing(req: params_task), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.saveLikeSing(req: params_task),isEndRrefreshing: false, successClosure: { (result, code, message) in
             print(result)
             if let str = result as? String {
                 if str == "ok" {
@@ -132,7 +132,7 @@ class ContentViewModel: NSObject {
         var params_task = [String: Any]()
         params_task["openId"] = XBUserManager.userName
         params_task["trackId"]  = trackId
-        Net.requestWithTarget(.deleteLikeSing(req: params_task), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.deleteLikeSing(req: params_task),isEndRrefreshing: false, successClosure: { (result, code, message) in
             print(result)
             if let str = result as? String {
                 if str == "ok" {

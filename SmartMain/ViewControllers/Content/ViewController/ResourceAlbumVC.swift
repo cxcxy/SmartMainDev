@@ -77,6 +77,7 @@ class ResourceAlbumVC: XBBaseViewController {
             guard let result = result as? String else{
                 return
             }
+            self.endRefresh()
             if let arr = Mapper<ResourceTopListModel>().mapArray(JSONObject:result.json_Str()["body"]["content"].arrayObject) {
                 self.reloadCollection(arr: arr)
                 //                self.starAnimationWithTableView(tableView: self.tableView)

@@ -117,6 +117,7 @@ class MemberManagerVC: XBBaseViewController {
         }
         Net.requestWithTarget(.getFamilyMemberList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, msg) in
             print(result)
+//            self.endRefresh()
             if let arr = Mapper<FamilyMemberModel>().mapArray(JSONObject: JSON.init(parseJSON: result as! String).arrayObject) {
                     self.dataArr = arr
                     self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))

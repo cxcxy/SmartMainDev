@@ -70,6 +70,7 @@ class ContentMainVC: XBBaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupUnreadMessageCount()
+        
     }
     //MARK: 设置未读消息数量
     func setupUnreadMessageCount()  {
@@ -99,7 +100,7 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             self.configScoketModel()
         })
-        configScoketModel()
+        
         
 //        configNavBarItem()
         
@@ -110,6 +111,7 @@ class ContentMainVC: XBBaseViewController {
         
         XBDelay.start(delay: 1) {
             self.setupUnreadMessageCount()
+            self.configScoketModel()
         }
         self.request()
         

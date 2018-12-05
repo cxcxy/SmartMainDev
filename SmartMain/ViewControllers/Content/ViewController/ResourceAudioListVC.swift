@@ -94,6 +94,7 @@ class ResourceAudioListVC: XBBaseViewController {
         params_task["direction"] = "asc"
         params_task["scope"] = "PUBLIC"
         viewModel.requestResourceAudioList(req: params_task).subscribe(onNext: { (audioList) in
+            self.endRefresh()
             if self.pageIndex == 1 {
                 self.tableView.mj_footer = self.mj_footer
                 self.dataArr.removeAll()
@@ -191,14 +192,14 @@ class ResourceAudioListVC: XBBaseViewController {
             XBHud.showMsg("请先绑定设备")
             return
         }
-        guard self.trackList.count > 0 else {
-            XBHud.showMsg("当前机器无歌单")
-            return
-        }
+//        guard self.trackList.count > 0 else {
+//            XBHud.showMsg("当前机器无歌单")
+//            return
+//        }
         let v = PlaySongListView.loadFromNib()
         v.lbTitleDes.set_text = "添加至"
         v.listViewType = .trackList_song
-        v.trackArr = self.trackList
+//        v.trackArr = self.trackList
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()

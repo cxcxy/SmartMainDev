@@ -127,6 +127,7 @@ class SearchSongsViewController: XBBaseViewController {
         params_task["page"]     = self.pageIndex
         params_task["ranges"] = ["resource"]
         Net.requestWithTarget(.getSearchResource(req: params_task), successClosure: { (result, code, message) in
+            self.endRefresh()
             if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["resources"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.tableView.mj_footer = self.mj_footer
@@ -247,14 +248,14 @@ class SearchSongsViewController: XBBaseViewController {
             XBHud.showMsg("请先绑定设备")
             return
         }
-        guard self.trackList.count > 0 else {
-            XBHud.showMsg("当前机器无歌单")
-            return
-        }
+//        guard self.trackList.count > 0 else {
+//            XBHud.showMsg("当前机器无歌单")
+//            return
+//        }
         let v = PlaySongListView.loadFromNib()
         v.lbTitleDes.set_text = "添加至"
         v.listViewType = .trackList_song
-        v.trackArr = self.trackList
+//        v.trackArr = self.trackList
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()

@@ -153,3 +153,46 @@ class SingDetailModel: XBDataModel {
         status            <-    map["status"]
     }
 }
+class ResourceDetailModel: XBDataModel {
+    
+    var length: Int?
+    var content: String?
+    var artist: String?
+    var favoriteId: String?
+    var resId: String?
+    var playUrls: String?
+    var album: AlbumDetailModel?
+    var type: Int?
+    var name: String?
+
+    override func mapping(map: Map) {
+        
+        length             <-    map["length"]
+        content             <-    map["content"]
+        artist          <-    map["artist"]
+        favoriteId            <-    map["favoriteId"]
+        resId            <-    map["resId"]
+        playUrls            <-    map["playUrls"]
+        album            <-    map["album"]
+        type            <-    map["type"]
+        name            <-    map["name"]
+
+    }
+}
+class AlbumDetailModel: XBDataModel {
+    
+    var id: String?
+    var imgSmall: String?
+    var name: String?
+    var imgLarge: String?
+
+    
+    override func mapping(map: Map) {
+        
+        id             <-    map["id"]
+        imgSmall             <-    map["imgSmall"]
+        name          <-    map["name"]
+        imgLarge            <-    map["imgLarge"]
+        
+    }
+}

@@ -36,6 +36,10 @@ class ContentVC: XBBaseViewController {
         super.setUI()
         self.currentNavigationHidden = true
          viewSearchTop.setCornerRadius(radius: 15)
+        viewSearchTop.addTapGesture { [weak self](sender) in
+            guard let `self` = self else { return }
+            VCRouter.toSearchSingsVC()
+        }
         request()
         
     }
@@ -46,6 +50,7 @@ class ContentVC: XBBaseViewController {
         params_task["clientId"] = XBUserManager.device_Id
         params_task["tags"] = ["six"]
         Net.requestWithTarget(.contentModules(req: params_task), successClosure: { (result, code, message) in
+            self.endRefresh()
             if let arr = Mapper<ModulesResModel>().mapArray(JSONObject:JSON(result)["modules"].arrayObject) {
                 let filterArr = arr.filter({ (item) -> Bool in
                     if let contents = item.contents {

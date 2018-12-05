@@ -187,7 +187,7 @@ class SearchViewControllerNew: XBBaseViewController {
     func showTrackListView(trackList: [EquipmentModel],item: SearchResourceModel)  {
         let v = PlaySongListView.loadFromNib()
         v.listViewType = .trackList_song
-        v.trackArr = trackList
+//        v.trackArr = trackList
         v.getTrackListIdBlock = {[weak self] (trackId, trackName) in
             guard let `self` = self else { return }
             v.hide()

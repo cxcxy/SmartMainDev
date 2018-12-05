@@ -110,6 +110,7 @@ class SearchAlbumViewController: XBBaseViewController {
         params_album["page"]     = self.pageIndex
         params_album["ranges"] = ["album"]
         Net.requestWithTarget(.getSearchResource(req: params_album), successClosure: { (result, code, message) in
+            self.endRefresh()
             if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["albums"].arrayObject) {
                 if self.pageIndex == 1 {
                     self.resourceAlbum.removeAll()

@@ -32,7 +32,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Duy-wV-kyU">
                             <rect key="frame" x="20" y="39" width="291" height="31"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="xEa-Kc-L0l">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_white" translatesAutoresizingMaskIntoConstraints="NO" id="xEa-Kc-L0l">
                                     <rect key="frame" x="18" y="8" width="15" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="15" id="9i1-Qm-ueJ"/>
@@ -136,6 +136,6 @@
     </objects>
     <resources>
         <image name="icon_delete" width="17" height="17"/>
-        <image name="search" width="14.5" height="14.5"/>
+        <image name="icon_search_white" width="15" height="15"/>
     </resources>
 </document>

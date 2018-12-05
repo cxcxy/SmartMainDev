@@ -61,6 +61,7 @@ class EquipmentVC: XBBaseTableViewController {
         }
         Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             print(result)
+            self.endRefresh()
             if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
                 self.endRefresh()
                 self.dataArr = arr

@@ -404,6 +404,7 @@ extension DrawerViewController {
             return
         }
         let v = VolumeControlView.loadFromNib()
+        v.delegate = self
         v.show()
          v.configVolume()
     }
@@ -418,7 +419,7 @@ extension DrawerViewController {
     }
     
 }
-extension DrawerViewController: DrawFromCellDelegate {
+extension DrawerViewController: DrawFromCellDelegate,VolumeControlDelegate {
     func toQRCodeVC()  {
         let vc = OpenEquViewController()
         self.cw_push(vc)
@@ -433,5 +434,8 @@ extension DrawerViewController: DrawFromCellDelegate {
             self.reloadDeviceLamp(isLamp: isSwitch)
             scoketModel.sendClooseLight(isSwitch ? 0 : 1)
         }
+    }
+    func getVolumeNumber(volume: Int) {
+        self.reloadDeviceVolume(volume: volume)
     }
 }

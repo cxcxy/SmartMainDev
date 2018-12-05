@@ -93,6 +93,7 @@ class SearchViewController: XBBaseViewController {
         params_task["page"]     = 1
         params_task["ranges"] = ["resource"]
         Net.requestWithTarget(.getSearchResource(req: params_task), successClosure: { (result, code, message) in
+            self.endRefresh()
             if let arr = Mapper<ConetentSingModel>().mapArray(JSONObject:JSON(result)["resources"].arrayObject) {
                 
                 self.resourceArr = self.flatMapLikeList(arr: arr)
