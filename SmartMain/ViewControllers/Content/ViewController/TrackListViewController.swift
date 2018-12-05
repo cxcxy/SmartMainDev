@@ -33,7 +33,7 @@ class TrackListViewController: XBBaseTableViewController {
             self.request()
         })
         
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
+//        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         request()
     }
     func starAnimationWithTableView(tableView: UITableView) {

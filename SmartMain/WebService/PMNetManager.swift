@@ -89,6 +89,7 @@ class XBNetManager {
         isShowLoding:    Bool        = true,  // 是否弹出loading框， 默认是
         isDissmissLoding:    Bool    = true,  // 是否消失loading框， 默认是
         isShowErrorMessage: Bool     = true,  // 是否弹出错误提示， 默认是
+        isEndRrefreshing: Bool      = true,  // 是否弹出错误提示， 默认是
         successClosure: @escaping SuccessClosure,
         failClosure: FailClosure? = nil
         ){
@@ -109,6 +110,8 @@ class XBNetManager {
         _ =  requestProvider.request(target) { (result) in
             if isDissmissLoding {
                 XBHud.dismiss()
+            }
+            if isEndRrefreshing {
                 self.endRrefreshing()
             }
             switch result{

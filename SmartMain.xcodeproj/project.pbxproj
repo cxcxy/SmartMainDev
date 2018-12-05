@@ -149,6 +149,8 @@
 		042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042EEF8B2150E80B00DBD492 /* ChatViewController.xib */; };
 		042EEF8F2150F12B00DBD492 /* ChatMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042EEF8D2150F12B00DBD492 /* ChatMainViewController.swift */; };
 		042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042EEF8E2150F12B00DBD492 /* ChatMainViewController.xib */; };
+		0432D05421B75FDE00D161A2 /* ContentSubNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432D05221B75FDE00D161A2 /* ContentSubNewController.swift */; };
+		0432D05521B75FDE00D161A2 /* ContentSubNewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0432D05321B75FDE00D161A2 /* ContentSubNewController.xib */; };
 		043E118C213FB3120067ADF3 /* ContentSubShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E118A213FB3120067ADF3 /* ContentSubShowCell.swift */; };
 		043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043E118B213FB3120067ADF3 /* ContentSubShowCell.xib */; };
 		043E1190213FB8FE0067ADF3 /* ContentSingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E118E213FB8FE0067ADF3 /* ContentSingsVC.swift */; };
@@ -705,6 +707,8 @@
 		042EEF8B2150E80B00DBD492 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		042EEF8D2150F12B00DBD492 /* ChatMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMainViewController.swift; sourceTree = "<group>"; };
 		042EEF8E2150F12B00DBD492 /* ChatMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMainViewController.xib; sourceTree = "<group>"; };
+		0432D05221B75FDE00D161A2 /* ContentSubNewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSubNewController.swift; sourceTree = "<group>"; };
+		0432D05321B75FDE00D161A2 /* ContentSubNewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSubNewController.xib; sourceTree = "<group>"; };
 		043E118A213FB3120067ADF3 /* ContentSubShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSubShowCell.swift; sourceTree = "<group>"; };
 		043E118B213FB3120067ADF3 /* ContentSubShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSubShowCell.xib; sourceTree = "<group>"; };
 		043E118E213FB8FE0067ADF3 /* ContentSingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSingsVC.swift; sourceTree = "<group>"; };
@@ -2032,6 +2036,8 @@
 				2DF075C12178B3EF006F0818 /* ResourceAllVC.swift */,
 				2DC95599213ECD62004D6F65 /* ContentSubVC.swift */,
 				044CED0C2176C8D80068C75A /* ContentSubVC.xib */,
+				0432D05221B75FDE00D161A2 /* ContentSubNewController.swift */,
+				0432D05321B75FDE00D161A2 /* ContentSubNewController.xib */,
 				043E118E213FB8FE0067ADF3 /* ContentSingsVC.swift */,
 				2DB801F8217CB0590026FC8F /* ResourceAlbumVC.swift */,
 				2DB801F9217CB0590026FC8F /* ResourceAlbumVC.xib */,
@@ -2381,6 +2387,7 @@
 				042EEF8C2150E80B00DBD492 /* ChatViewController.xib in Resources */,
 				0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */,
 				04FA4D7821B667480037F093 /* NetConfigLoading.xib in Resources */,
+				0432D05521B75FDE00D161A2 /* ContentSubNewController.xib in Resources */,
 				2D0ACC4D215A74EC0047103C /* AccountInfoViewController.xib in Resources */,
 				043E118D213FB3120067ADF3 /* ContentSubShowCell.xib in Resources */,
 				04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */,
@@ -2847,6 +2854,7 @@
 				04C38727213E093F0063A799 /* XBUserManager.swift in Sources */,
 				042EEF582150E15F00DBD492 /* PSTGridLayoutItem.m in Sources */,
 				04C38724213E093F0063A799 /* XBUploadManager.swift in Sources */,
+				0432D05421B75FDE00D161A2 /* ContentSubNewController.swift in Sources */,
 				042EEF7D2150E15F00DBD492 /* EaseChatToolbar.m in Sources */,
 				04C38A18213E79240063A799 /* SearchViewController.swift in Sources */,
 				04B771FA21ACDACC0049F4BA /* BaseListCell.swift in Sources */,

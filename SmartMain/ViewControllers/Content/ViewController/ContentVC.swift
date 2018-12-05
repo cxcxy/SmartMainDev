@@ -13,6 +13,8 @@ class ContentVC: XBBaseViewController {
     var dataTrackArr: [EquipmentModel] = []
     var bannersArr: [ResourceBannerModel] = []
     
+    @IBOutlet weak var viewTopLayout: NSLayoutConstraint!
+    @IBOutlet weak var viewTop: UIView!
     @IBOutlet weak var tableView: UITableView!
      @IBOutlet weak var viewSearchTop: UIView!
     override func viewDidLoad() {
@@ -200,4 +202,21 @@ extension ContentVC {
         }
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 滑动视图上移动画
+        viewUpAnimationWihtScrollView(scrollView)
+
+    }
+    func viewUpAnimationWihtScrollView(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        if (offsetY) > 182 {
+            if (offsetY - 182) <= 44 {
+                viewTopLayout.constant = -(offsetY - 182)
+            }else {
+                viewTopLayout.constant = -44
+            }
+        } else {
+            viewTopLayout.constant = 0
+        }
+    }
 }

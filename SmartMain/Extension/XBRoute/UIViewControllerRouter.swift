@@ -60,7 +60,8 @@ class VCRouter {
     // MARK: - 跳转第二级页面
     class func toContentSubVC(clientId: String!, albumId:String? = nil,modouleId:String? = nil, navTitle: String?, listType: ContentSubType = .none) {
         
-        let vc = ContentSubVC()
+//        let vc = ContentSubVC()
+        let vc = ContentSubNewController()
         vc.clientId = clientId
         vc.albumId = albumId
         vc.modouleId = modouleId
@@ -68,6 +69,17 @@ class VCRouter {
         topVC?.pushVC(vc)
         
     }
+//    // MARK: - 跳转第二级页面 新
+//    class func toContentNewSubVC(clientId: String!, albumId:String? = nil,modouleId:String? = nil, navTitle: String?, listType: ContentSubType = .none) {
+//
+//        let vc = ContentSubVC()
+//        vc.clientId = clientId
+//        vc.albumId = albumId
+//        vc.modouleId = modouleId
+//        vc.title = navTitle
+//        topVC?.pushVC(vc)
+//
+//    }
     class func toContentSubVCFromSearch(searchKey: String!, listType: ContentSubType = .search) {
         
         let vc = ContentSubVC()

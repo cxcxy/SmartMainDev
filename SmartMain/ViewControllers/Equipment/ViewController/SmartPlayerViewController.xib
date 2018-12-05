@@ -246,7 +246,7 @@
                                                     <state key="normal" image="icon_play_only">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
-                                                    <state key="selected" image="icon_play_all"/>
+                                                    <state key="selected" image="icon_playing_all"/>
                                                     <connections>
                                                         <action selector="clickRepeatAction:" destination="-1" eventType="touchUpInside" id="woH-pq-TH7"/>
                                                     </connections>
@@ -521,7 +521,6 @@
     <resources>
         <image name="icon_paly_like" width="27" height="24"/>
         <image name="icon_play_add" width="29" height="29"/>
-        <image name="icon_play_all" width="35" height="35"/>
         <image name="icon_play_back" width="26" height="26"/>
         <image name="icon_play_like" width="29" height="29"/>
         <image name="icon_play_list" width="35" height="35"/>
@@ -534,6 +533,7 @@
         <image name="icon_play_unlike" width="29" height="29"/>
         <image name="icon_play_xia" width="50" height="50"/>
         <image name="icon_play_zanting" width="29" height="29"/>
+        <image name="icon_playing_all" width="35" height="35"/>
         <image name="test4" width="1080" height="1080"/>
     </resources>
 </document>

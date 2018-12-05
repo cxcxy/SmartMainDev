@@ -17,7 +17,7 @@ class TrackListHomeCell: BaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imgIcon.setCornerRadius(radius: 8)
+//        imgIcon.setCornerRadius(radius: 8)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
