@@ -65,6 +65,7 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         didSet{
             
             self.tableView.cellId_register("BaseListCell")
+             self.tableView.cellId_register("ContentSongsTopCell")
             self.tableView.estimatedRowHeight = 60
             self.tableView.delegate           = self
             self.tableView.dataSource         = self
@@ -103,49 +104,80 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArr.count
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch songListType {
         case .songs:
-            if let albumModel = self.albumModel {
-                return 220
-            }
-           return XBMin
+            return dataArr.count + 1
         default:
-            return XBMin
+            return dataArr.count
         }
         
     }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch songListType {
-        case .songs:
-            if let albumModel = self.albumModel {
-                let v = ContentSongsHeader.loadFromNib()
-                v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: 210) 
-                self.configTopHeadeaInfo(view: v, model: albumModel)
-//                v.btnAddAll.addAction {[weak self] in
-//                    guard let `self` = self else { return }
-//                    self.clickSongsToTrackList(isAll: true)
-//                }
-                return v
-            }
-             return nil
-        default:
-            return nil
-        }
-
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        switch songListType {
+//        case .songs:
+//            if let albumModel = self.albumModel {
+//                return 220
+//            }
+//           return XBMin
+//        default:
+//            return XBMin
+//        }
+//
+//    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        switch songListType {
+//        case .songs:
+//            if let albumModel = self.albumModel {
+//                let v = ContentSongsHeader.loadFromNib()
+//                v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: 210)
+////                self.configTopHeadeaInfo(view: v, model: albumModel)
+//                 v.lbTopDes.set_text = "12312312312312312312312312312321312312312312312"
+////                v.btnAddAll.addAction {[weak self] in
+////                    guard let `self` = self else { return }
+////                    self.clickSongsToTrackList(isAll: true)
+////                }
+//                v.layoutIfNeeded()
+//                return v
+//            }
+//             return nil
+//        default:
+//            return nil
+//        }
+//
+//    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BaseListCell", for: indexPath) as! BaseListCell
-        cell.lbLineNumber.set_text = (indexPath.row + 1).toString
-        cell.isEdit = self.isEdit
-        let model = dataArr[indexPath.row]
-        cell.modelData = model
-        cell.indexPathRow = indexPath.row
-        
+//
+        switch songListType {
+        case .songs:
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSongsTopCell", for: indexPath) as! ContentSongsTopCell
+//                cell.lbTopDes.set_text = "1231231231231231231231231231232131231231231231312312313123123131231231312312312"
+                if let model = self.albumModel {
+                    cell.lbTopDes.set_text = model.name
+                    let totalStr = model.total?.toString ?? ""
+                    cell.lbTopTotal.set_text =  "共" + totalStr + "首"
+                    cell.imgTop.set_Img_Url(model.imgLarge)
+                    cell.imgBackground.set_Img_Url(model.imgLarge)
+                   
+                }
+                return cell
+            }else {
+                return self.getListCell(tableView, cellForRowAt: indexPath, indexPathRow: indexPath.row - 1)
+            }
+            break
+        default:
+            break
+        }
+        return self.getListCell(tableView, cellForRowAt: indexPath, indexPathRow: indexPath.row)
        
+    }
+    func getListCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath,indexPathRow: Int) -> BaseListCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BaseListCell", for: indexPath) as! BaseListCell
+        cell.lbLineNumber.set_text = (indexPathRow + 1).toString
+        cell.isEdit = self.isEdit
+        let model = dataArr[indexPathRow]
+        cell.modelData = model
+        cell.indexPathRow = indexPathRow
         cell.delegate = self
         switch songListType {
         case .track,.songs:

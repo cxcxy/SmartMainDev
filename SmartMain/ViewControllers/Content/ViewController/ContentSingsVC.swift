@@ -117,7 +117,7 @@ class ContentSingsVC: XBBaseTableViewController {
                 self.dataDelegate.albumModel = topModel
             }
             self.tableView.reloadData()
-            self.starAnimationWithTableView(tableView: self.tableView)
+//            self.starAnimationWithTableView(tableView: self.tableView)
         })
     }
     func starAnimationWithTableView(tableView: UITableView) {
