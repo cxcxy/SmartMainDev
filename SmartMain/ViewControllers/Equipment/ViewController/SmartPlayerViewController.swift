@@ -141,8 +141,14 @@ class SmartPlayerViewController: XBBaseViewController {
         }
         
     }
+    func progressAction() {
+        print("滑动结束")
+//        currentSongProgress =
+        scoketModel.setPlayProgressValue(value: Int(sliderProgress.value))
+    }
     override func setUI() {
         super.setUI()
+        addRotationAnim()
         adapterUI()
         configPlay()
         request()
@@ -152,7 +158,8 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.sendGetMode()
         scoketModel.sendGetVolume()
         
-        addRotationAnim()
+//         [self.progressSlider addTarget:self action:@selector(sliderTouchDown:) forControlEvents:UIControlEventTouchDown];
+        self.sliderProgress.addTarget(self, action: #selector(progressAction), for: .touchUpInside)
         
         configProgressSlider(value: 0.0)
         
@@ -182,12 +189,14 @@ class SmartPlayerViewController: XBBaseViewController {
             if let status = status.element {
                 
                 if status { // 正在播放
+                    print("正在播放")
                     self.btnPlay.isSelected = true
                     self.resetTimer()
                     self.configTimer(songDuration: self.allTimer, isPlay: true)
                     self.scoketModel.sendGetPlayProgress()
                     self.resumeRotate()
                 }else { // 暂停了
+                    print("暂停了")
                     self.btnPlay.isSelected = false
                     self.resetTimer()
                     self.pauseRotate()
@@ -264,7 +273,7 @@ class SmartPlayerViewController: XBBaseViewController {
 //        resetTimer()
 //    }
     //MARK: 重置计时器
-    func resetTimer()  {
+    func    resetTimer()  {
         timer?.invalidate()
         timer = nil
     }
@@ -286,7 +295,7 @@ class SmartPlayerViewController: XBBaseViewController {
         let value:Float = sliderProgress.value
         print("歌曲时间",Int(sliderProgress.value))
         currentSongProgress = Int(sliderProgress.value)
-        scoketModel.setPlayProgressValue(value: Int(value))
+//        scoketModel.setPlayProgressValue(value: Int(value))
     }
     
     
@@ -393,6 +402,7 @@ class SmartPlayerViewController: XBBaseViewController {
         let v = SwitchPlayView.loadFromNib()
         v.imgAll.isHidden = !self.btnRepeat.isSelected
         v.imgSing.isHidden = self.btnRepeat.isSelected
+        v.viewThree.isHidden = true
         v.viewAll.addAction { [weak self] in
             guard let `self` = self else { return }
             v.hide()

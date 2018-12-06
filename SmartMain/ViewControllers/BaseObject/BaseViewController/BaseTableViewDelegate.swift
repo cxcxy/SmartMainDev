@@ -21,6 +21,7 @@ enum SongListType {
     case trackScrollView // 预制列表
     case like // 收藏列表
     case histroy // 历史列表
+
     case songs
 }
 // 0 都未选中 ，1 选择部分 2 全部选中
@@ -121,7 +122,7 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         case .songs:
             if let albumModel = self.albumModel {
                 let v = ContentSongsHeader.loadFromNib()
-//                v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: 210)
+                v.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: 210) 
                 self.configTopHeadeaInfo(view: v, model: albumModel)
 //                v.btnAddAll.addAction {[weak self] in
 //                    guard let `self` = self else { return }

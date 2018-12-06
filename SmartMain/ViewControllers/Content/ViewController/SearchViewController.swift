@@ -64,7 +64,7 @@ class SearchViewController: XBBaseViewController {
         
         self.currentNavigationHidden        = true
         viewSearchTop.setCornerRadius(radius: 15)
-        textField.becomeFirstResponder()
+//        textField.becomeFirstResponder()
 
         let input = textField.rx.text.orEmpty.asDriver()
         

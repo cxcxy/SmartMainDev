@@ -24,7 +24,7 @@ class LikeViewController: XBBaseViewController {
         }
         
     }
-        var dataDelegate: BaseTableViewDelegate = BaseTableViewDelegate()
+    var dataDelegate: BaseTableViewDelegate = BaseTableViewDelegate()
     var viewModel = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
     
