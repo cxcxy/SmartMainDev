@@ -172,11 +172,12 @@ extension GroupAddViewController {
         let footer = ChatCreateView.loadFromNib()
         footer.lbTitle.set_text = "微聊组昵称"
         footer.tfName.text = self.groupName
-        footer.btnAdd.set_Title("修改")
-        footer.btnAdd.addAction { [weak self] in
-            guard let `self` = self else { return }
-            self.updateGroupNick(nick: footer.tfName.text!)
-        }
+        footer.btnAdd.isHidden = true
+//        footer.btnAdd.set_Title("修改")
+//        footer.btnAdd.addAction { [weak self] in
+//            guard let `self` = self else { return }
+//            self.updateGroupNick(nick: footer.tfName.text!)
+//        }
         return footer
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

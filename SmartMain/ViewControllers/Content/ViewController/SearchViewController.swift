@@ -228,7 +228,7 @@ extension SearchViewController: VTMagicViewDataSource{
     }
     func menuTitles(for magicView: VTMagicView) -> [String] {
         
-        return ["专辑","歌曲"]
+        return ["歌曲","专辑"]
         
     }
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton{

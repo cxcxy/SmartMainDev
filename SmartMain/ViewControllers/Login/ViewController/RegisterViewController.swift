@@ -10,6 +10,7 @@ import UIKit
 
 class RegisterViewController: XBBaseViewController {
     
+    @IBOutlet weak var btnRead: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var tfPhone: XBTextView!
     @IBOutlet weak var thPassword: XBTextView!
@@ -45,9 +46,18 @@ class RegisterViewController: XBBaseViewController {
             self.sendCodeWithBtnTimer()
         }
     }
+    
+    @IBAction func clickReadAction(_ sender: Button) {
+        sender.isSelected = !sender.isSelected
+    }
+    
     @IBAction func clickRegisterAction(_ sender: Any) {
 //        let vc = SetInfoViewController()
 //        self.pushVC(vc)
+        if btnRead.isSelected == false {
+            XBHud.showWarnMsg("请先阅读协议")
+            return
+        }
         viewModel.requestRegister(mobile: tfPhone.text!, code: tfCode.text!, pass: thPassword.text!) {
             
             let vc = SetInfoViewController()

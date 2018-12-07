@@ -44,7 +44,7 @@
                             <rect key="frame" x="0.0" y="63" width="335" height="43"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omD-E4-Mea">
-                                    <rect key="frame" x="18" y="0.0" width="117" height="43"/>
+                                    <rect key="frame" x="18" y="0.0" width="202" height="43"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -68,12 +68,12 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="b7i-KU-nDf" firstAttribute="bottom" secondItem="omD-E4-Mea" secondAttribute="bottom" id="13T-0i-iJE"/>
+                                <constraint firstItem="VJu-GD-6aY" firstAttribute="leading" secondItem="omD-E4-Mea" secondAttribute="trailing" constant="15" id="BCz-ws-5rg"/>
                                 <constraint firstItem="omD-E4-Mea" firstAttribute="top" secondItem="b7i-KU-nDf" secondAttribute="top" id="OMU-3w-nbL"/>
                                 <constraint firstItem="omD-E4-Mea" firstAttribute="centerY" secondItem="b7i-KU-nDf" secondAttribute="centerY" id="P7Z-NM-emX"/>
                                 <constraint firstAttribute="trailing" secondItem="VJu-GD-6aY" secondAttribute="trailing" constant="10" id="TSV-zS-nSS"/>
                                 <constraint firstItem="omD-E4-Mea" firstAttribute="leading" secondItem="b7i-KU-nDf" secondAttribute="leading" constant="18" id="XTO-vg-XkP"/>
                                 <constraint firstItem="VJu-GD-6aY" firstAttribute="centerY" secondItem="b7i-KU-nDf" secondAttribute="centerY" id="qKu-Ye-a6N"/>
-                                <constraint firstItem="b7i-KU-nDf" firstAttribute="trailing" secondItem="omD-E4-Mea" secondAttribute="trailing" constant="200" id="unj-sN-yKz"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="b7i-KU-nDf"/>
                         </view>

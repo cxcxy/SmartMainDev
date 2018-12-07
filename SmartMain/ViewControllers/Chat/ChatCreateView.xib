@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,10 +26,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="diy-fZ-2Ym">
-                            <rect key="frame" x="15" y="39.5" width="255" height="25"/>
+                            <rect key="frame" x="15" y="39.5" width="315" height="25"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入微聊组名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tUQ-bM-SJL">
-                                    <rect key="frame" x="10" y="0.0" width="245" height="25"/>
+                                    <rect key="frame" x="10" y="0.0" width="305" height="25"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -44,7 +44,7 @@
                                 <constraint firstItem="tUQ-bM-SJL" firstAttribute="leading" secondItem="diy-fZ-2Ym" secondAttribute="leading" constant="10" id="zsN-bw-uBX"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhP-Kr-NUV">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhP-Kr-NUV">
                             <rect key="frame" x="285" y="39.5" width="45" height="25"/>
                             <color key="backgroundColor" red="0.50196078431372548" green="0.792156862745098" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -60,13 +60,13 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="diy-fZ-2Ym" firstAttribute="leading" secondItem="Pgr-4C-MXq" secondAttribute="leading" constant="15" id="6kb-1P-YJI"/>
+                        <constraint firstAttribute="trailing" secondItem="diy-fZ-2Ym" secondAttribute="trailing" constant="15" id="6uR-i1-u00"/>
                         <constraint firstItem="diy-fZ-2Ym" firstAttribute="top" secondItem="Nde-4y-Uop" secondAttribute="bottom" constant="15" id="CwV-4z-sgI"/>
                         <constraint firstItem="Nde-4y-Uop" firstAttribute="top" secondItem="Pgr-4C-MXq" secondAttribute="top" constant="10" id="OwF-ym-qBo"/>
                         <constraint firstAttribute="trailing" secondItem="uhP-Kr-NUV" secondAttribute="trailing" constant="15" id="THR-lT-1uQ"/>
                         <constraint firstItem="Nde-4y-Uop" firstAttribute="leading" secondItem="Pgr-4C-MXq" secondAttribute="leading" constant="15" id="Usv-hc-lKb"/>
                         <constraint firstAttribute="height" constant="90" id="gxF-sA-C1j"/>
                         <constraint firstItem="uhP-Kr-NUV" firstAttribute="centerY" secondItem="diy-fZ-2Ym" secondAttribute="centerY" id="hlF-2u-zag"/>
-                        <constraint firstItem="uhP-Kr-NUV" firstAttribute="leading" secondItem="diy-fZ-2Ym" secondAttribute="trailing" constant="15" id="lSP-UE-Fnd"/>
                     </constraints>
                 </view>
             </subviews>

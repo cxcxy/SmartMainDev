@@ -10,12 +10,10 @@ import UIKit
 protocol VolumeControlDelegate: class {
     func getVolumeNumber(volume: Int)
 }
-class VolumeControlView: ETPopupView,SectionedSliderDelegate {
+class VolumeControlView: ETPopupView,SectionedSliderDelegate,UIGestureRecognizerDelegate {
 //    @IBOutlet weak var sliderVolume: UISlider!
     @IBOutlet weak var lbVolume: UILabel!
     
-//    @IBOutlet weak var btnAdd: UIButton!
-//    @IBOutlet weak var btnCut: UIButton!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var btnSure: UIButton!
     
@@ -33,11 +31,16 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate {
             make.width.equalTo(MGScreenWidth)
             make.height.equalTo(MGScreenHeight)
         }
-        ETPopupWindow.sharedWindow().touchWildToHide = true
+//        ETPopupWindow.sharedWindow().touchWildToHide = true
         self.layoutIfNeeded()
-        self.addTapGesture { (sender) in
-            self.hide()
-        }
+//        self.addTapGesture { (sender) in
+//            self.hide()
+//        }
+        let tapSingle                       = UITapGestureRecognizer(target:self,action:#selector(tapSingleDid))
+        tapSingle.numberOfTapsRequired      = 1
+        tapSingle.numberOfTouchesRequired   = 1
+        tapSingle.delegate = self
+        self.addGestureRecognizer(tapSingle)
         btnSure.radius_ll()
         
         sliderView.sections = 40
@@ -52,6 +55,17 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate {
         }
         
        
+    }
+    @objc func tapSingleDid(){
+        self.hide()
+    }
+    // 解决collectionView 点击事件被手势覆盖，无法响应问题
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isDescendant(of: sliderView) ?? false {
+            return false
+        }
+        
+        return true
     }
     func configVolume()  {
         scoketModel.sendGetVolume()
@@ -77,6 +91,7 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate {
     }
     @IBAction func clickSureAction(_ sender: Any) {
         scoketModel.setVolumeValue(value: currentVolume)
+        XBHud.showWarnMsg("修改成功")
         if let del = delegate {
             del.getVolumeNumber(volume: self.currentVolume)
         }

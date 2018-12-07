@@ -112,6 +112,7 @@ class ScreenControlView: ETPopupView, UIPickerViewDelegate, UIPickerViewDataSour
         let selectRow = pickerView.selectedRow(inComponent: 0)
         let model = dataArr[selectRow].value
         scoketModel.setPowerOff(value: model)
+        XBHud.showWarnMsg("修改成功")
     }
     
 }

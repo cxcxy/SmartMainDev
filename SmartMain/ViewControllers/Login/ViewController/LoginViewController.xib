@@ -53,13 +53,16 @@
                             <rect key="frame" x="0.0" y="126" width="335" height="43"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HFY-Bv-E7o">
-                                    <rect key="frame" x="50.000000000000007" y="0.0" width="75.666666666666686" height="43"/>
+                                    <rect key="frame" x="50" y="0.0" width="208" height="43"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pym-7e-Ecd">
                                     <rect key="frame" x="273" y="0.0" width="62" height="43"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="62" id="bVd-50-937"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <state key="normal" title="获取验证码"/>
                                     <connections>
@@ -75,6 +78,7 @@
                                 <constraint firstItem="f9n-SN-Wq9" firstAttribute="trailing" secondItem="Pym-7e-Ecd" secondAttribute="trailing" id="8CM-sd-ewc"/>
                                 <constraint firstItem="f9n-SN-Wq9" firstAttribute="bottom" secondItem="HFY-Bv-E7o" secondAttribute="bottom" id="R0Q-Wr-cfI"/>
                                 <constraint firstItem="HFY-Bv-E7o" firstAttribute="top" secondItem="gIC-be-JBY" secondAttribute="top" id="eIZ-qj-7C3"/>
+                                <constraint firstItem="Pym-7e-Ecd" firstAttribute="leading" secondItem="HFY-Bv-E7o" secondAttribute="trailing" constant="15" id="xWZ-bA-647"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="f9n-SN-Wq9"/>
                         </view>

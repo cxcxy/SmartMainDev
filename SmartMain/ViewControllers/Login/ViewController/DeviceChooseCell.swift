@@ -52,14 +52,14 @@ class DeviceChooseCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        if UIDevice.deviceType == .dt_iPhone5 {
-//            imgPhotoWidth.constant = 60
-            imgPhoto.layoutIfNeeded()
-            imgPhoto.roundView()
-        } else {
-            imgPhoto.layoutIfNeeded()
-            imgPhoto.roundView()
-        }
+//        if UIDevice.deviceType == .dt_iPhone5 {
+////            imgPhotoWidth.constant = 60/
+//            imgPhoto.layoutIfNeeded()
+//            imgPhoto.roundView()
+//        } else {
+//            imgPhoto.layoutIfNeeded()
+//            imgPhoto.roundView()
+//        }
         
         imgPhoto.setNeedsUpdateConstraints()
         viewContainer.setCornerRadius(radius: 8)
@@ -67,5 +67,16 @@ class DeviceChooseCell: UICollectionViewCell {
         btnDel.isHidden = false
 //        lbCurrent.isHidden = true
     }
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        imgPhoto.layoutIfNeeded()
+        imgPhoto.roundView()
+//
+//        btnCenterNew.frame.size.height  = 49 - 3
+//        btnHomeNew.frame.size.height    = 49 - 3
+//        btnCode.frame.size.height       = QRCodeBtnWidth
+        
+//        btnHomeNew.setButtonImageTitleStyle(.top, padding: 3)
+//        btnCenterNew.setButtonImageTitleStyle(.top, padding: 3)
+    }
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//import EMMessage
 class ChatGroupController: EaseMessageViewController {
     var groupName: String!
     override func viewDidLoad() {
@@ -17,8 +17,8 @@ class ChatGroupController: EaseMessageViewController {
         self.setRightItem()
         let chatView = self.chatToolbar as? EaseChatToolbar
         chatView?.inputViewRightItems = []
-
-
+//        self.dataSource = self
+        dataSource = self
     }
     //MARK: 返回按钮
     func setCustomerBack(_ backIconName:String = "icon_fanhui") {
@@ -55,6 +55,41 @@ class ChatGroupController: EaseMessageViewController {
     }
 }
 extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource {
+    override func send(_ message: EMMessage!, isNeedUploadFile isUploadFile: Bool) {
+//
+        let headImgUrl = user_defaults.get(for: .headImgUrl) ?? ""
+        let nickname = user_defaults.get(for: .nickname) ?? ""
+        let exit = ["avatar": headImgUrl,
+                    "nickname": nickname]
+//        if message.ext == [:] {
+//
+//        }
+        message.ext = exit
+        super.send(message, isNeedUploadFile: isUploadFile)
+    }
+    func messageViewController(_ viewController: EaseMessageViewController!, modelFor message: EMMessage!) -> IMessageModel! {
+        let model = EaseMessageModel.init(message: message)
+        
+        model?.avatarImage = UIImage.init(named: "icon_photo")
+        if model?.isSender ?? true {
+            let headImgUrl = user_defaults.get(for: .headImgUrl) ?? ""
+            let nickname = user_defaults.get(for: .nickname) ?? ""
+            model?.avatarURLPath = headImgUrl
+            model?.nickname = nickname
+        }else {
+            if let dic = message.ext {
+                if let avatar = dic["avatar"] as? String,let nickname = dic["nickname"] as? String{
+                    model?.avatarURLPath = avatar
+                    model?.nickname = nickname
+                }
+            }
+
+           
+           
+        }
+
+        return model
+    }
     override func sendVoiceMessage(withLocalPath localPath: String!, duration: Int) {
         print(localPath)
         super.sendVoiceMessage(withLocalPath: localPath, duration: duration)

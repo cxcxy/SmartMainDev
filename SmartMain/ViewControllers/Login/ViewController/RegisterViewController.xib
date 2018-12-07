@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
                 <outlet property="btnCode" destination="Yri-4r-pKq" id="qil-V8-kdw"/>
+                <outlet property="btnRead" destination="sEs-tu-caK" id="Fk0-vH-Ztv"/>
                 <outlet property="btnRegister" destination="ZwS-Pu-VN3" id="1EJ-Le-Wa6"/>
                 <outlet property="tfCode" destination="Vn4-Mq-D07" id="8dl-bm-hu1"/>
                 <outlet property="tfPhone" destination="fz6-Di-QcI" id="4Qx-YV-Fvt"/>
@@ -43,7 +44,7 @@
                             <rect key="frame" x="0.0" y="63" width="335" height="43"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vn4-Mq-D07">
-                                    <rect key="frame" x="18" y="0.0" width="117" height="43"/>
+                                    <rect key="frame" x="18" y="0.0" width="202" height="43"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -67,11 +68,11 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Yri-4r-pKq" firstAttribute="centerY" secondItem="EKQ-8c-t0I" secondAttribute="centerY" id="DNO-EV-05p"/>
+                                <constraint firstItem="Yri-4r-pKq" firstAttribute="leading" secondItem="Vn4-Mq-D07" secondAttribute="trailing" constant="15" id="JWJ-ZS-pZN"/>
                                 <constraint firstItem="Vn4-Mq-D07" firstAttribute="centerY" secondItem="EKQ-8c-t0I" secondAttribute="centerY" id="No0-I7-fhc"/>
                                 <constraint firstItem="EKQ-8c-t0I" firstAttribute="bottom" secondItem="Vn4-Mq-D07" secondAttribute="bottom" id="RaQ-vH-idY"/>
                                 <constraint firstItem="Vn4-Mq-D07" firstAttribute="top" secondItem="EKQ-8c-t0I" secondAttribute="top" id="Sd2-jR-fyu"/>
                                 <constraint firstAttribute="trailing" secondItem="Yri-4r-pKq" secondAttribute="trailing" constant="10" id="obw-lA-ccp"/>
-                                <constraint firstItem="EKQ-8c-t0I" firstAttribute="trailing" secondItem="Vn4-Mq-D07" secondAttribute="trailing" constant="200" id="uM3-dx-hZg"/>
                                 <constraint firstItem="Vn4-Mq-D07" firstAttribute="leading" secondItem="EKQ-8c-t0I" secondAttribute="leading" constant="18" id="wg9-An-MAs"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="EKQ-8c-t0I"/>
@@ -109,13 +110,17 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEs-tu-caK">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEs-tu-caK">
                             <rect key="frame" x="0.0" y="-0.5" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="8ve-Ih-0aR"/>
                                 <constraint firstAttribute="width" constant="15" id="olN-DR-m0U"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" image="icon_list_unselect"/>
+                            <state key="selected" image="icon_list_select"/>
+                            <connections>
+                                <action selector="clickReadAction:" destination="-1" eventType="touchUpInside" id="PGq-1m-YqL"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -144,4 +149,8 @@
             <point key="canvasLocation" x="132" y="154.27286356821591"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_list_select" width="16" height="16"/>
+        <image name="icon_list_unselect" width="16" height="16"/>
+    </resources>
 </document>
