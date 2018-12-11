@@ -334,7 +334,9 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 跳转音乐播放器页面
     func toPlayerViewController()  {
-        
+        if bottomSongView.lbSingsTitle.set_text == "暂无歌曲" {
+            return
+        }
         VCRouter.toPlayVC()
 
     }
