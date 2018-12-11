@@ -9,17 +9,25 @@
 import UIKit
 
 class HistoryViewController: XBBaseViewController {
+    
+    @IBOutlet weak var viewTotal: UIView!
+    
     var currentDeviceId: String?
-//    @IBOutlet weak var tfSearch: UITextField!
     
     @IBOutlet weak var lbTotal: UILabel!
-    //    @IBOutlet weak var viewSearch: UIView!
+    
     @IBOutlet weak var tableView: UITableView!
-     var viewModel = ContentViewModel()
+    
+    var viewModel = ContentViewModel()
     var trackList: [EquipmentModel] = [] // 预制列表数据model
     
     var dataArr: [ConetentLikeModel] = [] {
         didSet {
+            if dataArr.count == 0 {
+                self.viewTotal.isHidden = true
+            }else {
+                self.viewTotal.isHidden = false
+            }
             self.configDelegateArr()
         }
     }
@@ -48,6 +56,7 @@ class HistoryViewController: XBBaseViewController {
     override func setUI() {
         super.setUI()
         dataDelegate.tableView = self.tableView
+        dataDelegate.current_vc = self
         dataDelegate.songListType = .histroy
 //        viewSearch.setCornerRadius(radius: 15)
         _ = Noti(.refreshDeviceHistory).takeUntil(self.rx.deallocated).subscribe(onNext: {[weak self] (value) in
@@ -77,9 +86,12 @@ class HistoryViewController: XBBaseViewController {
         super.request()
         self.currentDeviceId = XBUserManager.device_Id
         guard XBUserManager.device_Id != "" else {
+            self.endRefresh()
             self.loading = true
+            self.viewTotal.isHidden = true
             return
         }
+//        self.viewTotal.isHidden = false
         Net.requestWithTarget(.getHistoryList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             print(result)
             self.endRefresh()
@@ -92,7 +104,11 @@ class HistoryViewController: XBBaseViewController {
                 self.loading = true
                 self.dataArr += arr
                 self.lbTotal.set_text = "共" + arr.count.toString + "首"
-                self.refreshStatus(status: .NoMoreData)
+                if arr.count > 0 {
+                    self.refreshStatus(status: .NoMoreData)
+                }else {
+                    self.refreshStatus(status: .noneData)
+                }
                 self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)

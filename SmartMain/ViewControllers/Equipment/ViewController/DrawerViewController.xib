@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
                 <outlet property="imgElectricity" destination="aw1-l9-ThS" id="Ads-Wh-QOD"/>
+                <outlet property="imgNext" destination="cM1-Qb-Oi5" id="UP8-y1-57J"/>
                 <outlet property="imgPhoto" destination="y4I-vD-U74" id="zEL-SD-Pux"/>
                 <outlet property="imgWifi" destination="Uuo-OE-lLm" id="UdL-X9-JRJ"/>
                 <outlet property="lbDvnick" destination="RIa-pq-s3I" id="hj4-5d-yua"/>
@@ -40,7 +41,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIa-pq-s3I">
-                            <rect key="frame" x="80" y="35" width="280" height="17"/>
+                            <rect key="frame" x="80" y="35" width="259" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -59,6 +60,13 @@
                                 <constraint firstAttribute="width" constant="20" id="wdk-TH-524"/>
                             </constraints>
                         </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_info_next" translatesAutoresizingMaskIntoConstraints="NO" id="cM1-Qb-Oi5">
+                            <rect key="frame" x="349" y="38" width="11" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="19" id="1Jn-qF-EpF"/>
+                                <constraint firstAttribute="width" constant="11" id="fxq-SJ-hOA"/>
+                            </constraints>
+                        </imageView>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9y4-sY-i2j">
                             <rect key="frame" x="102" y="63" width="20" height="10"/>
                             <fontDescription key="fontDescription" type="system" pointSize="7"/>
@@ -71,17 +79,19 @@
                         <constraint firstItem="RIa-pq-s3I" firstAttribute="leading" secondItem="y4I-vD-U74" secondAttribute="trailing" constant="15" id="0Yz-TF-OrO"/>
                         <constraint firstItem="aw1-l9-ThS" firstAttribute="leading" secondItem="Uuo-OE-lLm" secondAttribute="trailing" constant="5" id="0wh-w1-JBT"/>
                         <constraint firstItem="9y4-sY-i2j" firstAttribute="height" secondItem="aw1-l9-ThS" secondAttribute="height" id="3I9-QD-exJ"/>
+                        <constraint firstItem="cM1-Qb-Oi5" firstAttribute="centerY" secondItem="vjf-le-xWl" secondAttribute="centerY" id="65Q-aN-ewF"/>
                         <constraint firstItem="aw1-l9-ThS" firstAttribute="centerY" secondItem="Uuo-OE-lLm" secondAttribute="centerY" id="9be-I0-7uL"/>
                         <constraint firstAttribute="height" constant="95" id="BYS-Ds-8VX"/>
                         <constraint firstItem="y4I-vD-U74" firstAttribute="leading" secondItem="vjf-le-xWl" secondAttribute="leading" constant="20" id="GGX-ed-IMJ"/>
                         <constraint firstItem="9y4-sY-i2j" firstAttribute="leading" secondItem="aw1-l9-ThS" secondAttribute="leading" constant="1" id="HzW-as-48Y"/>
+                        <constraint firstItem="cM1-Qb-Oi5" firstAttribute="leading" secondItem="RIa-pq-s3I" secondAttribute="trailing" constant="10" id="J5x-hU-274"/>
                         <constraint firstItem="RIa-pq-s3I" firstAttribute="top" secondItem="y4I-vD-U74" secondAttribute="top" constant="10" id="L3J-t0-aci"/>
                         <constraint firstItem="Uuo-OE-lLm" firstAttribute="leading" secondItem="RIa-pq-s3I" secondAttribute="leading" id="LJD-du-Afs"/>
                         <constraint firstItem="9y4-sY-i2j" firstAttribute="centerY" secondItem="aw1-l9-ThS" secondAttribute="centerY" id="MEM-I9-A8c"/>
                         <constraint firstItem="Uuo-OE-lLm" firstAttribute="top" secondItem="RIa-pq-s3I" secondAttribute="bottom" constant="8" id="eXC-ae-Yrl"/>
-                        <constraint firstAttribute="trailing" secondItem="RIa-pq-s3I" secondAttribute="trailing" constant="15" id="lh1-Wh-jRm"/>
                         <constraint firstItem="y4I-vD-U74" firstAttribute="centerY" secondItem="vjf-le-xWl" secondAttribute="centerY" id="pTk-IZ-3BT"/>
                         <constraint firstItem="9y4-sY-i2j" firstAttribute="width" secondItem="aw1-l9-ThS" secondAttribute="width" id="s0E-ki-Wrb"/>
+                        <constraint firstAttribute="trailing" secondItem="cM1-Qb-Oi5" secondAttribute="trailing" constant="15" id="z3j-Ve-tMc"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Yj-rl-Rxi">
@@ -224,6 +234,7 @@
     </objects>
     <resources>
         <image name="icon_electricity" width="46" height="27"/>
+        <image name="icon_info_next" width="11" height="19"/>
         <image name="icon_menu_bangding" width="30" height="30"/>
         <image name="icon_menu_loginout" width="30" height="30"/>
         <image name="icon_unwifi" width="16" height="16"/>

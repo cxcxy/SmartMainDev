@@ -10,7 +10,8 @@ import UIKit
 
 class LikeViewController: XBBaseViewController {
     @IBOutlet weak var lbTotal: UILabel!
-    //    @IBOutlet weak var viewSearch: UIView!
+   
+    @IBOutlet weak var viewTotal: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var viewAllSelect: UIView!
@@ -20,6 +21,11 @@ class LikeViewController: XBBaseViewController {
     @IBOutlet weak var bottomDeleteView: UIView!
     var dataArr: [ConetentLikeModel] = [] {
         didSet {
+            if dataArr.count == 0 {
+                self.viewTotal.isHidden = true
+            }else {
+                self.viewTotal.isHidden = false
+            }
             self.configDelegateArr()
         }
         
@@ -45,19 +51,20 @@ class LikeViewController: XBBaseViewController {
 //        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 80, right: 0)
         dataDelegate.tableView = self.tableView
         dataDelegate.songListType = .like
-        
+        dataDelegate.current_vc = self
         dataDelegate.selectStatus = { [weak self](status) in
             guard let `self` = self else { return }
             self.btnAllSelect.isSelected = (status == 2)
         }
-        request()
+//        request()
         self.currentNavigationHidden = true
           configCurrentSongsId()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        request()
-//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        request()
+    }
     
     @IBAction func clickEditAction(_ sender: Any) {
 
@@ -90,18 +97,29 @@ class LikeViewController: XBBaseViewController {
     }
     /// 本地删除数据源
     func deleteArr(selectIds: [Int])  {
-        for item in self.dataArr.enumerated() {
-            for id in selectIds {
-                if item.element.trackId == id {
-                    self.dataArr.remove(at: item.offset)
-                }
-            }
-        }
-        self.configDelegateArr()
-        self.reloadEditStatus()
-        
-        self.tableView.reloadData()
-        self.tableView.mj_footer.endRefreshingWithNoMoreData()
+//        for item in self.dataArr.enumerated() {
+//            for id in selectIds {
+//                if item.element.trackId == id {
+//                    self.dataArr.remove(at: item.offset)
+//                }
+//            }
+//        }
+//        let arr =  self.dataArr.compactMap { (item) -> ConetentLikeModel? in
+//            for id in selectIds {
+//                if item.trackId != id {
+//                    return item
+//                }else {
+//                    return nil
+//                }
+//            }
+//            return nil
+//        }
+//        self.dataArr = arr
+////        self.configDelegateArr()
+//        self.reloadEditStatus()
+//
+//        self.tableView.reloadData()
+//        self.tableView.mj_footer.endRefreshingWithNoMoreData()
 //        self.refreshStatus(status: .NoMoreData)
     }
     // 删除收藏歌曲
@@ -114,7 +132,8 @@ class LikeViewController: XBBaseViewController {
                     return
                 }
                 if status == 200 {
-                    self.deleteArr(selectIds: selectIds)
+//                    self.deleteArr(selectIds: selectIds)
+                    self.request()
                 }
                 if status == 404 {
                     XBHud.showWarnMsg("此用户没有歌单")
@@ -162,6 +181,8 @@ class LikeViewController: XBBaseViewController {
     override func request() {
         super.request()
         guard let phone = user_defaults.get(for: .userName) else {
+            self.endRefresh()
+            self.loading = true
             XBHud.showMsg("请登录")
             return
         }
@@ -178,7 +199,12 @@ class LikeViewController: XBBaseViewController {
                 self.dataArr += arr
                 
                 userLikeList = self.dataArr // 刷新我的最爱数据
-                self.refreshStatus(status: .NoMoreData)
+                if arr.count > 0 {
+                    self.refreshStatus(status: .NoMoreData)
+                }else {
+                    self.refreshStatus(status: .noneData)
+                }
+                
                 self.scoketModel.sendGetTrack()
                 self.tableView.reloadData()
                 self.starAnimationWithTableView(tableView: self.tableView)

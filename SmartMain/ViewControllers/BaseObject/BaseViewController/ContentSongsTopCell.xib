@@ -111,6 +111,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnAddAll" destination="H6G-1D-Pmd" id="rk7-87-b3M"/>
+                <outlet property="heightLayout" destination="Ufd-CV-8Wx" id="anm-vs-zdy"/>
                 <outlet property="imgBackground" destination="QV1-fT-aFp" id="Bin-fS-YgF"/>
                 <outlet property="imgTop" destination="VYX-mO-ZPv" id="CvH-5P-c78"/>
                 <outlet property="lbTopDes" destination="b6X-yn-LFa" id="Qvl-gI-lfG"/>

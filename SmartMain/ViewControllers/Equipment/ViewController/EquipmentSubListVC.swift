@@ -74,6 +74,7 @@ class EquipmentSubListVC: XBBaseViewController {
         dataDelegate.trackListId = self.trackListId
         dataDelegate.tableView = self.tableView
         self.dataDelegate.tableView.mj_header = self.mj_header
+        dataDelegate.current_vc = self
         self.viewTopTotal.isHidden = true
 
     }

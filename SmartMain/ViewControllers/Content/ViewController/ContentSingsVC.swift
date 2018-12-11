@@ -19,6 +19,7 @@ class ContentSingsVC: XBBaseTableViewController {
                 listItem.time       =  item.length
                 listItem.trackId    = item.trackId
                 listItem.isLike     = item.isLike
+                listItem.url = item.content
                 return listItem
             })
             self.dataDelegate.songsArr = dataArr
@@ -66,7 +67,8 @@ class ContentSingsVC: XBBaseTableViewController {
         
         dataDelegate.songListType = .songs
         dataDelegate.tableView = self.tableView
-        
+        dataDelegate.viewContainer = self.view
+        dataDelegate.current_vc = self
         makeCustomerImageNavigationItem("icon_music_white", left: false) { [weak self] in
             guard let `self` = self else { return }
             VCRouter.toPlayVC()

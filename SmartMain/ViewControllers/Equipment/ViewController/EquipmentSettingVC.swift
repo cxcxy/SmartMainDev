@@ -254,7 +254,7 @@ extension EquipmentSettingVC {
         let model = sourceArr[indexPath.section - 1]
         let item = model[indexPath.row]
         cell.lbTitle.text = item.title
-//        cell.tfDes.isUserInteractionEnabled = item.isEdit
+        cell.tfDes.isUserInteractionEnabled = false
 //        cell.imgRight.isHidden = !item.isEdit
         cell.tfDes.text = item.content
         cell.viewBtn.isHidden = item.isHidden

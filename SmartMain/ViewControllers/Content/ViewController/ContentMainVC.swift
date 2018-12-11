@@ -32,6 +32,9 @@ class ContentMainVC: XBBaseViewController {
     var controllerArray     : [UIViewController] = []  // 存放controller 的array
     var v                   : VCVTMagic!  // 统一的左滑 右滑 控制View
     var bottomSongView = BottomSongView.loadFromNib()
+    
+    @IBOutlet weak var bottomLayout: NSLayoutConstraint!
+    
 //    var navMessageView = ChatRedView.loadFromNib()
     let scoketModel = ScoketMQTTManager.share
     var currentDeviceId: String?
@@ -43,6 +46,7 @@ class ContentMainVC: XBBaseViewController {
             self.configBottomSongView(singsDetail: m)
         }
     }
+    
     var viewModel = EquimentViewModel()
     var viewModelLogin = LoginViewModel()
     var trackList: [EquipmentModel] = []
@@ -55,6 +59,7 @@ class ContentMainVC: XBBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.currentNavigationTitleColor = UIColor.white
+        bottomLayout.adapterTop_X()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -234,7 +239,7 @@ class ContentMainVC: XBBaseViewController {
     func addBottomSongView()  {
         view.addSubview(bottomSongView)
         bottomSongView.snp.makeConstraints { (make) in
-            make.height.equalTo(65)
+            make.height.equalTo(UIDevice.isX() ? 85 : 65)
             make.left.right.bottom.equalTo(0)
         }
         bottomSongView.imgSong.addTapGesture {[weak self] (sender) in
@@ -243,15 +248,36 @@ class ContentMainVC: XBBaseViewController {
         }
         bottomSongView.btnPlay.addAction {[weak self] in
             guard let `self` = self else { return }
-            self.bottomSongView.btnPlay.isSelected ?  self.scoketModel.sendPausePlay() : self.scoketModel.sendResumePlay()
+            
+            DeviceManager.isOnline { (isOnline, _)  in
+                if isOnline {
+                   self.bottomSongView.btnPlay.isSelected ?  self.scoketModel.sendPausePlay() : self.scoketModel.sendResumePlay()
+                } else {
+                    XBHud.showMsg("当前设备不在线")
+                }
+            }
+            
         }
         bottomSongView.btnTrackList.addAction {[weak self] in
             guard let `self` = self else { return }
-            self.showTrackListScrollView()
+            DeviceManager.isOnline { (isOnline, _)  in
+                if isOnline {
+                    self.showTrackListScrollView()
+                } else {
+                    XBHud.showMsg("当前设备不在线")
+                }
+            }
+            
         }
         bottomSongView.btnDown.addAction {[weak self] in
             guard let `self` = self else { return }
-            self.scoketModel.sendSongDown()
+            DeviceManager.isOnline { (isOnline, _)  in
+                if isOnline {
+                    self.scoketModel.sendSongDown()
+                } else {
+                    XBHud.showMsg("当前设备不在线")
+                }
+            }
         }
     }
     //MARK: 底部弹出播放列表

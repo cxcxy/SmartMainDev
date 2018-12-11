@@ -19,6 +19,7 @@
                 <outlet property="tableView" destination="X0N-sE-8av" id="8kp-nC-b8e"/>
                 <outlet property="view" destination="iN0-l3-epB" id="UN2-qO-Cyj"/>
                 <outlet property="viewAllSelect" destination="LRa-Pn-fuu" id="f2F-yE-W8m"/>
+                <outlet property="viewTotal" destination="cJv-tb-dFd" id="IU0-OD-Z7H"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

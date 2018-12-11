@@ -9,7 +9,28 @@
 import UIKit
 
 class ChatMainViewController: XBBaseViewController {
-    var dataArr: [EMGroup] = [] // 获取x群组信息
+    var dataArr: [EMGroup] = []
+    let globalQueue  = DispatchQueue.global()
+    let group        = DispatchGroup()
+    var devicesIds: [String] = [] {
+        didSet {
+            self.devicesInfo.remove_All()
+            for devices in devicesIds.enumerated(){
+                group.enter()// 标记
+                
+                DispatchQueue.global().async(group: group) {
+                    
+                    self.requestDevicesInfo(deviceId: devices.element)
+                }
+            }
+            // 统一回调通知完成
+            group.notify(queue: globalQueue) {
+                XBHud.dismiss()
+                self.reloadTableData()
+            }
+        }
+    }
+    var devicesInfo: [XBDeviceBabyModel] = []
     var conversations: [EMConversation] = [] // 获取群组回话信息
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -17,6 +38,29 @@ class ChatMainViewController: XBBaseViewController {
 
 //        title = "群聊"
         // Do any additional setup after loading the view.
+    }
+    func requestDevicesInfo(deviceId: String) {
+        Net.requestWithTarget(.getBabyInfo(deviceId: deviceId), successClosure: { (result, code, message) in
+            if let obj = Net.filterStatus(jsonString: result) {
+                if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
+                    self.endRefresh()
+                    self.devicesInfo.append(model)
+                    self.group.leave()// 完成
+                }
+            }
+        })
+//        Net.requestWithTarget(.getEquimentInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+//            if let model = Mapper<EquipmentInfoModel>().map(JSONString: result as! String) {
+//                self.endRefresh()
+//                self.devicesInfo.append(model)
+//                self.group.leave()// 完成
+//            }
+//        })
+    }
+    func reloadTableData()  {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,31 +90,41 @@ class ChatMainViewController: XBBaseViewController {
         super.request()
 
         if let arr = EMClient.shared().groupManager.getJoinedGroups() as? [EMGroup] { //  获取 群组信息
-            self.dataArr = arr
-            print(arr)
-////            if arr.count > 0 {}
-//            var conversationArr: [EMConversation] = []
-//            for item in arr {
-////                print(EMClient.shared()?.chatManager.getConversation(item.groupId, type: EMConversationTypeGroupChat, createIfNotExist: false))
-//                let conversation = EMConversation.init()
-//                conversation.conversationId = item.groupId
-//                conversation.type = EMConversationTypeGroupChat
-//                conversationArr.append(conversation)
-////                if let conversation = EMClient.shared()?.chatManager.getConversation(item.groupId, type: EMConversationTypeGroupChat, createIfNotExist: false) {
-////                    conversationArr.append(conversation)
-////                }
-//            }
-//            print(conversationArr)
-//            EMClient.shared()?.chatManager.importConversations(conversationArr, completion: { (error) in
-//                print(error)
-//            })
+            
+            var groupArr = arr
+            var devices_Id:[String] = []
+            for group in groupArr.enumerated().reversed() {
+//                print(group.element)
+                if let descMap = group.element.description.json_Str()["descMap"].string  {
+//                    print("--------")
+//                     print(XBUserManager.userDevices.contains(descMap))
+//                    print("--------")
+                    if XBUserManager.userDevices.contains(descMap) {
+                        devices_Id.append(descMap)
+                    }else {
+                        groupArr.remove(at: group.offset)
+                    }
+                }else {
+                    groupArr.remove(at: group.offset)
+                }
+            }
+            self.devicesIds = devices_Id
+            self.dataArr = groupArr
+
         }
         
-        if let conversations = EMClient.shared()?.chatManager.getAllConversations() as? [EMConversation] { // 如果能拿到群组回话信息 ，则获取群组回话信息
-            print(conversations)
-            self.conversations = conversations
+        if let conversations = EMClient.shared()?.chatManager.getAllConversations() as? [EMConversation] { // 如果能拿到群组回话信息 ，则获取群组回话信息co
+            let conversations_Arr: [String] = dataArr.compactMap { (item) -> String in
+                return item.groupId
+            }
+            var conversationsArr = conversations
+            for group in conversations.enumerated().reversed() {
+                if !conversations_Arr.contains(group.element.conversationId) {
+                    conversationsArr.remove(at: group.offset)
+                }
+            }
+            self.conversations = conversationsArr
         }
-        
         self.endRefresh()
         self.loading = true
         self.tableView.reloadData()
@@ -125,7 +179,7 @@ extension ChatMainViewController {
                 cell.lbName.set_text = ""
             }
             if let lastMessage = m.latestMessage {
-                cell.lbTime.set_text = NSDate.formattedTime(fromTimeInterval: lastMessage.timestamp ?? 0)
+                cell.lbTime.set_text = NSDate.formattedTime(fromTimeInterval: lastMessage.timestamp )
                 switch lastMessage.body.type {
                 case EMMessageBodyTypeText:
                     let textBody: EMTextMessageBody = m.latestMessage.body as! EMTextMessageBody
@@ -142,7 +196,11 @@ extension ChatMainViewController {
                     break
                 }
             }
-            
+            if self.devicesInfo.count > indexPath.row {
+                let deviceInfo = self.devicesInfo[indexPath.row]
+                cell.imgPhoto.set_Img_Url(deviceInfo.headimgurl)
+                cell.lbName.set_text = deviceInfo.babyname
+            }
             return cell
         }
         

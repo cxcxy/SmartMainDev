@@ -14,9 +14,10 @@ class DrawerSectionItme: NSObject {
 class DrawerViewController: XBBaseViewController {
     var one1    = XBStyleCellModel.init(title: "儿童锁", imgIcon: "icon_menu_unlock",isSwitchOpen: false, cellType: 11)
     var one2    = XBStyleCellModel.init(title: "呼吸灯", imgIcon: "icon_menu_unlamp",isSwitchOpen: false, cellType: 12)
-    var one3    = XBStyleCellModel.init(title: "音量调整", imgIcon: "icon_menu_volume", content: "音量",cellType: 13)
+    var one3    = XBStyleCellModel.init(title: "音量调整", imgIcon: "icon_menu_volume", content: "",cellType: 13)
     var one4    = XBStyleCellModel.init(title: "定时休眠", imgIcon: "icon_menu_unsleep", content: "",cellType: 14)
     
+    @IBOutlet weak var imgNext: UIImageView!
     var eqOne    = XBStyleCellModel.init(title: "设备连接", imgIcon: "icon_menu_connection",cellType: 1)
     var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "icon_group2",cellType: 2)
     var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "icon_menu_cloose",cellType: 3)
@@ -89,7 +90,7 @@ class DrawerViewController: XBBaseViewController {
     
     override func setUI() {
         super.setUI()
-//        request()
+
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
         self.cofigDeviceInfo()
         view.backgroundColor = viewColor
@@ -158,12 +159,14 @@ class DrawerViewController: XBBaseViewController {
     }
     func configUserInfo()  {
         imgPhoto.roundView()
-        imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+        imgPhoto.set_Img_Url(user_defaults.get(for: .dv_headimgurl))
 //        lbDvnick.set_text = XBUserManager.nickname
         if XBUserManager.device_Id == ""{
-            lbDvnick.set_text = XBUserManager.nickname
+            lbDvnick.set_text = "未绑定设备"
+            imgNext.isHidden = true
         }else {
-            lbDvnick.set_text = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
+            lbDvnick.set_text = XBUserManager.dv_babyname
+            imgNext.isHidden = false
         }
         
         self.tableView.reloadData()
