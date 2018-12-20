@@ -135,14 +135,15 @@ extension XBScanViewController {
         }
         params_task["deviceId"] = current_deviceId
         
-        self.checkBabyInfo(device_Id: current_deviceId)
+        print(current_deviceId)
+//        self.checkBabyInfo(device_Id: current_deviceId)
 
 //        Net.requestWithTarget(.joinEquiment(req: params_task), successClosure: { (result, code, message) in
 //            print(result)
 //            if let str = result as? String {
 //                if str == "ok" {
 //                    print("加入成功")
-//                    self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: current_deviceId)
+            self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: current_deviceId)
 //                }else {
 //                    XBHud.showMsg("第一步加入失败")
 //                }
@@ -151,7 +152,7 @@ extension XBScanViewController {
 //        user_defaults.get(for: .deviceId)
     }
     
-    func requestJoinEaseGroup(username: String?,deviceId:String, model: XBDeviceBabyModel)  {
+    func requestJoinEaseGroup(username: String?,deviceId:String)  {
         var params_task = [String: Any]()
         
         params_task["username"] = username
@@ -160,7 +161,9 @@ extension XBScanViewController {
         Net.requestWithTarget(.joinEquimentGroup(req: params_task), successClosure: { (result, code, message) in
             print(result)
             if let str = result as? String {
-                if str == "ok" {
+                if str == "okNewDeviceId" { // 这个deviceId是新的，需要走创建宝宝信息接口
+                    self.toSetDeviceInfoController(device_Id: deviceId)
+                } else if str == "okOldDeviceId" { // 这个deviceId已经被绑定过，即有宝宝信息，无需再走创建宝宝信息接口
                     print("加入成功")
                     XBUserManager.device_Id = deviceId
                     var devices = XBUserManager.userDevices
@@ -185,6 +188,14 @@ extension XBScanViewController {
             }
         })
     }
+    func toSetDeviceInfoController(device_Id: String)  {
+        let vc = SetInfoViewController()
+        vc.setInfoType = .setDeviceInfo
+        vc.deviceId = device_Id
+        vc.isAdd = true
+        vc.delegate = self
+        self.pushVC(vc)
+    }
     func checkBabyInfo(device_Id: String)  {
 
         Net.requestWithTarget(.getBabyInfo(deviceId: device_Id), successClosure: { (result, code, message) in
@@ -205,7 +216,7 @@ extension XBScanViewController {
                 } else if status == 200 {
                     if let obj = Net.filterStatus(jsonString: result as AnyObject) {
                         if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
-                            self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: device_Id, model: model)
+                            self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: device_Id)
                         }
                     }
                     
@@ -225,7 +236,7 @@ extension XBScanViewController {
 extension XBScanViewController: SetInfoDelegate {
     
     func addSuccessAction(deviceId: String, model: XBDeviceBabyModel) {
-        self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: deviceId, model: model)
+        self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: deviceId)
     }
     
 }

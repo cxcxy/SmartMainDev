@@ -250,7 +250,13 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = dataArr[indexPath.row]
+        var model:BaseListItem!
+        switch songListType {
+        case .songs:
+            model = dataArr[indexPath.row - 1]
+        default:
+            model = dataArr[indexPath.row]
+        }
         guard let trackId = model.trackId else {
             XBHud.showMsg("歌曲ID有误")
             return
@@ -433,13 +439,25 @@ extension BaseTableViewDelegate {
             XBHud.showMsg("所需信息不全")
             return
         }
-        let req_model = AddSongTrackReqModel()
+//        let req_model = AddSongTrackReqModel()
+//
+//        req_model.id = m.trackId
+//        req_model.title = m.name
+//        req_model.duration = m.length
+//        req_model.url = m.content
+//        req_model.downloadUrl = m.content
         
+        let req_model = AddSongTrackReqModel()
         req_model.id = m.trackId
         req_model.title = m.name
+        req_model.coverSmallUrl = self.albumModel?.imgSmall ?? ""
         req_model.duration = m.length
+        req_model.albumTitle = self.albumModel?.name ?? ""
+        req_model.albumCoverSmallUrl = self.albumModel?.imgSmall ?? ""
         req_model.url = m.content
+        req_model.downloadSize = 1
         req_model.downloadUrl = m.content
+        
         
         Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, trackId: trackId, trackName: trackName, trackIds: [req_model]),isEndRrefreshing: false, successClosure: { (result, code, message) in
             print(result)

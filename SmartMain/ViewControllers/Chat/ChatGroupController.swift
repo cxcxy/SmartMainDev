@@ -69,7 +69,9 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
     }
     func messageViewController(_ viewController: EaseMessageViewController!, modelFor message: EMMessage!) -> IMessageModel! {
         let model = EaseMessageModel.init(message: message)
-        
+         print("ext---",message.ext)
+         print("body---",message.body)
+        print(model?.avatarImage,model?.avatarURLPath)
         model?.avatarImage = UIImage.init(named: "icon_photo")
         if model?.isSender ?? true {
             let headImgUrl = user_defaults.get(for: .headImgUrl) ?? ""
@@ -83,8 +85,6 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
                     model?.nickname = nickname
                 }
             }
-
-           
            
         }
 

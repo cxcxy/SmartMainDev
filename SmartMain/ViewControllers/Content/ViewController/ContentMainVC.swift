@@ -38,12 +38,13 @@ class ContentMainVC: XBBaseViewController {
 //    var navMessageView = ChatRedView.loadFromNib()
     let scoketModel = ScoketMQTTManager.share
     var currentDeviceId: String?
+    
     var currentSongModel:SingDetailModel? { // 当前正在播放歌曲的信息
         didSet {
             guard let m = currentSongModel else {
                 return
             }
-            self.configBottomSongView(singsDetail: m)
+//            self.configBottomSongView(singsDetail: m)
         }
     }
     
@@ -212,7 +213,7 @@ class ContentMainVC: XBBaseViewController {
         scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getPalyingSingsId ===：", $0.element ?? 0)
-            self.requestSingsDetail(trackId: $0.element ?? 0)
+            self.requestResourcesDetail(trackId: $0.element ?? 0)
         }.disposed(by: rx_disposeBag)
         
         scoketModel.playStatus.asObserver().bind(to: bottomSongView.btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
@@ -225,6 +226,26 @@ class ContentMainVC: XBBaseViewController {
                 return
             }
             self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
+        })
+    }
+     // 获取歌曲资源详情
+    func requestResourcesDetail(trackId: Int)  {
+        var params_task = [String: Any]()
+        params_task["clientId"] = XBUserManager.device_Id
+        params_task["resId"] = "aires:" + trackId.toString
+        Net.requestWithTarget(.getResourceDetail(req: params_task), successClosure: { [weak self] (result, code, message) in
+            guard let `self` = self else { return }
+            print(result)
+            
+            if let model = Mapper<ResourceDetailModel>().map(JSONObject: result) {
+                self.configBottomSongView(singsDetail: model)
+            }
+            
+            //            self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
+            //            self.allTimer = Float(self.currentSongModel?.duration ?? 0)
+            //            self.resetTimer()
+            //            // 获取播放状态
+            //            self.scoketModel.sendPlayStatus()
         })
     }
     // 是否隐藏底部 播放 组件
@@ -318,10 +339,10 @@ class ContentMainVC: XBBaseViewController {
         }
     }
     //MARK: 配置底部 播放view
-    func configBottomSongView(singsDetail: SingDetailModel)  {
+    func configBottomSongView(singsDetail: ResourceDetailModel)  {
         
-        bottomSongView.lbSingsTitle.set_text = singsDetail.title
-        bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
+        bottomSongView.lbSingsTitle.set_text = singsDetail.name
+        bottomSongView.imgSong.set_Img_Url(singsDetail.album?.imgSmall)
         
     }
     //MARK: 重置 底部 播放view
@@ -382,12 +403,12 @@ class ContentMainVC: XBBaseViewController {
         let vc2 = HistoryViewController()
         let vc3 = TrackListViewController()
         controllerArray = [vc3,vc,vc1,vc2]
-        
+        v.currentViewController = vc
 
         v.magicView.frame = CGRect.init(x: 0, y: 0, w: MGScreenWidth, h: viewContainer.height)
         self.viewContainer.addSubview(v.magicView)
 
-        v.magicView.reloadData()
+        v.magicView.reloadData(toPage: 1)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

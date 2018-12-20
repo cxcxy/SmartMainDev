@@ -195,6 +195,7 @@ extension PlaySongListView: UITableViewDelegate,UITableViewDataSource {
             let model = trackArr[indexPath.row]
             let trackCount = model.trackCount ?? 0
             let count = "共" + trackCount.toString + "首"
+            cell.imgIcon.set_Img_Url(model.coverSmallUrl)
             cell.lbTitle.set_text = model.name
             cell.lbTatal.set_text = count
             return cell

@@ -28,7 +28,7 @@ class ContentSingsVC: XBBaseTableViewController {
     
     
     var trackList: [EquipmentModel] = [] // 预制列表 数组
-    var headerInfo:ConetentSingAlbumModel?
+//    var headerInfo:ConetentSingAlbumModel?
     
 //    @IBOutlet weak var btnAddAll: UIButton!
 //    @IBOutlet weak var lbTopDes: UILabel!
@@ -174,7 +174,7 @@ class ContentSingsVC: XBBaseTableViewController {
         var params_task = [String: Any]()
         params_task["deviceId"] = XBUserManager.device_Id
         params_task["id"] = trackId
-        params_task["name"] = self.headerInfo?.name ?? ""
+        params_task["name"] = self.dataDelegate.albumModel?.name ?? ""
         params_task["list"] = self.dataArr.toJSON()
         Net.requestWithTarget(.addSingsToTrack(req: params_task), successClosure: { (result, code, message) in
             if let str = result as? String {
@@ -202,8 +202,8 @@ class ContentSingsVC: XBBaseTableViewController {
         req_model.title = m.name
         req_model.coverSmallUrl = ""
         req_model.duration = m.length
-        req_model.albumTitle = self.headerInfo?.name ?? ""
-        req_model.albumCoverSmallUrl = self.headerInfo?.imgSmall ?? ""
+        req_model.albumTitle = self.dataDelegate.albumModel?.name ?? ""
+        req_model.albumCoverSmallUrl = self.dataDelegate.albumModel?.imgSmall ?? ""
         req_model.url = m.content
         req_model.downloadSize = 1
         req_model.downloadUrl = m.content

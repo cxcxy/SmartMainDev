@@ -453,7 +453,16 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
     
     func mqttDidDisconnect(session: MQTTSession, error: MQTTSessionError) {
         print("Keep-alive ping 断开.")
-        
+//        session.connect(completion: nil)
+        mqttSession.connect { (error) in
+            if  error == .none {
+                print("Connected.")
+                self.current_socket_clientID = XBUserManager.device_Id
+                self.subscribeToChannel(socket_clientId: XBUserManager.device_Id)
+            } else {
+                print("Connected error.")
+            }
+        }
     }
     
 }

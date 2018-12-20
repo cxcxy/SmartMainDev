@@ -159,14 +159,16 @@ class DrawerViewController: XBBaseViewController {
     }
     func configUserInfo()  {
         imgPhoto.roundView()
-        imgPhoto.set_Img_Url(user_defaults.get(for: .dv_headimgurl))
+        
 //        lbDvnick.set_text = XBUserManager.nickname
         if XBUserManager.device_Id == ""{
             lbDvnick.set_text = "未绑定设备"
             imgNext.isHidden = true
+            imgPhoto.image = UIImage.init(named: "icon_photo")
         }else {
             lbDvnick.set_text = XBUserManager.dv_babyname
             imgNext.isHidden = false
+            imgPhoto.set_Img_Url(user_defaults.get(for: .dv_headimgurl))
         }
         
         self.tableView.reloadData()
@@ -359,7 +361,7 @@ extension DrawerViewController {
     }
     // 刷新tableView 音量状态
     func reloadDeviceVolume(volume: Int) {
-        one3.content = "音量" + (volume.toString)
+        one3.content = "音量" + (volume.mapPercentage().toString)
         tableView.reloadData()
     }
     
@@ -431,14 +433,15 @@ extension DrawerViewController: DrawFromCellDelegate,VolumeControlDelegate {
     func switchValueChangeAction(modelData: XBStyleCellModel,isSwitch: Bool) {
         if modelData.cellType == 11 {
             self.reloadDeviceLock(isLock: isSwitch)
-             scoketModel.sendCortolLock(isSwitch ? 0 : 1)
+            scoketModel.sendCortolLock(isSwitch ? 1 : 0)
         }
         if modelData.cellType == 12 {
             self.reloadDeviceLamp(isLamp: isSwitch)
-            scoketModel.sendClooseLight(isSwitch ? 0 : 1)
+            scoketModel.sendClooseLight(isSwitch ? 1 : 0)
         }
     }
     func getVolumeNumber(volume: Int) {
         self.reloadDeviceVolume(volume: volume)
     }
 }
+
