@@ -16,7 +16,7 @@ class SearchSongsViewController: XBBaseViewController {
         didSet {
             self.tableView.mj_footer = self.mj_footer
             self.dataArr.removeAll()
-            self.dataArr = self.flatMapLikeList(arr: self.dataArrFromSearch)
+            self.dataArr = self.dataArrFromSearch
             self.refreshStatus(status: dataArrFromSearch.checkRefreshStatus(self.pageIndex,paseSize: 20))
         }
     }
@@ -67,6 +67,7 @@ class SearchSongsViewController: XBBaseViewController {
         configTopHeaderView()
         dataDelegate.tableView = self.tableView
         dataDelegate.songListType = .like
+        dataDelegate.current_vc = self
     }
     /// 配置tableView里面的数据源
     func configDelegateArr()  {
@@ -77,6 +78,7 @@ class SearchSongsViewController: XBBaseViewController {
             listItem.trackId = item.trackId ?? 0
             return listItem
         })
+        self.tableView.reloadData()
 //        self.lbTotal.set_text = "共" + self.dataDelegate.dataArr.count.toString + "首"
 //        topView.lbTotal.set_text = "共" + self.dataDelegate.dataArr.count.toString + "条结果"
     }

@@ -43,6 +43,7 @@ class DrawFromCell: BaseTableViewCell {
 
     @IBAction func switchValueChange(_ sender: UISwitch) {
         if let del = self.delegate {
+            print(sender.isOn)
             del.switchValueChangeAction(modelData: modelData, isSwitch: sender.isOn)
         }
     }

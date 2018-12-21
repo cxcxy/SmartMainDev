@@ -15,6 +15,8 @@ class ChatMainCell: BaseTableViewCell {
     @IBOutlet weak var lbDes: UILabel!
     @IBOutlet weak var viewMessage: UIView!
     @IBOutlet weak var viewContainer: UIView!
+    
+    @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbMessage: UILabel!
     
     
@@ -23,6 +25,7 @@ class ChatMainCell: BaseTableViewCell {
         // Initialization code、
         viewContainer.setCornerRadius(radius: 5.0)
         viewMessage.setCornerRadius(radius: 10)
+        imgPhoto.roundView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -50,7 +50,7 @@
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dCz-I5-YVv">
                                 <rect key="frame" x="20" y="15.5" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.84843069314956665" green="0.84556788206100464" blue="0.84852796792984009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="1s1-zz-t9o"/>
                                     <constraint firstAttribute="width" constant="60" id="b77-FR-GPk"/>

@@ -14,9 +14,10 @@ class DrawerSectionItme: NSObject {
 class DrawerViewController: XBBaseViewController {
     var one1    = XBStyleCellModel.init(title: "儿童锁", imgIcon: "icon_menu_unlock",isSwitchOpen: false, cellType: 11)
     var one2    = XBStyleCellModel.init(title: "呼吸灯", imgIcon: "icon_menu_unlamp",isSwitchOpen: false, cellType: 12)
-    var one3    = XBStyleCellModel.init(title: "音量调整", imgIcon: "icon_menu_volume", content: "音量",cellType: 13)
+    var one3    = XBStyleCellModel.init(title: "音量调整", imgIcon: "icon_menu_volume", content: "",cellType: 13)
     var one4    = XBStyleCellModel.init(title: "定时休眠", imgIcon: "icon_menu_unsleep", content: "",cellType: 14)
     
+    @IBOutlet weak var imgNext: UIImageView!
     var eqOne    = XBStyleCellModel.init(title: "设备连接", imgIcon: "icon_menu_connection",cellType: 1)
     var eqTwo    = XBStyleCellModel.init(title: "绑定设备", imgIcon: "icon_group2",cellType: 2)
     var eqThree  = XBStyleCellModel.init(title: "选择设备", imgIcon: "icon_menu_cloose",cellType: 3)
@@ -89,19 +90,18 @@ class DrawerViewController: XBBaseViewController {
     
     override func setUI() {
         super.setUI()
-//        request()
+
         self.configTableView(tableView, register_cell: ["DrawFromCell"])
         self.cofigDeviceInfo()
         view.backgroundColor = viewColor
         viewTopInfo.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
             let vc = EquipmentSettingVC()
-            //            vc.isAdd = false
-            //            vc.deviceId = XBUserManager.device_Id
-            //            vc.setInfoType = .editDeviceInfo
             self.cw_push(vc)
 
         }
+        
+        self.getDeviceBabyInfo()
         
         DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
             self.deviceOnline = isOnline
@@ -116,6 +116,12 @@ class DrawerViewController: XBBaseViewController {
 
         }
 
+    }
+    func getDeviceBabyInfo() { // 获取设备信息
+        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+            guard let `self` = self else { return }
+            self.configUserInfo()
+        }
     }
 //    override func request() {
 //        super.request()
@@ -158,12 +164,16 @@ class DrawerViewController: XBBaseViewController {
     }
     func configUserInfo()  {
         imgPhoto.roundView()
-        imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+        
 //        lbDvnick.set_text = XBUserManager.nickname
         if XBUserManager.device_Id == ""{
-            lbDvnick.set_text = XBUserManager.nickname
+            lbDvnick.set_text = "未绑定设备"
+            imgNext.isHidden = true
+            imgPhoto.image = UIImage.init(named: "icon_photo")
         }else {
-            lbDvnick.set_text = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
+            lbDvnick.set_text = XBUserManager.dv_babyname
+            imgNext.isHidden = false
+            imgPhoto.set_Img_Url(user_defaults.get(for: .dv_headimgurl))
         }
         
         self.tableView.reloadData()
@@ -356,7 +366,7 @@ extension DrawerViewController {
     }
     // 刷新tableView 音量状态
     func reloadDeviceVolume(volume: Int) {
-        one3.content = "音量" + (volume.toString)
+        one3.content = "音量" + (volume.mapPercentage().toString)
         tableView.reloadData()
     }
     
@@ -406,7 +416,7 @@ extension DrawerViewController {
         let v = VolumeControlView.loadFromNib()
         v.delegate = self
         v.show()
-         v.configVolume()
+        v.configVolume()
     }
 
     func toSleepAction() {
@@ -428,14 +438,19 @@ extension DrawerViewController: DrawFromCellDelegate,VolumeControlDelegate {
     func switchValueChangeAction(modelData: XBStyleCellModel,isSwitch: Bool) {
         if modelData.cellType == 11 {
             self.reloadDeviceLock(isLock: isSwitch)
-             scoketModel.sendCortolLock(isSwitch ? 0 : 1)
+            scoketModel.sendCortolLock(isSwitch ? 1 : 0)
+//            scoketModel.getLock
+            scoketModel.sendGetLock()
+          
         }
         if modelData.cellType == 12 {
             self.reloadDeviceLamp(isLamp: isSwitch)
-            scoketModel.sendClooseLight(isSwitch ? 0 : 1)
+            scoketModel.sendClooseLight(isSwitch ? 1 : 0)
+            scoketModel.sendLight()
         }
     }
     func getVolumeNumber(volume: Int) {
         self.reloadDeviceVolume(volume: volume)
     }
 }
+

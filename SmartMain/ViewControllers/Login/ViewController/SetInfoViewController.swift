@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FCUUID
 
 protocol SetInfoDelegate: class {
     func addSuccessAction(deviceId: String,model: XBDeviceBabyModel)
@@ -274,9 +275,9 @@ extension SetInfoViewController: XBImagePickerToolDelegate {
         var openId = ""
         switch setInfoType {
         case .editDeviceInfo,.setDeviceInfo:
-            openId = XBUserManager.device_Id
+            openId = XBUserManager.device_Id + SetInfoViewController.getOnlyStr()
         case .setUserInfo,.editUserInfo:
-            openId = XBUserManager.userName
+            openId = XBUserManager.userName + SetInfoViewController.getOnlyStr()
         }
         if (fileManager.fileExists(atPath: filePath)){
             
@@ -287,5 +288,20 @@ extension SetInfoViewController: XBImagePickerToolDelegate {
                 }
             })
         }
+    }
+    // 获取时间戳
+    static func getTimeSince() -> String  {
+        
+        let timeStr         = Date.init().toString(format: "yyyyMMddHHmmss")
+        
+        return timeStr
+        
+    }
+    // 获取唯一标示
+    static func getOnlyStr() -> String  {
+        
+        let onlyStr         = FCUUID.uuidForDevice()  + getTimeSince()
+        return onlyStr
+        
     }
 }

@@ -59,7 +59,7 @@ class PlayVolumeView: ETPopupView{
         progressVolume.progress = maximumValue == 0 ? 0 : ( value / maximumValue )
         let v = Float(viewVolume.w) / maximumValue
         lbVolumeRight.constant = CGFloat(value * v) - 10
-        lbVolume.set_text = String(Int(value))
+        lbVolume.set_text = String(Int(value).mapPercentage())
     }
     @IBAction func sliderVolumeValueChange(_ sender: Any) {
         

@@ -83,6 +83,11 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate,UIGestureRecognizer
     func sectionChanged(slider: SectionedSlider, selected: Int) {
         print(selected)
         self.currentVolume = selected
+        scoketModel.setVolumeValue(value: currentVolume)
+        if let del = delegate {
+            del.getVolumeNumber(volume: self.currentVolume)
+        }
+        
     }
     @IBAction func sliderVolumeValueChanged(_ sender: Any) {
 //        lbVolume.set_text       = Int(sliderVolume.value * 100).toString
@@ -91,7 +96,7 @@ class VolumeControlView: ETPopupView,SectionedSliderDelegate,UIGestureRecognizer
     }
     @IBAction func clickSureAction(_ sender: Any) {
         scoketModel.setVolumeValue(value: currentVolume)
-        XBHud.showWarnMsg("修改成功")
+//        XBHud.showWarnMsg("修改成功")
         if let del = delegate {
             del.getVolumeNumber(volume: self.currentVolume)
         }

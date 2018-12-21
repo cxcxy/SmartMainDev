@@ -39,7 +39,7 @@
                         <state key="selected" image="icon_list_select"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuo-kF-380">
-                        <rect key="frame" x="57" y="8.5" width="223" height="44"/>
+                        <rect key="frame" x="57" y="8.5" width="163" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87M-JO-ohm">
                                 <rect key="frame" x="0.0" y="10" width="31" height="14.5"/>
@@ -60,7 +60,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syd-lJ-oFb">
-                                <rect key="frame" x="0.0" y="26.5" width="223" height="12"/>
+                                <rect key="frame" x="0.0" y="26.5" width="163" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -79,6 +79,37 @@
                             <constraint firstItem="J5O-Ct-rc1" firstAttribute="centerY" secondItem="87M-JO-ohm" secondAttribute="centerY" id="nme-0D-3N1"/>
                         </constraints>
                     </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqK-he-RLb">
+                        <rect key="frame" x="220" y="20.5" width="40" height="20"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PS9-Dp-d3n">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvv-7h-8PX">
+                                        <rect key="frame" x="0.0" y="1.5" width="40" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="BN7-dl-GSY"/>
+                                            <constraint firstAttribute="width" constant="40" id="cXA-1z-2KJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="暂停">
+                                            <color key="titleColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clickPauseAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="csq-Zk-hJC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="cvv-7h-8PX" firstAttribute="centerY" secondItem="PS9-Dp-d3n" secondAttribute="centerY" id="Axz-e7-OmH"/>
+                                    <constraint firstAttribute="height" constant="20" id="DgG-f7-2K7"/>
+                                    <constraint firstItem="cvv-7h-8PX" firstAttribute="leading" secondItem="PS9-Dp-d3n" secondAttribute="leading" id="ggx-fZ-dzW"/>
+                                    <constraint firstAttribute="trailing" secondItem="cvv-7h-8PX" secondAttribute="trailing" id="kw6-CD-3Si"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJb-XO-CPN">
                         <rect key="frame" x="270" y="15.5" width="30" height="30"/>
                         <constraints>
@@ -108,13 +139,16 @@
                     <constraint firstItem="cuo-kF-380" firstAttribute="leading" secondItem="ind-0j-RU2" secondAttribute="trailing" constant="15" id="EV8-vp-aUb"/>
                     <constraint firstAttribute="trailing" secondItem="Gr2-Id-TGJ" secondAttribute="trailing" id="HrJ-hy-y6S"/>
                     <constraint firstItem="cuo-kF-380" firstAttribute="leading" secondItem="vtg-yN-KGJ" secondAttribute="trailing" constant="15" id="MJz-BE-ydh"/>
+                    <constraint firstItem="hqK-he-RLb" firstAttribute="leading" secondItem="cuo-kF-380" secondAttribute="trailing" id="Psj-w1-MaS"/>
+                    <constraint firstItem="hqK-he-RLb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Sdc-rs-3iO"/>
+                    <constraint firstItem="SJb-XO-CPN" firstAttribute="leading" secondItem="hqK-he-RLb" secondAttribute="trailing" constant="10" id="Tt4-gj-mlg"/>
                     <constraint firstAttribute="bottom" secondItem="Gr2-Id-TGJ" secondAttribute="bottom" id="WvY-d1-nxi"/>
                     <constraint firstItem="ind-0j-RU2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xmo-cc-o3S"/>
                     <constraint firstItem="ind-0j-RU2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Z4Y-fC-NkA"/>
                     <constraint firstItem="cuo-kF-380" firstAttribute="centerY" secondItem="ind-0j-RU2" secondAttribute="centerY" id="dXe-NO-Ihu"/>
                     <constraint firstItem="vtg-yN-KGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gtK-Qb-eMg"/>
                     <constraint firstItem="SJb-XO-CPN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hX6-Mp-fvl"/>
-                    <constraint firstAttribute="trailing" secondItem="cuo-kF-380" secondAttribute="trailing" constant="40" id="nKq-T8-1VX"/>
+                    <constraint firstItem="hqK-he-RLb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="220" id="lTH-Uh-LeA"/>
                     <constraint firstItem="Gr2-Id-TGJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="nUJ-wo-mpG"/>
                     <constraint firstItem="vtg-yN-KGJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oQI-sM-JEx"/>
                 </constraints>
@@ -127,6 +161,7 @@
                 <outlet property="lbLineNumber" destination="ind-0j-RU2" id="rXh-wd-zmf"/>
                 <outlet property="lbTime" destination="syd-lJ-oFb" id="yco-67-kp2"/>
                 <outlet property="lbTitle" destination="87M-JO-ohm" id="djb-ui-WGC"/>
+                <outlet property="viewPause" destination="PS9-Dp-d3n" id="hAm-Kk-mNJ"/>
             </connections>
             <point key="canvasLocation" x="41.600000000000001" y="46.776611694152926"/>
         </tableViewCell>

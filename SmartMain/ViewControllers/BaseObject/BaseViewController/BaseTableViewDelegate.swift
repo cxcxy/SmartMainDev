@@ -28,7 +28,7 @@ enum SongListType {
 // 0 都未选中 ，1 选择部分 2 全部选中
 typealias AllSelectStatus = ((_ status: Int) -> ())
 class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
-    var viewContainer: UIView?
+//    var viewContainer: UIView?
     var songListType : SongListType = .track
     var selectStatus: AllSelectStatus?
     var trackList: [EquipmentModel] = [] // 预制列表 数组
@@ -38,6 +38,7 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             if let playingSongId = scoketModel.playingSongId {
                 self.mapSongsArrPlayingStatus(songId: playingSongId)
             }
+             _ = self.flatMapLikeList(arr: dataArr)
         }
     }
     var albumModel: ConetentSingAlbumModel? {
@@ -61,8 +62,18 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
     var trackListId: Int! // 预制列表id
     var viewModel = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
+    
     let playerLayer:AVPlayerLayer = AVPlayerLayer.init()
     var player:AVPlayer = AVPlayer.init()
+    var viewContainer: UIView? {
+        didSet {
+            if let viewContainer = viewContainer {
+                self.configPlay(viewContainer: viewContainer)
+            }
+        }
+    }
+    var current_vc: UIViewController?
+
     open var tableView :UITableView!{
         
         didSet{
@@ -87,7 +98,44 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
         }.disposed(by: rx_disposeBag)
     }
+    func configPlay(viewContainer: UIView)  {
+        
+        playerLayer.frame = CGRect.init(x: 10, y: 30, w: MGScreenWidth, h: 200)
+        // 设置画面缩放模式
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+        // 在视图上添加播放器
+        viewContainer.layer.addSublayer(playerLayer)
+        
+    }
+//    //MARK: 点击试听
+//    func playVoice(model: BaseListItem)  {
+//        guard let urlTask =  URL.init(string: model.url ?? "") else {
+//            XBLog("歌曲地址有误")
+//            return
+//        }
+//        if model.isAudition {
+//            player.pause()
+//
+//        }else {
+//            let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
+//            self.player = AVPlayer(playerItem: playerItem)
+//            playerLayer.player = player
+//
+//            // 开始播放
+//            player.play()
+//        }
+//        model.isAudition = !model.isAudition
+//        dataArr.forEach { (item) in
+//            if item.trackId != model.trackId {
+//                item.isAudition = false
+//            }
+//        }
+//
+//        self.tableView.reloadData()
+//
+//    }
 
+    // 歌曲的播放状态
     func mapSongsArrPlayingStatus(songId: Int)  {
         guard self.dataArr.count > 0 else {
             return
@@ -102,6 +150,18 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             }
         }
         self.tableView.reloadData()
+    }
+    // 歌曲的收藏状态
+    func flatMapLikeList(arr: [BaseListItem]) -> [BaseListItem] {
+        for item in arr {
+            for likeitem in userLikeList {
+                if likeitem.trackId == item.trackId {
+                    item.isLike = true
+                    continue
+                }
+            }
+        }
+        return arr
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -154,7 +214,6 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         case .songs:
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ContentSongsTopCell", for: indexPath) as! ContentSongsTopCell
-//                cell.lbTopDes.set_text = "1231231231231231231231231231232131231231231231312312313123123131231231312312312"
                 if let model = self.albumModel {
                     cell.lbTopDes.set_text = model.name
                     let totalStr = model.total?.toString ?? ""
@@ -167,7 +226,6 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             }else {
                 return self.getListCell(tableView, cellForRowAt: indexPath, indexPathRow: indexPath.row - 1)
             }
-            break
         default:
             break
         }
@@ -193,7 +251,13 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = dataArr[indexPath.row]
+        var model:BaseListItem!
+        switch songListType {
+        case .songs:
+            model = dataArr[indexPath.row - 1]
+        default:
+            model = dataArr[indexPath.row]
+        }
         guard let trackId = model.trackId else {
             XBHud.showMsg("歌曲ID有误")
             return
@@ -211,8 +275,26 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             }
             
         default:
+            self.requestOnlineSing(trackId: trackId.toString)
             break
         }
+        
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if self.current_vc != nil {
+            //导航栏显示状态
+            let a = scrollView.contentOffset.y
+            self.topNavigationAnimate(a)
+        }
+
+
+    }
+    func topNavigationAnimate(_ offsetY : CGFloat)  {
+        let f = (offsetY/90.0) >= 0 ? (offsetY/90.0) : 0
+        let l = f > 1.0 ? 1:f
+        
+        let w = UIColor.init(hexString: "7ECC3B", alpha: l)
+        current_vc?.navigationController?.navigationBar.setBackgroundImage(UIImage.getImageWithColor(color: w!), for: UIBarMetrics.default)
         
     }
     func mapAllSelect()  {
@@ -358,13 +440,25 @@ extension BaseTableViewDelegate {
             XBHud.showMsg("所需信息不全")
             return
         }
-        let req_model = AddSongTrackReqModel()
+//        let req_model = AddSongTrackReqModel()
+//
+//        req_model.id = m.trackId
+//        req_model.title = m.name
+//        req_model.duration = m.length
+//        req_model.url = m.content
+//        req_model.downloadUrl = m.content
         
+        let req_model = AddSongTrackReqModel()
         req_model.id = m.trackId
         req_model.title = m.name
+        req_model.coverSmallUrl = self.albumModel?.imgSmall ?? ""
         req_model.duration = m.length
+        req_model.albumTitle = self.albumModel?.name ?? ""
+        req_model.albumCoverSmallUrl = self.albumModel?.imgSmall ?? ""
         req_model.url = m.content
+        req_model.downloadSize = 1
         req_model.downloadUrl = m.content
+        
         
         Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, trackId: trackId, trackName: trackName, trackIds: [req_model]),isEndRrefreshing: false, successClosure: { (result, code, message) in
             print(result)
@@ -428,13 +522,26 @@ extension BaseTableViewDelegate {
     }
 }
 extension BaseTableViewDelegate: BaseListCellDelegate {
-    func clickItemMoreAction(trackId: Int,duration: Int?, title: String?,indexPathRow: Int) {
+    func clickPauseAction(indexPathRow: Int) {
+        self.playVoice(model: self.dataArr[indexPathRow])
+    }
+    func clickItemMoreAction(trackId: Int,duration: Int?, title: String?,isLike: Bool, indexPathRow: Int) {
         let v = SwitchPlayView.loadFromNib()
         switch songListType {
         case .track:
             v.switchPlayType = .track
+            if isLike {
+                v.lbOne.set_text = "取消收藏"
+            }else {
+                v.lbOne.set_text = "收藏"
+            }
         case .songs:
             v.switchPlayType = .songs
+            if isLike {
+                v.lbThree.set_text = "取消收藏"
+            }else {
+                v.lbThree.set_text = "收藏"
+            }
         default:
             break
         }
@@ -442,7 +549,7 @@ extension BaseTableViewDelegate: BaseListCellDelegate {
         v.viewSing.addAction { [weak self] in
             guard let `self` = self else { return }
             v.hide()
-            self.clickOneAction(trackId: trackId, duration: duration, title: title, indexPathRow: indexPathRow)
+            self.clickOneAction(trackId: trackId, duration: duration, title: title, isLike: isLike, indexPathRow: indexPathRow)
             
         }
         v.viewAll.addAction { [weak self] in
@@ -454,16 +561,22 @@ extension BaseTableViewDelegate: BaseListCellDelegate {
         v.viewThree.addAction { [weak self] in
             guard let `self` = self else { return }
             v.hide()
-            self.clickThreeAction(trackId: trackId, duration: duration, title: title)
+            self.clickThreeAction(trackId: trackId, duration: duration, title: title,isLike: isLike)
             
         }
         v.show()
     }
-    func clickOneAction(trackId: Int,duration: Int?, title: String?,indexPathRow: Int)  {
+    func clickOneAction(trackId: Int,duration: Int?, title: String?,isLike: Bool,indexPathRow: Int)  {
         switch songListType {
         case .track:
-            self.requestLikeSing(trackId: trackId, duration: duration ?? 0, title: title ?? "")
-            
+//            self.requestLikeSing(trackId: trackId, duration: duration ?? 0, title: title ?? "")
+            if isLike {
+                print("取消收藏")
+                self.requestCancelSong(songId: trackId)
+            }else {
+                print("收藏")
+                self.requestLikeSing(trackId: trackId, duration: duration ?? 0, title: title ?? "")
+            }
         case .songs:
             print("试听")
             self.playVoice(model: dataArr[indexPathRow])
@@ -520,11 +633,18 @@ extension BaseTableViewDelegate: BaseListCellDelegate {
             break
         }
     }
-    func clickThreeAction(trackId: Int,duration: Int?, title: String?)  {
+    func clickThreeAction(trackId: Int,duration: Int?, title: String?,isLike: Bool)  {
         switch songListType {
         case .songs:
-           self.requestLikeSing(trackId: trackId, duration: duration ?? 0, title: title ?? "")
-           print("收藏")
+            if isLike {
+                print("取消收藏")
+                self.requestCancelSong(songId: trackId)
+            }else {
+                print("收藏")
+                self.requestLikeSing(trackId: trackId, duration: duration ?? 0, title: title ?? "")
+            }
+           
+           
         default:
             break
         }
@@ -536,7 +656,7 @@ extension BaseTableViewDelegate:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
         if  !NetWorkType.getNetWorkType() { // 无网络状态  或者 出现超时错误
             return NSAttributedString()
         }
-        if XBUserManager.device_Id == "" {
+        if XBUserManager.device_Id == "" && songListType != .like {
             //MARK: tableView 无数据展示状态
             let XBNoDataTitle:NSAttributedString = NSAttributedString(string: "暂无绑定设备",
                                                                       attributes:[NSAttributedStringKey.foregroundColor:MGRgb(0, g: 0, b: 0, alpha: 0.5),
@@ -576,6 +696,10 @@ extension BaseTableViewDelegate:DZNEmptyDataSetDelegate,DZNEmptyDataSetSource{
         //        if  !NetWorkType.getNetWorkType() || loadingTimerOut { // 无网络状态  或者 出现超时错误
 
         //        }
+        
+        if let current_vc = self.current_vc as? XBBaseViewController{
+            current_vc.request()
+        }
         
     }
     

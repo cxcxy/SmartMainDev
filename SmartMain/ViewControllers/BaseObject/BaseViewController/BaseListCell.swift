@@ -8,13 +8,15 @@
 
 import UIKit
 protocol BaseListCellDelegate: class {
-    func clickItemMoreAction(trackId: Int,duration: Int?, title: String?,indexPathRow: Int)
+    func clickItemMoreAction(trackId: Int,duration: Int?, title: String?,isLike: Bool, indexPathRow: Int)
+    func clickPauseAction(indexPathRow: Int)
 }
 class BaseListCell: BaseTableViewCell {
     var indexPathRow: Int!
     
     @IBOutlet weak var btnSelect: UIButton!
     
+    @IBOutlet weak var viewPause: UIView!
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbLineNumber: UILabel!
@@ -33,6 +35,7 @@ class BaseListCell: BaseTableViewCell {
             if isEdit {
                 btnSelect.isSelected = model.isSelect
             }
+             viewPause.isHidden = !model.isAudition
             
         }
     }
@@ -48,10 +51,18 @@ class BaseListCell: BaseTableViewCell {
         // Initialization code
         btnMore.isHidden = true
         btnSelect.isHidden = true
+        viewPause.addBorder(width: 0.5, color: UIColor.init(hexString: "4A90E2")!)
+        viewPause.isHidden = true
+        
     }
     @IBAction func clickMoreAction(_ sender: Any) {
         if let del = self.delegate, let trackId =  modelData?.trackId{
-            del.clickItemMoreAction(trackId: trackId, duration: modelData?.time, title: modelData?.title,indexPathRow: self.indexPathRow)
+            del.clickItemMoreAction(trackId: trackId, duration: modelData?.time, title: modelData?.title,isLike: modelData?.isLike ?? false,indexPathRow: self.indexPathRow)
+        }
+    }
+    @IBAction func clickPauseAction(_ sender: Any) {
+        if let del = self.delegate, let trackId =  modelData?.trackId{
+            del.clickPauseAction(indexPathRow: self.indexPathRow)
         }
     }
     

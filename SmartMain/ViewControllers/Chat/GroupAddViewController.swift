@@ -16,9 +16,27 @@ class GroupAddViewController: XBBaseTableViewController {
     
     var groupList: [String] = []
     
+    var device_Id: String = ""
+    
     var groupOwner: Bool  = false // 是否是管理员
+    
     var ownerPhone : String = ""
-      var viewModel = LoginViewModel()
+    var viewModel = LoginViewModel()
+    
+    var dataArr: [FamilyMemberModel] = [] {
+        didSet{
+            for item in dataArr {
+                if item.easeadmin == "1" && item.username == XBUserManager.userName { // 判断当前用户是否是管理员
+                    self.groupOwner = true
+                    self.ownerPhone = XBUserManager.userName
+                    break
+                }
+            }
+        }
+    }
+    
+    var currentIsAdmin: Bool = false // 是否是管理员
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,34 +56,52 @@ class GroupAddViewController: XBBaseTableViewController {
     }
     override func request() {
         super.request()
-        EMClient.shared().groupManager.getGroupMemberListFromServer(withId: groupId, cursor: "", pageSize: 0) {[weak self]  (cursorResult, error) in
-            guard let `self` = self,let cursorResult = cursorResult else { return }
-            if let list = cursorResult.list as? [String] {
-                //                self.groupList = list
-                print(list)
-                self.tableView.reloadData()
-            }
+        guard self.device_Id != "" else {
+            return
         }
-        EMClient.shared().groupManager.getGroupSpecificationFromServer(withId: groupId) {[weak self] (emGroup, error) in
-            guard let `self` = self,let emGroup = emGroup else { return }
-//            self.groupName = emGroup.description
-            
-            print(emGroup.memberList)
-            print(emGroup.occupants)
-            print(emGroup.occupantsCount)
-            if emGroup.owner == XBUserManager.userName {
-                self.groupOwner = true
-            }else {
-                self.groupOwner = false
-            }
-            self.ownerPhone = emGroup.owner
-            if let list = emGroup.occupants as? [String] {
-                self.groupList = list
+        Net.requestWithTarget(.getFamilyMemberList(deviceId: self.device_Id), successClosure: { (result, code, msg) in
+            print(result)
+                        self.endRefresh()
+            if let arr = Mapper<FamilyMemberModel>().mapArray(JSONObject: JSON.init(parseJSON: result as! String).arrayObject) {
+                self.dataArr = arr
+                self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
+//                self.collectionView.reloadData()
+                self.groupId = arr.get(at: 0)?.groupid
                 self.tableView.reloadData()
+//                self.lbMember.set_text = "共" + arr.count.toString + "个成员"
             }
-        }
-
+        })
     }
+//    override func request() {
+//        super.request()
+//        EMClient.shared().groupManager.getGroupMemberListFromServer(withId: groupId, cursor: "", pageSize: 0) {[weak self]  (cursorResult, error) in
+//            guard let `self` = self,let cursorResult = cursorResult else { return }
+//            if let list = cursorResult.list as? [String] {
+//                //                self.groupList = list
+//                print(list)
+//                self.tableView.reloadData()
+//            }
+//        }
+//        EMClient.shared().groupManager.getGroupSpecificationFromServer(withId: groupId) {[weak self] (emGroup, error) in
+//            guard let `self` = self,let emGroup = emGroup else { return }
+////            self.groupName = emGroup.description
+//
+//            print(emGroup.memberList)
+//            print(emGroup.occupants)
+//            print(emGroup.occupantsCount)
+//            if emGroup.owner == XBUserManager.userName {
+//                self.groupOwner = true
+//            }else {
+//                self.groupOwner = false
+//            }
+//            self.ownerPhone = emGroup.owner
+//            if let list = emGroup.occupants as? [String] {
+//                self.groupList = list
+//                self.tableView.reloadData()
+//            }
+//        }
+//
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,7 +118,7 @@ class GroupAddViewController: XBBaseTableViewController {
 //            }
             var params_task = [String: Any]()
             params_task["username"] = XBUserManager.userName
-            params_task["deviceid"] = XBUserManager.device_Id
+            params_task["deviceid"] = self.device_Id
             params_task["easeadmin"] = 1
             params_task["groupid"] = groupId
             Net.requestWithTarget(.quitGroup(byAdmin: true, req: params_task), successClosure: { (result, code, message) in
@@ -100,7 +136,7 @@ class GroupAddViewController: XBBaseTableViewController {
         } else {
             var params_task = [String: Any]()
             params_task["username"] = XBUserManager.userName
-            params_task["deviceid"] = XBUserManager.device_Id
+            params_task["deviceid"] = self.device_Id
             params_task["easeadmin"] = 0
             params_task["groupid"] = groupId
             Net.requestWithTarget(.quitGroup(byAdmin: false, req: params_task), successClosure: { (result, code, message) in
@@ -150,7 +186,7 @@ extension GroupAddViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupItemCell", for: indexPath) as! GroupItemCell
-            cell.contentArr = self.groupList
+            cell.contentArr = self.dataArr
             cell.btnAdd.addAction { [weak self] in
                 guard let `self` = self else { return }
                 self.toAddGroupMemberAction()
@@ -158,7 +194,8 @@ extension GroupAddViewController {
             cell.lbDes.set_text = "微聊组成员"
             cell.groupId        = self.groupId
             cell.groupOwner     = self.groupOwner
-            cell.ownerPhone = self.ownerPhone
+            cell.ownerPhone     = self.ownerPhone
+            cell.delegate = self
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupItemCell", for: indexPath) as! GroupItemCell
@@ -208,5 +245,10 @@ extension GroupAddViewController {
     }
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 65
+    }
+}
+extension GroupAddViewController: GroupItemCellDelegate {
+    func deleteMemberSuccess() {
+        self.request()
     }
 }

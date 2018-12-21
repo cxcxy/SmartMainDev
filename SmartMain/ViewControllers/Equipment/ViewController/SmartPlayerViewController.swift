@@ -391,7 +391,14 @@ class SmartPlayerViewController: XBBaseViewController {
         imgBackGround.set_Img_Url(singsDetail.album?.imgSmall)
         imgSings.set_Img_Url(singsDetail.album?.imgSmall)
         lbSingsTitle.set_text = singsDetail.name
-        lbAlbumName.set_text =  "来自:" + (singsDetail.album?.name ?? "")
+        if  (singsDetail.album?.name ?? "") != "" {
+            lbAlbumName.isHidden = false
+            lbAlbumName.set_text =  "来自:" + (singsDetail.album?.name ?? "")
+        }else {
+            lbAlbumName.isHidden = true
+            
+        }
+        
         lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.length)
         self.resetTimer()
         

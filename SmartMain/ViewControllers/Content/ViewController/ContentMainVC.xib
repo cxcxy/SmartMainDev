@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContentMainVC" customModule="SmartMain" customModuleProvider="target">
             <connections>
+                <outlet property="bottomLayout" destination="W35-zo-NGI" id="zzU-bx-IpZ"/>
                 <outlet property="navMessageView" destination="pbS-oc-105" id="gGf-qG-vyx"/>
                 <outlet property="topItemStackView" destination="iU9-kP-RMW" id="LcS-11-7nT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="TJy-XT-43t"/>

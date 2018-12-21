@@ -53,6 +53,7 @@ class TrackListViewController: XBBaseTableViewController {
         }
 
         Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            print(result)
             if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
                 self.loading = true
                 self.endRefresh()
@@ -92,7 +93,7 @@ extension TrackListViewController {
         let trackCount = model.trackCount ?? 0
         let count = "共" + trackCount.toString + "首"
         cell.lbTitle.set_text = model.name
-        
+        cell.imgIcon.set_Img_Url(model.coverSmallUrl)
         cell.lbTatal.set_text = count
         return cell
         

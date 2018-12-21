@@ -8,6 +8,30 @@
 
 import UIKit
 import ObjectMapper
+
+class XBUserPhotoManager: NSObject {
+    ///保存 登录过的用户的头像信息
+    static var photoDic:Dictionary<String, String>{
+        get{
+            return ((MGDefault.object(forKey: "XBUserPhotoManager") as? Dictionary<String, String>)) ?? [:]
+        }
+        set{
+            MGDefault.set(newValue, forKey:"XBUserPhotoManager")
+            MGDefault.synchronize()
+        }
+    }
+    ///保存 登录过的用户的头像 image
+    static var photoImgDic:Dictionary<String, UIImage>{
+        get{
+            return ((MGDefault.object(forKey: "XBUserPhotoImgManager") as? Dictionary<String, UIImage>)) ?? [:]
+        }
+        set{
+            MGDefault.set(newValue, forKey:"XBUserPhotoImgManager")
+            MGDefault.synchronize()
+        }
+    }
+}
+
 //MARK: 接受 -- user Model
 class UserModel: XBDataModel {
     

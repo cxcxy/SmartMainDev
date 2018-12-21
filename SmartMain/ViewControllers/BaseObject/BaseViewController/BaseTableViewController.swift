@@ -22,6 +22,7 @@ class BaseTableViewController: XBBaseViewController {
     override func setUI() {
         super.setUI()
         dataDelegate.tableView = self.tableView
+        dataDelegate.current_vc = self
         
     }
     override func request() {

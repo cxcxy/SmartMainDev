@@ -17,10 +17,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbT-Se-U5F">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="播单-专辑名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCR-sJ-U6k">
-                            <rect key="frame" x="15" y="16.5" width="78" height="17"/>
+                            <rect key="frame" x="15" y="12" width="78" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ME-D3-TP4">
-                            <rect key="frame" x="15" y="49.5" width="360" height="0.5"/>
+                            <rect key="frame" x="15" y="40.5" width="360" height="0.5"/>
                             <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="0.5" id="aps-og-Gu7"/>
@@ -69,32 +69,32 @@
                         <constraint firstItem="LCR-sJ-U6k" firstAttribute="centerY" secondItem="tbT-Se-U5F" secondAttribute="centerY" id="Ow6-2t-LBq"/>
                         <constraint firstItem="j1X-RD-4bi" firstAttribute="top" secondItem="tbT-Se-U5F" secondAttribute="top" id="R6K-oX-aPm"/>
                         <constraint firstAttribute="trailing" secondItem="7ME-D3-TP4" secondAttribute="trailing" id="TCz-91-XeF"/>
-                        <constraint firstAttribute="height" constant="50" id="Wyv-VZ-qoa"/>
+                        <constraint firstAttribute="height" constant="41" id="Wyv-VZ-qoa"/>
                         <constraint firstItem="LCR-sJ-U6k" firstAttribute="leading" secondItem="tbT-Se-U5F" secondAttribute="leading" constant="15" id="aC9-Gc-hhX"/>
                         <constraint firstItem="7ME-D3-TP4" firstAttribute="leading" secondItem="tbT-Se-U5F" secondAttribute="leading" constant="15" id="eSq-O3-uWD"/>
-                        <constraint firstAttribute="bottom" secondItem="j1X-RD-4bi" secondAttribute="bottom" constant="9" id="qOw-CP-4Xj"/>
+                        <constraint firstAttribute="bottom" secondItem="j1X-RD-4bi" secondAttribute="bottom" id="qOw-CP-4Xj"/>
                         <constraint firstAttribute="bottom" secondItem="7ME-D3-TP4" secondAttribute="bottom" id="xyL-b3-Uc8"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbU-Dh-MLn">
-                    <rect key="frame" x="0.0" y="50" width="375" height="200"/>
+                    <rect key="frame" x="0.0" y="41" width="375" height="210"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="Cb7-71-bD9"/>
+                        <constraint firstAttribute="height" constant="210" id="lgT-Zr-Coh"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Lz-l9-zsJ">
-                    <rect key="frame" x="7" y="250" width="368" height="50"/>
+                    <rect key="frame" x="7" y="251" width="368" height="49"/>
                     <subviews>
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="gSC-9t-ISa">
-                            <rect key="frame" x="164.5" y="6.5" width="39" height="37"/>
+                            <rect key="frame" x="164.5" y="6" width="39" height="37"/>
                             <color key="pageIndicatorTintColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="currentPageIndicatorTintColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </pageControl>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="2nl-LS-g8x"/>
+                        <constraint firstAttribute="height" constant="49" id="2nl-LS-g8x"/>
                         <constraint firstItem="gSC-9t-ISa" firstAttribute="centerY" secondItem="8Lz-l9-zsJ" secondAttribute="centerY" id="TsI-l0-fWu"/>
                         <constraint firstItem="gSC-9t-ISa" firstAttribute="centerX" secondItem="8Lz-l9-zsJ" secondAttribute="centerX" id="Znj-xt-Pf5"/>
                     </constraints>

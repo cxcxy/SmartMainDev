@@ -7,7 +7,12 @@
 //
 
 import UIKit
-
+extension Int {
+    func mapPercentage() -> Int {
+        let i  = ( self.toFloat / 40 ) * 100
+        return Int(i)
+    }
+}
 extension String {
     
     //将原始的url编码为合法的url  处理URL中的中文问题
