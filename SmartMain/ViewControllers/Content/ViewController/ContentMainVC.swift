@@ -40,7 +40,7 @@ class ContentMainVC: XBBaseViewController {
             guard let m = currentSongModel else {
                 return
             }
-            self.configBottomSongView(singsDetail: m)
+//            self.configBottomSongView(singsDetail: m)
         }
     }
     var viewModel = EquimentViewModel()
@@ -94,6 +94,7 @@ class ContentMainVC: XBBaseViewController {
         super.setUI()
         self.currentNavigationHidden = true
         configMagicView()
+        viewMessageRed.roundView()
         addBottomSongView()
         /// 当切换设备或者绑定设备的时候，重新订阅 scoket MQTT 信息
         _ = Noti(.refreshDeviceHistory).takeUntil(self.rx.deallocated).subscribe(onNext: {[weak self] (value) in
@@ -208,9 +209,41 @@ class ContentMainVC: XBBaseViewController {
             guard let `self` = self else { return }
             print("getPalyingSingsId ===：", $0.element ?? 0)
             self.requestSingsDetail(trackId: $0.element ?? 0)
+            self.requestResourcesDetail(trackId: $0.element ?? 0)
         }.disposed(by: rx_disposeBag)
         
         scoketModel.playStatus.asObserver().bind(to: bottomSongView.btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
+    }
+    func requestResourcesDetail(trackId: Int)  {
+        var params_task = [String: Any]()
+        params_task["clientId"] = XBUserManager.device_Id
+        params_task["resId"] = "aires:" + trackId.toString
+        Net.requestWithTarget(.getResourceDetail(req: params_task), successClosure: { [weak self] (result, code, message) in
+            guard let `self` = self else { return }
+            print(result)
+            
+            if let model = Mapper<ResourceDetailModel>().map(JSONObject: result) {
+                self.configBottomUI(singsDetail: model)
+            }
+            
+            //            self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
+            //            self.allTimer = Float(self.currentSongModel?.duration ?? 0)
+            //            self.resetTimer()
+            //            // 获取播放状态
+            //            self.scoketModel.sendPlayStatus()
+        })
+    }
+    func configBottomUI(singsDetail: ResourceDetailModel) {
+//        imgBackGround.set_Img_Url(singsDetail.album?.imgSmall)
+//        imgSings.set_Img_Url(singsDetail.album?.imgSmall)
+//        lbSingsTitle.set_text = singsDetail.name
+//        lbAlbumName.set_text =  "来自:" + (singsDetail.album?.name ?? "")
+//        lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: singsDetail.length)
+//        self.resetTimer()
+        bottomSongView.lbSingsTitle.set_text = singsDetail.name
+        bottomSongView.imgSong.set_Img_Url(singsDetail.album?.imgSmall)
+        // 计时器开始工作
+        //        self.configTimer(songDuration: Float(singsDetail.duration ?? 0))
     }
     // 获取歌曲详情
     func requestSingsDetail(trackId: Int)  {
@@ -292,12 +325,12 @@ class ContentMainVC: XBBaseViewController {
         }
     }
     //MARK: 配置底部 播放view
-    func configBottomSongView(singsDetail: SingDetailModel)  {
+//    func configBottomSongView(singsDetail: SingDetailModel)  {
+    
+//        bottomSongView.lbSingsTitle.set_text = singsDetail.title
+//        bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
         
-        bottomSongView.lbSingsTitle.set_text = singsDetail.title
-        bottomSongView.imgSong.set_Img_Url(singsDetail.coverSmallUrl)
-        
-    }
+//    }
     //MARK: 重置 底部 播放view
     func configResetBottomSongView()  {
         

@@ -19,6 +19,7 @@ class ContentSingsVC: XBBaseTableViewController {
                 listItem.time       =  item.length
                 listItem.trackId    = item.trackId
                 listItem.isLike     = item.isLike
+                listItem.url = item.content
                 return listItem
             })
             self.dataDelegate.songsArr = dataArr

@@ -11,6 +11,7 @@ class BaseListItem: NSObject {
     var title: String!
     var time: Int?
     var trackId: Int?
+    var url: String?
     var isPlay: Bool = false// 是否正在播放
     var isLike: Bool = false // 是否喜欢
     var isAudition: Bool = false // 是否在试听
@@ -27,7 +28,7 @@ enum SongListType {
 // 0 都未选中 ，1 选择部分 2 全部选中
 typealias AllSelectStatus = ((_ status: Int) -> ())
 class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
-    
+    var viewContainer: UIView?
     var songListType : SongListType = .track
     var selectStatus: AllSelectStatus?
     var trackList: [EquipmentModel] = [] // 预制列表 数组
@@ -60,6 +61,8 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
     var trackListId: Int! // 预制列表id
     var viewModel = ContentViewModel()
     var scoketModel = ScoketMQTTManager.share
+    let playerLayer:AVPlayerLayer = AVPlayerLayer.init()
+    var player:AVPlayer = AVPlayer.init()
     open var tableView :UITableView!{
         
         didSet{
@@ -463,10 +466,48 @@ extension BaseTableViewDelegate: BaseListCellDelegate {
             
         case .songs:
             print("试听")
+            self.playVoice(model: dataArr[indexPathRow])
         default:
             break
         }
     }
+    func configPlay()  {
+        if let viewContainer = self.viewContainer {
+            playerLayer.frame = CGRect.init(x: 10, y: 30, w: XBMin, h: XBMin)
+            // 设置画面缩放模式
+            playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+            // 在视图上添加播放器
+            viewContainer.layer.addSublayer(playerLayer)
+        }
+    }
+    //MARK: 点击试听
+    func playVoice(model: BaseListItem)  {
+        guard let urlTask =  URL.init(string: model.url ?? "") else {
+            XBLog("歌曲地址有误")
+            return
+        }
+        if model.isAudition {
+            player.pause()
+            
+        }else {
+            let playerItem:AVPlayerItem = AVPlayerItem.init(url: urlTask)
+            self.player = AVPlayer(playerItem: playerItem)
+            playerLayer.player = player
+            
+            // 开始播放
+            player.play()
+        }
+        model.isAudition = !model.isAudition
+        dataArr.forEach { (item) in
+            if item.trackId != model.trackId {
+                item.isAudition = false
+            }
+        }
+        
+        self.tableView.reloadData()
+        
+    }
+
     func clickTwoAction(trackId: Int,indexPathRow: Int)  {
         switch songListType {
         case .track:
