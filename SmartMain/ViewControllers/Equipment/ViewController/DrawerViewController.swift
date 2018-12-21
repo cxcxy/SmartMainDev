@@ -97,12 +97,11 @@ class DrawerViewController: XBBaseViewController {
         viewTopInfo.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
             let vc = EquipmentSettingVC()
-            //            vc.isAdd = false
-            //            vc.deviceId = XBUserManager.device_Id
-            //            vc.setInfoType = .editDeviceInfo
             self.cw_push(vc)
 
         }
+        
+        self.getDeviceBabyInfo()
         
         DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
             self.deviceOnline = isOnline
@@ -117,6 +116,12 @@ class DrawerViewController: XBBaseViewController {
 
         }
 
+    }
+    func getDeviceBabyInfo() { // 获取设备信息
+        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+            guard let `self` = self else { return }
+            self.configUserInfo()
+        }
     }
 //    override func request() {
 //        super.request()

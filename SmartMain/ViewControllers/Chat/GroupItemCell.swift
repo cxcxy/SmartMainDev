@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
+protocol GroupItemCellDelegate: class {
+    func deleteMemberSuccess()
+}
 class GroupItemCell: BaseTableViewCell {
-    var contentArr: [String] = [] {
+    var contentArr: [FamilyMemberModel] = [] {
         didSet {
             
             let heightLine:CGFloat  = contentArr.count > 2 ? 10 : 0
@@ -17,10 +19,13 @@ class GroupItemCell: BaseTableViewCell {
             collectionView.reloadData()
         }
     }
-    
+    weak var delegate: GroupItemCellDelegate?
     var groupId: String!
     var groupOwner: Bool  = false
     var ownerPhone : String = ""
+    
+    
+    
     @IBOutlet weak var lbDes: UILabel!
     @IBOutlet weak var btnAdd: UIButton!
     
@@ -45,16 +50,21 @@ class GroupItemCell: BaseTableViewCell {
 
         // Configure the view for the selected state
     }
-    func requestDelMember()  {
+    func requestDelMember(phone: String, deviceId: String)  {
         var params_task = [String: Any]()
-        params_task["username"]     = XBUserManager.userName
-        params_task["deviceid"]     = XBUserManager.device_Id
-        params_task["easeadmin"]    = groupOwner
+        params_task["username"]     = phone
+        params_task["deviceid"]     = deviceId
+        params_task["easeadmin"]    = phone == ownerPhone
         params_task["groupid"]      = groupId
-        Net.requestWithTarget(.quitGroup(byAdmin: false, req: params_task), successClosure: { (result, code, message) in
+        Net.requestWithTarget(.quitGroup(byAdmin: groupOwner, req: params_task), successClosure: { (result, code, message) in
             if let str = result as? String {
                 print(str)
-//                XBHud.showMsg("退出成功")
+                XBHud.showMsg("删除成员成功")
+                XBDelay.start(delay: 1, closure: {
+                    if let del = self.delegate {
+                        del.deleteMemberSuccess()
+                    }
+                })
             }
         })
     }
@@ -66,15 +76,14 @@ extension GroupItemCell:UICollectionViewDelegate,UICollectionViewDataSource,UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "XBAddContactCell", for: indexPath)as! XBAddContactCell
-        cell.imgView.set_img = "icon_photo"
+        let model = contentArr[indexPath.row]
+        cell.imgView.set_Img_Url(model.headImgUrl)
         cell.titleLab.font = UIFont.systemFont(ofSize: 8)
-        
-        let name = contentArr[indexPath.row]
-        cell.titleLab.set_text = name
+        cell.titleLab.set_text = model.nickname
 //        if 
 //        cell.titleLab.set_text = contentArr[indexPath.row]
         if self.groupOwner { // 当前为该群组管理员
-            if name == ownerPhone { // 当前显示的是自己
+            if model.username == ownerPhone { // 当前显示的是自己
                 cell.imgDelete.isHidden = true
             }else {
                 cell.imgDelete.isHidden = false
@@ -85,7 +94,7 @@ extension GroupItemCell:UICollectionViewDelegate,UICollectionViewDataSource,UICo
 
         cell.imgDelete.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
-            self.requestDelMember()
+            self.requestDelMember(phone: model.username ?? "",deviceId: model.deviceid ?? "")
         }
         return cell
         

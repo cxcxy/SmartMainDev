@@ -322,6 +322,10 @@
 		04CF4933215B328A0052CD67 /* GroupItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4931215B328A0052CD67 /* GroupItemCell.xib */; };
 		04CF4936215B65C20052CD67 /* GroupAddMemberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */; };
 		04CF4937215B65C20052CD67 /* GroupAddMemberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */; };
+		04DB49D121CCED6900FD65EA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 04DB49CA21CCED6900FD65EA /* LICENSE */; };
+		04DB49D221CCED6900FD65EA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04DB49CB21CCED6900FD65EA /* README.md */; };
+		04DB49D321CCED6900FD65EA /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB49CD21CCED6900FD65EA /* FCUUID.m */; };
+		04DB49D421CCED6900FD65EA /* UIDevice+FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB49CE21CCED6900FD65EA /* UIDevice+FCUUID.m */; };
 		04E537C7216DDFF2002DE58C /* TrackListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */; };
 		04E537C9216DDFFB002DE58C /* TrackListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */; };
 		04E537CC216DEF41002DE58C /* XBLoginOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E537CA216DEF41002DE58C /* XBLoginOutView.swift */; };
@@ -888,6 +892,12 @@
 		04CF4931215B328A0052CD67 /* GroupItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupItemCell.xib; sourceTree = "<group>"; };
 		04CF4934215B65C20052CD67 /* GroupAddMemberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddMemberController.swift; sourceTree = "<group>"; };
 		04CF4935215B65C20052CD67 /* GroupAddMemberController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupAddMemberController.xib; sourceTree = "<group>"; };
+		04DB49CA21CCED6900FD65EA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		04DB49CB21CCED6900FD65EA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04DB49CD21CCED6900FD65EA /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
+		04DB49CE21CCED6900FD65EA /* UIDevice+FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+FCUUID.m"; sourceTree = "<group>"; };
+		04DB49CF21CCED6900FD65EA /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
+		04DB49D021CCED6900FD65EA /* UIDevice+FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+FCUUID.h"; sourceTree = "<group>"; };
 		04E537C6216DDFF2002DE58C /* TrackListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListHeaderView.swift; sourceTree = "<group>"; };
 		04E537C8216DDFFB002DE58C /* TrackListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackListHeaderView.xib; sourceTree = "<group>"; };
 		04E537CA216DEF41002DE58C /* XBLoginOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBLoginOutView.swift; sourceTree = "<group>"; };
@@ -1788,6 +1798,7 @@
 		04C386EE213E093F0063A799 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				04DB49C921CCED6900FD65EA /* FCUUID */,
 				2D83D40F215E705D0097900F /* TableViewAnimationKit */,
 				0460495C2153923900BEDCD6 /* CWLateralSlide */,
 				042EEDEA2150E15F00DBD492 /* EaseUI */,
@@ -2142,6 +2153,27 @@
 			path = ConfigNetView;
 			sourceTree = "<group>";
 		};
+		04DB49C921CCED6900FD65EA /* FCUUID */ = {
+			isa = PBXGroup;
+			children = (
+				04DB49CA21CCED6900FD65EA /* LICENSE */,
+				04DB49CB21CCED6900FD65EA /* README.md */,
+				04DB49CC21CCED6900FD65EA /* FCUUID */,
+			);
+			path = FCUUID;
+			sourceTree = "<group>";
+		};
+		04DB49CC21CCED6900FD65EA /* FCUUID */ = {
+			isa = PBXGroup;
+			children = (
+				04DB49CD21CCED6900FD65EA /* FCUUID.m */,
+				04DB49CE21CCED6900FD65EA /* UIDevice+FCUUID.m */,
+				04DB49CF21CCED6900FD65EA /* FCUUID.h */,
+				04DB49D021CCED6900FD65EA /* UIDevice+FCUUID.h */,
+			);
+			path = FCUUID;
+			sourceTree = "<group>";
+		};
 		04F67906215CD08F00CAA0CA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2378,6 +2410,7 @@
 			files = (
 				0402E77E215E27160040919C /* XBLaunchView.xib in Resources */,
 				04C1436C2147A8FD00FC2000 /* ShowChooseView.xib in Resources */,
+				04DB49D121CCED6900FD65EA /* LICENSE in Resources */,
 				042EEF892150E15F00DBD492 /* EaseUIResource.bundle in Resources */,
 				04C51D5621B50BAA0098B511 /* Cell_801_Product.xib in Resources */,
 				2DF075B021761F2F006F0818 /* ContentScrollItem.xib in Resources */,
@@ -2462,6 +2495,7 @@
 				042EEF902150F12B00DBD492 /* ChatMainViewController.xib in Resources */,
 				2DF075B4217628E1006F0818 /* ContentNineGridItem.xib in Resources */,
 				2D0ACC41215A6D2A0047103C /* HistoryViewController.xib in Resources */,
+				04DB49D221CCED6900FD65EA /* README.md in Resources */,
 				04ACD5BF21AE7A0C001BBE5D /* LikeViewController.xib in Resources */,
 				2D9195CD215291D300F4A9A1 /* SetInfoViewController.xib in Resources */,
 				0495F17321783154002FB1F8 /* XBUpdateVersionView.xib in Resources */,
@@ -2597,6 +2631,7 @@
 				2DF9182021872D5B00880CF7 /* ccViewController.swift in Sources */,
 				042EEF332150E15F00DBD492 /* MJRefreshBackFooter.m in Sources */,
 				042EEF212150E15F00DBD492 /* EaseConversationModel.m in Sources */,
+				04DB49D321CCED6900FD65EA /* FCUUID.m in Sources */,
 				2DBD88E9215D0B6A00BC543A /* EquipmentListViewController.swift in Sources */,
 				042EEF722150E15F00DBD492 /* EaseUserCell.m in Sources */,
 				042EEF342150E15F00DBD492 /* MJRefreshAutoFooter.m in Sources */,
@@ -2646,6 +2681,7 @@
 				0413BECF21424BC9006E3A44 /* MemberManagerVC.swift in Sources */,
 				2DC9559A213ECD62004D6F65 /* ContentSubVC.swift in Sources */,
 				2D312A9D213D560100FCC499 /* ViewController.swift in Sources */,
+				04DB49D421CCED6900FD65EA /* UIDevice+FCUUID.m in Sources */,
 				04C38721213E093F0063A799 /* AddImagePickerFragment.swift in Sources */,
 				042EEF782150E15F00DBD492 /* EaseChatBarMoreView.m in Sources */,
 				042EEF3D2150E15F00DBD492 /* EMCDDeviceManager+Media.m in Sources */,

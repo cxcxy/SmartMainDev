@@ -10,6 +10,7 @@ import UIKit
 //import EMMessage
 class ChatGroupController: EaseMessageViewController {
     var groupName: String!
+    var device_Id: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "聊天"
@@ -41,6 +42,7 @@ class ChatGroupController: EaseMessageViewController {
         let vc = GroupAddViewController.init(style: .grouped)
         vc.groupId = self.conversation.conversationId
         vc.groupName = self.groupName
+        vc.device_Id = self.device_Id
         self.pushVC(vc)
         
     }
@@ -70,7 +72,8 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
     func messageViewController(_ viewController: EaseMessageViewController!, modelFor message: EMMessage!) -> IMessageModel! {
         let model = EaseMessageModel.init(message: message)
          print("ext---",message.ext)
-         print("body---",message.body)
+         print("from---",message.from)
+         print("to---",message.to)
         print(model?.avatarImage,model?.avatarURLPath)
         model?.avatarImage = UIImage.init(named: "icon_photo")
         if model?.isSender ?? true {
@@ -78,15 +81,45 @@ extension ChatGroupController: EaseMessageViewControllerDelegate,EaseMessageView
             let nickname = user_defaults.get(for: .nickname) ?? ""
             model?.avatarURLPath = headImgUrl
             model?.nickname = nickname
+
+  
         }else {
             if let dic = message.ext {
                 if let avatar = dic["avatar"] as? String,let nickname = dic["nickname"] as? String{
-                    model?.avatarURLPath = avatar
-                    model?.nickname = nickname
+                    let info = XBUserPhotoManager.photoDic[message.from]
+                    if  let infoArr = info?.components(separatedBy: "-") {
+                        if avatar == infoArr[0] { // 说明头像和缓存的是一致的
+                            model?.avatarURLPath = avatar
+                        } else { // 说明头像和缓存不是一致的，即 用户头像有变化
+                             XBUserPhotoManager.photoDic[message.from] = avatar + "-" + nickname
+                            model?.avatarURLPath = avatar
+                        }
+                        if nickname == infoArr[1] { // 说明昵称和缓存的是一致的
+                            model?.nickname = nickname
+                        }else {
+                             XBUserPhotoManager.photoDic[message.from] = avatar + "-" + nickname
+                             model?.nickname = nickname
+                        }
+                    }else { // 当前用户在缓存里面没有
+                        model?.avatarURLPath = avatar
+                        model?.nickname = nickname
+                        XBUserPhotoManager.photoDic[message.from] = avatar + "-" + nickname
+                    }
+                    
+                    
+                   
                 }
             }
            
         }
+        if let avatarURLPath = model?.avatarURLPath {
+            DispatchQueue.main.async {
+                UIImageView.init().sd_setImage(with: URL.init(string: avatarURLPath),
+                                               placeholderImage: UIImage.init(named: "icon_photo"),
+                                               options: .refreshCached)
+            }
+        }
+
 
         return model
     }

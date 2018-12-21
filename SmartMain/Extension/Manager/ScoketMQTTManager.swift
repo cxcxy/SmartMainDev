@@ -139,7 +139,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         guard  let data = message.data(using: .utf8) else {
             return
         }
-        mqttSession.publish(data, in: channel, delivering: .atMostOnce, retain: false) { (error) in
+        mqttSession.publish(data, in: channel, delivering: .atLeastOnce, retain: false) { (error) in
             if error == .none {
                 print("向订阅机器发送 Published \(message) on channel \(channel)")
             }
@@ -157,7 +157,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         guard  let data = message.data(using: .utf8) else {
             return
         }
-        mqttSession.publish(data, in: channel, delivering: .atMostOnce, retain: false) { (error) in
+        mqttSession.publish(data, in: channel, delivering: .atLeastOnce, retain: false) { (error) in
             if error == .none {
                 print("Published \(message) on channel \(channel)")
             }

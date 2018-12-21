@@ -193,7 +193,9 @@ class LoginViewModel: NSObject {
     }
     /// 修改设备信息信息
     func requestGetBabyInfo(device_Id: String, closure: @escaping () -> ())  {
-        
+        guard XBUserManager.device_Id != "" else {
+            return
+        }
         Net.requestWithTarget(.getBabyInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             if let obj = Net.filterStatus(jsonString: result) {
                 if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {

@@ -197,7 +197,7 @@ extension EquipmentSettingVC: XBImagePickerToolDelegate {
         let imageData = UIImageJPEGRepresentation(image, 0.5)
         fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
 //        self.imgPhoto.image = image
-        let openId = XBUserManager.device_Id
+        let  openId = XBUserManager.device_Id + SetInfoViewController.getOnlyStr()
 
         if (fileManager.fileExists(atPath: filePath)){
             

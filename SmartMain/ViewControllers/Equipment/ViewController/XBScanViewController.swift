@@ -236,7 +236,20 @@ extension XBScanViewController {
 extension XBScanViewController: SetInfoDelegate {
     
     func addSuccessAction(deviceId: String, model: XBDeviceBabyModel) {
-        self.requestJoinEaseGroup(username: user_defaults.get(for: .userName), deviceId: deviceId)
+        XBUserManager.device_Id = deviceId
+        var devices = XBUserManager.userDevices
+        devices.append(deviceId)
+        XBUserManager.userDevices = devices
+        // 此时刷新首页的信息
+        XBHud.showMsg("加入成功")
+        ChatManager.share.asyncGetMyGroupsFromServer()
+        // 订阅此 deviceId MQTT
+        ScoketMQTTManager.share.subscribeToChannel(socket_clientId: deviceId)
+        XBDelay.start(delay: 1, closure: {
+            Noti_post(.refreshDeviceHistory)
+            Noti_post(.refreshTrackList)
+            self.popToRootVC()
+        })
     }
     
 }

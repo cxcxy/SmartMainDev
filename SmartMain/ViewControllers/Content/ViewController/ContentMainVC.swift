@@ -155,7 +155,7 @@ class ContentMainVC: XBBaseViewController {
         }
         viewModelLogin.requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in // 获取最新的用户信息
             guard let `self` = self else { return }
-            self.requestDevicesBabyInfo()
+//            self.requestDevicesBabyInfo()
         }
         self.requestTrackList()
 
