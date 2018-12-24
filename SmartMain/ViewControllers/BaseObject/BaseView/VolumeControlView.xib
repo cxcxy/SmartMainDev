@@ -24,24 +24,25 @@
                     </view>
                     <blurEffect style="light"/>
                 </visualEffectView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m83-UQ-c1r" customClass="SectionedSlider" customModule="SmartMain" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3g-zp-wza">
                     <rect key="frame" x="121.5" y="162" width="132" height="337"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2w-xV-DCg">
+                            <rect key="frame" x="0.0" y="337" width="132" height="0.0"/>
+                            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="389-Eh-D35"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="337" id="7Aj-v7-mcj"/>
-                        <constraint firstAttribute="width" constant="132" id="ccU-PC-G7D"/>
+                        <constraint firstAttribute="width" constant="132" id="EQV-HL-XjL"/>
+                        <constraint firstAttribute="height" constant="337" id="Fxr-q3-E6H"/>
+                        <constraint firstAttribute="bottom" secondItem="v2w-xV-DCg" secondAttribute="bottom" id="Y8k-rm-syy"/>
+                        <constraint firstItem="v2w-xV-DCg" firstAttribute="leading" secondItem="f3g-zp-wza" secondAttribute="leading" id="bVW-aL-fvj"/>
+                        <constraint firstAttribute="trailing" secondItem="v2w-xV-DCg" secondAttribute="trailing" id="pVx-Xy-C2I"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="viewBackgroundColor">
-                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="sliderBackgroundColor">
-                            <color key="value" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="sliderColor">
-                            <color key="value" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_groupVolume" translatesAutoresizingMaskIntoConstraints="NO" id="j5o-1J-h9h">
                     <rect key="frame" x="172.5" y="78.5" width="30" height="30"/>
@@ -73,28 +74,30 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="6d4-y2-Eri" firstAttribute="top" secondItem="m83-UQ-c1r" secondAttribute="bottom" constant="40" id="Aj8-Sl-L6q"/>
                 <constraint firstItem="XZk-dI-maN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="AyT-T9-ifd"/>
-                <constraint firstItem="m83-UQ-c1r" firstAttribute="top" secondItem="XZk-dI-maN" secondAttribute="bottom" constant="40" id="BFj-mR-Sjn"/>
                 <constraint firstAttribute="bottom" secondItem="Hbd-uI-gT0" secondAttribute="bottom" id="BUv-n8-GL2"/>
-                <constraint firstItem="6d4-y2-Eri" firstAttribute="centerX" secondItem="m83-UQ-c1r" secondAttribute="centerX" id="G5T-hQ-Nzx"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XZk-dI-maN" secondAttribute="trailing" constant="15" id="Idd-VP-k7d"/>
+                <constraint firstItem="6d4-y2-Eri" firstAttribute="centerX" secondItem="Hbd-uI-gT0" secondAttribute="centerX" id="Iwz-EG-uXL"/>
+                <constraint firstItem="6d4-y2-Eri" firstAttribute="top" secondItem="f3g-zp-wza" secondAttribute="bottom" constant="40" id="KJE-3i-5V2"/>
+                <constraint firstItem="f3g-zp-wza" firstAttribute="centerX" secondItem="Hbd-uI-gT0" secondAttribute="centerX" id="cgx-v5-2Qg"/>
                 <constraint firstItem="j5o-1J-h9h" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="dsz-vK-LNC"/>
                 <constraint firstItem="Hbd-uI-gT0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fuY-7b-ReF"/>
+                <constraint firstItem="f3g-zp-wza" firstAttribute="top" secondItem="XZk-dI-maN" secondAttribute="bottom" constant="40" id="gJJ-Mr-Q4P"/>
                 <constraint firstItem="Hbd-uI-gT0" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="gyh-zh-DTZ"/>
                 <constraint firstItem="XZk-dI-maN" firstAttribute="top" secondItem="j5o-1J-h9h" secondAttribute="bottom" constant="13.5" id="hDn-pT-yIE"/>
                 <constraint firstItem="Hbd-uI-gT0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tHQ-Gy-AFh"/>
                 <constraint firstItem="j5o-1J-h9h" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="58.5" id="uad-We-anx"/>
-                <constraint firstItem="m83-UQ-c1r" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="ymy-Ri-VSx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="btnSure" destination="6d4-y2-Eri" id="hxE-1U-xYM"/>
-                <outlet property="heightLayout" destination="7Aj-v7-mcj" id="eNw-lM-EWi"/>
+                <outlet property="heightLayout" destination="Fxr-q3-E6H" id="Uf6-dA-Jll"/>
                 <outlet property="lbVolume" destination="XZk-dI-maN" id="1Dc-oz-RrM"/>
-                <outlet property="sliderView" destination="m83-UQ-c1r" id="AXp-dK-yqw"/>
-                <outlet property="widthLayout" destination="ccU-PC-G7D" id="hQO-vB-DGp"/>
+                <outlet property="sliderHeightLayout" destination="389-Eh-D35" id="dve-qC-EYd"/>
+                <outlet property="viewContainer" destination="f3g-zp-wza" id="9lk-IJ-Tjc"/>
+                <outlet property="viewSlider" destination="v2w-xV-DCg" id="7dE-51-Oo8"/>
+                <outlet property="widthLayout" destination="EQV-HL-XjL" id="DaZ-db-cHl"/>
             </connections>
             <point key="canvasLocation" x="40.799999999999997" y="77.811094452773617"/>
         </view>
