@@ -38,6 +38,7 @@ class DrawerViewController: XBBaseViewController {
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lbDvnick: UILabel!
     
+    @IBOutlet weak var bottomLayout: NSLayoutConstraint!
     @IBOutlet weak var viewTopInfo: UIView!
 //    @IBOutlet weak var lbLock: UILabel!
 //    @IBOutlet weak var imgLight: UIImageView!
@@ -86,6 +87,8 @@ class DrawerViewController: XBBaseViewController {
 //            leftMnueLayout.constant = 8
 //            rightMnueLayout.constant = 8
 //        }
+        self.currentNavigationHidden = true
+        bottomLayout.adapterTop_X()
     }
     
     override func setUI() {
@@ -97,7 +100,7 @@ class DrawerViewController: XBBaseViewController {
         viewTopInfo.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
             let vc = EquipmentSettingVC()
-            self.cw_push(vc)
+            self.pushVC(vc)
 
         }
         
@@ -227,26 +230,27 @@ extension DrawerViewController {
             break
         case 1:
             let vc = ConfigNetTipController()
-            self.cw_push(vc)
+            self.pushVC(vc)
+
         case 2:
             self.toQRCodeVC()
         case 3:
             let vc = EquipmentListViewController()
-            self.cw_push(vc)
+            self.pushVC(vc)
         case 4:
             let vc = SetInfoViewController()
             vc.setInfoType = .editUserInfo
-            self.cw_push(vc)
+            self.pushVC(vc)
             
         case 5:
             let vc = AccountInfoViewController()
-            self.cw_push(vc)
+            self.pushVC(vc)
         case 6:
             
             break
         case 7:
             let vc = MemberManagerVC()
-            self.cw_push(vc)
+            self.pushVC(vc)
             break
         default:
             break
@@ -432,7 +436,7 @@ extension DrawerViewController {
 extension DrawerViewController: DrawFromCellDelegate,VolumeControlDelegate {
     func toQRCodeVC()  {
         let vc = OpenEquViewController()
-        self.cw_push(vc)
+        self.pushVC(vc)
 //        self.cw_present(alertC)
     }
     func switchValueChangeAction(modelData: XBStyleCellModel,isSwitch: Bool) {

@@ -18,11 +18,12 @@
 @import IQKeyboardManagerSwift;
 @import SwiftyJSON;
 @import Hyphenate;
+@import SideMenu;
 //@import KYDrawerController;
 //@import SwiftMQTT;
 //@import FSPagerView;
-#import "UIViewController+CWLateralSlide.h"
+//#import "UIViewController+CWLateralSlide.h"
 #import "EaseUI.h"
 #import "TableViewAnimationKit.h"
-
+//#import "ECSlidingViewController.h"
 //#import <EaseUI/EaseUI.h>

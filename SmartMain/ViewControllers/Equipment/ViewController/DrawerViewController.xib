@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerViewController" customModule="SmartMain" customModuleProvider="target">
             <connections>
+                <outlet property="bottomLayout" destination="XN9-GE-dBe" id="vfN-fs-YVn"/>
                 <outlet property="imgElectricity" destination="aw1-l9-ThS" id="Ads-Wh-QOD"/>
                 <outlet property="imgNext" destination="cM1-Qb-Oi5" id="UP8-y1-57J"/>
                 <outlet property="imgPhoto" destination="y4I-vD-U74" id="zEL-SD-Pux"/>
@@ -190,6 +191,9 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="c1w-uR-MhD"/>
+                            </constraints>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgP-kj-PSt">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
@@ -211,13 +215,11 @@
                         <constraint firstAttribute="trailing" secondItem="Lok-WS-b7D" secondAttribute="trailing" id="gcW-Rf-q2g"/>
                         <constraint firstItem="Lok-WS-b7D" firstAttribute="top" secondItem="P9f-eO-CyQ" secondAttribute="top" id="nah-Xq-sqp"/>
                         <constraint firstAttribute="trailing" secondItem="sgP-kj-PSt" secondAttribute="trailing" id="q1C-3K-6pk"/>
-                        <constraint firstAttribute="height" constant="50" id="t3N-yi-TBt"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.50196078431372548" green="0.792156862745098" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="P9f-eO-CyQ" secondAttribute="bottom" id="2Yt-6P-98k"/>
                 <constraint firstItem="vjf-le-xWl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2bp-0w-knH"/>
                 <constraint firstItem="4Yj-rl-Rxi" firstAttribute="top" secondItem="vjf-le-xWl" secondAttribute="bottom" id="2qF-i9-REP"/>
                 <constraint firstItem="P9f-eO-CyQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7uB-ZR-gsg"/>
@@ -226,6 +228,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vjf-le-xWl" secondAttribute="trailing" id="Izm-k8-saH"/>
                 <constraint firstItem="vjf-le-xWl" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Loq-iB-D2d"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P9f-eO-CyQ" secondAttribute="trailing" id="MVF-fg-KsX"/>
+                <constraint firstAttribute="bottom" secondItem="P9f-eO-CyQ" secondAttribute="bottom" id="cHc-QL-5TC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Yj-rl-Rxi" secondAttribute="trailing" id="fcs-qz-Kwz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

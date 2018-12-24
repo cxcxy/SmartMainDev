@@ -166,11 +166,6 @@
 		044CED0D2176C8D80068C75A /* ContentSubVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 044CED0C2176C8D80068C75A /* ContentSubVC.xib */; };
 		0460495921536D7A00BEDCD6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460495821536D7A00BEDCD6 /* LoginViewModel.swift */; };
 		0460495B2153839400BEDCD6 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0460495A2153839400BEDCD6 /* DrawerViewController.swift */; };
-		046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */; };
-		046049682153923900BEDCD6 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049602153923900BEDCD6 /* UIViewController+CWLateralSlide.m */; };
-		046049692153923900BEDCD6 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049632153923900BEDCD6 /* CWLateralSlideAnimator.m */; };
-		0460496A2153923900BEDCD6 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049642153923900BEDCD6 /* CWDrawerTransition.m */; };
-		0460496B2153923900BEDCD6 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */; };
 		0460496D215398D800BEDCD6 /* DrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0460496C215398D800BEDCD6 /* DrawerViewController.xib */; };
 		0461CBD12154D6D400DF4C9A /* WOWDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0461CBCF2154D6D400DF4C9A /* WOWDatePickerView.xib */; };
 		0461CBD22154D6D400DF4C9A /* WOWDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0461CBD02154D6D400DF4C9A /* WOWDatePickerView.swift */; };
@@ -730,16 +725,6 @@
 		044CED0C2176C8D80068C75A /* ContentSubVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSubVC.xib; sourceTree = "<group>"; };
 		0460495821536D7A00BEDCD6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0460495A2153839400BEDCD6 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
-		0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
-		0460495E2153923900BEDCD6 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
-		0460495F2153923900BEDCD6 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
-		046049602153923900BEDCD6 /* UIViewController+CWLateralSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWLateralSlide.m"; sourceTree = "<group>"; };
-		046049612153923900BEDCD6 /* CWLateralSlideConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideConfiguration.h; sourceTree = "<group>"; };
-		046049622153923900BEDCD6 /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
-		046049632153923900BEDCD6 /* CWLateralSlideAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideAnimator.m; sourceTree = "<group>"; };
-		046049642153923900BEDCD6 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
-		046049652153923900BEDCD6 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
-		046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
 		0460496C215398D800BEDCD6 /* DrawerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrawerViewController.xib; sourceTree = "<group>"; };
 		0461CBCF2154D6D400DF4C9A /* WOWDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WOWDatePickerView.xib; sourceTree = "<group>"; };
 		0461CBD02154D6D400DF4C9A /* WOWDatePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOWDatePickerView.swift; sourceTree = "<group>"; };
@@ -1642,23 +1627,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		0460495C2153923900BEDCD6 /* CWLateralSlide */ = {
-			isa = PBXGroup;
-			children = (
-				0460495D2153923900BEDCD6 /* CWInteractiveTransition.m */,
-				0460495E2153923900BEDCD6 /* CWDrawerTransition.h */,
-				0460495F2153923900BEDCD6 /* CWLateralSlideAnimator.h */,
-				046049602153923900BEDCD6 /* UIViewController+CWLateralSlide.m */,
-				046049612153923900BEDCD6 /* CWLateralSlideConfiguration.h */,
-				046049622153923900BEDCD6 /* CWInteractiveTransition.h */,
-				046049632153923900BEDCD6 /* CWLateralSlideAnimator.m */,
-				046049642153923900BEDCD6 /* CWDrawerTransition.m */,
-				046049652153923900BEDCD6 /* UIViewController+CWLateralSlide.h */,
-				046049662153923900BEDCD6 /* CWLateralSlideConfiguration.m */,
-			);
-			path = CWLateralSlide;
-			sourceTree = "<group>";
-		};
 		0485CC8E2148A89200F54927 /* SwiftMQTT */ = {
 			isa = PBXGroup;
 			children = (
@@ -1800,7 +1768,6 @@
 			children = (
 				04DB49C921CCED6900FD65EA /* FCUUID */,
 				2D83D40F215E705D0097900F /* TableViewAnimationKit */,
-				0460495C2153923900BEDCD6 /* CWLateralSlide */,
 				042EEDEA2150E15F00DBD492 /* EaseUI */,
 				0485CC8E2148A89200F54927 /* SwiftMQTT */,
 				0413BECB21422541006E3A44 /* Defaults.swift */,
@@ -2525,7 +2492,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
@@ -2544,6 +2511,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
@@ -2569,6 +2537,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
@@ -2576,7 +2545,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78ED6FD45B3F9CA9B9CBA626 /* [CP] Check Pods Manifest.lock */ = {
@@ -2636,7 +2605,6 @@
 				042EEF722150E15F00DBD492 /* EaseUserCell.m in Sources */,
 				042EEF342150E15F00DBD492 /* MJRefreshAutoFooter.m in Sources */,
 				0473BA0D215A2E27003D688F /* OpenEquViewController.swift in Sources */,
-				0460496A2153923900BEDCD6 /* CWDrawerTransition.m in Sources */,
 				042EEF872150E15F00DBD492 /* EaseBubbleView+Gif.m in Sources */,
 				042EEF322150E15F00DBD492 /* MJRefreshHeader.m in Sources */,
 				042EEF812150E15F00DBD492 /* EaseBubbleView+Location.m in Sources */,
@@ -2648,7 +2616,6 @@
 				042EEF562150E15F00DBD492 /* PSTGridLayoutRow.m in Sources */,
 				2DC95598213EBCC7004D6F65 /* ContentReqModel.swift in Sources */,
 				2D0ACC4F215A81890047103C /* ChatGroupController.swift in Sources */,
-				046049692153923900BEDCD6 /* CWLateralSlideAnimator.m in Sources */,
 				042EEF482150E15F00DBD492 /* MWTapDetectingView.m in Sources */,
 				2DCA86A1216B81E8001F9E04 /* ChatRedView.swift in Sources */,
 				2D83D417215E705E0097900F /* UITableView+XSAnimationKit.m in Sources */,
@@ -2721,7 +2688,6 @@
 				04C38985213E0B5A0063A799 /* XBBaseTableViewController.swift in Sources */,
 				042EEF232150E15F00DBD492 /* UIScrollView+MJRefresh.m in Sources */,
 				042EEF392150E15F00DBD492 /* amrFileCodec.mm in Sources */,
-				046049672153923900BEDCD6 /* CWInteractiveTransition.m in Sources */,
 				04ACD5BD21AE618D001BBE5D /* UserInfoViewController.swift in Sources */,
 				04C3872B213E093F0063A799 /* String+.swift in Sources */,
 				2DF075AF21761F2F006F0818 /* ContentScrollItem.swift in Sources */,
@@ -2835,7 +2801,6 @@
 				04CF492E215B31E10052CD67 /* GroupAddViewController.swift in Sources */,
 				04B876CD216C47DB00D0430F /* NetSuccessView.swift in Sources */,
 				042EEF352150E15F00DBD492 /* MJRefreshComponent.m in Sources */,
-				0460496B2153923900BEDCD6 /* CWLateralSlideConfiguration.m in Sources */,
 				042EEF8F2150F12B00DBD492 /* ChatMainViewController.swift in Sources */,
 				0485CCB92148BC3300F54927 /* ScoketMQTTManager.swift in Sources */,
 				2DC95590213EB210004D6F65 /* EquimentInfoVC.swift in Sources */,
@@ -2848,7 +2813,6 @@
 				2D312A9B213D560100FCC499 /* AppDelegate.swift in Sources */,
 				04C38987213E0B5A0063A799 /* XBBaseViewController.swift in Sources */,
 				04B7720121AD2B680049F4BA /* ContentSongsHeader.swift in Sources */,
-				046049682153923900BEDCD6 /* UIViewController+CWLateralSlide.m in Sources */,
 				042EEF662150E15F00DBD492 /* UIImageView+WebCache.m in Sources */,
 				042EEF622150E15F00DBD492 /* SDWebImagePrefetcher.m in Sources */,
 				042EEF3C2150E15F00DBD492 /* EMCDDeviceManager+ProximitySensor.m in Sources */,

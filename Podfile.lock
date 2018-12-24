@@ -28,6 +28,7 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
+  - SideMenu (4.0.0)
   - SnapKit (4.0.1)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.2.0)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - ObjectMapper
   - ReachabilitySwift
   - RxDataSources
+  - SideMenu (~> 4.0.0)
   - SnapKit
   - SVProgressHUD (from `https://github.com/Fidetro/SVProgressHUD.git`)
   - SwiftyJSON
@@ -73,6 +75,7 @@ SPEC REPOS:
     - RxCocoa
     - RxDataSources
     - RxSwift
+    - SideMenu
     - SnapKit
     - SwiftyJSON
     - UICKeyChainStore
@@ -115,12 +118,13 @@ SPEC CHECKSUMS:
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
 
-PODFILE CHECKSUM: 1cf748dc6c0bd34d65c98369505cfe0e0cc1901e
+PODFILE CHECKSUM: 8e22d783023c87eafce627db127bb4d767bbf3a6
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2

@@ -38,7 +38,7 @@ class OpenEquViewController: XBBaseViewController {
                         if granted {
                             DispatchQueue.main.sync(execute: {() -> Void in
                                 //                            topVC?.pushVC(scanVC)
-                                self.cw_push(scanVC)
+                                self.pushVC(scanVC)
                             })
                             print("用户第一次同意了访问相机权限 - - \(Thread.current)")
                         } else {
@@ -46,13 +46,13 @@ class OpenEquViewController: XBBaseViewController {
                         }
                     })
                 case .authorized:
-                    self.cw_push(scanVC)
+                    self.pushVC(scanVC)
                 case .denied:
                     let alertC = UIAlertController(title: "温馨提示", message: "请去-> [设置 - 隐私 - 相机] 打开访问开关", preferredStyle: .alert)
                     let alertA = UIAlertAction(title: "确定", style: .default, handler: {(_ action: UIAlertAction) -> Void in
                     })
                     alertC.addAction(alertA)
-                    self.cw_present(alertC)
+                    self.presentVC(alertC)
                 case .restricted:
                     print("因为系统原因, 无法访问相册")
                     

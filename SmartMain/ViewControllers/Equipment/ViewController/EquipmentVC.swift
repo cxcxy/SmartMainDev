@@ -38,9 +38,6 @@ class EquipmentVC: XBBaseTableViewController {
     }
     func maskAnimationFromLeft() {
       
-        self.cw_showDrawerViewController(drawerViewController,
-                                         animationType: .mask,
-                                         configuration: CWLateralSlideConfiguration())
     }
     override func setUI() {
         super.setUI()

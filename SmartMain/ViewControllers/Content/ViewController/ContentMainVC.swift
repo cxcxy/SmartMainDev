@@ -28,11 +28,14 @@ class VCVTMagic:VTMagicController{
 
 var userLikeList : [ConetentLikeModel] = []
 
+protocol ContentVCDelegate: class {
+    func clickMenuAction()
+}
 class ContentMainVC: XBBaseViewController {
     var controllerArray     : [UIViewController] = []  // 存放controller 的array
     var v                   : VCVTMagic!  // 统一的左滑 右滑 控制View
     var bottomSongView = BottomSongView.loadFromNib()
-    
+    weak var delegate: ContentVCDelegate?
     @IBOutlet weak var bottomLayout: NSLayoutConstraint!
     
 //    var navMessageView = ChatRedView.loadFromNib()
@@ -61,6 +64,7 @@ class ContentMainVC: XBBaseViewController {
         super.viewDidLoad()
         self.currentNavigationTitleColor = UIColor.white
         bottomLayout.adapterTop_X()
+        self.setupSideMenu()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,6 +82,19 @@ class ContentMainVC: XBBaseViewController {
         setupUnreadMessageCount()
         
     }
+    fileprivate func setupSideMenu() {
+        // Define the menus
+        let two = DrawerViewController()
+        
+        let twonavigationController = UISideMenuNavigationController(rootViewController: two)
+        SideMenuManager.default.menuLeftNavigationController = twonavigationController
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuWidth = MGScreenWidth * 0.75
+        SideMenuManager.default.menuPresentMode = .viewSlideInOut
+        SideMenuManager.default.menuAnimationFadeStrength = 0.5
+
+    }
     //MARK: 设置未读消息数量
     func setupUnreadMessageCount()  {
         let conversations = EMClient.shared()?.chatManager.getAllConversations() as? [EMConversation]
@@ -94,7 +111,11 @@ class ContentMainVC: XBBaseViewController {
     }
     
     @IBAction func clickMenuAction(_ sender: Any) {
-        self.maskAnimationFromLeft()
+//        self.maskAnimationFromLeft()
+//        if let del = self.delegate {
+//            del.clickMenuAction()
+//        }
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     override func setUI() {
         super.setUI()
@@ -111,7 +132,9 @@ class ContentMainVC: XBBaseViewController {
         
 //        configNavBarItem()
         
-        configChatMessage()
+        
+//        configChatMessage()
+        
         
         
 //        self.registerShowIntractiveWithEdgeGesture()
@@ -168,12 +191,19 @@ class ContentMainVC: XBBaseViewController {
             self.title = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
         }
     }
+    @objc func anchorLeft() {
+//        slidingViewController.anchorTopViewToLeft(animated: true)
+//        UIApplication.shared.sli
+//        AppDelegate.init()
+//        UIApplication.shared.sli
+    }
     //MARK: 配置导航条左右Item
     func configNavBarItem()  {
         makeCustomerImageNavigationItem("iconmenu", left: true) {[weak self] in
             guard let `self` = self else { return }
-            self.maskAnimationFromLeft()
+//            self.maskAnimationFromLeft()
         }
+        
 //        makeCustomerImageNavigationItem("", left: false) {[weak self] in
 //            guard let `self` = self else { return }
 //            let vc = ChatMainViewController()
@@ -409,20 +439,7 @@ class ContentMainVC: XBBaseViewController {
         }
         v.switch(toPage: UInt(sender.tag), animated: true)
     }
-    func maskAnimationFromLeft() {
-        let drawerViewController = DrawerViewController()
-        self.cw_showDrawerViewController(drawerViewController,
-                                         animationType: .mask,
-                                         configuration: CWLateralSlideConfiguration())
-    }
-    func registerShowIntractiveWithEdgeGesture()  {
-        self.cw_registerShowIntractive(withEdgeGesture: true) {[weak self] (direction) in
-             guard let `self` = self else { return }
-            if direction == .fromLeft {
-                self.maskAnimationFromLeft()
-            }
-        }
-    }
+
     //MARK:配置所对应的左右滑动ViewControler
     func configMagicView()  {
         v                                       = VCVTMagic()

@@ -9,7 +9,6 @@
 import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
     var lunchView: XBLaunchView!
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -33,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            showADLaunchView()
             requestCheakVersion()
         }
-
+      
         return true
     }
     // 检查更新 接口
@@ -73,14 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func configDrawerController()  {
         let mainViewController   = ContentMainVC()
-//        let drawerViewController = DrawerViewController()
-//        let drawerController     = KYDrawerController(drawerDirection: .left, drawerWidth: 300)
-//        drawerController.screenEdgePanGestureEnabled = false
         let nav = XBBaseNavigation.init(rootViewController: mainViewController)
-//        drawerController.mainViewController = nav
-//        drawerController.drawerViewController = drawerViewController
-        
         window?.rootViewController = nav
+
     }
     func loginEMClient()  {
         
