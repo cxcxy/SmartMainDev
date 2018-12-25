@@ -85,6 +85,7 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
     }
     @IBAction func clickClearAction(_ sender: Any) {
         textField.text = ""
+        self.btnClear.isHidden = true
     }
     
     /*** 下面的几个方法都是为了让这个自定义类能将xib里的view加载进来。这个是通用的，我们不需修改。 ****/

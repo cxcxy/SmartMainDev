@@ -16,6 +16,10 @@ class PlayVolumeView: ETPopupView{
             self.volumeChangeAction()
         }
     }
+    
+    @IBOutlet weak var heightLayout: NSLayoutConstraint!
+    
+    
     weak var delegate: PlayVolumeChangeDelegate?
     @IBOutlet weak var viewVolume: UIView!
     @IBOutlet weak var progressVolume: UIProgressView!
@@ -27,7 +31,7 @@ class PlayVolumeView: ETPopupView{
         super.awakeFromNib()
         animationDuration = 0.3
         type = .top
-        
+        heightLayout.adapterTop_X()
         self.snp.makeConstraints { (make) in
             make.width.equalTo(MGScreenWidth)
         }

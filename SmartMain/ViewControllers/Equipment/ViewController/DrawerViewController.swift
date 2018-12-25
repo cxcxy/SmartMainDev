@@ -73,10 +73,13 @@ class DrawerViewController: XBBaseViewController {
     var viewDeviceModel = EquimentViewModel()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        ImageCache.default.removeImage(forKey: XBUserManager.dv_headimgurl)
-        if let headImgUrl = user_defaults.get(for: .headImgUrl){
-            ImageCache.default.removeImage(forKey: headImgUrl)
-        }
+////        ImageCache.default.removeImage(forKey: XBUserManager.dv_headimgurl)
+//        if let headImgUrl = user_defaults.get(for: .headImgUrl){
+//            ImageCache.default.removeImage(forKey: headImgUrl)
+//        }
+        self.cofigDeviceInfo()
+        self.getDeviceBabyInfo()
+        
     }
     
     override func viewDidLoad() {
@@ -99,9 +102,9 @@ class DrawerViewController: XBBaseViewController {
         view.backgroundColor = viewColor
         viewTopInfo.addTapGesture {[weak self] (sender) in
             guard let `self` = self else { return }
-            let vc = EquipmentSettingVC()
-            self.pushVC(vc)
-
+//            let vc = EquipmentSettingVC()
+//            self.pushVC(vc)
+            VCRouter.toEquipmentSettingVC()
         }
         
         self.getDeviceBabyInfo()
@@ -162,7 +165,7 @@ class DrawerViewController: XBBaseViewController {
 //            eqArr       = [eqTwo]
 //            accountArr  = [accountTwo,accountThree]
         }
-        self.configUserInfo()
+//        self.configUserInfo()
         
     }
     func configUserInfo()  {
@@ -238,9 +241,10 @@ extension DrawerViewController {
             let vc = EquipmentListViewController()
             self.pushVC(vc)
         case 4:
-            let vc = SetInfoViewController()
-            vc.setInfoType = .editUserInfo
-            self.pushVC(vc)
+//            let vc = SetInfoViewController()
+//            vc.setInfoType = .editUserInfo
+//            self.pushVC(vc)
+             VCRouter.toEquipmentSettingVC(settingType: .user)
             
         case 5:
             let vc = AccountInfoViewController()
@@ -265,8 +269,12 @@ extension DrawerViewController {
             if (EMClient.shared()?.logout(true)) == nil {
                 print("退出登录成功")
             }
-            let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
-            self.popWindow.rootViewController = sv
+            self.dismissVC(completion: {[weak self] in
+                guard let `self` = self else { return }
+                let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
+                self.popWindow.rootViewController = sv
+            })
+
             
         }
         out.show()

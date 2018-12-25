@@ -95,7 +95,7 @@
                                 <action selector="clickAddAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="hLs-bA-0Sg"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5w-8r-Iug">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5w-8r-Iug">
                             <rect key="frame" x="23" y="25" width="30" height="10"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -132,14 +132,15 @@
                 <constraint firstItem="1sO-gA-zzV" firstAttribute="top" secondItem="oxC-bD-esd" secondAttribute="bottom" constant="32" id="Nty-LS-0Gy"/>
                 <constraint firstItem="bFG-Tx-cic" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="PRb-yQ-uUe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1sO-gA-zzV" secondAttribute="trailing" constant="10" id="XAT-Rk-ZYy"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bFG-Tx-cic" secondAttribute="bottom" id="cd7-IU-IBK"/>
                 <constraint firstItem="bFG-Tx-cic" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dtO-02-Aby"/>
+                <constraint firstAttribute="bottom" secondItem="bFG-Tx-cic" secondAttribute="bottom" id="lg1-hM-2IS"/>
                 <constraint firstItem="oxC-bD-esd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="43" id="qgK-cu-P4X"/>
                 <constraint firstItem="1sO-gA-zzV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="yhN-Zj-vxd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="heightLayout" destination="OlL-rV-EEs" id="Kzt-77-bk2"/>
                 <outlet property="lbVolume" destination="x5w-8r-Iug" id="hnD-NR-6JN"/>
                 <outlet property="lbVolumeRight" destination="ebL-Jk-fSp" id="rDy-Sf-lmb"/>
                 <outlet property="progressVolume" destination="Seh-4p-OIJ" id="XP6-vl-ZpJ"/>

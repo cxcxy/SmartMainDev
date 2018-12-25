@@ -35,8 +35,8 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5a-aw-wT0">
-                                    <rect key="frame" x="315" y="10.5" width="30" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <rect key="frame" x="315" y="8" width="30" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="清空">
                                         <color key="titleColor" red="0.49411764705882355" green="0.82745098039215681" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>

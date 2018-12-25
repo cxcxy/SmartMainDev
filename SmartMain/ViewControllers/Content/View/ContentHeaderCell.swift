@@ -14,9 +14,9 @@ class ContentHeaderCell: BaseTableViewCell {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
             self.pagerView.itemSize = CGSize.init(width: MGScreenWidth - 60, height: 160)
-            self.pagerView.interitemSpacing = 8.0
+            self.pagerView.interitemSpacing = 15
             self.pagerView.isInfinite = true
-            self.pagerView.transformer = FSPagerViewTransformer(type: FSPagerViewTransformerType.linear)
+//            self.pagerView.transformer = FSPagerViewTransformer(type: FSPagerViewTransformerType.linear)
         }
     }
     

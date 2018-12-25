@@ -61,6 +61,7 @@ class SmartPlayerViewController: XBBaseViewController {
     var trackList: [EquipmentModel] = []
 
     
+    @IBOutlet weak var stackMnueView: UIStackView!
     fileprivate var timer: Timer? // 歌曲进度条
     
     var isFirst: Bool = false
@@ -112,11 +113,7 @@ class SmartPlayerViewController: XBBaseViewController {
     func setSiderThumeImage()  {
 
         viewProgress.setCornerRadius(radius: 5)
-
-    }
-    func configPhoto()  {
-        viewPhoto.roundView()
-        imgSings.roundView()
+        
     }
     //MARK: 绑定 音乐进度条
     func configProgressSlider(value: Float)  {
@@ -133,12 +130,16 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     func adapterUI()  {
         if UIDevice.deviceType == .dt_iPhone5 {
-            self.photoWidthLayout.constant = 160
-            self.viewPhoto.setCornerRadius(radius: 80)
-            self.imgSings.setCornerRadius(radius: 76)
+            let w = MGScreenWidth - 90
+            self.photoWidthLayout.constant = w
+            self.viewPhoto.setCornerRadius(radius: w / 2)
+            self.imgSings.setCornerRadius(radius: (w - 8) / 2 )
         }else {
-            self.configPhoto()
+            viewPhoto.roundView()
+            imgSings.roundView()
         }
+        let itemLine = (MGScreenWidth - (15 * 2) - 40 - 40 - 50 - 50 - 60) / 4
+        stackMnueView.spacing = itemLine
         
     }
     func progressAction() {

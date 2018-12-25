@@ -47,7 +47,7 @@
                                     <state key="normal" title="播放" image="icon_home_play">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
-                                    <state key="selected" title="暂停" image="icon_pause"/>
+                                    <state key="selected" title="暂停" image="icon_home_pause"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifP-43-QK0">
                                     <rect key="frame" x="40" y="0.0" width="30" height="30"/>
@@ -107,9 +107,9 @@
     </objects>
     <resources>
         <image name="icon_home_list" width="36" height="36"/>
+        <image name="icon_home_pause" width="36" height="36"/>
         <image name="icon_home_play" width="36" height="36"/>
         <image name="icon_home_xia" width="36" height="36"/>
-        <image name="icon_pause" width="83" height="82"/>
         <image name="icon_photo" width="180" height="180"/>
     </resources>
 </document>

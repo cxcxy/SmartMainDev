@@ -116,7 +116,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定设备" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="407-WL-U2m">
-                                            <rect key="frame" x="60" y="16.5" width="127.5" height="17"/>
+                                            <rect key="frame" x="55" y="16.5" width="132.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -147,7 +147,7 @@
                                         <constraint firstAttribute="trailing" secondItem="407-WL-U2m" secondAttribute="trailing" id="TcA-Po-nGb"/>
                                         <constraint firstItem="COT-8h-v4T" firstAttribute="top" secondItem="TIh-1n-QJq" secondAttribute="top" id="UZa-yi-LUp"/>
                                         <constraint firstAttribute="bottom" secondItem="oDq-Yc-3Lj" secondAttribute="bottom" constant="15" id="cOt-Mh-cyh"/>
-                                        <constraint firstItem="407-WL-U2m" firstAttribute="leading" secondItem="VzB-pG-EXO" secondAttribute="trailing" constant="15" id="eIY-br-5rp"/>
+                                        <constraint firstItem="407-WL-U2m" firstAttribute="leading" secondItem="VzB-pG-EXO" secondAttribute="trailing" constant="10" id="eIY-br-5rp"/>
                                         <constraint firstItem="oDq-Yc-3Lj" firstAttribute="leading" secondItem="COT-8h-v4T" secondAttribute="trailing" id="ed6-e3-JYO"/>
                                         <constraint firstAttribute="bottom" secondItem="COT-8h-v4T" secondAttribute="bottom" id="flO-UZ-eYv"/>
                                         <constraint firstItem="VzB-pG-EXO" firstAttribute="centerY" secondItem="TIh-1n-QJq" secondAttribute="centerY" id="oiE-pr-fzh"/>
@@ -165,7 +165,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退出登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZJ-ZD-8F6">
-                                            <rect key="frame" x="60" y="16.5" width="127.5" height="17"/>
+                                            <rect key="frame" x="55" y="16.5" width="132.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -184,7 +184,7 @@
                                         <constraint firstItem="Qlx-XB-HuV" firstAttribute="top" secondItem="ePE-jB-lQM" secondAttribute="top" id="CjS-Ng-Gv3"/>
                                         <constraint firstAttribute="trailing" secondItem="Qlx-XB-HuV" secondAttribute="trailing" id="IhL-xd-oLx"/>
                                         <constraint firstItem="PSa-qx-xdV" firstAttribute="centerY" secondItem="ePE-jB-lQM" secondAttribute="centerY" id="YnI-LG-GB8"/>
-                                        <constraint firstItem="YZJ-ZD-8F6" firstAttribute="leading" secondItem="PSa-qx-xdV" secondAttribute="trailing" constant="15" id="cL4-02-OYz"/>
+                                        <constraint firstItem="YZJ-ZD-8F6" firstAttribute="leading" secondItem="PSa-qx-xdV" secondAttribute="trailing" constant="10" id="cL4-02-OYz"/>
                                         <constraint firstAttribute="trailing" secondItem="YZJ-ZD-8F6" secondAttribute="trailing" id="cai-BF-89J"/>
                                         <constraint firstItem="YZJ-ZD-8F6" firstAttribute="centerY" secondItem="PSa-qx-xdV" secondAttribute="centerY" id="qPX-hY-kgQ"/>
                                         <constraint firstItem="Qlx-XB-HuV" firstAttribute="leading" secondItem="ePE-jB-lQM" secondAttribute="leading" id="thS-PJ-1lV"/>

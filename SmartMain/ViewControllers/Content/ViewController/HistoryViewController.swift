@@ -205,7 +205,9 @@ class HistoryViewController: XBBaseViewController {
                 guard let status = result.json_Str()["status"].int else {
                     return
                 }
+                self.refreshStatus(status: .noneData)
                 if status == 200 {
+                    
                     self.dataArr = []
                     self.tableView.reloadData()
                 }

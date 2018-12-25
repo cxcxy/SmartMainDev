@@ -82,19 +82,24 @@ class ContentMainVC: XBBaseViewController {
         setupUnreadMessageCount()
         
     }
+    lazy var popWindow:UIWindow = {
+        let w = UIApplication.shared.delegate as! AppDelegate
+        return w.window!
+    }()
     fileprivate func setupSideMenu() {
         // Define the menus
         let two = DrawerViewController()
         
         let twonavigationController = UISideMenuNavigationController(rootViewController: two)
         SideMenuManager.default.menuLeftNavigationController = twonavigationController
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+//        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
         SideMenuManager.default.menuFadeStatusBar = false
         SideMenuManager.default.menuWidth = MGScreenWidth * 0.75
         SideMenuManager.default.menuPresentMode = .viewSlideInOut
         SideMenuManager.default.menuAnimationFadeStrength = 0.5
 
     }
+
     //MARK: 设置未读消息数量
     func setupUnreadMessageCount()  {
         let conversations = EMClient.shared()?.chatManager.getAllConversations() as? [EMConversation]
@@ -115,6 +120,13 @@ class ContentMainVC: XBBaseViewController {
 //        if let del = self.delegate {
 //            del.clickMenuAction()
 //        }
+//        XBUserManager.cleanUserInfo()
+//        XBUserManager.clearDeviceInfo()
+//        if (EMClient.shared()?.logout(true)) == nil {
+//            print("退出登录成功")
+//        }
+//        let sv = UIStoryboard.getVC("Main", identifier:"LoginNav") as! XBBaseNavigation
+//        self.popWindow.rootViewController = sv
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     override func setUI() {
@@ -133,7 +145,7 @@ class ContentMainVC: XBBaseViewController {
 //        configNavBarItem()
         
         
-//        configChatMessage()
+        configChatMessage()
         
         
         
@@ -232,6 +244,7 @@ class ContentMainVC: XBBaseViewController {
     }
     deinit {
         EMClient.shared()?.chatManager.remove(self)
+        print("222222Xiaohui")
     }
     //MARK: 配置scoket 链接
     func configScoketModel() {

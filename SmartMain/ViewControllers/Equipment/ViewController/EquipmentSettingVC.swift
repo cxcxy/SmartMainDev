@@ -7,10 +7,17 @@
 //
 
 import UIKit
-
+enum EquimentSettingType {
+    case device
+    case user
+}
 class EquipmentSettingVC: XBBaseTableViewController {
     var sourceArr : [[XBStyleCellModel]] = []
     var equimentModel: EquipmentInfoModel?
+    
+    
+    var settingType: EquimentSettingType = .device
+    
     let cell_photo = XBStyleCellModel.init(title: "头像", cellType: 1, isHidden: false)
     let cell_name = XBStyleCellModel.init(title: "名字",isEdit: true, cellType: 2, isHidden: false)
     let cell_device = XBStyleCellModel.init(title: "设备号", cellType: 3, isHidden: true)
@@ -33,20 +40,29 @@ class EquipmentSettingVC: XBBaseTableViewController {
     }
     override func setUI() {
         super.setUI()
-        self.title = "设备信息"
+        switch settingType {
+        case .device:
+            self.title = "设备信息"
+            let setion_two = [cell_device,cell_memory,cell_version]
+            let setion_four = [cell_net,cell_dian]
+            sourceArr = [setion_two,setion_four]
+            scoketModel.getDeviceVersion.asObservable().subscribe { [weak self] in
+                guard let `self` = self else { return }
+                print("firmwareVersion ===：", $0.element ?? "")
+                //            self.requestSingsDetail(trackId: $0.element ?? 0)
+                self.compareVersion(currentDeviceVersion: $0.element ?? "")
+                }.disposed(by: rx_disposeBag)
+            request()
+        case .user:
+            self.title = "用户信息"
+        }
+        
+        
         tableView.cellId_register("EquipmentListCell")
         tableView.cellId_register("EquipmentSetHeaderCell")
-        request()
+        
 
-        let setion_two = [cell_device,cell_memory,cell_version]
-        let setion_four = [cell_net,cell_dian]
-        sourceArr = [setion_two,setion_four]
-        scoketModel.getDeviceVersion.asObservable().subscribe { [weak self] in
-            guard let `self` = self else { return }
-            print("firmwareVersion ===：", $0.element ?? "")
-            //            self.requestSingsDetail(trackId: $0.element ?? 0)
-            self.compareVersion(currentDeviceVersion: $0.element ?? "")
-        }.disposed(by: rx_disposeBag)
+
     }
     override func request() {
         super.request()
@@ -155,18 +171,45 @@ extension EquipmentSettingVC: XBImagePickerToolDelegate {
     func clickUpdateName()  {
         print("修改名字")
         let v = ShowUpdateNameView.loadFromNib()
-        v.textView.text = XBUserManager.dv_babyname
+        
+        switch settingType {
+        case .device:
+            v.textView.text = XBUserManager.dv_babyname
+        case .user:
+            v.textView.text = user_defaults.get(for: .nickname)
+        }
+        
         v.btnLogin.addAction {[weak self] in
             guard let `self` = self else { return }
             if v.textView.text! == "" {
                 XBHud.showMsg("请输入昵称")
             }else {
                 v.hide()
-                self.requestUpdateBabyInfo(babyName: v.textView.text ?? "", headImgUrl: XBUserManager.dv_headimgurl)
+                switch self.settingType {
+                case .device:
+                    self.requestUpdateBabyInfo(babyName: v.textView.text ?? "", headImgUrl: XBUserManager.dv_headimgurl)
+                case .user:
+                    self.requestUpdateUserInfo(nickname: v.textView.text ?? "", headImgUrl: user_defaults.get(for: .headImgUrl) ?? "")
+                }
+                
             }
             
         }
         v.show()
+    }
+    //MARK: 更新用户信息
+    func requestUpdateUserInfo(nickname: String, headImgUrl: String)  {
+        viewModel.requestUpdateUserInfo(mobile: XBUserManager.userName,
+                                        headImgUrl: headImgUrl,
+                                        nickname: nickname) {[weak self] isOK in
+                                            guard let `self` = self else { return }
+                                            if isOK {
+
+                                                XBHud.showMsg("修改成功")
+                                                self.popVC()
+                                                
+                                            }
+        }
     }
     //MARK: 点击选择照片
     func choosePhotoAction() {
@@ -209,7 +252,14 @@ extension EquipmentSettingVC: XBImagePickerToolDelegate {
                     if let headImgUrl = user_defaults.get(for: .dv_headimgurl){
                         ImageCache.default.removeImage(forKey: headImgUrl)
                     }
-                    self.requestUpdateBabyInfo(babyName: XBUserManager.dv_babyname, headImgUrl: str)
+                    switch self.settingType {
+                    case .device:
+                        self.requestUpdateBabyInfo(babyName: XBUserManager.dv_babyname, headImgUrl: str)
+//                        self.requestUpdateBabyInfo(babyName: v.textView.text ?? "", headImgUrl: XBUserManager.dv_headimgurl)
+                    case .user:
+                        self.requestUpdateUserInfo(nickname: XBUserManager.nickname, headImgUrl: str)
+                    }
+                    
 //                    XBUserManager.dv_headimgurl = str
 //                    self.tableView.reloadData()
                 }
@@ -220,7 +270,13 @@ extension EquipmentSettingVC: XBImagePickerToolDelegate {
 
 extension EquipmentSettingVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sourceArr.count > 0 ? sourceArr.count + 1 : 0
+        switch settingType {
+        case .device:
+            return sourceArr.count > 0 ? sourceArr.count + 1 : 0
+        case .user:
+            return 1
+        }
+        
     }
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == sourceArr.count {
@@ -246,8 +302,15 @@ extension EquipmentSettingVC {
                 guard let `self` = self else { return }
                 self.clickUpdateName()
             }
-            cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
-            cell.lbTitle.set_text = XBUserManager.dv_babyname
+            switch settingType {
+            case .device:
+                cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+                cell.lbTitle.set_text = XBUserManager.dv_babyname
+            case .user:
+                cell.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+                cell.lbTitle.set_text = XBUserManager.nickname
+            }
+ 
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "EquipmentListCell", for: indexPath) as! EquipmentListCell

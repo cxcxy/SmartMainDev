@@ -56,8 +56,8 @@
                                             <rect key="frame" x="280" y="10" width="80" height="30"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dd4-bN-WQp">
-                                                    <rect key="frame" x="9" y="3" width="62" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <rect key="frame" x="-3" y="0.5" width="86" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="恢复默认列表">
                                                         <color key="titleColor" red="0.49411764705882355" green="0.80000000000000004" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>

@@ -133,6 +133,7 @@ class LikeViewController: XBBaseViewController {
                 }
                 if status == 200 {
 //                    self.deleteArr(selectIds: selectIds)
+                    self.reloadEditStatus()
                     self.request()
                 }
                 if status == 404 {

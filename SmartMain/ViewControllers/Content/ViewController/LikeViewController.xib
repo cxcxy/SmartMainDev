@@ -81,8 +81,8 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6r-HB-Ndk">
-                                    <rect key="frame" x="315" y="10.5" width="30" height="24"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <rect key="frame" x="315" y="8" width="30" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="编辑">
                                         <color key="titleColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>

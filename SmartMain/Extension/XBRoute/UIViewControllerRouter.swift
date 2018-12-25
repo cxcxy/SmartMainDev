@@ -43,9 +43,10 @@ class VCRouter {
 
     }
     // MARK: - 跳转设备设置
-    class func toEquipmentSettingVC() {
+    class func toEquipmentSettingVC(settingType: EquimentSettingType = .device) {
         
         let vc = EquipmentSettingVC()
+        vc.settingType = settingType
         topVC?.pushVC(vc)
         
     }
