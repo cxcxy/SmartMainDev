@@ -58,6 +58,9 @@ class ContentMainVC: XBBaseViewController {
     @IBOutlet weak var navMessageView: UIView!
     @IBOutlet weak var viewMessageRed: UIView!
     
+    @IBOutlet weak var layoutViewTop: NSLayoutConstraint!
+    
+    
     @IBOutlet weak var topItemStackView: UIStackView!
     
     override func viewDidLoad() {
@@ -65,6 +68,16 @@ class ContentMainVC: XBBaseViewController {
         self.currentNavigationTitleColor = UIColor.white
         bottomLayout.adapterTop_X()
         self.setupSideMenu()
+        self.adapterUI()
+    }
+    func adapterUI() {
+        switch UIDevice.deviceType {
+        case .dt_iPhone5:
+            topItemStackView.spacing = 10
+        default:
+            break
+        }
+        layoutViewTop.constant = self.navigationBarHeight + StatusBarHight
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -75,8 +75,8 @@ let lineColor = MGRgb(229, g: 229, b: 229)
 // 全局背景 导航栏顶部标题颜色
 let navTitleColor = UIColor.white
 
-
-
+let StatusBarHight = UIApplication.shared.statusBarFrame.height
+//let NavBarHight = 44
 // 全局背景 导航栏顶部标题字体
 let navTitleFont = UIFont.systemFont(ofSize: 18)
 

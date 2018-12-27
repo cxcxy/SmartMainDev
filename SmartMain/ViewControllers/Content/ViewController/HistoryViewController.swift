@@ -41,9 +41,9 @@ class HistoryViewController: XBBaseViewController {
         guard let currentDeviceId = currentDeviceId else {
             return
         }
-        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
-            request()
-        }
+//        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
+        request()
+//        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
