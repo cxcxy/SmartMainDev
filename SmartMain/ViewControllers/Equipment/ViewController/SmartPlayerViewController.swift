@@ -149,6 +149,7 @@ class SmartPlayerViewController: XBBaseViewController {
     func progressAction() {
         print("滑动结束")
 //        currentSongProgress =
+        self.pauseRotate()
         scoketModel.setPlayProgressValue(value: Int(sliderProgress.value))
     }
     override func setUI() {
@@ -161,8 +162,9 @@ class SmartPlayerViewController: XBBaseViewController {
         setSiderThumeImage()
         
         if let currentSongModel = currentDeviceSongModel {
-            self.currentSongModel = currentSongModel
             self.configUI(singsDetail: currentSongModel)
+//            self.currentSongModel = currentSongModel
+            
         }
         
 //        scoketModel.sendGetTrack()
