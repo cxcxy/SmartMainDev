@@ -60,6 +60,8 @@ class ContentSingsVC: XBBaseTableViewController {
 //        btnAddAll.addBorder(width: 0.5, color: UIColor.white)
 //        btnAddAll.setCornerRadius(radius: 10)
 //        imgTop.setCornerRadius(radius: 8)
+        
+        
         request()
         requestTrackList()
 
@@ -252,7 +254,8 @@ class ContentSingsVC: XBBaseTableViewController {
             XBHud.showMsg("当前歌曲ID错误")
             return
         }
-        viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {
+        viewModel.requestLikeSing(songId: songId, duration: duration, title: title) {[weak self] in
+            guard let `self` = self else { return }
             self.dataArr.forEachEnumerated({ (index, item) in
                 if item.trackId == songId {
                     item.isLike = true

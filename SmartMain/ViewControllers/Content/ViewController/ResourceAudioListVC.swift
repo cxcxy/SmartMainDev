@@ -61,11 +61,12 @@ class ResourceAudioListVC: XBBaseViewController {
         imgTop.set_Img_Url(topImg)
     }
     func configCurrentSongsId()  {
-        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+        scoketModel.getPalyingSingsModel.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
-            print("getPalyingSingsId ===：", $0.element ?? 0)
-            
-            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
+            guard let model = $0.element else { return }
+            //            print("getPalyingSingsId ===：", $0.element ?? 0)
+            self.mapSongsArrPlayingStatus(songId: model.trackId ?? 0)
+            //            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
             }.disposed(by: rx_disposeBag)
     }
     

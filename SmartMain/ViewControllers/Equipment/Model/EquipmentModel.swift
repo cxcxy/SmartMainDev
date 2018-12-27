@@ -160,11 +160,12 @@ class ResourceDetailModel: XBDataModel {
     var artist: String?
     var favoriteId: String?
     var resId: String?
-    var playUrls: String?
+    var playUrls: ResourceNormal?
     var album: AlbumDetailModel?
     var type: Int?
     var name: String?
-
+    var trackId: Int?
+    var isAudition: Bool = false // 是否在试听
     override func mapping(map: Map) {
         
         length             <-    map["length"]
@@ -172,13 +173,42 @@ class ResourceDetailModel: XBDataModel {
         artist          <-    map["artist"]
         favoriteId            <-    map["favoriteId"]
         resId            <-    map["resId"]
+        if let resId = resId {
+            self.transfromTrackId(resId: resId)
+        }
         playUrls            <-    map["playUrls"]
         album            <-    map["album"]
         type            <-    map["type"]
         name            <-    map["name"]
 
     }
+    func transfromTrackId(resId: String)  {
+        //        if let arr =  {
+        let arr = resId.components(separatedBy: ":")
+        if arr.count > 0 {
+            self.trackId = arr[1].toInt()
+        }
+        //        }
+    }
 }
+class ResourceNormal: XBDataModel {
+    
+    var normal: ResourceNormal?
+    var url: String?
+    var size: Int?
+    
+    
+    
+    override func mapping(map: Map) {
+        
+        normal             <-    map["normal"]
+        url             <-    map["url"]
+        size          <-    map["size"]
+        
+    }
+}
+
+
 class AlbumDetailModel: XBDataModel {
     
     var id: String?

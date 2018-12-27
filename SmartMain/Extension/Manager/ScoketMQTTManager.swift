@@ -14,6 +14,7 @@ let socket_port: UInt16     = 1893
 
 //let socket_clientID         = "3010290000045007_1275"
 //let socket_clientID         = "3010290000047373_50056"
+
 class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
     var mqttSession: MQTTSession!
     /**
@@ -28,8 +29,21 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      *   监听 当前正在播放的歌曲Id 变化
      */
     let getPalyingSingsId = PublishSubject<Int>()
-    
-    var playingSongId: Int?
+    /**
+     *   监听 当前正在播放的歌曲Id 变化
+     */
+    let getPalyingSingsModel = PublishSubject<ResourceDetailModel>()
+    /**
+     *   监听 当前正在播放的歌曲Id
+     */
+    var playingSongId: Int? {
+        didSet {
+            guard let playingSongId = playingSongId else {
+                return
+            }
+            self.requestResourcesDetail(trackId: playingSongId)
+        }
+    }
     /**
      *   回复默认预制列表 数据
      */
@@ -465,4 +479,19 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         }
     }
     
+}
+extension ScoketMQTTManager {
+    // 请求当前播放歌曲信息
+    func requestResourcesDetail(trackId: Int)  {
+        var params_task = [String: Any]()
+        params_task["clientId"] = XBUserManager.device_Id
+        params_task["resId"] = "aires:" + trackId.toString
+        Net.requestWithTarget(.getResourceDetail(req: params_task),isShowLoding: false, successClosure: {(result, code, message) in
+            print(result)
+            if let model = Mapper<ResourceDetailModel>().map(JSONObject: result) {
+                currentDeviceSongModel = model
+                self.getPalyingSingsModel.onNext(model)
+            }
+        })
+    }
 }

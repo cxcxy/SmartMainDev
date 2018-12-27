@@ -65,14 +65,14 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
     
     let playerLayer:AVPlayerLayer = AVPlayerLayer.init()
     var player:AVPlayer = AVPlayer.init()
-    var viewContainer: UIView? {
+    weak var viewContainer: UIView? {
         didSet {
             if let viewContainer = viewContainer {
                 self.configPlay(viewContainer: viewContainer)
             }
         }
     }
-    var current_vc: UIViewController?
+    weak var current_vc: UIViewController?
 
     open var tableView :UITableView!{
         
@@ -92,10 +92,17 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
     }
     override init() {
         super.init()
-        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+        if let currentSongModel = currentDeviceSongModel {
+//            self.currentSongModel = currentSongModel
+//            self.configUI(singsDetail: currentSongModel)
+            self.mapSongsArrPlayingStatus(songId: currentSongModel.trackId ?? 0)
+        }
+        scoketModel.getPalyingSingsModel.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
-            print("getPalyingSingsId ===：", $0.element ?? 0)
-            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
+            guard let model = $0.element else { return }
+            //            print("getPalyingSingsId ===：", $0.element ?? 0)
+            self.mapSongsArrPlayingStatus(songId: model.trackId ?? 0)
+            //            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
         }.disposed(by: rx_disposeBag)
     }
     func configPlay(viewContainer: UIView)  {
@@ -387,7 +394,8 @@ extension BaseTableViewDelegate {
             XBHud.showMsg("当前歌曲ID错误")
             return
         }
-        viewModel.requestLikeSing(songId: trackId, duration: duration, title: title) {
+        viewModel.requestLikeSing(songId: trackId, duration: duration, title: title) { [weak self] in
+            guard let `self` = self else { return }
             self.dataArr.forEachEnumerated({ (index, item) in
                 if item.trackId == trackId {
                     item.isLike = true

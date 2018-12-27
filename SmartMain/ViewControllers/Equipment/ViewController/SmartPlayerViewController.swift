@@ -86,17 +86,21 @@ class SmartPlayerViewController: XBBaseViewController {
     var currentVolume: Int = 0
     @IBOutlet weak var btnDown: UIButton!
     @IBOutlet weak var btnLike: UIButton!
-    var currentSongModel:SingDetailModel? {
+    var currentSongModel:ResourceDetailModel? {
         didSet {
             guard let m = currentSongModel else {
                 return
             }
            let isLike = self.dataLikeArr.filter { (item) -> Bool in
-                return item.trackId == m.id
+                return item.trackId == m.trackId
             }
             self.btnLike.isSelected = isLike.count == 0 ? false : true
-            sliderProgress.maximumValue = Float(m.duration ?? 0)
+            sliderProgress.maximumValue = Float(m.length ?? 0)
+            self.allTimer = Float(self.currentSongModel?.length ?? 0)
+            self.resetTimer()
             
+            // 获取播放状态
+            self.scoketModel.sendPlayStatus()
         }
     }
     let scoketModel = ScoketMQTTManager.share
@@ -149,13 +153,19 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
-        addRotationAnim()
+        
         adapterUI()
         configPlay()
         request()
 //        configPhoto()
         setSiderThumeImage()
-        scoketModel.sendGetTrack()
+        
+        if let currentSongModel = currentDeviceSongModel {
+            self.currentSongModel = currentSongModel
+            self.configUI(singsDetail: currentSongModel)
+        }
+        
+//        scoketModel.sendGetTrack()
         scoketModel.sendGetMode()
         scoketModel.sendGetVolume()
         
@@ -164,11 +174,10 @@ class SmartPlayerViewController: XBBaseViewController {
         
         configProgressSlider(value: 0.0)
         
-        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+        scoketModel.getPalyingSingsModel.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
-            print("getPalyingSingsId ===：", $0.element ?? 0)
-            self.requestSingsDetail(trackId: $0.element ?? 0)
-            self.requestResourcesDetail(trackId: $0.element ?? 0)
+            guard let model = $0.element else { return }
+            self.configUI(singsDetail: model)
         }.disposed(by: rx_disposeBag)
        
         scoketModel.getPlayVolume.asObservable().subscribe { [weak self] in
@@ -206,7 +215,7 @@ class SmartPlayerViewController: XBBaseViewController {
         }.disposed(by: rx_disposeBag)
 //        scoketModel.playStatus.asObserver().bind(to: btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
         scoketModel.repeatStatus.asObserver().bind(to: btnRepeat.rx.isSelected).disposed(by: rx_disposeBag)
-        
+        addRotationAnim()
         //MARK: 测试用
 //        self.configTimer(songDuration: allTimer)
         
@@ -235,11 +244,20 @@ class SmartPlayerViewController: XBBaseViewController {
     }
  // 暂停播放旋转动画
     func pauseRotate() {
-        self.imgSings.layer.pauseAnimation()
+        DispatchQueue.main.async {
+            self.addRotationAnim()
+            self.imgSings.layer.pauseAnimation()
+        }
+
     }
     // 恢复播放旋转动画
     func resumeRotate() {
-        self.imgSings.layer.resumeAnimation()
+        DispatchQueue.main.async {
+            
+            self.addRotationAnim()
+            self.imgSings.layer.resumeAnimation()
+        }
+        
     }
     func configTimer(songDuration: Float, isPlay: Bool = false)  {
 //        guard let `self` = self else { return }
@@ -361,19 +379,19 @@ class SmartPlayerViewController: XBBaseViewController {
                 return
             }
             
-            self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
-            self.allTimer = Float(self.currentSongModel?.duration ?? 0)
-            self.resetTimer()
-            
-            // 获取播放状态
-            self.scoketModel.sendPlayStatus()
+//            self.currentSongModel = Mapper<SingDetailModel>().map(JSONString: result)
+//            self.allTimer = Float(self.currentSongModel?.duration ?? 0)
+//            self.resetTimer()
+//
+//            // 获取播放状态
+//            self.scoketModel.sendPlayStatus()
         })
     }
     func requestResourcesDetail(trackId: Int)  {
         var params_task = [String: Any]()
         params_task["clientId"] = XBUserManager.device_Id
         params_task["resId"] = "aires:" + trackId.toString
-        Net.requestWithTarget(.getResourceDetail(req: params_task), successClosure: { [weak self] (result, code, message) in
+        Net.requestWithTarget(.getResourceDetail(req: params_task),isShowLoding: false, successClosure: { [weak self] (result, code, message) in
             guard let `self` = self else { return }
             print(result)
             
@@ -389,6 +407,7 @@ class SmartPlayerViewController: XBBaseViewController {
         })
     }
     func configUI(singsDetail: ResourceDetailModel) {
+        self.currentSongModel = singsDetail
         imgBackGround.set_Img_Url(singsDetail.album?.imgSmall)
         imgSings.set_Img_Url(singsDetail.album?.imgSmall)
         lbSingsTitle.set_text = singsDetail.name
@@ -455,7 +474,7 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     /// 点击试听
     @IBAction func clickAudition(_ sender: Any) {
-        guard let urlTask =  URL.init(string: self.currentSongModel?.url ?? "") else {
+        guard let urlTask =  URL.init(string: self.currentSongModel?.content ?? "") else {
             XBLog("歌曲地址有误")
             return
         }
@@ -520,13 +539,13 @@ class SmartPlayerViewController: XBBaseViewController {
             return
         }
         let req_model = AddSongTrackReqModel()
-        req_model.id = m.id
-        req_model.title = m.title
-        req_model.coverSmallUrl = m.coverSmallUrl
-        req_model.duration = m.duration
-        req_model.url = m.url
-        req_model.downloadSize = m.downloadSize?.toInt()
-        req_model.downloadUrl = m.downloadUrl
+        req_model.id = m.trackId
+        req_model.title = m.name
+        req_model.coverSmallUrl = m.album?.imgSmall
+        req_model.duration = m.length
+        req_model.url = m.content
+        req_model.downloadSize = m.playUrls?.normal?.size
+        req_model.downloadUrl = m.playUrls?.normal?.url
         
         Net.requestWithTarget(.addSongToList(deviceId: XBUserManager.device_Id, trackId: trackId, trackName: trackName, trackIds: [req_model]), successClosure: { (result, code, message) in
             print(result)
@@ -554,18 +573,18 @@ class SmartPlayerViewController: XBBaseViewController {
     }
     func requestLikeSing()  {
         
-        viewModel.requestLikeSing(songId: currentSongModel?.id ?? 0, duration: currentSongModel?.duration ?? 0, title: currentSongModel?.title ?? "") {
+        viewModel.requestLikeSing(songId: currentSongModel?.trackId ?? 0, duration: currentSongModel?.length ?? 0, title: currentSongModel?.name ?? "") {
             let likeModel = ConetentLikeModel()
-            likeModel.trackId = self.currentSongModel?.id
+            likeModel.trackId = self.currentSongModel?.trackId
             self.dataLikeArr.append(likeModel)
             self.btnLike.isSelected = true
         }
     }
     func requestCancleLikeSing()  {
         
-        viewModel.requestCancleLikeSing(trackId: currentSongModel?.id ?? 0) {
+        viewModel.requestCancleLikeSing(trackId: currentSongModel?.trackId ?? 0) {
             self.dataLikeArr =  self.dataLikeArr.filter({ (item) -> Bool in
-                return item.trackId != self.currentSongModel?.id
+                return item.trackId != self.currentSongModel?.trackId
             })
             self.btnLike.isSelected = false
         }

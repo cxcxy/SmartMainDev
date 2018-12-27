@@ -106,12 +106,13 @@ class SearchSongsViewController: XBBaseViewController {
         topView.lbTotal.set_text = "共" + total + "条结果"
     }
     func configCurrentSongsId()  {
-        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+        scoketModel.getPalyingSingsModel.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
-            print("getPalyingSingsId ===：", $0.element ?? 0)
-            
-            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
-            }.disposed(by: rx_disposeBag)
+            guard let model = $0.element else { return }
+            //            print("getPalyingSingsId ===：", $0.element ?? 0)
+            self.mapSongsArrPlayingStatus(songId: model.trackId ?? 0)
+            //            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
+        }.disposed(by: rx_disposeBag)
     }
 
     func mapSongsArrPlayingStatus(songId: Int)  {
@@ -157,7 +158,7 @@ class SearchSongsViewController: XBBaseViewController {
 //                self.setTopViewInfo(total: topModel.total?.toString ?? "")
                 self.headerInfo  = topModel
             }
-            self.scoketModel.sendGetTrack()
+//            self.scoketModel.sendGetTrack()
             self.tableView.reloadData()
 //            self.starAnimationWithTableView(tableView: self.tableView)
         })

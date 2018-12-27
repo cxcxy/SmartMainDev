@@ -79,12 +79,13 @@ class EquipmentSubListVC: XBBaseViewController {
 
     }
     func configCurrentSongsId()  {
-        scoketModel.getPalyingSingsId.asObservable().subscribe { [weak self] in
+        scoketModel.getPalyingSingsModel.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
-            print("getPalyingSingsId ===：", $0.element ?? 0)
-            
-            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
-            }.disposed(by: rx_disposeBag)
+            guard let model = $0.element else { return }
+            //            print("getPalyingSingsId ===：", $0.element ?? 0)
+            self.mapSongsArrPlayingStatus(songId: model.trackId ?? 0)
+            //            self.mapSongsArrPlayingStatus(songId: $0.element ?? 0)
+        }.disposed(by: rx_disposeBag)
     }
     override func request() {
         super.request()
@@ -105,7 +106,7 @@ class EquipmentSubListVC: XBBaseViewController {
                 self.dataArr += self.flatMapLikeList(arr: arr)
                 self.total = JSON.init(parseJSON: result as! String)["totalCount"].int
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex))
-                self.scoketModel.sendGetTrack()
+//                self.scoketModel.sendGetTrack()
                 self.dataDelegate.tableView.reloadData()
 //                self.starAnimationWithTableView(tableView: self.tableView)
             }

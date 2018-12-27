@@ -119,7 +119,9 @@ class SearchAlbumViewController: XBBaseViewController {
                 self.resourceAlbum += arr
                 self.refreshStatus(status: arr.checkRefreshStatus(self.pageIndex,paseSize: 20))
                 self.tableView.reloadData()
-                self.starAnimationWithTableView(tableView: self.tableView)
+//                if !self.isCurrentRequest {
+//                    self.starAnimationWithTableView(tableView: self.tableView)
+//                }
             }
             if let topModel = Mapper<ConetentSingAlbumModel>().map(JSONObject:JSON(result)["albumsPager"].object) {
                 self.headerAlbumInfo = topModel
