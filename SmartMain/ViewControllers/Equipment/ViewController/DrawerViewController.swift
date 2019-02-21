@@ -109,24 +109,25 @@ class DrawerViewController: XBBaseViewController {
         
         self.getDeviceBabyInfo()
         
-        DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
-            self.deviceOnline = isOnline
-//            if electricity == 101 { // 当前正在充电
-//                self.lbElectricity.isHidden = true
-//                self.imgElectricity.set_img = "icon_charging"
-//            }else {
-//                self.lbElectricity.isHidden = false
-//                self.lbElectricity.set_text = electricity.toString
-//                self.imgElectricity.set_img = "icon_electricity"
-//            }
 
-        }
 
     }
     func getDeviceBabyInfo() { // 获取设备信息
         viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
             guard let `self` = self else { return }
             self.configUserInfo()
+        }
+        DeviceManager.isOnline(isCheckDevices: false) { (isOnline, electricity)  in
+            self.deviceOnline = isOnline
+            //            if electricity == 101 { // 当前正在充电
+            //                self.lbElectricity.isHidden = true
+            //                self.imgElectricity.set_img = "icon_charging"
+            //            }else {
+            //                self.lbElectricity.isHidden = false
+            //                self.lbElectricity.set_text = electricity.toString
+            //                self.imgElectricity.set_img = "icon_electricity"
+            //            }
+            
         }
     }
 //    override func request() {
