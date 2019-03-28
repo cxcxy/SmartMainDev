@@ -261,6 +261,9 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         var model:BaseListItem!
         switch songListType {
         case .songs:
+            if indexPath.row == 0 {
+                return
+            }
             model = dataArr[indexPath.row - 1]
         default:
             model = dataArr[indexPath.row]

@@ -129,7 +129,7 @@ class EquipmentSettingVC: XBBaseTableViewController {
     }
     func getDeviceBabyInfo() { // 获取设备信息
         
-        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] (isTrue)in
             guard let `self` = self else { return }
 //            self.configUIInfo()
             self.cell_name.content = XBUserManager.dv_babyname

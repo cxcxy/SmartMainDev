@@ -216,7 +216,7 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 获取最新的设备信息
     func requestDevicesBabyInfo() {
-        viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+        viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] (isTrue)in
             guard let `self` = self else { return }
             self.title = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
         }

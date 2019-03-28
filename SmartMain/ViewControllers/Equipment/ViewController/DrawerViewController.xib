@@ -35,7 +35,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y4I-vD-U74">
                             <rect key="frame" x="20" y="25" width="45" height="45"/>
-                            <color key="backgroundColor" red="0.84445331885258001" green="0.91599106789999996" blue="0.32580484520498731" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="ios-jY-UHM"/>
                                 <constraint firstAttribute="height" constant="45" id="rNr-pt-6bi"/>
