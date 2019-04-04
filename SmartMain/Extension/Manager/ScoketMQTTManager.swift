@@ -181,6 +181,27 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
         let json_str = message.json_Str()
         let cmd_str = json_str["cmd"].stringValue
         
+//            {"cmd":"removeTopic","deviceId":"3010290000286384_240210","user":"all"}
+//
+        if cmd_str == "removeTopic" { // 移除设备命令
+            let remove_user = json_str["user"].stringValue
+            let remove_deviceId = json_str["deviceId"].stringValue
+            if remove_user == "all" { // 如果是全部，则管理员解散群组
+                if remove_deviceId == XBUserManager.device_Id { // 如果是当前的设备，则重新拉取用户信息，
+                    DispatchQueue.main.async {
+                         self.refreshUserInfo()
+                    }
+                   
+                }
+            } else {
+                if remove_user == XBUserManager.userName {
+                    DispatchQueue.main.async {
+                        self.refreshUserInfo()
+                    }
+                }
+            }
+        }
+        
         if let _ = json_str["trackListId"].int, // 拿到歌曲信息
            let trackId = json_str["trackId"].int,
            let _ = json_str["type"].int{
@@ -493,5 +514,14 @@ extension ScoketMQTTManager {
                 self.getPalyingSingsModel.onNext(model)
             }
         })
+    }
+}
+extension ScoketMQTTManager {
+    func refreshUserInfo()  {
+        LoginViewModel().requestGetUserInfo(mobile: XBUserManager.userName) { [weak self] in
+            guard let `self` = self else { return }
+            // 获取到最新的用户信息 提示当前 所绑定的 设备 发生 变化
+            VCRouter.topNaVC?.popToRootVC() // 回到主页面
+        }
     }
 }
