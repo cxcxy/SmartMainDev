@@ -89,6 +89,9 @@ class HistoryViewController: XBBaseViewController {
             self.endRefresh()
             self.loading = true
             self.viewTotal.isHidden = true
+            self.refreshStatus(status: .noneData)
+            self.dataArr.removeAll()
+            self.tableView.reloadData()
             return
         }
 //        self.viewTotal.isHidden = false

@@ -237,7 +237,6 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             break
         }
         return self.getListCell(tableView, cellForRowAt: indexPath, indexPathRow: indexPath.row)
-       
     }
     func getListCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath,indexPathRow: Int) -> BaseListCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BaseListCell", for: indexPath) as! BaseListCell

@@ -18,9 +18,9 @@ class TrackListViewController: XBBaseTableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let currentDeviceId = currentDeviceId else {
-            return
-        }
+//        guard let currentDeviceId = currentDeviceId else {
+//            return
+//        }
 //        if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化
             request()
 //        }
@@ -49,6 +49,8 @@ class TrackListViewController: XBBaseTableViewController {
         guard XBUserManager.device_Id != "" else {
             self.loading = true
             endRefresh()
+            self.dataArr = []
+            self.tableView.reloadData()
             return
         }
 

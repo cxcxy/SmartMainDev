@@ -27,7 +27,7 @@ enum RequestApi{
     case getDeviceIds(userName: String)
     case loginWithPass(mobile: String, password: String)
     case register(req: [String: Any])
-    case getAuthCode(mobile: String)
+    case getAuthCode(mobile: String,modle:String)
     case resetPassword(authCode: String,req: [String: Any])
     case getUserInfo(username: String)
     case updateUserInfo(req: [String: Any])
@@ -152,6 +152,10 @@ extension RequestApi:TargetType{
             params_task["trackIds"] = trackIds
         case .quitGroup(_,let req):
             params_task = req
+            break
+        case .loginWithPass(let mobile, let password):
+            params_task["mobile"] = mobile
+            params_task["password"] = password
             break
         case .deleteAllDemand(let deviceId):
             params_task["deviceId"] = deviceId

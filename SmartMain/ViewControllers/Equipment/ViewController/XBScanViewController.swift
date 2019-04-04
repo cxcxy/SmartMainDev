@@ -162,6 +162,7 @@ extension XBScanViewController {
             print(result)
             if let str = result as? String {
                 if str == "okNewDeviceId" { // 这个deviceId是新的，需要走创建宝宝信息接口
+                    self.saveDeviceInfo(deviceId: deviceId)
                     self.toSetDeviceInfoController(device_Id: deviceId)
                 } else if str == "okOldDeviceId" { // 这个deviceId已经被绑定过，即有宝宝信息，无需再走创建宝宝信息接口
                     print("加入成功")
@@ -234,8 +235,7 @@ extension XBScanViewController {
     }
 }
 extension XBScanViewController: SetInfoDelegate {
-    
-    func addSuccessAction(deviceId: String, model: XBDeviceBabyModel) {
+    func saveDeviceInfo(deviceId: String) {
         XBUserManager.device_Id = deviceId
         var devices = XBUserManager.userDevices
         devices.append(deviceId)
@@ -250,6 +250,9 @@ extension XBScanViewController: SetInfoDelegate {
             Noti_post(.refreshTrackList)
             self.popToRootVC()
         })
+    }
+    func addSuccessAction(deviceId: String) {
+
     }
     
 }

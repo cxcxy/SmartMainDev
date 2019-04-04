@@ -56,10 +56,10 @@ class LoginViewController: XBBaseViewController {
     }
     
     @IBAction func clickSendCodeAction(_ sender: Any) {
-        viewModel.requestGetCode(mobile: viewPhone.text!) { [weak self] in
-            guard let `self` = self else { return }
-            self.sendCodeWithBtnTimer()
-        }
+//        viewModel.requestGetCode(mobile: viewPhone.text!) { [weak self] in
+//            guard let `self` = self else { return }
+//            self.sendCodeWithBtnTimer()
+//        }
     }
     func sendCodeWithBtnTimer()  {
         self.btnSendCode.startTimer(60, title: "获取验证码", mainBGColor: UIColor.white, mainTitleColor: UIColor.init(hexString: "707784")!, countBGColor: UIColor.white, countTitleColor: MGRgb(128, g: 128, b: 128), handle: nil)

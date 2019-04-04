@@ -33,7 +33,7 @@ extension RequestApi {
         case .getDeviceIds: return "/suportAPP/getDeviceIds.do"
         case .loginWithPass(let mobile,let password):                    return "/suportAPP/loginWithPassword.do?username=\(mobile)&password=\(password)"
         case .register:                 return "/suportAPP/registUser.do"
-        case .getAuthCode(let mobile):  return "/suportAPP/getAuthCode.do?mobile=" + mobile
+        case .getAuthCode(let mobile,let model):  return "/suportAPP/getAuthCode.do?mobile=\(mobile)&modle=\(model)"
         case .resetPassword(let authCode,_): return "/suportAPP/resetPassword.do?authCode=\(authCode)"
         // 获取用户信息
         case .getUserInfo:           return "/suportAPP/getUserInfo.do"

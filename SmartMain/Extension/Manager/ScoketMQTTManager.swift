@@ -30,7 +30,7 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
      */
     let getPalyingSingsId = PublishSubject<Int>()
     /**
-     *   监听 当前正在播放的歌曲Id 变化
+     *   监听 当前正在播放的歌曲详情 变化
      */
     let getPalyingSingsModel = PublishSubject<ResourceDetailModel>()
     /**

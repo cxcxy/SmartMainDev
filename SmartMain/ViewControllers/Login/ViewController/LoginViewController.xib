@@ -38,6 +38,7 @@
                             <viewLayoutGuide key="safeArea" id="I0e-2c-khT"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请输入账号"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isNumber" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujf-wf-KMB" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">

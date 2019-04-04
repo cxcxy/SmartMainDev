@@ -37,6 +37,11 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
             textField.isSecureTextEntry = isPass
         }
     }
+    @IBInspectable open var isNumber: Bool = false {
+        didSet {
+            textField.keyboardType = isNumber ? .numberPad : .default
+        }
+    }
     @IBInspectable open var maxInput: Int = 1000
     
     @IBInspectable open var isBoard: Bool = true {

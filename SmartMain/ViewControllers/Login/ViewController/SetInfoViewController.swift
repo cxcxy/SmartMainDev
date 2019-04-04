@@ -10,7 +10,7 @@ import UIKit
 import FCUUID
 
 protocol SetInfoDelegate: class {
-    func addSuccessAction(deviceId: String,model: XBDeviceBabyModel)
+    func addSuccessAction(deviceId: String)
 }
 
 enum SetInfoType {
@@ -242,7 +242,7 @@ class SetInfoViewController: XBBaseViewController {
             if self.isAdd {
                 print("新增成功")
                 if let del = self.delegate {
-                    del.addSuccessAction(deviceId: self.deviceId,model: model)
+                    del.addSuccessAction(deviceId: self.deviceId)
                     self.popVC()
                 }
             }else {

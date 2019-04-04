@@ -14,7 +14,17 @@ extension Int {
     }
 }
 extension String {
-    
+    func filterWhitespaces() -> String {
+        let whitespace = NSCharacterSet.whitespacesAndNewlines
+        let phone_str_arr = self.components(separatedBy: whitespace)
+        let phont_str_item_arr = phone_str_arr.filter({ (str) -> Bool in
+            return str != ""
+        })
+        let phoneStr    = XBUtil.jointImgStr(imgArray: phont_str_item_arr, spaceStr: "")
+        
+        let phone_Str    = XBUtil.filterPhoneNumber(phoneStr)
+        return phone_Str
+    }
     //将原始的url编码为合法的url  处理URL中的中文问题
     func urlEncoded() -> String {
         let encodeUrlString = self.addingPercentEncoding(withAllowedCharacters:

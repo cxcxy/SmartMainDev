@@ -38,6 +38,7 @@
                             <viewLayoutGuide key="safeArea" id="pOQ-r9-Nm4"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入手机号"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isNumber" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbi-Cs-ekB" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
@@ -47,7 +48,7 @@
                                     <rect key="frame" x="18" y="0.0" width="202" height="43"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJu-GD-6aY">
                                     <rect key="frame" x="235" y="6.5" width="90" height="30"/>
@@ -121,6 +122,7 @@
                 <constraint firstItem="RCO-yw-mSy" firstAttribute="leading" secondItem="pNG-ks-Xdw" secondAttribute="leading" id="jB8-8v-9W1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-142" y="-20"/>
         </view>
     </objects>
 </document>

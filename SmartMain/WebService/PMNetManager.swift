@@ -39,7 +39,7 @@ extension Task {
         switch self {
         case .requestParameters(let params, _):
             let json_str = JSON(params)
-            return json_str.rawString([.castNilToNSNull: true]) ?? ""
+            return json_str.rawString([.jsonSerialization: true]) ?? ""
         default:
             return ""
         }
@@ -49,7 +49,15 @@ extension Task {
 class XBNetManager {
     static let shared = XBNetManager()
     fileprivate init(){}
-    
+    // session manager
+    static func manager() -> Alamofire.SessionManager {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+        configuration.timeoutIntervalForRequest = 5 // timeout
+        configuration.timeoutIntervalForResource = 5 // timeout
+        let manager = Alamofire.SessionManager(configuration: configuration)
+        return manager
+    }
     func filterStatus(jsonString: AnyObject) -> JSON? {
         if let result = jsonString as? String {
             guard let status = result.json_Str()["status"].int else {
@@ -82,7 +90,7 @@ class XBNetManager {
         done(.success(request))
     }
     let requestProvider = MoyaProvider<RequestApi>(endpointClosure: XBNetManager.endpointClosure,
-                                                   requestClosure:  XBNetManager.requestTimeoutClosure)
+                                                   requestClosure:  XBNetManager.requestTimeoutClosure, manager: manager())
     
     func requestWithTarget(
         _ target:RequestApi,
@@ -106,7 +114,12 @@ class XBNetManager {
         if isShowLoding {
             XBHud.showLoading()
         }
-        
+//        switch target {
+//        case .quickAnswer:
+//            requestProvider.manager.session.configuration.timeoutIntervalForRequest = 10
+//        default:
+//            requestProvider.manager.session.configuration.timeoutIntervalForRequest = Manager.default.session.configuration.timeoutIntervalForRequest
+//        }
         _ =  requestProvider.request(target) { (result) in
             if isDissmissLoding {
                 XBHud.dismiss()
