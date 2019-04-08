@@ -26,12 +26,9 @@ extension String {
         return phone_Str
     }
     //将原始的url编码为合法的url  处理URL中的中文问题
-    func urlEncoded() -> String {
-        let encodeUrlString = self.addingPercentEncoding(withAllowedCharacters:
-            .urlQueryAllowed)
-        return encodeUrlString ?? ""
+    func urlEncodedNew() -> String {
+        return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? self
     }
-    
     //将编码后的url转换回原始的url
     func urlDecoded() -> String {
         return self.removingPercentEncoding ?? ""

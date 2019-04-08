@@ -109,7 +109,7 @@ class LoginViewModel: NSObject {
             return
         }
 //        let password = code.filterWhitespaces()
-        Net.requestWithTarget(.loginWithPass(mobile: mobile.filterWhitespaces(), password: code.filterWhitespaces()), successClosure: { (result, res_code, message) in
+        Net.requestWithTarget(.loginWithPass(mobile: mobile, password: code), successClosure: { (result, res_code, message) in
             if let jsonStr = result as? String {
                 self.loginUserInfo(jsonResult: jsonStr,mobile: mobile,password: code,closure: closure)
             }

@@ -76,7 +76,7 @@ class XBNetManager {
     public static func endpointClosure(target: RequestApi) -> Endpoint {
         let method = target.method
 
-        let endpoint = Endpoint.init(url: target.baseURL.absoluteString + target.path,
+        let endpoint = Endpoint.init(url: target.baseURL.absoluteString + (target.path.urlEncodedNew()),
                                      sampleResponseClosure: {.networkResponse(200, target.sampleData)},
                                      method: method,
                                      task: target.task,

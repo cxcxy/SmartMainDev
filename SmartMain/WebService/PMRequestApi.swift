@@ -156,7 +156,10 @@ extension RequestApi:TargetType{
         case .loginWithPass(let mobile, let password):
             params_task["mobile"] = mobile
             params_task["password"] = password
-            break
+//            return .requestPlain
+            return .requestParameters(parameters: params_task,
+                                      encoding: URLEncoding.queryString)
+//            break
         case .deleteAllDemand(let deviceId):
             params_task["deviceId"] = deviceId
         case .resetPassword(_, let req):
