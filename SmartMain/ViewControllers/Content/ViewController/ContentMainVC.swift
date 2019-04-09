@@ -361,7 +361,7 @@ class ContentMainVC: XBBaseViewController {
             make.height.equalTo(UIDevice.isX() ? 85 : 65)
             make.left.right.bottom.equalTo(0)
         }
-        bottomSongView.imgSong.addTapGesture {[weak self] (sender) in
+        bottomSongView.btnClickPlay.addAction { [weak self] in
             guard let `self` = self else { return }
             self.toPlayerViewController()
         }
