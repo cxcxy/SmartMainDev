@@ -71,6 +71,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="NXA-kS-2KM" firstAttribute="leading" secondItem="3GW-ij-E6m" secondAttribute="leading" id="2zQ-Pe-x7Y"/>
+                <constraint firstAttribute="bottom" secondItem="bzS-Vj-3gl" secondAttribute="bottom" constant="30" id="3BN-c1-Y2U"/>
                 <constraint firstAttribute="trailing" secondItem="NXA-kS-2KM" secondAttribute="trailing" id="5vK-fc-PXO"/>
                 <constraint firstItem="kWn-Le-ZM0" firstAttribute="top" secondItem="1Sa-W0-lj5" secondAttribute="top" constant="12" id="6h9-EE-g2I"/>
                 <constraint firstAttribute="trailing" secondItem="bzS-Vj-3gl" secondAttribute="trailing" constant="15" id="76n-WR-8sg"/>

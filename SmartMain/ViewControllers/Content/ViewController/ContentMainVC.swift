@@ -90,6 +90,7 @@ class ContentMainVC: XBBaseViewController {
             return
         }
         if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化 重新拉去请求 ,重新拉去当前MQTT 命令，重新配置底部播放view
+            self.currentDeviceId = XBUserManager.device_Id
             request()
             configResetBottomSongView()
             configScoketModel()
@@ -197,10 +198,11 @@ class ContentMainVC: XBBaseViewController {
 
     override func request()  {
         super.request()
+        
         ContentViewModel().requestLikeListSong { (arr) in
             userLikeList = arr
         }
-        self.currentDeviceId = XBUserManager.device_Id
+        
         guard XBUserManager.device_Id != "" else {
             self.loading = true
             endRefresh()

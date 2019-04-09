@@ -31,7 +31,8 @@ extension RequestApi {
             // 登录接口
         case .login(let mobile,let code):                    return "/suportAPP/loginWithAuthCode.do?username=\(mobile)&authCode=\(code)"
         case .getDeviceIds: return "/suportAPP/getDeviceIds.do"
-        case .loginWithPass(let mobile,let password):                    return "/suportAPP/loginWithPassword.do?username=\(mobile)&password=\(password)"
+//        case .loginWithPass(let mobile,let password):                    return "/suportAPP/loginWithPassword.do?username=\(mobile)&password=\(password)"
+        case .loginWithPass(let mobile,let password):                    return "/suportAPP/loginWithPassword.do?"
         case .register:                 return "/suportAPP/registUser.do"
         case .getAuthCode(let mobile,let model):  return "/suportAPP/getAuthCode.do?mobile=\(mobile)&modle=\(model)"
         case .resetPassword(let authCode,_): return "/suportAPP/resetPassword.do?authCode=\(authCode)"

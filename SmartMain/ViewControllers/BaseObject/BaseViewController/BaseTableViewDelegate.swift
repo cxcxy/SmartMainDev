@@ -227,7 +227,10 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
                     cell.lbTopTotal.set_text =  "共" + totalStr + "首"
                     cell.imgTop.set_Img_Url(model.imgLarge)
                     cell.imgBackground.set_Img_Url(model.imgLarge)
-                   
+                    cell.btnAddAll.addAction {[weak self] in
+                        guard let `self` = self else { return }
+                        self.clickSongsToTrackList(isAll: true)
+                    }
                 }
                 return cell
             }else {

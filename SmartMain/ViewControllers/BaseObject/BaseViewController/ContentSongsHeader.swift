@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/// 没用，用了ContentSongsTopCell
 class ContentSongsHeader: UIView {
     @IBOutlet weak var lbTopDes: UILabel!
     @IBOutlet weak var lbTopTotal: UILabel!
@@ -22,5 +22,15 @@ class ContentSongsHeader: UIView {
         // Drawing code
     }
     */
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.w = MGScreenWidth
+        print(btnAddAll.frame)
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.w = MGScreenWidth
+        print(btnAddAll.frame)
+    }
 
 }

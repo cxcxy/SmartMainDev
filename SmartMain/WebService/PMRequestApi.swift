@@ -154,7 +154,7 @@ extension RequestApi:TargetType{
             params_task = req
             break
         case .loginWithPass(let mobile, let password):
-            params_task["mobile"] = mobile
+            params_task["username"] = mobile
             params_task["password"] = password
 //            return .requestPlain
             return .requestParameters(parameters: params_task,

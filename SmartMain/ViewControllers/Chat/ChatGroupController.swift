@@ -15,7 +15,7 @@ class ChatGroupController: EaseMessageViewController {
         super.viewDidLoad()
         self.title = "聊天"
         self.setCustomerBack()
-        self.setRightItem()
+//        self.setRightItem()
         let chatView = self.chatToolbar as? EaseChatToolbar
         chatView?.inputViewRightItems = []
 //        self.dataSource = self
