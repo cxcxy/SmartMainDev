@@ -146,7 +146,7 @@ class SetInfoViewController: XBBaseViewController {
         case .editUserInfo:
             
             self.headImgUrl = user_defaults.get(for: .headImgUrl) ?? ""
-            self.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+            self.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl),.photo)
             self.tfNick.text = user_defaults.get(for: .nickname)
 
             break
@@ -155,7 +155,7 @@ class SetInfoViewController: XBBaseViewController {
             self.headImgUrl = user_defaults.get(for: .dv_headimgurl) ?? ""
             self.birth = XBUserManager.dv_birthday
             
-            self.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+            self.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl,.photo)
             self.tfNick.text = XBUserManager.dv_babyname
             self.tfBirth.text = XBUserManager.dv_birthday
             

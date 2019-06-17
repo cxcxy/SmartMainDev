@@ -183,7 +183,7 @@ extension ChatMainViewController {
             cell.viewMessage.isHidden = true
             if self.devicesInfo.count > indexPath.row {
                 let deviceInfo = self.devicesInfo[indexPath.row]
-                cell.imgPhoto.set_Img_Url(deviceInfo.headimgurl)
+                cell.imgPhoto.set_Img_Url(deviceInfo.headimgurl,.photo)
                 cell.lbName.set_text = deviceInfo.babyname
             }
             return cell
@@ -226,7 +226,7 @@ extension ChatMainViewController {
             }
             if self.devicesInfo.count > indexPath.row {
                 let deviceInfo = self.devicesInfo[indexPath.row]
-                cell.imgPhoto.set_Img_Url(deviceInfo.headimgurl)
+                cell.imgPhoto.set_Img_Url(deviceInfo.headimgurl,.photo)
                 cell.lbName.set_text = deviceInfo.babyname
             }
             return cell

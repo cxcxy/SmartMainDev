@@ -304,10 +304,10 @@ extension EquipmentSettingVC {
             }
             switch settingType {
             case .device:
-                cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+                cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl,.photo)
                 cell.lbTitle.set_text = XBUserManager.dv_babyname
             case .user:
-                cell.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+                cell.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl),.photo)
                 cell.lbTitle.set_text = XBUserManager.nickname
             }
  

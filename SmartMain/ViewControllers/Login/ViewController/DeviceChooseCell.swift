@@ -27,7 +27,7 @@ class DeviceChooseCell: UICollectionViewCell {
                 return
             }
             lbName.set_text = m.babyname
-            imgPhoto.set_Img_Url(m.headimgurl)
+            imgPhoto.set_Img_Url(m.headimgurl,.photo)
 //            viewContainer.backgroundColor = m.isCurrent ? UIColor.init(hexString: "BEDEA9") : UIColor.init(hexString: "ECBD9C")
 //            imgManager.isHidden = m.isCurrent ? false : true
             btnDel.isHidden = m.isCurrent ? false : true
