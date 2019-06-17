@@ -69,7 +69,7 @@ let XBLineBreakNumber: CGFloat            = 5
 //MARK: 全局下线弹框状态,1:已出现
 var XBLoginShow:Int                 =  0
 // 全局背景 墨绿色
-let viewColor = UIColor.init(hexString: "7ECC3B")!
+let viewColor = UIColor.init(hexString: "62C2F2")!
 // 全局背景 墨绿色
 let lineColor = MGRgb(229, g: 229, b: 229)
 // 全局背景 导航栏顶部标题颜色
@@ -90,7 +90,7 @@ let tableColor                      =  UIColor.white
 
 //MARK: 导航栏背景色
 
-let XBNavColor                      = UIColor.white
+let XBNavColor                      = UIColor.init(hexString: "62C2F2")!
 
 //MARK: 描边背景色  红色
 
@@ -98,12 +98,7 @@ let XBBorderColor                   = UIColor.init(hexString: "E43D39")!
 
 //MARK: tableViewCell Line颜色
 let XBCellLineColor                 = MGRgb(221, g: 226, b: 228)
-//MARK: 评分标题
-let XBScoreTitleArray: [String]     = ["极差","差","一般","较好","好","极好"]
-//MARK: 评分
-let XBScoreArray: [Int]             = [-5,-3,1,2,3,5]
 
-let XBScoreNone : String            = "暂未达到评分标准"
 
 typealias XBActionClosure           = () -> ()
 typealias XBObjectActionClosure     = (_ object:AnyObject) ->()

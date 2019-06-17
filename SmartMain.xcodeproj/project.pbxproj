@@ -908,7 +908,7 @@
 		2D0ACC4B215A74EC0047103C /* AccountInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoViewController.xib; sourceTree = "<group>"; };
 		2D0ACC4E215A81890047103C /* ChatGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroupController.swift; sourceTree = "<group>"; };
 		2D20DB13215CEF8E002EF372 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentViewModel.swift; path = SmartMain/ViewControllers/Chat/ContentViewModel.swift; sourceTree = SOURCE_ROOT; };
-		2D312A97213D560100FCC499 /* SmartMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D312A97213D560100FCC499 /* 海螺听听.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "海螺听听.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D312A9A213D560100FCC499 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D312A9C213D560100FCC499 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D312A9F213D560100FCC499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -2170,7 +2170,7 @@
 		2D312A98213D560100FCC499 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2D312A97213D560100FCC499 /* SmartMain.app */,
+				2D312A97213D560100FCC499 /* 海螺听听.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2327,7 +2327,7 @@
 			);
 			name = SmartMain;
 			productName = SmartMain;
-			productReference = 2D312A97213D560100FCC499 /* SmartMain.app */;
+			productReference = 2D312A97213D560100FCC499 /* 海螺听听.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3045,7 +3045,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "海螺听听";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3077,7 +3077,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "海螺听听";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerViewController" customModule="SmartMain" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawerViewController" customModule="海螺听听" customModuleProvider="target">
             <connections>
                 <outlet property="bottomLayout" destination="XN9-GE-dBe" id="vfN-fs-YVn"/>
                 <outlet property="imgElectricity" destination="aw1-l9-ThS" id="Ads-Wh-QOD"/>
@@ -75,7 +75,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.50196078430000002" green="0.79215686269999996" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="RIa-pq-s3I" firstAttribute="leading" secondItem="y4I-vD-U74" secondAttribute="trailing" constant="15" id="0Yz-TF-OrO"/>
                         <constraint firstItem="aw1-l9-ThS" firstAttribute="leading" secondItem="Uuo-OE-lLm" secondAttribute="trailing" constant="5" id="0wh-w1-JBT"/>
@@ -218,7 +218,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vjf-le-xWl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2bp-0w-knH"/>
                 <constraint firstItem="4Yj-rl-Rxi" firstAttribute="top" secondItem="vjf-le-xWl" secondAttribute="bottom" id="2qF-i9-REP"/>
@@ -236,7 +236,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_electricity" width="46" height="27"/>
+        <image name="icon_electricity" width="46" height="27.5"/>
         <image name="icon_info_next" width="11" height="19"/>
         <image name="icon_menu_bangding" width="30" height="30"/>
         <image name="icon_menu_loginout" width="30" height="30"/>

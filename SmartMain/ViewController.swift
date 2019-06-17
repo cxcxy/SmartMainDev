@@ -19,10 +19,10 @@ class ViewController: XBBaseViewController {
     override func setUI() {
         super.setUI()
         self.currentNavigationHidden = true
-        view.backgroundColor = viewColor
+//        view.backgroundColor = viewColor
         btnLogin.setCornerRadius(radius: 20)
         btnRegister.setCornerRadius(radius: 20)
-//        btnRegister.addBorder(width: 2, color: UIColor.init(hexString: "008C48")! )
+        btnRegister.addBorder(width: 2, color: XBNavColor )
     }
     @IBAction func clickLoginAction(_ sender: Any) {
 

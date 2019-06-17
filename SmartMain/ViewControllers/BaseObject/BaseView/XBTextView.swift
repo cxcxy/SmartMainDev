@@ -48,7 +48,7 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
         didSet {
             if isBoard {
                 self.setCornerRadius(radius: 20)
-                self.addBorder(width: 0.5, color: viewColor)
+                self.addBorder(width: 0.5, color: XBNavColor)
             }else {
                 self.setCornerRadius(radius: 0)
                 self.addBorder(width: 0.0, color: UIColor.clear)
@@ -57,7 +57,7 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
     }
     func initialSetup()  {
         self.setCornerRadius(radius: 20)
-        self.addBorder(width: 0.5, color: viewColor)
+        self.addBorder(width: 0.5, color: XBNavColor)
         btnClear.isHidden = true
         textField.delegate = self
         let input = textField.rx.text.orEmpty.asDriver()

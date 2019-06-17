@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T0G-kD-aqY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T0G-kD-aqY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,12 +13,12 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="SmartMain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="海螺听听" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_photo" translatesAutoresizingMaskIntoConstraints="NO" id="I9V-Dy-meW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_top" translatesAutoresizingMaskIntoConstraints="NO" id="I9V-Dy-meW">
                                 <rect key="frame" x="97.5" y="134" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="OJg-1S-2Pd"/>
@@ -26,28 +26,28 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaZ-4k-PK0">
-                                <rect key="frame" x="92.5" y="354" width="190" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="92.5" y="459" width="190" height="40"/>
+                                <color key="backgroundColor" red="0.38431372549019605" green="0.76078431372549016" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="7Q4-kP-bd8"/>
                                     <constraint firstAttribute="height" constant="40" id="m38-qa-Zor"/>
                                 </constraints>
                                 <state key="normal" title="登录">
-                                    <color key="titleColor" red="0.49411764705882355" green="0.80000000000000004" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="clickLoginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NLs-7W-THu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSv-ha-7Wr">
-                                <rect key="frame" x="92.5" y="414" width="190" height="40"/>
+                                <rect key="frame" x="92.5" y="527" width="190" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="Keu-g4-m9b"/>
                                     <constraint firstAttribute="height" constant="40" id="xfZ-WP-Ee8"/>
                                 </constraints>
                                 <state key="normal" title="注册">
-                                    <color key="titleColor" red="0.49411764705882355" green="0.80000000000000004" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.38431372549019605" green="0.76078431372549016" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="clickRegisterAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gU6-0B-dha"/>
@@ -57,11 +57,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I9V-Dy-meW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="A2V-5Y-EMD"/>
-                            <constraint firstItem="cSv-ha-7Wr" firstAttribute="top" secondItem="aaZ-4k-PK0" secondAttribute="bottom" constant="20" id="GYn-ti-oj5"/>
                             <constraint firstItem="aaZ-4k-PK0" firstAttribute="centerX" secondItem="I9V-Dy-meW" secondAttribute="centerX" id="Opk-mR-BxX"/>
-                            <constraint firstItem="aaZ-4k-PK0" firstAttribute="top" secondItem="I9V-Dy-meW" secondAttribute="bottom" constant="40" id="UCu-qb-tlP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cSv-ha-7Wr" secondAttribute="bottom" constant="100" id="b6V-eH-Zhw"/>
                             <constraint firstItem="I9V-Dy-meW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bhS-AL-Amn"/>
                             <constraint firstItem="cSv-ha-7Wr" firstAttribute="centerX" secondItem="aaZ-4k-PK0" secondAttribute="centerX" id="gyG-va-WZ2"/>
+                            <constraint firstItem="cSv-ha-7Wr" firstAttribute="top" secondItem="aaZ-4k-PK0" secondAttribute="bottom" constant="28" id="jwj-I0-N4k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -78,7 +78,7 @@
         <!--Base Navigation-->
         <scene sceneID="4iq-me-UrM">
             <objects>
-                <navigationController storyboardIdentifier="LoginNav" id="T0G-kD-aqY" customClass="XBBaseNavigation" customModule="SmartMain" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNav" id="T0G-kD-aqY" customClass="XBBaseNavigation" customModule="海螺听听" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hMG-aK-qbD">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,7 +94,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="0IS-Fg-M0i">
             <objects>
-                <tabBarController id="tPp-Lh-F1O" customClass="XBTabBarController" customModule="SmartMain" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="tPp-Lh-F1O" customClass="XBTabBarController" customModule="海螺听听" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hYm-Ie-ZTd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -107,6 +107,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_photo" width="180" height="180"/>
+        <image name="launch_top" width="512" height="512"/>
     </resources>
 </document>
