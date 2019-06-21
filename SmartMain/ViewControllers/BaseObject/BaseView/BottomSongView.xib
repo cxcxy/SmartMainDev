@@ -33,6 +33,9 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T20-dD-DnS">
+                            <rect key="frame" x="15" y="0.0" width="220" height="65"/>
+                        </button>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D24-47-9Iv">
                             <rect key="frame" x="250" y="17.5" width="110" height="30"/>
                             <subviews>
@@ -75,10 +78,15 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="69o-hM-yB7"/>
+                        <constraint firstItem="T20-dD-DnS" firstAttribute="centerY" secondItem="Zh0-2T-A0A" secondAttribute="centerY" id="ARA-pM-tAV"/>
+                        <constraint firstAttribute="bottom" secondItem="T20-dD-DnS" secondAttribute="bottom" id="Bzr-ru-cJC"/>
                         <constraint firstItem="D24-47-9Iv" firstAttribute="centerY" secondItem="7NH-6Q-YJL" secondAttribute="centerY" id="FpX-rn-t7A"/>
+                        <constraint firstItem="D24-47-9Iv" firstAttribute="leading" secondItem="T20-dD-DnS" secondAttribute="trailing" constant="15" id="JRf-f0-lYL"/>
                         <constraint firstItem="HWj-ja-Heu" firstAttribute="leading" secondItem="Zh0-2T-A0A" secondAttribute="trailing" constant="10" id="JZY-Pe-xfT"/>
                         <constraint firstItem="HWj-ja-Heu" firstAttribute="centerY" secondItem="7NH-6Q-YJL" secondAttribute="centerY" id="QJt-Rq-8By"/>
                         <constraint firstItem="Zh0-2T-A0A" firstAttribute="leading" secondItem="7NH-6Q-YJL" secondAttribute="leading" constant="15" id="ZJ2-Qr-o0s"/>
+                        <constraint firstItem="T20-dD-DnS" firstAttribute="leading" secondItem="7NH-6Q-YJL" secondAttribute="leading" constant="15" id="er2-qW-69g"/>
+                        <constraint firstItem="T20-dD-DnS" firstAttribute="top" secondItem="7NH-6Q-YJL" secondAttribute="top" id="hA5-Nj-Mfd"/>
                         <constraint firstAttribute="trailing" secondItem="D24-47-9Iv" secondAttribute="trailing" constant="15" id="kGz-um-FRZ"/>
                         <constraint firstItem="Zh0-2T-A0A" firstAttribute="centerY" secondItem="7NH-6Q-YJL" secondAttribute="centerY" id="nhR-by-IaE"/>
                         <constraint firstItem="D24-47-9Iv" firstAttribute="leading" secondItem="HWj-ja-Heu" secondAttribute="trailing" constant="10" id="rjE-rQ-UG3"/>
@@ -96,6 +104,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="bottomView" destination="7NH-6Q-YJL" id="sj3-jt-X45"/>
+                <outlet property="btnClickPlay" destination="T20-dD-DnS" id="N1y-sC-xwx"/>
                 <outlet property="btnDown" destination="ifP-43-QK0" id="jQG-Di-ko0"/>
                 <outlet property="btnPlay" destination="nus-2G-2Ri" id="xrP-8R-M0V"/>
                 <outlet property="btnTrackList" destination="nUt-2R-hIx" id="ewa-TP-zZk"/>

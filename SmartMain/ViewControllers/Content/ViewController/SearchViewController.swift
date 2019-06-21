@@ -204,14 +204,14 @@ extension SearchViewController: VTMagicViewDataSource{
         controllerArray = [search_songs,search_album]
         
         self.addChildViewController(v)
+        v.magicView.reloadData()
         self.bottomView.addSubview(v.magicView)
         v.magicView.snp.makeConstraints {[weak self] (make) -> Void in
             if let strongSelf = self {
                 make.size.equalTo(strongSelf.bottomView)
-                
+                make.center.equalTo(strongSelf.bottomView)
             }
         }
-        v.magicView.reloadData()
         self.bottomView.isHidden = true
     }
     

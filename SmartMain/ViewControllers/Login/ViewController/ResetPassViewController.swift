@@ -43,8 +43,11 @@ class ResetPassViewController: XBBaseViewController {
                                 countTitleColor: MGRgb(128, g: 128, b: 128), handle: nil)
     }
     @IBAction func clickSendCodeAction(_ sender: Any) {
-        viewModel.requestGetCode(mobile: tfPhone.text!) {
-            self.sendCodeWithBtnTimer()
+        viewModel.requestGetCode(mobile: tfPhone.text!,type: "reset") { (success) in
+            if success {
+                self.sendCodeWithBtnTimer()
+            }
+            
         }
     }
 }

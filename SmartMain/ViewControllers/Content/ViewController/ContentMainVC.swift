@@ -90,6 +90,7 @@ class ContentMainVC: XBBaseViewController {
             return
         }
         if currentDeviceId != XBUserManager.device_Id{  // 如果当前的设备ID有变化 重新拉去请求 ,重新拉去当前MQTT 命令，重新配置底部播放view
+            self.currentDeviceId = XBUserManager.device_Id
             request()
             configResetBottomSongView()
             configScoketModel()
@@ -197,10 +198,11 @@ class ContentMainVC: XBBaseViewController {
 
     override func request()  {
         super.request()
+        
         ContentViewModel().requestLikeListSong { (arr) in
             userLikeList = arr
         }
-        self.currentDeviceId = XBUserManager.device_Id
+        
         guard XBUserManager.device_Id != "" else {
             self.loading = true
             endRefresh()
@@ -216,7 +218,7 @@ class ContentMainVC: XBBaseViewController {
     }
     //MARK: 获取最新的设备信息
     func requestDevicesBabyInfo() {
-        viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+        viewModelLogin.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] (isTrue)in
             guard let `self` = self else { return }
             self.title = XBUserManager.nickname + "的" +  XBUserManager.dv_babyname
         }
@@ -359,7 +361,7 @@ class ContentMainVC: XBBaseViewController {
             make.height.equalTo(UIDevice.isX() ? 85 : 65)
             make.left.right.bottom.equalTo(0)
         }
-        bottomSongView.imgSong.addTapGesture {[weak self] (sender) in
+        bottomSongView.btnClickPlay.addAction { [weak self] in
             guard let `self` = self else { return }
             self.toPlayerViewController()
         }

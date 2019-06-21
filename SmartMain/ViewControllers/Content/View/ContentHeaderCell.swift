@@ -16,7 +16,6 @@ class ContentHeaderCell: BaseTableViewCell {
             self.pagerView.itemSize = CGSize.init(width: MGScreenWidth - 60, height: 160)
             self.pagerView.interitemSpacing = 15
             self.pagerView.isInfinite = true
-//            self.pagerView.transformer = FSPagerViewTransformer(type: FSPagerViewTransformerType.linear)
         }
     }
     
@@ -59,12 +58,9 @@ extension ContentHeaderCell: FSPagerViewDataSource,FSPagerViewDelegate {
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-//        cell.imageView?.image = UIImage(named: self.imageNames[index])
         cell.imageView?.contentMode = .scaleAspectFill
         cell.imageView?.clipsToBounds = true
-        cell.imageView?.backgroundColor = UIColor.orange
         cell.imageView?.setCornerRadius(radius: 5)
-//        cell.imageView?.set_img = sourceArr[index]
         cell.imageView?.set_Img_Url(sourceArr[index])
         return cell
     }
@@ -72,8 +68,6 @@ extension ContentHeaderCell: FSPagerViewDataSource,FSPagerViewDelegate {
     // MARK:- FSPagerView Delegate
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-//        pagerView.deselectItem(at: index, animated: true)
-//        pagerView.scrollToItem(at: index, animated: true)
         let model = dataArr[index]
         VCRouter.toWebView(webUrl: model.linkurl ?? "")
     }

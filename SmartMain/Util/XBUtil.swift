@@ -10,6 +10,15 @@ import Foundation
 import SystemConfiguration
 import SystemConfiguration.CaptiveNetwork
 public class XBUtil {
+    /**
+     *   过滤掉 手机里面的非法内容，比如" ", "-", "+", "86"
+     */
+    class func filterPhoneNumber(_ phone: String) -> String{
+        
+        let phoneStr = phone.replace(target: " ", withString: "")
+        return phoneStr
+        
+    }
     /// 拨打电话
     static func callPhone(_ phone:String){
         let web = UIWebView()

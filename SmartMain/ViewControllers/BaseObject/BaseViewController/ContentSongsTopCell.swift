@@ -20,8 +20,9 @@ class ContentSongsTopCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         heightLayout.adapterTop_X()
+        print(btnAddAll.frame)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

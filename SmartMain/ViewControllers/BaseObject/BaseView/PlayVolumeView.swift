@@ -68,7 +68,7 @@ class PlayVolumeView: ETPopupView{
     @IBAction func sliderVolumeValueChange(_ sender: Any) {
         
         let value = sliderVolume.value
-        scoketModel.setVolumeValue(value: Int(value))
+        setVolumeValueAction(value: Int(value))
         self.updateLbVolumeFrame(value: value)
     }
     @IBAction func clickCutAction(_ sender: Any) {
@@ -76,7 +76,7 @@ class PlayVolumeView: ETPopupView{
             return
         }
         self.currentVolume = self.currentVolume - 1
-        scoketModel.setVolumeValue(value: currentVolume)
+        setVolumeValueAction(value: currentVolume)
         self.updateLbVolumeFrame(value: Float(self.currentVolume))
     }
     
@@ -85,7 +85,11 @@ class PlayVolumeView: ETPopupView{
             return
         }
         self.currentVolume = self.currentVolume + 1
-        scoketModel.setVolumeValue(value: currentVolume)
+        setVolumeValueAction(value: currentVolume)
         self.updateLbVolumeFrame(value: Float(self.currentVolume))
+    }
+    func setVolumeValueAction(value: Int) {
+        scoketModel.setVolumeValue(value: value)
+        scoketModel.sendGetVolume()
     }
 }

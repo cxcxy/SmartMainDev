@@ -149,7 +149,7 @@ extension MemberManagerVC:UICollectionViewDelegate,UICollectionViewDataSource,UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeviceChooseCell", for: indexPath)as! DeviceChooseCell
 //        cell.imgIcon.contentMode = .scaleAspectFit
-        cell.imgPhoto.set_Img_Url(dataArr[indexPath.row].headImgUrl)
+        cell.imgPhoto.set_Img_Url(dataArr[indexPath.row].headImgUrl,.photo)
         cell.lbName.set_text = dataArr[indexPath.row].nickname
       
         let model = dataArr[indexPath.row]

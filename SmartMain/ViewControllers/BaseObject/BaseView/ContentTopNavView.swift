@@ -63,6 +63,6 @@ class ContentTopNavView: UIView {
     */
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = viewColor
+        backgroundColor = XBNavColor
     }
 }

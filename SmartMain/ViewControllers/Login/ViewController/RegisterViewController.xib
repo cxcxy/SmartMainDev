@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="SmartMain" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="海螺听听" customModuleProvider="target">
             <connections>
                 <outlet property="btnCode" destination="Yri-4r-pKq" id="qil-V8-kdw"/>
                 <outlet property="btnRead" destination="sEs-tu-caK" id="Fk0-vH-Ztv"/>
@@ -29,7 +29,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GWz-rI-Cng">
                     <rect key="frame" x="20" y="40" width="335" height="169"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fz6-Di-QcI" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fz6-Di-QcI" customClass="XBTextView" customModule="海螺听听" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -40,7 +40,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请输入账号"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPk-w7-8N6" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPk-w7-8N6" customClass="BoaderView" customModule="海螺听听" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="63" width="335" height="43"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vn4-Mq-D07">
@@ -51,7 +51,7 @@
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yri-4r-pKq">
                                     <rect key="frame" x="235" y="6.5" width="90" height="30"/>
-                                    <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="NZn-Se-6em"/>
                                         <constraint firstAttribute="height" constant="30" id="cYS-br-j8m"/>
@@ -77,7 +77,7 @@
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="EKQ-8c-t0I"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-ZA-Hhw" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xhm-ZA-Hhw" customClass="XBTextView" customModule="海螺听听" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="126" width="335" height="43"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <viewLayoutGuide key="safeArea" id="ro5-lh-8RT"/>
@@ -90,7 +90,7 @@
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwS-Pu-VN3">
                     <rect key="frame" x="20" y="262.5" width="335" height="43"/>
-                    <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="pMm-yB-GxU"/>
                     </constraints>

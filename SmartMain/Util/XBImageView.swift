@@ -8,11 +8,12 @@
 
 import Foundation
 enum XBImgPlaceholder:String {
-    
-    case photo              = "icon_touxiang"   // 默认头像
-    case merchant           = "icon_shangjia"    // 默认公司
-    case none               = "icon_photo"  // 默认展位图
-    case phone              = "icon_touxiangmr2"  // 手机通讯录默认头像
+    /// 头像默认图片
+    case photo              = "icon_photo"
+    /// 设备默认图片
+    case equipment           = "icon_none_equipment"
+    /// 默认图片
+    case none               = "placeholder_product"
 }
 import Accelerate
 extension UIImageView {
@@ -25,7 +26,7 @@ extension UIImageView {
             self.image = img
             return
         }
-        if let url_request = URL(string: urlNew.urlEncoded()) {
+        if let url_request = URL(string: urlNew.urlEncodedNew()) {
             
             self.kf.setImage(with: url_request,
                          placeholder: img)

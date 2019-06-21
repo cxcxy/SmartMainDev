@@ -103,6 +103,7 @@ class VolumeControlView: ETPopupView,UIGestureRecognizerDelegate {
     func updateCurrentVolume(factor: CGFloat) {
         self.currentVolume = Int(factor * 40)
         scoketModel.setVolumeValue(value: Int(factor * 40))
+        scoketModel.sendGetVolume()
         if let del = delegate {
             del.getVolumeNumber(volume: self.currentVolume)
         }

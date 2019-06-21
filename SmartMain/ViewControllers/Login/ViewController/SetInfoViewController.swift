@@ -10,7 +10,7 @@ import UIKit
 import FCUUID
 
 protocol SetInfoDelegate: class {
-    func addSuccessAction(deviceId: String,model: XBDeviceBabyModel)
+    func addSuccessAction(deviceId: String)
 }
 
 enum SetInfoType {
@@ -136,7 +136,7 @@ class SetInfoViewController: XBBaseViewController {
         }
     }
     func getDeviceBabyInfo() { // 获取设备信息
-        viewModel.requestGetBabyInfo(device_Id: deviceId) {[weak self] in
+        viewModel.requestGetBabyInfo(device_Id: deviceId) {[weak self](isTrue) in
             guard let `self` = self else { return }
             self.configUIInfo()
         }
@@ -146,7 +146,7 @@ class SetInfoViewController: XBBaseViewController {
         case .editUserInfo:
             
             self.headImgUrl = user_defaults.get(for: .headImgUrl) ?? ""
-            self.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+            self.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl),.photo)
             self.tfNick.text = user_defaults.get(for: .nickname)
 
             break
@@ -155,7 +155,7 @@ class SetInfoViewController: XBBaseViewController {
             self.headImgUrl = user_defaults.get(for: .dv_headimgurl) ?? ""
             self.birth = XBUserManager.dv_birthday
             
-            self.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+            self.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl,.photo)
             self.tfNick.text = XBUserManager.dv_babyname
             self.tfBirth.text = XBUserManager.dv_birthday
             
@@ -242,7 +242,7 @@ class SetInfoViewController: XBBaseViewController {
             if self.isAdd {
                 print("新增成功")
                 if let del = self.delegate {
-                    del.addSuccessAction(deviceId: self.deviceId,model: model)
+                    del.addSuccessAction(deviceId: self.deviceId)
                     self.popVC()
                 }
             }else {

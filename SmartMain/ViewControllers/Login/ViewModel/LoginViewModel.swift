@@ -9,8 +9,9 @@
 import UIKit
 
 class LoginViewModel: NSObject {
-    /// 获取验证码接口
-    func requestGetCode(mobile: String,closure: @escaping () -> ())  {
+    /// 获取验证码接口 注册的时候获取验证码，modle传regest 重置密码的时候获取验证码，modle传reset，若此时传的手机号未注册，就会返回406
+
+    func requestGetCode(mobile: String,type: String,closure: @escaping (Bool) -> ())  {
         guard mobile != "" else {
             XBHud.showMsg("请输入手机号")
             return
@@ -19,9 +20,13 @@ class LoginViewModel: NSObject {
             XBHud.showMsg("请输入正确手机号")
             return
         }
-        Net.requestWithTarget(.getAuthCode(mobile: mobile), successClosure: { (result, code, message) in
-            XBHud.showMsg("发送验证码成功")
-            closure()
+        Net.requestWithTarget(.getAuthCode(mobile: mobile, modle: type), successClosure: { (result, code, message) in
+           
+            if let obj = Net.filterStatus(jsonString: result) {
+                 XBHud.showMsg("发送验证码成功")
+                 closure(true)
+            }
+//
         })
     }
     /// 注册第一步接口
@@ -103,6 +108,7 @@ class LoginViewModel: NSObject {
             XBHud.showMsg("请输入密码")
             return
         }
+//        let password = code.filterWhitespaces()
         Net.requestWithTarget(.loginWithPass(mobile: mobile, password: code), successClosure: { (result, res_code, message) in
             if let jsonStr = result as? String {
                 self.loginUserInfo(jsonResult: jsonStr,mobile: mobile,password: code,closure: closure)
@@ -192,15 +198,16 @@ class LoginViewModel: NSObject {
         })
     }
     /// 修改设备信息信息
-    func requestGetBabyInfo(device_Id: String, closure: @escaping () -> ())  {
+    func requestGetBabyInfo(device_Id: String, closure: @escaping (Bool) -> ())  {
         guard XBUserManager.device_Id != "" else {
+             closure(false)
             return
         }
         Net.requestWithTarget(.getBabyInfo(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
             if let obj = Net.filterStatus(jsonString: result) {
                 if let model = Mapper<XBDeviceBabyModel>().map(JSONObject: obj.object) {
                     XBUserManager.saveDeviceInfo(model)
-                    closure()
+                    closure(true)
                 }
             }
         })

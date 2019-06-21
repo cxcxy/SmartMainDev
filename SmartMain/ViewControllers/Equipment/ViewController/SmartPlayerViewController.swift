@@ -107,7 +107,7 @@ class SmartPlayerViewController: XBBaseViewController {
     let viewModel = ContentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "歌曲名"
+//        title = "歌曲名"
         self.currentNavigationHidden = true
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -191,11 +191,16 @@ class SmartPlayerViewController: XBBaseViewController {
         scoketModel.getPlayProgress.asObservable().subscribe { [weak self] in
             guard let `self` = self else { return }
             print("getPlayProgress ===：", $0.element ?? 0)
-//            let progressValue: Float = Float($0.element ?? 0) / 100
-            // 设置 播放进度条
-//            self.sliderProgress.setValue(Float($0.element ?? 0), animated: true)
             self.currentSongProgress = $0.element ?? 0
+            if self.btnPlay.isSelected {
+                if self.timer == nil {
+                    self.resetTimer()
+                    self.configTimer(songDuration: self.allTimer, isPlay: true)
+                }
+//                self.resumeRotate()
+            }
         }.disposed(by: rx_disposeBag)
+        // 监听播放器状态
         scoketModel.playStatus.asObserver().subscribe { [weak self](status) in
             guard let `self` = self else { return }
             if let status = status.element {
@@ -215,7 +220,8 @@ class SmartPlayerViewController: XBBaseViewController {
                 }
             }
         }.disposed(by: rx_disposeBag)
-//        scoketModel.playStatus.asObserver().bind(to: btnPlay.rx.isSelected).disposed(by: rx_disposeBag)
+
+        
         scoketModel.repeatStatus.asObserver().bind(to: btnRepeat.rx.isSelected).disposed(by: rx_disposeBag)
         addRotationAnim()
         //MARK: 测试用
@@ -247,7 +253,7 @@ class SmartPlayerViewController: XBBaseViewController {
  // 暂停播放旋转动画
     func pauseRotate() {
         DispatchQueue.main.async {
-            self.addRotationAnim()
+//            self.addRotationAnim()
             self.imgSings.layer.pauseAnimation()
         }
 
@@ -261,40 +267,25 @@ class SmartPlayerViewController: XBBaseViewController {
         }
         
     }
+    /// 配置时间计时器，当拿到机器d此时的播放进度的时候， 进行计时，进度条开始运作。
     func configTimer(songDuration: Float, isPlay: Bool = false)  {
-//        guard let `self` = self else { return }
-        
         self.allTimer = songDuration
         if self.isFirst == false || isPlay{ // 当是第一次进去的时候 或者从暂停，到播放
-//            self.scoketModel.sendGetPlayProgress()
             self.isFirst = true
         }else {
             self.currentSongProgress = 0 // 当发现切换歌曲的时候， 播放 从 0 开始
         }
 
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(tickDown), userInfo: nil, repeats: true)
-//        if #available(iOS 10.0, *) {
-//            timer = Timer.init(timeInterval: 1, repeats: true, block: { [weak self] (timer) in
-//                guard let `self` = self else { return }
-//                self.tickDown()
-//
-//            })
-//        } else {
-//
-//        }
         
          RunLoop.main.add(timer!, forMode: .commonModes)
         // 设置 时间
         sliderProgress.maximumValue = songDuration
-//        self.configProgressSlider()
         lbSongProgress.set_text = XBUtil.getDetailTimeWithTimestamp(timeStamp: Int(songDuration),formatTypeText: false)
         
     }
-//    deinit {
-//        resetTimer()
-//    }
     //MARK: 重置计时器
-    func    resetTimer()  {
+    func resetTimer()  {
         timer?.invalidate()
         timer = nil
     }
@@ -303,8 +294,6 @@ class SmartPlayerViewController: XBBaseViewController {
      **/
     @objc func tickDown()
     {
-//        print(currentSongProgress)
-        
         currentSongProgress      = currentSongProgress + 1
         if currentSongProgress >= Int(allTimer) { // 当前歌曲播放完毕
             resetTimer()

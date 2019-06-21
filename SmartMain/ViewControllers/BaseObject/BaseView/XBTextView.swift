@@ -37,13 +37,18 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
             textField.isSecureTextEntry = isPass
         }
     }
+    @IBInspectable open var isNumber: Bool = false {
+        didSet {
+            textField.keyboardType = isNumber ? .numberPad : .default
+        }
+    }
     @IBInspectable open var maxInput: Int = 1000
     
     @IBInspectable open var isBoard: Bool = true {
         didSet {
             if isBoard {
                 self.setCornerRadius(radius: 20)
-                self.addBorder(width: 0.5, color: viewColor)
+                self.addBorder(width: 0.5, color: XBNavColor)
             }else {
                 self.setCornerRadius(radius: 0)
                 self.addBorder(width: 0.0, color: UIColor.clear)
@@ -52,7 +57,7 @@ typealias XBTextViewContent = ((_ contentStr: String) -> ())
     }
     func initialSetup()  {
         self.setCornerRadius(radius: 20)
-        self.addBorder(width: 0.5, color: viewColor)
+        self.addBorder(width: 0.5, color: XBNavColor)
         btnClear.isHidden = true
         textField.delegate = self
         let input = textField.rx.text.orEmpty.asDriver()

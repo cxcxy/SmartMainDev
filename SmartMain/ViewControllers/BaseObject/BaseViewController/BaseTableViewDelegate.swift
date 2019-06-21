@@ -227,7 +227,10 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
                     cell.lbTopTotal.set_text =  "共" + totalStr + "首"
                     cell.imgTop.set_Img_Url(model.imgLarge)
                     cell.imgBackground.set_Img_Url(model.imgLarge)
-                   
+                    cell.btnAddAll.addAction {[weak self] in
+                        guard let `self` = self else { return }
+                        self.clickSongsToTrackList(isAll: true)
+                    }
                 }
                 return cell
             }else {
@@ -237,7 +240,6 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
             break
         }
         return self.getListCell(tableView, cellForRowAt: indexPath, indexPathRow: indexPath.row)
-       
     }
     func getListCell(_ tableView: UITableView, cellForRowAt indexPath: IndexPath,indexPathRow: Int) -> BaseListCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BaseListCell", for: indexPath) as! BaseListCell
@@ -261,6 +263,9 @@ class BaseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSourc
         var model:BaseListItem!
         switch songListType {
         case .songs:
+            if indexPath.row == 0 {
+                return
+            }
             model = dataArr[indexPath.row - 1]
         default:
             model = dataArr[indexPath.row]

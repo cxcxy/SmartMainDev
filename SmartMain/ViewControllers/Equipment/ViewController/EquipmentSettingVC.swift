@@ -129,7 +129,7 @@ class EquipmentSettingVC: XBBaseTableViewController {
     }
     func getDeviceBabyInfo() { // 获取设备信息
         
-        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] (isTrue)in
             guard let `self` = self else { return }
 //            self.configUIInfo()
             self.cell_name.content = XBUserManager.dv_babyname
@@ -304,10 +304,10 @@ extension EquipmentSettingVC {
             }
             switch settingType {
             case .device:
-                cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl)
+                cell.imgPhoto.set_Img_Url(XBUserManager.dv_headimgurl,.photo)
                 cell.lbTitle.set_text = XBUserManager.dv_babyname
             case .user:
-                cell.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl))
+                cell.imgPhoto.set_Img_Url(user_defaults.get(for: .headImgUrl),.photo)
                 cell.lbTitle.set_text = XBUserManager.nickname
             }
  

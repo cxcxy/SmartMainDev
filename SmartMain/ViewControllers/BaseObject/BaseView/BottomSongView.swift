@@ -11,7 +11,7 @@ import UIKit
 class BottomSongView: UIView {
     
     @IBOutlet weak var btnTrackList: UIButton!
-    
+    @IBOutlet weak var btnClickPlay: UIButton!
     @IBOutlet weak var btnDown: UIButton!
     @IBOutlet weak var imgSong: UIImageView!
     @IBOutlet weak var bottomView: UIView!

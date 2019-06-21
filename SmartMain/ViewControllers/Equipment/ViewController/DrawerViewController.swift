@@ -104,7 +104,10 @@ class DrawerViewController: XBBaseViewController {
             guard let `self` = self else { return }
 //            let vc = EquipmentSettingVC()
 //            self.pushVC(vc)
-            VCRouter.toEquipmentSettingVC()
+            if XBUserManager.device_Id != ""  {
+                VCRouter.toEquipmentSettingVC()
+            }
+            
         }
         
         self.getDeviceBabyInfo()
@@ -113,7 +116,11 @@ class DrawerViewController: XBBaseViewController {
 
     }
     func getDeviceBabyInfo() { // 获取设备信息
-        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] in
+//        guard XBUserManager.device_Id != "" else {
+//            self.getDeviceBabyInfo()
+//            return
+//        }
+        viewModel.requestGetBabyInfo(device_Id: XBUserManager.device_Id) {[weak self] (isTrue)in
             guard let `self` = self else { return }
             self.configUserInfo()
         }
@@ -176,11 +183,11 @@ class DrawerViewController: XBBaseViewController {
         if XBUserManager.device_Id == ""{
             lbDvnick.set_text = "未绑定设备"
             imgNext.isHidden = true
-            imgPhoto.image = UIImage.init(named: "icon_photo")
+            imgPhoto.image = UIImage.init(named: "icon_none_equipment")
         }else {
             lbDvnick.set_text = XBUserManager.dv_babyname
             imgNext.isHidden = false
-            imgPhoto.set_Img_Url(user_defaults.get(for: .dv_headimgurl))
+            imgPhoto.set_Img_Url(user_defaults.get(for: .dv_headimgurl),.equipment)
         }
         
         self.tableView.reloadData()

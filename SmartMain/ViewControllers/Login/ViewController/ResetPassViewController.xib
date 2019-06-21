@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResetPassViewController" customModule="SmartMain" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResetPassViewController" customModule="海螺听听" customModuleProvider="target">
             <connections>
                 <outlet property="btnCode" destination="VJu-GD-6aY" id="faf-vh-xM8"/>
                 <outlet property="btnReset" destination="RCO-yw-mSy" id="HB3-ke-1HM"/>
@@ -29,7 +29,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pNG-ks-Xdw">
                     <rect key="frame" x="20" y="40" width="335" height="232"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWc-8d-lK6" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWc-8d-lK6" customClass="XBTextView" customModule="海螺听听" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -38,20 +38,21 @@
                             <viewLayoutGuide key="safeArea" id="pOQ-r9-Nm4"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="输入手机号"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isNumber" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbi-Cs-ekB" customClass="BoaderView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbi-Cs-ekB" customClass="BoaderView" customModule="海螺听听" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="63" width="335" height="43"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omD-E4-Mea">
                                     <rect key="frame" x="18" y="0.0" width="202" height="43"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJu-GD-6aY">
                                     <rect key="frame" x="235" y="6.5" width="90" height="30"/>
-                                    <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="4d0-JD-iyg"/>
                                         <constraint firstAttribute="width" constant="90" id="wU5-U9-Vwz"/>
@@ -77,7 +78,7 @@
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="b7i-KU-nDf"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSK-Et-QGz" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSK-Et-QGz" customClass="XBTextView" customModule="海螺听听" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="126" width="335" height="43"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <viewLayoutGuide key="safeArea" id="Rkf-3U-qb2"/>
@@ -86,7 +87,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isPass" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybg-wJ-aP4" customClass="XBTextView" customModule="SmartMain" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybg-wJ-aP4" customClass="XBTextView" customModule="海螺听听" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="189" width="335" height="43"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <viewLayoutGuide key="safeArea" id="Yxb-r4-RlH"/>
@@ -99,7 +100,7 @@
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCO-yw-mSy">
                     <rect key="frame" x="20" y="292" width="335" height="43"/>
-                    <color key="backgroundColor" red="0.50588235290000005" green="0.77647058820000003" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="5XU-Ib-ROQ"/>
                     </constraints>
@@ -121,6 +122,7 @@
                 <constraint firstItem="RCO-yw-mSy" firstAttribute="leading" secondItem="pNG-ks-Xdw" secondAttribute="leading" id="jB8-8v-9W1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="-142" y="-20"/>
         </view>
     </objects>
 </document>

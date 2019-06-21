@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContentMainVC" customModule="SmartMain" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContentMainVC" customModule="海螺听听" customModuleProvider="target">
             <connections>
                 <outlet property="bottomLayout" destination="W35-zo-NGI" id="zzU-bx-IpZ"/>
                 <outlet property="layoutViewTop" destination="XpE-v7-iu0" id="m8g-Du-Fhk"/>
@@ -62,7 +62,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iU9-kP-RMW">
                                     <rect key="frame" x="0.0" y="0.0" width="220" height="30"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sik-yQ-fDq" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sik-yQ-fDq" customClass="ContentTopNavItem" customModule="海螺听听" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgY-rT-KTA">
@@ -72,7 +72,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="KgY-rT-KTA" firstAttribute="top" secondItem="Sik-yQ-fDq" secondAttribute="top" id="6II-aH-VwL"/>
                                                 <constraint firstItem="KgY-rT-KTA" firstAttribute="leading" secondItem="Sik-yQ-fDq" secondAttribute="leading" id="PKk-n5-PWy"/>
@@ -84,7 +84,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="播单"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Px-gb-dGU" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Px-gb-dGU" customClass="ContentTopNavItem" customModule="海螺听听" customModuleProvider="target">
                                             <rect key="frame" x="60" y="0.0" width="40" height="30"/>
                                             <subviews>
                                                 <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebI-oF-z6m">
@@ -95,7 +95,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="u4S-10-hl8"/>
                                             </constraints>
@@ -103,7 +103,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="内容"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZx-TG-hqn" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZx-TG-hqn" customClass="ContentTopNavItem" customModule="海螺听听" customModuleProvider="target">
                                             <rect key="frame" x="120" y="0.0" width="40" height="30"/>
                                             <subviews>
                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAw-iR-0Dl">
@@ -114,7 +114,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="YFK-lk-4Vr"/>
                                             </constraints>
@@ -122,7 +122,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="title" value="收藏"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EoW-cP-1wD" customClass="ContentTopNavItem" customModule="SmartMain" customModuleProvider="target">
+                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EoW-cP-1wD" customClass="ContentTopNavItem" customModule="海螺听听" customModuleProvider="target">
                                             <rect key="frame" x="180" y="0.0" width="40" height="30"/>
                                             <subviews>
                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Arq-yh-Omd">
@@ -133,7 +133,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="HjW-ft-kVM"/>
                                             </constraints>
@@ -145,7 +145,7 @@
                                     <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="6hY-AG-Q7t"/>
                                 <constraint firstAttribute="trailing" secondItem="iU9-kP-RMW" secondAttribute="trailing" id="OCA-CG-14w"/>
@@ -196,7 +196,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.4941176471" green="0.80000000000000004" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="vWV-0F-FX9" firstAttribute="leading" secondItem="0LR-kA-98W" secondAttribute="leading" constant="20" id="1Jf-P1-pI2"/>
                         <constraint firstItem="eBO-8g-cTT" firstAttribute="centerY" secondItem="vWV-0F-FX9" secondAttribute="centerY" id="9Z4-Mt-O26"/>
