@@ -20,7 +20,7 @@ extension UIImageView {
 
     //MARK: 扩展加载图片方法
     func set_Img_Url(_ url:String?,
-                     _ placeHolder:XBImgPlaceholder = .none)  {
+                     _ placeHolder:XBImgPlaceholder = .equipment)  {
         let img = UIImage.init(named: placeHolder.rawValue)
         guard let urlNew = url else {
             self.image = img
