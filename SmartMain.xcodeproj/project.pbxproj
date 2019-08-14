@@ -2493,7 +2493,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
@@ -2546,7 +2546,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartMain/Pods-SmartMain-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		78ED6FD45B3F9CA9B9CBA626 /* [CP] Check Pods Manifest.lock */ = {

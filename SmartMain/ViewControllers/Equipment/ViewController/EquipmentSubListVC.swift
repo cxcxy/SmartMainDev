@@ -50,6 +50,7 @@ class EquipmentSubListVC: XBBaseViewController {
     }
     override func setUI() {
         super.setUI()
+        
 //        self.registerCells(register_cells: ["ContentSingCell",
 //                                            "HistorySongCell",
 //                                            "HistorySongContentCell"])

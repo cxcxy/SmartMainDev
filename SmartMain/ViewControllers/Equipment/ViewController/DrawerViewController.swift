@@ -185,7 +185,7 @@ class DrawerViewController: XBBaseViewController {
             imgNext.isHidden = true
             imgPhoto.image = UIImage.init(named: "icon_none_equipment")
         }else {
-            lbDvnick.set_text = XBUserManager.dv_babyname
+            lbDvnick.set_text = XBUserManager.dv_babyname == "" ? "昵称未设置" : XBUserManager.dv_babyname
             imgNext.isHidden = false
             imgPhoto.set_Img_Url(user_defaults.get(for: .dv_headimgurl),.equipment)
         }
