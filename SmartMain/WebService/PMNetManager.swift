@@ -65,7 +65,12 @@ class XBNetManager {
             }
             guard status == 200 else {
                 let message = result.json_Str()["message"].stringValue
-                XBHud.showMsg(message)
+                if status == 404 && message == "no such info" {
+                    
+                }else {
+                    XBHud.showMsg(message)
+                }
+                
                 return nil
             }
             return result.json_Str()["result"]
