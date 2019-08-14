@@ -173,7 +173,7 @@ class DrawerViewController: XBBaseViewController {
 //            eqArr       = [eqTwo]
 //            accountArr  = [accountTwo,accountThree]
         }
-//        self.configUserInfo()
+        self.configUserInfo()
         
     }
     func configUserInfo()  {

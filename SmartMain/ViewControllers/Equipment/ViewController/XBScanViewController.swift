@@ -248,7 +248,7 @@ extension XBScanViewController: SetInfoDelegate {
         XBDelay.start(delay: 1, closure: {
             Noti_post(.refreshDeviceHistory)
             Noti_post(.refreshTrackList)
-            self.popToRootVC()
+//            self.popToRootVC()
         })
     }
     func addSuccessAction(deviceId: String) {

@@ -3032,7 +3032,7 @@
 				CODE_SIGN_ENTITLEMENTS = SmartMain/SmartMain.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GL929UJPB;
+				DEVELOPMENT_TEAM = AZF2TUZCNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3044,7 +3044,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Opencore-AMR/lib",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.ap;
 				PRODUCT_NAME = "海螺听听";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
@@ -3064,7 +3064,7 @@
 				CODE_SIGN_ENTITLEMENTS = SmartMain/SmartMain.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GL929UJPB;
+				DEVELOPMENT_TEAM = AZF2TUZCNL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SmartMain/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3076,7 +3076,7 @@
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Opencore-AMR/lib",
 					"$(PROJECT_DIR)/SmartMain/Extension/ThirdParty/Conver/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihao.ap;
 				PRODUCT_NAME = "海螺听听";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartMain/SmartMain-Bridging-Header.h";
