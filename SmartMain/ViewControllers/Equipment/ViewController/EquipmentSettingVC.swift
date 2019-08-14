@@ -77,6 +77,7 @@ class EquipmentSettingVC: XBBaseTableViewController {
                 let cardTotal = model.cardTotal?.toString ?? ""
                 self.cell_memory.content = cardAvailable + "MB/" + cardTotal + "MB"
                 self.cell_device.content = model.id ?? ""
+                self.tableView.reloadData()
                 self.getDeviceBabyInfo()
 
             }

@@ -209,8 +209,13 @@ class LoginViewModel: NSObject {
                     XBUserManager.saveDeviceInfo(model)
                     closure(true)
                 }
+            } else {
+                print("获取不到名字")
             }
-        })
+        }){ (error) in
+            print(error)
+        }
+
     }
     /// 修改信息
     func requestUpdateBabyInfo(device_Id: String,babyname: String,headimgurl: String,closure: @escaping (XBDeviceBabyModel) -> ())  {
