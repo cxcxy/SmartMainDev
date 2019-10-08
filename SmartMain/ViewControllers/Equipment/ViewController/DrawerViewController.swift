@@ -178,7 +178,7 @@ class DrawerViewController: XBBaseViewController {
     }
     func configUserInfo()  {
         imgPhoto.roundView()
-        
+        print("dv_headimgurl",user_defaults.get(for: .dv_headimgurl))
 //        lbDvnick.set_text = XBUserManager.nickname
         if XBUserManager.device_Id == ""{
             lbDvnick.set_text = "未绑定设备"

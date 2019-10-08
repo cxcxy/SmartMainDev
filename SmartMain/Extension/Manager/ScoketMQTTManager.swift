@@ -189,13 +189,14 @@ class ScoketMQTTManager: NSObject, MQTTSessionDelegate {
             if remove_user == "all" { // 如果是全部，则管理员解散群组
                 if remove_deviceId == XBUserManager.device_Id { // 如果是当前的设备，则重新拉取用户信息，
                     DispatchQueue.main.async {
+                         XBUserManager.clearDeviceInfo()
                          self.refreshUserInfo()
                     }
-                   
                 }
             } else {
                 if remove_user == XBUserManager.userName {
                     DispatchQueue.main.async {
+                        XBUserManager.clearDeviceInfo()
                         self.refreshUserInfo()
                     }
                 }

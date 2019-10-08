@@ -26,6 +26,10 @@ extension UIImageView {
             self.image = img
             return
         }
+        if (urlNew == "") {
+            self.image = img
+            return
+        }
         if let url_request = URL(string: urlNew.urlEncodedNew()) {
             
             self.kf.setImage(with: url_request,

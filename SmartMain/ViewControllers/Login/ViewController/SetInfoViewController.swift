@@ -243,7 +243,8 @@ class SetInfoViewController: XBBaseViewController {
                 print("新增成功")
                 if let del = self.delegate {
                     del.addSuccessAction(deviceId: self.deviceId)
-                    self.popVC()
+                    XBUserManager.saveDeviceInfo(model)
+                    self.popToRootVC()
                 }
             }else {
                 XBHud.showMsg("修改成功")

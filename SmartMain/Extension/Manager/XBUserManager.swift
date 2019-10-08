@@ -131,7 +131,7 @@ extension XBUserManager { // 保存设备宝宝 信息
             return user_defaults.get(for: .dv_headimgurl) ?? ""
         }
         set{
-            user_defaults.set(newValue, for: .dv_babyname)
+            user_defaults.set(newValue, for: .dv_headimgurl)
         }
     }
     static var dv_sex:String {

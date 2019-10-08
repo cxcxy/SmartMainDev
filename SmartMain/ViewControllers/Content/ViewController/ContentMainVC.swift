@@ -158,6 +158,7 @@ class ContentMainVC: XBBaseViewController {
         _ = Noti(.refreshDeviceHistory).takeUntil(self.rx.deallocated).subscribe(onNext: {[weak self] (value) in
             guard let `self` = self else { return }
             self.configScoketModel()
+            self.request()
         })
         
         
@@ -425,6 +426,7 @@ class ContentMainVC: XBBaseViewController {
         }
         
         Net.requestWithTarget(.getTrackList(deviceId: XBUserManager.device_Id), successClosure: { (result, code, message) in
+            print("播单",result)
             if let arr = Mapper<EquipmentModel>().mapArray(JSONString: result as! String) {
                 self.loading = true
                 self.endRefresh()
