@@ -40,15 +40,19 @@ class ConfigNetTipController: XBBaseViewController {
         let model1 = ConfigNetModel()
         model1.title = "第1步：开启设备"
         model1.des = "请将电源键打开至“ON”将设备开启"
+        model1.img = "net-1"
         let model2 = ConfigNetModel()
         model2.title = "第2步：进入联网模式"
         model2.des = "请同时长安设备上“音量+”，“音量-”按键，直到听到“等待配置中”的提示音"
+        model2.img = "net-2"
         let model3 = ConfigNetModel()
         model3.title = "第3步：配置网络"
         model3.des = "请点击“一键配网”设置您的无线网络"
+        model3.img = "net-3"
         let model4 = ConfigNetModel()
         model4.title = "第4步：声波配网"
         model4.des = "请将手机靠近设备尽量选择安静的环境"
+        model4.img = "net-4"
         v.dataSourceArray = [model1,model2,model3,model4]
         self.viewSrollViewContainer.addSubview(v)
     }

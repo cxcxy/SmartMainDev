@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,14 +20,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Lr-n3-ZbX">
-                    <rect key="frame" x="70" y="90" width="235" height="235"/>
+                    <rect key="frame" x="70" y="70" width="235" height="235"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="config_shebei" translatesAutoresizingMaskIntoConstraints="NO" id="p7Q-Yw-Hno">
+                            <rect key="frame" x="0.0" y="0.0" width="235" height="235"/>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="7Lr-n3-ZbX" secondAttribute="height" multiplier="1:1" id="3b9-UB-u3T"/>
+                        <constraint firstItem="p7Q-Yw-Hno" firstAttribute="top" secondItem="7Lr-n3-ZbX" secondAttribute="top" id="BgT-LD-7Cm"/>
+                        <constraint firstAttribute="bottom" secondItem="p7Q-Yw-Hno" secondAttribute="bottom" id="Ov4-ug-S9f"/>
+                        <constraint firstAttribute="trailing" secondItem="p7Q-Yw-Hno" secondAttribute="trailing" id="Tzb-G8-l6O"/>
+                        <constraint firstItem="p7Q-Yw-Hno" firstAttribute="leading" secondItem="7Lr-n3-ZbX" secondAttribute="leading" id="xhk-kB-AIY"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMG-zx-xKE">
-                    <rect key="frame" x="109" y="365" width="157.5" height="33.5"/>
+                    <rect key="frame" x="109" y="345" width="157.5" height="33.5"/>
                     <string key="text">请先扫描设备底部二维码
 开始配网绑定</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -37,13 +44,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwq-cf-90T">
-                    <rect key="frame" x="70" y="413.5" width="235" height="0.0"/>
+                    <rect key="frame" x="70" y="393.5" width="235" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVo-AK-Rji">
-                    <rect key="frame" x="87.5" y="443.5" width="200" height="46"/>
+                    <rect key="frame" x="87.5" y="423.5" width="200" height="46"/>
                     <color key="backgroundColor" red="0.38431372549999998" green="0.76078431369999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="RXh-ht-1Dm"/>
@@ -72,6 +79,10 @@
                 <constraint firstItem="dMG-zx-xKE" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="u9V-Hy-4SQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="140" y="113"/>
         </view>
     </objects>
+    <resources>
+        <image name="config_shebei" width="1000" height="1000"/>
+    </resources>
 </document>

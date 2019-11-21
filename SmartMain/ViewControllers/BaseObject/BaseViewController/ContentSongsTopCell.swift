@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentSongsTopCell: UITableViewCell {
+class ContentSongsTopCell: BaseTableViewCell {
     @IBOutlet weak var lbTopDes: UILabel!
     @IBOutlet weak var lbTopTotal: UILabel!
     

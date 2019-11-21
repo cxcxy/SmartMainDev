@@ -202,6 +202,7 @@ class Cell_801_Product: UIView {
         
         v?.lb_SingTodayName.set_text = model?.title
         v?.priceLabel.set_text = model?.des
+        v?.imgProduct.set_img = model?.img
         v?.pageControl.currentPage = self.currentIndex
         
     }
